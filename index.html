@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M&S Strategy — Courtier en énergie indépendant · Gaz · Électricité depuis 2012</title>
+<meta name="description" content="M&S Strategy, cabinet de courtage en énergie indépendant depuis 2012. Nous négocions vos contrats gaz et électricité auprès de tous les fournisseurs — professionnels (TPE, PME, ETI) et particuliers. Étude gratuite, sans engagement, résultat sous 48h.">
+<meta name="keywords" content="courtier énergie, courtage énergie professionnels, comparer offres énergie, négocier contrat gaz électricité, courtier indépendant énergie, réduire facture énergie entreprise">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#1a7a8a;
+  --teal-dark:#0d4f5c;
+  --teal-mid:#156a78;
+  --teal-light:#2bb5c8;
+  --teal-glow:#5ecfdc;
+  --green:#4cde80;
+  --green-glow:#7aeea4;
+  --dark:#07131a;
+  --dark2:#0a1f28;
+  --cream:#f5f0e8;
+  --muted:#8aacb4;
+  --muted2:#5a8a96;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+
+/* ─── NAV ─────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(7,19,26,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,122,138,.18)}
+.nl{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem}
+.ni{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal-dark),var(--teal));border:1.5px solid rgba(94,207,220,.35);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:var(--teal-glow);flex-shrink:0}
+.na{color:var(--green)}
+.nlinks{display:flex;align-items:center;gap:2rem;list-style:none}
+.nlinks a{font-size:.82rem;color:var(--muted);transition:color .2s}
+.nlinks a:hover{color:var(--cream)}
+.ncta{font-family:'Syne',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;padding:.52rem 1.35rem;border:1.5px solid var(--green);color:var(--green);border-radius:2px;transition:background .2s,color .2s,box-shadow .2s}
+.ncta:hover{background:var(--green);color:var(--dark);box-shadow:0 0 22px rgba(76,222,128,.38)}
+@media(max-width:768px){.nlinks{display:none}}
+
+/* ─── HERO SPLIT ─────────────────────── */
+.hero{position:relative;width:100vw;height:100vh;min-height:620px;display:flex;overflow:hidden}
+#pc{position:absolute;inset:0;z-index:0;pointer-events:none}
+
+/* Dynamic divider */
+.divider{
+  position:absolute;
+  top:0;bottom:0;
+  /* left set by JS */
+  left:50%;
+  width:0;
+  z-index:30;
+  pointer-events:none;
+  /* We draw via canvas overlay instead — this is a JS line */
+}
+
+/* SVG overlay for the animated divider line */
+#div-svg{
+  position:absolute;inset:0;z-index:25;pointer-events:none;
+  width:100%;height:100%;overflow:visible;
+}
+
+.panel{position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5vw 5rem;overflow:hidden;cursor:pointer;transition:flex .55s cubic-bezier(.77,0,.18,1),filter .35s ease}
+
+/* hover expand */
+.hero.hl .panel-b2b{flex:1.6}
+.hero.hl .panel-b2c{flex:.4;filter:brightness(.45) saturate(.5)}
+.hero.hr .panel-b2c{flex:1.6}
+.hero.hr .panel-b2b{flex:.4;filter:brightness(.45) saturate(.5)}
+
+/* B2B bg */
+.panel-b2b{background:var(--dark2)}
+.panel-b2b::before{content:'';position:absolute;inset:0;background:linear-gradient(140deg,rgba(13,79,92,.92) 0%,rgba(7,19,26,.96) 65%);transition:background .4s}
+.hero.hl .panel-b2b::before{background:linear-gradient(140deg,rgba(26,122,138,.95) 0%,rgba(10,35,48,.9) 60%)}
+
+/* B2C bg */
+.panel-b2c{background:var(--dark)}
+.panel-b2c::before{content:'';position:absolute;inset:0;background:linear-gradient(220deg,rgba(76,222,128,.12) 0%,rgba(7,19,26,.96) 65%);transition:background .4s}
+.hero.hr .panel-b2c::before{background:linear-gradient(220deg,rgba(76,222,128,.3) 0%,rgba(13,79,92,.3) 42%,rgba(7,19,26,.95) 70%)}
+
+/* Giant bg word */
+.bgw{position:absolute;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(6rem,18vw,15rem);line-height:.9;user-select:none;pointer-events:none;white-space:nowrap;letter-spacing:-.02em;transition:opacity .4s,transform .45s,color .4s}
+.panel-b2b .bgw{color:rgba(26,122,138,.07);bottom:1rem;left:-1rem}
+.panel-b2c .bgw{color:rgba(76,222,128,.05);bottom:1rem;right:-1rem}
+.hero.hl .panel-b2b .bgw{color:rgba(94,207,220,.13);transform:translateX(10px)}
+.hero.hr .panel-b2c .bgw{color:rgba(76,222,128,.1);transform:translateX(-10px)}
+
+/* Content */
+.pc{position:relative;z-index:10}
+
+.plbl{display:inline-flex;align-items:center;gap:.45rem;font-family:'Syne',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:.26rem .78rem;border-radius:2px;margin-bottom:1.4rem;transition:all .3s}
+.panel-b2b .plbl{color:var(--teal-glow);background:rgba(26,122,138,.13);border:1px solid rgba(94,207,220,.2)}
+.panel-b2c .plbl{color:var(--green);background:rgba(76,222,128,.09);border:1px solid rgba(76,222,128,.2)}
+.hero.hl .panel-b2b .plbl{background:rgba(26,122,138,.28);border-color:var(--teal-glow);box-shadow:0 0 14px rgba(94,207,220,.22)}
+.hero.hr .panel-b2c .plbl{background:rgba(76,222,128,.2);border-color:var(--green);box-shadow:0 0 14px rgba(76,222,128,.28)}
+
+.ptgt{font-family:'DM Sans',sans-serif;font-weight:300;font-style:italic;font-size:clamp(.88rem,1.35vw,1.08rem);color:var(--muted);margin-bottom:.5rem;transition:color .3s;letter-spacing:.01em}
+.hero.hl .panel-b2b .ptgt{color:var(--teal-light)}
+.hero.hr .panel-b2c .ptgt{color:var(--green-glow)}
+
+.ptitle{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);line-height:1.06;margin-bottom:1.2rem;color:var(--cream);transition:transform .4s cubic-bezier(.77,0,.18,1)}
+.ptitle em{font-style:italic;font-family:'DM Sans',sans-serif;font-weight:300}
+.panel-b2b .ptitle em{color:var(--teal-glow)}
+.panel-b2c .ptitle em{color:var(--green)}
+.hero.hl .panel-b2b .ptitle{transform:translateY(-5px)}
+.hero.hr .panel-b2c .ptitle{transform:translateY(-5px)}
+
+.pstats{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(94,207,220,.1);transition:border-color .3s}
+.hero.hl .panel-b2b .pstats{border-color:rgba(94,207,220,.28)}
+.hero.hr .panel-b2c .pstats{border-color:rgba(76,222,128,.22)}
+.si{display:flex;flex-direction:column;gap:.1rem}
+.sn{font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;line-height:1;transition:color .3s,text-shadow .3s}
+.panel-b2b .sn{color:var(--teal-light)}
+.panel-b2c .sn{color:var(--green)}
+.hero.hl .panel-b2b .sn{color:var(--teal-glow);text-shadow:0 0 24px rgba(94,207,220,.55)}
+.hero.hr .panel-b2c .sn{color:var(--green-glow);text-shadow:0 0 24px rgba(76,222,128,.55)}
+.sl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+.psub{font-size:clamp(.78rem,1.05vw,.92rem);color:var(--muted);line-height:1.68;max-width:365px;margin-bottom:1.8rem;font-weight:300;transition:color .3s}
+
+.pcta{display:inline-flex;align-items:center;gap:.6rem;font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:.86rem 1.85rem;border-radius:2px;border:none;cursor:pointer;position:relative;overflow:hidden;transition:transform .26s,box-shadow .26s,background .26s,color .26s}
+.pcta::before{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-20deg);transition:left .48s}
+.pcta:hover::before{left:160%}
+.panel-b2b .pcta{background:var(--teal);color:#fff}
+.hero.hl .panel-b2b .pcta{background:var(--teal-light);color:var(--dark);transform:translateY(-3px);box-shadow:0 14px 36px rgba(43,181,200,.5),0 0 70px rgba(43,181,200,.18)}
+.panel-b2c .pcta{background:var(--green);color:var(--dark)}
+.hero.hr .panel-b2c .pcta{background:var(--green-glow);color:var(--dark);transform:translateY(-3px);box-shadow:0 14px 36px rgba(76,222,128,.5),0 0 70px rgba(76,222,128,.18)}
+.ca{display:inline-block;transition:transform .26s}
+.pcta:hover .ca{transform:translateX(4px)}
+
+.pc>*{opacity:0;transform:translateY(20px);animation:cin .65s ease forwards}
+.panel-b2b .plbl{animation-delay:.55s}.panel-b2b .ptgt{animation-delay:.67s}.panel-b2b .ptitle{animation-delay:.76s}.panel-b2b .pstats{animation-delay:.86s}.panel-b2b .psub{animation-delay:.92s}.panel-b2b .pcta{animation-delay:1.02s}
+.panel-b2c .plbl{animation-delay:.65s}.panel-b2c .ptgt{animation-delay:.77s}.panel-b2c .ptitle{animation-delay:.86s}.panel-b2c .psub{animation-delay:.96s}.panel-b2c .pcta{animation-delay:1.06s}
+@keyframes cin{to{opacity:1;transform:none}}
+
+.scrl{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);z-index:30;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:0;animation:cin .5s 1.5s forwards}
+.scrl span{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);opacity:.5}
+.sn2{width:1px;height:36px;background:linear-gradient(180deg,var(--muted),transparent);animation:npulse 1.8s ease-in-out infinite}
+@keyframes npulse{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(7px)}}
+
+@media(max-width:640px){
+  .hero{flex-direction:column;height:auto;min-height:100dvh}
+  .panel{flex:1!important;filter:none!important;padding:5.5rem 6vw 3.5rem;min-height:50vh}
+  #div-svg{display:none}
+  .hero.hl .panel-b2b,.hero.hr .panel-b2c{filter:none}
+}
+
+/* ─── BRAND STRIP ─────────────────────── */
+.brand{background:var(--dark2);border-top:1px solid rgba(26,122,138,.18);padding:5.5rem 5vw;text-align:center}
+.bey{font-family:'Syne',sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--teal-glow);opacity:.6;margin-bottom:1.3rem}
+.bh{font-family:'DM Sans',sans-serif;font-weight:300;font-style:italic;font-size:clamp(1.4rem,3.8vw,2.7rem);color:var(--cream);line-height:1.3;max-width:660px;margin:0 auto .9rem}
+.bh em{color:var(--green);font-style:normal;font-weight:400}
+.bdiv{width:38px;height:1.5px;background:var(--teal-light);margin:1.4rem auto 2rem}
+.prow{display:flex;justify-content:center;gap:4rem;flex-wrap:wrap}
+.pit{display:flex;flex-direction:column;align-items:center;gap:.22rem}
+.pnum{font-family:'Syne',sans-serif;font-weight:800;font-size:2.5rem;line-height:1}
+.pnum.t{color:var(--teal-light)}.pnum.g{color:var(--green)}
+.plb{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* ─── SEO — WHAT IS A BROKER ─────────── */
+.seo-intro{padding:7rem 5vw;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+@media(max-width:768px){.seo-intro{grid-template-columns:1fr;gap:3rem}}
+.stag{display:inline-block;font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-glow);background:rgba(26,122,138,.1);border:1px solid rgba(94,207,220,.18);padding:.26rem .75rem;border-radius:2px;margin-bottom:1.1rem}
+.sh2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.4rem,3vw,2.2rem);color:var(--cream);line-height:1.1;margin-bottom:1.2rem}
+.sh2 em{color:var(--teal-glow);font-style:italic;font-family:'DM Sans',sans-serif;font-weight:300}
+.sbody{color:var(--muted);font-size:.97rem;line-height:1.78}
+.sbody p{margin-bottom:1.2rem}
+.sbody strong{color:var(--cream);font-weight:500}
+
+.seo-right{}
+.def-box{background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.18);border-radius:4px;padding:2rem;margin-bottom:1.5rem}
+.def-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-glow);margin-bottom:.9rem}
+.def-body{font-size:.9rem;color:var(--muted);line-height:1.72}
+.def-body strong{color:var(--cream)}
+
+.chklist{list-style:none;margin-top:1.2rem}
+.chklist li{display:flex;align-items:flex-start;gap:.75rem;padding:.55rem 0;border-bottom:1px solid rgba(43,181,200,.07);font-size:.9rem;color:var(--muted);line-height:1.5}
+.chklist li:last-child{border:none}
+.chklist li::before{content:'→';color:var(--green);font-weight:700;flex-shrink:0;margin-top:.1rem}
+
+/* ─── HOW TO CHOOSE ──────────────────── */
+.how-band{background:rgba(13,79,92,.1);border-top:1px solid rgba(43,181,200,.08);border-bottom:1px solid rgba(43,181,200,.08);padding:7rem 5vw}
+.how-inner{max-width:1100px;margin:0 auto}
+.how-header{max-width:580px;margin-bottom:4rem}
+.how-header p{color:var(--muted);font-size:.97rem;line-height:1.72;margin-top:1rem}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media(max-width:700px){.how-grid{grid-template-columns:1fr}}
+.hcard{border:1px solid rgba(26,122,138,.14);border-radius:3px;padding:2rem;background:var(--dark);transition:border-color .25s,transform .25s}
+.hcard:hover{border-color:rgba(94,207,220,.3);transform:translateY(-3px)}
+.hcn{font-family:'Syne',sans-serif;font-weight:800;font-size:2.8rem;color:rgba(26,122,138,.16);line-height:1;margin-bottom:.65rem}
+.hct{font-family:'Syne',sans-serif;font-weight:700;font-size:.93rem;color:var(--cream);margin-bottom:.5rem}
+.hcb{font-size:.87rem;color:var(--muted);line-height:1.65}
+
+/* ─── MARKET EXPLAINER ───────────────── */
+.market-section{padding:7rem 5vw;max-width:1100px;margin:0 auto}
+.market-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+@media(max-width:768px){.market-inner{grid-template-columns:1fr;gap:3rem}}
+.market-copy .sbody{margin-bottom:2rem}
+
+.timing-visual{background:linear-gradient(135deg,rgba(13,79,92,.4),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.18);border-radius:4px;padding:2rem}
+.tv-title{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-light);margin-bottom:1.6rem}
+.trow{display:flex;align-items:center;gap:.9rem;padding:.85rem 0;border-bottom:1px solid rgba(43,181,200,.07)}
+.trow:last-child{border:none}
+.tdot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.tdate{font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;min-width:95px}
+.tnote{font-size:.82rem;color:var(--muted);line-height:1.4}
+.tbadge{margin-left:auto;flex-shrink:0;font-family:'Syne',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .55rem;border-radius:2px}
+.tcallout{margin-top:1.5rem;padding:1rem 1.2rem;background:rgba(76,222,128,.06);border-left:3px solid var(--green);border-radius:0 3px 3px 0;font-size:.86rem;color:var(--muted);line-height:1.65}
+.tcallout strong{color:var(--green);font-family:'Syne',sans-serif;font-weight:800}
+
+/* ─── VALUES ─────────────────────────── */
+.vals{padding:7rem 5vw;background:rgba(13,79,92,.06);border-top:1px solid rgba(43,181,200,.08)}
+.vals-inner{max-width:1100px;margin:0 auto}
+.vals-header{max-width:560px;margin-bottom:3.5rem}
+.vals-header p{color:var(--muted);font-size:.97rem;line-height:1.7;margin-top:.8rem}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media(max-width:768px){.vgrid{grid-template-columns:1fr}}
+.vcard{border:1px solid rgba(26,122,138,.13);border-radius:3px;padding:1.9rem;background:var(--dark);transition:border-color .25s,transform .25s}
+.vcard:hover{border-color:rgba(94,207,220,.3);transform:translateY(-3px)}
+.vn{font-family:'Syne',sans-serif;font-weight:800;font-size:2.8rem;color:rgba(26,122,138,.15);line-height:1;margin-bottom:.6rem}
+.vt{font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;color:var(--cream);margin-bottom:.5rem}
+.vb{font-size:.86rem;color:var(--muted);line-height:1.65}
+
+/* ─── FAQ SEO ─────────────────────────── */
+.faq-section{padding:7rem 5vw;max-width:860px;margin:0 auto}
+.faq-section h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.4rem,3vw,2.2rem);color:var(--cream);margin-bottom:2.5rem;line-height:1.1}
+.faq-item{border-bottom:1px solid rgba(43,181,200,.1);padding:1.3rem 0;cursor:pointer}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-family:'Syne',sans-serif;font-weight:700;font-size:.96rem;color:var(--cream)}
+.faq-arr{font-size:.95rem;color:var(--teal-light);transition:transform .25s}
+.faq-item.open .faq-arr{transform:rotate(180deg)}
+.faq-a{font-size:.91rem;color:var(--muted);line-height:1.72;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
+.faq-item.open .faq-a{max-height:220px;padding-top:.8rem}
+
+/* ─── QUOTE BAND ─────────────────────── */
+.qband{padding:5rem 5vw;background:linear-gradient(135deg,var(--teal-dark),rgba(7,19,26,.95));border-top:1px solid rgba(94,207,220,.1);border-bottom:1px solid rgba(94,207,220,.1);text-align:center;position:relative;overflow:hidden}
+.qband::before{content:'"';position:absolute;left:4vw;top:-1.5rem;font-family:'DM Sans',sans-serif;font-size:18rem;font-weight:300;color:rgba(255,255,255,.03);pointer-events:none;line-height:1}
+.qt{font-family:'DM Sans',sans-serif;font-weight:300;font-style:italic;font-size:clamp(1.2rem,3vw,2.1rem);color:var(--cream);max-width:720px;margin:0 auto 1.1rem;line-height:1.5;position:relative;z-index:1}
+.qt em{color:var(--teal-glow);font-style:normal;font-weight:400}
+.qs{font-family:'Syne',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);opacity:.6}
+
+/* ─── CONTACT STRIP ──────────────────── */
+.cstrip{padding:3.8rem 5vw;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;background:var(--dark2);border-top:1px solid rgba(26,122,138,.13)}
+.csl h3{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--cream);margin-bottom:.28rem}
+.csl p{color:var(--muted);font-size:.87rem}
+.csr{display:flex;gap:1.4rem;flex-wrap:wrap}
+.cit{display:flex;align-items:center;gap:.62rem}
+.cic{width:34px;height:34px;border-radius:50%;background:rgba(26,122,138,.14);border:1px solid rgba(94,207,220,.18);display:flex;align-items:center;justify-content:center;font-size:.88rem;flex-shrink:0}
+.cit a{color:var(--teal-light);font-size:.86rem;display:block}
+.cit span{color:var(--muted);font-size:.7rem}
+
+/* ─── FOOTER ─────────────────────────── */
+.sfooter{padding:3.5rem 5vw 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;background:#050e13;border-top:1px solid rgba(26,122,138,.1)}
+@media(max-width:640px){.sfooter{grid-template-columns:1fr}}
+.fct{font-family:'Syne',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-glow);margin-bottom:.85rem}
+.fc p,.fc a{font-size:.81rem;color:var(--muted);line-height:1.85;display:block}
+.fc a{color:var(--teal-light)}
+.fbot{padding:1.4rem 5vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.7rem;color:rgba(138,172,180,.35);background:#050e13;border-top:1px solid rgba(26,122,138,.07)}
+
+/* ─── ABOUT / L'ENTREPRISE ───────────── */
+.about-section{padding:7rem 5vw;background:var(--dark2);border-top:1px solid rgba(26,122,138,.1)}
+.about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+@media(max-width:768px){.about-inner{grid-template-columns:1fr;gap:3rem}}
+.about-kpis{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.akpi{background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.15);border-radius:3px;padding:1.4rem}
+.akpi-n{font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;line-height:1;color:var(--teal-light);margin-bottom:.2rem}
+.akpi-n.g{color:var(--green)}
+.akpi-l{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.about-extra{margin-top:1.5rem;padding:1rem 1.2rem;background:rgba(94,207,220,.05);border-left:3px solid var(--teal-light);border-radius:0 3px 3px 0;font-size:.86rem;color:var(--muted);line-height:1.65}
+.about-extra strong{color:var(--teal-glow);font-family:'Syne',sans-serif;font-weight:700}
+
+/* ─── CAREERS ─────────────────────────── */
+.careers{padding:7rem 5vw;background:var(--dark);border-top:1px solid rgba(43,181,200,.08)}
+.careers-inner{max-width:1100px;margin:0 auto}
+.careers-top{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-bottom:3.5rem;align-items:start}
+@media(max-width:768px){.careers-top{grid-template-columns:1fr;gap:2rem}}
+.careers-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media(max-width:700px){.careers-pillars{grid-template-columns:1fr}}
+.cpillar{border:1px solid rgba(76,222,128,.14);border-radius:3px;padding:1.9rem;background:rgba(76,222,128,.03);transition:border-color .25s,transform .25s}
+.cpillar:hover{border-color:rgba(76,222,128,.35);transform:translateY(-3px)}
+.cpi{font-family:'Syne',sans-serif;font-weight:800;font-size:2.6rem;color:rgba(76,222,128,.1);line-height:1;margin-bottom:.55rem}
+.cpt{font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;color:var(--green);margin-bottom:.45rem}
+.cpb{font-size:.86rem;color:var(--muted);line-height:1.65}
+.careers-cta-band{margin-top:3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;padding:2rem 2.2rem;background:linear-gradient(135deg,rgba(76,222,128,.07),rgba(13,79,92,.18));border:1px solid rgba(76,222,128,.18);border-radius:4px}
+.ccb-copy h3{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--cream);margin-bottom:.25rem}
+.ccb-copy p{color:var(--muted);font-size:.86rem}
+.ccb-btn{font-family:'Syne',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;padding:.78rem 1.6rem;border-radius:2px;background:var(--green);color:var(--dark);border:none;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;white-space:nowrap}
+.ccb-btn:hover{background:var(--green-glow);transform:translateY(-2px);box-shadow:0 10px 28px rgba(76,222,128,.38)}
+
+/* ─── REVEAL ─────────────────────────── */
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nl">
+    <div class="ni">M</div>
+    M<span class="na">&</span>S Strategy
+  </a>
+  <ul class="nlinks">
+    <li><a href="b2b.html">Professionnels</a></li>
+    <li><a href="b2c.html">Particuliers</a></li>
+    <li><a href="comment-ca-marche.html">Comment ça marche</a></li>
+    <li><a href="resultats.html">Résultats</a></li>
+    <li><a href="#careers">Rejoindre</a></li>
+  </ul>
+  <a href="b2b.html#upload" class="ncta">Étude gratuite</a>
+</nav>
+
+<!-- HERO SPLIT -->
+<section class="hero" id="hero">
+  <canvas id="pc"></canvas>
+
+  <!-- Dynamic SVG divider -->
+  <svg id="div-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="1.5" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="rgba(94,207,220,0)" />
+        <stop offset="20%"  stop-color="rgba(94,207,220,0.7)" />
+        <stop offset="50%"  stop-color="#5ecfdc" />
+        <stop offset="80%"  stop-color="rgba(94,207,220,0.7)" />
+        <stop offset="100%" stop-color="rgba(94,207,220,0)" />
+      </linearGradient>
+      <!-- Glint gradient -->
+      <linearGradient id="glintGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="rgba(255,255,255,0)" />
+        <stop offset="50%"  stop-color="rgba(255,255,255,0.9)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+      </linearGradient>
+    </defs>
+    <!-- Main line — x position animated by JS -->
+    <line id="svg-line" x1="50" y1="0" x2="50" y2="100"
+      stroke="url(#lineGrad)" stroke-width=".18"
+      filter="url(#glow)" />
+    <!-- Glow duplicate -->
+    <line id="svg-line-glow" x1="50" y1="0" x2="50" y2="100"
+      stroke="rgba(94,207,220,0.25)" stroke-width=".6" />
+    <!-- Moving glint -->
+    <line id="svg-glint" x1="50" y1="0" x2="50" y2="12"
+      stroke="url(#glintGrad)" stroke-width=".22"
+      filter="url(#glow)" />
+  </svg>
+
+  <!-- B2B LEFT -->
+  <div class="panel panel-b2b" id="pb2b">
+    <span class="bgw">PRO</span>
+    <div class="pc">
+      <span class="plbl">TPE · PME · ETI · Gaz · Électricité</span>
+      <p class="ptgt">Vous êtes professionnel</p>
+      <h2 class="ptitle">
+        L'<em>énergie intelligente</em><br>
+        ne s'achète jamais<br>
+        au prix affiché.
+      </h2>
+      <div class="pstats">
+        <div class="si"><span class="sn">19%</span><span class="sl">Économies moyennes</span></div>
+        <div class="si"><span class="sn">48h</span><span class="sl">Délai de réponse</span></div>
+        <div class="si"><span class="sn">70M</span><span class="sl">kWh négociés 2025</span></div>
+      </div>
+      <p class="psub">Nous négocions pour vous auprès de l'ensemble des fournisseurs du marché — pour que vous payiez le juste prix, sans effort et sans surprise.</p>
+      <a href="b2b.html" class="pcta">Obtenir mon étude gratuite <span class="ca">→</span></a>
+    </div>
+  </div>
+
+  <!-- B2C RIGHT -->
+  <div class="panel panel-b2c" id="pb2c">
+    <span class="bgw">FOYER</span>
+    <div class="pc">
+      <span class="plbl">Particuliers · Résidentiel</span>
+      <p class="ptgt">Vous êtes particulier</p>
+      <h2 class="ptitle">
+        Sauvez votre énergie.<br>
+        <em>Regagnez</em><br>votre argent.
+      </h2>
+      <p class="psub">Nos conseillers négocient pour vous les meilleures offres gaz et électricité disponibles — gratuitement, sans démarche de votre côté.</p>
+      <a href="b2c.html" class="pcta">Découvrir les offres <span class="ca">→</span></a>
+    </div>
+  </div>
+
+  <div class="scrl">
+    <div class="sn2"></div>
+    <span>Défiler</span>
+  </div>
+</section>
+
+<!-- BRAND STRIP -->
+<section class="brand">
+  <p class="bey reveal">Courtier en énergie indépendant · Depuis 2012 · Gaz · Électricité · France entière</p>
+  <h2 class="bh reveal d1">Votre prochain contrat énergie<br>se joue probablement <em>aujourd'hui.</em></h2>
+  <div class="bdiv reveal d2"></div>
+  <div class="prow reveal d2">
+    <div class="pit"><span class="pnum t">2012</span><span class="plb">En activité depuis</span></div>
+    <div class="pit"><span class="pnum g">100k+</span><span class="plb">Foyers accompagnés / an</span></div>
+    <div class="pit"><span class="pnum t">80+</span><span class="plb">Collaborateurs · 8 agences</span></div>
+    <div class="pit"><span class="pnum g">48h</span><span class="plb">Délai d'analyse</span></div>
+  </div>
+</section>
+
+<!-- SEO: QU'EST-CE QU'UN COURTIER EN ÉNERGIE -->
+<section class="seo-intro">
+  <div>
+    <span class="stag reveal">Comprendre le courtage</span>
+    <h2 class="sh2 reveal d1">Qu'est-ce qu'un <em>courtier en énergie</em> — et pourquoi en avoir un ?</h2>
+    <div class="sbody reveal d2">
+      <p>Un courtier en énergie est un intermédiaire indépendant qui agit pour le compte de ses clients — professionnels ou particuliers — pour <strong>négocier leurs contrats gaz et électricité</strong> auprès des fournisseurs du marché.</p>
+      <p>Son rôle est simple : mettre les fournisseurs en concurrence, analyser les offres dans leur détail, et vous recommander la solution la plus adaptée à votre profil de consommation. Vous gardez la décision finale.</p>
+      <p>En France, le marché de l'énergie est ouvert à la concurrence depuis 2007. Il compte aujourd'hui plus d'une vingtaine de fournisseurs actifs sur le segment professionnel — entre les historiques (EDF, Engie) et les alternatifs (TotalEnergies, Vattenfall, Alpiq…). <strong>Sans mise en concurrence structurée, vous ne négociez jamais les vraies conditions du marché.</strong></p>
+      <p>M&S Strategy exerce ce métier depuis 2012. Nous sommes rémunérés par les fournisseurs via une commission standardisée — ce modèle exclut tout favoritisme de l'équation. Vous ne nous payez jamais, quel que soit le résultat.</p>
+    </div>
+  </div>
+  <div class="reveal d2">
+    <div class="def-box">
+      <p class="def-title">Le rôle concret d'un courtier</p>
+      <p class="def-body">Un courtier en énergie comme M&S Strategy ne se contente pas de comparer des tarifs. Il analyse la <strong>structure complète de votre contrat</strong> : puissance souscrite, clauses d'indexation, conditions de résiliation, options tarifaires heures creuses/pleines, et adéquation avec vos usages réels.</p>
+    </div>
+    <ul class="chklist">
+      <li>Analyse de votre facture et identification des leviers d'optimisation</li>
+      <li>Appel d'offres simultané auprès de tous les fournisseurs pertinents</li>
+      <li>Comparaison détaillée et présentation claire des résultats</li>
+      <li>Accompagnement dans votre prise de décision — sans pression</li>
+      <li>Suivi du contrat et anticipation de votre prochaine échéance</li>
+    </ul>
+  </div>
+</section>
+
+<!-- HOW TO CHOOSE A BROKER -->
+<section class="how-band">
+  <div class="how-inner">
+    <div class="how-header reveal">
+      <span class="stag">Bien choisir son courtier</span>
+      <h2 class="sh2">Ce qui distingue un bon courtier<br>d'un <em>simple comparateur.</em></h2>
+      <p>Tous les courtiers en énergie ne se valent pas. Voici les critères qui comptent vraiment pour choisir le bon interlocuteur.</p>
+    </div>
+    <div class="how-grid">
+      <div class="hcard reveal">
+        <div class="hcn">01</div>
+        <div class="hct">L'indépendance réelle</div>
+        <p class="hcb">Un courtier véritablement indépendant est rémunéré de manière identique quel que soit le fournisseur retenu. Chez M&S Strategy, le modèle de commission standardisé exclut structurellement tout favoritisme. Nous ne vendons pas d'énergie — nous défendons vos intérêts.</p>
+      </div>
+      <div class="hcard reveal d1">
+        <div class="hcn">02</div>
+        <div class="hct">La largeur du portefeuille</div>
+        <p class="hcb">Un comparateur qui ne consulte que 3 ou 4 fournisseurs ne vous donne pas accès aux vraies conditions du marché. Notre portefeuille couvre l'ensemble des fournisseurs actifs en France — historiques et alternatifs, conventionnels et renouvelables.</p>
+      </div>
+      <div class="hcard reveal d2">
+        <div class="hcn">03</div>
+        <div class="hct">L'expertise du timing</div>
+        <p class="hcb">Le moment de la négociation a plus d'impact que le fournisseur choisi. Un bon courtier connaît les cycles de marché, identifie les fenêtres favorables et vous alerte avant que votre contrat ne se renouvelle dans de mauvaises conditions. La fenêtre idéale est de 12 à 24 mois avant l'échéance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET EXPLAINER -->
+<section class="market-section">
+  <div class="market-inner">
+    <div class="market-copy">
+      <span class="stag reveal">Le marché de l'énergie</span>
+      <h2 class="sh2 reveal d1">Pourquoi deux entreprises identiques peuvent payer <em>des tarifs très différents.</em></h2>
+      <div class="sbody reveal d2">
+        <p>Le prix de votre contrat gaz ou électricité n'est pas fixe dans le temps. Il dépend de trois variables que les fournisseurs ne vous expliquent jamais spontanément.</p>
+        <p>La première est <strong>le niveau du marché au moment de la signature</strong> : les prix de gros de l'énergie fluctuent chaque jour, sous l'effet des tensions géopolitiques, des capacités de production et des conditions climatiques. Hors pic énergétique, le marché augmente structurellement de <strong>+5 à +7% par an</strong>.</p>
+        <p>La deuxième variable est <strong>la date de renouvellement</strong> : un contrat signé 18 mois avant l'échéance profite de conditions que vous ne trouverez plus à 3 mois. C'est mécanique — et c'est l'erreur que 80% des dirigeants commettent chaque année.</p>
+        <p>La troisième est <strong>le volume négocié</strong> : un fournisseur sera toujours plus flexible face à un volume important. C'est pourquoi nous constituons des groupements d'achat — pour que vos 500 MWh pèsent autant que les GWh d'un grand groupe.</p>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <div class="timing-visual">
+        <p class="tv-title">Votre fenêtre de négociation</p>
+        <div class="trow">
+          <div class="tdot" style="background:#4cde80"></div>
+          <span class="tdate" style="color:#4cde80">J − 24 mois</span>
+          <span class="tnote">Période idéale · Marge maximale</span>
+          <span class="tbadge" style="background:rgba(76,222,128,.12);color:#4cde80;border:1px solid rgba(76,222,128,.2)">Optimal</span>
+        </div>
+        <div class="trow">
+          <div class="tdot" style="background:#5ecfdc"></div>
+          <span class="tdate" style="color:#5ecfdc">J − 18 mois</span>
+          <span class="tnote">Fournisseurs en compétition ouverte</span>
+          <span class="tbadge" style="background:rgba(94,207,220,.1);color:#5ecfdc;border:1px solid rgba(94,207,220,.2)">Favorable</span>
+        </div>
+        <div class="trow">
+          <div class="tdot" style="background:#2bb5c8"></div>
+          <span class="tdate" style="color:#2bb5c8">J − 12 mois</span>
+          <span class="tnote">Acceptable · Agissez rapidement</span>
+          <span class="tbadge" style="background:rgba(43,181,200,.1);color:#2bb5c8;border:1px solid rgba(43,181,200,.2)">Correct</span>
+        </div>
+        <div class="trow">
+          <div class="tdot" style="background:#8aacb4"></div>
+          <span class="tdate" style="color:#8aacb4">J − 6 mois</span>
+          <span class="tnote">80% des dirigeants arrivent ici</span>
+          <span class="tbadge" style="background:rgba(138,172,180,.1);color:#8aacb4;border:1px solid rgba(138,172,180,.2)">Tardif</span>
+        </div>
+        <div class="trow">
+          <div class="tdot" style="background:#e05555"></div>
+          <span class="tdate" style="color:#e05555">J − 0</span>
+          <span class="tnote">Reconduction automatique probable</span>
+          <span class="tbadge" style="background:rgba(224,85,85,.1);color:#e05555;border:1px solid rgba(224,85,85,.2)">Critique</span>
+        </div>
+        <div class="tcallout">
+          <strong>80%</strong> des dirigeants commencent à regarder leur contrat lorsqu'il est déjà trop tard pour profiter pleinement des meilleures opportunités de marché. Et ce pour les 2 à 3 prochaines années de contrat.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="vals">
+  <div class="vals-inner">
+    <div class="vals-header reveal">
+      <span class="stag">Notre position</span>
+      <h2 class="sh2">L'indépendance n'a pas de prix.</h2>
+      <p>Notre cabinet est rémunéré directement par les fournisseurs. Ce modèle exclut structurellement tout favoritisme. Seuls les chiffres comptent.</p>
+    </div>
+    <div class="vgrid">
+      <div class="vcard reveal">
+        <div class="vn">01</div>
+        <div class="vt">Rémunérés par les fournisseurs</div>
+        <p class="vb">Commission standardisée, identique quel que soit votre choix final. Vous ne nous payez jamais — quel que soit le résultat de notre travail.</p>
+      </div>
+      <div class="vcard reveal d1">
+        <div class="vn">02</div>
+        <div class="vt">Seuls les chiffres comptent</div>
+        <p class="vb">Comparaison complète des propositions reçues : prix, conditions contractuelles, clauses d'indexation, options RSE, alignement avec vos objectifs de direction.</p>
+      </div>
+      <div class="vcard reveal d2">
+        <div class="vn">03</div>
+        <div class="vt">Vous choisissez librement</div>
+        <p class="vb">Notre tableau comparatif vous appartient. Vous signez ou non. Et si nos efforts n'ont pas produit de résultat supérieur à votre situation actuelle — c'est le jeu du commerce.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / L'ENTREPRISE -->
+<section class="about-section">
+  <div class="about-inner">
+    <div>
+      <span class="stag reveal">L'entreprise</span>
+      <h2 class="sh2 reveal d1">Une agence fondée en 2012,<br><em>présente partout en France.</em></h2>
+      <div class="sbody reveal d2">
+        <p>M&S Strategy est née d'un constat simple : les consommateurs — particuliers comme professionnels — signent leurs contrats d'énergie sans jamais avoir accès aux vraies conditions du marché. Depuis 2012, notre mission est de changer ça.</p>
+        <p>Grâce à des partenariats solides avec les grands opérateurs énergétiques, nous sécurisons chaque année des contrats à coût réduit pour plus de <strong>100 000 foyers</strong> — et autant d'entreprises. Notre réseau de plus de <strong>80 collaborateurs répartis dans 8 agences</strong> couvre l'ensemble du territoire français.</p>
+        <p>Notre chiffre d'affaires est en croissance constante depuis notre création. Nous travaillons à diversifier nos marchés — en Europe et vers l'Afrique du Nord — pour anticiper les évolutions du secteur et renforcer notre capacité de négociation.</p>
+      </div>
+      <div class="about-extra reveal d2">
+        <strong>Partenariats opérateurs</strong> — Nous collaborons directement avec les principaux fournisseurs d'énergie du marché français, ce qui nous permet d'accéder à des conditions tarifaires inaccessibles en direct.
+      </div>
+    </div>
+    <div class="reveal d1">
+      <div class="about-kpis">
+        <div class="akpi">
+          <div class="akpi-n">2012</div>
+          <div class="akpi-l">Fondée en</div>
+        </div>
+        <div class="akpi">
+          <div class="akpi-n g">100k+</div>
+          <div class="akpi-l">Foyers / an</div>
+        </div>
+        <div class="akpi">
+          <div class="akpi-n">80+</div>
+          <div class="akpi-l">Collaborateurs</div>
+        </div>
+        <div class="akpi">
+          <div class="akpi-n g">8+</div>
+          <div class="akpi-l">Agences en France</div>
+        </div>
+      </div>
+      <div class="def-box" style="margin-top:1.2rem">
+        <p class="def-title">Notre approche terrain</p>
+        <p class="def-body">Nos équipes combinent prospection physique directe et démarchage téléphonique. Chaque collaborateur est formé pour présenter plusieurs produits lors d'un même contact, maximisant la valeur apportée à chaque échange. L'administration joue un rôle de pont entre fournisseurs et commerciaux : suivi quotidien, traçabilité des dossiers, transmission des souscriptions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section class="careers" id="careers">
+  <div class="careers-inner">
+    <div class="careers-top">
+      <div>
+        <span class="stag reveal">Rejoindre M&S Strategy</span>
+        <h2 class="sh2 reveal d1">Ambitieux, entrepreneur,<br><em>fait pour le terrain ?</em></h2>
+        <div class="sbody reveal d2">
+          <p>Nos collaborateurs sont notre bien le plus précieux. Nous recrutons des profils déterminés, capables de s'adapter rapidement et de progresser au sein d'une structure en pleine croissance.</p>
+          <p>Peu importe votre parcours — si vous êtes enthousiaste, persévérant et que vous avez envie de faire avancer les choses, vous avez votre place chez M&S Strategy.</p>
+        </div>
+      </div>
+      <div class="sbody reveal d2" style="padding-top:1rem">
+        <p>Dans une atmosphère de startup, les idées innovantes émergent et les commerciaux construisent leur propre trajectoire. Les défis quotidiens renforcent la détermination. L'évolution est réelle — pas seulement promise.</p>
+        <p>Nous sponsorisons également des projets, des événements et des associations. <a href="mailto:msstrategy@yahoo.com" style="color:var(--teal-light)">Contactez-nous</a> pour toute demande de partenariat ou de sponsoring.</p>
+      </div>
+    </div>
+    <div class="careers-pillars">
+      <div class="cpillar reveal">
+        <div class="cpi">01</div>
+        <div class="cpt">Action</div>
+        <p class="cpb">Dès votre arrivée, vous êtes dans le vif du sujet. Pas de stage d'observation infini — vous accompagnez nos équipes terrain et prenez vos premiers dossiers rapidement.</p>
+      </div>
+      <div class="cpillar reveal d1">
+        <div class="cpi">02</div>
+        <div class="cpt">Formation</div>
+        <p class="cpb">Des formateurs qualifiés vous prennent en charge et vous accompagnent jusqu'à un niveau de maîtrise commerciale solide. Techniques de vente, connaissance des produits, gestion des objections.</p>
+      </div>
+      <div class="cpillar reveal d2">
+        <div class="cpi">03</div>
+        <div class="cpt">Évolution</div>
+        <p class="cpb">La politique RH de M&S Strategy favorise la montée en responsabilité. Tous les collaborateurs progressent sur un pied d'égalité — c'est la performance qui fait la différence, pas l'ancienneté.</p>
+      </div>
+    </div>
+    <div class="careers-cta-band reveal">
+      <div class="ccb-copy">
+        <h3>Un vrai plan de carrière vous attend.</h3>
+        <p>Rejoignez l'une de nos 8 agences en France — et construisez quelque chose qui vous ressemble.</p>
+      </div>
+      <a href="mailto:msstrategy@yahoo.com" class="ccb-btn">Candidater →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SEO -->
+<section class="faq-section">
+  <h2 class="reveal">Questions fréquentes sur le courtage en énergie</h2>
+
+  <div class="faq-item reveal" onclick="faq(this)">
+    <div class="faq-q">Qu'est-ce qu'un courtier en énergie ? <span class="faq-arr">↓</span></div>
+    <div class="faq-a">Un courtier en énergie est un professionnel indépendant mandaté pour négocier les contrats gaz et électricité à la place de ses clients. Il consulte simultanément l'ensemble des fournisseurs du marché, compare les offres et conseille son client dans sa décision. Il est rémunéré par les fournisseurs — pas par le client.</div>
+  </div>
+
+  <div class="faq-item reveal" onclick="faq(this)">
+    <div class="faq-q">Le recours à un courtier est-il vraiment gratuit ? <span class="faq-arr">↓</span></div>
+    <div class="faq-a">Oui, pour le client. M&S Strategy est rémunéré directement par les fournisseurs d'énergie via une commission standardisée intégrée dans les contrats. Ce modèle est réglementairement encadré et exclut tout surcoût pour vous. Que vous signiez ou non, vous ne nous devez rien.</div>
+  </div>
+
+  <div class="faq-item reveal" onclick="faq(this)">
+    <div class="faq-q">Quand faut-il contacter un courtier en énergie ? <span class="faq-arr">↓</span></div>
+    <div class="faq-a">Idéalement entre 12 et 24 mois avant l'échéance de votre contrat actuel. C'est dans cette fenêtre que les conditions de marché sont les plus favorables et que vous disposez d'une véritable marge de négociation. Contacter un courtier trop tard (moins de 3 mois avant l'échéance) réduit significativement les résultats obtenus.</div>
+  </div>
+
+  <div class="faq-item reveal" onclick="faq(this)">
+    <div class="faq-q">Un courtier peut-il intervenir si mon contrat est encore en cours ? <span class="faq-arr">↓</span></div>
+    <div class="faq-a">Oui. Nous pouvons analyser votre situation dès maintenant, identifier votre prochaine fenêtre de négociation optimale, et vous accompagner en amont de votre renouvellement. Certains contrats comportent également des clauses de renégociation en cours que peu de titulaires connaissent.</div>
+  </div>
+
+  <div class="faq-item reveal" onclick="faq(this)">
+    <div class="faq-q">M&S Strategy intervient-il partout en France ? <span class="faq-arr">↓</span></div>
+    <div class="faq-a">Oui. Bien que notre cabinet soit basé à Lattes (34), nous intervenons pour des clients sur l'ensemble du territoire français — toutes régions, tous secteurs d'activité. Le processus peut se dérouler entièrement à distance, par email et téléphone.</div>
+  </div>
+
+  <div class="faq-item reveal" onclick="faq(this)">
+    <div class="faq-q">Quelle est la différence entre un courtier et un comparateur en ligne ? <span class="faq-arr">↓</span></div>
+    <div class="faq-a">Un comparateur en ligne vous présente des offres standardisées à partir de quelques critères génériques. Un courtier analyse votre situation réelle — profil de consommation, structure du contrat, date d'échéance, objectifs — et négocie des offres sur-mesure auprès de l'ensemble des fournisseurs. La différence de résultat est significative, surtout pour les professionnels dont les volumes justifient une approche personnalisée.</div>
+  </div>
+</section>
+
+<!-- QUOTE BAND -->
+<div class="qband reveal">
+  <p class="qt">L'<em>énergie intelligente</em> ne s'achète jamais au prix affiché.</p>
+  <span class="qs">M&S Strategy · Courtier en énergie indépendant depuis 2012 · Gaz · Électricité</span>
+</div>
+
+<!-- CONTACT STRIP -->
+<div class="cstrip reveal">
+  <div class="csl">
+    <h3>Une question ?</h3>
+    <p>Nous répondons sous 48h. Aucun engagement.</p>
+  </div>
+  <div class="csr">
+    <div class="cit">
+      <div class="cic">📞</div>
+      <div><a href="tel:0952926498">09 52 92 64 98</a><span>Standard</span></div>
+    </div>
+    <div class="cit">
+      <div class="cic">📱</div>
+      <div><a href="tel:0783070749">07 83 07 07 49</a><span>Commercial</span></div>
+    </div>
+    <div class="cit">
+      <div class="cic">✉</div>
+      <div><a href="mailto:msstrategy@yahoo.com">msstrategy@yahoo.com</a><span>Email</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="sfooter">
+  <div class="fc">
+    <p class="fct">M&S Strategy</p>
+    <p>Cabinet de courtage en énergie indépendant. Gaz et électricité pour professionnels et particuliers depuis 2012. Basé à Lattes (34), intervention France entière.</p>
+    <p style="margin-top:.6rem">SIREN 752 139 477</p>
+  </div>
+  <div class="fc">
+    <p class="fct">Navigation</p>
+    <a href="b2b.html">Professionnels (B2B)</a>
+    <a href="b2c.html">Particuliers (B2C)</a>
+    <a href="comment-ca-marche.html">Comment ça marche</a>
+    <a href="resultats.html">Résultats & économies</a>
+    <a href="#careers">Rejoindre M&S Strategy</a>
+    <a href="mailto:msstrategy@yahoo.com">Sponsoring & Partenariats</a>
+  </div>
+  <div class="fc">
+    <p class="fct">Contact</p>
+    <p>1366 Av. des Platanes<br>34000 Lattes</p>
+    <a href="tel:0952926498">09 52 92 64 98</a>
+    <a href="tel:0783070749">07 83 07 07 49</a>
+    <a href="mailto:msstrategy@yahoo.com">msstrategy@yahoo.com</a>
+  </div>
+</footer>
+<div class="fbot">
+  <span>© 2025 M&S Strategy. Tous droits réservés.</span>
+  <span>Courtier en énergie indépendant depuis 2012 · Gaz · Électricité · France</span>
+</div>
+
+<script>
+/* ══════════════════════════════════
+   PANEL HOVER — moves SVG line
+   ══════════════════════════════════ */
+const hero    = document.getElementById('hero');
+const pb2b    = document.getElementById('pb2b');
+const pb2c    = document.getElementById('pb2c');
+const svgLine = document.getElementById('svg-line');
+const svgGlow = document.getElementById('svg-line-glow');
+const svgGlnt = document.getElementById('svg-glint');
+
+// Target X position in SVG units (0–100)
+let targetX   = 50;
+let currentX  = 50;
+let animFrame = null;
+
+function setLineX(x) {
+  svgLine.setAttribute('x1', x);
+  svgLine.setAttribute('x2', x);
+  svgGlow.setAttribute('x1', x);
+  svgGlow.setAttribute('x2', x);
+  svgGlnt.setAttribute('x1', x);
+  svgGlnt.setAttribute('x2', x);
+}
+
+function animateLine() {
+  // Ease toward target
+  currentX += (targetX - currentX) * 0.08;
+  setLineX(currentX);
+  if (Math.abs(targetX - currentX) > 0.05) {
+    animFrame = requestAnimationFrame(animateLine);
+  } else {
+    currentX = targetX;
+    setLineX(currentX);
+    animFrame = null;
+  }
+}
+
+function moveTo(x) {
+  targetX = x;
+  if (!animFrame) animFrame = requestAnimationFrame(animateLine);
+}
+
+pb2b.addEventListener('mouseenter', () => {
+  hero.classList.add('hl');
+  moveTo(61.5);
+});
+pb2b.addEventListener('mouseleave', () => {
+  hero.classList.remove('hl');
+  moveTo(50);
+});
+pb2c.addEventListener('mouseenter', () => {
+  hero.classList.add('hr');
+  moveTo(38.5);
+});
+pb2c.addEventListener('mouseleave', () => {
+  hero.classList.remove('hr');
+  moveTo(50);
+});
+
+/* ══════════════════════════════════
+   GLINT ANIMATION on SVG line
+   ══════════════════════════════════ */
+let glintY = -12;
+function animateGlint() {
+  glintY += 0.45;
+  if (glintY > 112) glintY = -12;
+  svgGlnt.setAttribute('y1', glintY);
+  svgGlnt.setAttribute('y2', glintY + 12);
+  requestAnimationFrame(animateGlint);
+}
+// Start after initial reveal
+setTimeout(animateGlint, 1600);
+
+/* ══════════════════════════════════
+   LINE ENTRY ANIMATION
+   ══════════════════════════════════ */
+// Animate the line drawing in from top
+let lineReveal = 0;
+function revealLine() {
+  lineReveal += 2.5;
+  if (lineReveal <= 100) {
+    svgLine.setAttribute('y2', lineReveal);
+    svgGlow.setAttribute('y2', lineReveal);
+    requestAnimationFrame(revealLine);
+  }
+}
+// Initial state: line hidden
+svgLine.setAttribute('y2', 0);
+svgGlow.setAttribute('y2', 0);
+setTimeout(revealLine, 400);
+
+/* ══════════════════════════════════
+   PARTICLES
+   ══════════════════════════════════ */
+const canvas = document.getElementById('pc');
+const ctx    = canvas.getContext('2d');
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+
+const N = 55;
+const ps = [];
+function rnd(a, b) { return a + Math.random() * (b - a); }
+
+class P {
+  reset(init = false) {
+    this.x     = rnd(0, canvas.width);
+    this.y     = init ? rnd(0, canvas.height) : rnd(-20, canvas.height * .4);
+    this.r     = rnd(.7, 2.2);
+    this.vx    = rnd(-.22, .22);
+    this.vy    = rnd(-.45, -.12);
+    this.alpha = rnd(.1, .42);
+    this.life  = 0;
+    this.max   = rnd(130, 320);
+    this.green = this.x > canvas.width * .5;
+  }
+  constructor() { this.reset(true); }
+  tick() {
+    this.x += this.vx; this.y += this.vy; this.life++;
+    const t  = this.life / this.max;
+    this.op  = t < .15 ? (t / .15) * this.alpha
+             : t > .75 ? ((1 - t) / .25) * this.alpha
+             : this.alpha;
+    if (this.life > this.max) this.reset();
+    // Update green/teal based on current position
+    this.green = this.x > canvas.width * .5;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = this.green
+      ? `rgba(76,222,128,${this.op})`
+      : `rgba(94,207,220,${this.op})`;
+    ctx.fill();
+  }
+}
+for (let i = 0; i < N; i++) ps.push(new P());
+function loop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ps.forEach(p => { p.tick(); p.draw(); });
+  requestAnimationFrame(loop);
+}
+loop();
+
+/* ══════════════════════════════════
+   SCROLL REVEAL
+   ══════════════════════════════════ */
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ══════════════════════════════════
+   FAQ ACCORDION
+   ══════════════════════════════════ */
+function faq(el) {
+  const open = el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!open) el.classList.add('open');
+}
+</script>
+</body>
+</html>

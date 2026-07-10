@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M&S Strategy — Réduisez votre facture énergétique</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-deep: #0d4f5c;
+    --teal-mid: #1a7a8a;
+    --teal-bright: #2bb5c8;
+    --teal-light: #5ecfdc;
+    --green-accent: #4cde80;
+    --cream: #f5f0e8;
+    --dark: #0a1a1f;
+    --text-muted: #8aacb4;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: .5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5vw;
+    backdrop-filter: blur(16px);
+    background: rgba(10,26,31,.75);
+    border-bottom: 1px solid rgba(43,181,200,.12);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    letter-spacing: .04em;
+    color: var(--cream);
+  }
+
+  .nav-logo span { color: var(--green-accent); }
+
+  .nav-cta {
+    background: var(--green-accent);
+    color: var(--dark);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: .82rem;
+    letter-spacing: .06em;
+    padding: .6rem 1.4rem;
+    border: none; border-radius: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform .15s, box-shadow .15s;
+    text-decoration: none;
+  }
+
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(76,222,128,.3); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 5vw 5rem;
+    overflow: hidden;
+  }
+
+  .hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  .hero-bg-circle.c1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(26,122,138,.35) 0%, transparent 70%);
+    top: -100px; right: -150px;
+    animation: drift 12s ease-in-out infinite alternate;
+  }
+
+  .hero-bg-circle.c2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(76,222,128,.1) 0%, transparent 70%);
+    bottom: 50px; left: -80px;
+    animation: drift 16s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(30px, 20px) scale(1.05); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: .75rem; font-weight: 600;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp .6s .1s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.06;
+    max-width: 820px;
+    opacity: 0; animation: fadeUp .7s .2s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic; font-weight: 400;
+    color: var(--green-accent);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .hero-sub {
+    margin-top: 1.8rem;
+    font-size: 1.1rem; font-weight: 300;
+    color: var(--text-muted);
+    max-width: 520px;
+    line-height: 1.65;
+    opacity: 0; animation: fadeUp .7s .35s forwards;
+  }
+
+  .hero-proof {
+    display: flex; gap: 2.5rem; flex-wrap: wrap;
+    margin-top: 2.5rem;
+    opacity: 0; animation: fadeUp .7s .5s forwards;
+  }
+
+  .proof-item { display: flex; flex-direction: column; gap: .2rem; }
+
+  .proof-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    color: var(--green-accent);
+    line-height: 1;
+  }
+
+  .proof-label {
+    font-size: .72rem; letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .hero-cta-row {
+    display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    margin-top: 3rem;
+    opacity: 0; animation: fadeUp .7s .65s forwards;
+  }
+
+  .btn-primary {
+    background: var(--green-accent);
+    color: var(--dark);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    padding: 1rem 2.4rem;
+    border: none; border-radius: 2px;
+    cursor: pointer; text-decoration: none;
+    display: inline-block;
+    transition: transform .15s, box-shadow .2s;
+    letter-spacing: .02em;
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(76,222,128,.35); }
+
+  .hero-free-label {
+    font-size: .82rem; color: var(--text-muted);
+    display: flex; align-items: center; gap: .4rem;
+  }
+
+  .hero-free-label::before {
+    content: '✓';
+    color: var(--green-accent);
+    font-weight: 700;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── URGENCY BANNER ── */
+  .urgency-banner {
+    background: linear-gradient(90deg, var(--teal-deep), var(--teal-mid));
+    border-top: 1px solid rgba(76,222,128,.2);
+    border-bottom: 1px solid rgba(76,222,128,.2);
+    padding: 1rem 5vw;
+    display: flex; align-items: center; justify-content: center;
+    gap: 2rem; flex-wrap: wrap;
+  }
+
+  .urgency-text {
+    font-family: 'Syne', sans-serif;
+    font-size: .85rem; font-weight: 600;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--cream);
+  }
+
+  .urgency-text span { color: var(--green-accent); }
+
+  .pulse-dot {
+    width: 8px; height: 8px;
+    background: var(--green-accent);
+    border-radius: 50%;
+    animation: pulse 1.6s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(76,222,128,.5); }
+    50%       { box-shadow: 0 0 0 8px rgba(76,222,128,0); }
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section { position: relative; z-index: 1; }
+
+  .section-tag {
+    display: inline-block;
+    font-family: 'Syne', sans-serif;
+    font-size: .68rem; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--teal-bright);
+    background: rgba(43,181,200,.1);
+    border: 1px solid rgba(43,181,200,.25);
+    padding: .3rem .8rem;
+    border-radius: 2px;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800; line-height: 1.1;
+  }
+
+  /* ── PROBLEM SECTION ── */
+  .problem-section {
+    padding: 7rem 5vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .problem-section { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  .problem-copy p {
+    margin-top: 1.5rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    font-size: 1.02rem;
+  }
+
+  .problem-copy strong { color: var(--cream); }
+
+  .market-card {
+    background: linear-gradient(135deg, rgba(13,79,92,.5), rgba(26,122,138,.2));
+    border: 1px solid rgba(43,181,200,.2);
+    border-radius: 4px;
+    padding: 2rem;
+  }
+
+  .market-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--teal-light); margin-bottom: 1.5rem;
+  }
+
+  .factors-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+
+  .factors-list li {
+    display: flex; align-items: flex-start; gap: .8rem;
+    font-size: .95rem; color: var(--cream);
+    line-height: 1.5;
+  }
+
+  .factors-list li::before {
+    content: '→';
+    color: var(--green-accent);
+    font-weight: 700;
+    flex-shrink: 0; margin-top: .1rem;
+  }
+
+  .market-warning {
+    margin-top: 1.5rem;
+    padding: 1rem 1.2rem;
+    background: rgba(76,222,128,.07);
+    border-left: 3px solid var(--green-accent);
+    border-radius: 0 2px 2px 0;
+    font-size: .88rem;
+    color: var(--text-muted);
+  }
+
+  .market-warning strong { color: var(--green-accent); }
+
+  /* ── SOLUTION SECTION ── */
+  .solution-section {
+    padding: 7rem 5vw;
+    background: linear-gradient(180deg, transparent, rgba(13,79,92,.15), transparent);
+  }
+
+  .solution-header { max-width: 640px; margin-bottom: 4rem; }
+
+  .solution-header p {
+    margin-top: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 1.02rem;
+  }
+
+  .groupement-visual {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(43,181,200,.15);
+    border: 1px solid rgba(43,181,200,.15);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .group-card {
+    background: rgba(10,26,31,.9);
+    padding: 1.8rem;
+    display: flex; flex-direction: column; gap: .5rem;
+    transition: background .2s;
+  }
+
+  .group-card:hover { background: rgba(13,79,92,.6); }
+
+  .group-card.highlight {
+    background: linear-gradient(135deg, rgba(13,79,92,.9), rgba(26,122,138,.5));
+    grid-column: 1 / -1;
+    flex-direction: row; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  .group-card-label {
+    font-family: 'Syne', sans-serif;
+    font-size: .68rem; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--teal-light);
+  }
+
+  .group-card-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--cream);
+  }
+
+  .group-card-conso { font-size: .9rem; color: var(--text-muted); }
+
+  .group-card-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem; font-weight: 800;
+    color: var(--teal-bright);
+  }
+
+  .group-card.highlight .group-card-price {
+    color: var(--green-accent);
+    font-size: 2rem;
+  }
+
+  /* ── STEPS SECTION ── */
+  .steps-section { padding: 7rem 5vw; }
+
+  .steps-header { max-width: 500px; margin-bottom: 4rem; }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    background: rgba(43,181,200,.1);
+    border: 1px solid rgba(43,181,200,.12);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .step-card {
+    background: var(--dark);
+    padding: 2rem 1.8rem;
+    position: relative;
+    transition: background .2s;
+  }
+
+  .step-card:hover { background: rgba(13,79,92,.4); }
+
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.5rem; font-weight: 800;
+    color: rgba(43,181,200,.12);
+    line-height: 1;
+    margin-bottom: .8rem;
+  }
+
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: .95rem; font-weight: 700;
+    color: var(--cream);
+    margin-bottom: .7rem;
+  }
+
+  .step-body { font-size: .88rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* ── SOCIAL PROOF ── */
+  .proof-section {
+    padding: 7rem 5vw;
+    background: linear-gradient(180deg, transparent, rgba(13,79,92,.1), transparent);
+  }
+
+  .proof-header { max-width: 500px; margin-bottom: 4rem; }
+
+  .savings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .saving-card {
+    border: 1px solid rgba(43,181,200,.15);
+    border-radius: 4px;
+    padding: 1.8rem;
+    background: rgba(13,79,92,.15);
+    transition: border-color .2s, transform .2s;
+  }
+
+  .saving-card:hover {
+    border-color: rgba(76,222,128,.3);
+    transform: translateY(-3px);
+  }
+
+  .saving-amount {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem; font-weight: 800;
+    color: var(--green-accent);
+    line-height: 1;
+  }
+
+  .saving-period {
+    font-size: .78rem; color: var(--text-muted);
+    font-weight: 300; margin-bottom: .8rem;
+    display: block;
+  }
+
+  .saving-desc { font-size: .88rem; color: var(--text-muted); line-height: 1.55; }
+
+  /* ── UPLOAD FORM ── */
+  .form-section {
+    padding: 8rem 5vw;
+    background: linear-gradient(135deg, rgba(13,79,92,.25), rgba(10,26,31,1));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-section::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(76,222,128,.06) 0%, transparent 65%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .form-container {
+    max-width: 660px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+
+  .form-header { margin-bottom: 3rem; }
+
+  .form-header p {
+    margin-top: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.7; font-size: 1rem;
+  }
+
+  .form-card {
+    background: rgba(13,79,92,.2);
+    border: 1px solid rgba(43,181,200,.2);
+    border-radius: 6px;
+    padding: 2.5rem;
+  }
+
+  .form-row { margin-bottom: 1.4rem; }
+
+  .form-label {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: .5rem;
+  }
+
+  .form-input, .form-select {
+    width: 100%;
+    background: rgba(10,26,31,.8);
+    border: 1px solid rgba(43,181,200,.2);
+    border-radius: 3px;
+    padding: .85rem 1rem;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .95rem;
+    outline: none;
+    transition: border-color .2s;
+    appearance: none;
+  }
+
+  .form-input::placeholder { color: rgba(138,172,180,.4); }
+
+  .form-input:focus, .form-select:focus {
+    border-color: rgba(76,222,128,.5);
+    box-shadow: 0 0 0 3px rgba(76,222,128,.06);
+  }
+
+  .form-select option { background: var(--dark); }
+
+  .form-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  @media (max-width: 520px) { .form-cols { grid-template-columns: 1fr; } }
+
+  /* ── DROP ZONE ── */
+  .drop-zone {
+    border: 2px dashed rgba(43,181,200,.3);
+    border-radius: 4px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+    position: relative;
+    background: rgba(10,26,31,.4);
+  }
+
+  .drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--green-accent);
+    background: rgba(76,222,128,.04);
+  }
+
+  .drop-icon {
+    font-size: 2.2rem; margin-bottom: .8rem;
+    display: block; opacity: .6;
+  }
+
+  .drop-title {
+    font-family: 'Syne', sans-serif;
+    font-size: .95rem; font-weight: 700;
+    color: var(--cream);
+    margin-bottom: .4rem;
+  }
+
+  .drop-sub { font-size: .8rem; color: var(--text-muted); }
+
+  .drop-sub span { color: var(--teal-bright); text-decoration: underline; cursor: pointer; }
+
+  #file-input { display: none; }
+
+  .file-preview {
+    display: none;
+    align-items: center; gap: .8rem;
+    margin-top: 1rem;
+    padding: .8rem 1rem;
+    background: rgba(76,222,128,.08);
+    border: 1px solid rgba(76,222,128,.25);
+    border-radius: 3px;
+  }
+
+  .file-preview.visible { display: flex; }
+  .file-preview-name { font-size: .88rem; color: var(--green-accent); }
+  .file-preview-remove { margin-left: auto; cursor: pointer; color: var(--text-muted); font-size: .8rem; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--green-accent);
+    color: var(--dark);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1rem;
+    padding: 1.1rem;
+    border: none; border-radius: 3px;
+    cursor: pointer;
+    letter-spacing: .04em;
+    transition: transform .15s, box-shadow .2s;
+    margin-top: 1.5rem;
+  }
+
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(76,222,128,.3); }
+
+  .form-submit:disabled {
+    opacity: .5; cursor: not-allowed; transform: none; box-shadow: none;
+  }
+
+  .form-reassurance {
+    margin-top: 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 1.5rem; flex-wrap: wrap;
+  }
+
+  .reassurance-item {
+    font-size: .75rem; color: var(--text-muted);
+    display: flex; align-items: center; gap: .35rem;
+  }
+
+  .reassurance-item::before { content: '✓'; color: var(--green-accent); font-weight: 700; }
+
+  /* ── SUCCESS STATE ── */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+
+  .form-success.visible { display: block; }
+
+  .success-icon {
+    font-size: 3rem; margin-bottom: 1rem; display: block;
+  }
+
+  .success-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem; font-weight: 800;
+    color: var(--green-accent);
+    margin-bottom: .8rem;
+  }
+
+  .success-sub { color: var(--text-muted); line-height: 1.65; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 5vw;
+    border-top: 1px solid rgba(43,181,200,.1);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1rem;
+    color: var(--cream);
+  }
+
+  .footer-logo span { color: var(--green-accent); }
+
+  .footer-details { font-size: .8rem; color: var(--text-muted); line-height: 1.7; }
+
+  .footer-details a { color: var(--teal-bright); text-decoration: none; }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .65s ease, transform .65s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── STICKY CTA MOBILE ── */
+  .sticky-cta {
+    display: none;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    z-index: 90;
+    background: var(--dark);
+    border-top: 1px solid rgba(43,181,200,.15);
+    padding: 1rem 5vw;
+  }
+
+  @media (max-width: 640px) { .sticky-cta { display: block; } }
+
+  .sticky-cta a {
+    display: block;
+    background: var(--green-accent);
+    color: var(--dark);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: .95rem;
+    text-align: center;
+    padding: .9rem;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">M<span>&</span>S Strategy</div>
+  <a href="#analyse" class="nav-cta">Étude gratuite →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <p class="hero-eyebrow">Courtage en énergie depuis 2012 · Gaz · Électricité · Flex</p>
+  <h1 class="hero-title">
+    L'énergie intelligente<br>ne s'achète jamais<br>
+    <em>au prix affiché.</em>
+  </h1>
+  <p class="hero-sub">
+    Nous négocions pour vous auprès de l'ensemble des fournisseurs du marché — pour que vous payiez le juste prix, sans effort et sans surprise.
+  </p>
+  <div class="hero-proof">
+    <div class="proof-item">
+      <span class="proof-num">19%</span>
+      <span class="proof-label">Économies moyennes</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">48h</span>
+      <span class="proof-label">Délai de réponse</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">70M</span>
+      <span class="proof-label">kWh négociés en 2025</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-num">100%</span>
+      <span class="proof-label">Gratuit & sans engagement</span>
+    </div>
+  </div>
+  <div class="hero-cta-row">
+    <a href="#analyse" class="btn-primary">Obtenir mon étude gratuite</a>
+    <span class="hero-free-label">Analyse gratuite · Sans engagement · Résultat sous 48h</span>
+  </div>
+</section>
+
+<!-- MARKET INFO BANNER -->
+<div class="urgency-banner">
+  <div class="pulse-dot"></div>
+  <p class="urgency-text">Hors pic énergétique, le marché augmente de <span>+5 à +7% par an</span> — la date de négociation change tout</p>
+  <a href="#analyse" class="nav-cta" style="padding:.5rem 1.2rem; font-size:.75rem;">Étude gratuite</a>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem-section reveal">
+  <div class="problem-copy">
+    <span class="section-tag">Le problème</span>
+    <h2 class="section-title">Deux entreprises identiques.<br>Deux factures très différentes.</h2>
+    <p>Les fournisseurs d'énergie fixent leurs prix selon le moment de la négociation, le volume consommé et les tensions de marché. <strong>La plupart des dirigeants renouvellent au mauvais moment</strong>, dans la zone où les prix ont déjà progressé.</p>
+    <p>Ce n'est pas une question de consommation — c'est une question de <strong>timing et de volume négocié</strong>. Nous intervenons précisément sur ces deux leviers, pour votre compte.</p>
+  </div>
+  <div class="market-card">
+    <p class="market-card-title">Ce que les fournisseurs regardent pour vous fixer un prix</p>
+    <ul class="factors-list">
+      <li>Marchés en temps réel de l'électricité et du gaz (sensibles aux crises géopolitiques)</li>
+      <li>Votre date de renouvellement de contrat</li>
+      <li>Le volume total de kWh négocié</li>
+    </ul>
+    <div class="market-warning">
+      <strong>80% des dirigeants</strong> renouvellent leurs contrats pendant la période la plus chère — juste avant l'échéance.
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution-section reveal">
+  <div class="solution-header">
+    <span class="section-tag">Notre solution</span>
+    <h2 class="section-title">Vous achetez seul. Nous vous achetons <em style="color:var(--green-accent);font-style:italic">en groupe.</em></h2>
+    <p>En mutualisant les consommations de plusieurs professionnels, nous pesons face aux fournisseurs avec un volume qui change tout. Le même prix que les grands comptes — pour votre TPE ou PME.</p>
+  </div>
+  <div class="groupement-visual">
+    <div class="group-card highlight">
+      <div>
+        <div class="group-card-label">Groupement d'achat M&S</div>
+        <div class="group-card-name">Pouvoir de négociation maximum</div>
+        <div class="group-card-conso">Conso totale : 322 MWH</div>
+      </div>
+      <div>
+        <div class="group-card-label">Prix négocié</div>
+        <div class="group-card-price">82 €/MWH</div>
+      </div>
+    </div>
+    <div class="group-card">
+      <div class="group-card-label">Boucherie</div>
+      <div class="group-card-name">Seule : 112 €/MWH</div>
+      <div class="group-card-conso">50 MWH</div>
+    </div>
+    <div class="group-card">
+      <div class="group-card-label">Bistrot</div>
+      <div class="group-card-name">Seul : 95 €/MWH</div>
+      <div class="group-card-conso">62 MWH</div>
+    </div>
+    <div class="group-card">
+      <div class="group-card-label">Boulangerie</div>
+      <div class="group-card-name">Seule : 125 €/MWH</div>
+      <div class="group-card-conso">80 MWH</div>
+    </div>
+    <div class="group-card">
+      <div class="group-card-label">Domaine viticole</div>
+      <div class="group-card-name">Seul : 87 €/MWH</div>
+      <div class="group-card-conso">130 MWH</div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps-section reveal">
+  <div class="steps-header">
+    <span class="section-tag">Comment ça marche</span>
+    <h2 class="section-title">4 étapes. Zéro effort de votre côté.</h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-title">Vous déposez votre facture</div>
+      <p class="step-body">Votre dernière facture été/hiver ou votre contrat actuel. C'est tout ce qu'il nous faut pour comprendre votre situation.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-title">On lance l'appel d'offres</div>
+      <p class="step-body">Nous consultons l'ensemble des fournisseurs de notre portefeuille — historiques et alternatifs — et attendons leurs propositions.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-title">On analyse les offres</div>
+      <p class="step-body">Notre équipe compare les détails : maîtrise des coûts, conditions spécifiques, alignement avec vos objectifs RSE et de rentabilité.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-title">Vous choisissez librement</div>
+      <p class="step-body">On vous présente notre tableau de comparaison en 48h. Vous décidez. Sans pression, sans obligation, en toute liberté.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof-section reveal">
+  <div class="proof-header">
+    <span class="section-tag">En chiffres</span>
+    <h2 class="section-title">Ce que d'autres ont arrêté de payer inutilement.</h2>
+  </div>
+  <div class="savings-grid">
+    <div class="saving-card">
+      <div class="saving-amount">75 000 €</div>
+      <span class="saving-period">par an</span>
+      <p class="saving-desc">Fromagerie, Grand-Est — n'avait pas renégocié son contrat assez tôt.</p>
+    </div>
+    <div class="saving-card">
+      <div class="saving-amount">23 000 €</div>
+      <span class="saving-period">par an</span>
+      <p class="saving-desc">École, Hauts-de-France — avait signé son renouvellement pendant le pic énergétique de 2023.</p>
+    </div>
+    <div class="saving-card">
+      <div class="saving-amount">11 000 €</div>
+      <span class="saving-period">par an</span>
+      <p class="saving-desc">Coworking-restaurant engagé avec une coopérative régionale, sans savoir qu'une alternative équivalente existait.</p>
+    </div>
+    <div class="saving-card">
+      <div class="saving-amount">4 000 €</div>
+      <span class="saving-period">par an</span>
+      <p class="saving-desc">Brasserie en centre-ville — reconduction automatique avec le même fournisseur sans renégociation.</p>
+    </div>
+    <div class="saving-card">
+      <div class="saving-amount">950 €</div>
+      <span class="saving-period">par an</span>
+      <p class="saving-desc">Camping ardéchois — bénéfice du pouvoir de négociation groupé d'une autre structure.</p>
+    </div>
+    <div class="saving-card" style="border-color: rgba(76,222,128,.25); background: rgba(76,222,128,.05);">
+      <div class="saving-amount" style="color: var(--teal-bright);">Et vous ?</div>
+      <span class="saving-period">étude sous 48h</span>
+      <p class="saving-desc">Partagez votre facture, nous vous disons ce que le marché peut faire pour vous — gratuitement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- UPLOAD FORM -->
+<section class="form-section" id="analyse">
+  <div class="form-container">
+    <div class="form-header reveal">
+      <span class="section-tag">Étude personnalisée</span>
+      <h2 class="section-title">Partagez votre situation.<br>On s'occupe du reste.</h2>
+      <p>
+        Un processus 100% gratuit et sans engagement. Votre interlocuteur vous revient sous 48h avec une étude comparative sur-mesure.
+      </p>
+    </div>
+
+    <div class="form-card reveal" id="form-wrapper">
+
+      <div id="form-fields">
+        <div class="form-cols">
+          <div class="form-row">
+            <label class="form-label" for="prenom">Prénom</label>
+            <input class="form-input" type="text" id="prenom" placeholder="Jean">
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="nom">Nom</label>
+            <input class="form-input" type="text" id="nom" placeholder="Dupont">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="email">Email professionnel</label>
+          <input class="form-input" type="email" id="email" placeholder="jean.dupont@votre-entreprise.fr">
+        </div>
+
+        <div class="form-cols">
+          <div class="form-row">
+            <label class="form-label" for="telephone">Téléphone</label>
+            <input class="form-input" type="tel" id="telephone" placeholder="06 00 00 00 00">
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="secteur">Secteur d'activité</label>
+            <select class="form-select" id="secteur">
+              <option value="" disabled selected>Votre secteur</option>
+              <option>Restauration / CHR</option>
+              <option>Commerce de détail</option>
+              <option>Artisanat / Production</option>
+              <option>Industrie / Logistique</option>
+              <option>Services / Bureaux</option>
+              <option>Santé / Éducation</option>
+              <option>Hébergement / Tourisme</option>
+              <option>Agroalimentaire</option>
+              <option>Autre</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label">Votre facture énergétique (PDF ou image)</label>
+          <div class="drop-zone" id="drop-zone">
+            <span class="drop-icon">📄</span>
+            <p class="drop-title">Glissez votre facture ici</p>
+            <p class="drop-sub">ou <span id="browse-link">parcourez vos fichiers</span> · PDF, JPG, PNG acceptés</p>
+            <input type="file" id="file-input" accept=".pdf,.jpg,.jpeg,.png">
+          </div>
+          <div class="file-preview" id="file-preview">
+            <span>📎</span>
+            <span class="file-preview-name" id="file-name"></span>
+            <span class="file-preview-remove" id="remove-file">✕ Supprimer</span>
+          </div>
+        </div>
+
+        <button class="form-submit" id="submit-btn" disabled>
+          Transmettre ma facture pour étude →
+        </button>
+
+        <div class="form-reassurance">
+          <span class="reassurance-item">Gratuit & sans engagement</span>
+          <span class="reassurance-item">Réponse sous 48h</span>
+          <span class="reassurance-item">Données confidentielles</span>
+        </div>
+      </div>
+
+      <div class="form-success" id="form-success">
+        <span class="success-icon">✅</span>
+        <h3 class="success-title">Bien reçu, merci.</h3>
+        <p class="success-sub">Votre interlocuteur M&S Strategy vous contacte dans les 48h avec une étude comparative personnalisée.<br><br>Vous n'avez rien d'autre à faire.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">M<span>&</span>S Strategy</div>
+  <div class="footer-details">
+    <a href="mailto:msstrategy@yahoo.com">msstrategy@yahoo.com</a> ·
+    Tél : 09 52 92 64 98 · Commercial : 07 83 07 07 49<br>
+    1366 Av. des Platanes, 34000 Lattes · SIREN 752 139 477
+  </div>
+</footer>
+
+<!-- STICKY CTA MOBILE -->
+<div class="sticky-cta">
+  <a href="#analyse">Obtenir mon étude gratuite — sans engagement</a>
+</div>
+
+<script>
+  // ── Scroll reveal ──
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+
+  // ── File upload ──
+  const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input');
+  const browseLink = document.getElementById('browse-link');
+  const filePreview = document.getElementById('file-preview');
+  const fileName = document.getElementById('file-name');
+  const removeFile = document.getElementById('remove-file');
+  const submitBtn = document.getElementById('submit-btn');
+
+  browseLink.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('click', () => fileInput.click());
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('dragover');
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+  });
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files.length) handleFile(fileInput.files[0]);
+  });
+
+  function handleFile(file) {
+    fileName.textContent = file.name;
+    filePreview.classList.add('visible');
+    dropZone.style.opacity = '.4';
+    checkSubmit();
+  }
+
+  removeFile.addEventListener('click', (e) => {
+    e.stopPropagation();
+    fileInput.value = '';
+    filePreview.classList.remove('visible');
+    dropZone.style.opacity = '1';
+    checkSubmit();
+  });
+
+  function checkSubmit() {
+    const hasFile = filePreview.classList.contains('visible');
+    const hasEmail = document.getElementById('email').value.includes('@');
+    const hasName = document.getElementById('prenom').value.trim().length > 0;
+    submitBtn.disabled = !(hasFile && hasEmail && hasName);
+  }
+
+  ['email','prenom','nom','telephone'].forEach(id => {
+    document.getElementById(id).addEventListener('input', checkSubmit);
+  });
+
+  // ── Submit ──
+  submitBtn.addEventListener('click', () => {
+    document.getElementById('form-fields').style.display = 'none';
+    document.getElementById('form-success').classList.add('visible');
+    window.scrollTo({ top: document.getElementById('form-success').getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>

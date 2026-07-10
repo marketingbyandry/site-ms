@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renouvellement contrat énergie industrie : le guide du bon moment — M&S Strategy</title>
+<meta name="description" content="Pour un site industriel ou logistique, la date de renégociation du contrat énergie est plus importante que le choix du fournisseur. Voici pourquoi — et comment anticiper.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #0a1a1f;
+  --teal-deep: #0d4f5c;
+  --teal-mid: #1a7a8a;
+  --teal-bright: #2bb5c8;
+  --teal-light: #5ecfdc;
+  --green: #4cde80;
+  --cream: #f5f0e8;
+  --muted: #8aacb4;
+  --red: #e05555;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--cream); line-height: 1.75; font-size: 17px; font-weight: 300; }
+
+#progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--teal-mid), var(--green)); width: 0%; z-index: 200; }
+
+nav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem 5vw;
+  background: rgba(10,26,31,.88); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(43,181,200,.1);
+}
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--cream); text-decoration: none; }
+.nav-logo span { color: var(--green); }
+.nav-cta { font-family: 'Syne', sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .5rem 1.2rem; border: 1px solid var(--green); color: var(--green); text-decoration: none; border-radius: 2px; transition: background .2s, color .2s; }
+.nav-cta:hover { background: var(--green); color: var(--dark); }
+
+/* ── HERO ── */
+.hero { padding: 9rem 5vw 4rem; max-width: 1100px; margin: 0 auto; position: relative; }
+.hero::after { content: ''; position: absolute; top: 80px; right: 0; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(76,222,128,.07) 0%, transparent 70%); pointer-events: none; }
+
+.article-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.meta-tag { font-family: 'Syne', sans-serif; font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--teal-light); background: rgba(43,181,200,.1); border: 1px solid rgba(43,181,200,.2); padding: .28rem .75rem; border-radius: 2px; }
+.meta-read { font-size: .8rem; color: var(--muted); }
+.meta-read::before { content: '⏱ '; opacity: .6; }
+
+.hero-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.08; max-width: 800px; margin-bottom: 1.6rem; }
+.accent { color: var(--green); }
+.accent-teal { color: var(--teal-light); font-style: italic; font-family: 'DM Sans', sans-serif; font-weight: 300; }
+.hero-intro { font-size: 1.15rem; color: var(--muted); max-width: 640px; line-height: 1.7; margin-bottom: 3rem; }
+
+/* ── INTERACTIVE TIMELINE — Signature element ── */
+.timeline-section {
+  background: rgba(13,79,92,.12);
+  border: 1px solid rgba(43,181,200,.15);
+  border-radius: 8px;
+  padding: 3rem 2rem;
+  margin: 3rem auto;
+  max-width: 900px;
+  position: relative;
+  overflow: hidden;
+}
+.timeline-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(76,222,128,.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.timeline-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--cream); margin-bottom: .4rem; text-align: center; }
+.timeline-sub { font-size: .85rem; color: var(--muted); text-align: center; margin-bottom: 2.5rem; }
+
+/* Horizontal track */
+.tl-track { position: relative; margin: 0 auto; max-width: 780px; }
+.tl-axis { height: 4px; background: rgba(43,181,200,.2); border-radius: 2px; position: relative; margin: 40px 0 60px; }
+.tl-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--teal-bright)); width: 0%; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+
+.tl-nodes { position: absolute; top: 50%; transform: translateY(-50%); left: 0; right: 0; display: flex; justify-content: space-between; }
+
+.tl-node { position: relative; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+.tl-dot {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid; background: var(--dark);
+  transition: transform .2s, background .2s;
+  position: relative; z-index: 2;
+}
+.tl-node:hover .tl-dot { transform: scale(1.3); }
+.tl-node.active .tl-dot { transform: scale(1.4); }
+
+.tl-node.optimal .tl-dot { border-color: var(--green); }
+.tl-node.optimal.active .tl-dot { background: var(--green); }
+.tl-node.good .tl-dot { border-color: var(--teal-light); }
+.tl-node.good.active .tl-dot { background: var(--teal-light); }
+.tl-node.late .tl-dot { border-color: var(--muted); }
+.tl-node.late.active .tl-dot { background: var(--muted); }
+.tl-node.danger .tl-dot { border-color: var(--red); }
+.tl-node.danger.active .tl-dot { background: var(--red); }
+.tl-node.critical .tl-dot { border-color: var(--red); }
+.tl-node.critical.active .tl-dot { background: var(--red); }
+
+.tl-date { position: absolute; top: -28px; font-family: 'Syne', sans-serif; font-size: .7rem; font-weight: 700; white-space: nowrap; color: var(--muted); transition: color .2s; }
+.tl-node.optimal .tl-date { color: var(--green); }
+.tl-node.active .tl-date { color: var(--cream); }
+
+.tl-label { position: absolute; bottom: -32px; font-size: .68rem; white-space: nowrap; color: var(--muted); font-family: 'DM Sans', sans-serif; }
+
+/* Info panel */
+.tl-panel {
+  background: rgba(10,26,31,.8);
+  border: 1px solid rgba(43,181,200,.15);
+  border-radius: 4px; padding: 1.5rem;
+  min-height: 100px;
+  transition: opacity .3s;
+}
+.tl-panel-header { display: flex; align-items: center; gap: 1rem; margin-bottom: .8rem; }
+.tl-panel-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.tl-panel-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--cream); }
+.tl-panel-body { font-size: .93rem; color: var(--muted); line-height: 1.65; }
+.tl-panel-score { display: inline-block; font-family: 'Syne', sans-serif; font-weight: 800; font-size: .75rem; padding: .2rem .7rem; border-radius: 2px; margin-top: .8rem; }
+
+.tl-instruction { text-align: center; font-size: .8rem; color: var(--muted); margin-top: 1rem; opacity: .7; }
+
+/* ── BODY ── */
+.article-body { max-width: 720px; margin: 0 auto; padding: 0 5vw 6rem; }
+h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.15; margin: 3.5rem 0 1.2rem; color: var(--cream); }
+h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; color: var(--teal-light); margin: 2.5rem 0 .8rem; }
+p { margin-bottom: 1.4rem; }
+p strong { color: var(--cream); font-weight: 500; }
+
+.pull-quote { border-left: 3px solid var(--green); padding: 1.2rem 1.8rem; margin: 2.5rem 0; background: rgba(13,79,92,.15); border-radius: 0 4px 4px 0; }
+.pull-quote p { font-style: italic; font-size: 1.1rem; color: var(--cream); margin: 0; }
+.pull-quote cite { display: block; margin-top: .6rem; font-size: .78rem; color: var(--muted); font-style: normal; letter-spacing: .06em; text-transform: uppercase; }
+
+.callout { background: linear-gradient(135deg, rgba(13,79,92,.4), rgba(26,122,138,.15)); border: 1px solid rgba(43,181,200,.2); border-radius: 4px; padding: 2rem; margin: 2.5rem 0; }
+.callout-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--green); margin-bottom: .8rem; }
+.callout p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+.checklist { list-style: none; margin: 1rem 0 1.5rem; }
+.checklist li { display: flex; align-items: flex-start; gap: .8rem; padding: .6rem 0; border-bottom: 1px solid rgba(43,181,200,.08); font-size: .97rem; color: var(--muted); }
+.checklist li::before { content: '→'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: .1rem; }
+
+/* ── Scenario cards ── */
+.scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+@media (max-width: 600px) { .scenario-grid { grid-template-columns: 1fr; } }
+.scenario-card { border: 1px solid rgba(43,181,200,.15); border-radius: 4px; padding: 1.5rem; background: rgba(13,79,92,.12); transition: border-color .2s, transform .2s; }
+.scenario-card:hover { border-color: rgba(43,181,200,.35); transform: translateY(-2px); }
+.scenario-card.good { border-top: 3px solid var(--green); }
+.scenario-card.bad { border-top: 3px solid var(--red); }
+.scenario-label { font-family: 'Syne', sans-serif; font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: .6rem; }
+.scenario-card.good .scenario-label { color: var(--green); }
+.scenario-card.bad .scenario-label { color: var(--red); }
+.scenario-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--cream); margin-bottom: .6rem; }
+.scenario-desc { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+
+.cta-section { background: linear-gradient(135deg, var(--teal-deep), rgba(10,26,31,.95)); border: 1px solid rgba(43,181,200,.15); border-radius: 6px; padding: 3rem 2.5rem; margin: 4rem 0; text-align: center; }
+.cta-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; color: var(--cream); margin-bottom: .8rem; }
+.cta-sub { color: var(--muted); margin-bottom: 2rem; font-size: .97rem; }
+.cta-btn { display: inline-block; background: var(--green); color: var(--dark); font-family: 'Syne', sans-serif; font-weight: 800; font-size: .9rem; letter-spacing: .04em; padding: 1rem 2.5rem; border-radius: 2px; text-decoration: none; transition: transform .15s, box-shadow .2s; }
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(76,222,128,.3); }
+.cta-reassure { margin-top: 1rem; font-size: .75rem; color: var(--muted); }
+
+.floating-cta { position: fixed; bottom: 2rem; right: 2rem; z-index: 90; opacity: 0; transform: translateY(12px); transition: opacity .3s, transform .3s; pointer-events: none; }
+.floating-cta.visible { opacity: 1; transform: none; pointer-events: all; }
+.floating-cta a { display: flex; align-items: center; gap: .6rem; background: var(--green); color: var(--dark); font-family: 'Syne', sans-serif; font-weight: 800; font-size: .8rem; padding: .85rem 1.4rem; border-radius: 3px; text-decoration: none; box-shadow: 0 8px 28px rgba(0,0,0,.4); }
+
+footer { padding: 3rem 5vw; border-top: 1px solid rgba(43,181,200,.1); text-align: center; }
+footer p { color: var(--muted); font-size: .82rem; line-height: 1.8; }
+footer a { color: var(--teal-bright); text-decoration: none; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav>
+  <a href="#" class="nav-logo">M<span>&</span>S Strategy</a>
+  <a href="#cta" class="nav-cta">Étude gratuite →</a>
+</nav>
+
+<article>
+  <header class="hero">
+    <div class="article-meta">
+      <span class="meta-tag">Industrie & Logistique</span>
+      <span class="meta-tag">Stratégie contractuelle</span>
+      <span class="meta-read">9 min de lecture</span>
+    </div>
+    <h1 class="hero-title">
+      Renouvellement contrat énergie :<br>
+      <span class="accent-teal">le moment où vous signez</span><br>
+      vaut plus que <span class="accent">le fournisseur choisi.</span>
+    </h1>
+    <p class="hero-intro">
+      Pour un site industriel ou une plateforme logistique, choisir son fournisseur d'énergie sans tenir compte du contexte de marché au moment de la signature, c'est optimiser la mauvaise variable. Voici pourquoi le timing de négociation est le levier le plus sous-estimé de la maîtrise des coûts énergétiques.
+    </p>
+  </header>
+
+  <!-- INTERACTIVE TIMELINE -->
+  <div class="timeline-section reveal" id="timeline-section" style="max-width:900px;margin:0 auto 3rem;padding:3rem 5vw;">
+    <p class="timeline-title">Votre fenêtre de négociation — où en êtes-vous ?</p>
+    <p class="timeline-sub">Cliquez sur un jalon pour comprendre l'impact de votre position actuelle</p>
+
+    <div class="tl-track">
+      <div class="tl-axis">
+        <div class="tl-fill" id="tl-fill"></div>
+        <div class="tl-nodes" id="tl-nodes">
+          <!-- nodes injected by JS -->
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-panel" id="tl-panel">
+      <div class="tl-panel-header">
+        <div class="tl-panel-dot" id="panel-dot" style="background:var(--muted)"></div>
+        <div class="tl-panel-title" id="panel-title">Sélectionnez un jalon</div>
+      </div>
+      <div class="tl-panel-body" id="panel-body">Cliquez sur un point de la timeline pour voir l'analyse correspondante à votre situation.</div>
+    </div>
+    <p class="tl-instruction">← Faites glisser le temps →</p>
+  </div>
+
+  <div class="article-body">
+
+    <h2>Pourquoi le marché de l'énergie punit les retardataires</h2>
+
+    <p>Le marché de gros de l'électricité et du gaz naturel fonctionne comme un marché financier : les prix fluctuent quotidiennement, sous l'effet des anticipations des traders, des capacités de production disponibles, des conditions météorologiques et des tensions géopolitiques. Un conflit en Europe de l'Est, une vague de froid prolongée ou une panne nucléaire peuvent faire bondir les prix de plusieurs dizaines de pourcents en quelques semaines.</p>
+
+    <p>Ce que la majorité des responsables industriels ignorent, c'est que <strong>leur contrat d'énergie est directement indexé sur ces marchés au moment de la signature</strong>. Une entreprise qui renouvelle son contrat en période de tension paiera un tarif de base plus élevé pendant toute la durée du nouveau contrat — généralement 1 à 3 ans.</p>
+
+    <div class="pull-quote">
+      <p>Deux usines identiques, dans le même secteur, avec la même consommation annuelle, peuvent avoir des tarifs énergétiques très différents. La seule variable qui les distingue est la date à laquelle leur contrat a été signé.</p>
+      <cite>M&S Strategy · Analyse de portefeuille clients 2024-2025</cite>
+    </div>
+
+    <h2>La courbe des opportunités : ce que montre notre expérience de terrain</h2>
+
+    <p>Sur la base de plus de dix années de négociations pour des clients industriels et logistiques, nous avons cartographié ce que nous appelons la <strong>courbe des opportunités</strong> — la relation entre le délai d'anticipation avant l'échéance du contrat et les conditions tarifaires obtenues.</p>
+
+    <p>Le constat est sans ambiguïté. La fenêtre optimale se situe entre <strong>J-20 mois et J-12 mois</strong> avant l'échéance. C'est dans cet intervalle que le marché présente statistiquement les meilleures conditions, que les fournisseurs sont les plus compétitifs (leur carnet de commandes est ouvert), et que le temps disponible permet une mise en concurrence réelle et structurée.</p>
+
+    <p>Passé J-6 mois, la donne change. Les fournisseurs savent que votre marge de manœuvre se réduit. L'urgence réduit le nombre d'offres obtenues. Et le risque de signer dans une fenêtre de marché défavorable augmente mécaniquement.</p>
+
+    <h2>Deux scénarios, une seule différence</h2>
+
+    <div class="scenario-grid reveal">
+      <div class="scenario-card good">
+        <p class="scenario-label">Scénario A · Anticipation</p>
+        <p class="scenario-title">J − 18 mois</p>
+        <p class="scenario-desc">Le responsable transmet sa facture à M&S Strategy. L'appel d'offres est lancé. Le marché est favorable. 20 fournisseurs répondent. L'entreprise signe au meilleur tarif du cycle — et économise 23 000 € sur les deux années suivantes.</p>
+      </div>
+      <div class="scenario-card bad">
+        <p class="scenario-label">Scénario B · Réaction tardive</p>
+        <p class="scenario-title">J − 2 mois</p>
+        <p class="scenario-desc">Le responsable reçoit une notification de renouvellement. Il n'a pas le temps de comparer. Il reconduit avec le même fournisseur. Le tarif intègre la hausse de marché de l'été. Le surcoût annuel est de 19 000 €.</p>
+      </div>
+    </div>
+
+    <p>La différence entre ces deux scénarios n'est pas une question d'expertise, de taille d'entreprise ou de volume consommé. C'est uniquement une question d'anticipation — et de disposer d'un interlocuteur qui surveille le marché à votre place.</p>
+
+    <h2>Le coût réel de l'inaction dans l'industrie</h2>
+
+    <h3>Le piège de la reconduction automatique</h3>
+
+    <p>De nombreux contrats d'énergie industriels comportent une <strong>clause de reconduction tacite</strong>. Si le titulaire ne notifie pas sa volonté de renégocier dans un délai spécifié (souvent 3 à 6 mois avant l'échéance), le contrat est automatiquement reconduit — généralement à des conditions moins favorables que ce que le marché permettrait d'obtenir.</p>
+
+    <p>Cette clause, légale et contractuellement valide, est pourtant peu connue des responsables. Elle génère des surcoûts silencieux, année après année, sur des contrats que personne ne remet jamais en question.</p>
+
+    <h3>L'illusion de la fidélité fournisseur</h3>
+
+    <p>Rester avec le même fournisseur n'est pas une mauvaise décision en soi. Ce qui l'est, c'est de rester avec lui sans jamais avoir comparé. Les fournisseurs d'énergie — comme tous les acteurs commerciaux — proposent leurs meilleures conditions aux clients qui les mettent en concurrence. Un client fidèle non challengé est, du point de vue du fournisseur, un client dont la marge peut être optimisée.</p>
+
+    <p>Nous avons régulièrement obtenu pour des clients des <strong>baisses tarifaires de 8 à 15 % auprès de leur fournisseur actuel</strong> — uniquement en leur présentant des offres alternatives. La mise en concurrence est le seul levier qui fonctionne systématiquement.</p>
+
+    <h2>Le rôle du courtier : surveillance permanente, intervention au bon moment</h2>
+
+    <p>La valeur ajoutée d'un courtier en énergie industrielle ne réside pas seulement dans sa capacité à obtenir de meilleures offres — elle réside dans sa capacité à <strong>identifier le bon moment pour agir</strong>.</p>
+
+    <ul class="checklist">
+      <li>Suivi permanent des marchés de gros (électricité base, pointe, gaz TTF)</li>
+      <li>Identification des fenêtres de prix favorables pour votre profil de consommation</li>
+      <li>Alerte proactive dès que les conditions sont réunies pour lancer une négociation</li>
+      <li>Appel d'offres structuré auprès de 15 à 20 fournisseurs simultanément</li>
+      <li>Analyse comparative incluant les clauses contractuelles, pas seulement le prix</li>
+    </ul>
+
+    <div class="callout reveal">
+      <p class="callout-title">Ce que révèle votre date d'échéance</p>
+      <p>Dès réception de votre facture, notre équipe identifie votre date d'échéance et la positionne par rapport aux conditions actuelles du marché. Si la fenêtre est favorable, nous le disons. Si elle ne l'est pas encore, nous vous indiquons quand agir. Dans tous les cas, vous avez une information que vous n'aviez pas avant.</p>
+    </div>
+
+    <h2>Flex, fixe ou indexé : quelle structure de contrat pour l'industrie ?</h2>
+
+    <p>Au-delà du prix à l'instant T, la <strong>structure du contrat</strong> est une dimension souvent négligée. Pour un site industriel, trois grands types de contrats coexistent sur le marché :</p>
+
+    <h3>Contrat à prix fixe</h3>
+    <p>Le prix est verrouillé pour toute la durée du contrat, indépendamment des fluctuations de marché. C'est la formule qui offre le plus de visibilité budgétaire. Elle est particulièrement adaptée aux périodes où le marché est bas — ce qui renforce l'importance du timing de signature.</p>
+
+    <h3>Contrat indexé</h3>
+    <p>Le prix suit les indices de marché (EPEX Spot, PEG pour le gaz). Cette formule peut être avantageuse en période de baisse des marchés, mais expose le site à des hausses soudaines. Elle est adaptée aux sites disposant d'une capacité d'arbitrage (effacement, modulation de puissance).</p>
+
+    <h3>Contrat flex (ou structured)</h3>
+    <p>Formule hybride réservée aux gros consommateurs (généralement > 2 GWh/an), permettant d'acheter l'énergie par tranches sur les marchés à terme. C'est la formule qui offre le plus de sophistication — et qui nécessite un accompagnement expert pour ne pas se transformer en prise de risque non maîtrisée.</p>
+
+    <p>Le choix entre ces trois structures dépend de votre profil de risque, de vos contraintes budgétaires et des conditions de marché au moment de la négociation. C'est précisément ce que notre analyse vous permet de clarifier — avant de signer quoi que ce soit.</p>
+
+    <div id="cta">
+      <div class="cta-section reveal">
+        <p class="cta-title">Où en est votre prochain contrat ?</p>
+        <p class="cta-sub">Transmettez votre dernière facture. En 48h, nous vous indiquons si vous êtes dans la fenêtre optimale — et ce que le marché peut faire pour vous.</p>
+        <a href="mailto:msstrategy@yahoo.com" class="cta-btn">Transmettre ma facture →</a>
+        <p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 48h</p>
+      </div>
+    </div>
+
+    <h2>Questions fréquentes — Renouvellement contrat énergie industrie</h2>
+
+    <h3>Comment savoir si je suis dans la fenêtre optimale ?</h3>
+    <p>La fenêtre optimale dépend de votre date d'échéance, des conditions actuelles du marché, et du volume de votre consommation. Il n'existe pas de règle universelle — c'est précisément le rôle d'un courtier que de vous positionner par rapport à ces variables. Une facture suffit pour avoir une première réponse sous 48h.</p>
+
+    <h3>Et si mon contrat a encore 2 ans ?</h3>
+    <p>C'est souvent la meilleure nouvelle possible. Deux ans d'avance, c'est deux ans de fenêtre pour identifier le moment optimal. Nous suivons votre dossier et vous alertons dès que les conditions sont réunies. Il n'y a aucun coût à cette veille.</p>
+
+    <h3>Le marché peut-il baisser encore ?</h3>
+    <p>Oui. Le marché peut baisser comme il peut monter. C'est précisément pourquoi nous analysons les conditions de marché avant de recommander d'agir. Notre objectif n'est pas de vous faire signer vite — c'est de vous faire signer bien.</p>
+
+  </div>
+</article>
+
+<footer>
+  <p>
+    <strong style="color:var(--cream)">M&S Strategy</strong> · Courtage en énergie depuis 2012<br>
+    1366 Av. des Platanes, 34000 Lattes ·
+    <a href="tel:0952926498">09 52 92 64 98</a> ·
+    <a href="mailto:msstrategy@yahoo.com">msstrategy@yahoo.com</a><br>
+    SIREN 752 139 477
+  </p>
+</footer>
+
+<div class="floating-cta" id="floating-cta">
+  <a href="#cta">Étude gratuite · 48h →</a>
+</div>
+
+<script>
+// ── Progress bar
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = pct + '%';
+  document.getElementById('floating-cta').classList.toggle('visible', window.scrollY > 400);
+});
+
+// ── Reveal
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// ── INTERACTIVE TIMELINE
+const NODES = [
+  {
+    id: 'n1', cls: 'optimal', date: 'J − 20 mois', label: 'Idéal',
+    pct: 0,
+    color: '#4cde80',
+    title: 'Fenêtre idéale — Puissance maximale',
+    body: 'Vous êtes dans la meilleure position possible. Le marché est lisible, les fournisseurs sont en compétition ouverte, et vous avez tout le temps pour comparer. C\'est ici que les économies les plus importantes se construisent. Recommandation : lancer l\'analyse maintenant.',
+    score: '★★★★★', scoreColor: '#4cde80', scoreBg: 'rgba(76,222,128,.12)'
+  },
+  {
+    id: 'n2', cls: 'optimal', date: 'J − 15 mois', label: 'Optimal',
+    pct: 25,
+    color: '#4cde80',
+    title: 'Fenêtre optimale — Bonne marge de manœuvre',
+    body: 'Position encore très favorable. La mise en concurrence complète est possible. Les fournisseurs alternatifs sont actifs sur ce délai. C\'est le moment auquel 20% de nos clients industriels démarrent leur négociation avec les meilleurs résultats.',
+    score: '★★★★☆', scoreColor: '#4cde80', scoreBg: 'rgba(76,222,128,.1)'
+  },
+  {
+    id: 'n3', cls: 'good', date: 'J − 12 mois', label: 'Acceptable',
+    pct: 50,
+    color: '#5ecfdc',
+    title: 'Fenêtre acceptable — Agissez rapidement',
+    body: 'La fenêtre se rétrécit mais reste utilisable. Un appel d\'offres complet est encore possible. Certains fournisseurs commencent à anticiper votre situation et peuvent durcir leurs conditions. Il est temps d\'agir.',
+    score: '★★★☆☆', scoreColor: '#5ecfdc', scoreBg: 'rgba(94,207,220,.1)'
+  },
+  {
+    id: 'n4', cls: 'late', date: 'J − 6 mois', label: 'Tardif',
+    pct: 75,
+    color: '#8aacb4',
+    title: 'Position tardive — Marge réduite',
+    body: '80% des dirigeants démarrent ici. C\'est trop tard pour profiter pleinement des meilleures opportunités de marché. Un courtier peut encore obtenir des résultats significatifs, mais la pression du temps réduit le nombre d\'offres disponibles.',
+    score: '★★☆☆☆', scoreColor: '#8aacb4', scoreBg: 'rgba(138,172,180,.1)'
+  },
+  {
+    id: 'n5', cls: 'critical', date: 'Signature', label: 'Critique',
+    pct: 100,
+    color: '#e05555',
+    title: 'Reconduction imminente — Zone rouge',
+    body: 'À ce stade, vous n\'avez presque plus le choix. Le fournisseur le sait. Vous signerez probablement au prix affiché, sans marge de négociation. L\'urgence reste gérable avec un courtier — mais les résultats seront inférieurs à ce qu\'une anticipation de 12 mois aurait permis.',
+    score: '★☆☆☆☆', scoreColor: '#e05555', scoreBg: 'rgba(224,85,85,.1)'
+  },
+];
+
+const nodesContainer = document.getElementById('tl-nodes');
+const fillEl = document.getElementById('tl-fill');
+const panelTitle = document.getElementById('panel-title');
+const panelBody = document.getElementById('panel-body');
+const panelDot = document.getElementById('panel-dot');
+
+NODES.forEach((n, i) => {
+  const node = document.createElement('div');
+  node.className = `tl-node ${n.cls}`;
+  node.style.left = n.pct + '%';
+  node.style.position = 'absolute';
+  node.style.transform = 'translate(-50%, -50%)';
+  node.innerHTML = `
+    <span class="tl-date">${n.date}</span>
+    <div class="tl-dot"></div>
+    <span class="tl-label">${n.label}</span>
+  `;
+  node.addEventListener('click', () => selectNode(i));
+  nodesContainer.appendChild(node);
+});
+
+function selectNode(idx) {
+  const n = NODES[idx];
+  document.querySelectorAll('.tl-node').forEach((el, i) => el.classList.toggle('active', i === idx));
+  fillEl.style.width = n.pct + '%';
+  panelDot.style.background = n.color;
+  panelTitle.textContent = n.title;
+  panelTitle.style.color = n.color;
+  panelBody.innerHTML = n.body + `<br><span class="tl-panel-score" style="color:${n.scoreColor};background:${n.scoreBg}">${n.score} Position de négociation</span>`;
+}
+
+// Auto-select first on load
+setTimeout(() => selectNode(0), 600);
+// Auto-animate fill on scroll into view
+const tlObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { fillEl.style.width = '0%'; setTimeout(() => selectNode(0), 300); tlObs.unobserve(e.target); } });
+}, { threshold: 0.3 });
+tlObs.observe(document.getElementById('timeline-section'));
+</script>
+</body>
+</html>
