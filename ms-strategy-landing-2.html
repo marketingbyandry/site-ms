@@ -536,92 +536,16 @@
     padding: 2.5rem;
   }
 
-  .form-row { margin-bottom: 1.4rem; }
-
-  .form-label {
-    display: block;
-    font-family: 'Satoshi', sans-serif;
-    font-size: .72rem; font-weight: 700;
-    letter-spacing: .1em; text-transform: uppercase;
-    color: var(--teal-light);
-    margin-bottom: .5rem;
-  }
-
-  .form-input, .form-select {
-    width: 100%;
-    background: rgba(10,26,31,.8);
-    border: 1px solid rgba(43,181,200,.2);
-    border-radius: 3px;
-    padding: .85rem 1rem;
-    color: var(--cream);
-    font-family: 'Satoshi', sans-serif;
-    font-size: .95rem;
-    outline: none;
-    transition: border-color .2s;
-    appearance: none;
-  }
-
-  .form-input::placeholder { color: rgba(138,172,180,.4); }
-
-  .form-input:focus, .form-select:focus {
-    border-color: rgba(76,222,128,.5);
-    box-shadow: 0 0 0 3px rgba(76,222,128,.06);
-  }
-
-  .form-select option { background: var(--dark); }
-
-  .form-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-  @media (max-width: 520px) { .form-cols { grid-template-columns: 1fr; } }
-
-  /* ── DROP ZONE ── */
-  .drop-zone {
-    border: 2px dashed rgba(43,181,200,.3);
-    border-radius: 4px;
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color .2s, background .2s;
-    position: relative;
-    background: rgba(10,26,31,.4);
-  }
-
-  .drop-zone:hover, .drop-zone.dragover {
-    border-color: var(--green-accent);
-    background: rgba(76,222,128,.04);
-  }
-
-  .drop-icon {
-    font-size: 2.2rem; margin-bottom: .8rem;
-    display: block; opacity: .6;
-  }
-
-  .drop-title {
-    font-family: 'Satoshi', sans-serif;
-    font-size: .95rem; font-weight: 700;
-    color: var(--cream);
-    margin-bottom: .4rem;
-  }
-
-  .drop-sub { font-size: .8rem; color: var(--text-muted); }
-
-  .drop-sub span { color: var(--teal-bright); text-decoration: underline; cursor: pointer; }
-
-  #file-input { display: none; }
-
-  .file-preview {
-    display: none;
-    align-items: center; gap: .8rem;
-    margin-top: 1rem;
-    padding: .8rem 1rem;
-    background: rgba(76,222,128,.08);
-    border: 1px solid rgba(76,222,128,.25);
+  .form-trust {
+    display: flex; align-items: flex-start; gap: .7rem;
+    font-size: .88rem; color: var(--text-muted); line-height: 1.6;
+    padding: 1rem 1.1rem;
+    background: rgba(76,222,128,.06);
+    border: 1px solid rgba(76,222,128,.18);
     border-radius: 3px;
   }
 
-  .file-preview.visible { display: flex; }
-  .file-preview-name { font-size: .88rem; color: var(--green-accent); }
-  .file-preview-remove { margin-left: auto; cursor: pointer; color: var(--text-muted); font-size: .8rem; }
+  .form-trust strong { color: var(--cream); }
 
   .form-submit {
     width: 100%;
@@ -655,28 +579,6 @@
   }
 
   .reassurance-item::before { content: '✓'; color: var(--green-accent); font-weight: 700; }
-
-  /* ── SUCCESS STATE ── */
-  .form-success {
-    display: none;
-    text-align: center;
-    padding: 3rem 1rem;
-  }
-
-  .form-success.visible { display: block; }
-
-  .success-icon {
-    font-size: 3rem; margin-bottom: 1rem; display: block;
-  }
-
-  .success-title {
-    font-family: 'Satoshi', sans-serif;
-    font-size: 1.6rem; font-weight: 800;
-    color: var(--green-accent);
-    margin-bottom: .8rem;
-  }
-
-  .success-sub { color: var(--text-muted); line-height: 1.65; }
 
   /* ── FOOTER ── */
   footer {
@@ -938,78 +840,17 @@
     </div>
 
     <div class="form-card reveal" id="form-wrapper">
+      <div class="form-trust">🔒 <span><strong>Transmission chiffrée et confidentielle.</strong> Votre facture et vos coordonnées sont reçues sur un espace privé, consulté uniquement par notre équipe — jamais partagées ni publiées.</span></div>
 
-      <div id="form-fields">
-        <div class="form-cols">
-          <div class="form-row">
-            <label class="form-label" for="prenom">Prénom</label>
-            <input class="form-input" type="text" id="prenom" placeholder="Jean">
-          </div>
-          <div class="form-row">
-            <label class="form-label" for="nom">Nom</label>
-            <input class="form-input" type="text" id="nom" placeholder="Dupont">
-          </div>
-        </div>
+      <button type="button" class="form-submit" onclick="openTallyForm('landing-2')">
+        Transmettre ma facture pour étude →
+      </button>
 
-        <div class="form-row">
-          <label class="form-label" for="email">Email professionnel</label>
-          <input class="form-input" type="email" id="email" placeholder="jean.dupont@votre-entreprise.fr">
-        </div>
-
-        <div class="form-cols">
-          <div class="form-row">
-            <label class="form-label" for="telephone">Téléphone</label>
-            <input class="form-input" type="tel" id="telephone" placeholder="06 00 00 00 00">
-          </div>
-          <div class="form-row">
-            <label class="form-label" for="secteur">Secteur d'activité</label>
-            <select class="form-select" id="secteur">
-              <option value="" disabled selected>Votre secteur</option>
-              <option>Restauration / CHR</option>
-              <option>Commerce de détail</option>
-              <option>Artisanat / Production</option>
-              <option>Industrie / Logistique</option>
-              <option>Services / Bureaux</option>
-              <option>Santé / Éducation</option>
-              <option>Hébergement / Tourisme</option>
-              <option>Agroalimentaire</option>
-              <option>Autre</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <label class="form-label">Votre facture énergétique (PDF ou image)</label>
-          <div class="drop-zone" id="drop-zone">
-            <span class="drop-icon">📄</span>
-            <p class="drop-title">Glissez votre facture ici</p>
-            <p class="drop-sub">ou <span id="browse-link">parcourez vos fichiers</span> · PDF, JPG, PNG acceptés</p>
-            <input type="file" id="file-input" accept=".pdf,.jpg,.jpeg,.png">
-          </div>
-          <div class="file-preview" id="file-preview">
-            <span>📎</span>
-            <span class="file-preview-name" id="file-name"></span>
-            <span class="file-preview-remove" id="remove-file">✕ Supprimer</span>
-          </div>
-        </div>
-
-        <button class="form-submit" id="submit-btn" disabled>
-          Transmettre ma facture pour étude →
-        </button>
-
-        <div class="form-reassurance">
-          <span class="reassurance-item">Gratuit & sans engagement</span>
-          <span class="reassurance-item">Réponse sous 48h</span>
-          <span class="reassurance-item">Données confidentielles</span>
-        </div>
+      <div class="form-reassurance">
+        <span class="reassurance-item">Gratuit & sans engagement</span>
+        <span class="reassurance-item">Réponse sous 48h</span>
+        <span class="reassurance-item">Données confidentielles</span>
       </div>
-
-      <div class="form-success" id="form-success">
-        <span class="success-icon">✅</span>
-        <h3 class="success-title">Bien reçu, merci.</h3>
-        <p class="success-sub">Votre interlocuteur M&S Strategy vous contacte dans les 48h avec une étude comparative personnalisée.<br><br>Vous n'avez rien d'autre à faire.</p>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1037,61 +878,11 @@
   }, { threshold: 0.1 });
   reveals.forEach(r => obs.observe(r));
 
-  // ── File upload ──
-  const dropZone = document.getElementById('drop-zone');
-  const fileInput = document.getElementById('file-input');
-  const browseLink = document.getElementById('browse-link');
-  const filePreview = document.getElementById('file-preview');
-  const fileName = document.getElementById('file-name');
-  const removeFile = document.getElementById('remove-file');
-  const submitBtn = document.getElementById('submit-btn');
-
-  browseLink.addEventListener('click', () => fileInput.click());
-  dropZone.addEventListener('click', () => fileInput.click());
-
-  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
-  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-  dropZone.addEventListener('drop', e => {
-    e.preventDefault(); dropZone.classList.remove('dragover');
-    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-  });
-
-  fileInput.addEventListener('change', () => {
-    if (fileInput.files.length) handleFile(fileInput.files[0]);
-  });
-
-  function handleFile(file) {
-    fileName.textContent = file.name;
-    filePreview.classList.add('visible');
-    dropZone.style.opacity = '.4';
-    checkSubmit();
+  // ── Tally popup ──
+  function openTallyForm(source) {
+    Tally.openPopup('REPLACE_WITH_TALLY_FORM_ID', { layout: 'modal', width: 700, hiddenFields: { source } });
   }
-
-  removeFile.addEventListener('click', (e) => {
-    e.stopPropagation();
-    fileInput.value = '';
-    filePreview.classList.remove('visible');
-    dropZone.style.opacity = '1';
-    checkSubmit();
-  });
-
-  function checkSubmit() {
-    const hasFile = filePreview.classList.contains('visible');
-    const hasEmail = document.getElementById('email').value.includes('@');
-    const hasName = document.getElementById('prenom').value.trim().length > 0;
-    submitBtn.disabled = !(hasFile && hasEmail && hasName);
-  }
-
-  ['email','prenom','nom','telephone'].forEach(id => {
-    document.getElementById(id).addEventListener('input', checkSubmit);
-  });
-
-  // ── Submit ──
-  submitBtn.addEventListener('click', () => {
-    document.getElementById('form-fields').style.display = 'none';
-    document.getElementById('form-success').classList.add('visible');
-    window.scrollTo({ top: document.getElementById('form-success').getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
-  });
 </script>
+<script async src="https://tally.so/widget/embed.js"></script>
 </body>
 </html>

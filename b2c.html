@@ -116,6 +116,8 @@ a{text-decoration:none;color:inherit}
 .usubmit:hover{background:var(--green-glow);transform:translateY(-2px);box-shadow:0 10px 28px rgba(76,222,128,.38)}
 .unote{font-size:.8rem;color:var(--muted);line-height:1.6;margin-top:1rem}
 .unote strong{color:var(--teal-glow)}
+.utrust{display:flex;align-items:flex-start;gap:.7rem;font-size:.84rem;color:var(--muted);line-height:1.6;margin-bottom:1.6rem;padding:.9rem 1rem;background:rgba(76,222,128,.06);border:1px solid rgba(76,222,128,.16);border-radius:3px}
+.utrust strong{color:var(--cream)}
 
 /* ─── FAQ SEO ─────────────────────────── */
 .faq-section{padding:7rem 5vw;max-width:860px;margin:0 auto}
@@ -295,29 +297,10 @@ a{text-decoration:none;color:inherit}
     </ul>
     <p class="unote">Vous pouvez également nous transmettre directement votre facture par email à <strong>msstrategy@yahoo.com</strong>, ou nous appeler au <strong>09 52 92 64 98</strong>.</p>
   </div>
-  <form class="uform reveal d1" action="mailto:msstrategy@yahoo.com" method="post" enctype="text/plain">
-    <div class="ufield">
-      <label for="f-name">Nom et prénom</label>
-      <input type="text" id="f-name" name="Nom" required>
-    </div>
-    <div class="ufield">
-      <label for="f-address">Adresse du logement</label>
-      <input type="text" id="f-address" name="Adresse" required>
-    </div>
-    <div class="ufield">
-      <label for="f-email">Email</label>
-      <input type="email" id="f-email" name="Email" required>
-    </div>
-    <div class="ufield">
-      <label for="f-phone">Téléphone</label>
-      <input type="tel" id="f-phone" name="Téléphone" required>
-    </div>
-    <div class="ufield">
-      <label for="f-msg">Message (optionnel)</label>
-      <textarea id="f-msg" name="Message" placeholder="Fournisseur actuel, type de logement, date d'échéance connue…"></textarea>
-    </div>
-    <button type="submit" class="usubmit">Envoyer ma demande</button>
-  </form>
+  <div class="uform reveal d1">
+    <div class="utrust">🔒 <span><strong>Transmission chiffrée et confidentielle.</strong> Votre facture et vos coordonnées sont reçues sur un espace privé, consulté uniquement par notre équipe — jamais partagées ni publiées.</span></div>
+    <button type="button" class="usubmit" onclick="openTallyForm('b2c')">Transmettre ma facture en toute sécurité →</button>
+  </div>
 </section>
 
 <!-- FAQ SEO -->
@@ -416,6 +399,11 @@ function faq(el) {
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   if (!open) el.classList.add('open');
 }
+
+function openTallyForm(source) {
+  Tally.openPopup('REPLACE_WITH_TALLY_FORM_ID', { layout: 'modal', width: 700, hiddenFields: { source } });
+}
 </script>
+<script async src="https://tally.so/widget/embed.js"></script>
 </body>
 </html>
