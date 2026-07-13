@@ -525,6 +525,16 @@ input[type=range]::-moz-range-thumb {
       <span class="input-hint">Visible sur votre facture · ou laissez vide pour utiliser la moyenne marché</span>
     </div>
 
+    <div class="input-group">
+      <label class="input-label">Puissance souscrite</label>
+      <div class="input-wrap">
+        <input type="number" class="input-field" id="input-kva"
+          placeholder="ex: 36" min="3" max="999" step="1">
+        <span class="input-unit">kVA</span>
+      </div>
+      <span class="input-hint">Visible sur votre facture · seuil pro à 36 kVA</span>
+    </div>
+
     <select class="sector-select" id="input-sector">
       <option value="">— Votre secteur (affine le calcul) —</option>
       <option value="industrie">Industrie / Logistique</option>
@@ -616,26 +626,42 @@ input[type=range]::-moz-range-thumb {
 </section>
 
 <p class="disclaimer">
-  Les estimations présentées sont calculées sur la base des données de marché moyennes constatées par M&S Strategy sur les 3 dernières années (économies moyennes de 8 à 19% selon le volume et le secteur). Elles sont fournies à titre indicatif et ne constituent pas une garantie de résultat. Les résultats réels varient selon les conditions de marché au moment de la négociation.
+  Les estimations présentées comparent votre prix actuel à un prix de marché atteignable : 85 €/MWh pour une puissance souscrite inférieure ou égale à 36 kVA, et entre 100 et 120 €/MWh au-delà de 36 kVA selon la cotation boursière du moment. Elles sont fournies à titre indicatif et ne constituent pas une garantie de résultat. Les résultats réels varient selon les conditions de marché et le profil du dossier au moment de la négociation.
 </p>
 
 <script>
 /* ════════════════════════════════════════
-   SECTOR BENCHMARKS
-   Savings rate by sector, min/max
+   SECTOR DEFAULT PRICE
+   Used only as a fallback when "prix actuel" is left blank.
    Source: M&S Strategy portfolio 2022-2025
    ════════════════════════════════════════ */
 const SECTOR_DATA = {
-  industrie:     { avgSaving: .17, minSaving: .10, maxSaving: .28, avgPrice: 105 },
-  restauration:  { avgSaving: .14, minSaving: .08, maxSaving: .22, avgPrice: 112 },
-  agroalimentaire:{ avgSaving: .19, minSaving: .12, maxSaving: .30, avgPrice: 100 },
-  commerce:      { avgSaving: .13, minSaving: .07, maxSaving: .20, avgPrice: 115 },
-  hebergement:   { avgSaving: .15, minSaving: .08, maxSaving: .24, avgPrice: 110 },
-  education:     { avgSaving: .16, minSaving: .09, maxSaving: .26, avgPrice: 108 },
-  collectivite:  { avgSaving: .18, minSaving: .11, maxSaving: .28, avgPrice: 102 },
-  artisanat:     { avgSaving: .12, minSaving: .06, maxSaving: .19, avgPrice: 118 },
-  '':            { avgSaving: .15, minSaving: .08, maxSaving: .24, avgPrice: 110 },
+  industrie:       { avgPrice: 105 },
+  restauration:    { avgPrice: 112 },
+  agroalimentaire: { avgPrice: 100 },
+  commerce:        { avgPrice: 115 },
+  hebergement:     { avgPrice: 110 },
+  education:       { avgPrice: 108 },
+  collectivite:    { avgPrice: 102 },
+  artisanat:       { avgPrice: 118 },
+  '':              { avgPrice: 110 },
 };
+
+/* ════════════════════════════════════════
+   MARKET BENCHMARK — best achievable price
+   ≤ 36 kVA (tarif bleu) : 85 €/MWh, fixe.
+   > 36 kVA (tarif jaune/pro) : entre 100 et 120 €/MWh
+   selon la cotation boursière du moment — non observable ici,
+   on approche cette cotation par le prix actuel du client :
+   plus son prix est élevé, plus le marché est tendu, plus le
+   meilleur prix atteignable se rapproche de 120 €/MWh.
+   ════════════════════════════════════════ */
+function getBestPrice(kva, price) {
+  if (kva > 0 && kva <= 36) return 85;
+  const lo = 90, hi = 170;
+  const t = Math.min(1, Math.max(0, (price - lo) / (hi - lo)));
+  return 100 + t * 20;
+}
 
 /* ════════════════════════════════════════
    TIMING PENALTY — window quality
@@ -662,12 +688,14 @@ let lastCalc = null;
    ════════════════════════════════════════ */
 const inputConso  = document.getElementById('input-conso');
 const inputPrice  = document.getElementById('input-price');
+const inputKva    = document.getElementById('input-kva');
 const inputSector = document.getElementById('input-sector');
 const inputMonths = document.getElementById('input-months');
 const sliderVal   = document.getElementById('slider-val');
 
 inputConso.addEventListener('input',  () => { inputConso.classList.toggle('has-value', !!inputConso.value); recalc(); });
 inputPrice.addEventListener('input',  () => { inputPrice.classList.toggle('has-value', !!inputPrice.value); recalc(); });
+inputKva.addEventListener('input',    () => { inputKva.classList.toggle('has-value', !!inputKva.value); recalc(); });
 inputSector.addEventListener('change', recalc);
 inputMonths.addEventListener('input', () => {
   sliderVal.textContent = inputMonths.value;
@@ -689,6 +717,7 @@ function recalc() {
   const conso   = parseFloat(inputConso.value) || 0;
   const sector  = inputSector.value;
   const months  = parseInt(inputMonths.value) || 12;
+  const kva     = parseFloat(inputKva.value) || 0;
   const sd      = SECTOR_DATA[sector] || SECTOR_DATA[''];
 
   // Use entered price or sector average
@@ -705,22 +734,30 @@ function recalc() {
   // Window quality modifier
   const wq = getWindowQuality(months);
 
+  // Best achievable price for this power tier, and the resulting
+  // saving rate before any timing penalty. A contract already at or
+  // below the benchmark still keeps a small 3% floor (other levers:
+  // contract terms, indexation clauses, administrative optimisation).
+  const bestPrice          = getBestPrice(kva, price);
+  const rawGapRate         = price > 0 ? (price - bestPrice) / price : 0;
+  const baseSavingRate     = Math.min(.35, Math.max(.03, rawGapRate));
+
   // Achievable savings (reduced by timing penalty)
-  const achievableSavingRate = Math.max(0, sd.avgSaving - wq.penalty);
+  const achievableSavingRate = Math.max(0, baseSavingRate - wq.penalty);
   const annualSaving         = annualCurrent * achievableSavingRate;
 
   // Loss per year vs optimal timing
-  const optimalSaving  = annualCurrent * sd.avgSaving;
+  const optimalSaving  = annualCurrent * baseSavingRate;
   const timingLoss     = optimalSaving - annualSaving; // foregone savings
   const totalLoss2yr   = annualSaving * 2;              // savings over 2yr contract
 
-  // Loss per second (what the taximeter shows)
+  // Loss per second (what the taximeter shows) — conservative estimate
   // = surcoût annuel / 365 / 24 / 3600
-  const surcharge     = annualCurrent * sd.minSaving;  // conservative
+  const surcharge     = annualCurrent * (baseSavingRate * 0.7);
   lossPerSecond       = surcharge / 365 / 24 / 3600;
 
   lastCalc = {
-    conso, price, sector, months, wq,
+    conso, price, sector, months, wq, kva, bestPrice,
     annualCurrent, annualSaving, optimalSaving,
     timingLoss, totalLoss2yr, surcharge, achievableSavingRate, sd
   };
