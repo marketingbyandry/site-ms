@@ -415,6 +415,24 @@ function faq(el) {
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   if (!open) el.classList.add('open');
 }
+
+/* ════════════════════════════════════════
+   PRE-FILL FROM CALCULATOR
+   Picks up the context saved by ms-strategy-calculateur.html
+   so the prospect doesn't have to retype their situation.
+   ════════════════════════════════════════ */
+try {
+  const raw = localStorage.getItem('msLeadContext');
+  if (raw) {
+    const ctx = JSON.parse(raw);
+    const isFresh = ctx.ts && (Date.now() - ctx.ts) < 30 * 60 * 1000; // 30 min
+    if (isFresh && ctx.message) {
+      const msgField = document.getElementById('f-msg');
+      if (msgField && !msgField.value) msgField.value = ctx.message;
+    }
+    localStorage.removeItem('msLeadContext');
+  }
+} catch (e) { /* localStorage unavailable — form still works without pre-fill */ }
 </script>
 </body>
 </html>

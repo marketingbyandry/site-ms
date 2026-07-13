@@ -189,6 +189,26 @@ body {
   to   { transform: rotate(360deg); }
 }
 
+/* ── CALCULATING OVERLAY ── */
+.taxi-calc-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1rem;
+  background: var(--dark2);
+  z-index: 5;
+}
+.calc-spinner {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 3px solid rgba(43,181,200,.2);
+  border-top-color: var(--teal-lt);
+  animation: calc-spin .8s linear infinite;
+}
+@keyframes calc-spin { to { transform: rotate(360deg); } }
+.calc-text {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: .82rem;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--teal-glow);
+}
+
 /* ── INPUTS ── */
 .inputs-section {
   padding: 0 6vw 3rem;
@@ -487,15 +507,19 @@ input[type=range]::-moz-range-thumb {
 <!-- TAXIMETER -->
 <section class="taximeter-section fade-in in">
   <div class="taximeter-card" id="taximeter">
-    <div class="taximeter-label">Perte en cours · temps réel</div>
-    <div class="taximeter-display inactive" id="taxi-display">
+    <div class="taximeter-label" id="taxi-label">Perte moyenne constatée · TPE/PME</div>
+    <div class="taximeter-display" id="taxi-display">
       <span class="taximeter-currency">−</span>
       <span id="taxi-int">0</span>
       <span class="taximeter-cents" id="taxi-cents">,00</span>
       <span style="font-size:.28em;color:rgba(224,85,85,.4);margin-left:.1em">€</span>
     </div>
+    <div class="taxi-calc-overlay hidden" id="taxi-calc-overlay">
+      <span class="calc-spinner"></span>
+      <span class="calc-text">Calcul de votre situation en cours…</span>
+    </div>
     <p class="taximeter-sub" id="taxi-sub">
-      Renseignez vos données ci-dessous pour activer le compteur.
+      Estimation moyenne pour une TPE/PME · renseignez vos données ci-dessous pour votre propre calcul.
     </p>
     <div class="taximeter-tick" id="taxi-tick">⟳</div>
   </div>
@@ -627,7 +651,7 @@ input[type=range]::-moz-range-thumb {
     <h2>Maintenant que vous savez combien ça coûte<br>— voici comment <em>ne plus perdre un euro.</em></h2>
     <p>Étude personnalisée · Gratuit · Sans engagement · Résultat sous 48h</p>
     <div class="cta-pair">
-      <a href="b2b.html#upload" class="btn-primary">Transmettre ma facture →</a>
+      <a href="b2b.html#upload" class="btn-primary" id="cta-transmit">Transmettre ma facture →</a>
       <a href="tel:0783070749" class="btn-ghost">📞 07 83 07 07 49</a>
     </div>
     <div class="cta-reassure">
@@ -696,6 +720,28 @@ let taxiStartTime = null;
 let lossPerSecond = 0;
 let totalAccumulated = 0;
 let lastCalc = null;
+let demoMode = true;
+let transitioning = false;
+
+/* ════════════════════════════════════════
+   DEMO — average TPE/PME loss, shown before
+   the prospect enters their own data
+   ════════════════════════════════════════ */
+const DEMO = { conso: 300, price: 118, kva: 100, months: 12 };
+
+function startDemo() {
+  const best      = getBestPrice(DEMO.kva, DEMO.price);
+  const annual    = DEMO.conso * DEMO.price;
+  const rawGap    = (DEMO.price - best) / DEMO.price;
+  const baseSaving = Math.min(.35, Math.max(.03, rawGap));
+  const surcharge = annual * (baseSaving * 0.7);
+  lossPerSecond   = surcharge / 365 / 24 / 3600;
+  totalAccumulated = 0;
+  document.getElementById('taxi-label').textContent = 'Perte moyenne constatée · TPE/PME';
+  document.getElementById('taxi-sub').innerHTML =
+    `Estimation moyenne pour une TPE/PME (${DEMO.conso} MWh/an à ${DEMO.price} €/MWh) · renseignez vos données ci-dessous pour votre propre calcul.`;
+  startTaxi();
+}
 
 /* ════════════════════════════════════════
    INPUTS
@@ -734,6 +780,37 @@ updateSliderStyle();
    MAIN CALCULATION
    ════════════════════════════════════════ */
 function recalc() {
+  const conso = parseFloat(inputConso.value) || 0;
+
+  if (conso < 10) {
+    if (!demoMode) stopTaxi();
+    return;
+  }
+
+  if (demoMode) {
+    triggerTransition(() => {
+      demoMode = false;
+      performRealCalc();
+    });
+    return;
+  }
+
+  performRealCalc();
+}
+
+function triggerTransition(onDone) {
+  if (transitioning) return;
+  transitioning = true;
+  const overlay = document.getElementById('taxi-calc-overlay');
+  overlay.classList.remove('hidden');
+  setTimeout(() => {
+    overlay.classList.add('hidden');
+    transitioning = false;
+    onDone();
+  }, 3500);
+}
+
+function performRealCalc() {
   const conso   = parseFloat(inputConso.value) || 0;
   const sector  = inputSector.value;
   const months  = parseInt(inputMonths.value) || 12;
@@ -743,10 +820,7 @@ function recalc() {
   // Use entered price or sector average
   const price   = parseFloat(inputPrice.value) || sd.avgPrice;
 
-  if (conso < 10) {
-    stopTaxi();
-    return;
-  }
+  document.getElementById('taxi-label').textContent = 'Votre perte en cours · temps réel';
 
   // Annual cost at current rate
   const annualCurrent = conso * price;
@@ -1055,6 +1129,36 @@ function renderVerdict() {
    RESIZE CHART ON WINDOW RESIZE
    ════════════════════════════════════════ */
 window.addEventListener('resize', () => { if (lastCalc) drawChart(); });
+
+// Start with the average TPE/PME demo counter until the prospect
+// enters their own data.
+startDemo();
+
+/* ════════════════════════════════════════
+   CARRY DATA OVER TO THE UPLOAD FORM
+   Saved on click so b2b.html can pre-fill its
+   message field — avoids retyping everything.
+   ════════════════════════════════════════ */
+document.getElementById('cta-transmit').addEventListener('click', () => {
+  if (!lastCalc) return;
+  const { conso, price, kva, sector, months, engaged, daysElapsed } = lastCalc;
+  const sectorLabel = inputSector.options[inputSector.selectedIndex]
+    ? inputSector.options[inputSector.selectedIndex].text
+    : '';
+  const lines = [
+    `Consommation annuelle : ${conso} MWh`,
+    `Prix actuel : ${price} €/MWh`,
+    kva ? `Puissance souscrite : ${kva} kVA` : null,
+    sectorLabel && sector ? `Secteur : ${sectorLabel}` : null,
+    `Échéance dans : ${months} mois`,
+    daysElapsed > 0 ? `Dernier renouvellement il y a : ${Math.round(daysElapsed)} jours` : null,
+    engaged ? 'Engagé jusqu\'à l\'échéance' : null,
+    '(Données transmises depuis le calculateur d\'inaction énergétique)',
+  ].filter(Boolean);
+  try {
+    localStorage.setItem('msLeadContext', JSON.stringify({ message: lines.join('\n'), ts: Date.now() }));
+  } catch (e) { /* localStorage unavailable — navigation still proceeds */ }
+});
 </script>
 </body>
 </html>
