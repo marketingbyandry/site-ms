@@ -31,8 +31,7 @@ a{text-decoration:none;color:inherit}
 /* ─── NAV ─────────────────────────────── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(7,19,26,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,122,138,.18)}
 .nl{display:flex;align-items:center;gap:10px;font-family:'Satoshi',sans-serif;font-weight:800;font-size:1.05rem}
-.ni{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal-dark),var(--teal));border:1.5px solid rgba(94,207,220,.35);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:var(--teal-glow);flex-shrink:0}
-.na{color:var(--green)}
+.nl-logo{height:32px;width:auto;display:block}
 .nlinks{display:flex;align-items:center;gap:2rem;list-style:none}
 .nlinks a{font-size:.82rem;color:var(--muted);transition:color .2s}
 .nlinks a:hover{color:var(--cream)}
@@ -165,8 +164,7 @@ a{text-decoration:none;color:inherit}
 <!-- NAV -->
 <nav class="nav">
   <a href="index.html" class="nl">
-    <div class="ni">M</div>
-    M<span class="na">&</span>S Strategy
+    <img src="assets/ms-strategy-logo.png" alt="M&S Strategy" class="nl-logo">
   </a>
   <ul class="nlinks">
     <li><a href="b2b.html" class="active">Professionnels</a></li>

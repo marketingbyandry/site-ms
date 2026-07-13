@@ -50,9 +50,9 @@ body {
   position: sticky; top: 0; z-index: 100;
 }
 .nav-logo {
-  font-family: 'Satoshi', sans-serif; font-weight: 800; font-size: .95rem;
   display: flex; align-items: center; gap: .55rem;
 }
+.nav-logo img { height: 24px; width: auto; display: block; }
 .nav-dot {
   width: 7px; height: 7px; border-radius: 50%; background: var(--green);
   animation: dot-pulse 2s ease-in-out infinite;
@@ -61,7 +61,6 @@ body {
   0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(76,222,128,.5); }
   50%      { box-shadow: 0 0 0 5px rgba(76,222,128,0); }
 }
-.nav-amp { color: var(--green); }
 .nav-back {
   font-family: 'Satoshi', sans-serif; font-size: .68rem; font-weight: 700;
   letter-spacing: .1em; text-transform: uppercase;
@@ -487,7 +486,7 @@ input[type=range]::-moz-range-thumb {
 <nav class="nav">
   <div class="nav-logo">
     <div class="nav-dot"></div>
-    M<span class="nav-amp">&</span>S Strategy
+    <img src="assets/ms-strategy-logo.png" alt="M&S Strategy">
   </div>
   <a href="b2b.html" class="nav-back">← Retour</a>
 </nav>

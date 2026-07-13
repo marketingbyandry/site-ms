@@ -48,14 +48,8 @@
     border-bottom: 1px solid rgba(43,181,200,.12);
   }
 
-  .nav-logo {
-    font-family: 'Satoshi', sans-serif;
-    font-weight: 800; font-size: 1.1rem;
-    letter-spacing: .04em;
-    color: var(--cream);
-  }
-
-  .nav-logo span { color: var(--green-accent); }
+  .nav-logo { display: flex; align-items: center; }
+  .nav-logo img { height: 28px; width: auto; display: block; }
 
   .nav-cta {
     background: var(--green-accent);
@@ -588,13 +582,7 @@
     flex-wrap: wrap; gap: 1.5rem;
   }
 
-  .footer-logo {
-    font-family: 'Satoshi', sans-serif;
-    font-weight: 800; font-size: 1rem;
-    color: var(--cream);
-  }
-
-  .footer-logo span { color: var(--green-accent); }
+  .footer-logo img { height: 24px; width: auto; display: block; }
 
   .footer-details { font-size: .8rem; color: var(--text-muted); line-height: 1.7; }
 
@@ -637,7 +625,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">M<span>&</span>S Strategy</div>
+  <div class="nav-logo"><img src="assets/ms-strategy-logo.png" alt="M&S Strategy"></div>
   <a href="#analyse" class="nav-cta">Étude gratuite →</a>
 </nav>
 
@@ -857,7 +845,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">M<span>&</span>S Strategy</div>
+  <div class="footer-logo"><img src="assets/ms-strategy-logo.png" alt="M&S Strategy"></div>
   <div class="footer-details">
     <a href="mailto:msstrategy@yahoo.com">msstrategy@yahoo.com</a> ·
     Tél : 09 52 92 64 98 · Commercial : 07 83 07 07 49<br>
