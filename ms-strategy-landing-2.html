@@ -384,6 +384,35 @@
     font-size: 2rem;
   }
 
+  /* ── CTA BAND ── */
+  .cta-band {
+    padding: 6rem 5vw;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-glow {
+    position: absolute;
+    width: 560px; height: 560px;
+    border-radius: 50%;
+    filter: blur(95px);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cta-band-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+
+  .cta-band .section-title { margin: 1rem 0 1.1rem; }
+
+  .cta-band p {
+    color: var(--text-muted);
+    font-size: .98rem; line-height: 1.7;
+    max-width: 520px; margin: 0 auto 2.2rem;
+  }
+
   /* ── STEPS SECTION ── */
   .steps-section { padding: 7rem 5vw; }
 
@@ -816,6 +845,17 @@
   </div>
 </section>
 
+<!-- CTA — GROUPEMENT -->
+<section class="cta-band reveal" id="cta-groupement">
+  <div class="cta-glow" style="background:radial-gradient(circle,rgba(43,181,200,.22) 0%,transparent 70%)"></div>
+  <div class="cta-band-inner">
+    <span class="section-tag">Rejoignez le groupement</span>
+    <h2 class="section-title">Le même pouvoir de négociation<br>que les <em style="color:var(--green-accent);font-style:italic">grands comptes.</em></h2>
+    <p>Votre facture nous suffit pour évaluer votre place dans notre prochain groupement d'achat — gratuitement, sans engagement.</p>
+    <a href="#analyse" class="btn-primary">Rejoindre le groupement →</a>
+  </div>
+</section>
+
 <!-- STEPS -->
 <section class="steps-section reveal">
   <div class="steps-header">
@@ -878,11 +918,11 @@
       <span class="saving-period">par an</span>
       <p class="saving-desc">Camping ardéchois — bénéfice du pouvoir de négociation groupé d'une autre structure.</p>
     </div>
-    <div class="saving-card" style="border-color: rgba(76,222,128,.25); background: rgba(76,222,128,.05);">
+    <a href="#analyse" class="saving-card" style="border-color: rgba(76,222,128,.25); background: rgba(76,222,128,.05); text-decoration: none; display: block;">
       <div class="saving-amount" style="color: var(--teal-bright);">Et vous ?</div>
       <span class="saving-period">étude sous 48h</span>
-      <p class="saving-desc">Partagez votre facture, nous vous disons ce que le marché peut faire pour vous — gratuitement.</p>
-    </div>
+      <p class="saving-desc">Partagez votre facture, nous vous disons ce que le marché peut faire pour vous — gratuitement.<br><strong style="color:var(--green-accent)">Commencer →</strong></p>
+    </a>
   </div>
 </section>
 
