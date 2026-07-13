@@ -535,6 +535,20 @@ input[type=range]::-moz-range-thumb {
       <span class="input-hint">Visible sur votre facture · seuil pro à 36 kVA</span>
     </div>
 
+    <div class="input-group">
+      <label class="input-label">Dernier renouvellement</label>
+      <div class="input-wrap">
+        <input type="date" class="input-field" id="input-renewal-date">
+      </div>
+      <span class="input-hint">Date de signature de votre contrat actuel</span>
+    </div>
+
+    <select class="sector-select" id="input-engaged">
+      <option value="">— Êtes-vous engagé jusqu'à l'échéance ? —</option>
+      <option value="oui">Oui, je suis engagé jusqu'à l'échéance</option>
+      <option value="non">Non, sans engagement</option>
+    </select>
+
     <select class="sector-select" id="input-sector">
       <option value="">— Votre secteur (affine le calcul) —</option>
       <option value="industrie">Industrie / Logistique</option>
@@ -689,13 +703,19 @@ let lastCalc = null;
 const inputConso  = document.getElementById('input-conso');
 const inputPrice  = document.getElementById('input-price');
 const inputKva    = document.getElementById('input-kva');
+const inputRenewalDate = document.getElementById('input-renewal-date');
+const inputEngaged = document.getElementById('input-engaged');
 const inputSector = document.getElementById('input-sector');
 const inputMonths = document.getElementById('input-months');
 const sliderVal   = document.getElementById('slider-val');
 
+inputRenewalDate.max = new Date().toISOString().split('T')[0];
+
 inputConso.addEventListener('input',  () => { inputConso.classList.toggle('has-value', !!inputConso.value); recalc(); });
 inputPrice.addEventListener('input',  () => { inputPrice.classList.toggle('has-value', !!inputPrice.value); recalc(); });
 inputKva.addEventListener('input',    () => { inputKva.classList.toggle('has-value', !!inputKva.value); recalc(); });
+inputRenewalDate.addEventListener('change', recalc);
+inputEngaged.addEventListener('change', recalc);
 inputSector.addEventListener('change', recalc);
 inputMonths.addEventListener('input', () => {
   sliderVal.textContent = inputMonths.value;
@@ -754,12 +774,28 @@ function recalc() {
   // Loss per second (what the taximeter shows) — conservative estimate
   // = surcoût annuel / 365 / 24 / 3600
   const surcharge     = annualCurrent * (baseSavingRate * 0.7);
+  const surchargePerDay = surcharge / 365;
   lossPerSecond       = surcharge / 365 / 24 / 3600;
+
+  // Past loss: time already spent on the current contract, counted
+  // whether the user is locked in or not — that money is already gone.
+  const engaged      = inputEngaged.value === 'oui';
+  const renewalDate  = inputRenewalDate.value ? new Date(inputRenewalDate.value) : null;
+  const daysElapsed  = renewalDate ? Math.max(0, (Date.now() - renewalDate.getTime()) / 86400000) : 0;
+  const pastLoss     = surchargePerDay * daysElapsed;
+
+  // Future locked-in loss: only counted if the user can't renegotiate
+  // before the remaining months on the "échéance" slider run out.
+  const daysRemaining     = months * 30;
+  const futureLockedLoss  = engaged ? surchargePerDay * daysRemaining : 0;
+
+  totalAccumulated = pastLoss + futureLockedLoss;
 
   lastCalc = {
     conso, price, sector, months, wq, kva, bestPrice,
     annualCurrent, annualSaving, optimalSaving,
-    timingLoss, totalLoss2yr, surcharge, achievableSavingRate, sd
+    timingLoss, totalLoss2yr, surcharge, achievableSavingRate, sd,
+    engaged, renewalDate, daysElapsed, pastLoss, futureLockedLoss
   };
 
   startTaxi();
@@ -804,11 +840,20 @@ function renderTaxi(total) {
   document.getElementById('taxi-cents').textContent = ',' + centPart;
 
   if (lastCalc) {
-    const { conso, sector, surcharge } = lastCalc;
+    const { conso, sector, surcharge, daysElapsed, pastLoss, engaged, futureLockedLoss } = lastCalc;
     const daily  = (surcharge / 365).toFixed(0);
     const perMin = (surcharge / 365 / 24 / 60).toFixed(2);
+
+    let breakdown = '';
+    if (daysElapsed > 0) {
+      breakdown += ` · <strong>${Math.round(pastLoss).toLocaleString('fr-FR')} €</strong> déjà perdus depuis votre dernier renouvellement`;
+    }
+    if (engaged && futureLockedLoss > 0) {
+      breakdown += ` · <strong>${Math.round(futureLockedLoss).toLocaleString('fr-FR')} €</strong> encore à perdre sur votre engagement restant`;
+    }
+
     document.getElementById('taxi-sub').innerHTML =
-      `Estimation du surcoût en cours · <strong>${Number(daily).toLocaleString('fr-FR')} € perdus par jour</strong> · ${perMin} € / minute`;
+      `Estimation du surcoût en cours · <strong>${Number(daily).toLocaleString('fr-FR')} € perdus par jour</strong> · ${perMin} € / minute${breakdown}`;
   }
 }
 
