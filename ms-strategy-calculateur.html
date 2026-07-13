@@ -737,10 +737,19 @@ function startDemo() {
   const baseSaving = Math.min(.35, Math.max(.03, rawGap));
   const surcharge = annual * (baseSaving * 0.7);
   lossPerSecond   = surcharge / 365 / 24 / 3600;
-  totalAccumulated = 0;
+
+  // A single business's annual overrun ticks by fractions of a cent per
+  // second — too slow to read as "live" on arrival. Seed the counter with
+  // the loss already accrued since January 1st so it opens on a
+  // meaningful figure, then keeps counting up in real time on top.
+  const now = new Date();
+  const startOfYear = new Date(now.getFullYear(), 0, 1);
+  const daysSinceStartOfYear = Math.max(0, (now - startOfYear) / 86400000);
+  totalAccumulated = lossPerSecond * daysSinceStartOfYear * 24 * 3600;
+
   document.getElementById('taxi-label').textContent = 'Perte moyenne constatée · TPE/PME';
   document.getElementById('taxi-sub').innerHTML =
-    `Estimation moyenne pour une TPE/PME (${DEMO.conso} MWh/an à ${DEMO.price} €/MWh) · renseignez vos données ci-dessous pour votre propre calcul.`;
+    `Cumul depuis le 1er janvier pour une TPE/PME moyenne (${DEMO.conso} MWh/an à ${DEMO.price} €/MWh) · renseignez vos données ci-dessous pour votre propre calcul.`;
   startTaxi();
 }
 
