@@ -6,7 +6,8 @@
 <title>Ressources & analyses énergie — M&S Strategy</title>
 <meta name="description" content="Analyses, guides et outils M&S Strategy sur le courtage en énergie : quand renégocier, comment fonctionne le marché, et calculateur d'inaction énergétique.">
 <meta name="keywords" content="blog énergie professionnel, analyse marché énergie, calculateur économie énergie, guide renouvellement contrat gaz électricité">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
 <style>
 :root{
   --teal:#1a7a8a;
@@ -24,19 +25,19 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:'Satoshi',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
 
 /* ─── NAV ─────────────────────────────── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(7,19,26,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,122,138,.18)}
-.nl{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem}
+.nl{display:flex;align-items:center;gap:10px;font-family:'Satoshi',sans-serif;font-weight:800;font-size:1.05rem}
 .ni{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal-dark),var(--teal));border:1.5px solid rgba(94,207,220,.35);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:var(--teal-glow);flex-shrink:0}
 .na{color:var(--green)}
 .nlinks{display:flex;align-items:center;gap:2rem;list-style:none}
 .nlinks a{font-size:.82rem;color:var(--muted);transition:color .2s}
 .nlinks a:hover{color:var(--cream)}
 .nlinks a.active{color:var(--cream)}
-.ncta{font-family:'Syne',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;padding:.52rem 1.35rem;border:1.5px solid var(--green);color:var(--green);border-radius:2px;transition:background .2s,color .2s,box-shadow .2s}
+.ncta{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;padding:.52rem 1.35rem;border:1.5px solid var(--green);color:var(--green);border-radius:2px;transition:background .2s,color .2s,box-shadow .2s}
 .ncta:hover{background:var(--green);color:var(--dark);box-shadow:0 0 22px rgba(76,222,128,.38)}
 @media(max-width:768px){.nlinks{display:none}}
 
@@ -44,23 +45,23 @@ a{text-decoration:none;color:inherit}
 .phero{position:relative;padding:11rem 5vw 5rem;max-width:1100px;margin:0 auto;overflow:hidden}
 .phero::before{content:'';position:absolute;top:-10%;right:-10%;width:60%;height:140%;background:radial-gradient(circle,rgba(26,122,138,.18),transparent 65%);pointer-events:none;z-index:0}
 .phero-in{position:relative;z-index:1;max-width:700px}
-.stag{display:inline-block;font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-glow);background:rgba(26,122,138,.1);border:1px solid rgba(94,207,220,.18);padding:.26rem .75rem;border-radius:2px;margin-bottom:1.3rem}
-.ph1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.06;margin-bottom:1.3rem;color:var(--cream)}
-.ph1 em{font-style:italic;font-family:'DM Sans',sans-serif;font-weight:300;color:var(--teal-glow)}
+.stag{display:inline-block;font-family:'Satoshi',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-glow);background:rgba(26,122,138,.1);border:1px solid rgba(94,207,220,.18);padding:.26rem .75rem;border-radius:2px;margin-bottom:1.3rem}
+.ph1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.06;margin-bottom:1.3rem;color:var(--cream)}
+.ph1 em{font-style:italic;font-family:'Instrument Serif',serif;font-weight:400;color:var(--teal-glow)}
 .psub2{font-size:1rem;color:var(--muted);line-height:1.72;max-width:560px;font-weight:300}
 
 /* ─── RESOURCE GRID ───────────────────── */
 .res-band{padding:1rem 5vw 7rem;max-width:1100px;margin:0 auto}
-.res-label{font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-glow);opacity:.7;margin-bottom:1.4rem}
+.res-label{font-family:'Satoshi',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-glow);opacity:.7;margin-bottom:1.4rem}
 .res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-bottom:4rem}
 @media(max-width:768px){.res-grid{grid-template-columns:1fr}}
 .res-card{display:block;border:1px solid rgba(26,122,138,.16);border-radius:4px;padding:2.2rem;background:rgba(13,79,92,.08);transition:border-color .25s,transform .25s}
 .res-card:hover{border-color:rgba(94,207,220,.35);transform:translateY(-3px)}
-.res-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);background:rgba(43,181,200,.1);border:1px solid rgba(43,181,200,.2);padding:.24rem .65rem;border-radius:2px;margin-bottom:1rem}
-.res-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--cream);line-height:1.25;margin-bottom:.8rem}
+.res-tag{display:inline-block;font-family:'Satoshi',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);background:rgba(43,181,200,.1);border:1px solid rgba(43,181,200,.2);padding:.24rem .65rem;border-radius:2px;margin-bottom:1rem}
+.res-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.25rem;color:var(--cream);line-height:1.25;margin-bottom:.8rem}
 .res-desc{font-size:.9rem;color:var(--muted);line-height:1.65;margin-bottom:1.2rem}
 .res-read{font-size:.75rem;color:var(--muted2)}
-.res-link{font-family:'Syne',sans-serif;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
+.res-link{font-family:'Satoshi',sans-serif;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
 
 /* Tool card (calculateur) — distinct accent */
 .tool-card{border-color:rgba(76,222,128,.18);background:rgba(76,222,128,.05)}
@@ -69,14 +70,14 @@ a{text-decoration:none;color:inherit}
 
 /* ─── QUOTE BAND ─────────────────────── */
 .qband{padding:5rem 5vw;background:linear-gradient(135deg,var(--teal-dark),rgba(7,19,26,.95));border-top:1px solid rgba(94,207,220,.1);border-bottom:1px solid rgba(94,207,220,.1);text-align:center;position:relative;overflow:hidden}
-.qband::before{content:'"';position:absolute;left:4vw;top:-1.5rem;font-family:'DM Sans',sans-serif;font-size:18rem;font-weight:300;color:rgba(255,255,255,.03);pointer-events:none;line-height:1}
-.qt{font-family:'DM Sans',sans-serif;font-weight:300;font-style:italic;font-size:clamp(1.2rem,3vw,2.1rem);color:var(--cream);max-width:720px;margin:0 auto 1.1rem;line-height:1.5;position:relative;z-index:1}
+.qband::before{content:'"';position:absolute;left:4vw;top:-1.5rem;font-family:'Satoshi',sans-serif;font-size:18rem;font-weight:300;color:rgba(255,255,255,.03);pointer-events:none;line-height:1}
+.qt{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;font-size:clamp(1.2rem,3vw,2.1rem);color:var(--cream);max-width:720px;margin:0 auto 1.1rem;line-height:1.5;position:relative;z-index:1}
 .qt em{color:var(--teal-glow);font-style:normal;font-weight:400}
-.qs{font-family:'Syne',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);opacity:.6}
+.qs{font-family:'Satoshi',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);opacity:.6}
 
 /* ─── CONTACT STRIP ──────────────────── */
 .cstrip{padding:3.8rem 5vw;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;background:var(--dark2);border-top:1px solid rgba(26,122,138,.13)}
-.csl h3{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--cream);margin-bottom:.28rem}
+.csl h3{font-family:'Satoshi',sans-serif;font-weight:800;font-size:1.2rem;color:var(--cream);margin-bottom:.28rem}
 .csl p{color:var(--muted);font-size:.87rem}
 .csr{display:flex;gap:1.4rem;flex-wrap:wrap}
 .cit{display:flex;align-items:center;gap:.62rem}
@@ -87,7 +88,7 @@ a{text-decoration:none;color:inherit}
 /* ─── FOOTER ─────────────────────────── */
 .sfooter{padding:3.5rem 5vw 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;background:#050e13;border-top:1px solid rgba(26,122,138,.1)}
 @media(max-width:640px){.sfooter{grid-template-columns:1fr}}
-.fct{font-family:'Syne',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-glow);margin-bottom:.85rem}
+.fct{font-family:'Satoshi',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-glow);margin-bottom:.85rem}
 .fc p,.fc a{font-size:.81rem;color:var(--muted);line-height:1.85;display:block}
 .fc a{color:var(--teal-light)}
 .fbot{padding:1.4rem 5vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.7rem;color:rgba(138,172,180,.35);background:#050e13;border-top:1px solid rgba(26,122,138,.07)}
