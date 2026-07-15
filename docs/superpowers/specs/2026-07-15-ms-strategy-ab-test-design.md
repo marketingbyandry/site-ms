@@ -67,6 +67,21 @@ du temps passé et des actions clés (calculateur, formulaire Tally).
     élément sous le curseur.
 - Vanilla JS/CSS, cohérent avec le reste du site (pas de dépendance externe
   ajoutée pour cet effet).
+- Micro-interactions validées sur maquette (`docs/superpowers/specs/assets`
+  non applicable — validées via Artifact preview, à reporter sur toutes les
+  pages/sections concernées de `index-b.html`) :
+  - Liens de nav : hover colore le lien en `--teal` ou `--green` en
+    alternance (au lieu du simple assombrissement de la variante A).
+  - CTA principal ("Obtenir mon étude gratuite" et CTA équivalents) : le
+    fond passe en dégradé `--teal` → `--green` au survol, et la flèche `→`
+    pivote à 45° (transition CSS sur un `<span>` dédié autour de la flèche).
+- **Parité de contenu confirmée** : `index-b.html` reproduit exactement les
+  mêmes sections que `index.html`, dans le même ordre, avec le même texte.
+  Une bande image a été testée en maquette (aperçu Artifact) pour juger du
+  rendu d'un visuel dans la direction sobre, mais elle **n'est pas retenue**
+  pour la version finale — écart avec A jugé contraire à l'objectif de test
+  propre à structure égale. Si un visuel photographique est ajouté plus
+  tard, ce sera une décision séparée appliquée aux deux variantes.
 
 ## 3. Suivi des données — PostHog
 
