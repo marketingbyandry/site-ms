@@ -353,6 +353,17 @@ body.has-pointer #orb{opacity:1}
 .qband{background:linear-gradient(135deg,rgba(26,122,138,.06),rgba(250,249,246,0))}
 .akpi{background:rgba(26,122,138,.05)}
 .careers-cta-band{background:linear-gradient(135deg,rgba(76,222,128,.06),rgba(26,122,138,.05))}
+
+/* ── VARIANT B fix 2: light-on-light accent text left over from the dark
+   theme. --teal-glow/--green-glow were tuned to pop against a dark
+   background; on the light panels/qband they read as low-contrast washed-out
+   text. Swapping the *active/expanded* hero stat numbers and the quote
+   emphasis to the darker --teal/--green, and giving the decorative quote
+   mark a visible dark tint instead of white-on-white. */
+.hero.hl .panel-b2b .sn{color:var(--teal)}
+.hero.hr .panel-b2c .sn{color:var(--green)}
+.qband::before{color:rgba(20,20,20,.05)}
+.qt em{color:var(--teal)}
 </style>
 </head>
 <body>
