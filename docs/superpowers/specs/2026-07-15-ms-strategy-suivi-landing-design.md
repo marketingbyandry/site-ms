@@ -83,12 +83,49 @@ d'être reconquis depuis zéro.
 - `ms-strategy-suivi-b2b.html`
 - `ms-strategy-suivi-b2c.html`
 - `generateur-suivi.html` — outil interne, non lié depuis la nav publique,
-  `<meta name="robots" content="noindex">`.
+  `<meta name="robots" content="noindex">`, **protégé par Basic Auth** (voir
+  ci-dessous).
 
 Même famille technique que `ms-strategy-landing-2.html` : page statique
 autonome, nav minimale (logo + téléphone), pas de nav complète, CTA sticky
 mobile, `<script>` inline vanilla JS (pas de build, cohérent avec le reste
 du site).
+
+### URLs publiques
+
+Pas de `vercel.json` ni de réécriture d'URL dans ce repo (vérifié en direct
+sur la prod) — chaque fichier est servi tel quel, extension `.html`
+incluse. Une fois mergées sur `main`, ces pages seront donc accessibles à :
+
+- `https://www.byandry.com/ms-strategy-suivi-b2b.html`
+- `https://www.byandry.com/ms-strategy-suivi-b2c.html`
+- `https://www.byandry.com/generateur-suivi.html` (protégé, voir ci-dessous)
+
+Lien type envoyé à un prospect :
+`https://www.byandry.com/ms-strategy-suivi-b2b.html?prenom=Julien&conseiller=Marie`
+
+### Protection de `generateur-suivi.html`
+
+Le `noindex` empêche l'indexation mais pas l'accès direct — insuffisant pour
+un outil qu'on veut réservé à l'équipe. Protection retenue : **Basic Auth
+via `middleware.js`**, qui existe déjà pour le test A/B de la home.
+
+- Nouveau `matcher` (ou logique conditionnelle sur `request.nextUrl.pathname`)
+  ciblant uniquement `/generateur-suivi.html` — n'affecte ni la home ni les
+  autres pages.
+- Vérifie l'en-tête `Authorization` (Basic Auth standard) ; si absent ou
+  incorrect, réponse `401` avec `WWW-Authenticate: Basic` (déclenche la
+  popup native du navigateur, pas de formulaire à construire).
+- **Identifiants stockés en variables d'environnement Vercel**
+  (`SUIVI_TOOL_USER` / `SUIVI_TOOL_PASS`, définies dans Project Settings →
+  Environment Variables), **jamais en dur dans le code**. Point non
+  négociable : le repo `site-ms` est **public** sur GitHub — un mot de passe
+  écrit dans `middleware.js` serait visible par n'importe qui sur la page du
+  repo, immédiatement.
+- Ces variables devront être créées directement par l'utilisateur dans le
+  dashboard Vercel (action hors du repo, pas quelque chose que
+  l'implémentation peut faire toute seule) — à faire au moment du plan
+  d'implémentation.
 
 ### Personnalisation par paramètres d'URL
 
