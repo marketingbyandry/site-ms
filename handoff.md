@@ -2,6 +2,48 @@
 
 Dernière mise à jour : session du 2026-07-13 → 2026-07-15.
 
+## 🔜 Prochaine étape demandée (pas encore cadrée)
+
+L'utilisateur veut **déployer une "version 2" du site sur un sous-domaine
+alternatif dans Vercel** (ex. `v2.byandry.com` ou `beta.byandry.com` — nom
+exact pas encore choisi). Rien n'a été implémenté pour ça — c'est une
+nouvelle demande, distincte du test A/B ci-dessous.
+
+**Avant de coder quoi que ce soit**, repasser par
+`superpowers:brainstorming` pour cadrer avec l'utilisateur, notamment :
+- "Version 2" = `index-b.html` (la variante sobre N&B) déployée seule et en
+  permanence sur ce sous-domaine ? Ou une V2 plus large (tout le site
+  restylé, pas seulement la home) ?
+- Le sous-domaine remplace-t-il le test A/B par cookie sur le domaine
+  principal (déjà en place, voir ci-dessous), ou vient-il en complément —
+  par exemple pour montrer la V2 à un client/associé sans dépendre du tirage
+  aléatoire du cookie ?
+- Configuration Vercel : un sous-domaine sur le même projet `site-ms` (ajout
+  d'un domaine dans Vercel → Project Settings → Domains, pointé vers une
+  branche Git dédiée ou vers `index-b.html` via un routage spécifique) ou un
+  projet Vercel séparé ?
+- Le projet Vercel s'appelle `site-ms`, team `marketingbyms`. Domaine prod
+  actuel : `www.byandry.com`. DNS chez le même registrar que `byandry.com`
+  (à vérifier avec l'utilisateur pour savoir s'il peut lui-même ajouter un
+  enregistrement CNAME/A pour le sous-domaine, ou s'il faut le faire pour
+  lui).
+
+## Résumé de la session du 2026-07-15 (pour reprise avec un nouvel agent)
+
+Contexte : conversation démarrée par deux questions générales (comment
+utiliser React, comment relier Vercel/GitHub/React/Claude) sans lien avec le
+reste — sans suite à donner dessus. Le gros du travail a porté sur le test
+A/B ci-dessous, exécuté en suivant le pipeline personnel de l'utilisateur
+(cadrage → plan → exécution subagent-driven → revue), documenté en détail
+dans les fichiers `docs/superpowers/specs/2026-07-15-ms-strategy-ab-test-design.md`
+et `docs/superpowers/plans/2026-07-15-ms-strategy-ab-test.md` de cette
+branche. Voir aussi la note Obsidian
+`Agents HQ/Projets/MS Strategy.md`.
+
+Repo : `~/SITE MS` (local), `git@github.com:marketingbyandry/site-ms.git`
+(remote, org `marketingbyandry`). Travail fait dans un **git worktree**
+(`worktree-ms-strategy-ab-test`) — pas encore mergé sur `main`.
+
 ## A/B test homepage (variant B sobre N&B + tracking PostHog)
 
 Branche `worktree-ms-strategy-ab-test`, PR draft #1
