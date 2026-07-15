@@ -2,6 +2,45 @@
 
 Dernière mise à jour : session du 2026-07-13 → 2026-07-15.
 
+## A/B test homepage (variant B sobre N&B + tracking PostHog)
+
+Branche `worktree-ms-strategy-ab-test`, PR draft #1
+(https://github.com/marketingbyandry/site-ms/pull/1). Spec et plan dans
+`docs/superpowers/specs/2026-07-15-ms-strategy-ab-test-design.md` et
+`docs/superpowers/plans/2026-07-15-ms-strategy-ab-test.md`.
+
+- **Middleware Vercel Edge** (`middleware.js` + `package.json`) : split 50/50
+  sur `/` uniquement, cookie `ms_variant` sticky 30 jours, bots toujours
+  variante A (jamais de cookie, jamais réécrits) pour ne pas casser le SEO.
+- **`index-b.html`** : copie de `index.html`, mêmes sections/contenu, tokens
+  `:root` basculés en clair (`--dark`/`--cream`/`--muted*`), glows retirés,
+  hover teal/vert sur nav et CTA, flèche qui pivote à 45° au survol, rond
+  flouté qui suit le curseur (desktop only, respecte
+  `prefers-reduced-motion`). **Point trouvé pendant la vérification** :
+  plusieurs sections (hero, `.def-box`, `.how-band`, `.timing-visual`,
+  `.vals`, `.qband`, `.akpi`, `.careers-cta-band`) utilisaient des overlays
+  `::before`/`background` en `rgba(13,79,92,*)`/`rgba(7,19,26,*)` codés en
+  dur plutôt que les tokens — corrigé par un bloc d'override supplémentaire
+  (commit `cced9c6`). Le footer (`.sfooter`) reste volontairement sombre
+  (`#050e13`, non touché) — lu comme un bookend noir cohérent avec l'esprit
+  "sobre N&B", pas un bug ; à reconsidérer si l'utilisateur préfère un footer
+  clair aussi.
+- **`assets/analytics.js`** : PostHog (clé `phc_uHyR...hnnBM`, région EU déjà
+  branchée), variante taguée sur chaque évènement, `cta_click` délégué sur
+  `a.cta-btn, a.pcta, a.ncta`. Guide de lecture des résultats :
+  `docs/posthog-setup.md`.
+- **Vérifié en réel** sur la preview Vercel (protégée par Vercel
+  Authentication — bypass token utilisé pour les tests, ne pas le committer)
+  via `curl` (cookie, rewrite A/B, exclusion bots même avec cookie forcé,
+  assets/robots.txt) et Chrome headless piloté par CDP (screenshots desktop
+  multi-sections, orb réactif à la souris, mobile sans orb, 0 erreur JS,
+  PostHog chargé).
+- **Reste à faire avant de sortir du mode draft** : confirmer que le projet
+  PostHog du client est bien sur le cloud EU (sinon changer `api_host` dans
+  `assets/analytics.js`), vérifier dans PostHog → Activity qu'un clic CTA
+  réel remonte bien un évènement une fois le site en prod, décider si le
+  footer doit lui aussi passer en clair.
+
 ## But général
 
 Site vitrine statique pour M&S Strategy (courtier en énergie indépendant depuis 2012,
