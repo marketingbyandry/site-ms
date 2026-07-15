@@ -415,6 +415,7 @@ function openTallyForm(source) {
       localStorage.removeItem('msLeadContext');
     }
   } catch (e) { /* localStorage unavailable — form still opens without pre-fill */ }
+  if (window.msTrackLead) window.msTrackLead(source);
   Tally.openPopup('kd15W1', { layout: 'modal', width: 700, hiddenFields });
 }
 </script>
