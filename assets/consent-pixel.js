@@ -79,6 +79,7 @@
 
   function showManageLink() {
     if (document.getElementById('ms-consent-manage')) return;
+    injectBannerStyles();
     var manage = document.createElement('button');
     manage.id = 'ms-consent-manage';
     manage.type = 'button';
@@ -89,6 +90,11 @@
       showBanner();
     });
     document.body.appendChild(manage);
+
+    var sticky = document.querySelector(STICKY_CTA_SELECTOR);
+    if (sticky && sticky.offsetHeight > 0) {
+      manage.style.bottom = (sticky.offsetHeight + 16) + 'px';
+    }
   }
 
   function showBanner() {
