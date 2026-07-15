@@ -106,11 +106,15 @@ en clair dans `assets/analytics.js`.
     tous les évènements de la session avec la variante vue, c'est la clé de
     comparaison A/B côté data.
 - Évènements custom ajoutés sur les actions déjà présentes dans le HTML
-  existant (pas de nouvelle UI) :
-  - `cta_calculateur_click` — clic sur le lien/bouton vers le calculateur.
-  - `tally_open` — ouverture de la popup Tally (le hook existe déjà via
-    `Tally.openPopup(...)`, on ajoute un appel `posthog.capture(...)` au même
-    endroit).
+  existant (pas de nouvelle UI). Correction après relecture du contenu réel
+  de `index.html` : la home ne charge pas Tally elle-même (ses CTA renvoient
+  vers `b2b.html`/`b2c.html`/le calculateur, qui portent Tally). Un seul
+  évènement générique délégué couvre tous les CTA de la home plutôt que des
+  évènements nommés un par un :
+  - `cta_click` — délégation de clic sur tout `a.cta-btn, a.pcta, a.ncta`
+    (hero, bande calculateur, bande de clôture, nav), avec en propriétés
+    `{ label: <texte du lien sans la flèche>, href: <cible> }`. Permet de
+    filtrer par action dans PostHog sans multiplier les noms d'évènements.
 - Pas de bandeau de consentement cookie dans ce chantier (décision explicite
   de l'utilisateur — à reconsidérer plus tard pour rester rigoureux RGPD).
 
@@ -124,9 +128,10 @@ couvrant :
 2. Insight "Trends" — pageviews et visiteurs uniques, segmentés par
    `variant`.
 3. Insight "Average" sur `$pageleave` (temps passé), segmenté par `variant`.
-4. Insight sur `cta_calculateur_click` et `tally_open`, segmentés par
-   `variant` — la métrique la plus importante : quelle version convertit
-   mieux, pas seulement laquelle est la plus vue.
+4. Insight sur `cta_click` (avec breakdown sur la propriété `label` pour
+   distinguer les CTA entre eux), segmenté par `variant` — la métrique la
+   plus importante : quelle version convertit mieux, pas seulement laquelle
+   est la plus vue.
 5. Heatmap des clics (autocapture PostHog) pour une comparaison visuelle A
    vs B.
 
