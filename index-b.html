@@ -960,6 +960,8 @@ function faq(el) {
 (function(){
   var fine = window.matchMedia('(pointer: fine)').matches;
   if(!fine) return;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion) return;
   document.body.classList.add('has-pointer');
   var orb = document.getElementById('orb');
   var tx = window.innerWidth/2, ty = window.innerHeight/2;
