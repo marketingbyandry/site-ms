@@ -176,3 +176,21 @@ Reprendre par :
 3. Reprendre le sujet LinkedIn si l'utilisateur relance : lui redemander explicitement
    des URLs de posts existants ou une validation de copy à rédiger, rien n'a été
    obtenu jusqu'ici.
+
+### Revue finale de branche (2026-07-15)
+
+Revue whole-branch effectuée (agent, modèle le plus capable). Verdict :
+"Ready to merge: With fixes". Deux points Importants trouvés et corrigés
+avant la fin de session (commit `93ecc18`) :
+- Texte clair-sur-clair sur les chiffres du hero en état actif/survolé
+  (`--teal-glow`/`--green-glow` hérités du thème sombre) → repassés en
+  `--teal`/`--green`, contrôlé visuellement au hover réel sur la preview.
+- Marque de citation décorative invisible (blanc sur blanc) dans `.qband` et
+  emphase de citation en `--teal-glow` peu lisible → corrigés.
+
+Points mineurs restants, non bloquants (voir revue complète dans l'historique
+de session) : règle `.ncta:hover` morte (déjà notée, cascade correcte),
+accumulation de blocs d'override CSS (à aplatir si la variante B est un jour
+promue en version unique), regex de cookie du middleware non ancrée en fin de
+chaîne (sans risque réel, la valeur est toujours posée par le middleware
+lui-même).
