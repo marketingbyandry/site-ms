@@ -342,6 +342,8 @@ No commit for this task — it produces no file changes.
 ## After a real Pixel ID is obtained (follow-up, not part of this plan)
 
 Once the user creates the Pixel in Meta Business Suite / Ads Manager and has a real Pixel ID:
-1. Replace `'REPLACE_WITH_PIXEL_ID'` in `assets/consent-pixel.js` with the real ID (single-line edit).
-2. Commit: `git commit -am "Set live Meta Pixel ID"`.
-3. Re-run Task 4's manual verification with the Meta Pixel Helper Chrome extension installed, confirming `PageView` and `Lead` events actually reach Meta.
+1. **Fix the blog-article floating CTA occlusion.** `.floating-cta` on `ms-blog-article-1.html` and `ms-blog-article-2.html` (bottom-right, revealed on scroll) can be rendered behind the consent banner for first-time visitors who scroll past 400px — same occlusion class as the (already-fixed) landing-page sticky CTA, just not previously covered since `offsetStickyCta()` only targets `.sticky-cta`. Low priority (blog isn't an ad landing destination) but worth closing before broader traffic.
+2. **Fix consent revocation mid-session.** Currently, if a visitor accepts (loading `fbq`/`fbevents.js`), then uses "Gérer les cookies" → "Refuser" without reloading, `window.fbq` stays defined and `msTrackLead()` keeps firing `Lead` events for the rest of that page's life — `ms_consent=refused` is set correctly, but nothing tears down the already-loaded Pixel. This is dormant today because `META_PIXEL_ID` is a placeholder so `fbq` never loads in the first place, but it becomes a real over-collection bug the moment a live ID is set. Fix before going live: e.g. reload the page on the Refuse path when `window.fbq` already exists, or call Meta's `fbq('consent', 'revoke')` API if adopting Meta's Limited Data Use / consent mode.
+3. Replace `'REPLACE_WITH_PIXEL_ID'` in `assets/consent-pixel.js` with the real ID (single-line edit).
+4. Commit: `git commit -am "Set live Meta Pixel ID"`.
+5. Re-run Task 4's manual verification with the Meta Pixel Helper Chrome extension installed, confirming `PageView` and `Lead` events actually reach Meta, and re-verify the consent-revocation fix from step 2 mid-session.
