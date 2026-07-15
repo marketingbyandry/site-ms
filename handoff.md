@@ -2,6 +2,87 @@
 
 Dernière mise à jour : session du 2026-07-13 → 2026-07-15.
 
+## 🔜 Prochaine étape demandée (pas encore cadrée)
+
+L'utilisateur veut **déployer une "version 2" du site sur un sous-domaine
+alternatif dans Vercel** (ex. `v2.byandry.com` ou `beta.byandry.com` — nom
+exact pas encore choisi). Rien n'a été implémenté pour ça — c'est une
+nouvelle demande, distincte du test A/B ci-dessous.
+
+**Avant de coder quoi que ce soit**, repasser par
+`superpowers:brainstorming` pour cadrer avec l'utilisateur, notamment :
+- "Version 2" = `index-b.html` (la variante sobre N&B) déployée seule et en
+  permanence sur ce sous-domaine ? Ou une V2 plus large (tout le site
+  restylé, pas seulement la home) ?
+- Le sous-domaine remplace-t-il le test A/B par cookie sur le domaine
+  principal (déjà en place, voir ci-dessous), ou vient-il en complément —
+  par exemple pour montrer la V2 à un client/associé sans dépendre du tirage
+  aléatoire du cookie ?
+- Configuration Vercel : un sous-domaine sur le même projet `site-ms` (ajout
+  d'un domaine dans Vercel → Project Settings → Domains, pointé vers une
+  branche Git dédiée ou vers `index-b.html` via un routage spécifique) ou un
+  projet Vercel séparé ?
+- Le projet Vercel s'appelle `site-ms`, team `marketingbyms`. Domaine prod
+  actuel : `www.byandry.com`. DNS chez le même registrar que `byandry.com`
+  (à vérifier avec l'utilisateur pour savoir s'il peut lui-même ajouter un
+  enregistrement CNAME/A pour le sous-domaine, ou s'il faut le faire pour
+  lui).
+
+## Résumé de la session du 2026-07-15 (pour reprise avec un nouvel agent)
+
+Contexte : conversation démarrée par deux questions générales (comment
+utiliser React, comment relier Vercel/GitHub/React/Claude) sans lien avec le
+reste — sans suite à donner dessus. Le gros du travail a porté sur le test
+A/B ci-dessous, exécuté en suivant le pipeline personnel de l'utilisateur
+(cadrage → plan → exécution subagent-driven → revue), documenté en détail
+dans les fichiers `docs/superpowers/specs/2026-07-15-ms-strategy-ab-test-design.md`
+et `docs/superpowers/plans/2026-07-15-ms-strategy-ab-test.md` de cette
+branche. Voir aussi la note Obsidian
+`Agents HQ/Projets/MS Strategy.md`.
+
+Repo : `~/SITE MS` (local), `git@github.com:marketingbyandry/site-ms.git`
+(remote, org `marketingbyandry`). Travail fait dans un **git worktree**
+(`worktree-ms-strategy-ab-test`) — pas encore mergé sur `main`.
+
+## A/B test homepage (variant B sobre N&B + tracking PostHog)
+
+Branche `worktree-ms-strategy-ab-test`, PR draft #1
+(https://github.com/marketingbyandry/site-ms/pull/1). Spec et plan dans
+`docs/superpowers/specs/2026-07-15-ms-strategy-ab-test-design.md` et
+`docs/superpowers/plans/2026-07-15-ms-strategy-ab-test.md`.
+
+- **Middleware Vercel Edge** (`middleware.js` + `package.json`) : split 50/50
+  sur `/` uniquement, cookie `ms_variant` sticky 30 jours, bots toujours
+  variante A (jamais de cookie, jamais réécrits) pour ne pas casser le SEO.
+- **`index-b.html`** : copie de `index.html`, mêmes sections/contenu, tokens
+  `:root` basculés en clair (`--dark`/`--cream`/`--muted*`), glows retirés,
+  hover teal/vert sur nav et CTA, flèche qui pivote à 45° au survol, rond
+  flouté qui suit le curseur (desktop only, respecte
+  `prefers-reduced-motion`). **Point trouvé pendant la vérification** :
+  plusieurs sections (hero, `.def-box`, `.how-band`, `.timing-visual`,
+  `.vals`, `.qband`, `.akpi`, `.careers-cta-band`) utilisaient des overlays
+  `::before`/`background` en `rgba(13,79,92,*)`/`rgba(7,19,26,*)` codés en
+  dur plutôt que les tokens — corrigé par un bloc d'override supplémentaire
+  (commit `cced9c6`). Le footer (`.sfooter`) reste volontairement sombre
+  (`#050e13`, non touché) — lu comme un bookend noir cohérent avec l'esprit
+  "sobre N&B", pas un bug ; à reconsidérer si l'utilisateur préfère un footer
+  clair aussi.
+- **`assets/analytics.js`** : PostHog (clé `phc_uHyR...hnnBM`, région EU déjà
+  branchée), variante taguée sur chaque évènement, `cta_click` délégué sur
+  `a.cta-btn, a.pcta, a.ncta`. Guide de lecture des résultats :
+  `docs/posthog-setup.md`.
+- **Vérifié en réel** sur la preview Vercel (protégée par Vercel
+  Authentication — bypass token utilisé pour les tests, ne pas le committer)
+  via `curl` (cookie, rewrite A/B, exclusion bots même avec cookie forcé,
+  assets/robots.txt) et Chrome headless piloté par CDP (screenshots desktop
+  multi-sections, orb réactif à la souris, mobile sans orb, 0 erreur JS,
+  PostHog chargé).
+- **Reste à faire avant de sortir du mode draft** : confirmer que le projet
+  PostHog du client est bien sur le cloud EU (sinon changer `api_host` dans
+  `assets/analytics.js`), vérifier dans PostHog → Activity qu'un clic CTA
+  réel remonte bien un évènement une fois le site en prod, décider si le
+  footer doit lui aussi passer en clair.
+
 ## But général
 
 Site vitrine statique pour M&S Strategy (courtier en énergie indépendant depuis 2012,
@@ -137,3 +218,21 @@ Reprendre par :
 3. Reprendre le sujet LinkedIn si l'utilisateur relance : lui redemander explicitement
    des URLs de posts existants ou une validation de copy à rédiger, rien n'a été
    obtenu jusqu'ici.
+
+### Revue finale de branche (2026-07-15)
+
+Revue whole-branch effectuée (agent, modèle le plus capable). Verdict :
+"Ready to merge: With fixes". Deux points Importants trouvés et corrigés
+avant la fin de session (commit `93ecc18`) :
+- Texte clair-sur-clair sur les chiffres du hero en état actif/survolé
+  (`--teal-glow`/`--green-glow` hérités du thème sombre) → repassés en
+  `--teal`/`--green`, contrôlé visuellement au hover réel sur la preview.
+- Marque de citation décorative invisible (blanc sur blanc) dans `.qband` et
+  emphase de citation en `--teal-glow` peu lisible → corrigés.
+
+Points mineurs restants, non bloquants (voir revue complète dans l'historique
+de session) : règle `.ncta:hover` morte (déjà notée, cascade correcte),
+accumulation de blocs d'override CSS (à aplatir si la variante B est un jour
+promue en version unique), regex de cookie du middleware non ancrée en fin de
+chaîne (sans risque réel, la valeur est toujours posée par le middleware
+lui-même).
