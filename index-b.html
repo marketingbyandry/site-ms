@@ -335,6 +335,24 @@ a{text-decoration:none;color:inherit}
 }
 body.has-pointer #orb{opacity:1}
 @media(prefers-reduced-motion:reduce){#orb{transition:none}}
+
+/* ── VARIANT B fix: hardcoded dark overlays missed by the :root token swap ──
+   These sections use literal rgba(13,79,92,*)/rgba(7,19,26,*)/rgba(10,26,31,*)
+   dark-navy washes instead of var(--dark)/var(--dark2), so the token swap in
+   Task 2 didn't touch them. Overriding to light, low-opacity teal/green washes
+   consistent with the sober theme. Only `background` is redeclared — border/
+   padding/etc. from the original rules are untouched. */
+.panel-b2b::before{background:linear-gradient(140deg,rgba(26,122,138,.10) 0%,rgba(250,249,246,0) 65%)}
+.hero.hl .panel-b2b::before{background:linear-gradient(140deg,rgba(26,122,138,.20) 0%,rgba(43,181,200,.05) 60%)}
+.panel-b2c::before{background:linear-gradient(220deg,rgba(76,222,128,.14) 0%,rgba(250,249,246,0) 65%)}
+.hero.hr .panel-b2c::before{background:linear-gradient(220deg,rgba(76,222,128,.22) 0%,rgba(26,122,138,.08) 42%,rgba(250,249,246,0) 70%)}
+.def-box{background:rgba(26,122,138,.05)}
+.how-band{background:rgba(26,122,138,.04)}
+.timing-visual{background:rgba(26,122,138,.05)}
+.vals{background:rgba(26,122,138,.03)}
+.qband{background:linear-gradient(135deg,rgba(26,122,138,.06),rgba(250,249,246,0))}
+.akpi{background:rgba(26,122,138,.05)}
+.careers-cta-band{background:linear-gradient(135deg,rgba(76,222,128,.06),rgba(26,122,138,.05))}
 </style>
 </head>
 <body>
