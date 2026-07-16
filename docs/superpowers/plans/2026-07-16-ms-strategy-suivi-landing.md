@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Ship two personalized post-contact landing pages (B2B, B2C), each split 50/50 between variant A ("anti-comparateur frontal") and variant C ("continuité relationnelle"), plus a password-protected internal tool that generates the personalized links.
+**Goal:** Ship two personalized post-contact landing pages (B2B, B2C), each split 50/50 between variant A ("anti-comparateur frontal", DARK theme) and variant C ("continuité relationnelle", LIGHT theme — new palette, designed in Task 3), plus a password-protected internal tool that generates the personalized links. Decision 2026-07-16: theme (noir/blanc) is tied to the editorial variant, not a separate random dimension — every page pair always ships one dark and one light version.
 
 **Architecture:** Same pattern as the existing home A/B test (`middleware.js`), extended with its own cookie (`ms_suivi_variant`) and matcher for two new stable public URLs. The canonical file at each public URL IS variant C's content (mirrors how `index.html` is variant A's content today); the middleware rewrites to a `-a.html` file only when the cookie says A. A shared `assets/suivi-personalize.js` reads `?prenom=`/`?conseiller=` from the URL and toggles pre-written fallback text — same script, all 4 content files. `generateur-suivi.html` is a vanilla-JS link builder gated by Basic Auth in `middleware.js`, credentials from Vercel env vars (repo is public on GitHub).
 
@@ -201,14 +201,15 @@ git commit -m "Add shared personalization script for suivi landing pages"
 
 ---
 
-### Task 3: `ms-strategy-suivi-b2b.html` (variant C — canonical file)
+### Task 3: `ms-strategy-suivi-b2b.html` (variant C — canonical file, LIGHT theme)
 
 **Files:**
 - Create: `ms-strategy-suivi-b2b.html`
 
 **Interfaces:**
 - Consumes: `assets/analytics.js` (existing), `assets/suivi-personalize.js` (Task 2), Tally form `kd15W1` (existing, used site-wide).
-- CSS/markup: copied verbatim from `ms-strategy-landing-2.html` (`:root` tokens through `.sticky-cta`) — zero new classes. Only `<title>`, meta, and content text differ.
+- CSS/markup: same selectors/structure as `ms-strategy-landing-2.html` (`:root` tokens through `.sticky-cta`) — zero new classes. **Colors differ: this is the LIGHT theme** (variant C = "continuité relationnelle" = blanc; variant A, Task 4, stays on the original DARK theme = noir — per user decision 2026-07-16, one theme per variant, tied to the editorial split, not a separate random dimension).
+- Light theme design (derived by re-reading every rule in the original dark stylesheet, not a blind token swap): only 3 places actually needed a value change — (1) the two body-level tokens `--dark` (bg) / `--cream` (text) swap meaning (white bg / near-navy text), (2) `--green-accent`, `--teal-bright`, `--teal-light` are deepened because they're used as literal TEXT color in several rules (`.section-tag`, `.footer-details a`, `.hero-eyebrow`, `.market-card-title`, `.proof-num`, `.saving-amount`, hero-title `em`) and the original light-cyan/bright-green values were tuned for legibility on near-black, not on white, (3) two literal (non-variable) `rgba(10,26,31,...)` hardcodes — the `nav` background and the `.form-section` gradient's dark end — get light equivalents, because a leftover near-black translucent bar/gradient would show up as a dark smear on an otherwise white page. Every other rule (all the low-alpha decorative rgba washes/borders/glows) is left untouched: those are semi-transparent overlays that adapt correctly when composited over white instead of near-black. **Logo fix**: `assets/ms-strategy-logo.png` is a light cream/grey monochrome mark (confirmed by viewing the file) made for a dark background — invisible on white as-is, so `.nav-logo img`/`.footer-logo img` get `filter: invert(1)` in this theme only, which turns it into a dark, legible mark.
 
 - [ ] **Step 1: Create the file**
 
@@ -224,21 +225,23 @@ git commit -m "Add shared personalization script for suivi landing pages"
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
 <style>
   :root {
+    /* LIGHT theme (variant C) — see Task 3 rationale. Variant A (Task 4)
+       reuses the original dark values unchanged. */
     --teal-deep: #0d4f5c;
     --teal-mid: #1a7a8a;
-    --teal-bright: #2bb5c8;
-    --teal-light: #5ecfdc;
-    --green-accent: #4cde80;
-    --cream: #f5f0e8;
-    --dark: #0a1a1f;
-    --text-muted: #8aacb4;
+    --teal-bright: #0b6b78;
+    --teal-light: #0d5866;
+    --green-accent: #15803d;
+    --cream: #14232a;
+    --dark: #ffffff;
+    --text-muted: #5c7680;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { font-family: 'Satoshi', sans-serif; background: var(--dark); color: var(--cream); overflow-x: hidden; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 5vw; backdrop-filter: blur(16px); background: rgba(10,26,31,.75); border-bottom: 1px solid rgba(43,181,200,.12); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 5vw; backdrop-filter: blur(16px); background: rgba(255,255,255,.8); border-bottom: 1px solid rgba(43,181,200,.15); }
   .nav-logo { display: flex; align-items: center; }
-  .nav-logo img { height: 28px; width: auto; display: block; }
+  .nav-logo img { height: 28px; width: auto; display: block; filter: invert(1); }
   .nav-cta { background: var(--green-accent); color: var(--dark); font-family: 'Satoshi', sans-serif; font-weight: 700; font-size: .82rem; letter-spacing: .06em; padding: .6rem 1.4rem; border: none; border-radius: 2px; cursor: pointer; text-transform: uppercase; transition: transform .15s, box-shadow .15s; text-decoration: none; }
   .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(76,222,128,.3); }
   .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 5vw 5rem; overflow: hidden; }
@@ -291,7 +294,7 @@ git commit -m "Add shared personalization script for suivi landing pages"
   .step-num { font-family: 'Satoshi', sans-serif; font-size: 3.5rem; font-weight: 800; color: rgba(43,181,200,.12); line-height: 1; margin-bottom: .8rem; }
   .step-title { font-family: 'Satoshi', sans-serif; font-size: .95rem; font-weight: 700; color: var(--cream); margin-bottom: .7rem; }
   .step-body { font-size: .88rem; color: var(--text-muted); line-height: 1.65; }
-  .form-section { padding: 8rem 5vw; background: linear-gradient(135deg, rgba(13,79,92,.25), rgba(10,26,31,1)); position: relative; overflow: hidden; }
+  .form-section { padding: 8rem 5vw; background: linear-gradient(135deg, rgba(234,246,248,.7), #ffffff); position: relative; overflow: hidden; }
   .form-container { max-width: 660px; margin: 0 auto; position: relative; z-index: 1; }
   .form-header { margin-bottom: 3rem; }
   .form-header p { margin-top: 1.2rem; color: var(--text-muted); line-height: 1.7; font-size: 1rem; }
@@ -304,7 +307,7 @@ git commit -m "Add shared personalization script for suivi landing pages"
   .reassurance-item { font-size: .75rem; color: var(--text-muted); display: flex; align-items: center; gap: .35rem; }
   .reassurance-item::before { content: '✓'; color: var(--green-accent); font-weight: 700; }
   footer { padding: 3rem 5vw; border-top: 1px solid rgba(43,181,200,.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-  .footer-logo img { height: 24px; width: auto; display: block; }
+  .footer-logo img { height: 24px; width: auto; display: block; filter: invert(1); }
   .footer-details { font-size: .8rem; color: var(--text-muted); line-height: 1.7; }
   .footer-details a { color: var(--teal-bright); text-decoration: none; }
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity .65s ease, transform .65s ease; }
@@ -394,7 +397,8 @@ git commit -m "Add shared personalization script for suivi landing pages"
     <div class="form-header reveal">
       <span class="section-tag">Dernière étape</span>
       <h2 class="section-title">Envoyez votre facture. <em style="color:var(--green-accent);font-style:italic">On fait le reste.</em></h2>
-      <p>Réponse sous 48h, avec un chiffrage qui part de votre vraie situation — pas d'une estimation.</p>
+      <p>Réponse sous 48h, avec un chiffrage qui part de votre vraie situation — pas d'une estimation.
+      <span class="js-conseiller-line" hidden> Vous avez déjà fait le plus dur en échangeant avec <span class="js-conseiller"></span> — il ne reste que l'envoi du document.</span></p>
     </div>
     <div class="form-card reveal">
       <div class="form-trust">🔒 <span><strong>Transmission chiffrée et confidentielle.</strong> Votre facture et vos coordonnées sont reçues sur un espace privé, consulté uniquement par notre équipe — jamais partagées ni publiées.</span></div>
@@ -449,16 +453,41 @@ git commit -m "Add ms-strategy-suivi-b2b.html (variant C)"
 
 ---
 
-### Task 4: `ms-strategy-suivi-b2b-a.html` (variant A)
+### Task 4: `ms-strategy-suivi-b2b-a.html` (variant A — DARK theme)
 
 **Files:**
 - Create: `ms-strategy-suivi-b2b-a.html`
 
-**Interfaces:** identical to Task 3.
+**Interfaces:** same markup/selectors as Task 3.
 
-- [ ] **Step 1: Copy Task 3's file, then change only these pieces**
+**Theme note — read before starting**: Task 3's `<style>` block is the LIGHT theme (variant C only). This file is variant A, which stays on the ORIGINAL DARK theme. Do **not** copy Task 3's `<style>` block. Instead, use this dark `:root` block plus the three rules below it, and keep every other CSS rule identical to Task 3's (all the untouched decorative rgba rules are shared verbatim between both themes):
 
-Start from the exact file written in Task 3, then apply these replacements:
+```css
+  :root {
+    --teal-deep: #0d4f5c;
+    --teal-mid: #1a7a8a;
+    --teal-bright: #2bb5c8;
+    --teal-light: #5ecfdc;
+    --green-accent: #4cde80;
+    --cream: #f5f0e8;
+    --dark: #0a1a1f;
+    --text-muted: #8aacb4;
+  }
+```
+```css
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 5vw; backdrop-filter: blur(16px); background: rgba(10,26,31,.75); border-bottom: 1px solid rgba(43,181,200,.12); }
+  .nav-logo { display: flex; align-items: center; }
+  .nav-logo img { height: 28px; width: auto; display: block; }
+```
+```css
+  .form-section { padding: 8rem 5vw; background: linear-gradient(135deg, rgba(13,79,92,.25), rgba(10,26,31,1)); position: relative; overflow: hidden; }
+```
+```css
+  .footer-logo img { height: 24px; width: auto; display: block; }
+```
+(i.e. the four blocks Task 3 changed from the original dark stylesheet — revert exactly those four, keep everything else from Task 3's file as-is.)
+
+Then, starting from Task 3's file (with the dark CSS above substituted back in), apply these content replacements:
 
 `<title>` and hero copy — replace:
 ```html
@@ -590,12 +619,14 @@ git commit -m "Add ms-strategy-suivi-b2c.html (variant C)"
 
 ---
 
-### Task 6: `ms-strategy-suivi-b2c-a.html` (variant A)
+### Task 6: `ms-strategy-suivi-b2c-a.html` (variant A — DARK theme)
 
 **Files:**
 - Create: `ms-strategy-suivi-b2c-a.html`
 
-- [ ] **Step 1: Copy Task 5's file, then change these pieces**
+**Theme note**: same as Task 4 — Task 5's `<style>` block is LIGHT (variant C only). Revert the same four blocks (`:root`, `nav`+`.nav-logo img`, `.form-section`, `.footer-logo img`) to the dark values given in full in Task 4, keep everything else from Task 5's file as-is.
+
+- [ ] **Step 1: Copy Task 5's file (with the dark CSS from Task 4 substituted back in), then change these pieces**
 
 Hero:
 ```html
@@ -821,7 +852,9 @@ Expected: `200` once env vars are set and correct credentials are passed.
 
 - [ ] **Step 5: Manual browser check**
 
-Open `<preview-url>/ms-strategy-suivi-b2b.html?prenom=Julien&conseiller=Marie` in a real browser: confirm "Bonjour Julien" and "Marie vous a présenté..." render, no console errors, CTA button opens the Tally popup. Repeat once without query params to confirm the generic fallback text reads naturally. Repeat for the B2C page.
+Open `<preview-url>/ms-strategy-suivi-b2b.html?prenom=Julien&conseiller=Marie` in a real browser: confirm "Bonjour Julien" and "Marie vous a présenté..." render, no console errors, CTA button opens the Tally popup, and the reinforcement line near the final CTA ("Vous avez déjà fait le plus dur...") shows Marie's name. Repeat once without query params to confirm the generic fallback text reads naturally. Repeat for the B2C page.
+
+Also confirm the **light/dark theme pairing** on both pages: cookie `ms_suivi_variant=C` → white background, dark legible text, logo visible (dark, not invisible-on-white); cookie `ms_suivi_variant=A` → original dark theme, logo visible (light-on-dark, as before). Check both in light and dark OS/browser mode if easy, since this is independent of the page's own theme.
 
 - [ ] **Step 6: Confirm PostHog events**
 

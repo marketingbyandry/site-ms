@@ -83,6 +83,15 @@ approches, donc l'hypothèse la plus informative (percutant/direct vs
 rassurant/relationnel, pour un même lecteur déjà en contact). B est
 abandonné.
 
+**Mise à jour 2026-07-16** : le test s'accompagne désormais d'un thème de
+couleur lié à la variante (décision utilisateur, pas une dimension de test
+séparée) — **A = thème sombre** (palette déjà existante du site, cohérente
+avec le ton direct/contrasté), **C = thème clair** (nouvelle palette blanche,
+cohérente avec le ton relationnel/posé). Chaque paire de pages (B2B et B2C)
+livre donc toujours une version noire et une version blanche. Détail de la
+palette claire (tokens, cas particuliers logo/nav/CTA) dans le plan
+d'implémentation, Task 3.
+
 **Squelette de page partagé entre A et C** (voir section 4) : même 7 blocs,
 même longueur approximative — seul l'ordre d'apparition du message
 différenciant et le ton du hero changent. Ce choix isole la variable testée
