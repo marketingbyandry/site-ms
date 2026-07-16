@@ -111,6 +111,7 @@ a{text-decoration:none;color:inherit}
 .theme-toggle .icon-sun{display:none}
 :root[data-theme="light"] .theme-toggle .icon-moon{display:none}
 :root[data-theme="light"] .theme-toggle .icon-sun{display:block}
+.theme-reveal{position:fixed;inset:0;z-index:250;pointer-events:none;clip-path:circle(0px at 50% 50%)}
 </style>
 </head>
 <body>
@@ -233,6 +234,7 @@ try{
   <span>Courtier en énergie indépendant depuis 2012 · Gaz · Électricité · France</span>
 </div>
 
+<div class="theme-reveal" id="theme-reveal" aria-hidden="true"></div>
 <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Basculer entre mode sombre et mode clair">
   <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
   <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -248,7 +250,10 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 (function(){
   var btn = document.getElementById('theme-toggle');
+  var overlay = document.getElementById('theme-reveal');
   var mem = null;
+  var REVEAL_MS = 700;
+  var REVEAL_EASE = 'cubic-bezier(.65,0,.35,1)';
   function getStored(){
     try{ return localStorage.getItem('ms_theme'); }catch(e){ return mem; }
   }
@@ -256,14 +261,31 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     try{ localStorage.setItem('ms_theme', v); }catch(e){ mem = v; }
   }
   btn.addEventListener('click', function(){
-    var isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    if(isLight){
-      document.documentElement.removeAttribute('data-theme');
-      setStored('dark');
-    } else {
-      document.documentElement.setAttribute('data-theme','light');
-      setStored('light');
-    }
+    var toLight = document.documentElement.getAttribute('data-theme') !== 'light';
+    var r = btn.getBoundingClientRect();
+    var x = r.left + r.width / 2;
+    var y = r.top + r.height / 2;
+
+    overlay.style.background = toLight ? '#faf9f6' : '#07131a';
+    overlay.style.transition = 'none';
+    overlay.style.clipPath = 'circle(0px at ' + x + 'px ' + y + 'px)';
+    overlay.offsetHeight;
+    overlay.style.transition = 'clip-path ' + REVEAL_MS + 'ms ' + REVEAL_EASE;
+    requestAnimationFrame(function(){
+      overlay.style.clipPath = 'circle(150vmax at ' + x + 'px ' + y + 'px)';
+    });
+
+    setTimeout(function(){
+      if(toLight){
+        document.documentElement.setAttribute('data-theme','light');
+        setStored('light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        setStored('dark');
+      }
+      overlay.style.transition = 'none';
+      overlay.style.clipPath = 'circle(0px at ' + x + 'px ' + y + 'px)';
+    }, REVEAL_MS);
   });
 })();
 </script>
