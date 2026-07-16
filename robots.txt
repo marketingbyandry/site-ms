@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
 Disallow: /index-b.html
+Disallow: /ms-strategy-suivi-b2b.html
+Disallow: /ms-strategy-suivi-b2b-a.html
+Disallow: /ms-strategy-suivi-b2c.html
+Disallow: /ms-strategy-suivi-b2c-a.html
+Disallow: /generateur-suivi.html
 
 Sitemap: https://www.byandry.com/sitemap.xml
