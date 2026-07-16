@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Générateur de lien — usage interne</title>
+<style>
+  body { font-family: -apple-system, sans-serif; background: #0a1a1f; color: #f5f0e8; max-width: 480px; margin: 4rem auto; padding: 0 1.5rem; }
+  h1 { font-size: 1.3rem; margin-bottom: 1.5rem; }
+  label { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: #8aacb4; margin: 1rem 0 .3rem; }
+  select, input { width: 100%; padding: .6rem .7rem; background: #0d2029; border: 1px solid #2bb5c8; border-radius: 3px; color: #f5f0e8; font-size: .95rem; }
+  button { margin-top: 1.5rem; width: 100%; padding: .8rem; background: #4cde80; color: #0a1a1f; border: none; border-radius: 3px; font-weight: 700; cursor: pointer; }
+  #result { margin-top: 1.5rem; padding: 1rem; background: #0d2029; border-radius: 3px; word-break: break-all; font-size: .85rem; display: none; }
+</style>
+</head>
+<body>
+<h1>Générateur de lien de suivi</h1>
+
+<label for="page">Page cible</label>
+<select id="page">
+  <option value="ms-strategy-suivi-b2b.html">B2B</option>
+  <option value="ms-strategy-suivi-b2c.html">B2C</option>
+</select>
+
+<label for="prenom">Prénom du prospect</label>
+<input type="text" id="prenom" placeholder="Julien">
+
+<label for="conseiller">Votre prénom (conseiller)</label>
+<input type="text" id="conseiller" placeholder="Marie">
+
+<button type="button" onclick="generate()">Générer le lien</button>
+
+<div id="result"></div>
+
+<script>
+function generate() {
+  var page = document.getElementById('page').value;
+  var prenom = document.getElementById('prenom').value.trim();
+  var conseiller = document.getElementById('conseiller').value.trim();
+
+  var params = [];
+  if (prenom) params.push('prenom=' + encodeURIComponent(prenom));
+  if (conseiller) params.push('conseiller=' + encodeURIComponent(conseiller));
+
+  var url = window.location.origin + '/' + page + (params.length ? '?' + params.join('&') : '');
+
+  var result = document.getElementById('result');
+  result.style.display = 'block';
+  result.innerHTML = '<div style="margin-bottom:.6rem">' + url + '</div><button type="button" onclick="copyLink(this)">Copier le lien</button>';
+  result.dataset.url = url;
+}
+
+function copyLink(btn) {
+  var url = document.getElementById('result').dataset.url;
+  navigator.clipboard.writeText(url).then(function () {
+    btn.textContent = 'Copié !';
+    setTimeout(function () { btn.textContent = 'Copier le lien'; }, 1500);
+  });
+}
+</script>
+</body>
+</html>
