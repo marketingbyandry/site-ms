@@ -83,6 +83,53 @@ Branche `worktree-ms-strategy-ab-test`, PR draft #1
   réel remonte bien un évènement une fois le site en prod, décider si le
   footer doit lui aussi passer en clair.
 
+## Pages de suivi personnalisées B2B/B2C (test A/C)
+
+Branche `worktree-ms-strategy-posthog-wizard`, poussée sur
+`origin/worktree-ms-strategy-posthog-wizard` (PR à créer/gérée depuis la
+session principale — pas par cet agent, pour éviter une PR en double). Spec
+et plan dans `docs/superpowers/specs/2026-07-15-ms-strategy-suivi-landing-design.md`
+et `docs/superpowers/plans/2026-07-16-ms-strategy-suivi-landing.md`.
+
+- **But** : deux landing pages "post-contact" (`ms-strategy-suivi-b2b.html`,
+  `ms-strategy-suivi-b2c.html`) envoyées par un commercial après un premier
+  échange avec un prospect, personnalisées via `?prenom=&conseiller=` dans
+  l'URL. Chacune est splittée 50/50 entre variante A ("anti-comparateur
+  frontal", thème sombre — reprend les valeurs `:root` d'origine) et variante
+  C ("continuité relationnelle", nouveau thème clair conçu pour cette tâche).
+  Le fichier canonique de chaque URL publique EST la variante C ; la
+  variante A vit dans un fichier `-a.html` séparé (`ms-strategy-suivi-b2b-a.html`,
+  `ms-strategy-suivi-b2c-a.html`) vers lequel `middleware.js` fait un rewrite
+  quand le cookie tombe sur A.
+- **`middleware.js`** : étendu (sans toucher au split existant `ms_variant`
+  sur `/`) avec un cookie dédié `ms_suivi_variant` (A/C, 30 jours, bots
+  toujours variante C sans cookie) et une protection Basic Auth sur
+  `/generateur-suivi.html`, lues depuis `process.env.SUIVI_TOOL_USER` /
+  `process.env.SUIVI_TOOL_PASS`.
+- **Variables d'environnement Vercel à définir avant utilisation** :
+  `SUIVI_TOOL_USER` et `SUIVI_TOOL_PASS` (Project Settings → Environment
+  Variables, au moins sur Preview). Tant qu'elles ne sont pas posées,
+  `generateur-suivi.html` renvoie 401 pour tout le monde — comportement par
+  défaut sûr, mais l'outil de génération de liens reste inutilisable jusque-là.
+- **`assets/suivi-personalize.js`** : script partagé par les 4 pages de
+  contenu, lit `?prenom=`/`?conseiller=` et bascule des blocs `.js-*-line`
+  pré-écrits (dégrade proprement si le script ne charge pas — le texte
+  générique est l'état HTML par défaut, pas quelque chose ajouté par JS).
+- **PostHog** : super-property `suivi_variant` (`'A'` ou `'C'`) — **nom
+  distinct de `variant`**, la propriété du test A/B de la home
+  (`ms_variant`, documenté plus haut), pour ne pas mélanger les deux
+  expériences dans les tableaux de bord PostHog.
+- **`generateur-suivi.html`** : outil interne (protégé par Basic Auth
+  ci-dessus) qui génère un lien copiable vers `ms-strategy-suivi-b2b.html`
+  ou `ms-strategy-suivi-b2c.html` avec `?prenom=&conseiller=` — jamais vers
+  les fichiers `-a.html` directement, c'est le middleware qui décide de la
+  variante.
+- **Non fait par cet agent d'exécution** : ouverture de la PR (draft),
+  vérifications curl/navigateur contre une preview Vercel réelle, et passage
+  de la PR en "ready" — laissés à la session principale/l'étape Relecture,
+  notamment parce que les env vars Basic Auth n'étaient pas encore confirmées
+  comme posées au moment de cette session.
+
 ## But général
 
 Site vitrine statique pour M&S Strategy (courtier en énergie indépendant depuis 2012,
