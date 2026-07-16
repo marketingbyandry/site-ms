@@ -103,14 +103,16 @@ entière, pour un signal plus propre.
 ### Fichiers
 
 - `ms-strategy-suivi-b2b.html` / `ms-strategy-suivi-b2c.html` — **URLs
-  publiques stables**, ce que le commercial envoie. Jamais de contenu direct
-  dedans : uniquement des cibles de rewrite (voir "Répartition A/B"
-  ci-dessous). Le lien envoyé à un prospect ne change jamais, quelle que
-  soit la variante tirée.
-- `ms-strategy-suivi-b2b-a.html` / `ms-strategy-suivi-b2b-c.html` — contenu
-  réel des deux variantes B2B.
-- `ms-strategy-suivi-b2c-a.html` / `ms-strategy-suivi-b2c-c.html` — contenu
-  réel des deux variantes B2C.
+  publiques stables**, ce que le commercial envoie. Le fichier à cette URL
+  EST directement le contenu de la variante C (même précédent que
+  `index.html`, qui est déjà le contenu de la variante A du test A/B de la
+  home) — pas un simple pivot de rewrite vide. Le lien envoyé à un prospect
+  ne change jamais, quelle que soit la variante tirée ; seule la variante A
+  déclenche un rewrite serveur vers un fichier séparé. Choix fait pour la
+  fiabilité (dégradation neutre si le middleware échoue : la page servie par
+  défaut reste un contenu complet et valide, pas un fichier orphelin).
+- `ms-strategy-suivi-b2b-a.html` — contenu de la variante A, B2B.
+- `ms-strategy-suivi-b2c-a.html` — contenu de la variante A, B2C.
 - `generateur-suivi.html` — outil interne, non lié depuis la nav publique,
   `<meta name="robots" content="noindex">`, **protégé par Basic Auth** (voir
   ci-dessous). Génère un lien vers l'URL **publique stable**, jamais vers
@@ -143,7 +145,7 @@ un **cookie et un matcher indépendants** — ne modifie pas la logique
 - **Point d'attention (hérité du test A/B de la home, à revérifier ici)** :
   le rewrite ne doit pas casser les chemins relatifs des assets, et les
   paramètres `?prenom=&conseiller=` de l'URL publique doivent être préservés
-  par le rewrite jusqu'au fichier `-a`/`-c` servi — à vérifier en test réel
+  par le rewrite jusqu'au fichier `-a` servi — à vérifier en test réel
   après implémentation, pas seulement en lecture de code.
 
 ### URLs publiques
@@ -153,8 +155,8 @@ Pas de `vercel.json` ni de réécriture d'URL custom dans ce repo au-delà de
 tel quel, extension `.html` incluse, sauf sur les deux chemins interceptés
 ci-dessus. Une fois mergées sur `main` :
 
-- `https://www.byandry.com/ms-strategy-suivi-b2b.html` (rewrite → `-a` ou `-c`)
-- `https://www.byandry.com/ms-strategy-suivi-b2c.html` (rewrite → `-a` ou `-c`)
+- `https://www.byandry.com/ms-strategy-suivi-b2b.html` (contenu C, rewrite → `-a` si variante A)
+- `https://www.byandry.com/ms-strategy-suivi-b2c.html` (contenu C, rewrite → `-a` si variante A)
 - `https://www.byandry.com/generateur-suivi.html` (protégé, voir ci-dessous)
 
 Lien type envoyé à un prospect (toujours l'URL publique stable) :
