@@ -59,7 +59,6 @@ a{text-decoration:none;color:inherit}
 /* ─── FOCUS VISIBLE ───────────────────── */
 a:focus-visible,
 button:focus-visible,
-.faq-item:focus-visible,
 [tabindex]:focus-visible{
   outline:2px solid var(--teal-glow);
   outline-offset:2px;
@@ -262,8 +261,8 @@ button:focus-visible,
 /* ─── FAQ SEO ─────────────────────────── */
 .faq-section{padding:var(--space-7) 5vw;max-width:860px;margin:0 auto}
 .faq-section h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(var(--text-lg),3vw,var(--text-xl));color:var(--cream);margin-bottom:var(--space-4);line-height:1.1}
-.faq-item{display:block;width:100%;background:none;border:none;border-bottom:1px solid rgba(43,181,200,.1);padding:var(--space-3) 0;cursor:pointer;font:inherit;color:inherit;text-align:left;appearance:none;-webkit-appearance:none}
-.faq-q{display:flex;justify-content:space-between;align-items:center;font-family:'Satoshi',sans-serif;font-weight:700;font-size:var(--text-base);color:var(--cream)}
+.faq-item{display:block;width:100%;border-bottom:1px solid rgba(43,181,200,.1);padding:var(--space-3) 0}
+.faq-q{display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:none;padding:0;cursor:pointer;font:inherit;font-family:'Satoshi',sans-serif;font-weight:700;font-size:var(--text-base);color:var(--cream);text-align:left;appearance:none;-webkit-appearance:none}
 .faq-arr{font-size:var(--text-base);color:var(--teal-light);transition:transform .25s}
 .faq-item.open .faq-arr{transform:rotate(180deg)}
 .faq-a{font-size:var(--text-base);color:var(--muted);line-height:1.72;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
@@ -403,7 +402,7 @@ button:focus-visible,
   <div class="panel panel-b2b" id="pb2b">
     <span class="bgw">PRO</span>
     <div class="pc">
-      <span class="plbl">TPE · PME · ETI (petites, moyennes et grandes entreprises) · Gaz · Électricité</span>
+      <span class="plbl">TPE · PME · ETI (de la très petite entreprise à l'entreprise de taille intermédiaire) · Gaz · Électricité</span>
       <p class="ptgt">Vous êtes professionnel</p>
       <h2 class="ptitle">
         L'<em>énergie intelligente</em><br>
@@ -689,35 +688,35 @@ button:focus-visible,
 <section class="faq-section">
   <h2 class="reveal">Questions fréquentes sur le courtage en énergie</h2>
 
-  <button type="button" class="faq-item reveal" aria-expanded="false" onclick="faq(this)">
-    <div class="faq-q">Qu'est-ce qu'un courtier en énergie ? <span class="faq-arr">↓</span></div>
-    <div class="faq-a">Un courtier en énergie est un professionnel indépendant mandaté pour négocier les contrats gaz et électricité à la place de ses clients. Il consulte simultanément l'ensemble des fournisseurs du marché, compare les offres et conseille son client dans sa décision. Il est rémunéré par les fournisseurs — pas par le client.</div>
-  </button>
+  <div class="faq-item reveal">
+    <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-1" onclick="faq(this)">Qu'est-ce qu'un courtier en énergie ? <span class="faq-arr">↓</span></button>
+    <div class="faq-a" id="faq-a-1">Un courtier en énergie est un professionnel indépendant mandaté pour négocier les contrats gaz et électricité à la place de ses clients. Il consulte simultanément l'ensemble des fournisseurs du marché, compare les offres et conseille son client dans sa décision. Il est rémunéré par les fournisseurs — pas par le client.</div>
+  </div>
 
-  <button type="button" class="faq-item reveal" aria-expanded="false" onclick="faq(this)">
-    <div class="faq-q">Le recours à un courtier est-il vraiment gratuit ? <span class="faq-arr">↓</span></div>
-    <div class="faq-a">Oui, pour le client. M&S Strategy est rémunéré directement par les fournisseurs d'énergie via une commission standardisée intégrée dans les contrats. Ce modèle est réglementairement encadré et exclut tout surcoût pour vous. Que vous signiez ou non, vous ne nous devez rien.</div>
-  </button>
+  <div class="faq-item reveal">
+    <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-2" onclick="faq(this)">Le recours à un courtier est-il vraiment gratuit ? <span class="faq-arr">↓</span></button>
+    <div class="faq-a" id="faq-a-2">Oui, pour le client. M&S Strategy est rémunéré directement par les fournisseurs d'énergie via une commission standardisée intégrée dans les contrats. Ce modèle est réglementairement encadré et exclut tout surcoût pour vous. Que vous signiez ou non, vous ne nous devez rien.</div>
+  </div>
 
-  <button type="button" class="faq-item reveal" aria-expanded="false" onclick="faq(this)">
-    <div class="faq-q">Quand faut-il contacter un courtier en énergie ? <span class="faq-arr">↓</span></div>
-    <div class="faq-a">Idéalement entre 12 et 24 mois avant l'échéance de votre contrat actuel. C'est dans cette fenêtre que les conditions de marché sont les plus favorables et que vous disposez d'une véritable marge de négociation. Contacter un courtier trop tard (moins de 3 mois avant l'échéance) réduit significativement les résultats obtenus.</div>
-  </button>
+  <div class="faq-item reveal">
+    <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-3" onclick="faq(this)">Quand faut-il contacter un courtier en énergie ? <span class="faq-arr">↓</span></button>
+    <div class="faq-a" id="faq-a-3">Idéalement entre 12 et 24 mois avant l'échéance de votre contrat actuel. C'est dans cette fenêtre que les conditions de marché sont les plus favorables et que vous disposez d'une véritable marge de négociation. Contacter un courtier trop tard (moins de 3 mois avant l'échéance) réduit significativement les résultats obtenus.</div>
+  </div>
 
-  <button type="button" class="faq-item reveal" aria-expanded="false" onclick="faq(this)">
-    <div class="faq-q">Un courtier peut-il intervenir si mon contrat est encore en cours ? <span class="faq-arr">↓</span></div>
-    <div class="faq-a">Oui. Nous pouvons analyser votre situation dès maintenant, identifier votre prochaine fenêtre de négociation optimale, et vous accompagner en amont de votre renouvellement. Certains contrats comportent également des clauses de renégociation en cours que peu de titulaires connaissent.</div>
-  </button>
+  <div class="faq-item reveal">
+    <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-4" onclick="faq(this)">Un courtier peut-il intervenir si mon contrat est encore en cours ? <span class="faq-arr">↓</span></button>
+    <div class="faq-a" id="faq-a-4">Oui. Nous pouvons analyser votre situation dès maintenant, identifier votre prochaine fenêtre de négociation optimale, et vous accompagner en amont de votre renouvellement. Certains contrats comportent également des clauses de renégociation en cours que peu de titulaires connaissent.</div>
+  </div>
 
-  <button type="button" class="faq-item reveal" aria-expanded="false" onclick="faq(this)">
-    <div class="faq-q">M&S Strategy intervient-il partout en France ? <span class="faq-arr">↓</span></div>
-    <div class="faq-a">Oui. Bien que notre cabinet soit basé à Lattes (34), nous intervenons pour des clients sur l'ensemble du territoire français — toutes régions, tous secteurs d'activité. Le processus peut se dérouler entièrement à distance, par email et téléphone.</div>
-  </button>
+  <div class="faq-item reveal">
+    <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-5" onclick="faq(this)">M&S Strategy intervient-il partout en France ? <span class="faq-arr">↓</span></button>
+    <div class="faq-a" id="faq-a-5">Oui. Bien que notre cabinet soit basé à Lattes (34), nous intervenons pour des clients sur l'ensemble du territoire français — toutes régions, tous secteurs d'activité. Le processus peut se dérouler entièrement à distance, par email et téléphone.</div>
+  </div>
 
-  <button type="button" class="faq-item reveal" aria-expanded="false" onclick="faq(this)">
-    <div class="faq-q">Quelle est la différence entre un courtier et un comparateur en ligne ? <span class="faq-arr">↓</span></div>
-    <div class="faq-a">Un comparateur en ligne vous présente des offres standardisées à partir de quelques critères génériques. Un courtier analyse votre situation réelle — profil de consommation, structure du contrat, date d'échéance, objectifs — et négocie des offres sur-mesure auprès de l'ensemble des fournisseurs. La différence de résultat est significative, surtout pour les professionnels dont les volumes justifient une approche personnalisée.</div>
-  </button>
+  <div class="faq-item reveal">
+    <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a-6" onclick="faq(this)">Quelle est la différence entre un courtier et un comparateur en ligne ? <span class="faq-arr">↓</span></button>
+    <div class="faq-a" id="faq-a-6">Un comparateur en ligne vous présente des offres standardisées à partir de quelques critères génériques. Un courtier analyse votre situation réelle — profil de consommation, structure du contrat, date d'échéance, objectifs — et négocie des offres sur-mesure auprès de l'ensemble des fournisseurs. La différence de résultat est significative, surtout pour les professionnels dont les volumes justifient une approche personnalisée.</div>
+  </div>
 </section>
 
 <!-- QUOTE BAND -->
@@ -868,15 +867,16 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 /* ══════════════════════════════════
    FAQ ACCORDION
    ══════════════════════════════════ */
-function faq(el) {
-  const open = el.classList.contains('open');
+function faq(btn) {
+  const item = btn.closest('.faq-item');
+  const open = item.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(i => {
     i.classList.remove('open');
-    i.setAttribute('aria-expanded', 'false');
+    i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
   });
   if (!open) {
-    el.classList.add('open');
-    el.setAttribute('aria-expanded', 'true');
+    item.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
   }
 }
 </script>
