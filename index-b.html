@@ -32,7 +32,7 @@ a{text-decoration:none;color:inherit}
 /* ─── NAV ─────────────────────────────── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(250,249,246,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,122,138,.18)}
 .nl{display:flex;align-items:center;gap:10px;font-family:'Satoshi',sans-serif;font-weight:800;font-size:1.05rem}
-.nl-logo{height:32px;width:auto;display:block}
+.nl-logo{height:32px;width:auto;display:block;filter:brightness(0)}
 .nlinks{display:flex;align-items:center;gap:2rem;list-style:none}
 .nlinks a{font-size:.82rem;color:var(--muted);transition:color .2s}
 .nlinks a:hover{color:var(--cream)}
@@ -44,23 +44,6 @@ a{text-decoration:none;color:inherit}
 .hero{position:relative;width:100vw;height:100vh;min-height:620px;display:flex;overflow:hidden}
 #pc{position:absolute;inset:0;z-index:0;pointer-events:none}
 
-/* Dynamic divider */
-.divider{
-  position:absolute;
-  top:0;bottom:0;
-  /* left set by JS */
-  left:50%;
-  width:0;
-  z-index:30;
-  pointer-events:none;
-  /* We draw via canvas overlay instead — this is a JS line */
-}
-
-/* SVG overlay for the animated divider line */
-#div-svg{
-  position:absolute;inset:0;z-index:25;pointer-events:none;
-  width:100%;height:100%;overflow:visible;
-}
 
 .panel{position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5vw 5rem;overflow:hidden;cursor:pointer;transition:flex .55s cubic-bezier(.77,0,.18,1),filter .35s ease}
 
@@ -91,7 +74,7 @@ a{text-decoration:none;color:inherit}
 .pc{position:relative;z-index:10}
 
 .plbl{display:inline-flex;align-items:center;gap:.45rem;font-family:'Satoshi',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:.26rem .78rem;border-radius:2px;margin-bottom:1.4rem;transition:all .3s}
-.panel-b2b .plbl{color:var(--teal-glow);background:rgba(26,122,138,.13);border:1px solid rgba(94,207,220,.2)}
+.panel-b2b .plbl{color:var(--teal-dark);background:rgba(26,122,138,.13);border:1px solid rgba(94,207,220,.2)}
 .panel-b2c .plbl{color:var(--green);background:rgba(76,222,128,.09);border:1px solid rgba(76,222,128,.2)}
 .hero.hl .panel-b2b .plbl{background:rgba(26,122,138,.28);border-color:var(--teal-glow);box-shadow:0 0 14px rgba(94,207,220,.22)}
 .hero.hr .panel-b2c .plbl{background:rgba(76,222,128,.2);border-color:var(--green);box-shadow:0 0 14px rgba(76,222,128,.28)}
@@ -125,7 +108,7 @@ a{text-decoration:none;color:inherit}
 .pcta:hover::before{left:160%}
 .panel-b2b .pcta{background:var(--teal);color:#fff}
 .hero.hl .panel-b2b .pcta{background:linear-gradient(100deg,var(--teal),var(--green));color:#fff;transform:translateY(-3px);box-shadow:none}
-.panel-b2c .pcta{background:var(--green);color:var(--dark)}
+.panel-b2c .pcta{background:var(--green);color:var(--cream)}
 .hero.hr .panel-b2c .pcta{background:linear-gradient(100deg,var(--teal),var(--green));color:#fff;transform:translateY(-3px);box-shadow:none}
 .ca{display:inline-block;transition:transform .3s cubic-bezier(.4,0,.2,1)}
 .pcta:hover .ca{transform:rotate(45deg)}
@@ -143,7 +126,6 @@ a{text-decoration:none;color:inherit}
 @media(max-width:640px){
   .hero{flex-direction:column;height:auto;min-height:100dvh}
   .panel{flex:1!important;filter:none!important;padding:5.5rem 6vw 3.5rem;min-height:50vh}
-  #div-svg{display:none}
   .hero.hl .panel-b2b,.hero.hr .panel-b2c{filter:none}
 }
 
@@ -303,7 +285,7 @@ a{text-decoration:none;color:inherit}
 .cta-btn:hover .ca{transform:rotate(45deg)}
 .cta-btn.ct-teal{background:var(--teal);color:#fff}
 .cta-btn.ct-teal:hover{background:linear-gradient(100deg,var(--teal),var(--green));color:#fff;transform:translateY(-3px);box-shadow:none}
-.cta-btn.ct-green{background:var(--green);color:var(--dark)}
+.cta-btn.ct-green{background:#3a8f5c;color:#fff}
 .cta-btn.ct-green:hover{background:linear-gradient(100deg,var(--teal),var(--green));color:#fff;transform:translateY(-3px);box-shadow:none}
 .cta-btn.ct-outline{background:transparent;border:1.5px solid var(--teal-light);color:var(--teal-light)}
 .cta-btn.ct-outline:hover{background:var(--teal-light);color:var(--dark);box-shadow:0 0 22px rgba(94,207,220,.35)}
@@ -347,12 +329,21 @@ body.has-pointer #orb{opacity:1}
 .panel-b2c::before{background:linear-gradient(220deg,rgba(76,222,128,.14) 0%,rgba(250,249,246,0) 65%)}
 .hero.hr .panel-b2c::before{background:linear-gradient(220deg,rgba(76,222,128,.22) 0%,rgba(26,122,138,.08) 42%,rgba(250,249,246,0) 70%)}
 .def-box{background:rgba(26,122,138,.05)}
+.brand{background:rgba(26,122,138,.06)}
 .how-band{background:rgba(26,122,138,.04)}
+#cta-calculateur{background:rgba(26,122,138,.04)}
 .timing-visual{background:rgba(26,122,138,.05)}
 .vals{background:rgba(26,122,138,.03)}
 .qband{background:linear-gradient(135deg,rgba(26,122,138,.06),rgba(250,249,246,0))}
 .akpi{background:rgba(26,122,138,.05)}
-.careers-cta-band{background:linear-gradient(135deg,rgba(76,222,128,.06),rgba(26,122,138,.05))}
+
+/* Sober, muted green (instead of the vivid --green) for the "Ambitieux,
+   entrepreneur, fait pour le terrain" careers section on this light variant. */
+.cpt{color:#3a8f5c}
+.cpillar{border-color:rgba(58,143,92,.16);background:rgba(58,143,92,.04)}
+.cpillar:hover{border-color:rgba(58,143,92,.35)}
+.cpi{color:rgba(58,143,92,.12)}
+.careers-cta-band{background:linear-gradient(135deg,rgba(58,143,92,.06),rgba(26,122,138,.05));border-color:rgba(58,143,92,.18)}
 
 /* ── VARIANT B fix 2: light-on-light accent text left over from the dark
    theme. --teal-glow/--green-glow were tuned to pop against a dark
@@ -387,40 +378,6 @@ body.has-pointer #orb{opacity:1}
 <!-- HERO SPLIT -->
 <section class="hero" id="hero">
   <canvas id="pc"></canvas>
-
-  <!-- Dynamic SVG divider -->
-  <svg id="div-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <defs>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="1.5" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-      <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%"   stop-color="rgba(94,207,220,0)" />
-        <stop offset="20%"  stop-color="rgba(94,207,220,0.7)" />
-        <stop offset="50%"  stop-color="#5ecfdc" />
-        <stop offset="80%"  stop-color="rgba(94,207,220,0.7)" />
-        <stop offset="100%" stop-color="rgba(94,207,220,0)" />
-      </linearGradient>
-      <!-- Glint gradient -->
-      <linearGradient id="glintGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%"   stop-color="rgba(255,255,255,0)" />
-        <stop offset="50%"  stop-color="rgba(255,255,255,0.9)" />
-        <stop offset="100%" stop-color="rgba(255,255,255,0)" />
-      </linearGradient>
-    </defs>
-    <!-- Main line — x position animated by JS -->
-    <line id="svg-line" x1="50" y1="0" x2="50" y2="100"
-      stroke="url(#lineGrad)" stroke-width=".18"
-      filter="url(#glow)" />
-    <!-- Glow duplicate -->
-    <line id="svg-line-glow" x1="50" y1="0" x2="50" y2="100"
-      stroke="rgba(94,207,220,0.25)" stroke-width=".6" />
-    <!-- Moving glint -->
-    <line id="svg-glint" x1="50" y1="0" x2="50" y2="12"
-      stroke="url(#glintGrad)" stroke-width=".22"
-      filter="url(#glow)" />
-  </svg>
 
   <!-- B2B LEFT -->
   <div class="panel panel-b2b" id="pb2b">
@@ -822,95 +779,16 @@ body.has-pointer #orb{opacity:1}
 
 <script>
 /* ══════════════════════════════════
-   PANEL HOVER — moves SVG line
+   PANEL HOVER
    ══════════════════════════════════ */
-const hero    = document.getElementById('hero');
-const pb2b    = document.getElementById('pb2b');
-const pb2c    = document.getElementById('pb2c');
-const svgLine = document.getElementById('svg-line');
-const svgGlow = document.getElementById('svg-line-glow');
-const svgGlnt = document.getElementById('svg-glint');
+const hero = document.getElementById('hero');
+const pb2b = document.getElementById('pb2b');
+const pb2c = document.getElementById('pb2c');
 
-// Target X position in SVG units (0–100)
-let targetX   = 50;
-let currentX  = 50;
-let animFrame = null;
-
-function setLineX(x) {
-  svgLine.setAttribute('x1', x);
-  svgLine.setAttribute('x2', x);
-  svgGlow.setAttribute('x1', x);
-  svgGlow.setAttribute('x2', x);
-  svgGlnt.setAttribute('x1', x);
-  svgGlnt.setAttribute('x2', x);
-}
-
-function animateLine() {
-  // Ease toward target
-  currentX += (targetX - currentX) * 0.08;
-  setLineX(currentX);
-  if (Math.abs(targetX - currentX) > 0.05) {
-    animFrame = requestAnimationFrame(animateLine);
-  } else {
-    currentX = targetX;
-    setLineX(currentX);
-    animFrame = null;
-  }
-}
-
-function moveTo(x) {
-  targetX = x;
-  if (!animFrame) animFrame = requestAnimationFrame(animateLine);
-}
-
-pb2b.addEventListener('mouseenter', () => {
-  hero.classList.add('hl');
-  moveTo(61.5);
-});
-pb2b.addEventListener('mouseleave', () => {
-  hero.classList.remove('hl');
-  moveTo(50);
-});
-pb2c.addEventListener('mouseenter', () => {
-  hero.classList.add('hr');
-  moveTo(38.5);
-});
-pb2c.addEventListener('mouseleave', () => {
-  hero.classList.remove('hr');
-  moveTo(50);
-});
-
-/* ══════════════════════════════════
-   GLINT ANIMATION on SVG line
-   ══════════════════════════════════ */
-let glintY = -12;
-function animateGlint() {
-  glintY += 0.45;
-  if (glintY > 112) glintY = -12;
-  svgGlnt.setAttribute('y1', glintY);
-  svgGlnt.setAttribute('y2', glintY + 12);
-  requestAnimationFrame(animateGlint);
-}
-// Start after initial reveal
-setTimeout(animateGlint, 1600);
-
-/* ══════════════════════════════════
-   LINE ENTRY ANIMATION
-   ══════════════════════════════════ */
-// Animate the line drawing in from top
-let lineReveal = 0;
-function revealLine() {
-  lineReveal += 2.5;
-  if (lineReveal <= 100) {
-    svgLine.setAttribute('y2', lineReveal);
-    svgGlow.setAttribute('y2', lineReveal);
-    requestAnimationFrame(revealLine);
-  }
-}
-// Initial state: line hidden
-svgLine.setAttribute('y2', 0);
-svgGlow.setAttribute('y2', 0);
-setTimeout(revealLine, 400);
+pb2b.addEventListener('mouseenter', () => hero.classList.add('hl'));
+pb2b.addEventListener('mouseleave', () => hero.classList.remove('hl'));
+pb2c.addEventListener('mouseenter', () => hero.classList.add('hr'));
+pb2c.addEventListener('mouseleave', () => hero.classList.remove('hr'));
 
 /* ══════════════════════════════════
    PARTICLES
