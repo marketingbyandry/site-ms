@@ -67,12 +67,12 @@ homepage lors de l'audit design.
 
 | Sem. | Post 1 — OFF (page officielle) | Post 2 — UGC-avatar (Higgsfield) |
 |---|---|---|
-| 1 | **Ouverture angle carburant/énergie** : "Vous n'auriez jamais accepté de payer votre essence au prix d'il y a 3 ans sans rien dire. Pour votre énergie pro, c'est pareil — sauf que là, vous avez la main." Pédagogie : pourquoi les prix de l'énergie fluctuent (marché de gros, taxes, TURPE) | FAQ express, signée « Témoignage illustratif — MS Strategy » : "Le regroupement d'achat, en une minute" |
+| 1 | **Ouverture angle carburant/énergie** : "Vous n'auriez jamais accepté de payer votre essence au prix d'il y a 3 ans sans rien dire. Pour votre énergie pro, c'est pareil — sauf que là, vous avez la main." Pédagogie : pourquoi les prix de l'énergie fluctuent (marché de gros, taxes, TURPE) | FAQ express, signée « Témoignage illustratif — MS Strategy » : "Le groupement d'achat, en une minute" |
 | 2 | Pédagogie : comment se décompose une facture d'électricité pro | FAQ : "Est-ce que je change de fournisseur si je passe par vous ?" |
 | 3 | FAQ : "Combien de temps prend l'analyse de ma facture ?" | Témoignage illustratif 1 — avant/après, dirigeant PME |
 | 4 | Pédagogie : les pièges à éviter en changeant de fournisseur pro | Coulisses : "Comment on analyse une facture chez MS Strategy" |
 | 5 | FAQ : "Et si je suis encore engagé sur mon contrat actuel ?" | Témoignage illustratif 2 — autre secteur (commerce/logistique) |
-| 6 | Coulisses : "Pourquoi on ne donne jamais un chiffre non vérifié" | Témoignage illustratif 3 — dirigeant TPE |
+| 6 | Coulisses : "Pourquoi un pourcentage générique ne veut rien dire" | Témoignage illustratif 3 — dirigeant TPE |
 | 7 | **Rappel angle carburant/énergie** + CTA : "Le prix du carburant, vous ne pouvez rien y faire. Votre facture d'énergie pro, si. 2 minutes suffisent pour le savoir." → `b2b.html` | Témoignage illustratif reprend son histoire, incite à transmettre sa facture |
 | 8 | Récap pédagogique + CTA de clôture de la phase de test → `b2b.html` | Dernier témoignage illustratif + CTA "Vous aussi ?" → `b2b.html` |
 

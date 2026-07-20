@@ -104,14 +104,14 @@ En savoir plus : https://byandry.com/b2b.html?utm_source=linkedin_organic&utm_ca
 
 🎬 Témoignage illustratif — MS Strategy
 
-"Le regroupement d'achat, c'est quoi exactement ?" On me pose la question à chaque rendez-vous.
+"Le groupement d'achat, c'est quoi exactement ?" On me pose la question à chaque rendez-vous.
 
 En clair : plusieurs entreprises se regroupent pour acheter leur énergie ensemble, et obtiennent des conditions qu'elles n'auraient pas pu négocier seules. Ni fusion, ni engagement de groupe — chacun garde son contrat, son fournisseur, sa facture. Juste un pouvoir de négociation collectif.
 
 ### Script vidéo (Higgsfield)
 Persona : conseiller énergie, ton posé et direct, cadrage buste, arrière-plan bureau neutre.
 Texte parlé :
-"On me pose souvent cette question : le regroupement d'achat, c'est quoi exactement ? En clair, plusieurs entreprises se regroupent pour acheter leur énergie ensemble, et obtiennent des conditions qu'elles n'auraient jamais pu négocier seules. Pas de fusion, pas d'engagement de groupe — chacun garde son contrat, son fournisseur, sa facture. Juste un pouvoir de négociation collectif."
+"On me pose souvent cette question : le groupement d'achat, c'est quoi exactement ? En clair, plusieurs entreprises se regroupent pour acheter leur énergie ensemble, et obtiennent des conditions qu'elles n'auraient jamais pu négocier seules. Pas de fusion, pas d'engagement de groupe — chacun garde son contrat, son fournisseur, sa facture. Juste un pouvoir de négociation collectif."
 ```
 
 - [ ] **Step 2: Vérifier contre la checklist**
@@ -304,14 +304,14 @@ Anticiper avant l'échéance du contrat permet de préparer la suite sans subir 
 
 🎬 Témoignage illustratif — MS Strategy
 
-Secteur logistique, plusieurs entrepôts, une facture énergie qui pesait lourd sur les charges fixes. Le regroupement d'achat a permis de renégocier sans changer d'organisation ni de fournisseur imposé.
+Secteur logistique, plusieurs entrepôts, une facture énergie qui pesait lourd sur les charges fixes. Le groupement d'achat a permis de renégocier sans changer d'organisation ni de fournisseur imposé.
 
 Chaque secteur a ses contraintes — l'analyse s'adapte, pas l'inverse.
 
 ### Script vidéo (Higgsfield)
 Persona : dirigeant(e) secteur logistique (nouvel avatar, distinct du témoignage semaine 3), cadrage type entrepôt ou bureau logistique.
 Texte parlé :
-"On a plusieurs entrepôts, et notre facture d'énergie pesait vraiment lourd dans nos charges fixes. Le regroupement d'achat nous a permis de renégocier sans rien changer à notre organisation, ni imposer un nouveau fournisseur. Chaque secteur a ses contraintes — c'est l'analyse qui s'adapte, pas l'inverse."
+"On a plusieurs entrepôts, et notre facture d'énergie pesait vraiment lourd dans nos charges fixes. Le groupement d'achat nous a permis de renégocier sans rien changer à notre organisation, ni imposer un nouveau fournisseur. Chaque secteur a ses contraintes — c'est l'analyse qui s'adapte, pas l'inverse."
 ```
 
 - [ ] **Step 2: Vérifier contre la checklist**
@@ -345,7 +345,7 @@ git commit -m "Add week 5 posts: FAQ on ongoing contracts + logistics-sector UGC
 
 ## Post 1 — Officiel (coulisses : rigueur, pas de chiffre en l'air)
 
-On ne vous donnera jamais un pourcentage d'économie avant d'avoir réellement analysé votre facture. Pourquoi ? Parce que ce chiffre dépend entièrement de votre contrat actuel, de votre consommation, de votre secteur — un chiffre générique ne veut rien dire.
+Un pourcentage d'économie générique ne veut rien dire pour votre entreprise : tout dépend de votre contrat actuel, de votre consommation, de votre secteur.
 
 C'est plus long à dire dans un post, mais c'est la seule façon de vous donner une réponse qui tienne la route.
 
@@ -353,12 +353,12 @@ C'est plus long à dire dans un post, mais c'est la seule façon de vous donner 
 
 🎬 Témoignage illustratif — MS Strategy
 
-Dirigeant d'une TPE de 8 salariés : "Je pensais que le regroupement d'achat, c'était réservé aux grandes structures. Erreur — c'est justement là que ça fait la différence, parce qu'on n'a ni le temps ni le poids pour négocier seuls."
+Dirigeant d'une TPE de 8 salariés : "Je pensais que le groupement d'achat, c'était réservé aux grandes structures. Erreur — c'est justement là que ça fait la différence, parce qu'on n'a ni le temps ni le poids pour négocier seuls."
 
 ### Script vidéo (Higgsfield)
 Persona : dirigeant(e) TPE (nouvel avatar, distinct des témoignages semaines 3 et 5), ton spontané, cadrage bureau petite structure.
 Texte parlé :
-"Je pensais que le regroupement d'achat, c'était réservé aux grandes structures. En fait, c'est une erreur — c'est justement pour une TPE comme la mienne que ça fait la différence, parce qu'on n'a ni le temps ni le poids pour négocier seuls face à un fournisseur."
+"Je pensais que le groupement d'achat, c'était réservé aux grandes structures. En fait, c'est une erreur — c'est justement pour une TPE comme la mienne que ça fait la différence, parce qu'on n'a ni le temps ni le poids pour négocier seuls face à un fournisseur."
 ```
 
 - [ ] **Step 2: Vérifier contre la checklist**
@@ -446,7 +446,7 @@ git commit -m "Add week 7 posts: fuel/energy angle callback + strong CTA on both
 
 ## Post 1 — Officiel (récapitulatif + CTA de clôture)
 
-Ce qu'on a vu ces 8 dernières semaines : comment se décompose une facture d'énergie pro, les pièges à éviter en changeant de fournisseur, comment fonctionne le regroupement d'achat, et pourquoi le prix que vous payez n'est pas une fatalité.
+Ce qu'on a vu ces 8 dernières semaines : comment se décompose une facture d'énergie pro, les pièges à éviter en changeant de fournisseur, comment fonctionne le groupement d'achat, et pourquoi le prix que vous payez n'est pas une fatalité.
 
 Si une question reste sans réponse, ou si vous voulez simplement savoir où en est votre contrat actuel : transmettez votre facture, on s'occupe du reste.
 
@@ -473,7 +473,7 @@ Texte parlé :
 - [ ] Disclosure présente en première ligne du post UGC
 - [ ] Les deux posts portent un lien avec `utm_content=s08-off` et `utm_content=s08-ugc` respectivement
 - [ ] Aucun chiffre non sourcé
-- [ ] Le post officiel référence bien les 4 piliers vus dans les semaines précédentes (pédagogie facture, pièges fournisseur, regroupement d'achat, angle carburant/énergie) sans en inventer un nouveau
+- [ ] Le post officiel référence bien les 4 piliers vus dans les semaines précédentes (pédagogie facture, pièges fournisseur, groupement d'achat, angle carburant/énergie) sans en inventer un nouveau
 
 - [ ] **Step 3: Commit**
 
