@@ -16,11 +16,11 @@ En savoir plus : https://byandry.com/b2b.html?utm_source=linkedin_organic&utm_ca
 
 🎬 Témoignage illustratif — MS Strategy
 
-"Le regroupement d'achat, c'est quoi exactement ?" On me pose la question à chaque rendez-vous.
+"Le groupement d'achat, c'est quoi exactement ?" On me pose la question à chaque rendez-vous.
 
 En clair : plusieurs entreprises se regroupent pour acheter leur énergie ensemble, et obtiennent des conditions qu'elles n'auraient pas pu négocier seules. Ni fusion, ni engagement de groupe — chacun garde son contrat, son fournisseur, sa facture. Juste un pouvoir de négociation collectif.
 
 ### Script vidéo (Higgsfield)
 Persona : conseiller énergie, ton posé et direct, cadrage buste, arrière-plan bureau neutre.
 Texte parlé :
-"On me pose souvent cette question : le regroupement d'achat, c'est quoi exactement ? En clair, plusieurs entreprises se regroupent pour acheter leur énergie ensemble, et obtiennent des conditions qu'elles n'auraient jamais pu négocier seules. Pas de fusion, pas d'engagement de groupe — chacun garde son contrat, son fournisseur, sa facture. Juste un pouvoir de négociation collectif."
+"On me pose souvent cette question : le groupement d'achat, c'est quoi exactement ? En clair, plusieurs entreprises se regroupent pour acheter leur énergie ensemble, et obtiennent des conditions qu'elles n'auraient jamais pu négocier seules. Pas de fusion, pas d'engagement de groupe — chacun garde son contrat, son fournisseur, sa facture. Juste un pouvoir de négociation collectif."

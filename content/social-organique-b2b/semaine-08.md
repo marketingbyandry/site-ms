@@ -2,7 +2,7 @@
 
 ## Post 1 — Officiel (récapitulatif + CTA de clôture)
 
-Ce qu'on a vu ces 8 dernières semaines : comment se décompose une facture d'énergie pro, les pièges à éviter en changeant de fournisseur, comment fonctionne le regroupement d'achat, et pourquoi le prix que vous payez n'est pas une fatalité.
+Ce qu'on a vu ces 8 dernières semaines : comment se décompose une facture d'énergie pro, les pièges à éviter en changeant de fournisseur, comment fonctionne le groupement d'achat, et pourquoi le prix que vous payez n'est pas une fatalité.
 
 Si une question reste sans réponse, ou si vous voulez simplement savoir où en est votre contrat actuel : transmettez votre facture, on s'occupe du reste.
 
