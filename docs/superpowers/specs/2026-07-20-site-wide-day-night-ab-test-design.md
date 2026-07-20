@@ -12,7 +12,7 @@ Deux chantiers existants sont à l'origine de celui-ci :
 - `2026-07-16-blog-day-night-mode-design.md` : pilote d'un toggle jour/nuit
   manuel sur `blog.html` seul (localStorage, sans lien avec l'A/B serveur).
 
-Ce chantier **étend le test A/B serveur à 7 pages** et **retire le toggle
+Ce chantier **étend le test A/B serveur à 6 pages** et **retire le toggle
 manuel** de `blog.html` : l'assignation de variante devient la seule source
 de vérité sur tout le périmètre, mesurée de façon homogène.
 
@@ -75,7 +75,7 @@ utilisés sur fond clair dans l'actuel `index-b.html` sans souci de contraste).
 
 ### Bandeaux toujours sombres (`.nav`, `.qband`, `.sfooter`, `.fbot`, `.cstrip`)
 
-Ces classes sont **identiques (byte-for-byte)** sur les 7 pages — un seul
+Ces classes sont **identiques (byte-for-byte)** sur les 6 pages — un seul
 bloc d'override suffit, à dupliquer tel quel dans chaque fichier :
 
 ```css
@@ -116,11 +116,11 @@ accents CTA ponctuels.)
   par rapport à `index-b.html` actuel.** Au lieu de faire pivoter l'icône
   flèche à 45°, le bouton grossit légèrement dans son ensemble
   (`transform:scale(1.05)`, transition `.2s ease`) — effet "prêt à être
-  cliqué" plutôt que rotation d'icône. S'applique uniformément aux 7 pages.
+  cliqué" plutôt que rotation d'icône. S'applique uniformément aux 6 pages.
 - CTA : fond en dégradé `--teal` → `--green` au survol (au lieu d'un glow de
   couleur pleine), cohérent avec l'existant `index-b.html`.
 
-## 3. Analytics — extension à 7 pages
+## 3. Analytics — extension à 6 pages
 
 - `assets/analytics.js` (déjà fonctionnel : lit le cookie `ms_variant`, tague
   `posthog.register({variant})`, capture `cta_click` sur
@@ -140,7 +140,7 @@ accents CTA ponctuels.)
   page ; simplement pas de persistance de variante entre visites — même
   profil de risque que le test actuel sur la home.
 - Entrée directe sur une page autre que `/` (lien partagé, pub) : comme le
-  matcher couvre désormais les 7 pages, la première page visitée déclenche
+  matcher couvre désormais les 6 pages, la première page visitée déclenche
   l'assignation — plus de risque de visiteur jamais assigné.
 - Bots : détection `BOT_UA` inchangée, s'applique à toutes les pages du
   matcher étendu → toujours variant A, jamais de cookie posé, cohérence
@@ -153,17 +153,17 @@ Vérification manuelle par page, avec cookie `ms_variant` forcé en A et en B
 (devtools ou `curl -H "Cookie: ms_variant=B"`) :
 
 - Bascule visuelle correcte (palette, bandeaux bleu-nuit, images en niveaux
-  de gris, CTA qui grossit au survol) sur les 7 pages.
+  de gris, CTA qui grossit au survol) sur les 6 pages.
 - Pas de flash sombre→clair au chargement.
 - Cookie `ms_variant` persistant en naviguant d'une page en scope à une autre
   (même variante partout dans la session).
 - Contraste correct en mode clair (texte bleu-nuit sur fond blanc chaud,
   bandeaux blanc sur bleu-nuit) — contrôle visuel rapide, pas d'audit
   formalisé WCAG.
-- Évènements PostHog visibles (activité live) sur les 7 pages avec la bonne
+- Évènements PostHog visibles (activité live) sur les 6 pages avec la bonne
   propriété `variant`, y compris `cta_click` en dehors de la home.
 - Confirmation que les bots (test avec une UA de la regex `BOT_UA`) reçoivent
-  toujours variant A sur n'importe laquelle des 7 pages.
+  toujours variant A sur n'importe laquelle des 6 pages.
 
 ## Hors périmètre (explicitement exclu)
 
