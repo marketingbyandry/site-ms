@@ -6,52 +6,68 @@
 
   var variant = getCookie('ms_variant') || 'A';
 
-  // Standard PostHog JS snippet — installed as shown by PostHog's own
-  // "Install PostHog" onboarding page for this project. Before shipping,
-  // re-copy the snippet from https://<your-instance>/project/settings
-  // (Project Settings → Install PostHog) and diff it against the block
-  // below — PostHog occasionally revises this loader, and using a stale
-  // copy risks silently failing to load.
-  !function(t, e) {
-    var o, n, p, r;
-    e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) {
-      function g(t, e) {
-        var o = e.split(".");
-        2 == o.length && (t = t[o[0]], e = o[1]);
-        t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) };
-      }
-      (p = t.createElement("script")).type = "text/javascript";
-      p.crossOrigin = "anonymous";
-      p.async = !0;
-      p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js";
-      (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r);
-      var u = e;
-      for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [],
-        u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e },
-        u.people.toString = function () { return u.toString(1) + ".people (stub)" },
-        o = "init capture register register_once unregister identify alias reset getFeatureFlag isFeatureEnabled onFeatureFlags getSurveys canRenderSurvey opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing".split(" "),
-        n = 0; n < o.length; n++) g(u, o[n]);
-      e._i.push([i, s, a]);
-    }, e.__SV = 1);
-  }(document, window.posthog || []);
+  // RGPD/CNIL: PostHog capture des données de navigation (pages vues, clics,
+  // identifiant persistant) — ce n'est pas une "mesure d'audience strictement
+  // nécessaire" au sens CNIL, donc rien n'est chargé ni aucun cookie posé tant
+  // que l'utilisateur n'a pas donné son consentement via le bandeau cookies
+  // (voir assets/cookie-consent.js). Ne pas appeler initPostHog() ailleurs
+  // sans passer par ce mécanisme de consentement.
+  function initPostHog() {
+    if (window.posthog && window.posthog.__loaded) return;
 
-  posthog.init('phc_uHyRKSZT97w56hxk2ZaF2q8ahPyLPY9uznkY7v5hnnBM', {
-    api_host: 'https://eu.i.posthog.com',
-    capture_pageleave: true
-  });
+    // Standard PostHog JS snippet — installed as shown by PostHog's own
+    // "Install PostHog" onboarding page for this project. Before shipping,
+    // re-copy the snippet from https://<your-instance>/project/settings
+    // (Project Settings → Install PostHog) and diff it against the block
+    // below — PostHog occasionally revises this loader, and using a stale
+    // copy risks silently failing to load.
+    !function(t, e) {
+      var o, n, p, r;
+      e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) {
+        function g(t, e) {
+          var o = e.split(".");
+          2 == o.length && (t = t[o[0]], e = o[1]);
+          t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) };
+        }
+        (p = t.createElement("script")).type = "text/javascript";
+        p.crossOrigin = "anonymous";
+        p.async = !0;
+        p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js";
+        (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r);
+        var u = e;
+        for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [],
+          u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e },
+          u.people.toString = function () { return u.toString(1) + ".people (stub)" },
+          o = "init capture register register_once unregister identify alias reset getFeatureFlag isFeatureEnabled onFeatureFlags getSurveys canRenderSurvey opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing".split(" "),
+          n = 0; n < o.length; n++) g(u, o[n]);
+        e._i.push([i, s, a]);
+      }, e.__SV = 1);
+    }(document, window.posthog || []);
 
-  posthog.register({ variant: variant });
+    posthog.init('phc_uHyRKSZT97w56hxk2ZaF2q8ahPyLPY9uznkY7v5hnnBM', {
+      api_host: 'https://eu.i.posthog.com',
+      capture_pageleave: true
+    });
 
-  function ctaLabel(el) {
-    return (el.textContent || '').replace(/[→➔→]/g, '').trim();
+    posthog.register({ variant: variant });
+
+    function ctaLabel(el) {
+      return (el.textContent || '').replace(/[→➔→]/g, '').trim();
+    }
+
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest('a.cta-btn, a.pcta, a.ncta');
+      if (!el) return;
+      posthog.capture('cta_click', {
+        label: ctaLabel(el),
+        href: el.getAttribute('href')
+      });
+    });
   }
 
-  document.addEventListener('click', function (e) {
-    var el = e.target.closest('a.cta-btn, a.pcta, a.ncta');
-    if (!el) return;
-    posthog.capture('cta_click', {
-      label: ctaLabel(el),
-      href: el.getAttribute('href')
-    });
-  });
+  window.msInitAnalytics = initPostHog;
+
+  if (getCookie('ms_consent') === 'accepted') {
+    initPostHog();
+  }
 })();
