@@ -351,22 +351,6 @@ a{text-decoration:none;color:inherit}
 .reveal{opacity:0;transform:translateY(25px);transition:opacity .65s ease,transform .65s ease}
 .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-#orb{
-  position:fixed;
-  top:0;left:0;
-  width:380px;height:380px;
-  margin-left:-190px;margin-top:-190px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 35%, rgba(43,181,200,.28), rgba(76,222,128,.20) 55%, transparent 72%);
-  filter:blur(64px);
-  pointer-events:none;
-  z-index:1;
-  opacity:0;
-  transition:opacity .5s ease;
-  will-change:transform;
-}
-:root[data-theme="light"] body.has-pointer #orb{opacity:1}
-@media(prefers-reduced-motion:reduce){#orb{transition:none}}
 </style>
 </head>
 <body>
@@ -994,27 +978,6 @@ function faq(el) {
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   if (!open) el.classList.add('open');
 }
-</script>
-<div id="orb"></div>
-<script>
-(function(){
-  var fine = window.matchMedia('(pointer: fine)').matches;
-  if(!fine) return;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduceMotion) return;
-  document.body.classList.add('has-pointer');
-  var orb = document.getElementById('orb');
-  var tx = window.innerWidth/2, ty = window.innerHeight/2;
-  var x = tx, y = ty;
-  window.addEventListener('mousemove', function(e){ tx = e.clientX; ty = e.clientY; });
-  function tick(){
-    x += (tx - x) * 0.12;
-    y += (ty - y) * 0.12;
-    orb.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-    requestAnimationFrame(tick);
-  }
-  tick();
-})();
 </script>
 <script src="assets/analytics.js"></script>
 </body>
