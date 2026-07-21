@@ -124,15 +124,15 @@ a{text-decoration:none;color:inherit}
   <section>
     <h2>5. Cookies</h2>
     <table>
-      <tr><th>Cookie</th><th>Finalité</th><th>Durée</th></tr>
-      <tr><td><code>ms_variant</code> / <code>ms_suivi_variant</code></td><td>Répartition technique entre versions du site (test A/B), pas de suivi publicitaire</td><td>30 jours</td></tr>
-      <tr><td>Cookies PostHog</td><td>Mesure d'audience (pages vues, parcours, conversions)</td><td>Selon configuration PostHog</td></tr>
+      <tr><th>Cookie</th><th>Finalité</th><th>Durée</th><th>Consentement</th></tr>
+      <tr><td><code>ms_variant</code> / <code>ms_suivi_variant</code></td><td>Répartition technique entre versions du site (test A/B) affichée par notre serveur ; ne contient aucune donnée personnelle et n'est pas utilisé à des fins publicitaires ou de suivi cross-site</td><td>30 jours</td><td>Cookie technique, déposé dès l'affichage de la page</td></tr>
+      <tr><td>Cookies PostHog</td><td>Mesure d'audience (pages vues, parcours, clics sur les boutons d'action)</td><td>Selon configuration PostHog</td><td>Déposé uniquement après acceptation dans le bandeau cookies</td></tr>
+      <tr><td><code>ms_consent</code></td><td>Mémorise votre choix (accepté/refusé) pour ne pas réafficher le bandeau à chaque page</td><td>13 mois</td><td>Cookie technique, nécessaire au fonctionnement du bandeau lui-même</td></tr>
     </table>
     <p>
-      <span class="tbd">[État actuel à corriger avant publication : PostHog se charge aujourd'hui sur toutes les pages sans bandeau de
-      consentement préalable. Un mécanisme de consentement (bannière cookies) est en cours de développement mais n'est pas encore
-      déployé en production — cette section devra être mise à jour, et le bandeau activé, dès son déploiement pour rester conforme
-      au RGPD/ePrivacy sur les cookies non strictement nécessaires.]</span>
+      Un bandeau vous permet d'accepter ou de refuser les cookies de mesure d'audience (PostHog) avant tout dépôt : tant que vous
+      n'avez pas cliqué sur « Accepter », aucun cookie PostHog n'est posé et aucune donnée de navigation ne lui est transmise.
+      Vous pouvez revenir sur votre choix à tout moment via le lien <strong>« Gérer les cookies »</strong> présent en bas de chaque page.
     </p>
   </section>
 
@@ -198,7 +198,9 @@ a{text-decoration:none;color:inherit}
 <div class="fbot">
   <span>© 2026 M&S Strategy. Tous droits réservés.</span>
   <span>Courtier en énergie indépendant depuis 2012 · Gaz · Électricité · France</span>
+  <span><a href="#" style="color:inherit" onclick="window.msOpenCookieBanner&&window.msOpenCookieBanner();return false;">Gérer les cookies</a></span>
 </div>
 <script src="assets/analytics.js"></script>
+<script src="assets/cookie-consent.js"></script>
 </body>
 </html>
