@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculateur d'inaction énergétique — M&S Strategy</title>
-<meta name="description" content="Calculez en temps réel ce que votre inaction sur votre contrat énergie vous coûte chaque mois — et ce que vous pourriez économiser.">
+<title>Calculateur d'inaction énergétique · M&S Strategy</title>
+<meta name="description" content="Calculez en temps réel ce que votre inaction sur votre contrat énergie vous coûte chaque mois, et ce que vous pourriez économiser.">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
 <style>
@@ -500,7 +500,7 @@ input[type=range]::-moz-range-thumb {
     <span class="italic">Voici combien exactement.</span>
   </h1>
   <p class="hero-sub">
-    Renseignez votre consommation et votre date d'échéance. Le calculateur affiche en temps réel ce que l'inaction vous coûte — et ce qu'une négociation pourrait vous rapporter.
+    Renseignez votre consommation et votre date d'échéance. Le calculateur affiche en temps réel ce que l'inaction vous coûte, et ce qu'une négociation pourrait vous rapporter.
   </p>
 </header>
 
@@ -568,13 +568,13 @@ input[type=range]::-moz-range-thumb {
     </div>
 
     <select class="sector-select" id="input-engaged">
-      <option value="">— Êtes-vous engagé jusqu'à l'échéance ? —</option>
+      <option value="">Êtes-vous engagé jusqu'à l'échéance ?</option>
       <option value="oui">Oui, je suis engagé jusqu'à l'échéance</option>
       <option value="non">Non, sans engagement</option>
     </select>
 
     <select class="sector-select" id="input-sector">
-      <option value="">— Votre secteur (affine le calcul) —</option>
+      <option value="">Votre secteur (affine le calcul)</option>
       <option value="industrie">Industrie / Logistique</option>
       <option value="restauration">Restauration / CHR</option>
       <option value="agroalimentaire">Agroalimentaire</option>
@@ -613,24 +613,24 @@ input[type=range]::-moz-range-thumb {
   <div class="results-grid">
     <div class="result-cell">
       <div class="result-cell-label label-red">Surcoût annuel estimé</div>
-      <div class="result-cell-num num-red" id="res-annual">—</div>
+      <div class="result-cell-num num-red" id="res-annual">–</div>
       <div class="result-cell-sub">Par rapport à une négociation optimale au bon moment</div>
     </div>
     <div class="result-cell">
       <div class="result-cell-label label-green">Économie potentielle</div>
-      <div class="result-cell-num num-green" id="res-saving">—</div>
+      <div class="result-cell-num num-green" id="res-saving">–</div>
       <div class="result-cell-sub">Estimation sur la durée du prochain contrat (2 ans)</div>
     </div>
     <div class="result-cell">
       <div class="result-cell-label label-teal">Fenêtre de négociation</div>
-      <div class="result-cell-num num-teal" id="res-window">—</div>
-      <div class="result-cell-sub" id="res-window-sub">—</div>
+      <div class="result-cell-num num-teal" id="res-window">–</div>
+      <div class="result-cell-sub" id="res-window-sub">–</div>
     </div>
   </div>
 
   <!-- Chart -->
   <div class="chart-section">
-    <div class="chart-title">Projection sur 3 ans — avec vs sans négociation</div>
+    <div class="chart-title">Projection sur 3 ans : avec vs sans négociation</div>
     <canvas id="projection-chart"></canvas>
   </div>
 
@@ -648,7 +648,7 @@ input[type=range]::-moz-range-thumb {
 <!-- CTA -->
 <section class="cta-section">
   <div class="cta-box">
-    <h2>Maintenant que vous savez combien ça coûte<br>— voici comment <em>ne plus perdre un euro.</em></h2>
+    <h2>Maintenant que vous savez combien ça coûte,<br>voici comment <em>ne plus perdre un euro.</em></h2>
     <p>Étude personnalisée · Gratuit · Sans engagement · Résultat sous 48h</p>
     <div class="cta-pair">
       <a href="b2b.html#upload" class="btn-primary" id="cta-transmit">Transmettre ma facture →</a>
@@ -961,10 +961,10 @@ function renderResults() {
   resWindow.textContent = wq.label;
   resWindow.style.color = wq.color;
   resWindowSub.textContent = months < 6
-    ? `À ${months} mois de l'échéance — chaque semaine compte.`
+    ? `À ${months} mois de l'échéance, chaque semaine compte.`
     : months < 12
-      ? `À ${months} mois de l'échéance — encore exploitable.`
-      : `À ${months} mois de l'échéance — position favorable.`;
+      ? `À ${months} mois de l'échéance, encore exploitable.`
+      : `À ${months} mois de l'échéance : position favorable.`;
 
   // Draw chart
   drawChart();
@@ -1117,19 +1117,19 @@ function renderVerdict() {
 
   if (months <= 3) {
     icon.textContent  = '🚨';
-    title.innerHTML   = `Fenêtre <span>critique</span> — il reste ${months} mois.`;
-    body.innerHTML    = `Votre contrat se renouvelle dans moins de 3 mois. C'est la zone où 80% des dirigeants signent sans avoir comparé — et paient le prix fort pendant les 2 à 3 années suivantes. <strong>Une intervention rapide reste possible</strong> : notre processus peut produire un tableau comparatif en 48h. Transmettez votre facture maintenant, nous lançons immédiatement l'appel d'offres.`;
+    title.innerHTML   = `Fenêtre <span>critique</span> : il reste ${months} mois.`;
+    body.innerHTML    = `Votre contrat se renouvelle dans moins de 3 mois. C'est la zone où 80% des dirigeants signent sans avoir comparé, et paient le prix fort pendant les 2 à 3 années suivantes. <strong>Une intervention rapide reste possible</strong> : notre processus peut produire un tableau comparatif en 48h. Transmettez votre facture maintenant, nous lançons immédiatement l'appel d'offres.`;
   } else if (months <= 8) {
     icon.textContent  = '⚠️';
-    title.innerHTML   = `Fenêtre <span>tardive</span> — ${months} mois restants.`;
-    body.innerHTML    = `Vous êtes dans la zone où les fournisseurs savent que votre marge de manœuvre se réduit. La mise en concurrence est encore possible — mais le nombre d'offres disponibles commence à baisser. <strong>Chaque semaine supplémentaire réduit les résultats que nous pouvons obtenir.</strong> Estimation conservatrice : <strong>${savingAnn} €/an</strong> sur votre prochain contrat.`;
+    title.innerHTML   = `Fenêtre <span>tardive</span>, ${months} mois restants.`;
+    body.innerHTML    = `Vous êtes dans la zone où les fournisseurs savent que votre marge de manœuvre se réduit. La mise en concurrence est encore possible, mais le nombre d'offres disponibles commence à baisser. <strong>Chaque semaine supplémentaire réduit les résultats que nous pouvons obtenir.</strong> Estimation conservatrice : <strong>${savingAnn} €/an</strong> sur votre prochain contrat.`;
   } else if (months <= 14) {
     icon.textContent  = '✓';
-    title.innerHTML   = `Fenêtre <span style="color:var(--teal-glow)">optimale</span> — vous êtes au bon moment.`;
+    title.innerHTML   = `Fenêtre <span style="color:var(--teal-glow)">optimale</span> : vous êtes au bon moment.`;
     body.innerHTML    = `${months} mois avant votre échéance, vous êtes exactement dans la fenêtre où nos résultats sont les meilleurs. Les fournisseurs sont en compétition ouverte, le marché est lisible, et vous avez le temps de choisir sans pression. <strong>Économie estimée sur 2 ans : ${saving2yr} €.</strong> Il n'y a aucune raison d'attendre.`;
   } else {
     icon.textContent  = '⚡';
-    title.innerHTML   = `<span style="color:var(--green)">Excellente position</span> — ${months} mois d'avance.`;
+    title.innerHTML   = `<span style="color:var(--green)">Excellente position</span>, ${months} mois d'avance.`;
     body.innerHTML    = `Vous êtes dans une position rare : suffisamment en avance pour choisir le meilleur moment de marché plutôt que de subir le contexte. Nous pouvons lancer une analyse maintenant, identifier la fenêtre optimale, et vous alerter quand les conditions sont les plus favorables. <strong>Économie potentielle sur 2 ans : ${saving2yr} €.</strong>`;
   }
 }
