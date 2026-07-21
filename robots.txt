@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /index-b.html
 
 Sitemap: https://www.byandry.com/sitemap.xml

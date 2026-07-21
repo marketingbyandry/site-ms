@@ -23,6 +23,32 @@
   --muted:#8aacb4;
   --muted2:#5a8a96;
 }
+:root[data-theme="light"]{
+  --dark:#faf8f5;
+  --dark2:#EBEBEB;
+  --cream:#0c2635;
+  --muted:#6b6058;
+  --muted2:#4a4a4a;
+}
+:root[data-theme="light"] .nav,
+:root[data-theme="light"] .qband,
+:root[data-theme="light"] .cstrip,
+:root[data-theme="light"] .sfooter,
+:root[data-theme="light"] .fbot{
+  background:#0c2635;
+  --cream:#fff;
+  --muted:rgba(255,255,255,.75);
+  --muted2:rgba(255,255,255,.6);
+  --teal-glow:#fff;
+  --teal-light:#fff;
+}
+:root[data-theme="light"] .fbot{color:#fff}
+:root[data-theme="light"] .cstrip .cic{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.4)}
+:root[data-theme="light"] .nlinks li:nth-child(odd) a:hover{color:var(--teal)}
+:root[data-theme="light"] .nlinks li:nth-child(even) a:hover{color:var(--green)}
+:root[data-theme="light"] .ncta:hover{background:linear-gradient(100deg,var(--teal),var(--green));color:#fff;box-shadow:none}
+:root[data-theme="light"] .def-box{background:rgba(26,122,138,.05)}
+:root[data-theme="light"] .pcta:hover{background:linear-gradient(100deg,var(--teal),var(--green));color:#fff;transform:scale(1.05);box-shadow:none}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Satoshi',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -123,6 +149,14 @@ a{text-decoration:none;color:inherit}
 </style>
 </head>
 <body>
+<script>
+(function(){
+  var m = document.cookie.match(/(?:^|;\s*)ms_variant=([AB])/);
+  if(m && m[1] === 'B'){
+    document.documentElement.setAttribute('data-theme','light');
+  }
+})();
+</script>
 
 <!-- NAV -->
 <nav class="nav">
@@ -310,5 +344,6 @@ function faq(el) {
   if (!open) el.classList.add('open');
 }
 </script>
+<script src="assets/analytics.js"></script>
 </body>
 </html>
