@@ -488,10 +488,13 @@ function faq(el) {
 }
 
 function openTallyForm(source) {
-  Tally.openPopup('kd15W1', { layout: 'modal', width: 700, hiddenFields: { source } });
+  var hiddenFields = { source: source };
+  if (window.msAttribution) Object.assign(hiddenFields, window.msAttribution());
+  Tally.openPopup('kd15W1', { layout: 'modal', width: 700, hiddenFields: hiddenFields });
 }
 </script>
 <script async src="https://tally.so/widgets/embed.js"></script>
+<script src="assets/attribution.js"></script>
 <script src="assets/analytics.js"></script>
 <script src="assets/cookie-consent.js"></script>
 </body>
