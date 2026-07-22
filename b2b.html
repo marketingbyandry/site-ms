@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script src="assets/consent-pixel.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Courtier en énergie pour professionnels : TPE, PME, ETI | M&S Strategy</title>
@@ -503,6 +504,7 @@ function openTallyForm(source) {
       localStorage.removeItem('msLeadContext');
     }
   } catch (e) { /* localStorage unavailable — form still opens without pre-fill */ }
+  if (window.msTrackLead) window.msTrackLead(source);
   Tally.openPopup('kd15W1', { layout: 'modal', width: 700, hiddenFields });
 }
 </script>

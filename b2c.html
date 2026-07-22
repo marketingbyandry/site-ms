@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script src="assets/consent-pixel.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Courtier en énergie pour particuliers : Gaz & Électricité | M&S Strategy</title>
@@ -488,6 +489,7 @@ function faq(el) {
 }
 
 function openTallyForm(source) {
+  if (window.msTrackLead) window.msTrackLead(source);
   Tally.openPopup('kd15W1', { layout: 'modal', width: 700, hiddenFields: { source } });
 }
 </script>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script src="assets/consent-pixel.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>M&S Strategy · Réduisez votre facture énergétique</title>
@@ -868,6 +869,7 @@
 
   // ── Tally popup ──
   function openTallyForm(source) {
+    if (window.msTrackLead) window.msTrackLead(source);
     Tally.openPopup('kd15W1', { layout: 'modal', width: 700, hiddenFields: { source } });
   }
 </script>
