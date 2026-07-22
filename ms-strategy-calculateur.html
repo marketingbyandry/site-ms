@@ -1169,5 +1169,7 @@ document.getElementById('cta-transmit').addEventListener('click', () => {
   } catch (e) { /* localStorage unavailable — navigation still proceeds */ }
 });
 </script>
+<!-- Vercel Web Analytics : sans cookie et sans accès au terminal, donc chargé sans consentement préalable (intérêt légitime) — contrairement à PostHog, qui reste gaté par assets/cookie-consent.js. Voir politique-confidentialite.html §5. -->
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
