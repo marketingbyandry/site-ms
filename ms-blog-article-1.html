@@ -594,5 +594,7 @@ if (bigCounter) {
   bigObs.observe(bigCounter);
 }
 </script>
+<!-- Vercel Web Analytics : sans cookie et sans accès au terminal, donc chargé sans consentement préalable (intérêt légitime) — contrairement à PostHog, qui reste gaté par assets/cookie-consent.js. Voir politique-confidentialite.html §5. -->
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

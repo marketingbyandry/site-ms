@@ -97,7 +97,7 @@ a{text-decoration:none;color:inherit}
       <tr><th>Catégorie</th><th>Exemples</th><th>Origine</th></tr>
       <tr><td>Identification</td><td>Nom, prénom, email, téléphone</td><td>Formulaires de contact / demande d'étude (Tally)</td></tr>
       <tr><td>Données de consommation</td><td>Factures d'énergie transmises (puissance souscrite, historique de consommation, fournisseur actuel)</td><td>Upload volontaire par le Client</td></tr>
-      <tr><td>Navigation</td><td>Pages visitées, variante A/B affichée, provenance</td><td>Cookies techniques et PostHog Analytics</td></tr>
+      <tr><td>Navigation</td><td>Pages visitées, variante A/B affichée, provenance</td><td>Cookies techniques, PostHog Analytics et Vercel Web Analytics (sans cookie)</td></tr>
     </table>
   </section>
 
@@ -134,14 +134,22 @@ a{text-decoration:none;color:inherit}
       n'avez pas cliqué sur « Accepter », aucun cookie PostHog n'est posé et aucune donnée de navigation ne lui est transmise.
       Vous pouvez revenir sur votre choix à tout moment via le lien <strong>« Gérer les cookies »</strong> présent en bas de chaque page.
     </p>
+    <p>
+      Nous utilisons par ailleurs <strong>Vercel Web Analytics</strong>, une solution de mesure d'audience qui
+      <strong>ne dépose aucun cookie</strong> et ne lit aucune information stockée sur votre terminal : elle ne produit que des
+      statistiques agrégées (pages vues, provenance, type d'appareil), sans identifiant publicitaire ni suivi d'un site à l'autre.
+      N'accédant pas à votre terminal, elle ne relève pas de l'obligation de consentement préalable et repose sur notre intérêt
+      légitime à mesurer la fréquentation du site (voir section 4). Vous conservez un droit d'opposition (voir section 8).
+    </p>
   </section>
 
   <section>
     <h2>6. Destinataires des données</h2>
     <p>
       Vos données peuvent être transmises aux fournisseurs d'énergie sollicités dans le cadre de l'appel d'offres, avec votre accord
-      implicite à la demande d'étude. Elles sont également accessibles à nos sous-traitants techniques : hébergement (Vercel Inc.),
-      mesure d'audience (PostHog, hébergé en UE — eu.i.posthog.com), gestion des formulaires (Tally).
+      implicite à la demande d'étude. Elles sont également accessibles à nos sous-traitants techniques : hébergement et mesure
+      d'audience sans cookie (Vercel Inc.), mesure d'audience (PostHog, hébergé en UE — eu.i.posthog.com), gestion des
+      formulaires (Tally).
     </p>
   </section>
 
@@ -202,5 +210,7 @@ a{text-decoration:none;color:inherit}
 </div>
 <script src="assets/analytics.js"></script>
 <script src="assets/cookie-consent.js"></script>
+<!-- Vercel Web Analytics : sans cookie et sans accès au terminal, donc chargé sans consentement préalable (intérêt légitime) — contrairement à PostHog, qui reste gaté par assets/cookie-consent.js. Voir politique-confidentialite.html §5. -->
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
