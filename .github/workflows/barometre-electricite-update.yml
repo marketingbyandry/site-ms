@@ -1,0 +1,30 @@
+# .github/workflows/barometre-electricite-update.yml
+name: Update Baromètre électricité
+
+on:
+  schedule:
+    - cron: '0 6 1 * *'
+  workflow_dispatch: {}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: node scripts/update-barometre-electricite.mjs
+        env:
+          ENTSOE_API_TOKEN: ${{ secrets.ENTSOE_API_TOKEN }}
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'chore: update Baromètre électricité data'
+          title: 'Baromètre électricité — mise à jour mensuelle automatique'
+          branch: barometre-electricite-auto-update
+          body: |
+            Mise à jour automatique de `data/barometre-electricite.json` via
+            `scripts/update-barometre-electricite.mjs` (source ENTSO-E
+            Transparency Platform). À relire avant merge : un chiffre
+            aberrant indiquerait un problème côté API ou parsing.
