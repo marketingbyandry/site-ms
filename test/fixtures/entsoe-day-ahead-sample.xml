@@ -1,0 +1,19 @@
+<Publication_MarketDocument>
+  <TimeSeries>
+    <Period>
+      <timeInterval>
+        <start>2026-07-01T00:00Z</start>
+        <end>2026-07-01T02:00Z</end>
+      </timeInterval>
+      <resolution>PT60M</resolution>
+      <Point>
+        <position>1</position>
+        <price.amount>58.42</price.amount>
+      </Point>
+      <Point>
+        <position>2</position>
+        <price.amount>61.10</price.amount>
+      </Point>
+    </Period>
+  </TimeSeries>
+</Publication_MarketDocument>
