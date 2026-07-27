@@ -80,4 +80,10 @@
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://www.byandry.com/ms-blog-barometre-2026-t1.html</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
