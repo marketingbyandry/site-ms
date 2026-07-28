@@ -15,7 +15,9 @@ async function loadBarometreData() {
 
   const gazEl = document.getElementById('indicateur-gaz');
   if (latestGaz && gazEl) {
-    gazEl.textContent = `${latestGaz.avgPriceEurPerMWh} EUR/MWh (moyenne ${latestGaz.period}, source ${latestGaz.source})`;
+    gazEl.textContent = latestGaz.partial
+      ? `${latestGaz.avgPriceEurPerMWh} EUR/MWh (dernière valeur observée, ${latestGaz.period} en cours — pas une moyenne trimestrielle, source ${latestGaz.source})`
+      : `${latestGaz.avgPriceEurPerMWh} EUR/MWh (moyenne ${latestGaz.period}, source ${latestGaz.source})`;
   }
 }
 

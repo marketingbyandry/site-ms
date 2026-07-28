@@ -1,3 +1,13 @@
 {
-  "quarterly": []
+  "quarterly": [
+    {
+      "period": "2026-Q3",
+      "avgPriceEurPerMWh": 63.90,
+      "source": "Selectra (reporting clôture PEG Month-Ahead)",
+      "sourceUrl": "https://selectra.info/energie/gaz/prix-du-gaz",
+      "recordedAt": "2026-07-28T15:33:30.000Z",
+      "partial": true,
+      "note": "Dernière valeur observée à date de rédaction : 63,90 €/MWh, clôture du contrat PEG Month-Ahead (livraison août 2026) au 24 juillet 2026 — et non une moyenne trimestrielle, le T3 2026 étant encore en cours."
+    }
+  ]
 }
