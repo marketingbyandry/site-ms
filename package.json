@@ -2,6 +2,7 @@
   "name": "site-ms",
   "private": true,
   "dependencies": {
-    "@vercel/edge": "^1.1.2"
+    "@vercel/edge": "^1.1.2",
+    "fast-xml-parser": "^5.10.1"
   }
 }
