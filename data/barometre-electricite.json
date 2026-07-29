@@ -1,1 +1,10 @@
-{ "monthly": [] }
+{
+  "monthly": [
+    {
+      "period": "2026-06",
+      "avgPriceEurPerMWh": 73.66,
+      "source": "ENTSO-E Transparency Platform",
+      "fetchedAt": "2026-07-29T02:40:22.000Z"
+    }
+  ]
+}
