@@ -111,6 +111,13 @@ a{text-decoration:none;color:inherit}
 /* Content */
 .pc{position:relative;z-index:10}
 
+/* Section kicker — makes "Pro" / "Foyer" the first thing the eye reads */
+.pkicker{display:inline-block;font-family:'Satoshi',sans-serif;font-weight:800;font-size:clamp(1rem,1.9vw,1.4rem);letter-spacing:.1em;text-transform:uppercase;padding:.32rem 1.05rem;border-radius:2px;margin-bottom:.9rem;transition:all .3s}
+.panel-b2b .pkicker{color:#fff;background:var(--teal)}
+.panel-b2c .pkicker{color:var(--dark);background:var(--green)}
+.hero.hl .panel-b2b .pkicker{background:var(--teal-light);box-shadow:0 0 20px rgba(94,207,220,.45)}
+.hero.hr .panel-b2c .pkicker{background:var(--green-glow);box-shadow:0 0 20px rgba(76,222,128,.45)}
+
 .plbl{display:inline-flex;align-items:center;gap:.45rem;font-family:'Satoshi',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:.26rem .78rem;border-radius:2px;margin-bottom:1.4rem;transition:all .3s}
 .panel-b2b .plbl{color:var(--teal-glow);background:rgba(26,122,138,.13);border:1px solid rgba(94,207,220,.2)}
 .panel-b2c .plbl{color:var(--green);background:rgba(76,222,128,.09);border:1px solid rgba(76,222,128,.2)}
@@ -152,8 +159,8 @@ a{text-decoration:none;color:inherit}
 .pcta:hover .ca{transform:translateX(4px)}
 
 .pc>*{opacity:0;transform:translateY(20px);animation:cin .65s ease forwards}
-.panel-b2b .plbl{animation-delay:.55s}.panel-b2b .ptgt{animation-delay:.67s}.panel-b2b .ptitle{animation-delay:.76s}.panel-b2b .pstats{animation-delay:.86s}.panel-b2b .psub{animation-delay:.92s}.panel-b2b .pcta{animation-delay:1.02s}
-.panel-b2c .plbl{animation-delay:.65s}.panel-b2c .ptgt{animation-delay:.77s}.panel-b2c .ptitle{animation-delay:.86s}.panel-b2c .psub{animation-delay:.96s}.panel-b2c .pcta{animation-delay:1.06s}
+.panel-b2b .pkicker{animation-delay:.42s}.panel-b2b .plbl{animation-delay:.55s}.panel-b2b .ptgt{animation-delay:.67s}.panel-b2b .ptitle{animation-delay:.76s}.panel-b2b .pstats{animation-delay:.86s}.panel-b2b .psub{animation-delay:.92s}.panel-b2b .pcta{animation-delay:1.02s}
+.panel-b2c .pkicker{animation-delay:.5s}.panel-b2c .plbl{animation-delay:.65s}.panel-b2c .ptgt{animation-delay:.77s}.panel-b2c .ptitle{animation-delay:.86s}.panel-b2c .psub{animation-delay:.96s}.panel-b2c .pcta{animation-delay:1.06s}
 @keyframes cin{to{opacity:1;transform:none}}
 
 .scrl{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);z-index:30;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:0;animation:cin .5s 1.5s forwards}
@@ -508,6 +515,7 @@ a{text-decoration:none;color:inherit}
   <div class="panel panel-b2b" id="pb2b">
     <span class="bgw">PRO</span>
     <div class="pc">
+      <span class="pkicker">Pro</span>
       <span class="plbl">TPE · PME · ETI · Gaz · Électricité</span>
       <p class="ptgt">Vous êtes professionnel</p>
       <h2 class="ptitle">
@@ -529,6 +537,7 @@ a{text-decoration:none;color:inherit}
   <div class="panel panel-b2c" id="pb2c">
     <span class="bgw">FOYER</span>
     <div class="pc">
+      <span class="pkicker">Foyer</span>
       <span class="plbl">Particuliers · Résidentiel</span>
       <p class="ptgt">Vous êtes particulier</p>
       <h2 class="ptitle">
