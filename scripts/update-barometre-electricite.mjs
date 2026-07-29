@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 import { parseDayAheadPrices, averagePriceEurPerMWh } from '../lib/entsoe.mjs';
 
 const DATA_PATH = new URL('../data/barometre-electricite.json', import.meta.url);
@@ -59,6 +60,6 @@ async function main() {
   console.log(`Recorded ${period}: ${avgPriceEurPerMWh} EUR/MWh`);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((err) => { console.error(err); process.exit(1); });
 }
