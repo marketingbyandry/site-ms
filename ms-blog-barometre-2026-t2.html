@@ -19,6 +19,8 @@
   --cream: #f5f0e8;
   --muted: #8aacb4;
   --body-max: 720px;
+  --accent: var(--green);
+  --accent-glow: rgba(76,222,128,.18);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,7 +73,7 @@ nav {
   content: '';
   position: absolute; top: 60px; right: -100px;
   width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(26,122,138,.2) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
   pointer-events: none;
 }
 .article-meta {
@@ -134,6 +136,51 @@ nav {
   margin: 0 auto;
   padding: 0 5vw 6rem;
 }
+
+.side-rail {
+  grid-column: 3;
+  align-self: start;
+  position: sticky;
+  top: 6rem;
+  display: none;
+}
+@media (min-width: 1280px) {
+  .side-rail { display: block; }
+}
+.sparkline-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: .6rem;
+  color: var(--muted);
+  margin-top: .3rem;
+  font-family: 'Satoshi', sans-serif;
+}
+.sparkline-labels .active { color: var(--accent); font-weight: 700; }
+.spark-line { transition: stroke-dashoffset .7s ease-out; }
+.sparkline-delta {
+  font-size: .78rem;
+  color: var(--accent);
+  margin-top: .6rem;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 700;
+}
+.rail-nav {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  border-top: 1px solid rgba(43,181,200,.15);
+  padding-top: 1.2rem;
+  margin-top: 2rem;
+}
+.rail-nav a {
+  font-size: .78rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: .02em;
+}
+.rail-nav a.active { color: var(--accent); }
+.cta-secondary { font-size: .85rem; color: var(--muted); margin-top: 1rem; }
+.cta-secondary a { color: var(--teal-light); }
 
 h2 {
   font-family: 'Instrument Serif', serif; font-weight: 400;
@@ -325,7 +372,7 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 
 <nav>
   <a href="index.html" class="nav-logo"><img src="assets/ms-strategy-logo.png" alt="M&S Strategy"></a>
-  <a href="#cta" class="nav-cta">Étude gratuite →</a>
+  <a href="ms-strategy-calculateur.html" class="nav-cta">Calculateur d'inaction →</a>
 </nav>
 
 <article>
@@ -343,22 +390,38 @@ footer a { color: var(--teal-bright); text-decoration: none; }
     <p class="hero-intro">
       Deuxième numéro du format trimestriel : après un T1 marqué par une nette remontée de l'électricité, ce bilan d'avril à juin 2026 montre un mouvement inverse, avec un repli marqué du prix moyen day-ahead.
     </p>
+    <div class="stat-row reveal">
+      <div class="stat-item">
+        <span class="stat-num" data-target="57"><span class="counter-val">0</span><span class="unit"> €/MWh</span></span>
+        <span class="stat-label">Prix moyen électricité — T2 2026</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" style="color:var(--accent)">−22,5 % vs T1 2026</span>
+        <span class="stat-label">Évolution vs période précédente</span>
+      </div>
+    </div>
   </header>
 
+  <div class="article-layout">
   <div class="article-body">
 
+    <section id="periode">
     <h2>Période analysée</h2>
 
     <p>Ce bilan couvre le <strong>deuxième trimestre 2026 (avril-juin 2026)</strong>. Il a été rédigé et publié le <strong>28 juillet 2026</strong>, peu après la clôture du trimestre analysé.</p>
 
     <p><em>Note méthodologique : la date de publication de cet article correspond à sa date réelle de rédaction (juillet 2026), jamais à la période historique qu'il analyse (T2 2026, avril-juin).</em></p>
 
+    </section>
+    <section id="electricite">
     <h2>Prix moyen électricité</h2>
 
     <p>Sur T2 2026, le prix moyen day-ahead de l'électricité en France s'est établi à <strong>57,34 €/MWh</strong>, selon l'ENTSO-E Transparency Platform (prix day-ahead France, moyenne calculée sur le deuxième trimestre 2026). Ce niveau marque un repli net par rapport au trimestre précédent : T1 2026 affichait 74,00 €/MWh, soit un écart de plus de 16 €/MWh d'un trimestre à l'autre — une donnée purement factuelle à ce stade, sans qu'on en tire ici de cause précise.</p>
 
     <p><a href="barometre-energie.html" style="color:var(--teal-light)">Consulter les données actualisées du Baromètre M&S Strategy →</a></p>
 
+    </section>
+    <section id="gaz">
     <h2>Prix moyen gaz</h2>
 
     <p>Pour ce deuxième trimestre 2026 également, nous n'avons pas pu établir de moyenne trimestrielle <strong>réalisée</strong> du prix de gros du gaz reposant sur une source publique fiable. Deux types de données existent, mais aucune des deux ne convient à la méthodologie de gros suivie par ce Baromètre : d'un côté, le « prix repère de vente » publié par la CRE pour les particuliers — un indicateur de détail, construit par ailleurs sur des tranches de consommation elles-mêmes numérotées « T1 », « T2 », etc., une nomenclature qui n'a rien à voir avec les trimestres calendaires et qu'il ne faut pas confondre avec eux ; de l'autre, une cotation Month-Ahead ponctuelle relevée fin avril 2026 pour une livraison en mai (45,94 €/MWh), qui est un instantané de marché à terme et non une moyenne réalisée sur l'ensemble du trimestre.</p>
@@ -367,7 +430,19 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 
     <p><a href="barometre-energie.html" style="color:var(--teal-light)">Consulter les données actualisées du Baromètre M&S Strategy →</a></p>
 
+    </section>
+    <section id="contexte">
     <h2>Contexte du marché</h2>
+    <h3>Ce qu'il faut retenir</h3>
+    <ul class="checklist reveal">
+      <li>57,34 €/MWh, soit −22,5 % vs T1 2026.</li>
+      <li>La variation T1→T2 aurait été lissée dans un format annuel.</li>
+      <li>Le volet gaz reste en attente d'une source fiable.</li>
+    </ul>
+    <div class="pull-quote reveal">
+      <p>« La variation observée entre T1 et T2 2026 sur l'électricité aurait été largement lissée, voire invisible, dans un format annuel. »</p>
+      <cite>Baromètre M&S Strategy — T2 2026</cite>
+    </div>
 
     <p>Ce deuxième numéro confirme l'intérêt du passage à un rythme trimestriel amorcé avec le premier bilan : la variation observée entre T1 et T2 2026 sur l'électricité (de 74,00 €/MWh à 57,34 €/MWh) aurait été largement lissée, voire invisible, dans un format annuel. Elle illustre au contraire, documentée trimestre par trimestre, l'ampleur que peuvent prendre les mouvements de prix de gros sur des fenêtres courtes.</p>
 
@@ -383,12 +458,13 @@ footer a { color: var(--teal-bright); text-decoration: none; }
       </ul>
     </div>
 
+    </section>
     <div id="cta">
       <div class="cta-section reveal">
-        <p class="cta-title">Votre entreprise paie-t-elle le juste prix ?</p>
-        <p class="cta-sub">Transmettez votre dernière facture énergie. Nous vous indiquons sous 48h si une opportunité existe, gratuitement et sans engagement.</p>
-        <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
-        <p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 48h</p>
+        <p class="cta-title">Chaque mois sans négocier a un coût réel.</p>
+        <p class="cta-sub">Renseignez votre consommation et votre échéance : le calculateur affiche en temps réel ce que l'inaction vous coûte, et ce qu'une négociation pourrait vous rapporter.</p>
+        <a href="ms-strategy-calculateur.html" class="cta-btn">Calculez ce que l'inaction vous coûte, en temps réel →</a>
+        <p class="cta-secondary"><a href="b2b.html#upload">Ou transmettez votre facture pour une étude gratuite en 48h →</a></p>
       </div>
     </div>
 
@@ -398,6 +474,32 @@ footer a { color: var(--teal-bright); text-decoration: none; }
       <a href="blog.html" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
     </div>
 
+  </div>
+  <aside class="side-rail">
+    <div class="sparkline-wrap">
+      <svg viewBox="0 0 240 70" width="100%" height="70" aria-hidden="true">
+        <path class="spark-line" d="M10,10 L46.7,50.9 L83.3,59.7 L120,58.9 L156.7,56.2 L193.3,60 L230,49.9" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="500" stroke-dashoffset="500"/>
+        <circle cx="10" cy="10" r="2.5" fill="var(--muted)"/>
+        <circle cx="46.7" cy="50.9" r="2.5" fill="var(--muted)"/>
+        <circle cx="83.3" cy="59.7" r="2.5" fill="var(--muted)"/>
+        <circle cx="120" cy="58.9" r="2.5" fill="var(--muted)"/>
+        <circle cx="156.7" cy="56.2" r="2.5" fill="var(--muted)"/>
+        <circle cx="193.3" cy="60" r="4" fill="var(--accent)"/>
+        <circle cx="230" cy="49.9" r="2.5" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="2 2"/>
+      </svg>
+      <div class="sparkline-labels">
+        <span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>T1</span><span class="active">T2</span><span>T3</span>
+      </div>
+      <p class="sparkline-delta">−22,5 % vs T1 2026</p>
+    </div>
+    <nav class="rail-nav">
+      <a href="#periode">Période analysée</a>
+      <a href="#electricite">Prix moyen électricité</a>
+      <a href="#gaz">Prix moyen gaz</a>
+      <a href="#contexte">Contexte du marché</a>
+      <a href="#cta">Passer à l'action</a>
+    </nav>
+  </aside>
   </div>
 </article>
 
@@ -412,7 +514,7 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 </footer>
 
 <div class="floating-cta" id="floating-cta">
-  <a href="#cta">Étude gratuite · 48h →</a>
+  <a href="ms-strategy-calculateur.html">Calculer mon inaction →</a>
 </div>
 
 <script>
@@ -479,6 +581,31 @@ if (bigCounter) {
   }, { threshold: 0.4 });
   bigObs.observe(bigCounter);
 }
+
+// ── Sparkline draw-in
+const sparkPath = document.querySelector('.spark-line');
+if (sparkPath) {
+  const sparkObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.strokeDashoffset = '0'; sparkObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  sparkObs.observe(sparkPath);
+}
+
+// ── Rail nav active section
+const railLinks = document.querySelectorAll('.rail-nav a');
+const railSections = ['periode', 'electricite', 'gaz', 'contexte']
+  .map(id => document.getElementById(id))
+  .filter(Boolean);
+const railObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      railLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-20% 0px -60% 0px' });
+railSections.forEach(s => railObs.observe(s));
 </script>
 </body>
 </html>
