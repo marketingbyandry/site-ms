@@ -19,6 +19,8 @@
   --cream: #f5f0e8;
   --muted: #8aacb4;
   --body-max: 720px;
+  --accent: var(--green);
+  --accent-glow: rgba(76,222,128,.18);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,7 +73,7 @@ nav {
   content: '';
   position: absolute; top: 60px; right: -100px;
   width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(26,122,138,.2) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
   pointer-events: none;
 }
 .article-meta {
@@ -134,6 +136,51 @@ nav {
   margin: 0 auto;
   padding: 0 5vw 6rem;
 }
+
+.side-rail {
+  grid-column: 3;
+  align-self: start;
+  position: sticky;
+  top: 6rem;
+  display: none;
+}
+@media (min-width: 1280px) {
+  .side-rail { display: block; }
+}
+.sparkline-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: .6rem;
+  color: var(--muted);
+  margin-top: .3rem;
+  font-family: 'Satoshi', sans-serif;
+}
+.sparkline-labels .active { color: var(--accent); font-weight: 700; }
+.spark-line { transition: stroke-dashoffset .7s ease-out; }
+.sparkline-delta {
+  font-size: .78rem;
+  color: var(--accent);
+  margin-top: .6rem;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 700;
+}
+.rail-nav {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  border-top: 1px solid rgba(43,181,200,.15);
+  padding-top: 1.2rem;
+  margin-top: 2rem;
+}
+.rail-nav a {
+  font-size: .78rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: .02em;
+}
+.rail-nav a.active { color: var(--accent); }
+.cta-secondary { font-size: .85rem; color: var(--muted); margin-top: 1rem; }
+.cta-secondary a { color: var(--teal-light); }
 
 h2 {
   font-family: 'Instrument Serif', serif; font-weight: 400;
@@ -325,7 +372,7 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 
 <nav>
   <a href="index.html" class="nav-logo"><img src="assets/ms-strategy-logo.png" alt="M&S Strategy"></a>
-  <a href="#cta" class="nav-cta">Étude gratuite →</a>
+  <a href="ms-strategy-calculateur.html" class="nav-cta">Calculateur d'inaction →</a>
 </nav>
 
 <article>
@@ -343,29 +390,57 @@ footer a { color: var(--teal-bright); text-decoration: none; }
     <p class="hero-intro">
       Retour sur l'année de la décrue : après le pic de crise de 2022, les prix de gros de l'électricité et du gaz sont progressivement redescendus tout au long de 2023, à mesure que les stocks de gaz européens se reconstituaient et que le parc nucléaire français retrouvait de la disponibilité.
     </p>
+    <div class="stat-row reveal">
+      <div class="stat-item">
+        <span class="stat-num" data-target="97"><span class="counter-val">0</span><span class="unit"> €/MWh</span></span>
+        <span class="stat-label">Prix moyen électricité — 2023</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" style="color:var(--accent)">−64,7 % vs 2022</span>
+        <span class="stat-label">Évolution vs période précédente</span>
+      </div>
+    </div>
   </header>
 
+  <div class="article-layout">
   <div class="article-body">
 
+    <section id="periode">
     <h2>Période analysée</h2>
 
     <p>Ce bilan couvre <strong>l'année 2023</strong> dans son ensemble. Il a été rédigé et publié le <strong>27 juillet 2026</strong>, avec le recul de plusieurs années sur les données de marché de cette période — il ne s'agit pas d'une publication d'époque, mais d'une analyse rétrospective réalisée aujourd'hui à partir de sources officielles couvrant l'année 2023.</p>
 
     <p><em>Note méthodologique : la date de publication de cet article correspond à sa date réelle de rédaction (2026), jamais à la période historique qu'il analyse (2023).</em></p>
 
+    </section>
+    <section id="electricite">
     <h2>Prix moyen électricité</h2>
 
     <p>Sur l'année 2023, le prix moyen day-ahead de l'électricité en France s'est établi à <strong>96,84 €/MWh</strong>, calculé sur l'ensemble des prix day-ahead publiés pour la France sur la plateforme ENTSO-E Transparency Platform (année calendaire complète, du 1ᵉʳ janvier au 31 décembre 2023). Ce chiffre est cohérent avec celui publié par la Commission de Régulation de l'Énergie (CRE), qui évoque un prix moyen de gros de l'ordre de 97 €/MWh pour 2023 — confirmant un net retour vers des niveaux plus raisonnables après le pic de 2022.</p>
 
     <p><a href="barometre-energie.html" style="color:var(--teal-light)">Consulter les données actualisées du Baromètre M&S Strategy →</a></p>
 
+    </section>
+    <section id="gaz">
     <h2>Prix moyen gaz</h2>
 
     <p>Sur la même année, le prix moyen du gaz sur le marché de gros s'est établi à environ <strong>40 €/MWh</strong>, selon l'indice mensuel M+1 (mois suivant), tel que rapporté dans le <em>Rapport de surveillance des marchés de gros 2025</em> de la CRE, sur sa moyenne pour l'année 2023. C'est près de deux fois moins qu'en 2022, où les cours avaient atteint des sommets historiques dans le sillage de la crise gazière européenne.</p>
 
     <p><a href="barometre-energie.html" style="color:var(--teal-light)">Consulter les données actualisées du Baromètre M&S Strategy →</a></p>
 
+    </section>
+    <section id="contexte">
     <h2>Contexte du marché</h2>
+    <h3>Ce qu'il faut retenir</h3>
+    <ul class="checklist reveal">
+      <li>96,84 €/MWh en moyenne, soit −64,7 % vs 2022.</li>
+      <li>Gaz à environ 40 €/MWh, deux fois moins qu'en 2022.</li>
+      <li>La reconstitution des stocks gaziers européens a été le moteur principal de la décrue.</li>
+    </ul>
+    <div class="pull-quote reveal">
+      <p>« 2023 n'aura pas été un retour brutal à la normale, mais une normalisation progressive, construite mois après mois. »</p>
+      <cite>Baromètre M&S Strategy — 2023</cite>
+    </div>
 
     <p>Après le choc de 2022, 2023 aura été l'année de la décrue. Ce n'est pas un retour brutal à la normale, mais une normalisation progressive, qui s'est construite mois après mois plutôt qu'en un seul mouvement. Le facteur déterminant a été la reconstitution des stocks de gaz européens : contrairement aux craintes exprimées fin 2022, l'Europe est parvenue à remplir ses réservoirs de stockage à un niveau confortable avant l'hiver 2023-2024, grâce à une combinaison d'importations soutenues de gaz naturel liquéfié (GNL), d'une demande industrielle et résidentielle restée modérée, et d'un hiver 2022-2023 globalement plus doux que redouté qui avait limité les prélèvements sur les stocks.</p>
 
@@ -384,12 +459,13 @@ footer a { color: var(--teal-bright); text-decoration: none; }
       </ul>
     </div>
 
+    </section>
     <div id="cta">
       <div class="cta-section reveal">
-        <p class="cta-title">Votre entreprise paie-t-elle le juste prix ?</p>
-        <p class="cta-sub">Transmettez votre dernière facture énergie. Nous vous indiquons sous 48h si une opportunité existe, gratuitement et sans engagement.</p>
-        <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
-        <p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 48h</p>
+        <p class="cta-title">Chaque mois sans négocier a un coût réel.</p>
+        <p class="cta-sub">Renseignez votre consommation et votre échéance : le calculateur affiche en temps réel ce que l'inaction vous coûte, et ce qu'une négociation pourrait vous rapporter.</p>
+        <a href="ms-strategy-calculateur.html" class="cta-btn">Calculez ce que l'inaction vous coûte, en temps réel →</a>
+        <p class="cta-secondary"><a href="b2b.html#upload">Ou transmettez votre facture pour une étude gratuite en 48h →</a></p>
       </div>
     </div>
 
@@ -399,6 +475,32 @@ footer a { color: var(--teal-bright); text-decoration: none; }
       <a href="blog.html" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
     </div>
 
+  </div>
+  <aside class="side-rail">
+    <div class="sparkline-wrap">
+      <svg viewBox="0 0 240 70" width="100%" height="70" aria-hidden="true">
+        <path class="spark-line" d="M10,10 L46.7,50.9 L83.3,59.7 L120,58.9 L156.7,56.2 L193.3,60 L230,49.9" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="500" stroke-dashoffset="500"/>
+        <circle cx="10" cy="10" r="2.5" fill="var(--muted)"/>
+        <circle cx="46.7" cy="50.9" r="4" fill="var(--accent)"/>
+        <circle cx="83.3" cy="59.7" r="2.5" fill="var(--muted)"/>
+        <circle cx="120" cy="58.9" r="2.5" fill="var(--muted)"/>
+        <circle cx="156.7" cy="56.2" r="2.5" fill="var(--muted)"/>
+        <circle cx="193.3" cy="60" r="2.5" fill="var(--muted)"/>
+        <circle cx="230" cy="49.9" r="2.5" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="2 2"/>
+      </svg>
+      <div class="sparkline-labels">
+        <span>2022</span><span class="active">2023</span><span>2024</span><span>2025</span><span>T1</span><span>T2</span><span>T3</span>
+      </div>
+      <p class="sparkline-delta">−64,7 % vs 2022</p>
+    </div>
+    <nav class="rail-nav">
+      <a href="#periode">Période analysée</a>
+      <a href="#electricite">Prix moyen électricité</a>
+      <a href="#gaz">Prix moyen gaz</a>
+      <a href="#contexte">Contexte du marché</a>
+      <a href="#cta">Passer à l'action</a>
+    </nav>
+  </aside>
   </div>
 </article>
 
@@ -413,7 +515,7 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 </footer>
 
 <div class="floating-cta" id="floating-cta">
-  <a href="#cta">Étude gratuite · 48h →</a>
+  <a href="ms-strategy-calculateur.html">Calculer mon inaction →</a>
 </div>
 
 <script>
@@ -480,6 +582,31 @@ if (bigCounter) {
   }, { threshold: 0.4 });
   bigObs.observe(bigCounter);
 }
+
+// ── Sparkline draw-in
+const sparkPath = document.querySelector('.spark-line');
+if (sparkPath) {
+  const sparkObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.strokeDashoffset = '0'; sparkObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  sparkObs.observe(sparkPath);
+}
+
+// ── Rail nav active section
+const railLinks = document.querySelectorAll('.rail-nav a');
+const railSections = ['periode', 'electricite', 'gaz', 'contexte']
+  .map(id => document.getElementById(id))
+  .filter(Boolean);
+const railObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      railLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-20% 0px -60% 0px' });
+railSections.forEach(s => railObs.observe(s));
 </script>
 </body>
 </html>
