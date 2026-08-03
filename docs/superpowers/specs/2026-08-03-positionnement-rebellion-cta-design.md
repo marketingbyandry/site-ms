@@ -47,7 +47,7 @@ Ferme et porteur de convictions, jamais virulent : pas d'accusation nominative d
 
 CTA associé : *"Faites vérifier votre contrat par un cabinet d'expertise indépendant — pas par un courtier de plus. Gratuit, en 2 minutes."*
 
-**Point ouvert à confirmer avant rédaction finale** : si M&S Strategy est rémunérée par honoraires client plutôt que par commission fournisseur, c'est un argument de neutralité vérifiable à ajouter explicitement ("nous sommes payés par vous, pas par le fournisseur que nous vous recommandons"). Non confirmé à ce stade — la copy ci-dessus fonctionne sans ce point, à enrichir si confirmé.
+**Point vérifié (2026-08-03) : à ne PAS utiliser.** Le site affirme déjà, de façon extensive et publique (index.html section "Notre position"/"L'indépendance n'a pas de prix", section "Bien choisir son courtier", FAQ ×3 ; b2b.html FAQ ; comment-ca-marche.html section SEO et FAQ), que M&S Strategy est rémunérée **par les fournisseurs** via une commission standardisée — c'est l'argument de neutralité déjà en place sur le site ("rémunération identique quel que soit le fournisseur retenu, donc aucun favoritisme"). L'argument "nous sommes payés par vous, pas par le fournisseur" envisagé plus haut est donc **faux** et contredirait frontalement ce contenu existant : à ne jamais écrire. Le volet "second avis" ci-dessous s'appuie uniquement sur la posture de "cabinet d'expertise" (rôle de vérification indépendante), jamais sur une différence de modèle de rémunération.
 
 ## Déclinaisons sectorielles
 
@@ -119,4 +119,4 @@ Toutes les cibles pointent vers `b2b.html#upload` (formulaire existant), sauf le
 - Aucun lien article-à-article chronologique entre les 7 rétrospectives Baromètre.
 - Tous les CTA d'action pointent vers `b2b.html#upload` (tunnel existant), sauf ancres internes à `b2b.html`.
 - Anti-antidatage : sans objet ici (pas de nouvel article rétrospectif dans ce chantier), mais toute nouvelle date affichée doit rester réelle.
-- Le point de rémunération (honoraires client vs commission fournisseur) reste à confirmer avant d'être ajouté à la copy — ne pas l'affirmer sans validation explicite.
+- Ne jamais affirmer que M&S Strategy est payée par le client plutôt que par le fournisseur — c'est faux et contredit le contenu existant (index.html, b2b.html, comment-ca-marche.html affirment tous une rémunération par commission fournisseur standardisée, déjà utilisée comme argument de neutralité). Le positionnement "cabinet" s'appuie sur la posture de vérification indépendante, pas sur un modèle de rémunération différent.
