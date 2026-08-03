@@ -19,6 +19,8 @@ Ce n'est pas une refonte de contenu : il s'agit d'ajouts ciblés (positionnement
 
 **Hors périmètre** : refonte visuelle, nouveau formulaire ou tunnel de conversion (le CTA continue de pointer vers `b2b.html#upload`, déjà existant), liens article-à-article chronologiques entre les 7 rétrospectives du Baromètre.
 
+**Correction (2026-08-03)** : les pages villes (`courtier-energie-{ville}.html`) mentionnées initialement comme cible de maillage n'existent ni sur cette branche ni sur `main` — vérifié via `git ls-tree`. Leur création est un chantier séparé (10 pages, cadrage propre requis) et sort du périmètre de ce plan. Le maillage interne de ce chantier se limite donc à `b2b.html` et `blog.html`. Le maillage vers les villes sera repris une fois ces pages créées, dans un plan dédié.
+
 ## Ton
 
 Ferme et porteur de convictions, jamais virulent : pas d'accusation nominative de fournisseur ou de courtier concurrent, pas de sensationnalisme. La fermeté vient de faits de marché vérifiables (opacité tarifaire, reconduction tacite, asymétrie d'information), pas d'attaque personnelle. Le vocabulaire "cabinet" est mis en avant, "courtier/courtage" reste présent mais en retrait (utile SEO et crédibilité réglementaire), pour permettre au discours de questionner la neutralité des courtiers déjà en place sans paraître juge et partie.
@@ -102,7 +104,7 @@ Toutes les cibles pointent vers `b2b.html#upload` (formulaire existant), sauf le
 
 **Règle générale** : liens contextuels dans le corps du texte, pas de blocs de liens génériques en fin de page — l'objectif est un maillage à l'air éditorial, pas mécanique. Pas de liens article-à-article entre les 7 rétrospectives du Baromètre.
 
-**Vers les pages villes** : déclenché quand une section ou un article mentionne une réalité géographique/locale pertinente au secteur traité. Ancre descriptive et contextuelle (ex. *"comme pour les entreprises de la région lyonnaise"*), jamais générique. Une ancre par section maximum. Sélection des 2-3 villes les plus pertinentes par contenu, pas de liste exhaustive des 10.
+**Vers les pages villes** : différé — voir correction du périmètre ci-dessus. Ces pages n'existent pas encore ; le maillage vers elles fera l'objet d'un plan séparé une fois créées.
 
 **Vers `b2b.html` et `blog.html`** :
 - Depuis les articles rétrospectifs : un hypertexte à mi-article vers `b2b.html` (ex. *"comme détaillé sur notre page dédiée aux entreprises"*), distinct du CTA de fin d'article qui pointe vers `#upload`.
