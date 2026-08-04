@@ -144,7 +144,7 @@ railSections.forEach(s => railObs.observe(s));
 ```
 new:
 ```html
-  <a href="ms-strategy-calculateur.html" class="nav-cta">Calculateur d'inaction →</a>
+  <a href="ms-strategy-calculateur.html" class="nav-cta">Combien ça me coûte réellement →</a>
 ```
 
 **Floating CTA** — old:
@@ -156,7 +156,7 @@ new:
 new:
 ```html
 <div class="floating-cta" id="floating-cta">
-  <a href="ms-strategy-calculateur.html">Calculer mon inaction →</a>
+  <a href="ms-strategy-calculateur.html">Combien ça me coûte réellement →</a>
 </div>
 ```
 
@@ -177,7 +177,7 @@ new:
       <div class="cta-section reveal">
         <p class="cta-title">Chaque mois sans négocier a un coût réel.</p>
         <p class="cta-sub">Renseignez votre consommation et votre échéance : le calculateur affiche en temps réel ce que l'inaction vous coûte, et ce qu'une négociation pourrait vous rapporter.</p>
-        <a href="ms-strategy-calculateur.html" class="cta-btn">Calculez ce que l'inaction vous coûte, en temps réel →</a>
+        <a href="ms-strategy-calculateur.html" class="cta-btn">Combien ça me coûte réellement →</a>
         <p class="cta-secondary"><a href="b2b.html#upload">Ou transmettez votre facture pour une étude gratuite en 48h →</a></p>
       </div>
     </div>
