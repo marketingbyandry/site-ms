@@ -4,7 +4,7 @@
 
 **Goal:** Livrer la partie codable de la campagne de communication M&S Strategy : finir et fiabiliser le Pixel Meta déjà codé, créer le pipeline HubSpot "Dossier facture" par API, brancher le webhook Tally→HubSpot, et générer les 9 templates HTML email à partir du copywriting déjà validé.
 
-**Architecture:** Site statique existant (HTML/CSS/JS, hébergé Vercel) + une fonction serverless Node (`api/tally-webhook.js`) qui relaie les soumissions Tally vers l'API HubSpot + deux scripts Node ponctuels (création du pipeline, génération des templates email) exécutés une fois en local.
+**Architecture:** Site statique existant (HTML/CSS/JS, hébergé Vercel) + une fonction serverless Node unique (`api/tally-hubspot.mjs`, livrée par la PR #12) qui relaie les soumissions Tally vers l'API HubSpot — API Forms pour le contact et son attribution, API CRM pour le deal (Task 4) + deux scripts Node ponctuels (création du pipeline, génération des templates email) exécutés une fois en local.
 
 **Tech Stack:** HTML/CSS/JS vanilla, Vercel Edge Middleware (existant) + Vercel Serverless Function (Node, nouveau), Node.js ESM, Vitest (nouveau, pour la logique pure ajoutée), API REST HubSpot v3.
 
@@ -16,9 +16,9 @@
 - Formulaire Tally existant : id `kd15W1`, champ caché `source` (valeurs vues dans le code : `b2b`, `b2c`, `landing-2`).
 - Fichier source du copywriting (ne pas modifier son contenu texte) : `docs/content/2026-07-campagne-communication-emails.md`.
 - Secrets dans `.env` (déjà gitignored via `.gitignore` créé dans ce worktree) — jamais commités, jamais affichés en clair dans les logs/commandes.
-- `package.json` passe à `"type": "module"` (nécessaire pour les nouveaux scripts ESM) — n'affecte pas `middleware.js` (Edge Middleware gère l'ESM indépendamment de ce champ).
+- `package.json` passe à `"type": "module"` (nécessaire pour les scripts ESM ponctuels des Tasks 3 et 5) — n'affecte pas `middleware.js` (Edge Middleware gère l'ESM indépendamment de ce champ), et n'est pas requis par le webhook, qui porte l'extension `.mjs`.
 - Couleurs de marque (extraites de `index.html:12-25`) : `--dark:#07131a`, `--cream:#f5f0e8`, `--teal:#1a7a8a`, `--green:#4cde80`, `--muted:#8aacb4`.
-- Hypothèse à vérifier lors de l'exécution (je n'ai pas accès à l'éditeur du formulaire Tally `kd15W1`) : les champs du formulaire ont des libellés contenant "email", "prénom", "entreprise"/"société", "téléphone" — le webhook (Task 4) cherche les champs par sous-chaîne de libellé, pas par clé exacte, justement pour rester robuste à cette incertitude ; si les vrais libellés diffèrent, ajuster la liste dans `extractContact()`.
+- Hypothèse à vérifier lors de l'exécution (je n'ai pas accès à l'éditeur du formulaire Tally `kd15W1`) : les champs du formulaire ont des libellés contenant "email", "prénom", "entreprise"/"société", "téléphone" — le webhook cherche les champs par sous-chaîne de libellé, pas par clé exacte, justement pour rester robuste à cette incertitude ; si les vrais libellés diffèrent, ajuster la liste dans l'extraction de contact de `api/tally-hubspot.mjs` (livrée par la PR #12, qui a vérifié ce mapping sur un lead complet).
 
 ## Décomposition retenue
 
@@ -323,31 +323,60 @@ git commit -m "Add script to create the HubSpot 'Dossier facture' pipeline"
 
 ---
 
-### Task 4: Webhook Tally → HubSpot (création contact + deal à la réception d'une facture)
+### Task 4: Étendre le webhook Tally → HubSpot avec la création du deal
+
+**Décision d'architecture (2026-08-04) — un seul endpoint, deux appels.**
+
+La version initiale de cette tâche créait `api/tally-webhook.js`, un second endpoint
+appelant l'API CRM. Entre-temps, la PR #12 a livré `api/tally-hubspot.mjs`, qui appelle
+l'API Forms. Les deux endpoints auraient reçu le même webhook Tally, avec deux
+conséquences : un contact créé en double à chaque soumission, et une signature HMAC à
+vérifier à deux endroits.
+
+Les deux API ne sont pas substituables, elles sont complémentaires :
+
+| | API Forms (PR #12) | API CRM (cette tâche) |
+|---|---|---|
+| Crée | Contact + 7 propriétés d'attribution | Deal dans le pipeline |
+| `hutk` | Accepté → rattache l'historique de navigation | Non supporté |
+| Authentification | Aucune (endpoint public HubSpot) | Token privé |
+
+**`api/tally-webhook.js` est donc abandonné.** Cette tâche ajoute la création du deal
+*à l'intérieur* de l'endpoint existant, après l'appel Forms. PR #12 reste propriétaire
+de la réception du webhook, de la vérification de signature et de la création du
+contact ; cette tâche n'y touche pas.
 
 **Files:**
-- Create: `api/tally-webhook.js`
-- Test: `api/tally-webhook.test.js`
-- Modify: `package.json` (ajouter `"type": "module"`, `vitest` en devDependency, script `test`)
+- Modify: `api/tally-hubspot.mjs` (livré par PR #12 — ajout de `createDeal()` uniquement)
+- Create: `api/tally-hubspot.test.mjs`
+- Modify: `package.json` (ajouter `vitest` en devDependency + script `test`)
+
+**Préconditions bloquantes :**
+1. PR #12 mergée (sinon `api/tally-hubspot.mjs` n'existe pas).
+2. Task 3 exécutée — au 2026-08-04, le portail HubSpot `148926987` ne contient que le
+   pipeline `default` (« Sales Pipeline », 7 étapes standard). Le pipeline
+   « Dossier facture » n'existe pas, donc `HUBSPOT_PIPELINE_ID` et
+   `HUBSPOT_STAGE_FACTURE_RECUE_ID` sont introuvables et cette tâche ne peut pas
+   fonctionner.
+3. Scopes du private app : `crm.objects.contacts.write` et `crm.objects.deals.write`.
+   **Le scope `automation` n'est pas requis ici** — il ne sert qu'aux workflows
+   (séquence email post-facture), pas à la création d'objets CRM.
 
 **Interfaces:**
-- Consumes: `HUBSPOT_API_TOKEN`, `HUBSPOT_PIPELINE_ID`, `HUBSPOT_STAGE_FACTURE_RECUE_ID` (produits par Task 3, dans `.env` / variables d'environnement Vercel en production).
-- Produces: endpoint HTTP `POST /api/tally-webhook`, fonction exportée `extractContact(fields)` réutilisable/testable isolément.
+- Consumes: `HUBSPOT_API_TOKEN`, `HUBSPOT_PIPELINE_ID`, `HUBSPOT_STAGE_FACTURE_RECUE_ID`
+  (produits par Task 3, posés en variables d'environnement Vercel).
+- Produces: fonction exportée `createDeal(token, { pipelineId, stageId, contactId, contact })`,
+  testable isolément.
 
-- [ ] **Step 1: Passer le projet en ESM et ajouter Vitest**
+- [ ] **Step 1: Ajouter Vitest**
 
-Modifier `package.json` :
+`api/tally-hubspot.mjs` porte l'extension `.mjs`, donc `"type": "module"` n'est pas
+nécessaire dans `package.json`. Ajouter seulement :
 
 ```json
 {
-  "name": "site-ms",
-  "private": true,
-  "type": "module",
   "scripts": {
     "test": "vitest run"
-  },
-  "dependencies": {
-    "@vercel/edge": "^1.1.2"
   },
   "devDependencies": {
     "vitest": "^2.1.0"
@@ -356,97 +385,25 @@ Modifier `package.json` :
 ```
 
 Run: `npm install`
-Expected: `vitest` installé sans erreur, `node_modules/` créé.
+Expected: `vitest` installé sans erreur.
 
-- [ ] **Step 2: Écrire le test de `extractContact` (échoue d'abord car la fonction n'existe pas)**
+- [ ] **Step 2: Écrire le test de `createDeal` (échoue d'abord)**
 
-Créer `api/tally-webhook.test.js` :
-
-```js
-import { describe, it, expect } from 'vitest';
-import { extractContact } from './tally-webhook.js';
-
-describe('extractContact', () => {
-  it('extrait email, prénom, entreprise et téléphone par libellé de champ', () => {
-    const fields = [
-      { label: 'Prénom', value: 'Claire' },
-      { label: 'Email professionnel', value: 'claire@exemple.fr' },
-      { label: 'Nom de l’entreprise', value: 'Exemple SARL' },
-      { label: 'Téléphone', value: '0600000000' },
-    ];
-    expect(extractContact(fields)).toEqual({
-      email: 'claire@exemple.fr',
-      firstname: 'Claire',
-      company: 'Exemple SARL',
-      phone: '0600000000',
-    });
-  });
-
-  it('renvoie des chaînes vides pour les champs absents', () => {
-    expect(extractContact([])).toEqual({
-      email: '', firstname: '', company: '', phone: '',
-    });
-  });
-
-  it('ignore la casse du libellé', () => {
-    const fields = [{ label: 'EMAIL', value: 'a@b.fr' }];
-    expect(extractContact(fields).email).toBe('a@b.fr');
-  });
-});
-```
+Créer `api/tally-hubspot.test.mjs`. Couvrir au minimum :
+- le corps envoyé contient `dealname`, `pipeline`, `dealstage` et l'association au contact ;
+- une réponse HubSpot non-2xx lève une erreur porteuse du status ;
+- l'absence de `pipelineId` ou `stageId` court-circuite l'appel sans lever (le contact
+  a déjà été créé par l'appel Forms, on ne doit pas faire échouer la requête entière).
 
 - [ ] **Step 3: Run test to verify it fails**
 
 Run: `npm test`
-Expected: FAIL — `api/tally-webhook.js` n'existe pas encore.
+Expected: FAIL — `createDeal` n'est pas encore exportée.
 
-- [ ] **Step 4: Implémenter `api/tally-webhook.js`**
+- [ ] **Step 4: Implémenter `createDeal()` dans `api/tally-hubspot.mjs`**
 
 ```js
-export function extractContact(fields) {
-  const getByLabel = (substrings) => {
-    const match = fields.find((f) =>
-      substrings.some((s) => (f.label || '').toLowerCase().includes(s))
-    );
-    return match ? String(match.value ?? '').trim() : '';
-  };
-
-  return {
-    email: getByLabel(['email', 'e-mail']),
-    firstname: getByLabel(['prénom', 'prenom']),
-    company: getByLabel(['entreprise', 'société', 'societe']),
-    phone: getByLabel(['téléphone', 'telephone']),
-  };
-}
-
-async function upsertContact(token, contact) {
-  const res = await fetch('https://api.hubapi.com/crm/v3/objects/contacts/batch/upsert', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      inputs: [
-        {
-          idProperty: 'email',
-          id: contact.email,
-          properties: {
-            email: contact.email,
-            firstname: contact.firstname,
-            company: contact.company,
-            phone: contact.phone,
-          },
-        },
-      ],
-    }),
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(`HubSpot contact error ${res.status}: ${JSON.stringify(data)}`);
-  return data.results[0].id;
-}
-
-async function createDeal(token, { pipelineId, stageId, contactId, contact }) {
+export async function createDeal(token, { pipelineId, stageId, contactId, contact }) {
   const res = await fetch('https://api.hubapi.com/crm/v3/objects/deals', {
     method: 'POST',
     headers: {
@@ -459,74 +416,51 @@ async function createDeal(token, { pipelineId, stageId, contactId, contact }) {
         pipeline: pipelineId,
         dealstage: stageId,
       },
-      associations: [
-        {
-          to: { id: contactId },
-          types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }],
-        },
-      ],
+      associations: contactId
+        ? [{
+            to: { id: contactId },
+            types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }],
+          }]
+        : [],
     }),
   });
   const data = await res.json();
   if (!res.ok) throw new Error(`HubSpot deal error ${res.status}: ${JSON.stringify(data)}`);
-  return data.id;
-}
-
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Method not allowed' });
-    return;
-  }
-
-  const token = process.env.HUBSPOT_API_TOKEN;
-  const pipelineId = process.env.HUBSPOT_PIPELINE_ID;
-  const stageId = process.env.HUBSPOT_STAGE_FACTURE_RECUE_ID;
-
-  if (!token || !pipelineId || !stageId) {
-    res.status(500).json({ error: 'Missing HubSpot configuration' });
-    return;
-  }
-
-  const fields = req.body?.data?.fields || [];
-  const contact = extractContact(fields);
-
-  if (!contact.email) {
-    res.status(400).json({ error: 'No email field found in Tally payload' });
-    return;
-  }
-
-  try {
-    const contactId = await upsertContact(token, contact);
-    await createDeal(token, { pipelineId, stageId, contactId, contact });
-    res.status(200).json({ ok: true });
-  } catch (err) {
-    console.error('[tally-webhook] HubSpot error', err);
-    res.status(502).json({ error: 'HubSpot upstream error' });
-  }
+  return data;
 }
 ```
 
-- [ ] **Step 5: Run test to verify it passes**
+**À vérifier avant implémentation :** le portail est hébergé en UE
+(`app-eu1.hubspot.com`). Confirmer dans la documentation HubSpot si l'API CRM d'un
+portail UE s'adresse bien à `api.hubapi.com` ou à un hôte régional dédié — l'API Forms
+utilise déjà `api-eu1.hsforms.com` côté PR #12, la symétrie n'est pas garantie.
+
+- [ ] **Step 5: Chaîner l'appel dans le handler existant**
+
+Après l'appel Forms réussi, et **uniquement si** les trois variables d'environnement CRM
+sont présentes :
+
+- récupérer l'`contactId` (l'API Forms ne le renvoie pas — le résoudre par recherche sur
+  l'email via `crm/v3/objects/contacts/search`, ou accepter un deal non associé en
+  première version) ;
+- appeler `createDeal()` ;
+- **ne jamais faire échouer la requête si le deal échoue.** Le contact et son attribution
+  sont déjà enregistrés ; renvoyer `200` et journaliser l'erreur deal. Un `502` ici
+  déclencherait un rejeu Tally qui recréerait le contact.
+
+- [ ] **Step 6: Run test to verify it passes**
 
 Run: `npm test`
-Expected: PASS (3 tests).
-
-- [ ] **Step 6: Configurer le webhook côté Tally (action manuelle)**
-
-Dans Tally → formulaire `kd15W1` → Intégrations → Webhooks → ajouter l'URL `https://www.byandry.com/api/tally-webhook` (une fois déployé sur Vercel). Vérifier dans les paramètres Vercel du projet que `HUBSPOT_API_TOKEN`, `HUBSPOT_PIPELINE_ID`, `HUBSPOT_STAGE_FACTURE_RECUE_ID` sont bien définis en variables d'environnement (Production).
+Expected: PASS.
 
 - [ ] **Step 7: Test de bout en bout après déploiement (manuel)**
 
-Soumettre une facture test via le formulaire Tally sur la preview Vercel. Vérifier dans HubSpot qu'un contact et un deal apparaissent dans le pipeline "Dossier facture", étape "Facture reçue", sous 1-2 minutes.
+Soumettre une facture test via le formulaire Tally sur la preview Vercel. Vérifier dans
+HubSpot qu'un contact **et** un deal apparaissent dans le pipeline « Dossier facture »,
+étape « Facture reçue », sous 1-2 minutes, et que le contact porte bien les 7 propriétés
+d'attribution posées par PR #12.
 
 - [ ] **Step 8: Commit**
-
-```bash
-git add package.json package-lock.json api/tally-webhook.js api/tally-webhook.test.js
-git commit -m "Add Tally to HubSpot webhook with tests"
-```
-
----
 
 ### Task 5: Générer les 9 templates HTML email à partir du copywriting
 
@@ -802,6 +736,8 @@ git commit -m "Generate 9 branded HTML email templates from the campaign copywri
 - Section D (cold outbound — infra domaine/boîtes/warmup) → hors code, listée dans "Décomposition retenue" comme action manuelle ; la partie codable (3 emails, intégration pipeline) est couverte par Task 3 + Task 5.
 - Section F (dépendances techniques) → items 1-2 = Task 1/2, item 3 = Task 3/4, items 4-6 = actions manuelles hors plan.
 - Pixel/consentement (contexte) → Task 1 + Task 2.
+
+**Incohérence résolue après coup (2026-08-04)** : la Task 4 créait `api/tally-webhook.js` alors que la PR #12, ouverte depuis, livre `api/tally-hubspot.mjs`. Deux endpoints auraient reçu le même webhook Tally — contact dupliqué à chaque soumission, signature HMAC vérifiée à deux endroits. Task 4 réécrite pour étendre l'endpoint de la PR #12 plutôt que d'en créer un second : API Forms pour le contact et l'attribution (dont le `hutk`, que l'API CRM n'accepte pas), API CRM pour le deal (que l'API Forms ne sait pas créer). Aucune des deux PR ne perd de fonctionnalité.
 
 **Incohérence résolue pendant l'écriture du plan** : la spec décrivait "Prospection froide" comme une étape en amont d'un pipeline "Dossier facture" séparé, ce qui est ambigu dans le modèle de données HubSpot (un deal appartient à un seul pipeline). Task 3 résout ça en un seul pipeline à 8 étapes (les 2 étapes amont + les 6 étapes post-facture) — cohérent avec l'intention de la spec ("un seul point de convergence"), documenté explicitement ici plutôt que laissé implicite.
 
