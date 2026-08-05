@@ -1,0 +1,47 @@
+import posthog from 'posthog-js';
+import { readCookie, ctaLabel } from './analytics-helpers.mjs';
+
+// RGPD/CNIL: PostHog capture des donnees de navigation (pages vues, clics,
+// identifiant persistant) — ce n'est pas une "mesure d'audience strictement
+// necessaire" au sens CNIL, donc rien n'est charge ni aucun cookie pose tant
+// que l'utilisateur n'a pas donne son consentement via le bandeau cookies
+// (voir assets/cookie-consent.js). Ne pas appeler initPostHog() ailleurs
+// sans passer par ce mecanisme de consentement.
+
+// Cle de projet PostHog : publique par nature, ce n'est pas un secret.
+const POSTHOG_TOKEN = 'phc_uHyRKSZT97w56hxk2ZaF2q8ahPyLPY9uznkY7v5hnnBM';
+const POSTHOG_API_HOST = 'https://eu.i.posthog.com';
+
+// Selecteur des CTA suivis, aligne sur les classes utilisees dans les pages.
+const CTA_SELECTOR = 'a.cta-btn, a.pcta, a.ncta';
+
+let initialised = false;
+
+function initPostHog() {
+  if (initialised) return;
+  initialised = true;
+
+  posthog.init(POSTHOG_TOKEN, {
+    api_host: POSTHOG_API_HOST,
+    capture_pageleave: true
+  });
+
+  // Variante du test A/B, tiree au sort et posee en cookie par middleware.js.
+  posthog.register({ variant: readCookie(document.cookie, 'ms_variant') || 'A' });
+
+  document.addEventListener('click', function (event) {
+    const el = event.target.closest(CTA_SELECTOR);
+    if (!el) return;
+    posthog.capture('cta_click', {
+      label: ctaLabel(el.textContent),
+      href: el.getAttribute('href')
+    });
+  });
+}
+
+// Contrat avec assets/cookie-consent.js : appele a l'acceptation du bandeau.
+window.msInitAnalytics = initPostHog;
+
+if (readCookie(document.cookie, 'ms_consent') === 'accepted') {
+  initPostHog();
+}

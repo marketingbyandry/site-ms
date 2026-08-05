@@ -12,7 +12,9 @@
 1. Dans le projet, aller dans **Project Settings → Install PostHog**.
 2. Copier la **Project API Key** (commence par `phc_...`).
 3. Transmettre cette clé pour qu'elle soit intégrée dans
-   `assets/analytics.js` (elle est publique par nature, pas un secret).
+   `src/analytics.js` (elle est publique par nature, pas un secret), puis
+   lancer `npm run build:analytics` et commiter le résultat dans
+   `assets/analytics.js`.
 
 ## 3. Vérifier que le tracking fonctionne
 
