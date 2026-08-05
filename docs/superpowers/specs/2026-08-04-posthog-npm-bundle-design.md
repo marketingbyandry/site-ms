@@ -1,7 +1,7 @@
 # PostHog : débloquer le CSP et migrer vers le package npm
 
 Date : 2026-08-04
-Branche : `worktree-vercel-analytics`
+Branche : `worktree-posthog-csp-npm`
 
 ## Problème
 
@@ -29,11 +29,11 @@ envoie.
 
 ## État des lieux
 
-- Site HTML statique, 13 pages, aucun bundler ni étape de build.
+- Site HTML statique, 21 pages, aucun bundler ni étape de build.
 - `package.json` existe déjà, avec `@vercel/edge` (utilisé par
   `middleware.js`) et `@vercel/analytics` (jamais importé — Vercel Insights
   est chargé par le tag `/_vercel/insights/script.js`, servi en `'self'`).
-- `assets/analytics.js` est chargé par 9 pages sur 13. Il lit le cookie
+- `assets/analytics.js` est chargé par 10 pages sur 21. Il lit le cookie
   `ms_variant` posé par `middleware.js`, initialise PostHog derrière le
   consentement `ms_consent`, enregistre la propriété `variant` et capture
   `cta_click` par délégation d'événement.
@@ -66,7 +66,7 @@ peut dériver de sa source si le build n'est pas rejoué.
 
 **Le chemin de sortie ne change pas.** La source passe en
 `src/analytics.js`, le bundle est écrit dans `assets/analytics.js` — le
-chemin déjà référencé par les 9 pages HTML. Aucune page n'est modifiée.
+chemin déjà référencé par les 10 pages HTML. Aucune page n'est modifiée.
 
 ## Architecture cible
 
@@ -77,7 +77,7 @@ src/analytics.js          source ESM, importe posthog-js  ← à éditer
 assets/analytics.js       bundle IIFE commité             ← généré
         │  <script src="assets/analytics.js">
         ▼
-9 pages HTML (inchangées)
+10 pages HTML (inchangées)
 ```
 
 Frontières inchangées : `assets/cookie-consent.js` ne connaît d'analytics
@@ -127,9 +127,12 @@ Relevé au passage, à traiter séparément :
 
 - `@vercel/analytics` est une dépendance morte (installée, jamais importée).
 - `ms-blog-article-1.html`, `ms-blog-article-2.html`,
-  `ms-strategy-calculateur.html` et `ms-strategy-landing-2.html` ne chargent
-  ni `analytics.js` ni `cookie-consent.js` : ni bandeau cookies, ni tracking
-  sur ces pages.
+  `ms-strategy-calculateur.html`, `ms-strategy-landing-2.html`,
+  `ms-blog-barometre-2022.html`, `ms-blog-barometre-2023.html`,
+  `ms-blog-barometre-2024.html`, `ms-blog-barometre-2025.html`,
+  `ms-blog-barometre-2026-t1.html`, `ms-blog-barometre-2026-t2.html` et
+  `ms-blog-barometre-2026-t3.html` ne chargent ni `analytics.js` ni
+  `cookie-consent.js` : ni bandeau cookies, ni tracking sur ces pages.
 - Poids du bundle : l'entrypoint par défaut de posthog-js est le bundle
   complet. Un entrypoint slim (`posthog-js/dist/module.slim.js` + bundles
   d'extensions) permettrait de l'alléger. Non traité ici, le poids n'étant

@@ -67,8 +67,9 @@ Branche `worktree-ms-strategy-ab-test`, PR draft #1
   (`#050e13`, non touché) — lu comme un bookend noir cohérent avec l'esprit
   "sobre N&B", pas un bug ; à reconsidérer si l'utilisateur préfère un footer
   clair aussi.
-- **`assets/analytics.js`** : PostHog (clé `phc_uHyR...hnnBM`, région EU déjà
-  branchée), variante taguée sur chaque évènement, `cta_click` délégué sur
+- **`src/analytics.js`** (source, bundlée par esbuild dans `assets/analytics.js`
+  via `npm run build:analytics`) : PostHog (clé `phc_uHyR...hnnBM`, région EU
+  déjà branchée), variante taguée sur chaque évènement, `cta_click` délégué sur
   `a.cta-btn, a.pcta, a.ncta`. Guide de lecture des résultats :
   `docs/posthog-setup.md`.
 - **Vérifié en réel** sur la preview Vercel (protégée par Vercel
@@ -79,6 +80,7 @@ Branche `worktree-ms-strategy-ab-test`, PR draft #1
   PostHog chargé).
 - **Reste à faire avant de sortir du mode draft** : confirmer que le projet
   PostHog du client est bien sur le cloud EU (sinon changer `api_host` dans
+  `src/analytics.js`, puis lancer `npm run build:analytics` et commiter
   `assets/analytics.js`), vérifier dans PostHog → Activity qu'un clic CTA
   réel remonte bien un évènement une fois le site en prod, décider si le
   footer doit lui aussi passer en clair.

@@ -7,10 +7,10 @@
   },
   "dependencies": {
     "@vercel/edge": "^1.1.2",
-    "fast-xml-parser": "^5.10.1",
-    "posthog-js": "^1.411.0"
+    "fast-xml-parser": "^5.10.1"
   },
   "devDependencies": {
-    "esbuild": "^0.28.1"
+    "esbuild": "0.28.1",
+    "posthog-js": "1.411.0"
   }
 }

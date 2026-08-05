@@ -380,9 +380,17 @@ Dans `package.json`, ajouter un bloc `scripts` (le fichier n'en a pas encore). L
 ```json
   "scripts": {
     "build:analytics": "node scripts/build-analytics.mjs",
-    "test": "node --test test/"
+    "test": "node --test test/*.test.mjs"
   },
 ```
+
+Note : `node --test test/` (répertoire passé tel quel, sans glob) échoue
+réellement sur la version de Node installée sur cette machine (v24.18.0) :
+`node` tente de résoudre `test/` comme un module unique (`Error: Cannot find
+module '.../test'`) plutôt que d'y découvrir les fichiers de test. La forme
+livrée, `node --test test/*.test.mjs`, cible explicitement les fichiers de
+test via le glob du shell et est celle à conserver ; ne pas « corriger » ce
+script vers `test/` seul.
 
 - [ ] **Step 6 : Écrire le test de fraîcheur du bundle, et vérifier qu'il échoue**
 
