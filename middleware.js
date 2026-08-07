@@ -36,8 +36,10 @@ const BOT_UA = /bot|crawl|spider|slurp|facebookexternalhit|whatsapp|telegrambot|
    autre canal.
    ════════════════════════════════════════ */
 
-// TODO Antoine : remplacer par les vrais slugs, un par commercial.
-export const SLUGS = ['jd', 'ml', 'ag'];
+// Un slug par commercial. `ag` (Antoine) y figure pour qu'il dispose lui aussi
+// de liens tracables, mais c'est aussi la valeur de repli appliquee dans
+// assets/ref.js : un dossier depose sans lien commercial lui revient.
+export const SLUGS = ['ag', 'lg', 'mv', 'pm', 'zb', 'lf'];
 
 // Page d'atterrissage des liens courts /c/<slug>.
 const SHORT_LINK_TARGET = '/b2b.html';

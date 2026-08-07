@@ -4,6 +4,20 @@ Chaque commercial diffuse ses propres liens. Le site retient le commercial
 référent pendant 90 jours et le transmet à Tally au moment du dépôt de facture,
 dans un champ caché `ref`.
 
+## Les slugs
+
+`ag`, `lg`, `mv`, `pm`, `zb`, `lf` — déclarés dans `SLUGS` (`middleware.js`).
+
+**`ag` (Antoine) est aussi la valeur de repli** : une facture déposée sans avoir
+suivi le lien d'un commercial lui est attribuée automatiquement. La colonne
+`ref` de Tally n'est donc jamais vide et aucun dossier ne reste orphelin. `ag`
+reste par ailleurs un slug normal, avec ses propres liens s'il en a l'usage.
+
+Nuance à connaître pour la lecture des chiffres : ce repli s'applique **à Tally
+seulement**. PostHog ne reçoit `ref` que lorsqu'un vrai cookie existe — sinon un
+visiteur venu de Google organique compterait comme « prospecté par Antoine » et
+fausserait la segmentation du tunnel.
+
 ## Ce qui est en place côté site
 
 | Élément | Fichier | Rôle |
@@ -11,7 +25,7 @@ dans un champ caché `ref`.
 | Liste des commerciaux | `middleware.js` (`SLUGS`) | Whitelist : un `?ref=` absent de cette liste est ignoré |
 | Dépôt du cookie | `middleware.js` | `Set-Cookie ms_ref`, 90 jours, first-touch |
 | Lien court `/c/<slug>` | `middleware.js` | Redirige vers `/b2b.html?ref=<slug>` |
-| Lecture du cookie | `assets/ref.js` | Expose `window.msRef` |
+| Lecture du cookie | `assets/ref.js` | Expose `window.msRef`, avec repli sur `ag` |
 | Transmission à Tally | `openTallyForm()` dans `b2b.html`, `b2c.html`, `ms-strategy-landing-2.html` | Ajoute `ref` aux `hiddenFields` |
 | Segmentation analytics | `src/analytics.js` | `ref` en super-property PostHog |
 | Mention RGPD | `politique-confidentialite.html` | Ligne `ms_ref` du tableau des cookies |
@@ -23,7 +37,8 @@ déposés plus de deux semaines après le mail du commercial.
 ## Ajouter ou retirer un commercial
 
 1. Ajouter le slug dans `SLUGS`, dans `middleware.js`.
-2. `npm test` (une suite couvre la whitelist, le first-touch et le lien court).
+2. `npm test` (les suites couvrent la whitelist, le first-touch, le lien court
+   et le repli par défaut).
 3. Déployer. Ses liens sont immédiatement actifs :
    - `https://www.byandry.com/b2b.html?ref=<slug>&utm_source=commercial&utm_medium=affiliation&utm_campaign=<slug>`
    - `https://www.byandry.com/c/<slug>`
