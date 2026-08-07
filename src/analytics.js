@@ -27,7 +27,15 @@ function initPostHog() {
   });
 
   // Variante du test A/B, tiree au sort et posee en cookie par middleware.js.
-  posthog.register({ variant: readCookie(document.cookie, 'ms_variant') || 'A' });
+  const properties = { variant: readCookie(document.cookie, 'ms_variant') || 'A' };
+
+  // Commercial referent, quand le visiteur vient d'un lien d'affiliation.
+  // Permet de segmenter le tunnel visite -> clic CTA -> depot de facture par
+  // commercial. Le cookie est pose cote edge (middleware.js), jamais ici.
+  const ref = readCookie(document.cookie, 'ms_ref');
+  if (ref) properties.ref = ref;
+
+  posthog.register(properties);
 
   document.addEventListener('click', function (event) {
     const el = event.target.closest(CTA_SELECTOR);
