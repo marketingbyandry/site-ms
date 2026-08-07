@@ -495,6 +495,9 @@ function faq(el) {
    ════════════════════════════════════════ */
 function openTallyForm(source) {
   const hiddenFields = { source };
+  // Commercial référent (voir assets/ref.js et middleware.js). Le champ caché
+  // « ref » doit exister dans le formulaire Tally, sinon la valeur est ignorée.
+  if (window.msRef) hiddenFields.ref = window.msRef;
   try {
     const raw = localStorage.getItem('msLeadContext');
     if (raw) {
@@ -508,6 +511,7 @@ function openTallyForm(source) {
 }
 </script>
 <script async src="https://tally.so/widgets/embed.js"></script>
+<script src="assets/ref.js"></script>
 <script defer src="assets/analytics.js"></script>
 <script defer src="assets/cookie-consent.js"></script>
 </body>
