@@ -46,32 +46,74 @@ const SHORT_LINK_TARGET = '/b2b.html';
 
 const REF_MAX_AGE = 60 * 60 * 24 * 90; // 90 jours
 
+/* Attribue le slug puis renvoie vers une URL propre, sans trace du commercial.
+
+   L'attribution vit dans le cookie, jamais dans l'URL affichée. Consequences
+   voulues :
+   - un lien de commercial partage publiquement (post LinkedIn, annuaire) ne
+     produit aucune page indexable : le crawler suit la redirection et ne voit
+     que l'URL canonique, deja indexee ;
+   - un prospect qui recopie l'URL de sa barre d'adresse pour l'envoyer a un
+     collegue ne transmet pas le slug de son commercial ;
+   - les parametres utm_* sont conserves, seul `ref` est retire.
+
+   Les bots ne recoivent jamais de cookie d'attribution : ils sont redirigés
+   comme tout le monde, mais sans Set-Cookie. */
+function attributionRedirect(target, slug, { isBot, hasRef }) {
+  const response = new Response(null, {
+    status: 302,
+    headers: {
+      Location: target.toString(),
+      // Une redirection porteuse de Set-Cookie ne doit jamais etre mise en
+      // cache : un CDN la resservirait a d'autres visiteurs, qui heriteraient
+      // du commercial d'un inconnu.
+      'Cache-Control': 'private, no-store'
+    }
+  });
+
+  if (!isBot && !hasRef && SLUGS.includes(slug)) {
+    response.headers.set(
+      'Set-Cookie',
+      `ms_ref=${slug}; Path=/; Max-Age=${REF_MAX_AGE}; SameSite=Lax`
+    );
+  }
+
+  return response;
+}
+
 export default function middleware(request) {
   const url = new URL(request.url);
   const userAgent = request.headers.get('user-agent') || '';
+  const isBot = BOT_UA.test(userAgent);
+  const cookieHeader = request.headers.get('cookie') || '';
+  const hasRef = /(?:^|;\s*)ms_ref=/.test(cookieHeader);
 
-  // Lien court /c/<slug> → redirection vers la landing avec le ref en query.
-  // Redirection et non rewrite : les pages référencent leurs assets en
-  // relatif (assets/analytics.js), qui casseraient sous /c/. Traité avant le
-  // filtre bots pour que les aperçus de lien (LinkedIn, WhatsApp) aboutissent.
+  // Lien court /c/<slug> → landing, sans passer par une URL intermediaire
+  // portant le slug. Redirection et non rewrite : les pages referencent leurs
+  // assets en relatif (assets/analytics.js), qui casseraient sous /c/. Traite
+  // avant le filtre bots pour que les apercus de lien (LinkedIn, WhatsApp)
+  // aboutissent sur une vraie page.
   const shortLink = url.pathname.match(/^\/c\/([^/]+)\/?$/);
   if (shortLink) {
-    const slug = shortLink[1].toLowerCase();
     const target = new URL(SHORT_LINK_TARGET, url);
-    if (SLUGS.includes(slug)) {
-      target.searchParams.set('ref', slug);
-    }
-    return Response.redirect(target, 302);
+    return attributionRedirect(target, shortLink[1].toLowerCase(), { isBot, hasRef });
+  }
+
+  // ?ref=<slug> → on attribue, puis on nettoie l'URL.
+  if (url.searchParams.has('ref')) {
+    const slug = (url.searchParams.get('ref') || '').toLowerCase();
+    const target = new URL(url);
+    target.searchParams.delete('ref');
+    return attributionRedirect(target, slug, { isBot, hasRef });
   }
 
   // Bots always get variant A, never get the cookie — keeps SEO/crawling
   // consistent and avoids duplicate content across the whole site, not just
   // the home.
-  if (BOT_UA.test(userAgent)) {
+  if (isBot) {
     return next();
   }
 
-  const cookieHeader = request.headers.get('cookie') || '';
   const cookieMatch = cookieHeader.match(/(?:^|;\s*)ms_variant=(A|B)/);
   const variant = cookieMatch ? cookieMatch[1] : (Math.random() < 0.5 ? 'A' : 'B');
 
@@ -81,16 +123,6 @@ export default function middleware(request) {
     'Set-Cookie',
     `ms_variant=${variant}; Path=/; Max-Age=2592000; SameSite=Lax`
   );
-
-  const incomingRef = (url.searchParams.get('ref') || '').toLowerCase();
-  const hasRef = /(?:^|;\s*)ms_ref=/.test(cookieHeader);
-
-  if (!hasRef && SLUGS.includes(incomingRef)) {
-    response.headers.append(
-      'Set-Cookie',
-      `ms_ref=${incomingRef}; Path=/; Max-Age=${REF_MAX_AGE}; SameSite=Lax`
-    );
-  }
 
   return response;
 }

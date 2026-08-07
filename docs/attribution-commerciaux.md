@@ -24,7 +24,8 @@ fausserait la segmentation du tunnel.
 |---|---|---|
 | Liste des commerciaux | `middleware.js` (`SLUGS`) | Whitelist : un `?ref=` absent de cette liste est ignoré |
 | Dépôt du cookie | `middleware.js` | `Set-Cookie ms_ref`, 90 jours, first-touch |
-| Lien court `/c/<slug>` | `middleware.js` | Redirige vers `/b2b.html?ref=<slug>` |
+| Nettoyage de l'URL | `middleware.js` | Le slug est retiré de l'URL par une 302 juste après attribution |
+| Lien court `/c/<slug>` | `middleware.js` | Redirige vers `/b2b.html`, slug déjà en cookie |
 | Lecture du cookie | `assets/ref.js` | Expose `window.msRef`, avec repli sur `ag` |
 | Transmission à Tally | `openTallyForm()` dans `b2b.html`, `b2c.html`, `ms-strategy-landing-2.html` | Ajoute `ref` aux `hiddenFields` |
 | Segmentation analytics | `src/analytics.js` | `ref` en super-property PostHog |
@@ -56,6 +57,31 @@ Ces deux points ne sont pas dans le code, ils se règlent dans l'éditeur Tally.
 
 Les deux fonctionnent sur le plan gratuit de Tally.
 
+## Pourquoi le slug ne peut pas se retrouver dans Google ou ChatGPT
+
+L'attribution vit dans le cookie, jamais dans l'URL affichée. Dès qu'un `?ref=`
+est reçu, le middleware pose le cookie puis renvoie une 302 vers la même URL
+sans le paramètre (les `utm_*` sont conservés). Conséquences :
+
+- **Une URL avec slug ne rend aucune page.** Un crawler qui suit un lien de
+  commercial partagé publiquement — post LinkedIn, annuaire, forum — atterrit
+  sur l'URL canonique déjà indexée. Il n'y a pas de contenu à indexer sous le
+  paramètre, donc pas de page dupliquée et pas de résultat parasite.
+- **Les bots ne reçoivent jamais de cookie d'attribution.** Ils suivent la
+  redirection comme tout le monde, sans `Set-Cookie`.
+- **Un prospect ne peut pas repartager le slug par accident** : l'URL de sa
+  barre d'adresse ne le contient plus quand la page s'affiche.
+- La redirection est marquée `Cache-Control: private, no-store` — sans ça, un
+  CDN pourrait resservir un `Set-Cookie` et attribuer un visiteur au commercial
+  d'un autre.
+- `sitemap.xml` ne contient aucune URL avec slug, et `b2b.html`/`b2c.html`
+  portent déjà leur `<link rel="canonical">`.
+
+Le risque restant n'est pas technique mais organisationnel : si un commercial
+poste son lien en public, le trafic qu'il attire lui sera attribué. C'est le
+comportement attendu du dispositif, pas une fuite — mais il vaut mieux que les
+commerciaux le sachent.
+
 ## Limites connues
 
 - L'attribution suit un navigateur, pas une personne : changement d'appareil =
@@ -64,6 +90,9 @@ Les deux fonctionnent sur le plan gratuit de Tally.
   90 jours, même si le prospect revient ensuite par le lien d'un autre.
 - Les liens courts `/c/<slug>` atterrissent sur la landing B2B
   (`SHORT_LINK_TARGET` dans `middleware.js`).
+- `ms-strategy-landing-2.html` n'a pas de `<link rel="canonical">`, contrairement
+  à `b2b.html` et `b2c.html`. Sans effet sur l'attribution — le slug n'atteint
+  jamais le HTML — mais à corriger si cette landing doit être indexée.
 
 ## Suite éventuelle
 
