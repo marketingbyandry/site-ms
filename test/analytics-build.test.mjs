@@ -30,3 +30,12 @@ test('le bundle expose window.msInitAnalytics pour cookie-consent.js', async () 
     'le contrat avec assets/cookie-consent.js a disparu du bundle'
   );
 });
+
+test('le bundle lit le cookie ms_camp pour la super-property camp', async () => {
+  const bundle = await readFile('assets/analytics.js', 'utf8');
+  assert.match(
+    bundle,
+    /ms_camp/,
+    'la mesure de campagne par segment/email a disparu du bundle'
+  );
+});

@@ -35,6 +35,12 @@ function initPostHog() {
   const ref = readCookie(document.cookie, 'ms_ref');
   if (ref) properties.ref = ref;
 
+  // Code de campagne email (segment + numero), pose cote edge comme ms_ref
+  // mais en dernier-touch : sert a comparer les segments/emails entre eux,
+  // jamais a la commission.
+  const camp = readCookie(document.cookie, 'ms_camp');
+  if (camp) properties.camp = camp;
+
   posthog.register(properties);
 
   document.addEventListener('click', function (event) {
