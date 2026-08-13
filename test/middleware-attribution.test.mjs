@@ -1,8 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import middleware, { SLUGS } from '../middleware.js';
+import middleware, { SLUGS, CAMPAIGNS } from '../middleware.js';
 
 const [SLUG, OTHER_SLUG] = SLUGS;
+const [CAMP, OTHER_CAMP] = CAMPAIGNS;
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15';
 const BOT_UA = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
 
@@ -12,13 +13,22 @@ function call(url, { cookie, userAgent = UA } = {}) {
   return middleware(new Request(url, { headers }));
 }
 
-// Recupere le cookie ms_ref pose par la reponse, ou null.
-function refCookie(response) {
-  const cookies = response.headers.getSetCookie
+function setCookies(response) {
+  return response.headers.getSetCookie
     ? response.headers.getSetCookie()
     : [response.headers.get('set-cookie')].filter(Boolean);
-  const found = cookies.find((c) => c.startsWith('ms_ref='));
+}
+
+// Recupere le cookie ms_ref pose par la reponse, ou null.
+function refCookie(response) {
+  const found = setCookies(response).find((c) => c.startsWith('ms_ref='));
   return found ? found.split(';')[0].slice('ms_ref='.length) : null;
+}
+
+// Recupere le cookie ms_camp pose par la reponse, ou null.
+function campCookie(response) {
+  const found = setCookies(response).find((c) => c.startsWith('ms_camp='));
+  return found ? found.split(';')[0].slice('ms_camp='.length) : null;
 }
 
 test('un slug connu dans ?ref est pose en cookie ms_ref', () => {
@@ -103,4 +113,53 @@ test('la page reste servie quand aucun ref n_est present', () => {
   const response = call('https://www.byandry.com/b2b.html');
   assert.equal(refCookie(response), null);
   assert.ok(response.headers.get('set-cookie').includes('ms_variant='));
+});
+
+test('un code de campagne connu dans ?camp est pose en cookie ms_camp', () => {
+  const response = call(`https://www.byandry.com/b2b.html?camp=${CAMP}`);
+  assert.equal(campCookie(response), CAMP);
+});
+
+test('camp disparait de l_URL apres attribution', () => {
+  const response = call(`https://www.byandry.com/b2b.html?camp=${CAMP}`);
+  assert.equal(response.status, 302);
+  assert.equal(response.headers.get('location'), 'https://www.byandry.com/b2b.html');
+});
+
+test('un code de campagne inconnu est ignore plutot que stocke', () => {
+  const response = call('https://www.byandry.com/b2b.html?camp=campagne-inventee');
+  assert.equal(campCookie(response), null);
+  assert.equal(response.headers.get('location'), 'https://www.byandry.com/b2b.html');
+});
+
+test('dernier-touch : un nouveau camp ecrase un ms_camp existant', () => {
+  const response = call(`https://www.byandry.com/b2b.html?camp=${OTHER_CAMP}`, {
+    cookie: `ms_camp=${CAMP}`
+  });
+  assert.equal(
+    campCookie(response),
+    OTHER_CAMP,
+    'contrairement a ref, camp doit refleter le dernier email qui a ramene le prospect'
+  );
+});
+
+test('ref et camp cohabitent sur le meme lien', () => {
+  const response = call(`https://www.byandry.com/b2b.html?ref=${SLUG}&camp=${CAMP}`);
+  assert.equal(refCookie(response), SLUG);
+  assert.equal(campCookie(response), CAMP);
+  const location = new URL(response.headers.get('location'));
+  assert.equal(location.searchParams.get('ref'), null);
+  assert.equal(location.searchParams.get('camp'), null);
+});
+
+test('un bot ne recoit aucun cookie camp', () => {
+  const response = call(`https://www.byandry.com/b2b.html?camp=${CAMP}`, {
+    userAgent: BOT_UA
+  });
+  assert.equal(campCookie(response), null);
+});
+
+test('camp n_est jamais pose via le lien court /c/<slug>', () => {
+  const response = call(`https://www.byandry.com/c/${SLUG}`);
+  assert.equal(campCookie(response), null);
 });
