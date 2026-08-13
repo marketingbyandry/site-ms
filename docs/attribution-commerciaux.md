@@ -31,6 +31,17 @@ fausserait la segmentation du tunnel.
 | Segmentation analytics | `src/analytics.js` | `ref` en super-property PostHog |
 | Mention RGPD | `politique-confidentialite.html` | Ligne `ms_ref` du tableau des cookies |
 
+Équivalents pour `camp` (voir [Suivi de campagne (camp)](#suivi-de-campagne-camp) plus bas) :
+
+| Élément | Fichier | Rôle |
+|---|---|---|
+| Liste des campagnes | `middleware.js` (`CAMPAIGNS`) | Whitelist : un `?camp=` absent de cette liste est ignoré |
+| Dépôt du cookie | `middleware.js` | `Set-Cookie ms_camp`, 90 jours, dernier-touch |
+| Lecture du cookie | `assets/ref.js` | Expose `window.msCamp`, pas de repli par défaut |
+| Transmission à Tally | `openTallyForm()` dans `b2b.html`, `b2c.html`, `ms-strategy-landing-2.html` | Ajoute `camp` aux `hiddenFields` |
+| Segmentation analytics | `src/analytics.js` | `camp` en super-property PostHog, désenregistrée si le cookie est absent |
+| Mention RGPD | `politique-confidentialite.html` | Ligne `ms_camp` du tableau des cookies |
+
 Le cookie est posé **côté serveur** et non en JavaScript : Safari plafonne à
 7 jours tout cookie écrit par `document.cookie`, ce qui perdrait les dossiers
 déposés plus de deux semaines après le mail du commercial.
@@ -46,16 +57,19 @@ déposés plus de deux semaines après le mail du commercial.
 
 ## À faire dans Tally (formulaire `kd15W1`)
 
-Ces deux points ne sont pas dans le code, ils se règlent dans l'éditeur Tally.
+Ces points ne sont pas dans le code, ils se règlent dans l'éditeur Tally.
 
 1. **Champ caché `ref`** — taper `/hidden` dans l'éditeur, le nommer exactement
    `ref`. Sans lui, la valeur envoyée par le site est ignorée silencieusement.
-2. **Champ visible « Code conseiller »**, optionnel — rattrape les dépôts que le
+2. **Champ caché `camp`** — même procédure que `ref`, le nommer exactement
+   `camp`. Sans lui, la valeur envoyée par `openTallyForm()` est ignorée
+   silencieusement.
+3. **Champ visible « Code conseiller »**, optionnel — rattrape les dépôts que le
    cookie ne peut pas couvrir : mail ouvert sur mobile puis facture déposée sur
    l'ordinateur du bureau, navigation privée, cookies purgés, ou accès direct à
    `tally.so/r/kd15W1` sans passer par le site.
 
-Les deux fonctionnent sur le plan gratuit de Tally.
+Les trois fonctionnent sur le plan gratuit de Tally.
 
 ## Pourquoi le slug ne peut pas se retrouver dans Google ou ChatGPT
 
@@ -118,12 +132,21 @@ posé en cookie `ms_camp` par `middleware.js`, sur le même modèle que `ms_ref`
 (`?ref=ag&camp=chr-e1`) et sont retirés ensemble de l'URL affichée par la
 même redirection 302 — les protections déjà en place pour `ref` (pas de
 cookie pour les bots, `Cache-Control: private, no-store`, aucune page
-indexable sous le paramètre) s'appliquent identiquement à `camp`.
+indexable sous le paramètre) s'appliquent identiquement à `camp`, mais
+seulement sur les routes couvertes par le `matcher` de `middleware.js`
+(`/`, `/b2b.html`, `/b2c.html`, `/blog.html`, `/comment-ca-marche.html`,
+`/resultats.html`, `/ms-strategy-landing-2.html`,
+`/ms-strategy-calculateur.html`, `/c/:slug*`). Sur une page hors matcher
+(ex. les articles du baromètre, `/mentions-legales.html`, `/cgv.html`), un
+`?camp=` ne pose aucun cookie et l'URL n'est pas nettoyée — sans effet
+pratique aujourd'hui puisque les liens des emails de prospection pointent
+tous vers `b2b.html`, qui est bien dans le matcher.
 
 `camp` alimente une super-property PostHog (`src/analytics.js`) et, une fois
-le champ caché correspondant créé dans l'éditeur Tally, la colonne `camp`
-des soumissions — pour relier un dépôt de facture à l'email précis qui l'a
-déclenché.
+le champ caché correspondant créé dans l'éditeur Tally (voir
+[« À faire dans Tally »](#à-faire-dans-tally-formulaire-kd15w1) plus haut),
+la colonne `camp` des soumissions — pour relier un dépôt de facture à
+l'email précis qui l'a déclenché.
 
 **Hors périmètre, quel que soit ce montage** : importer la liste de
 prospects dans un outil publicitaire (Meta/LinkedIn/TikTok Custom/Matched

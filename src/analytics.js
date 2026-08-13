@@ -38,8 +38,15 @@ function initPostHog() {
   // Code de campagne email (segment + numero), pose cote edge comme ms_ref
   // mais en dernier-touch : sert a comparer les segments/emails entre eux,
   // jamais a la commission.
+  //
+  // `ref` reste enregistre meme apres expiration du cookie (first-touch : on
+  // veut garder trace du commercial a l'origine du dossier). `camp` doit au
+  // contraire disparaitre des qu'il n'y a plus de cookie ms_camp, sinon un
+  // visiteur revenu des mois plus tard en organique continuerait de trainer
+  // le code de la derniere campagne email — a l'oppose du dernier-touch visee.
   const camp = readCookie(document.cookie, 'ms_camp');
   if (camp) properties.camp = camp;
+  else posthog.unregister('camp');
 
   posthog.register(properties);
 
