@@ -872,6 +872,9 @@
     // Commercial référent (voir assets/ref.js et middleware.js). Le champ caché
     // « ref » doit exister dans le formulaire Tally, sinon la valeur est ignorée.
     if (window.msRef) hiddenFields.ref = window.msRef;
+    // Code de campagne email (voir assets/ref.js et middleware.js). Nécessite
+    // le champ caché « camp » côté éditeur Tally, sinon ignoré silencieusement.
+    if (window.msCamp) hiddenFields.camp = window.msCamp;
     Tally.openPopup('kd15W1', { layout: 'modal', width: 700, hiddenFields });
   }
 </script>
