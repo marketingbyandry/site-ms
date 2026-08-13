@@ -94,6 +94,43 @@ commerciaux le sachent.
   à `b2b.html` et `b2c.html`. Sans effet sur l'attribution — le slug n'atteint
   jamais le HTML — mais à corriger si cette landing doit être indexée.
 
+## Suivi de campagne (camp)
+
+Indépendant du mécanisme d'attribution commerciale ci-dessus : `?camp=<code>`
+(ex. `chr-e1` pour le premier email du segment hôtellerie-restauration) est
+posé en cookie `ms_camp` par `middleware.js`, sur le même modèle que `ms_ref`
+— sauf sur trois points :
+
+- **Whitelist séparée** (`CAMPAIGNS` dans `middleware.js`, un code par
+  segment/email de la séquence de démarchage à froid,
+  `content/cold-outreach-waalaxy/`).
+- **Dernier-touch, pas premier-touch** : un nouveau `?camp=` valide écrase
+  toujours la valeur précédente. Il n'y a pas de commission à protéger ici —
+  au contraire, on veut savoir quel email précis a fait revenir le prospect
+  la dernière fois, pour comparer les segments et les emails entre eux.
+- **Base légale distincte** : intérêt légitime (RGPD art. 6.1.f), finalité
+  strictement commerciale (prioriser les relances, mesurer la performance
+  des campagnes), jamais transmis à un tiers publicitaire. L'opt-out déjà
+  présent en pied de chaque email de la séquence (« répondez STOP ») couvre
+  l'opposition.
+
+`ref` et `camp` cohabitent sur le même lien
+(`?ref=ag&camp=chr-e1`) et sont retirés ensemble de l'URL affichée par la
+même redirection 302 — les protections déjà en place pour `ref` (pas de
+cookie pour les bots, `Cache-Control: private, no-store`, aucune page
+indexable sous le paramètre) s'appliquent identiquement à `camp`.
+
+`camp` alimente une super-property PostHog (`src/analytics.js`) et, une fois
+le champ caché correspondant créé dans l'éditeur Tally, la colonne `camp`
+des soumissions — pour relier un dépôt de facture à l'email précis qui l'a
+déclenché.
+
+**Hors périmètre, quel que soit ce montage** : importer la liste de
+prospects dans un outil publicitaire (Meta/LinkedIn/TikTok Custom/Matched
+Audiences). Ça nécessite un consentement donné au moment de la collecte,
+qu'un prospect jamais contacté n'a par définition pas donné — aucun mécanisme
+côté site ne peut le fournir a posteriori.
+
 ## Suite éventuelle
 
 - Remonter `ref` dans un Google Sheet via l'intégration Tally, ou vers HubSpot
