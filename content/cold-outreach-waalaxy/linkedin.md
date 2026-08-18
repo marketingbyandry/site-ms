@@ -6,7 +6,7 @@ un mécanisme concret expliqué, une donnée réelle, pas de mot magique.
 
 ## Post 1 — donnée marché (décline `ind-e2`)
 
-En un mois, le prix de gros de l'électricité est passé de 74 à 104 €/MWh.
+En un mois, le prix de gros de l'électricité a fait ce mouvement : 74 → 104 €/MWh.
 
 Si votre contrat industriel est indexé sur ce prix, ou arrive à échéance
 dans les mois qui viennent, cette hausse se retrouve directement sur votre
