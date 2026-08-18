@@ -136,11 +136,11 @@ Sortie attendue (dans cet ordre exact) :
 - Consumes: tokens CSS existants `--dark`, `--cream`, `--muted`, `--muted2`, `--teal-light` (définis dans `:root`, `index.html:12-25`) ; classes `stag`, `sh2`, `reveal` déjà utilisées ailleurs sur la page ; observer `IntersectionObserver` déjà attaché à `.reveal` (`index.html:981`).
 - Produces: classes `.sup-section`, `.sup-header`, `.sup-list`, `.sup-item`, `.sup-q`, `.sup-name`, `.sup-num`, `.sup-stat`, `.sup-preview`, `.sup-arr`, `.sup-a`, réutilisées à l'identique dans Task 2 et Task 3.
 
-- [ ] **Step 1: Ajouter le bloc CSS avant la fermeture du `<style>`**
+- [x] **Step 1: Ajouter le bloc CSS avant la fermeture du `<style>`**
 
 Dans `index.html`, juste avant la ligne `</style>` (ligne 335), ajouter le bloc CSS complet donné ci-dessus dans "Composants réutilisés dans chaque tâche".
 
-- [ ] **Step 2: Insérer la section HTML entre `market-section` et `cta-band`**
+- [x] **Step 2: Insérer la section HTML entre `market-section` et `cta-band`**
 
 Dans `index.html`, repérer ce texte exact (fin de `market-section`, juste avant le commentaire `<!-- CTA — CALCULATEUR TEMPS RÉEL -->`) :
 
@@ -172,7 +172,7 @@ Insérer le bloc HTML complet (donné ci-dessus) juste après la ligne `</sectio
 <section class="cta-band" id="cta-calculateur">
 ```
 
-- [ ] **Step 3: Vérifier l'ordre et le nombre de cartes**
+- [x] **Step 3: Vérifier l'ordre et le nombre de cartes**
 
 Run: `grep -oE '<span class="sup-num">0[1-5]</span> [^<]+' index.html`
 
@@ -185,17 +185,17 @@ Expected:
 05 GazelEnergie
 ```
 
-- [ ] **Step 4: Vérifier qu'aucune classe `faq-item` n'a été touchée**
+- [x] **Step 4: Vérifier qu'aucune classe `faq-item` n'a été touchée**
 
 Run: `grep -c 'class="faq-item' index.html`
 
 Expected: la même valeur qu'avant modification (à relever avec `git show HEAD:index.html | grep -c 'class="faq-item'` avant de commencer Step 1, puis comparer).
 
-- [ ] **Step 5: Vérification visuelle**
+- [x] **Step 5: Vérification visuelle**
 
 Ouvrir `index.html` dans un navigateur, faire défiler jusqu'à la nouvelle section entre le bloc marché et le CTA calculateur. Cliquer sur chacune des 5 cartes : chacune doit s'ouvrir/se fermer indépendamment des autres (pas d'accordéon exclusif), sans affecter la FAQ plus bas sur la page.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add index.html
@@ -214,11 +214,11 @@ git commit -m "feat(index): ajoute la section fournisseurs partenaires"
 - Consumes: mêmes tokens CSS et classes que Task 1 ; classes `.sup-*` définies en Task 1 (même bloc CSS, dupliqué ici car `b2b.html` a son propre `<style>` inline indépendant de `index.html`).
 - Produces: rien de nouveau — réutilise exactement les mêmes noms de classes et le même markup que Task 1.
 
-- [ ] **Step 1: Ajouter le bloc CSS avant la fermeture du `<style>`**
+- [x] **Step 1: Ajouter le bloc CSS avant la fermeture du `<style>`**
 
 Dans `b2b.html`, juste avant la ligne `</style>` (ligne 190), ajouter le même bloc CSS complet que Task 1 Step 1.
 
-- [ ] **Step 2: Insérer la section HTML entre `vals` et `upload-section`**
+- [x] **Step 2: Insérer la section HTML entre `vals` et `upload-section`**
 
 Dans `b2b.html`, repérer ce texte exact (fin de `vals`, juste avant le commentaire `<!-- UPLOAD / ÉTUDE GRATUITE -->`) :
 
@@ -235,23 +235,23 @@ Dans `b2b.html`, repérer ce texte exact (fin de `vals`, juste avant le commenta
 
 Insérer le même bloc HTML complet que Task 1 (identique, y compris le commentaire `TODO`) juste après `</section>` (fin de `vals`) et avant `<!-- UPLOAD / ÉTUDE GRATUITE -->`.
 
-- [ ] **Step 3: Vérifier l'ordre et le nombre de cartes**
+- [x] **Step 3: Vérifier l'ordre et le nombre de cartes**
 
 Run: `grep -oE '<span class="sup-num">0[1-5]</span> [^<]+' b2b.html`
 
 Expected: la même sortie que Task 1 Step 3.
 
-- [ ] **Step 4: Vérifier qu'aucune classe `faq-item` n'a été touchée**
+- [x] **Step 4: Vérifier qu'aucune classe `faq-item` n'a été touchée**
 
 Run: `grep -c 'class="faq-item' b2b.html`
 
 Expected: la même valeur qu'avant modification (relevée avant Step 1 avec `git show HEAD:b2b.html | grep -c 'class="faq-item'`).
 
-- [ ] **Step 5: Vérification visuelle**
+- [x] **Step 5: Vérification visuelle**
 
 Ouvrir `b2b.html` dans un navigateur, vérifier que la section apparaît juste avant le bloc d'upload de facture, et que les 5 cartes s'ouvrent/se ferment indépendamment.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add b2b.html
@@ -270,11 +270,11 @@ git commit -m "feat(b2b): ajoute la section fournisseurs partenaires"
 - Consumes: mêmes tokens CSS et classes que Task 1/2.
 - Produces: rien de nouveau — réutilise exactement les mêmes noms de classes et le même markup que Task 1/2.
 
-- [ ] **Step 1: Ajouter le bloc CSS avant la fermeture du `<style>`**
+- [x] **Step 1: Ajouter le bloc CSS avant la fermeture du `<style>`**
 
 Dans `barometre-energie.html`, juste avant la ligne `</style>` (ligne 149), ajouter le même bloc CSS complet que Task 1 Step 1.
 
-- [ ] **Step 2: Insérer la section HTML entre la Méthodologie et l'Historique**
+- [x] **Step 2: Insérer la section HTML entre la Méthodologie et l'Historique**
 
 Dans `barometre-energie.html`, repérer ce texte exact :
 
@@ -289,17 +289,17 @@ Dans `barometre-energie.html`, repérer ce texte exact :
 
 Insérer le même bloc HTML complet que Task 1 (identique, y compris le commentaire `TODO`) juste après `</section>` (fin de la Méthodologie) et avant `<!-- HISTORIQUE / RETROSPECTIVES -->`.
 
-- [ ] **Step 3: Vérifier l'ordre et le nombre de cartes**
+- [x] **Step 3: Vérifier l'ordre et le nombre de cartes**
 
 Run: `grep -oE '<span class="sup-num">0[1-5]</span> [^<]+' barometre-energie.html`
 
 Expected: la même sortie que Task 1 Step 3.
 
-- [ ] **Step 4: Vérification visuelle**
+- [x] **Step 4: Vérification visuelle**
 
 Ouvrir `barometre-energie.html` dans un navigateur, vérifier que la section apparaît entre la Méthodologie et l'Historique, et que les 5 cartes s'ouvrent/se ferment indépendamment. Vérifier aussi le rendu en mode clair (`data-theme="light"`) pour confirmer qu'aucun override supplémentaire n'est nécessaire.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add barometre-energie.html
@@ -317,7 +317,7 @@ git commit -m "feat(barometre): ajoute la section fournisseurs partenaires"
 - Consumes: résultat des Tasks 1-3.
 - Produces: rien — confirmation finale avant livraison.
 
-- [ ] **Step 1: Confirmer l'ordre identique sur les 3 pages**
+- [x] **Step 1: Confirmer l'ordre identique sur les 3 pages**
 
 Run:
 ```bash
@@ -336,19 +336,19 @@ Expected: pour les 3 fichiers, la même séquence :
 05 GazelEnergie
 ```
 
-- [ ] **Step 2: Confirmer la présence du TODO de rappel sur les 3 pages**
+- [x] **Step 2: Confirmer la présence du TODO de rappel sur les 3 pages**
 
 Run: `grep -c "TODO: remplacer les chiffres de contrats" index.html b2b.html barometre-energie.html`
 
 Expected: `1` pour chacun des 3 fichiers.
 
-- [ ] **Step 3: Lancer la suite de tests existante (non liée au HTML mais doit rester verte)**
+- [x] **Step 3: Lancer la suite de tests existante (non liée au HTML mais doit rester verte)**
 
 Run: `npm test`
 
 Expected: tous les tests existants passent toujours (aucun fichier JS/`.mjs` n'a été modifié par ce plan).
 
-- [ ] **Step 4: Commit final (si des ajustements ont eu lieu pendant la vérification)**
+- [x] **Step 4: Commit final (si des ajustements ont eu lieu pendant la vérification)**
 
 ```bash
 git status --short
