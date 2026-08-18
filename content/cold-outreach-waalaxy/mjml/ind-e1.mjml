@@ -61,12 +61,9 @@
 
     <mj-section background-color="#07131a" padding="8px 24px 26px 24px">
       <mj-column>
-        <mj-button href="https://www.byandry.com/b2b.html?ref=ag&camp=ind-e1" background-color="#4cde80" color="#07131a"
-          font-weight="700" font-size="13px" letter-spacing="0.04em" border-radius="2px"
-          padding="20px 0 0 0" inner-padding="14px 30px">
-          Transmettre ma facture
-        </mj-button>
-        
+        <mj-text padding="4px 0 18px 0">
+          <div style="border-left:3px solid #5ecfdc; padding-left:16px; font-size:17px; font-weight:600; line-height:1.45; color:#f5f0e8;">Répondez à cet email avec le mot <strong style="color:#5ecfdc">AUDIT</strong>, je vous transmets le lien directement.</div>
+        </mj-text>
       </mj-column>
     </mj-section>
 
