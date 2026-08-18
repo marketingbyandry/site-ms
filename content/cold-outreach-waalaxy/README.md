@@ -15,7 +15,19 @@ de prospects scrapés via Waalaxy (LinkedIn). CTA vers le formulaire Tally
 - `*-e1` — accroche + offre (audit gratuit, positionnement cabinet d'expertise)
 - `*-e2` — relance à J+4/5, angle différent par segment (groupement d'achat,
   ou donnée chiffrée du Baromètre pour `ind-e2`)
-- `*-e3` — dernière relance à J+10, ton « je referme le dossier »
+- `*-e3` — CHR/TERT : dernière relance à J+10, ton « je referme le dossier ».
+  IND (pilote) : nouvel email à J+8, « histoire → leçon » sur un récit
+  sectoriel générique bâti sur la donnée Baromètre `74 → 104 €/MWh` —
+  voir `docs/superpowers/specs/2026-08-13-pilote-ind-swipe-file-design.md`.
+- `ind-e4` — pilote uniquement : dernière relance à J+14 (ton « je referme
+  le dossier », contenu inchangé de l'ancien `ind-e3`).
+
+### CTA-mot-clé (pilote IND)
+
+`ind-e1` et `ind-e3` remplacent le bouton-lien habituel par un texte
+« Répondez à cet email avec le mot AUDIT » — testé contre `ind-e2`/`ind-e4`
+qui gardent le bouton-lien classique, pour comparer taux de réponse et taux
+de clic sur la même séquence.
 
 ## Variables de personnalisation
 
@@ -81,6 +93,14 @@ designmodo.com/how-to-choose-the-right-email-template-size, appliquée en v3 :
 - **Objets d'email** laissés tels quels : déjà alignés sur le consensus B2B
   2026 ("clair et spécifique plutôt que clever").
 
+## Volet LinkedIn (pilote IND)
+
+2 posts déclinant les mêmes angles que `ind-e2` (donnée marché) et le
+nouveau `ind-e3` (récit sectoriel), publiés depuis le profil personnel
+d'Antoine — voir `linkedin.md`. Même format que
+`content/social-organique-b2b/semaine-XX.md` (autre branche) : vouvoiement,
+lien tracké en UTM plutôt qu'en `ref/camp`.
+
 ## Tracking
 
 Chaque bouton CTA pointe vers :
@@ -97,6 +117,11 @@ https://www.byandry.com/b2b.html?ref=ag&camp=<segment>-e<n>
   dédié + super-property PostHog dédiée), cf. spec à écrire avant
   l'implémentation. Tant que ce n'est pas fait, le paramètre `camp` est
   ignoré par le site (aucune erreur, juste pas encore exploité).
+
+Le volet LinkedIn du pilote IND n'utilise pas `ref`/`camp` : il suit la
+convention UTM déjà en place pour le contenu organique
+(`utm_source=linkedin_organic&utm_campaign=pilote-ind&utm_content=post-<n>`),
+cf. `linkedin.md`.
 
 ## Build
 
