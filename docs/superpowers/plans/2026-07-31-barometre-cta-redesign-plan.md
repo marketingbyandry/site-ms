@@ -2,13 +2,13 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Reposition the barometre articles' CTA (calculateur d'inaction = primary, étude gratuite = secondary), and turn the flat single-column text wall into a dynamic read: sectioned content, a sticky side rail (trend sparkline + quick nav) above 1280px, and per-page differentiation driven by real electricity-price trend data — across all 7 retrospective articles plus the shared template.
+**Goal:** Reposition the barometre articles' CTA (calculateur d'inaction = primary, étude gratuite = secondary), and turn the flat single-column text wall into a dynamic read: sectioned content, a sticky side rail (trend sparkline + quick nav) on the right above 1280px, a sticky left rail of per-section summary cards to balance the empty left grid column, and per-page differentiation driven by real electricity-price trend data — across all 7 retrospective articles plus the shared template.
 
-**Architecture:** Every page is a standalone HTML file with fully duplicated inline `<style>`/`<script>` (no shared includes, no build step, no test framework — this is a static marketing site). The redesign activates CSS/JS that already exists in every file but was never wired to any HTML (`.stat-row`, `.checklist`, `.pull-quote`, `animateCount`, `.article-layout` grid) and adds a small amount of genuinely new CSS/JS (`.side-rail`, `.rail-nav`, sparkline draw-in, active-section highlighting). Because the 8 files are near-identical copies, the same set of edits is applied to each file independently, with only per-page data (accent color, price, delta, checklist facts, quote) varying.
+**Architecture:** Every page is a standalone HTML file with fully duplicated inline `<style>`/`<script>` (no shared includes, no build step, no test framework — this is a static marketing site). The redesign activates CSS/JS that already exists in every file but was never wired to any HTML (`.stat-row`, `.checklist`, `.pull-quote`, `animateCount`, `.article-layout` grid) and adds a small amount of genuinely new CSS/JS (`.side-rail`, `.rail-nav`, sparkline draw-in, active-section highlighting, and now `.left-rail`/`.left-card` reusing the same `railObs` `IntersectionObserver` for its active state). Because the 8 files are near-identical copies, the same set of edits is applied to each file independently, with only per-page data (accent color, price, delta, checklist facts, quote, card teasers) varying.
 
 **Tech Stack:** Plain HTML/CSS/JS, no framework, no bundler. Editing is done with exact-string `Edit` operations (not line numbers) because indentation/line offsets are not guaranteed identical across the 8 files even though their structure is.
 
-Spec: `docs/superpowers/specs/2026-07-30-barometre-cta-redesign-design.md`
+Spec: `docs/superpowers/specs/2026-07-30-barometre-cta-redesign-design.md`, `docs/superpowers/specs/2026-08-13-left-rail-summary-cards-design.md`
 
 ## Global Constraints
 
@@ -20,6 +20,9 @@ Spec: `docs/superpowers/specs/2026-07-30-barometre-cta-redesign-design.md`
 - Checklist/pull-quote content must be facts/quotes already published in that page's own prose — no invented data (verified against the spec, which sourced them from the live articles).
 - `templates/barometre-article-template.html` gets the same structure with neutral placeholders (`--accent: var(--teal-light)`, bracket-style text placeholders matching the template's existing `[PLACEHOLDER]` convention) — not real content.
 - No automated test suite exists in this repo for HTML pages. "Testing" per task = `grep`-based structural sanity checks (tag balance, id/class counts) plus a manual visual check by opening the file in a browser.
+- **Left rail** (`docs/superpowers/specs/2026-08-13-left-rail-summary-cards-design.md`): a `<aside class="left-rail">` of 4 `.left-card` links (`#periode`, `#electricite`, `#gaz`, `#contexte` — **no** `#cta` card) occupies grid column 1, mirroring `.side-rail`'s sticky/1280px-breakpoint behavior. Card titles reuse each page's exact `<h2>` text (same values already used in `.rail-nav`). Card teasers are one-line, hand-written marketing copy (not auto-derived from body text) — see Task 9. Active-card highlighting reuses the existing `railObs` `IntersectionObserver` (Global Constraints "Shared JS block") by widening its `railLinks` selector rather than adding a second observer.
+- This component applies to **all 8 files**, including the 3 already shipped (Tasks 1-3, approved without it) — Tasks 10-12 below are a rework pass for those three; Tasks 4-8 include it natively in their steps.
+- **Dispatch order:** Task numbers below equal file identity (Task N = the same file across the whole plan, matching the progress ledger and task tracker) and are **not** execution order for this addendum. **Task 9 (content-builder teaser copy) must be dispatched and merged before Tasks 4, 5, 6, 7, 8, 10, 11, 12** — every one of those tasks' left-rail step quotes lines from Task 9's output file, which must exist first.
 
 ### Shared per-page reference table (from spec §3, §5, §6)
 
@@ -102,6 +105,66 @@ Insert immediately after the existing `.article-body { ... }` rule and before th
 .rail-nav a.active { color: var(--accent); }
 .cta-secondary { font-size: .85rem; color: var(--muted); margin-top: 1rem; }
 .cta-secondary a { color: var(--teal-light); }
+.left-rail {
+  grid-column: 1;
+  align-self: start;
+  position: sticky;
+  top: 6rem;
+  display: none;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding-right: 2rem;
+}
+@media (min-width: 1280px) {
+  .left-rail { display: flex; }
+}
+.left-rail::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: .4rem;
+  bottom: .4rem;
+  width: 1px;
+  background: rgba(43,181,200,.15);
+}
+.left-card {
+  display: block;
+  position: relative;
+  padding-left: 1.3rem;
+  text-decoration: none;
+}
+.left-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .3rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--muted);
+  background: var(--dark);
+  transition: background .2s, border-color .2s;
+}
+.left-card-title {
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: .35rem;
+  transition: color .2s;
+}
+.left-card:hover .left-card-title,
+.left-card.active .left-card-title { color: var(--accent); }
+.left-card.active::before {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.left-card-teaser {
+  display: block;
+  font-size: .74rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
 ```
 
 ### Shared JS block (identical text, appended into every one of the 8 files)
@@ -122,7 +185,7 @@ if (sparkPath) {
 }
 
 // ── Rail nav active section
-const railLinks = document.querySelectorAll('.rail-nav a');
+const railLinks = document.querySelectorAll('.rail-nav a, .left-card');
 const railSections = ['periode', 'electricite', 'gaz', 'contexte']
   .map(id => document.getElementById(id))
   .filter(Boolean);
@@ -229,11 +292,30 @@ Opening — old:
 ```html
   <div class="article-body">
 ```
-new:
+new (with per-page left-card teasers filled in — see each task):
 ```html
   <div class="article-layout">
+  <aside class="left-rail">
+    <a class="left-card" href="#periode">
+      <span class="left-card-title">Période analysée</span>
+      <span class="left-card-teaser">TEASER_PERIODE</span>
+    </a>
+    <a class="left-card" href="#electricite">
+      <span class="left-card-title">TITRE_ELECTRICITE</span>
+      <span class="left-card-teaser">TEASER_ELECTRICITE</span>
+    </a>
+    <a class="left-card" href="#gaz">
+      <span class="left-card-title">TITRE_GAZ</span>
+      <span class="left-card-teaser">TEASER_GAZ</span>
+    </a>
+    <a class="left-card" href="#contexte">
+      <span class="left-card-title">Contexte du marché</span>
+      <span class="left-card-teaser">TEASER_CONTEXTE</span>
+    </a>
+  </aside>
   <div class="article-body">
 ```
+`TITRE_ELECTRICITE`/`TITRE_GAZ` are almost always `Prix moyen électricité`/`Prix moyen gaz` — except T3 2026, which uses `Prix moyen électricité (partiel)`/`Prix gaz (dernière valeur observée)` (same non-standard headings already used in that file's `.rail-nav`, see Task 7). `TEASER_*` values come from the copy table produced by Task 9 (content-builder) — every task below that inserts this block quotes the exact 4 lines for its own file from that table, verbatim.
 
 Closing — old (the "Lire aussi" callout is confirmed the last element of `.article-body` in every one of the 8 files):
 ```html
@@ -728,7 +810,7 @@ git commit -m "feat: redesign 2023 barometre article — CTA hierarchy, side rai
 ```
 Apply the shared "Section-4 close anchor" edit verbatim.
 
-- [ ] **Step 8: `.article-layout` wrap + side rail** — shared opening edit; closing edit with index 2 active:
+- [ ] **Step 8: `.article-layout` wrap, left rail, and side rail** — shared opening edit, with left-card teasers from Task 9's `ms-blog-barometre-2024.html` row (all 4 titles are the standard ones: Période analysée / Prix moyen électricité / Prix moyen gaz / Contexte du marché — no T3-style variants); closing edit with index 2 active:
 ```html
   <aside class="side-rail">
     <div class="sparkline-wrap">
@@ -760,9 +842,14 @@ Apply the shared "Section-4 close anchor" edit verbatim.
 
 - [ ] **Step 9: Append shared JS block** — verbatim.
 
-- [ ] **Step 10: Structural sanity checks** — same commands against `ms-blog-barometre-2024.html`, same expected counts.
+- [ ] **Step 10: Structural sanity checks** — same commands as Task 1 Step 10 against `ms-blog-barometre-2024.html`, same expected counts, plus:
+```bash
+grep -c 'class="left-rail"' ms-blog-barometre-2024.html
+grep -c 'class="left-card"' ms-blog-barometre-2024.html
+```
+Expected: `1`, `4`.
 
-- [ ] **Step 11: Manual visual check** — stat counts to 59, active point at "2024".
+- [ ] **Step 11: Manual visual check** — stat counts to 59, active point at "2024"; left-rail shows 4 cards above 1280px, highlighting in sync with the right rail-nav while scrolling.
 
 - [ ] **Step 12: Commit**
 ```bash
@@ -829,7 +916,7 @@ git commit -m "feat: redesign 2024 barometre article — CTA hierarchy, side rai
 ```
 Apply the shared "Section-4 close anchor" edit verbatim.
 
-- [ ] **Step 8: `.article-layout` wrap + side rail** — shared opening edit; closing edit with index 3 active:
+- [ ] **Step 8: `.article-layout` wrap, left rail, and side rail** — shared opening edit, with left-card teasers from Task 9's `ms-blog-barometre-2025.html` row (standard titles, no T3-style variants); closing edit with index 3 active:
 ```html
   <aside class="side-rail">
     <div class="sparkline-wrap">
@@ -861,9 +948,14 @@ Apply the shared "Section-4 close anchor" edit verbatim.
 
 - [ ] **Step 9: Append shared JS block** — verbatim.
 
-- [ ] **Step 10: Structural sanity checks** — same commands against `ms-blog-barometre-2025.html`, same expected counts.
+- [ ] **Step 10: Structural sanity checks** — same commands as Task 1 Step 10 against `ms-blog-barometre-2025.html`, same expected counts, plus:
+```bash
+grep -c 'class="left-rail"' ms-blog-barometre-2025.html
+grep -c 'class="left-card"' ms-blog-barometre-2025.html
+```
+Expected: `1`, `4`.
 
-- [ ] **Step 11: Manual visual check** — stat counts to 62, active point at "2025".
+- [ ] **Step 11: Manual visual check** — stat counts to 62, active point at "2025"; left-rail shows 4 cards above 1280px, highlighting in sync with the right rail-nav while scrolling.
 
 - [ ] **Step 12: Commit**
 ```bash
@@ -930,7 +1022,7 @@ T1 2026 values: accent `#e0a955`, glow `rgba(224,169,85,.18)`, `data-target="74"
 ```
 Apply the shared "Section-4 close anchor" edit verbatim.
 
-- [ ] **Step 8: `.article-layout` wrap + side rail** — shared opening edit; closing edit with index 4 active:
+- [ ] **Step 8: `.article-layout` wrap, left rail, and side rail** — shared opening edit, with left-card teasers from Task 9's `ms-blog-barometre-2026-t1.html` row (standard titles, no T3-style variants); closing edit with index 4 active:
 ```html
   <aside class="side-rail">
     <div class="sparkline-wrap">
@@ -962,9 +1054,14 @@ Apply the shared "Section-4 close anchor" edit verbatim.
 
 - [ ] **Step 9: Append shared JS block** — verbatim.
 
-- [ ] **Step 10: Structural sanity checks** — same commands against `ms-blog-barometre-2026-t1.html`, same expected counts.
+- [ ] **Step 10: Structural sanity checks** — same commands as Task 1 Step 10 against `ms-blog-barometre-2026-t1.html`, same expected counts, plus:
+```bash
+grep -c 'class="left-rail"' ms-blog-barometre-2026-t1.html
+grep -c 'class="left-card"' ms-blog-barometre-2026-t1.html
+```
+Expected: `1`, `4`.
 
-- [ ] **Step 11: Manual visual check** — stat counts to 74, active point at "T1".
+- [ ] **Step 11: Manual visual check** — stat counts to 74, active point at "T1"; left-rail shows 4 cards above 1280px, highlighting in sync with the right rail-nav while scrolling.
 
 - [ ] **Step 12: Commit**
 ```bash
@@ -1067,7 +1164,7 @@ Contexte open + checklist + quote:
 ```
 Apply the shared "Section-4 close anchor" edit verbatim.
 
-- [ ] **Step 8: `.article-layout` wrap + side rail** — shared opening edit; closing edit with index 6 active (dashed AND enlarged/accent-colored):
+- [ ] **Step 8: `.article-layout` wrap, left rail, and side rail** — shared opening edit, with left-card teasers from Task 9's `ms-blog-barometre-2026-t3.html` row. This file's electricité/gaz cards use the same non-standard titles as its `.rail-nav` (Step 5 above): `TITRE_ELECTRICITE` = `Prix moyen électricité (partiel)`, `TITRE_GAZ` = `Prix gaz (dernière valeur observée)`. Closing edit with index 6 active (dashed AND enlarged/accent-colored):
 ```html
   <aside class="side-rail">
     <div class="sparkline-wrap">
@@ -1104,10 +1201,12 @@ Apply the shared "Section-4 close anchor" edit verbatim.
 Run the same commands as Task 1 Step 10 against `ms-blog-barometre-2026-t3.html`, plus:
 ```bash
 grep -c 'class="partial-notice reveal"' ms-blog-barometre-2026-t3.html
+grep -c 'class="left-rail"' ms-blog-barometre-2026-t3.html
+grep -c 'class="left-card"' ms-blog-barometre-2026-t3.html
 ```
-Expected: same counts as Task 1 (`4`,`4`,`1`,`1`,`1`,`3`), and `1` for `.partial-notice` (confirms it survived untouched).
+Expected: same counts as Task 1 (`4`,`4`,`1`,`1`,`1`,`3`), `1` for `.partial-notice` (confirms it survived untouched), `1` for `.left-rail`, `4` for `.left-card`.
 
-- [ ] **Step 11: Manual visual check** — stat counts to 101, active point at "T3" and rendered hollow/dashed at the enlarged size; confirm the "Bilan intermédiaire" banner still renders above "Période analysée" exactly as before.
+- [ ] **Step 11: Manual visual check** — stat counts to 101, active point at "T3" and rendered hollow/dashed at the enlarged size; confirm the "Bilan intermédiaire" banner still renders above "Période analysée" exactly as before; left-rail shows 4 cards (électricité/gaz cards use the "(partiel)"/"(dernière valeur observée)" titles) highlighting in sync with the right rail-nav while scrolling.
 
 - [ ] **Step 12: Commit**
 ```bash
@@ -1174,7 +1273,7 @@ Template values: accent `var(--teal-light)`, glow `rgba(94,207,220,.18)`, `data-
 ```
 Apply the shared "Section-4 close anchor" edit verbatim.
 
-- [ ] **Step 8: `.article-layout` wrap + side rail** — shared opening edit; closing edit with index 6 active (dashed, enlarged, `--accent` = teal-light by default):
+- [ ] **Step 8: `.article-layout` wrap, left rail, and side rail** — shared opening edit, with left-card teasers from Task 9's `templates/barometre-article-template.html` row (`[TEASER_PERIODE]`, `[TEASER_ELECTRICITE]`, `[TEASER_GAZ]`, `[TEASER_CONTEXTE]` — bracket placeholders matching this file's own convention, not real copy); standard titles (Période analysée / Prix moyen électricité / Prix moyen gaz / Contexte du marché). Closing edit with index 6 active (dashed, enlarged, `--accent` = teal-light by default):
 ```html
   <aside class="side-rail">
     <div class="sparkline-wrap">
@@ -1215,13 +1314,15 @@ grep -c '</section>' templates/barometre-article-template.html
 grep -c 'class="side-rail"' templates/barometre-article-template.html
 grep -c 'class="rail-nav"' templates/barometre-article-template.html
 grep -c 'data-target=' templates/barometre-article-template.html
+grep -c 'class="left-rail"' templates/barometre-article-template.html
+grep -c 'class="left-card"' templates/barometre-article-template.html
 ```
-Expected: `4`, `4`, `1`, `1`, `1`.
+Expected: `4`, `4`, `1`, `1`, `1`, `1`, `4`.
 
 - [ ] **Step 11: Manual visual check**
 
 Run: `open templates/barometre-article-template.html`
-Verify the same visual behavior as Task 1, with the understanding that most text still shows `[PLACEHOLDER]` tokens by design — confirm no broken HTML (unclosed tags, missing `</section>`), the side rail still renders at ≥1280px, and the sparkline/rail-nav still animate correctly despite the placeholder content.
+Verify the same visual behavior as Task 1, with the understanding that most text still shows `[PLACEHOLDER]` tokens by design — confirm no broken HTML (unclosed tags, missing `</section>`), the side rail still renders at ≥1280px, the left rail shows 4 bracket-placeholder cards, and the sparkline/rail-nav still animate correctly despite the placeholder content.
 
 - [ ] **Step 12: Commit**
 ```bash
@@ -1231,9 +1332,180 @@ git commit -m "feat: apply barometre redesign to the shared article template"
 
 ---
 
+## Task 9: Left-rail teaser copy (content-builder — dispatch first, see "Dispatch order" above)
+
+**Files:**
+- Create: `docs/superpowers/specs/2026-08-13-left-rail-teasers.md`
+
+**Interfaces:**
+- Consumes: the per-page facts already locked in this plan's shared reference table (Global Constraints), and each file's own checklist/quote content (Tasks 1-8's Step 7 blocks) — teasers must not invent data beyond what those already establish.
+- Produces: a markdown table of 32 one-line teasers (4 sections × 8 files) that Tasks 4-8 and 10-12 quote verbatim into their `.left-card-teaser` spans.
+
+This is a content task (no tests) — its deliverable is the copy itself, self-reviewed against the constraints below rather than run.
+
+- [ ] **Step 1: Re-read source material**
+
+For each of the 8 files, re-read the section under each of the 4 headings (`Période analysée`, `Prix moyen électricité`[-`(partiel)` on T3], `Prix moyen gaz`[-`(dernière valeur observée)` on T3], `Contexte du marché`) plus that page's checklist/pull-quote already specified in this plan (Task 1 Step 7 for T2 2026, Task 2 Step 7 for 2022, Task 3 Step 7 for 2023, Task 4-8 Step 7 for the rest). This grounds every teaser in already-published facts, consistent with the Global Constraints rule that checklist/quote content must come from the page's own prose.
+
+- [ ] **Step 2: Draft the 32 teasers**
+
+Constraints for every teaser:
+- One line, roughly 60-90 characters (fits the `.left-card-teaser` box at `.74rem` without wrapping past 2 lines on a 1fr sidebar column).
+- Factual, retrospective tone matching the rest of the site's copy — no sur-promesse, no invented figures. Where a number is used, it must match the value already locked in this plan's shared reference table or that page's checklist.
+- Distinct per page even for sections whose heading repeats (e.g. every page's "Période analysée" teaser must reflect *that page's* period, not a generic line reused verbatim across all 8 files).
+- `templates/barometre-article-template.html`'s 4 teasers use the template's existing bracket-placeholder convention (e.g. `[TEASER_PERIODE]`) instead of real copy — it has no real period to describe yet.
+
+- [ ] **Step 3: Save the copy table**
+
+Write `docs/superpowers/specs/2026-08-13-left-rail-teasers.md`:
+
+```markdown
+# Left-rail teaser copy
+
+One line per section per file, quoted verbatim into `.left-card-teaser` by Tasks 4-8 and 10-12.
+
+| Fichier | Période analysée | Électricité | Gaz | Contexte du marché |
+|---|---|---|---|---|
+| ms-blog-barometre-2026-t2.html | ... | ... | ... | ... |
+| ms-blog-barometre-2022.html | ... | ... | ... | ... |
+| ms-blog-barometre-2023.html | ... | ... | ... | ... |
+| ms-blog-barometre-2024.html | ... | ... | ... | ... |
+| ms-blog-barometre-2025.html | ... | ... | ... | ... |
+| ms-blog-barometre-2026-t1.html | ... | ... | ... | ... |
+| ms-blog-barometre-2026-t3.html | ... | ... | ... | ... |
+| templates/barometre-article-template.html | [TEASER_PERIODE] | [TEASER_ELECTRICITE] | [TEASER_GAZ] | [TEASER_CONTEXTE] |
+```
+(`...` above stands for the real drafted line from Step 2 — every cell in the committed file must be filled in, none left as `...`.)
+
+- [ ] **Step 4: Self-check against constraints**
+
+Re-read all 32 cells against Step 2's constraints: character count, no duplicated phrasing across the 7 real pages, every figure traceable to the shared reference table or that page's own checklist, template row uses brackets not prose.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add docs/superpowers/specs/2026-08-13-left-rail-teasers.md
+git commit -m "content: draft left-rail teaser copy for barometre articles"
+```
+
+---
+
+## Task 10: Rework `ms-blog-barometre-2026-t2.html` — add left rail
+
+**Files:**
+- Modify: `ms-blog-barometre-2026-t2.html` (already redesigned in Task 1)
+
+**Interfaces:**
+- Consumes: Task 9's teaser table (row `ms-blog-barometre-2026-t2.html`); the shared `.left-rail`/`.left-card` CSS and widened `railLinks` selector from Global Constraints.
+
+- [ ] **Step 1: Confirm anchors**
+
+Run: `grep -n 'class="article-layout"\|class="side-rail"\|querySelectorAll(.\.rail-nav a.)' ms-blog-barometre-2026-t2.html`
+Expected: one match each — confirms Task 1 landed and this rework hasn't already been applied.
+
+- [ ] **Step 2: Insert the `.left-rail`/`.left-card` CSS**
+
+Apply the shared CSS block's new `.left-rail`/`.left-card` rules (Global Constraints) verbatim, appended after the existing `.cta-secondary a { ... }` rule.
+
+- [ ] **Step 3: Insert the left-rail HTML**
+
+Old:
+```html
+  <div class="article-layout">
+  <div class="article-body">
+```
+New (teasers from Task 9's `ms-blog-barometre-2026-t2.html` row):
+```html
+  <div class="article-layout">
+  <aside class="left-rail">
+    <a class="left-card" href="#periode">
+      <span class="left-card-title">Période analysée</span>
+      <span class="left-card-teaser">[Task 9 teaser — Période, T2 2026]</span>
+    </a>
+    <a class="left-card" href="#electricite">
+      <span class="left-card-title">Prix moyen électricité</span>
+      <span class="left-card-teaser">[Task 9 teaser — Électricité, T2 2026]</span>
+    </a>
+    <a class="left-card" href="#gaz">
+      <span class="left-card-title">Prix moyen gaz</span>
+      <span class="left-card-teaser">[Task 9 teaser — Gaz, T2 2026]</span>
+    </a>
+    <a class="left-card" href="#contexte">
+      <span class="left-card-title">Contexte du marché</span>
+      <span class="left-card-teaser">[Task 9 teaser — Contexte, T2 2026]</span>
+    </a>
+  </aside>
+  <div class="article-body">
+```
+Replace each `[Task 9 teaser — …]` bracket with that exact cell's text from `docs/superpowers/specs/2026-08-13-left-rail-teasers.md` — these brackets are dispatch-time lookups, not literal output.
+
+- [ ] **Step 4: Widen the `railLinks` selector**
+
+Old:
+```js
+const railLinks = document.querySelectorAll('.rail-nav a');
+```
+New:
+```js
+const railLinks = document.querySelectorAll('.rail-nav a, .left-card');
+```
+
+- [ ] **Step 5: Structural sanity checks**
+
+```bash
+grep -c 'class="left-rail"' ms-blog-barometre-2026-t2.html
+grep -c 'class="left-card"' ms-blog-barometre-2026-t2.html
+grep -c "querySelectorAll('.rail-nav a, .left-card')" ms-blog-barometre-2026-t2.html
+```
+Expected: `1`, `4`, `1`.
+
+- [ ] **Step 6: Manual visual check**
+
+Run: `open ms-blog-barometre-2026-t2.html`. Widen past 1280px: confirm 4 cards appear in the left column, threaded on a thin vertical line (a hollow dot per card) that echoes the top `#progress-bar` — visually distinct from the right `.rail-nav`'s plain link list. Scroll and confirm the left card for the section in view highlights (dot fills `--accent`, title turns `--accent`) in sync with the right rail-nav link.
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add ms-blog-barometre-2026-t2.html
+git commit -m "feat: add left-rail summary cards to T2 2026 barometre article"
+```
+
+---
+
+## Task 11: Rework `ms-blog-barometre-2022.html` — add left rail
+
+**Files:**
+- Modify: `ms-blog-barometre-2022.html` (already redesigned in Task 2)
+
+**Interfaces:**
+- Consumes: Task 9's teaser table (row `ms-blog-barometre-2022.html`); same shared blocks as Task 10.
+
+Repeat Task 10 Steps 1-2, 4-7 verbatim against `ms-blog-barometre-2022.html`. Step 3's left-rail HTML insertion uses the same 4 section titles (this file has no T3-style heading variants) with teasers from Task 9's `ms-blog-barometre-2022.html` row instead.
+
+---
+
+## Task 12: Rework `ms-blog-barometre-2023.html` — add left rail
+
+**Files:**
+- Modify: `ms-blog-barometre-2023.html` (already redesigned in Task 3)
+
+**Interfaces:**
+- Consumes: Task 9's teaser table (row `ms-blog-barometre-2023.html`); same shared blocks as Task 10.
+
+Repeat Task 10 Steps 1-2, 4-7 verbatim against `ms-blog-barometre-2023.html`. Step 3's left-rail HTML insertion uses the same 4 section titles with teasers from Task 9's `ms-blog-barometre-2023.html` row instead.
+
+---
+
 ## Self-Review Notes
 
 - **Spec coverage:** §1 (CTA hierarchy) → shared Nav/Floating/CTA edits, applied in every task. §2 (sections + side rail) → shared section-wrap + `.article-layout`/`.side-rail` edits, every task. §3 (accent + sparkline) → per-task `:root`/gradient/SVG values, every task. §4 (stat-row) → shared hero stat-row edit, every task. §5 (checklist) → per-task checklist content, every task. §6 (pull-quote) → per-task quote, every task. §7 (animations) → shared JS block (sparkline draw-in, rail-nav highlight) + reused `animateCount`, every task; no new decorative effects added anywhere. §8 (scope notes) → `.counter-box`/`.data-table-wrap` untouched (never referenced in any task), gas series excluded from the sparkline (only electricity used), relative-color syntax avoided in favor of hardcoded `--accent-glow`, template gets placeholder treatment (Task 8).
 - **Placeholder scan:** the only bracket-style placeholders in this plan (`[PÉRIODE]`, `[FAIT_CLÉ_1]`, etc.) are confined to Task 8 and match the template file's own pre-existing placeholder convention (`[TITRE_ARTICLE]`, `[SLUG_PERIODE]`, …) — they are real content for that file, not deferred plan work.
 - **Type/name consistency:** class names (`.side-rail`, `.rail-nav`, `.sparkline-labels`, `.sparkline-delta`, `.cta-secondary`), ids (`periode`, `electricite`, `gaz`, `contexte`), and JS identifiers (`sparkPath`, `sparkObs`, `railLinks`, `railSections`, `railObs`) are identical across all 8 tasks — verified by re-reading each task's blocks side by side.
 - **Corrected during review:** original diagnosis assumed 4 `.callout` divs per page; actual count (confirmed via the reference-file read) is 2 (Sources + Lire aussi), with the template having only 1 (no Sources). This doesn't change any task's edits — the section-close anchor was deliberately chosen to be `<div id="cta">` (present in all 8 files) rather than the Sources callout (absent from the template), so no task depends on the incorrect count.
+
+### Addendum (2026-08-13): left-rail summary cards
+
+- **Spec coverage:** `docs/superpowers/specs/2026-08-13-left-rail-summary-cards-design.md` §1 (structure) → shared HTML template in Global Constraints, filled in per file by Tasks 4-8/10-12. §2 (CSS) → appended to the shared CSS block verbatim (fixed a `display: none; display: flex;` self-cancelling bug caught during the design doc's own self-review, before it reached this plan). §3 (JS highlight reuse) → `railLinks` selector widened in the shared JS block, applied to all 8 files (Tasks 4-8 inherit it automatically via "apply shared JS block verbatim"; Tasks 10-12 patch it explicitly since their host files already have the old selector committed). §4 (rework scope) → Tasks 10-12. §5 (notes: no sparkline duplication, `--cream` in place of the design doc's placeholder `--text` token) → reflected in the shared CSS block as committed here.
+- **Placeholder scan:** `TEASER_*`/`TITRE_*` tokens in the Global Constraints shared-opening-edit template, and the `[Task 9 teaser — …]` brackets in Task 10, are dispatch-time lookups into Task 9's own deliverable (a concrete file this plan creates), not unresolved plan work — same pattern already used for `SPARKLINE_SVG`/`RAIL_NAV` in the original plan. Task 9 itself is a content task whose deliverable *is* the copy; per-cell `...` in its own Step 3 template is filled before that task's commit, not left in the repo.
+- **Type/name consistency:** `.left-rail`, `.left-card`, `.left-card-title`, `.left-card-teaser` match between the CSS block, the HTML template, and Tasks 4-8/10-12; `railLinks` selector string is identical everywhere it appears.
+- **Dependency ordering:** Task 9 must run before Tasks 4-8 and 10-12 despite its higher number (Task numbers = file identity, preserved from the original plan/ledger; execution order is called out explicitly in Global Constraints and at the top of Task 9).
