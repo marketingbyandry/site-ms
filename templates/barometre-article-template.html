@@ -19,6 +19,8 @@
   --cream: #f5f0e8;
   --muted: #8aacb4;
   --body-max: 720px;
+  --accent: var(--teal-light);
+  --accent-glow: rgba(94,207,220,.18);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,7 +73,7 @@ nav {
   content: '';
   position: absolute; top: 60px; right: -100px;
   width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(26,122,138,.2) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
   pointer-events: none;
 }
 .article-meta {
@@ -133,6 +135,111 @@ nav {
   max-width: var(--body-max);
   margin: 0 auto;
   padding: 0 5vw 6rem;
+}
+
+.side-rail {
+  grid-column: 3;
+  align-self: start;
+  position: sticky;
+  top: 6rem;
+  display: none;
+}
+@media (min-width: 1280px) {
+  .side-rail { display: block; }
+}
+.sparkline-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: .6rem;
+  color: var(--muted);
+  margin-top: .3rem;
+  font-family: 'Satoshi', sans-serif;
+}
+.sparkline-labels .active { color: var(--accent); font-weight: 700; }
+.spark-line { transition: stroke-dashoffset .7s ease-out; }
+.sparkline-delta {
+  font-size: .78rem;
+  color: var(--accent);
+  margin-top: .6rem;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 700;
+}
+.rail-nav {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  border-top: 1px solid rgba(43,181,200,.15);
+  padding-top: 1.2rem;
+  margin-top: 2rem;
+}
+.rail-nav a {
+  font-size: .78rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: .02em;
+}
+.rail-nav a.active { color: var(--accent); }
+.cta-secondary { font-size: .85rem; color: var(--muted); margin-top: 1rem; }
+.cta-secondary a { color: var(--teal-light); }
+.left-rail {
+  grid-column: 1;
+  align-self: start;
+  position: sticky;
+  top: 6rem;
+  display: none;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding-right: 2rem;
+}
+@media (min-width: 1280px) {
+  .left-rail { display: flex; }
+}
+.left-rail::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: .4rem;
+  bottom: .4rem;
+  width: 1px;
+  background: rgba(43,181,200,.15);
+}
+.left-card {
+  display: block;
+  position: relative;
+  padding-left: 1.3rem;
+  text-decoration: none;
+}
+.left-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .3rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--muted);
+  background: var(--dark);
+  transition: background .2s, border-color .2s;
+}
+.left-card-title {
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: .35rem;
+  transition: color .2s;
+}
+.left-card:hover .left-card-title,
+.left-card.active .left-card-title { color: var(--accent); }
+.left-card.active::before {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.left-card-teaser {
+  display: block;
+  font-size: .74rem;
+  line-height: 1.4;
+  color: var(--muted);
 }
 
 h2 {
@@ -325,7 +432,7 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 
 <nav>
   <a href="index.html" class="nav-logo"><img src="assets/ms-strategy-logo.png" alt="M&S Strategy"></a>
-  <a href="#cta" class="nav-cta">Étude gratuite →</a>
+  <a href="ms-strategy-calculateur.html" class="nav-cta">Combien ça me coûte réellement →</a>
 </nav>
 
 <article>
@@ -343,38 +450,83 @@ footer a { color: var(--teal-bright); text-decoration: none; }
     <p class="hero-intro">
       [INTRO_PLACEHOLDER — une ou deux phrases d'accroche resituant la période analysée et l'angle spécifique de ce bilan.]
     </p>
+    <div class="stat-row reveal">
+      <div class="stat-item">
+        <span class="stat-num" data-target="0"><span class="counter-val">0</span><span class="unit"> €/MWh</span></span>
+        <span class="stat-label">Prix moyen électricité — [PÉRIODE]</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" style="color:var(--accent)">[DELTA_VS_PERIODE_PRECEDENTE]</span>
+        <span class="stat-label">Évolution vs période précédente</span>
+      </div>
+    </div>
   </header>
 
+  <div class="article-layout">
+  <aside class="left-rail">
+    <a class="left-card" href="#periode">
+      <span class="left-card-title">Période analysée</span>
+      <span class="left-card-teaser">[TEASER_PERIODE]</span>
+    </a>
+    <a class="left-card" href="#electricite">
+      <span class="left-card-title">Prix moyen électricité</span>
+      <span class="left-card-teaser">[TEASER_ELECTRICITE]</span>
+    </a>
+    <a class="left-card" href="#gaz">
+      <span class="left-card-title">Prix moyen gaz</span>
+      <span class="left-card-teaser">[TEASER_GAZ]</span>
+    </a>
+    <a class="left-card" href="#contexte">
+      <span class="left-card-title">Contexte du marché</span>
+      <span class="left-card-teaser">[TEASER_CONTEXTE]</span>
+    </a>
+  </aside>
   <div class="article-body">
 
+    <section id="periode">
     <h2>Période analysée</h2>
 
     <p>Ce bilan couvre la période <strong>[PÉRIODE]</strong>. Il a été rédigé et publié le <strong>[DATE_RÉDACTION]</strong>, sur la base des données de marché disponibles à cette date-là.</p>
 
     <p><em>Note méthodologique : la date de publication de cet article correspond à sa date réelle de rédaction, jamais à la période historique qu'il analyse.</em></p>
 
+    </section>
+    <section id="electricite">
     <h2>Prix moyen électricité</h2>
 
     <p>Sur la période analysée, le prix moyen de l'électricité pour les professionnels s'est établi à <strong>[PRIX_ELEC]</strong>, selon [SOURCE_ELEC].</p>
 
     <p><a href="barometre-energie.html" style="color:var(--teal-light)">Consulter les données actualisées du Baromètre M&S Strategy →</a></p>
 
+    </section>
+    <section id="gaz">
     <h2>Prix moyen gaz</h2>
 
     <p>Sur la même période, le prix moyen du gaz pour les professionnels s'est établi à <strong>[PRIX_GAZ]</strong>, selon [SOURCE_GAZ].</p>
 
     <p><a href="barometre-energie.html" style="color:var(--teal-light)">Consulter les données actualisées du Baromètre M&S Strategy →</a></p>
 
+    </section>
+    <section id="contexte">
     <h2>Contexte du marché</h2>
+    <h3>Ce qu'il faut retenir</h3>
+    <ul class="checklist reveal">
+      <li>[FAIT_CLÉ_1]</li>
+      <li>[FAIT_CLÉ_2]</li>
+      <li>[FAIT_CLÉ_3]</li>
+    </ul>
+    <div class="pull-quote reveal">
+      <p>« [CITATION_CLÉ_DE_LA_PÉRIODE] »</p>
+      <cite>Baromètre M&S Strategy — [PÉRIODE]</cite>
+    </div>
 
-    <p>[ANALYSE_CONTEXTE — prose d'analyse propre à cette période : facteurs de marché, événements géopolitiques ou réglementaires, tendances observées sur les prix de gros, et implications concrètes pour les entreprises. Contenu à rédiger spécifiquement pour chaque période, différent d'un article à l'autre.]</p>
-
+    </section>
     <div id="cta">
       <div class="cta-section reveal">
-        <p class="cta-title">Votre entreprise paie-t-elle le juste prix ?</p>
-        <p class="cta-sub">Transmettez votre dernière facture énergie. Nous vous indiquons sous 48h si une opportunité existe, gratuitement et sans engagement.</p>
-        <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
-        <p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 48h</p>
+        <p class="cta-title">Chaque mois sans négocier a un coût réel.</p>
+        <p class="cta-sub">Renseignez votre consommation et votre échéance : le calculateur affiche en temps réel ce que l'inaction vous coûte, et ce qu'une négociation pourrait vous rapporter.</p>
+        <a href="ms-strategy-calculateur.html" class="cta-btn">Combien ça me coûte réellement →</a>
+        <p class="cta-secondary"><a href="b2b.html#upload">Ou transmettez votre facture pour une étude gratuite en 48h →</a></p>
       </div>
     </div>
 
@@ -384,6 +536,32 @@ footer a { color: var(--teal-bright); text-decoration: none; }
       <a href="blog.html" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
     </div>
 
+  </div>
+  <aside class="side-rail">
+    <div class="sparkline-wrap">
+      <svg viewBox="0 0 240 70" width="100%" height="70" aria-hidden="true">
+        <path class="spark-line" d="M10,10 L46.7,50.9 L83.3,59.7 L120,58.9 L156.7,56.2 L193.3,60 L230,49.9" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="500" stroke-dashoffset="500"/>
+        <circle cx="10" cy="10" r="2.5" fill="var(--muted)"/>
+        <circle cx="46.7" cy="50.9" r="2.5" fill="var(--muted)"/>
+        <circle cx="83.3" cy="59.7" r="2.5" fill="var(--muted)"/>
+        <circle cx="120" cy="58.9" r="2.5" fill="var(--muted)"/>
+        <circle cx="156.7" cy="56.2" r="2.5" fill="var(--muted)"/>
+        <circle cx="193.3" cy="60" r="2.5" fill="var(--muted)"/>
+        <circle cx="230" cy="49.9" r="4" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="2 2"/>
+      </svg>
+      <div class="sparkline-labels">
+        <span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>T1</span><span>T2</span><span class="active">T3</span>
+      </div>
+      <p class="sparkline-delta">[DELTA_VS_PERIODE_PRECEDENTE]</p>
+    </div>
+    <nav class="rail-nav">
+      <a href="#periode">Période analysée</a>
+      <a href="#electricite">Prix moyen électricité</a>
+      <a href="#gaz">Prix moyen gaz</a>
+      <a href="#contexte">Contexte du marché</a>
+      <a href="#cta">Passer à l'action</a>
+    </nav>
+  </aside>
   </div>
 </article>
 
@@ -398,7 +576,7 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 </footer>
 
 <div class="floating-cta" id="floating-cta">
-  <a href="#cta">Étude gratuite · 48h →</a>
+  <a href="ms-strategy-calculateur.html">Combien ça me coûte réellement →</a>
 </div>
 
 <script>
@@ -465,6 +643,31 @@ if (bigCounter) {
   }, { threshold: 0.4 });
   bigObs.observe(bigCounter);
 }
+
+// ── Sparkline draw-in
+const sparkPath = document.querySelector('.spark-line');
+if (sparkPath) {
+  const sparkObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.strokeDashoffset = '0'; sparkObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  sparkObs.observe(sparkPath);
+}
+
+// ── Rail nav active section
+const railLinks = document.querySelectorAll('.rail-nav a, .left-card');
+const railSections = ['periode', 'electricite', 'gaz', 'contexte']
+  .map(id => document.getElementById(id))
+  .filter(Boolean);
+const railObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      railLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-20% 0px -60% 0px' });
+railSections.forEach(s => railObs.observe(s));
 </script>
 </body>
 </html>
