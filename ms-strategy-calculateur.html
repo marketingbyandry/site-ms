@@ -304,7 +304,7 @@ input[type=range]::-moz-range-thumb {
   background: var(--teal-lt); border: 2px solid var(--dark);
 }
 
-/* Slider track fill — dynamic via JS */
+/* Slider track fill: dynamic via JS */
 .slider-track { position: relative; }
 
 /* Timeline labels */
@@ -686,10 +686,10 @@ const SECTOR_DATA = {
 };
 
 /* ════════════════════════════════════════
-   MARKET BENCHMARK — best achievable price
+   MARKET BENCHMARK: best achievable price
    ≤ 36 kVA (tarif bleu) : 85 €/MWh, fixe.
    > 36 kVA (tarif jaune/pro) : entre 100 et 120 €/MWh
-   selon la cotation boursière du moment — non observable ici,
+   selon la cotation boursière du moment, non observable ici,
    on approche cette cotation par le prix actuel du client :
    plus son prix est élevé, plus le marché est tendu, plus le
    meilleur prix atteignable se rapproche de 120 €/MWh.
@@ -702,7 +702,7 @@ function getBestPrice(kva, price) {
 }
 
 /* ════════════════════════════════════════
-   TIMING PENALTY — window quality
+   TIMING PENALTY: window quality
    ════════════════════════════════════════ */
 function getWindowQuality(months) {
   if (months >= 18) return { score: 1.0,  label: 'Idéal',    color: 'var(--green)',    penalty: 0 };
@@ -724,7 +724,7 @@ let demoMode = true;
 let transitioning = false;
 
 /* ════════════════════════════════════════
-   DEMO — average TPE/PME loss, shown before
+   DEMO: average TPE/PME loss, shown before
    the prospect enters their own data
    ════════════════════════════════════════ */
 const DEMO = { conso: 300, price: 118, kva: 100, months: 12 };
@@ -738,7 +738,7 @@ function startDemo() {
   lossPerSecond   = surcharge / 365 / 24 / 3600;
 
   // A single business's annual overrun ticks by fractions of a cent per
-  // second — too slow to read as "live" on arrival. Seed the counter with
+  // second, too slow to read as "live" on arrival. Seed the counter with
   // the loss already accrued since January 1st so it opens on a
   // meaningful figure, then keeps counting up in real time on top.
   const now = new Date();
@@ -854,14 +854,14 @@ function performRealCalc() {
   const timingLoss     = optimalSaving - annualSaving; // foregone savings
   const totalLoss2yr   = annualSaving * 2;              // savings over 2yr contract
 
-  // Loss per second (what the taximeter shows) — conservative estimate
+  // Loss per second (what the taximeter shows), conservative estimate
   // = surcoût annuel / 365 / 24 / 3600
   const surcharge     = annualCurrent * (baseSavingRate * 0.7);
   const surchargePerDay = surcharge / 365;
   lossPerSecond       = surcharge / 365 / 24 / 3600;
 
   // Past loss: time already spent on the current contract, counted
-  // whether the user is locked in or not — that money is already gone.
+  // whether the user is locked in or not: that money is already gone.
   const engaged      = inputEngaged.value === 'oui';
   const renewalDate  = inputRenewalDate.value ? new Date(inputRenewalDate.value) : null;
   const daysElapsed  = renewalDate ? Math.max(0, (Date.now() - renewalDate.getTime()) / 86400000) : 0;
@@ -1146,7 +1146,7 @@ startDemo();
 /* ════════════════════════════════════════
    CARRY DATA OVER TO THE UPLOAD FORM
    Saved on click so b2b.html can pre-fill its
-   message field — avoids retyping everything.
+   message field, avoids retyping everything.
    ════════════════════════════════════════ */
 document.getElementById('cta-transmit').addEventListener('click', () => {
   if (!lastCalc) return;
@@ -1166,7 +1166,7 @@ document.getElementById('cta-transmit').addEventListener('click', () => {
   ].filter(Boolean);
   try {
     localStorage.setItem('msLeadContext', JSON.stringify({ message: lines.join('\n'), ts: Date.now() }));
-  } catch (e) { /* localStorage unavailable — navigation still proceeds */ }
+  } catch (e) { /* localStorage unavailable: navigation still proceeds */ }
 });
 </script>
 </body>
