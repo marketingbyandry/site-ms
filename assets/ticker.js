@@ -6,7 +6,7 @@
 
 const STATIC_ITEMS = [
   'Négociation d’énergies depuis 2012',
-  '5 713 contrats négociés',
+  '7 180 contrats négociés',
   'Étude gratuite · résultat sous 48h',
 ];
 
