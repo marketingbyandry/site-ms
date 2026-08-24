@@ -103,7 +103,7 @@ nav {
   line-height: 1.7; margin-bottom: 2.5rem;
 }
 
-/* Stat splash — signature element: animated counters */
+/* Stat splash (signature element): animated counters */
 .stat-row {
   display: flex; gap: 3rem; flex-wrap: wrap;
   padding: 2rem 0; border-top: 1px solid rgba(43,181,200,.15);
@@ -336,7 +336,7 @@ footer a { color: var(--teal-bright); text-decoration: none; }
       <span class="meta-read">4 min de lecture</span>
     </div>
     <h1 class="hero-title">
-      Baromètre M&S Strategy —<br>
+      Baromètre M&S Strategy :<br>
       <span class="accent-teal">T2 2026</span><br>
       prix de l'énergie pour les <span class="accent">entreprises.</span>
     </h1>
@@ -355,13 +355,13 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 
     <h2>Prix moyen électricité</h2>
 
-    <p>Sur T2 2026, le prix moyen day-ahead de l'électricité en France s'est établi à <strong>57,34 €/MWh</strong>, selon l'ENTSO-E Transparency Platform (prix day-ahead France, moyenne calculée sur le deuxième trimestre 2026). Ce niveau marque un repli net par rapport au trimestre précédent : T1 2026 affichait 74,00 €/MWh, soit un écart de plus de 16 €/MWh d'un trimestre à l'autre — une donnée purement factuelle à ce stade, sans qu'on en tire ici de cause précise.</p>
+    <p>Sur T2 2026, le prix moyen day-ahead de l'électricité en France s'est établi à <strong>57,34 €/MWh</strong>, selon l'ENTSO-E Transparency Platform (prix day-ahead France, moyenne calculée sur le deuxième trimestre 2026). Ce niveau marque un repli net par rapport au trimestre précédent : T1 2026 affichait 74,00 €/MWh, soit un écart de plus de 16 €/MWh d'un trimestre à l'autre, une donnée purement factuelle à ce stade, sans qu'on en tire ici de cause précise.</p>
 
     <p><a href="barometre-energie.html" style="color:var(--teal-light)">Consulter les données actualisées du Baromètre M&S Strategy →</a></p>
 
     <h2>Prix moyen gaz</h2>
 
-    <p>Pour ce deuxième trimestre 2026 également, nous n'avons pas pu établir de moyenne trimestrielle <strong>réalisée</strong> du prix de gros du gaz reposant sur une source publique fiable. Deux types de données existent, mais aucune des deux ne convient à la méthodologie de gros suivie par ce Baromètre : d'un côté, le « prix repère de vente » publié par la CRE pour les particuliers — un indicateur de détail, construit par ailleurs sur des tranches de consommation elles-mêmes numérotées « T1 », « T2 », etc., une nomenclature qui n'a rien à voir avec les trimestres calendaires et qu'il ne faut pas confondre avec eux ; de l'autre, une cotation Month-Ahead ponctuelle relevée fin avril 2026 pour une livraison en mai (45,94 €/MWh), qui est un instantané de marché à terme et non une moyenne réalisée sur l'ensemble du trimestre.</p>
+    <p>Pour ce deuxième trimestre 2026 également, nous n'avons pas pu établir de moyenne trimestrielle <strong>réalisée</strong> du prix de gros du gaz reposant sur une source publique fiable. Deux types de données existent, mais aucune des deux ne convient à la méthodologie de gros suivie par ce Baromètre : d'un côté, le « prix repère de vente » publié par la CRE pour les particuliers (un indicateur de détail, construit par ailleurs sur des tranches de consommation elles-mêmes numérotées « T1 », « T2 », etc., une nomenclature qui n'a rien à voir avec les trimestres calendaires et qu'il ne faut pas confondre avec eux) ; de l'autre, une cotation Month-Ahead ponctuelle relevée fin avril 2026 pour une livraison en mai (45,94 €/MWh), qui est un instantané de marché à terme et non une moyenne réalisée sur l'ensemble du trimestre.</p>
 
     <p>Présenter l'un ou l'autre de ces chiffres comme une moyenne trimestrielle de gros introduirait un biais que nous préférons éviter. Ce volet reste donc en attente, et sera complété dès qu'une donnée sourcée directement auprès de Powernext ou de la CRE sera disponible, selon le processus décrit dans <code>docs/barometre-energie/mise-a-jour-gaz.md</code>. Le fichier de données du Baromètre (<code>data/barometre-gaz.json</code>) n'a donc pas été modifié pour ce trimestre.</p>
 
@@ -371,15 +371,15 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 
     <p>Ce deuxième numéro confirme l'intérêt du passage à un rythme trimestriel amorcé avec le premier bilan : la variation observée entre T1 et T2 2026 sur l'électricité (de 74,00 €/MWh à 57,34 €/MWh) aurait été largement lissée, voire invisible, dans un format annuel. Elle illustre au contraire, documentée trimestre par trimestre, l'ampleur que peuvent prendre les mouvements de prix de gros sur des fenêtres courtes.</p>
 
-    <p>Comme pour le numéro précédent, nous nous limitons ici au constat chiffré : les données dont nous disposons ne permettent pas d'attribuer ce repli à un facteur unique. Plusieurs pistes générales peuvent expliquer ce type de mouvement sur le marché day-ahead français — disponibilité du parc de production, niveau de la demande saisonnière, dynamique des marchés interconnectés — mais aucune n'est ici confirmée par les données à notre disposition ; nous nous abstenons donc de trancher.</p>
+    <p>Comme pour le numéro précédent, nous nous limitons ici au constat chiffré : les données dont nous disposons ne permettent pas d'attribuer ce repli à un facteur unique. Plusieurs pistes générales peuvent expliquer ce type de mouvement sur le marché day-ahead français (disponibilité du parc de production, niveau de la demande saisonnière, dynamique des marchés interconnectés), mais aucune n'est ici confirmée par les données à notre disposition ; nous nous abstenons donc de trancher.</p>
 
     <p>Pour les entreprises, ce contraste T1/T2 est en soi une information utile : il rappelle qu'une moyenne annuelle, ou même une cotation figée à un instant donné, peut masquer des écarts trimestriels significatifs. Le calendrier de négociation d'un contrat énergie gagne à intégrer ce type de signal de court terme plutôt que de s'appuyer sur une référence de prix ancienne ou trop lissée.</p>
 
     <div class="callout reveal">
       <p class="callout-title">Sources</p>
       <ul>
-        <li><a href="https://transparency.entsoe.eu/" target="_blank" rel="noopener" style="color:var(--teal-light)">ENTSO-E Transparency Platform</a> — prix day-ahead électricité, zone France, T2 2026.</li>
-        <li><a href="https://www.cre.fr/" target="_blank" rel="noopener" style="color:var(--teal-light)">CRE — Observatoire des marchés</a> — prix repère de vente gaz (indicateur de détail, non retenu pour la méthodologie de gros).</li>
+        <li><a href="https://transparency.entsoe.eu/" target="_blank" rel="noopener" style="color:var(--teal-light)">ENTSO-E Transparency Platform</a>, prix day-ahead électricité, zone France, T2 2026.</li>
+        <li><a href="https://www.cre.fr/" target="_blank" rel="noopener" style="color:var(--teal-light)">CRE : Observatoire des marchés</a>, prix repère de vente gaz (indicateur de détail, non retenu pour la méthodologie de gros).</li>
       </ul>
     </div>
 
