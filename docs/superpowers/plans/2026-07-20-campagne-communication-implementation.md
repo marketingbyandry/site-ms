@@ -603,7 +603,10 @@ Expected: FAIL — `render-email-html.mjs` n'existe pas.
 ```js
 const BRAND = {
   dark: '#07131a',
+  dark2: '#0a1f28',
   cream: '#f5f0e8',
+  teal: '#1a7a8a',
+  tealDark: '#0d4f5c',
   green: '#4cde80',
   muted: '#8aacb4',
 };
@@ -615,7 +618,7 @@ function escapeHtml(str) {
 export function renderEmailHtml({ subject, bodyText, variant = 'post-facture' }) {
   const paragraphs = bodyText
     .split(/\n\n+/)
-    .map((p) => `<p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:${BRAND.dark};">${escapeHtml(p).replace(/\n/g, '<br>')}</p>`)
+    .map((p) => `<p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:${BRAND.cream};">${escapeHtml(p).replace(/\n/g, '<br>')}</p>`)
     .join('\n');
 
   const footer = variant === 'cold-outbound'
@@ -628,18 +631,18 @@ export function renderEmailHtml({ subject, bodyText, variant = 'post-facture' })
 <meta charset="utf-8">
 <title>${escapeHtml(subject)}</title>
 </head>
-<body style="margin:0;padding:0;background:${BRAND.cream};">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.cream};padding:32px 0;">
+<body style="margin:0;padding:0;background:${BRAND.dark};">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.dark};padding:32px 0;">
 <tr><td align="center">
-<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;">
-<tr><td style="background:${BRAND.dark};padding:20px 32px;">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="background:${BRAND.dark2};border-radius:8px;overflow:hidden;border:1px solid rgba(26,122,138,.25);">
+<tr><td style="background:${BRAND.tealDark};padding:20px 32px;">
 <span style="font-family:Arial,sans-serif;font-weight:800;font-size:16px;color:${BRAND.cream};">M&amp;S Strategy</span>
 </td></tr>
 <tr><td style="padding:32px;font-family:Arial,sans-serif;">
 ${paragraphs}
 ${footer}
 </td></tr>
-<tr><td style="background:${BRAND.dark};height:4px;"></td></tr>
+<tr><td style="background:${BRAND.teal};height:4px;"></td></tr>
 </table>
 </td></tr>
 </table>
