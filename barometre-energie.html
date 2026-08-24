@@ -146,6 +146,23 @@ a{text-decoration:none;color:inherit}
 .reveal{opacity:0;transform:translateY(25px);transition:opacity .65s ease,transform .65s ease}
 .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.sup-section{padding:6rem 5vw;max-width:900px;margin:0 auto}
+.sup-header{max-width:640px;margin-bottom:2.5rem}
+.sup-header p{color:var(--muted);font-size:.97rem;line-height:1.72;margin-top:1rem}
+.sup-list{display:flex;flex-direction:column;gap:.9rem}
+.sup-item{border:1px solid rgba(26,122,138,.14);border-radius:3px;padding:1.3rem 1.6rem;background:var(--dark);cursor:pointer;transition:border-color .25s}
+.sup-item:hover{border-color:rgba(94,207,220,.3)}
+.sup-q{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.sup-name{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.98rem;color:var(--cream);display:flex;align-items:center;gap:.6rem}
+.sup-num{font-family:'Satoshi',sans-serif;font-weight:800;font-size:.8rem;color:rgba(26,122,138,.5)}
+.sup-stats{display:flex;flex-direction:column;gap:.2rem}
+.sup-stat{font-size:.82rem;color:var(--teal-light);white-space:nowrap}
+.sup-stat-neg{font-size:.82rem;color:var(--muted2);white-space:nowrap}
+.sup-preview{color:var(--muted2);font-style:italic}
+.sup-arr{font-size:.9rem;color:var(--teal-light);transition:transform .25s;margin-left:auto}
+.sup-item.open .sup-arr{transform:rotate(180deg)}
+.sup-a{font-size:.89rem;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
+.sup-item.open .sup-a{max-height:260px;padding-top:.9rem}
 </style>
 </head>
 <body>
@@ -212,6 +229,83 @@ a{text-decoration:none;color:inherit}
     <p>Le prix de l'électricité provient du <strong>marché de gros day-ahead</strong> publié par <a href="https://transparency.entsoe.eu/" target="_blank" rel="noopener" style="color:var(--teal-light)">ENTSO-E</a> (European Network of Transmission System Operators for Electricity), la plateforme de transparence officielle des gestionnaires de réseaux de transport électrique européens. Une moyenne mensuelle est calculée à partir des prix horaires publiés pour la zone France.</p>
     <p>Le prix du gaz provient de l'<strong>index PEG Month-Ahead (M+1)</strong>, un prix à terme reflétant la valeur du gaz livré le mois suivant sur le point d'échange de gaz français. Les moyennes trimestrielles sont établies à partir des <a href="https://www.cre.fr/" target="_blank" rel="noopener" style="color:var(--teal-light)">rapports de surveillance des marchés de gros publiés par la Commission de régulation de l'énergie (CRE)</a> ; pour le trimestre en cours, lorsque ce rapport n'est pas encore disponible, une clôture de contrat PEG Month-Ahead rapportée par la presse spécialisée (ex. Selectra) est utilisée à titre de dernière valeur observée, et signalée comme telle plutôt que comme une moyenne trimestrielle.</p>
     <p>Ces indicateurs sont publiés à titre purement informatif et ne constituent ni une offre commerciale ni un engagement de prix de la part de M&S Strategy.</p>
+  </div>
+</section>
+
+<!-- FOURNISSEURS PARTENAIRES -->
+<!-- TODO: remplacer les chiffres de contrats (données de preview) par les vrais totaux M&S avant publication -->
+<section class="sup-section">
+  <div class="sup-header reveal">
+    <span class="stag">Preuve sociale</span>
+    <h2 class="sh2">Nos fournisseurs <em>partenaires.</em></h2>
+    <p>Parmi l'ensemble du marché consulté à chaque étude, voici les fournisseurs avec lesquels nous concluons le plus de contrats pour nos clients.</p>
+  </div>
+  <div class="sup-list">
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">01</span> MetEnergie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">1240 contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">18 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Fournisseur alternatif indépendant, souvent compétitif sur les profils TPE/PME multi-énergie avec une structure tarifaire simple.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">02</span> OHM Energie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">950 contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">14 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Offres digitales simplifiées, bon positionnement sur l'électricité pour les petites structures cherchant un contrat sans complexité contractuelle.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">03</span> Alterna (ex-Vattenfall)</div>
+        <div class="sup-stats">
+          <div class="sup-stat">800 contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">11 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Offres orientées énergie renouvelable, pertinentes pour les entreprises qui valorisent une part d'électricité verte dans leur contrat.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">04</span> Engie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">2100 contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">27 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Acteur historique du marché français, portefeuille d'offres large, souvent une référence de comparaison pour les profils multi-sites ou à forte consommation.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">05</span> GazelEnergie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">600 contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">9 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Positionnement marqué sur le gaz et les profils industriels, pertinent pour les entreprises à consommation gaz significative.</p>
+      </div>
+    </div>
   </div>
 </section>
 
