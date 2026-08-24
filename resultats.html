@@ -82,7 +82,8 @@ a{text-decoration:none;color:inherit}
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
 @media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.kpi-grid{grid-template-columns:1fr}}
-.kpi-card{background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.18);border-radius:4px;padding:2rem 1.6rem;text-align:center}
+.kpi-card{background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.18);border-radius:4px;padding:2rem 1.6rem;text-align:center;transition:border-color .25s,border-width .25s,transform .25s}
+.kpi-card:hover{border-color:rgba(94,207,220,.4);border-width:1.5px;transform:translateY(-3px) scale(1.02)}
 .kpi-n{font-family:'Satoshi',sans-serif;font-weight:800;font-size:2.6rem;line-height:1;color:var(--teal-light);margin-bottom:.5rem}
 .kpi-n.g{color:var(--green)}
 .kpi-l{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -111,8 +112,8 @@ a{text-decoration:none;color:inherit}
 .vals-header p{color:var(--muted);font-size:.97rem;line-height:1.7;margin-top:.8rem}
 .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 @media(max-width:768px){.vgrid{grid-template-columns:1fr}}
-.vcard{border:1px solid rgba(26,122,138,.13);border-radius:3px;padding:1.9rem;background:var(--dark);transition:border-color .25s,transform .25s}
-.vcard:hover{border-color:rgba(94,207,220,.3);transform:translateY(-3px)}
+.vcard{border:1px solid rgba(26,122,138,.13);border-radius:3px;padding:1.9rem;background:var(--dark);transition:border-color .25s,border-width .25s,transform .25s}
+.vcard:hover{border-color:rgba(94,207,220,.35);border-width:1.5px;transform:translateY(-3px) scale(1.02)}
 .vn{font-family:'Satoshi',sans-serif;font-weight:800;font-size:2.4rem;color:var(--green);line-height:1;margin-bottom:.6rem}
 .vt{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.92rem;color:var(--cream);margin-bottom:.5rem}
 .vb{font-size:.86rem;color:var(--muted);line-height:1.65}

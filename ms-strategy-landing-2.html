@@ -467,12 +467,13 @@
     border-radius: 4px;
     padding: 1.8rem;
     background: rgba(13,79,92,.15);
-    transition: border-color .2s, transform .2s;
+    transition: border-color .2s, border-width .2s, transform .2s;
   }
 
   .saving-card:hover {
-    border-color: rgba(76,222,128,.3);
-    transform: translateY(-3px);
+    border-color: rgba(76,222,128,.4);
+    border-width: 1.5px;
+    transform: translateY(-3px) scale(1.02);
   }
 
   .saving-amount {
