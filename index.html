@@ -31,6 +31,7 @@
   --muted2:#4a4a4a;
 }
 :root[data-theme="light"] .nav,
+:root[data-theme="light"] .ticker,
 :root[data-theme="light"] .qband,
 :root[data-theme="light"] .cstrip,
 :root[data-theme="light"] .sfooter,
@@ -68,8 +69,23 @@ html{scroll-behavior:smooth}
 body{font-family:'Satoshi',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
 
+/* ─── TICKER ──────────────────────────── */
+.ticker{position:fixed;top:0;left:0;right:0;z-index:210;height:32px;display:flex;align-items:center;background:linear-gradient(90deg,#061117,#0a1c25 45%,#061117);border-bottom:1px solid rgba(26,122,138,.35);overflow:hidden}
+.ticker::before,.ticker::after{content:"";position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,#061117,transparent)}
+.ticker::after{right:0;background:linear-gradient(270deg,#061117,transparent)}
+.ticker.reduced-motion{overflow-x:auto}
+.ticker-track{display:flex;align-items:center;white-space:nowrap;will-change:transform}
+.ticker-item{display:inline-flex;align-items:baseline;gap:.4em;padding:0 1.4rem;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--cream);font-variant-numeric:tabular-nums}
+.ticker-item+.ticker-item{border-left:1px solid rgba(94,207,220,.16)}
+.ticker-item .label{color:var(--muted)}
+.ticker-item .trend-up{color:#e05555}
+.ticker-item .trend-down{color:var(--green)}
+.ticker-item .trend-flat{color:var(--muted);font-weight:400}
+.ticker-item .fine{color:var(--muted2);font-weight:400;letter-spacing:.05em;font-size:.95em}
+
 /* ─── NAV ─────────────────────────────── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(7,19,26,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,122,138,.18)}
+.nav{position:fixed;top:32px;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(7,19,26,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,122,138,.18)}
 .nl{display:flex;align-items:center;gap:10px;font-family:'Satoshi',sans-serif;font-weight:800;font-size:1.05rem}
 .nl-logo{height:32px;width:auto;display:block}
 .nlinks{display:flex;align-items:center;gap:2rem;list-style:none}
@@ -501,6 +517,12 @@ a{text-decoration:none;color:inherit}
   }
 })();
 </script>
+
+<!-- TICKER -->
+<div class="ticker" role="marquee" aria-label="Prix de l'énergie et informations M&S Strategy">
+  <div class="ticker-track" id="ms-ticker-track"></div>
+</div>
+<script src="assets/ticker.js" defer></script>
 
 <!-- NAV -->
 <nav class="nav">
