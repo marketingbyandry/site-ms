@@ -79,8 +79,8 @@ a{text-decoration:none;color:inherit}
 .res-label{font-family:'Satoshi',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-glow);opacity:.7;margin-bottom:1.4rem}
 .res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-bottom:4rem}
 @media(max-width:768px){.res-grid{grid-template-columns:1fr}}
-.res-card{display:block;border:1px solid rgba(26,122,138,.16);border-radius:4px;padding:2.2rem;background:rgba(13,79,92,.08);transition:border-color .25s,transform .25s}
-.res-card:hover{border-color:rgba(94,207,220,.35);transform:translateY(-3px)}
+.res-card{display:block;border:1px solid rgba(26,122,138,.16);border-radius:4px;padding:2.2rem;background:rgba(13,79,92,.08);transition:border-color .25s,border-width .25s,transform .25s}
+.res-card:hover{border-color:rgba(94,207,220,.4);border-width:1.5px;transform:translateY(-3px) scale(1.02)}
 .res-tag{display:inline-block;font-family:'Satoshi',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);background:rgba(43,181,200,.1);border:1px solid rgba(43,181,200,.2);padding:.24rem .65rem;border-radius:2px;margin-bottom:1rem}
 .res-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.25rem;color:var(--cream);line-height:1.25;margin-bottom:.8rem}
 .res-desc{font-size:.9rem;color:var(--muted);line-height:1.65;margin-bottom:1.2rem}
@@ -89,7 +89,7 @@ a{text-decoration:none;color:inherit}
 
 /* Tool card (calculateur) — distinct accent */
 .tool-card{border-color:rgba(76,222,128,.18);background:rgba(76,222,128,.05)}
-.tool-card:hover{border-color:rgba(76,222,128,.4)}
+.tool-card:hover{border-color:rgba(76,222,128,.5)}
 .tool-card .res-tag{color:var(--green);background:rgba(76,222,128,.09);border-color:rgba(76,222,128,.2)}
 
 /* ─── QUOTE BAND ─────────────────────── */
