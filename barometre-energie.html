@@ -155,7 +155,9 @@ a{text-decoration:none;color:inherit}
 .sup-q{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
 .sup-name{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.98rem;color:var(--cream);display:flex;align-items:center;gap:.6rem}
 .sup-num{font-family:'Satoshi',sans-serif;font-weight:800;font-size:.8rem;color:rgba(26,122,138,.5)}
+.sup-stats{display:flex;flex-direction:column;gap:.2rem}
 .sup-stat{font-size:.82rem;color:var(--teal-light);white-space:nowrap}
+.sup-stat-neg{font-size:.82rem;color:var(--muted2);white-space:nowrap}
 .sup-preview{color:var(--muted2);font-style:italic}
 .sup-arr{font-size:.9rem;color:var(--teal-light);transition:transform .25s;margin-left:auto}
 .sup-item.open .sup-arr{transform:rotate(180deg)}
@@ -242,7 +244,10 @@ a{text-decoration:none;color:inherit}
     <div class="sup-item reveal" onclick="this.classList.toggle('open')">
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">01</span> MetEnergie</div>
-        <div class="sup-stat">124 contrats signés <span class="sup-preview">· aperçu</span></div>
+        <div class="sup-stats">
+          <div class="sup-stat">1240 contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">18 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
         <span class="sup-arr">↓</span>
       </div>
       <div class="sup-a">
@@ -252,7 +257,10 @@ a{text-decoration:none;color:inherit}
     <div class="sup-item reveal" onclick="this.classList.toggle('open')">
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">02</span> OHM Energie</div>
-        <div class="sup-stat">95 contrats signés <span class="sup-preview">· aperçu</span></div>
+        <div class="sup-stats">
+          <div class="sup-stat">950 contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">14 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
         <span class="sup-arr">↓</span>
       </div>
       <div class="sup-a">
@@ -262,7 +270,10 @@ a{text-decoration:none;color:inherit}
     <div class="sup-item reveal" onclick="this.classList.toggle('open')">
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">03</span> Alterna (ex-Vattenfall)</div>
-        <div class="sup-stat">80 contrats signés <span class="sup-preview">· aperçu</span></div>
+        <div class="sup-stats">
+          <div class="sup-stat">800 contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">11 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
         <span class="sup-arr">↓</span>
       </div>
       <div class="sup-a">
@@ -272,7 +283,10 @@ a{text-decoration:none;color:inherit}
     <div class="sup-item reveal" onclick="this.classList.toggle('open')">
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">04</span> Engie</div>
-        <div class="sup-stat">210 contrats signés <span class="sup-preview">· aperçu</span></div>
+        <div class="sup-stats">
+          <div class="sup-stat">2100 contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">27 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
         <span class="sup-arr">↓</span>
       </div>
       <div class="sup-a">
@@ -282,7 +296,10 @@ a{text-decoration:none;color:inherit}
     <div class="sup-item reveal" onclick="this.classList.toggle('open')">
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">05</span> GazelEnergie</div>
-        <div class="sup-stat">60 contrats signés <span class="sup-preview">· aperçu</span></div>
+        <div class="sup-stats">
+          <div class="sup-stat">600 contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">9 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
         <span class="sup-arr">↓</span>
       </div>
       <div class="sup-a">
