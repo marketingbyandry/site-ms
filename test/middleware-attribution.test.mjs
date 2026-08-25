@@ -32,23 +32,23 @@ function campCookie(response) {
 }
 
 test('un slug connu dans ?ref est pose en cookie ms_ref', () => {
-  const response = call(`https://www.byandry.com/b2b.html?ref=${SLUG}`);
+  const response = call(`https://www.cabinetms.fr/b2b.html?ref=${SLUG}`);
   assert.equal(refCookie(response), SLUG);
 });
 
 test('le slug disparait de l_URL apres attribution', () => {
-  const response = call(`https://www.byandry.com/b2b.html?ref=${SLUG}`);
+  const response = call(`https://www.cabinetms.fr/b2b.html?ref=${SLUG}`);
   assert.equal(response.status, 302);
   assert.equal(
     response.headers.get('location'),
-    'https://www.byandry.com/b2b.html',
+    'https://www.cabinetms.fr/b2b.html',
     "tant que le slug reste dans l_URL, il peut etre indexe ou repartage"
   );
 });
 
 test('les parametres utm survivent au nettoyage du slug', () => {
   const response = call(
-    `https://www.byandry.com/b2b.html?utm_source=commercial&ref=${SLUG}&utm_campaign=${SLUG}`
+    `https://www.cabinetms.fr/b2b.html?utm_source=commercial&ref=${SLUG}&utm_campaign=${SLUG}`
   );
   const location = new URL(response.headers.get('location'));
   assert.equal(location.searchParams.get('ref'), null);
@@ -57,7 +57,7 @@ test('les parametres utm survivent au nettoyage du slug', () => {
 });
 
 test('la redirection d_attribution n_est jamais mise en cache', () => {
-  const response = call(`https://www.byandry.com/b2b.html?ref=${SLUG}`);
+  const response = call(`https://www.cabinetms.fr/b2b.html?ref=${SLUG}`);
   assert.match(
     response.headers.get('cache-control'),
     /no-store/,
@@ -66,17 +66,17 @@ test('la redirection d_attribution n_est jamais mise en cache', () => {
 });
 
 test('un slug inconnu est ignore plutot que stocke', () => {
-  const response = call('https://www.byandry.com/b2b.html?ref=slug-invente');
+  const response = call('https://www.cabinetms.fr/b2b.html?ref=slug-invente');
   assert.equal(
     refCookie(response),
     null,
     'sans whitelist, n_importe quel visiteur peut s_attribuer un dossier'
   );
-  assert.equal(response.headers.get('location'), 'https://www.byandry.com/b2b.html');
+  assert.equal(response.headers.get('location'), 'https://www.cabinetms.fr/b2b.html');
 });
 
 test('first-touch : un ms_ref existant n_est pas ecrase', () => {
-  const response = call(`https://www.byandry.com/b2b.html?ref=${OTHER_SLUG}`, {
+  const response = call(`https://www.cabinetms.fr/b2b.html?ref=${OTHER_SLUG}`, {
     cookie: `ms_ref=${SLUG}`
   });
   assert.equal(
@@ -87,53 +87,53 @@ test('first-touch : un ms_ref existant n_est pas ecrase', () => {
 });
 
 test('un bot suit la redirection mais ne recoit aucune attribution', () => {
-  const response = call(`https://www.byandry.com/b2b.html?ref=${SLUG}`, {
+  const response = call(`https://www.cabinetms.fr/b2b.html?ref=${SLUG}`, {
     userAgent: BOT_UA
   });
   assert.equal(response.status, 302);
-  assert.equal(response.headers.get('location'), 'https://www.byandry.com/b2b.html');
+  assert.equal(response.headers.get('location'), 'https://www.cabinetms.fr/b2b.html');
   assert.equal(refCookie(response), null);
 });
 
 test('le lien court /c/<slug> attribue et renvoie vers la landing propre', () => {
-  const response = call(`https://www.byandry.com/c/${SLUG}`);
+  const response = call(`https://www.cabinetms.fr/c/${SLUG}`);
   assert.equal(response.status, 302);
-  assert.equal(response.headers.get('location'), 'https://www.byandry.com/b2b.html');
+  assert.equal(response.headers.get('location'), 'https://www.cabinetms.fr/b2b.html');
   assert.equal(refCookie(response), SLUG);
 });
 
 test('un lien court inconnu redirige sans attribuer', () => {
-  const response = call('https://www.byandry.com/c/slug-invente');
+  const response = call('https://www.cabinetms.fr/c/slug-invente');
   assert.equal(response.status, 302);
-  assert.equal(response.headers.get('location'), 'https://www.byandry.com/b2b.html');
+  assert.equal(response.headers.get('location'), 'https://www.cabinetms.fr/b2b.html');
   assert.equal(refCookie(response), null);
 });
 
 test('la page reste servie quand aucun ref n_est present', () => {
-  const response = call('https://www.byandry.com/b2b.html');
+  const response = call('https://www.cabinetms.fr/b2b.html');
   assert.equal(refCookie(response), null);
   assert.ok(response.headers.get('set-cookie').includes('ms_variant='));
 });
 
 test('un code de campagne connu dans ?camp est pose en cookie ms_camp', () => {
-  const response = call(`https://www.byandry.com/b2b.html?camp=${CAMP}`);
+  const response = call(`https://www.cabinetms.fr/b2b.html?camp=${CAMP}`);
   assert.equal(campCookie(response), CAMP);
 });
 
 test('camp disparait de l_URL apres attribution', () => {
-  const response = call(`https://www.byandry.com/b2b.html?camp=${CAMP}`);
+  const response = call(`https://www.cabinetms.fr/b2b.html?camp=${CAMP}`);
   assert.equal(response.status, 302);
-  assert.equal(response.headers.get('location'), 'https://www.byandry.com/b2b.html');
+  assert.equal(response.headers.get('location'), 'https://www.cabinetms.fr/b2b.html');
 });
 
 test('un code de campagne inconnu est ignore plutot que stocke', () => {
-  const response = call('https://www.byandry.com/b2b.html?camp=campagne-inventee');
+  const response = call('https://www.cabinetms.fr/b2b.html?camp=campagne-inventee');
   assert.equal(campCookie(response), null);
-  assert.equal(response.headers.get('location'), 'https://www.byandry.com/b2b.html');
+  assert.equal(response.headers.get('location'), 'https://www.cabinetms.fr/b2b.html');
 });
 
 test('dernier-touch : un nouveau camp ecrase un ms_camp existant', () => {
-  const response = call(`https://www.byandry.com/b2b.html?camp=${OTHER_CAMP}`, {
+  const response = call(`https://www.cabinetms.fr/b2b.html?camp=${OTHER_CAMP}`, {
     cookie: `ms_camp=${CAMP}`
   });
   assert.equal(
@@ -144,7 +144,7 @@ test('dernier-touch : un nouveau camp ecrase un ms_camp existant', () => {
 });
 
 test('ref et camp cohabitent sur le meme lien', () => {
-  const response = call(`https://www.byandry.com/b2b.html?ref=${SLUG}&camp=${CAMP}`);
+  const response = call(`https://www.cabinetms.fr/b2b.html?ref=${SLUG}&camp=${CAMP}`);
   assert.equal(refCookie(response), SLUG);
   assert.equal(campCookie(response), CAMP);
   const location = new URL(response.headers.get('location'));
@@ -153,13 +153,13 @@ test('ref et camp cohabitent sur le meme lien', () => {
 });
 
 test('un bot ne recoit aucun cookie camp', () => {
-  const response = call(`https://www.byandry.com/b2b.html?camp=${CAMP}`, {
+  const response = call(`https://www.cabinetms.fr/b2b.html?camp=${CAMP}`, {
     userAgent: BOT_UA
   });
   assert.equal(campCookie(response), null);
 });
 
 test('camp n_est jamais pose via le lien court /c/<slug>', () => {
-  const response = call(`https://www.byandry.com/c/${SLUG}`);
+  const response = call(`https://www.cabinetms.fr/c/${SLUG}`);
   assert.equal(campCookie(response), null);
 });
