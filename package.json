@@ -1,6 +1,7 @@
 {
   "name": "site-ms",
   "private": true,
+  "type": "module",
   "scripts": {
     "build:analytics": "node scripts/build-analytics.mjs",
     "test": "node --test test/*.test.mjs"
