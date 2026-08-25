@@ -35,3 +35,17 @@ test("connect-src autorise l'ingestion des events PostHog", () => {
     'sans ce host, les events captures ne peuvent pas etre envoyes'
   );
 });
+
+test('script-src autorise le CDN qui sert fbevents.js (Pixel Meta)', () => {
+  assert.ok(
+    cspDirectives()['script-src'].includes('https://connect.facebook.net'),
+    "sans ce host, fbevents.js est bloque par le CSP et le Pixel Meta ne s'initialise jamais"
+  );
+});
+
+test("connect-src autorise l'envoi des events du Pixel Meta", () => {
+  assert.ok(
+    cspDirectives()['connect-src'].includes('https://www.facebook.com'),
+    'sans ce host, les events fbq() ne peuvent pas etre envoyes'
+  );
+});

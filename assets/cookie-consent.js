@@ -49,8 +49,8 @@
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', 'Gestion des cookies');
     banner.innerHTML =
-      '<p>Nous utilisons des cookies de mesure d’audience (PostHog) pour comprendre l’usage du site. ' +
-      'Ils ne sont déposés qu’avec votre accord. Voir notre ' +
+      '<p>Nous utilisons des cookies de mesure d’audience et de suivi publicitaire (PostHog, Meta) ' +
+      'pour comprendre l’usage du site et mesurer nos campagnes. Ils ne sont déposés qu’avec votre accord. Voir notre ' +
       '<a href="politique-confidentialite.html">politique de confidentialité</a>.</p>' +
       '<div id="ms-cookie-actions">' +
       '<button type="button" class="reject" id="ms-cookie-reject">Refuser</button>' +
