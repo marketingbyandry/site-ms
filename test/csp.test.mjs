@@ -56,3 +56,17 @@ test("script-src autorise l'overlay de l'outil de configuration Meta (iwl.js)", 
     "sans ce host, l'Event Setup Tool de Meta (selection d'elements cliquables) ne peut pas s'afficher"
   );
 });
+
+test('frame-src autorise le repli iframe de fbevents.js', () => {
+  assert.ok(
+    cspDirectives()['frame-src'].includes('https://www.facebook.com'),
+    "sans ce host, le repli iframe du Pixel Meta est bloque quand la methode d'envoi normale echoue"
+  );
+});
+
+test('form-action autorise le repli formulaire de fbevents.js', () => {
+  assert.ok(
+    cspDirectives()['form-action'].includes('https://www.facebook.com'),
+    "sans ce host, le repli formulaire du Pixel Meta vers facebook.com/tr est bloque"
+  );
+});
