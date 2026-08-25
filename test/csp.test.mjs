@@ -49,3 +49,10 @@ test("connect-src autorise l'envoi des events du Pixel Meta", () => {
     'sans ce host, les events fbq() ne peuvent pas etre envoyes'
   );
 });
+
+test("script-src autorise l'overlay de l'outil de configuration Meta (iwl.js)", () => {
+  assert.ok(
+    cspDirectives()['script-src'].includes('https://www.facebook.com'),
+    "sans ce host, l'Event Setup Tool de Meta (selection d'elements cliquables) ne peut pas s'afficher"
+  );
+});
