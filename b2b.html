@@ -608,6 +608,13 @@ function faq(el) {
    so the prospect doesn't have to retype their situation.
    ════════════════════════════════════════ */
 function openTallyForm(source) {
+  // Signal d'intention pour le retargeting Meta : distingue les visiteurs qui
+  // ont ouvert le formulaire de ceux qui n'ont fait que consulter la page.
+  // RGPD : meme regle que le reste (voir onTallySubmit ci-dessous).
+  if (/(?:^|;\s*)ms_consent=accepted/.test(document.cookie) && window.fbq) {
+    window.fbq('track', 'InitiateCheckout');
+  }
+
   const hiddenFields = { source };
   // Commercial référent (voir assets/ref.js et middleware.js). Le champ caché
   // « ref » doit exister dans le formulaire Tally, sinon la valeur est ignorée.
