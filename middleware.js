@@ -20,8 +20,8 @@ const BOT_UA = /bot|crawl|spider|slurp|facebookexternalhit|whatsapp|telegrambot|
    ATTRIBUTION COMMERCIALE
 
    Un slug = un commercial. Chacun diffuse ses liens :
-     https://www.cabinetms.fr/b2b.html?ref=<slug>   (mail, signature, LinkedIn)
-     https://www.cabinetms.fr/c/<slug>              (carte de visite, QR code)
+     https://cabinetms.fr/b2b.html?ref=<slug>   (mail, signature, LinkedIn)
+     https://cabinetms.fr/c/<slug>              (carte de visite, QR code)
 
    Le slug entrant n'est retenu que s'il figure dans SLUGS : un ?ref= inventé
    ou recopié de travers est ignoré plutôt que stocké.

@@ -22,25 +22,25 @@
 
 ## Pages principales
 
-- [Accueil](https://www.cabinetms.fr/) : présentation du cabinet et FAQ générale sur le courtage en énergie.
-- [Professionnels (TPE, PME, ETI)](https://www.cabinetms.fr/b2b.html) : offre de courtage énergie pour entreprises, multi-sites, FAQ pro.
-- [Particuliers](https://www.cabinetms.fr/b2c.html) : offre de courtage énergie pour les particuliers.
-- [Comment ça marche](https://www.cabinetms.fr/comment-ca-marche.html) : le déroulé de l'accompagnement, étape par étape.
-- [Résultats](https://www.cabinetms.fr/resultats.html) : exemples de résultats et économies obtenues.
-- [Blog](https://www.cabinetms.fr/blog.html) : articles sur l'énergie des entreprises.
-- [Baromètre énergie](https://www.cabinetms.fr/barometre-energie.html) : indicateur gratuit des prix de gros électricité/gaz, détails ci-dessous.
+- [Accueil](https://cabinetms.fr/) : présentation du cabinet et FAQ générale sur le courtage en énergie.
+- [Professionnels (TPE, PME, ETI)](https://cabinetms.fr/b2b.html) : offre de courtage énergie pour entreprises, multi-sites, FAQ pro.
+- [Particuliers](https://cabinetms.fr/b2c.html) : offre de courtage énergie pour les particuliers.
+- [Comment ça marche](https://cabinetms.fr/comment-ca-marche.html) : le déroulé de l'accompagnement, étape par étape.
+- [Résultats](https://cabinetms.fr/resultats.html) : exemples de résultats et économies obtenues.
+- [Blog](https://cabinetms.fr/blog.html) : articles sur l'énergie des entreprises.
+- [Baromètre énergie](https://cabinetms.fr/barometre-energie.html) : indicateur gratuit des prix de gros électricité/gaz, détails ci-dessous.
 
 ## Baromètre énergie
 
-- [Baromètre M&S Strategy des prix de l'énergie](https://www.cabinetms.fr/barometre-energie.html) : indicateur gratuit et mis à jour du prix de gros de l'électricité et du gaz pour les entreprises françaises. Méthodologie : électricité = moyenne mensuelle du marché day-ahead ENTSO-E (zone France) ; gaz = index PEG Month-Ahead (M+1), via les rapports de surveillance des marchés de gros de la CRE.
+- [Baromètre M&S Strategy des prix de l'énergie](https://cabinetms.fr/barometre-energie.html) : indicateur gratuit et mis à jour du prix de gros de l'électricité et du gaz pour les entreprises françaises. Méthodologie : électricité = moyenne mensuelle du marché day-ahead ENTSO-E (zone France) ; gaz = index PEG Month-Ahead (M+1), via les rapports de surveillance des marchés de gros de la CRE.
 - Rétrospectives publiées :
-  - [Bilan 2022](https://www.cabinetms.fr/ms-blog-barometre-2022.html) : électricité 274,77 €/MWh, gaz environ 98,1 €/MWh.
-  - [Bilan 2023](https://www.cabinetms.fr/ms-blog-barometre-2023.html) : électricité 96,84 €/MWh, gaz environ 40 €/MWh.
-  - [Bilan 2024](https://www.cabinetms.fr/ms-blog-barometre-2024.html) : électricité 58,62 €/MWh, gaz environ 34 €/MWh.
-  - [Bilan 2025](https://www.cabinetms.fr/ms-blog-barometre-2025.html) : électricité 62,26 €/MWh, gaz environ 35 €/MWh.
-  - [Baromètre T1 2026](https://www.cabinetms.fr/ms-blog-barometre-2026-t1.html) : électricité 74,00 €/MWh, gaz en attente de source fiable.
-  - [Baromètre T2 2026](https://www.cabinetms.fr/ms-blog-barometre-2026-t2.html) : électricité 57,34 €/MWh, gaz en attente de source fiable.
-  - [Baromètre T3 2026 (partiel)](https://www.cabinetms.fr/ms-blog-barometre-2026-t3.html) : électricité 101,37 €/MWh (1er-27 juillet), gaz PEG 63,90 €/MWh en clôture du 24 juillet, trimestre encore en cours.
+  - [Bilan 2022](https://cabinetms.fr/ms-blog-barometre-2022.html) : électricité 274,77 €/MWh, gaz environ 98,1 €/MWh.
+  - [Bilan 2023](https://cabinetms.fr/ms-blog-barometre-2023.html) : électricité 96,84 €/MWh, gaz environ 40 €/MWh.
+  - [Bilan 2024](https://cabinetms.fr/ms-blog-barometre-2024.html) : électricité 58,62 €/MWh, gaz environ 34 €/MWh.
+  - [Bilan 2025](https://cabinetms.fr/ms-blog-barometre-2025.html) : électricité 62,26 €/MWh, gaz environ 35 €/MWh.
+  - [Baromètre T1 2026](https://cabinetms.fr/ms-blog-barometre-2026-t1.html) : électricité 74,00 €/MWh, gaz en attente de source fiable.
+  - [Baromètre T2 2026](https://cabinetms.fr/ms-blog-barometre-2026-t2.html) : électricité 57,34 €/MWh, gaz en attente de source fiable.
+  - [Baromètre T3 2026 (partiel)](https://cabinetms.fr/ms-blog-barometre-2026-t3.html) : électricité 101,37 €/MWh (1er-27 juillet), gaz PEG 63,90 €/MWh en clôture du 24 juillet, trimestre encore en cours.
 
 ## Contact
 
