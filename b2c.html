@@ -498,7 +498,49 @@ function openTallyForm(source) {
   // Code de campagne email (voir assets/ref.js et middleware.js). Nécessite
   // le champ caché « camp » côté éditeur Tally, sinon ignoré silencieusement.
   if (window.msCamp) hiddenFields.camp = window.msCamp;
-  Tally.openPopup('kd15W1', { layout: 'modal', width: 700, hiddenFields });
+  Tally.openPopup('kd15W1', { layout: 'modal', width: 700, hiddenFields, onSubmit: onTallySubmit });
+}
+
+/* ════════════════════════════════════════
+   MESURE DE CONVERSION (Pixel + Conversions API Meta)
+   Se declenche au depot reel de la facture (callback onSubmit de Tally),
+   pas au simple clic sur le CTA — c'est le seul point ou l'on dispose
+   de l'email/telephone saisis, necessaires a l'Advanced Matching.
+
+   RGPD : memes conditions que window.msInitAnalytics (assets/cookie-consent.js)
+   — rien n'est envoye a Meta si le visiteur n'a pas accepte le bandeau cookies.
+   ════════════════════════════════════════ */
+function onTallySubmit(payload) {
+  if (!/(?:^|;\s*)ms_consent=accepted/.test(document.cookie)) return;
+
+  var email = null, phone = null;
+  (payload.fields || []).forEach(function (field) {
+    if (field.type === 'INPUT_EMAIL' && field.answer && field.answer.value) email = field.answer.value;
+    if (field.type === 'INPUT_PHONE_NUMBER' && field.answer && field.answer.value) phone = field.answer.value;
+  });
+
+  var eventId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + '-' + Math.random());
+
+  // Event navigateur : redondant avec la Conversions API ci-dessous, meme
+  // eventID pour que Meta deduplique plutot que de compter la conversion deux fois.
+  if (window.fbq) window.fbq('track', 'Lead', {}, { eventID: eventId });
+
+  var fbpMatch = document.cookie.match(/(?:^|;\s*)_fbp=([^;]+)/);
+  var fbcMatch = document.cookie.match(/(?:^|;\s*)_fbc=([^;]+)/);
+
+  fetch('/api/capi-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      eventId: eventId,
+      eventSourceUrl: window.location.href,
+      email: email,
+      phone: phone,
+      fbp: fbpMatch ? fbpMatch[1] : null,
+      fbc: fbcMatch ? fbcMatch[1] : null
+    }),
+    keepalive: true
+  }).catch(function () { /* la conversion CAPI est best-effort, le depot de facture ne doit jamais en dependre */ });
 }
 </script>
 <script async src="https://tally.so/widgets/embed.js"></script>
