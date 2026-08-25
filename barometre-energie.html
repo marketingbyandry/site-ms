@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<script defer src="assets/analytics.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Baromètre M&S Strategy des prix de l'énergie | M&S Strategy</title>
 <meta name="description" content="Suivez gratuitement l'évolution des prix de gros de l'électricité (ENTSO-E) et du gaz (index PEG Month-Ahead, via CRE) pour les entreprises, mis à jour chaque mois et chaque trimestre par M&S Strategy.">
@@ -415,7 +416,6 @@ const obs = new IntersectionObserver(es => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
-<script defer src="assets/analytics.js"></script>
 <script defer src="assets/cookie-consent.js"></script>
 <script src="assets/barometre.js" defer></script>
 </body>
