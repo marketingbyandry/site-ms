@@ -99,7 +99,7 @@ a{text-decoration:none;color:inherit}
       <tr><th>Catégorie</th><th>Exemples</th><th>Origine</th></tr>
       <tr><td>Identification</td><td>Nom, prénom, email, téléphone</td><td>Formulaires de contact / demande d'étude (Tally)</td></tr>
       <tr><td>Données de consommation</td><td>Factures d'énergie transmises (puissance souscrite, historique de consommation, fournisseur actuel)</td><td>Upload volontaire par le Client</td></tr>
-      <tr><td>Navigation</td><td>Pages visitées, variante A/B affichée, provenance</td><td>Cookies techniques et PostHog Analytics</td></tr>
+      <tr><td>Navigation</td><td>Pages visitées, variante A/B affichée, provenance</td><td>Cookies techniques, PostHog Analytics et Pixel Meta</td></tr>
     </table>
   </section>
 
@@ -110,6 +110,7 @@ a{text-decoration:none;color:inherit}
       <li>mettre le Client en relation avec les fournisseurs d'énergie dans le cadre de l'appel d'offres ;</li>
       <li>assurer le suivi commercial et contractuel dans la durée ;</li>
       <li>mesurer l'audience du site et tester différentes versions des pages (A/B testing) ;</li>
+      <li>mesurer l'efficacité de nos campagnes publicitaires Meta (Facebook/Instagram) ;</li>
       <li>répondre aux demandes de contact.</li>
     </ul>
   </section>
@@ -129,6 +130,7 @@ a{text-decoration:none;color:inherit}
       <tr><th>Cookie</th><th>Finalité</th><th>Durée</th><th>Consentement</th></tr>
       <tr><td><code>ms_variant</code> / <code>ms_suivi_variant</code></td><td>Répartition technique entre versions du site (test A/B) affichée par notre serveur ; ne contient aucune donnée personnelle et n'est pas utilisé à des fins publicitaires ou de suivi cross-site</td><td>30 jours</td><td>Cookie technique, déposé dès l'affichage de la page</td></tr>
       <tr><td>Cookies PostHog</td><td>Mesure d'audience (pages vues, parcours, clics sur les boutons d'action)</td><td>Selon configuration PostHog</td><td>Déposé uniquement après acceptation dans le bandeau cookies</td></tr>
+      <tr><td>Cookies Pixel Meta (<code>_fbp</code>, <code>_fbc</code>)</td><td>Mesure et optimisation de nos campagnes publicitaires Facebook/Instagram (Meta Platforms Ireland Ltd.). Lors du dépôt d'une facture, votre email et téléphone sont transmis à Meta sous forme irréversiblement hachée (SHA-256, non lisible), afin de fiabiliser cette mesure même lorsque le cookie seul ne suffit pas</td><td>90 jours</td><td>Déposé uniquement après acceptation dans le bandeau cookies</td></tr>
       <tr><td><code>ms_consent</code></td><td>Mémorise votre choix (accepté/refusé) pour ne pas réafficher le bandeau à chaque page</td><td>13 mois</td><td>Cookie technique, nécessaire au fonctionnement du bandeau lui-même</td></tr>
       <tr><td><code>ms_ref</code></td><td>Mémorise l'identifiant du conseiller M&amp;S Strategy dont vous avez suivi le lien, afin de rattacher votre demande d'étude à votre interlocuteur ; contient uniquement un code interne à deux ou trois lettres, aucune donnée personnelle, et n'est ni partagé avec des tiers ni utilisé à des fins publicitaires ou de suivi cross-site</td><td>90 jours</td><td>Cookie déposé uniquement si vous arrivez par le lien d'un conseiller</td></tr>
       <tr><td><code>ms_camp</code></td><td>Mémorise le code de l'email de notre séquence de prospection dont vous avez suivi le lien (segment d'activité et numéro d'email), afin de mesurer la performance de chaque email ; contient uniquement un code interne court, aucune donnée personnelle, et n'est ni partagé avec des tiers ni utilisé à des fins publicitaires ou de suivi cross-site</td><td>90 jours</td><td>Cookie déposé uniquement si vous arrivez par le lien d'un email de prospection</td></tr>
@@ -145,7 +147,9 @@ a{text-decoration:none;color:inherit}
     <p>
       Vos données peuvent être transmises aux fournisseurs d'énergie sollicités dans le cadre de l'appel d'offres, avec votre accord
       implicite à la demande d'étude. Elles sont également accessibles à nos sous-traitants techniques : hébergement (Vercel Inc.),
-      mesure d'audience (PostHog, hébergé en UE — eu.i.posthog.com), gestion des formulaires (Tally).
+      mesure d'audience (PostHog, hébergé en UE — eu.i.posthog.com), gestion des formulaires (Tally), et, si vous acceptez les cookies
+      de suivi publicitaire, mesure de campagnes (Meta Platforms Ireland Ltd., dans le cadre du transfert de données encadré par les
+      clauses contractuelles types de la Commission européenne).
     </p>
   </section>
 
