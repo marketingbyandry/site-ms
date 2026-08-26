@@ -111,7 +111,7 @@ nav {
   line-height: 1.7; margin-bottom: 2.5rem;
 }
 
-/* Stat splash — signature element: animated counters */
+/* Stat splash (signature element): animated counters */
 .stat-row {
   display: flex; gap: 3rem; flex-wrap: wrap;
   padding: 2rem 0; border-top: 1px solid rgba(43,181,200,.15);
@@ -369,7 +369,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="meta-read">4 min de lecture</span>
     </div>
     <h1 class="hero-title">
-      Baromètre M&S Strategy —<br>
+      Baromètre M&S Strategy :<br>
       <span class="accent-teal">T3 2026</span><br>
       prix de l'énergie pour les <span class="accent">entreprises.</span>
     </h1>
@@ -381,7 +381,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="article-body">
 
     <div class="partial-notice reveal">
-      <strong>Bilan intermédiaire — trimestre non clôturé.</strong> Le T3 2026 (juillet-septembre) n'est pas terminé à la date de rédaction de cet article. L'électricité n'est moyennée que sur la portion déjà écoulée (1er-27 juillet) et le gaz correspond à une seule séance de cotation, pas à une moyenne trimestrielle. Un bilan T3 2026 définitif, avec l'électricité moyennée sur l'ensemble du trimestre et le gaz sourcé selon le processus trimestriel habituel, sera publié une fois le trimestre clos.
+      <strong>Bilan intermédiaire : trimestre non clôturé.</strong> Le T3 2026 (juillet-septembre) n'est pas terminé à la date de rédaction de cet article. L'électricité n'est moyennée que sur la portion déjà écoulée (1er-27 juillet) et le gaz correspond à une seule séance de cotation, pas à une moyenne trimestrielle. Un bilan T3 2026 définitif, avec l'électricité moyennée sur l'ensemble du trimestre et le gaz sourcé selon le processus trimestriel habituel, sera publié une fois le trimestre clos.
     </div>
 
     <h2>Période analysée</h2>
@@ -394,31 +394,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <p>Sur la portion écoulée du T3 2026, du <strong>1er au 27 juillet 2026</strong>, le prix moyen day-ahead de l'électricité en France s'est établi à <strong>101,37 €/MWh</strong>, selon l'ENTSO-E Transparency Platform (prix day-ahead France, moyenne calculée du 1er au 27 juillet 2026, trimestre encore en cours). Ce chiffre ne couvre que 27 des quelque 92 jours du trimestre et ne doit pas être lu comme une moyenne T3 2026 complète : il progressera, à la hausse ou à la baisse, à mesure qu'août et septembre s'ajoutent au calcul.</p>
 
-    <p>À titre de repère, ce niveau intermédiaire est nettement supérieur aux moyennes complètes des deux trimestres précédents (74,00 €/MWh sur T1 2026, 57,34 €/MWh sur T2 2026) — un écart notable, qu'il conviendra de confirmer ou de nuancer une fois le trimestre clos, sans qu'on en tire ici de cause précise à ce stade.</p>
+    <p>À titre de repère, ce niveau intermédiaire est nettement supérieur aux moyennes complètes des deux trimestres précédents (74,00 €/MWh sur T1 2026, 57,34 €/MWh sur T2 2026), un écart notable, qu'il conviendra de confirmer ou de nuancer une fois le trimestre clos, sans qu'on en tire ici de cause précise à ce stade.</p>
 
     <p><a href="barometre-energie.html" style="color:var(--teal-light)">Consulter les données actualisées du Baromètre M&S Strategy →</a></p>
 
     <h2>Prix gaz (dernière valeur observée)</h2>
 
-    <p>Pour le gaz, nous disposons cette fois d'une donnée directement comparable à la méthodologie de gros suivie par ce Baromètre (le « prix moyen du gaz au PEG pour livraison le mois suivant, M+1 », celle qui a servi de base aux bilans annuels 2022-2025) : la clôture du contrat PEG Month-Ahead pour livraison en août 2026, au <strong>24 juillet 2026</strong>, s'est établie à <strong>63,90 €/MWh</strong>, en hausse de 3,4% sur la séance — le plus haut du mois — contre une moyenne glissante sur 30 jours de 49,88 €/MWh pour ce même contrat à terme (source : reporting de marché Selectra sur les clôtures PEG, 24-27 juillet 2026).</p>
+    <p>Pour le gaz, nous disposons cette fois d'une donnée directement comparable à la méthodologie de gros suivie par ce Baromètre (le « prix moyen du gaz au PEG pour livraison le mois suivant, M+1 », celle qui a servi de base aux bilans annuels 2022-2025) : la clôture du contrat PEG Month-Ahead pour livraison en août 2026, au <strong>24 juillet 2026</strong>, s'est établie à <strong>63,90 €/MWh</strong>, en hausse de 3,4% sur la séance (le plus haut du mois), contre une moyenne glissante sur 30 jours de 49,88 €/MWh pour ce même contrat à terme (source : reporting de marché Selectra sur les clôtures PEG, 24-27 juillet 2026).</p>
 
-    <p><strong>Il ne s'agit pas d'une moyenne trimestrielle</strong> : c'est la clôture d'une seule séance de cotation, retenue car le T3 2026 n'est pas terminé et qu'aucune série quotidienne n'a été capturée à ce jour pour ce trimestre. Cette entrée a été ajoutée à <code>data/barometre-gaz.json</code> avec un indicateur <code>partial: true</code> et une note explicite, afin que le rendu de la page <a href="barometre-energie.html" style="color:var(--teal-light)">barometre-energie.html</a> l'affiche comme « dernière valeur observée » et non comme une moyenne — la distinction entre cotation instantanée et moyenne réalisée étant, comme pour les numéros précédents de ce Baromètre, un point de vigilance méthodologique que nous tenons à préserver.</p>
+    <p><strong>Il ne s'agit pas d'une moyenne trimestrielle</strong> : c'est la clôture d'une seule séance de cotation, retenue car le T3 2026 n'est pas terminé et qu'aucune série quotidienne n'a été capturée à ce jour pour ce trimestre. Cette entrée a été ajoutée à <code>data/barometre-gaz.json</code> avec un indicateur <code>partial: true</code> et une note explicite, afin que le rendu de la page <a href="barometre-energie.html" style="color:var(--teal-light)">barometre-energie.html</a> l'affiche comme « dernière valeur observée » et non comme une moyenne : la distinction entre cotation instantanée et moyenne réalisée étant, comme pour les numéros précédents de ce Baromètre, un point de vigilance méthodologique que nous tenons à préserver.</p>
 
     <p><a href="barometre-energie.html" style="color:var(--teal-light)">Consulter les données actualisées du Baromètre M&S Strategy →</a></p>
 
     <h2>Contexte du marché</h2>
 
-    <p>Ce troisième numéro marque une transition dans le format du Baromètre : les bilans T1 et T2 2026, ainsi que les rétrospectives annuelles 2022-2025, ont été rédigés en rattrapage (« backfill ») sur des trimestres déjà clos. À partir de ce T3 2026, le Baromètre entre dans son rythme de croisière normal — ce qui signifie, pour ce numéro-ci, publier une photographie intermédiaire d'un trimestre encore ouvert plutôt que d'attendre sa clôture.</p>
+    <p>Ce troisième numéro marque une transition dans le format du Baromètre : les bilans T1 et T2 2026, ainsi que les rétrospectives annuelles 2022-2025, ont été rédigés en rattrapage (« backfill ») sur des trimestres déjà clos. À partir de ce T3 2026, le Baromètre entre dans son rythme de croisière normal, ce qui signifie, pour ce numéro-ci, publier une photographie intermédiaire d'un trimestre encore ouvert plutôt que d'attendre sa clôture.</p>
 
-    <p>Comme pour les numéros précédents, nous nous limitons ici au constat chiffré, sans attribuer les niveaux observés à un facteur unique. L'écart marqué entre l'électricité intermédiaire de juillet 2026 (101,37 €/MWh) et les moyennes complètes de T1 et T2 pourra être confirmé, atténué ou au contraire accentué par les données d'août et septembre — nous nous abstenons de conclure avant que le trimestre soit clos.</p>
+    <p>Comme pour les numéros précédents, nous nous limitons ici au constat chiffré, sans attribuer les niveaux observés à un facteur unique. L'écart marqué entre l'électricité intermédiaire de juillet 2026 (101,37 €/MWh) et les moyennes complètes de T1 et T2 pourra être confirmé, atténué ou au contraire accentué par les données d'août et septembre ; nous nous abstenons de conclure avant que le trimestre soit clos.</p>
 
     <p>Un bilan T3 2026 définitif suivra, avec l'électricité moyennée sur l'ensemble du trimestre (juillet-septembre complet) et un prix de gaz sourcé selon le processus quarterly manuel décrit dans <code>docs/barometre-energie/mise-a-jour-gaz.md</code>. Cette clôture, comme le rythme de publication en continu qui suivra, relève désormais du fonctionnement normal du Baromètre plutôt que d'un chantier de rattrapage.</p>
 
     <div class="callout reveal">
       <p class="callout-title">Sources</p>
       <ul>
-        <li><a href="https://transparency.entsoe.eu/" target="_blank" rel="noopener" style="color:var(--teal-light)">ENTSO-E Transparency Platform</a> — prix day-ahead électricité, zone France, 1er-27 juillet 2026.</li>
-        <li><a href="https://selectra.info/energie/actualites/prix-gaz/2026-07-25" target="_blank" rel="noopener" style="color:var(--teal-light)">Selectra — reporting des clôtures PEG Month-Ahead</a> — clôture du 24 juillet 2026 (livraison août 2026).</li>
+        <li><a href="https://transparency.entsoe.eu/" target="_blank" rel="noopener" style="color:var(--teal-light)">ENTSO-E Transparency Platform</a>, prix day-ahead électricité, zone France, 1er-27 juillet 2026.</li>
+        <li><a href="https://selectra.info/energie/actualites/prix-gaz/2026-07-25" target="_blank" rel="noopener" style="color:var(--teal-light)">Selectra : reporting des clôtures PEG Month-Ahead</a>, clôture du 24 juillet 2026 (livraison août 2026).</li>
       </ul>
     </div>
 
