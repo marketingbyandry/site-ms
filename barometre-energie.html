@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-THZKG49X');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
+<script defer src="assets/analytics.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Baromètre M&S Strategy des prix de l'énergie | M&S Strategy</title>
 <meta name="description" content="Suivez gratuitement l'évolution des prix de gros de l'électricité (ENTSO-E) et du gaz (index PEG Month-Ahead, via CRE) pour les entreprises, mis à jour chaque mois et chaque trimestre par M&S Strategy.">
@@ -146,9 +154,32 @@ a{text-decoration:none;color:inherit}
 .reveal{opacity:0;transform:translateY(25px);transition:opacity .65s ease,transform .65s ease}
 .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.sup-section{padding:6rem 5vw;max-width:900px;margin:0 auto}
+.sup-header{max-width:640px;margin-bottom:2.5rem}
+.sup-header p{color:var(--muted);font-size:.97rem;line-height:1.72;margin-top:1rem}
+.sup-list{display:flex;flex-direction:column;gap:.9rem}
+.sup-item{border:1px solid rgba(26,122,138,.14);border-radius:3px;padding:1.3rem 1.6rem;background:var(--dark);cursor:pointer;transition:border-color .25s,border-width .25s,transform .25s}
+.sup-item:hover{border-color:rgba(94,207,220,.35);border-width:1.5px;transform:scale(1.01)}
+.sup-q{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.sup-name{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.98rem;color:var(--cream);display:flex;align-items:center;gap:.6rem}
+.sup-num{font-family:'Satoshi',sans-serif;font-weight:800;font-size:.8rem;color:rgba(26,122,138,.5)}
+.sup-stats{display:flex;flex-direction:column;gap:.2rem}
+.sup-stat{font-size:.82rem;color:var(--teal-light);white-space:nowrap}
+.sup-stat-neg{font-size:.82rem;color:var(--muted2);white-space:nowrap}
+.sup-preview{color:var(--muted2);font-style:italic}
+.sup-arr{font-size:.9rem;color:var(--teal-light);transition:transform .25s;margin-left:auto}
+.sup-item.open .sup-arr{transform:rotate(180deg)}
+.sup-a{font-size:.89rem;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
+.sup-item.open .sup-a{max-height:260px;padding-top:.9rem}
+.sup-more{margin-top:.9rem;border:1px dashed rgba(26,122,138,.25);border-radius:3px;padding:1rem 1.6rem;text-align:center;color:var(--muted2);font-size:.85rem;font-style:italic}
 </style>
+<link rel="stylesheet" href="assets/nav-mobile.css">
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THZKG49X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <script>
 (function(){
   var m = document.cookie.match(/(?:^|;\s*)ms_variant=([AB])/);
@@ -173,6 +204,7 @@ a{text-decoration:none;color:inherit}
   </ul>
   <a href="b2b.html#upload" class="ncta">Étude gratuite</a>
 </nav>
+<script src="assets/nav-mobile.js" defer></script>
 
 <!-- HERO -->
 <section class="phero">
@@ -212,6 +244,99 @@ a{text-decoration:none;color:inherit}
     <p>Le prix de l'électricité provient du <strong>marché de gros day-ahead</strong> publié par <a href="https://transparency.entsoe.eu/" target="_blank" rel="noopener" style="color:var(--teal-light)">ENTSO-E</a> (European Network of Transmission System Operators for Electricity), la plateforme de transparence officielle des gestionnaires de réseaux de transport électrique européens. Une moyenne mensuelle est calculée à partir des prix horaires publiés pour la zone France.</p>
     <p>Le prix du gaz provient de l'<strong>index PEG Month-Ahead (M+1)</strong>, un prix à terme reflétant la valeur du gaz livré le mois suivant sur le point d'échange de gaz français. Les moyennes trimestrielles sont établies à partir des <a href="https://www.cre.fr/" target="_blank" rel="noopener" style="color:var(--teal-light)">rapports de surveillance des marchés de gros publiés par la Commission de régulation de l'énergie (CRE)</a> ; pour le trimestre en cours, lorsque ce rapport n'est pas encore disponible, une clôture de contrat PEG Month-Ahead rapportée par la presse spécialisée (ex. Selectra) est utilisée à titre de dernière valeur observée, et signalée comme telle plutôt que comme une moyenne trimestrielle.</p>
     <p>Ces indicateurs sont publiés à titre purement informatif et ne constituent ni une offre commerciale ni un engagement de prix de la part de M&S Strategy.</p>
+  </div>
+</section>
+
+<!-- FOURNISSEURS PARTENAIRES -->
+<!-- TODO: remplacer les chiffres de contrats (données de preview) par les vrais totaux M&S avant publication -->
+<section class="sup-section">
+  <div class="sup-header reveal">
+    <span class="stag">Preuve sociale</span>
+    <h2 class="sh2">Nos fournisseurs <em>partenaires.</em></h2>
+    <p>Parmi l'ensemble du marché consulté à chaque étude, voici les fournisseurs avec lesquels nous concluons le plus de contrats pour nos clients.</p>
+  </div>
+  <div class="sup-list">
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">01</span> MetEnergie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">1240 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">18 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Fournisseur alternatif indépendant, souvent compétitif sur les profils TPE/PME multi-énergie avec une structure tarifaire simple.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">02</span> OHM Energie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">950 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">14 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Offres digitales simplifiées, bon positionnement sur l'électricité pour les petites structures cherchant un contrat sans complexité contractuelle.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">03</span> Alterna (ex-Vattenfall)</div>
+        <div class="sup-stats">
+          <div class="sup-stat">800 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">11 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Offres orientées énergie renouvelable, pertinentes pour les entreprises qui valorisent une part d'électricité verte dans leur contrat.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">04</span> Engie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">2100 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">27 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Acteur historique du marché français, portefeuille d'offres large, souvent une référence de comparaison pour les profils multi-sites ou à forte consommation.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">05</span> GazelEnergie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">600 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">9 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Positionnement marqué sur le gaz et les profils industriels, pertinent pour les entreprises à consommation gaz significative.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">06</span> TotalEnergies</div>
+        <div class="sup-stats">
+          <div class="sup-stat">1450 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">19 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Groupe énergétique international, offres duales électricité/gaz étendues, pertinent pour les profils multi-sites cherchant un interlocuteur unique à grande échelle.</p>
+      </div>
+    </div>
+  </div>
+  <div class="sup-more reveal">
+    <p>Et d'autres encore — nous consultons l'ensemble du marché à chaque étude, au-delà de ces partenaires historiques.</p>
   </div>
 </section>
 
@@ -290,7 +415,7 @@ a{text-decoration:none;color:inherit}
 </footer>
 <div class="fbot">
   <span>© 2026 M&S Strategy. Tous droits réservés.</span>
-  <span>Courtier en énergie indépendant depuis 2012 · Gaz · Électricité · France</span>
+  <span>Cabinet d'expertise en négociation d'énergie depuis 2012 · Gaz · Électricité · France</span>
   <span><a href="mentions-legales.html" style="color:inherit">Mentions légales</a> · <a href="cgv.html" style="color:inherit">CGV</a> · <a href="politique-confidentialite.html" style="color:inherit">Confidentialité</a> · <a href="#" style="color:inherit" onclick="window.msOpenCookieBanner&&window.msOpenCookieBanner();return false;">Gérer les cookies</a></span>
 </div>
 
@@ -302,7 +427,6 @@ const obs = new IntersectionObserver(es => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
-<script defer src="assets/analytics.js"></script>
 <script defer src="assets/cookie-consent.js"></script>
 <script src="assets/barometre.js" defer></script>
 </body>

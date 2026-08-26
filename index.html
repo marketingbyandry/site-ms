@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-THZKG49X');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
+<script defer src="assets/analytics.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>M&S Strategy, courtier en énergie indépendant · Gaz · Électricité depuis 2012</title>
 <meta name="description" content="M&S Strategy, cabinet de courtage en énergie indépendant depuis 2012. Nous négocions vos contrats gaz et électricité auprès de tous les fournisseurs, professionnels (TPE, PME, ETI) et particuliers. Étude gratuite, sans engagement, résultat sous 48h.">
@@ -31,6 +39,7 @@
   --muted2:#4a4a4a;
 }
 :root[data-theme="light"] .nav,
+:root[data-theme="light"] .ticker,
 :root[data-theme="light"] .qband,
 :root[data-theme="light"] .cstrip,
 :root[data-theme="light"] .sfooter,
@@ -48,7 +57,7 @@
 :root[data-theme="light"] .nlinks li:nth-child(even) a:hover{color:var(--green)}
 :root[data-theme="light"] .ncta:hover{background:linear-gradient(100deg,var(--teal),var(--green));color:#fff;box-shadow:none}
 :root[data-theme="light"] .cta-glow{display:none}
-:root[data-theme="light"] .bgw{filter:grayscale(1);opacity:.55}
+:root[data-theme="light"] .bgw{filter:grayscale(.4);opacity:.8}
 :root[data-theme="light"] .panel-b2b::before{background:linear-gradient(140deg,rgba(26,122,138,.10) 0%,rgba(250,249,246,0) 65%)}
 :root[data-theme="light"] .hero.hl .panel-b2b::before{background:linear-gradient(140deg,rgba(26,122,138,.20) 0%,rgba(43,181,200,.05) 60%)}
 :root[data-theme="light"] .panel-b2c::before{background:linear-gradient(220deg,rgba(76,222,128,.14) 0%,rgba(250,249,246,0) 65%)}
@@ -68,8 +77,23 @@ html{scroll-behavior:smooth}
 body{font-family:'Satoshi',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{text-decoration:none;color:inherit}
 
+/* ─── TICKER ──────────────────────────── */
+.ticker{position:fixed;top:0;left:0;right:0;z-index:210;height:32px;display:flex;align-items:center;background:linear-gradient(90deg,#061117,#0a1c25 45%,#061117);border-bottom:1px solid rgba(26,122,138,.35);overflow:hidden}
+.ticker::before,.ticker::after{content:"";position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,#061117,transparent)}
+.ticker::after{right:0;background:linear-gradient(270deg,#061117,transparent)}
+.ticker.reduced-motion{overflow-x:auto}
+.ticker-track{display:flex;align-items:center;white-space:nowrap;will-change:transform}
+.ticker-item{display:inline-flex;align-items:baseline;gap:.4em;padding:0 1.4rem;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--cream);font-variant-numeric:tabular-nums}
+.ticker-item+.ticker-item{border-left:1px solid rgba(94,207,220,.16)}
+.ticker-item .label{color:var(--muted)}
+.ticker-item .trend-up{color:#e05555}
+.ticker-item .trend-down{color:var(--green)}
+.ticker-item .trend-flat{color:var(--muted);font-weight:400}
+.ticker-item .fine{color:var(--muted2);font-weight:400;letter-spacing:.05em;font-size:.95em}
+
 /* ─── NAV ─────────────────────────────── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(7,19,26,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,122,138,.18)}
+.nav{position:fixed;top:32px;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(7,19,26,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,122,138,.18)}
 .nl{display:flex;align-items:center;gap:10px;font-family:'Satoshi',sans-serif;font-weight:800;font-size:1.05rem}
 .nl-logo{height:32px;width:auto;display:block}
 .nlinks{display:flex;align-items:center;gap:2rem;list-style:none}
@@ -207,8 +231,8 @@ a{text-decoration:none;color:inherit}
 .how-header p{color:var(--muted);font-size:.97rem;line-height:1.72;margin-top:1rem}
 .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 @media(max-width:700px){.how-grid{grid-template-columns:1fr}}
-.hcard{border:1px solid rgba(26,122,138,.14);border-radius:3px;padding:2rem;background:var(--dark);transition:border-color .25s,transform .25s}
-.hcard:hover{border-color:rgba(94,207,220,.3);transform:translateY(-3px)}
+.hcard{border:1px solid rgba(26,122,138,.14);border-radius:3px;padding:2rem;background:var(--dark);transition:border-color .25s,border-width .25s,transform .25s}
+.hcard:hover{border-color:rgba(94,207,220,.35);border-width:1.5px;transform:translateY(-3px) scale(1.02)}
 .hcn{font-family:'Satoshi',sans-serif;font-weight:800;font-size:2.8rem;color:rgba(26,122,138,.16);line-height:1;margin-bottom:.65rem}
 .hct{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.93rem;color:var(--cream);margin-bottom:.5rem}
 .hcb{font-size:.87rem;color:var(--muted);line-height:1.65}
@@ -237,8 +261,8 @@ a{text-decoration:none;color:inherit}
 .vals-header p{color:var(--muted);font-size:.97rem;line-height:1.7;margin-top:.8rem}
 .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 @media(max-width:768px){.vgrid{grid-template-columns:1fr}}
-.vcard{border:1px solid rgba(26,122,138,.13);border-radius:3px;padding:1.9rem;background:var(--dark);transition:border-color .25s,transform .25s}
-.vcard:hover{border-color:rgba(94,207,220,.3);transform:translateY(-3px)}
+.vcard{border:1px solid rgba(26,122,138,.13);border-radius:3px;padding:1.9rem;background:var(--dark);transition:border-color .25s,border-width .25s,transform .25s}
+.vcard:hover{border-color:rgba(94,207,220,.35);border-width:1.5px;transform:translateY(-3px) scale(1.02)}
 .vn{font-family:'Satoshi',sans-serif;font-weight:800;font-size:2.8rem;color:rgba(26,122,138,.15);line-height:1;margin-bottom:.6rem}
 .vt{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.92rem;color:var(--cream);margin-bottom:.5rem}
 .vb{font-size:.86rem;color:var(--muted);line-height:1.65}
@@ -283,7 +307,8 @@ a{text-decoration:none;color:inherit}
 .about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
 @media(max-width:768px){.about-inner{grid-template-columns:1fr;gap:3rem}}
 .about-kpis{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
-.akpi{background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.15);border-radius:3px;padding:1.4rem}
+.akpi{background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.15);border-radius:3px;padding:1.4rem;transition:border-color .25s,border-width .25s,transform .25s}
+.akpi:hover{border-color:rgba(94,207,220,.35);border-width:1.5px;transform:translateY(-3px) scale(1.02)}
 .akpi-n{font-family:'Satoshi',sans-serif;font-weight:800;font-size:2rem;line-height:1;color:var(--teal-light);margin-bottom:.2rem}
 .akpi-n.g{color:var(--green)}
 .akpi-l{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
@@ -332,27 +357,45 @@ a{text-decoration:none;color:inherit}
 .reveal{opacity:0;transform:translateY(25px);transition:opacity .65s ease,transform .65s ease}
 .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.sup-section{padding:6rem 5vw;max-width:900px;margin:0 auto}
+.sup-header{max-width:640px;margin-bottom:2.5rem}
+.sup-header p{color:var(--muted);font-size:.97rem;line-height:1.72;margin-top:1rem}
+.sup-list{display:flex;flex-direction:column;gap:.9rem}
+.sup-item{border:1px solid rgba(26,122,138,.14);border-radius:3px;padding:1.3rem 1.6rem;background:var(--dark);cursor:pointer;transition:border-color .25s,border-width .25s,transform .25s}
+.sup-item:hover{border-color:rgba(94,207,220,.35);border-width:1.5px;transform:scale(1.01)}
+.sup-q{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.sup-name{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.98rem;color:var(--cream);display:flex;align-items:center;gap:.6rem}
+.sup-num{font-family:'Satoshi',sans-serif;font-weight:800;font-size:.8rem;color:rgba(26,122,138,.5)}
+.sup-stats{display:flex;flex-direction:column;gap:.2rem}
+.sup-stat{font-size:.82rem;color:var(--teal-light);white-space:nowrap}
+.sup-stat-neg{font-size:.82rem;color:var(--muted2);white-space:nowrap}
+.sup-preview{color:var(--muted2);font-style:italic}
+.sup-arr{font-size:.9rem;color:var(--teal-light);transition:transform .25s;margin-left:auto}
+.sup-item.open .sup-arr{transform:rotate(180deg)}
+.sup-a{font-size:.89rem;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
+.sup-item.open .sup-a{max-height:260px;padding-top:.9rem}
+.sup-more{margin-top:.9rem;border:1px dashed rgba(26,122,138,.25);border-radius:3px;padding:1rem 1.6rem;text-align:center;color:var(--muted2);font-size:.85rem;font-style:italic}
 </style>
-<link rel="canonical" href="https://www.byandry.com/">
+<link rel="canonical" href="https://cabinetms.fr/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="M&S Strategy">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="M&S Strategy, courtier en énergie indépendant · Gaz · Électricité depuis 2012">
 <meta property="og:description" content="M&S Strategy, cabinet de courtage en énergie indépendant depuis 2012. Nous négocions vos contrats gaz et électricité auprès de tous les fournisseurs, professionnels (TPE, PME, ETI) et particuliers. Étude gratuite, sans engagement, résultat sous 48h.">
-<meta property="og:url" content="https://www.byandry.com/">
-<meta property="og:image" content="https://www.byandry.com/assets/ms-strategy-logo.png">
+<meta property="og:url" content="https://cabinetms.fr/">
+<meta property="og:image" content="https://cabinetms.fr/assets/ms-strategy-logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "@id": "https://www.byandry.com/#organization",
+  "@id": "https://cabinetms.fr/#organization",
   "name": "M&S Strategy",
   "alternateName": "M&S Strategy : Courtier en énergie indépendant",
   "description": "Cabinet de courtage en énergie indépendant depuis 2012. Négociation des contrats de gaz et d'électricité pour les professionnels (TPE, PME, ETI) et les particuliers, auprès de tous les fournisseurs du marché. Étude gratuite, sans engagement, résultat sous 48h.",
-  "url": "https://www.byandry.com/",
-  "logo": "https://www.byandry.com/assets/ms-strategy-logo.png",
-  "image": "https://www.byandry.com/assets/ms-strategy-logo.png",
+  "url": "https://cabinetms.fr/",
+  "logo": "https://cabinetms.fr/assets/ms-strategy-logo.png",
+  "image": "https://cabinetms.fr/assets/ms-strategy-logo.png",
   "foundingDate": "2012",
   "email": "msstrategy@yahoo.com",
   "telephone": "+33783070749",
@@ -420,7 +463,7 @@ a{text-decoration:none;color:inherit}
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://www.byandry.com/#faq",
+  "@id": "https://cabinetms.fr/#faq",
   "mainEntity": [
     {
       "@type": "Question",
@@ -473,8 +516,13 @@ a{text-decoration:none;color:inherit}
   ]
 }
 </script>
+<link rel="stylesheet" href="assets/nav-mobile.css">
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THZKG49X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <script>
 (function(){
   var m = document.cookie.match(/(?:^|;\s*)ms_variant=([AB])/);
@@ -483,6 +531,12 @@ a{text-decoration:none;color:inherit}
   }
 })();
 </script>
+
+<!-- TICKER -->
+<div class="ticker" role="marquee" aria-label="Prix de l'énergie et informations M&S Strategy">
+  <div class="ticker-track" id="ms-ticker-track"></div>
+</div>
+<script src="assets/ticker.js" defer></script>
 
 <!-- NAV -->
 <nav class="nav">
@@ -499,6 +553,7 @@ a{text-decoration:none;color:inherit}
   </ul>
   <a href="b2b.html#upload" class="ncta">Étude gratuite</a>
 </nav>
+<script src="assets/nav-mobile.js" defer></script>
 
 <!-- HERO SPLIT -->
 <section class="hero" id="hero">
@@ -553,7 +608,7 @@ a{text-decoration:none;color:inherit}
   <div class="bdiv reveal d2"></div>
   <div class="prow reveal d2">
     <div class="pit"><span class="pnum t">2012</span><span class="plb">En activité depuis</span></div>
-    <div class="pit"><span class="pnum g">100k+</span><span class="plb">Foyers accompagnés / an</span></div>
+    <div class="pit"><span class="pnum g">100k+</span><span class="plb">Personnes nous ont fait confiance</span></div>
     <div class="pit"><span class="pnum t">80+</span><span class="plb">Collaborateurs · 8 agences</span></div>
     <div class="pit"><span class="pnum g">48h</span><span class="plb">Délai d'analyse</span></div>
   </div>
@@ -668,6 +723,100 @@ a{text-decoration:none;color:inherit}
   </div>
 </section>
 
+<!-- FOURNISSEURS PARTENAIRES -->
+<!-- TODO: remplacer les chiffres de contrats (données de preview) par les vrais totaux M&S avant publication -->
+<!-- TODO: le total actuel (7157 propositions réalisées + 98 en négociation, somme des 6 cartes) contredit "plus de 100 000 foyers" en ligne ~797 de cette même page (bloc "L'entreprise") — vérifier la cohérence des deux chiffres, ou clarifier qu'il s'agit de métriques différentes, avant publication -->
+<section class="sup-section">
+  <div class="sup-header reveal">
+    <span class="stag">Preuve sociale</span>
+    <h2 class="sh2">Nos fournisseurs <em>partenaires.</em></h2>
+    <p>Parmi l'ensemble du marché consulté à chaque étude, voici les fournisseurs avec lesquels nous concluons le plus de contrats pour nos clients.</p>
+  </div>
+  <div class="sup-list">
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">01</span> MetEnergie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">1243 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">18 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Fournisseur alternatif indépendant, souvent compétitif sur les profils TPE/PME multi-énergie avec une structure tarifaire simple.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">02</span> OHM Energie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">951 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">14 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Offres digitales simplifiées, bon positionnement sur l'électricité pour les petites structures cherchant un contrat sans complexité contractuelle.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">03</span> Alterna (ex-Vattenfall)</div>
+        <div class="sup-stats">
+          <div class="sup-stat">803 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">11 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Offres orientées énergie renouvelable, pertinentes pour les entreprises qui valorisent une part d'électricité verte dans leur contrat.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">04</span> Engie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">2108 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">27 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Acteur historique du marché français, portefeuille d'offres large, souvent une référence de comparaison pour les profils multi-sites ou à forte consommation.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">05</span> GazelEnergie</div>
+        <div class="sup-stats">
+          <div class="sup-stat">602 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">9 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Positionnement marqué sur le gaz et les profils industriels, pertinent pour les entreprises à consommation gaz significative.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">06</span> TotalEnergies</div>
+        <div class="sup-stats">
+          <div class="sup-stat">1450 propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg">19 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Groupe énergétique international, offres duales électricité/gaz étendues, pertinent pour les profils multi-sites cherchant un interlocuteur unique à grande échelle.</p>
+      </div>
+    </div>
+  </div>
+  <div class="sup-more reveal">
+    <p>Et d'autres encore : nous consultons l'ensemble du marché à chaque étude, au-delà de ces partenaires historiques.</p>
+  </div>
+</section>
+
 <!-- CTA : CALCULATEUR TEMPS RÉEL -->
 <section class="cta-band" id="cta-calculateur">
   <div class="cta-glow" style="background:radial-gradient(circle,rgba(43,181,200,.2) 0%,transparent 70%)"></div>
@@ -732,7 +881,7 @@ a{text-decoration:none;color:inherit}
         </div>
         <div class="akpi">
           <div class="akpi-n g">100k+</div>
-          <div class="akpi-l">Foyers / an</div>
+          <div class="akpi-l">Personnes nous ont fait confiance</div>
         </div>
         <div class="akpi">
           <div class="akpi-n">80+</div>
@@ -900,7 +1049,7 @@ a{text-decoration:none;color:inherit}
 </footer>
 <div class="fbot">
   <span>© 2026 M&S Strategy. Tous droits réservés.</span>
-  <span>Courtier en énergie indépendant depuis 2012 · Gaz · Électricité · France</span>
+  <span>Cabinet d'expertise en négociation d'énergie depuis 2012 · Gaz · Électricité · France</span>
   <span><a href="mentions-legales.html" style="color:inherit">Mentions légales</a> · <a href="cgv.html" style="color:inherit">CGV</a> · <a href="politique-confidentialite.html" style="color:inherit">Confidentialité</a> · <a href="#" style="color:inherit" onclick="window.msOpenCookieBanner&&window.msOpenCookieBanner();return false;">Gérer les cookies</a></span>
 </div>
 
@@ -989,7 +1138,6 @@ function faq(el) {
   if (!open) el.classList.add('open');
 }
 </script>
-<script defer src="assets/analytics.js"></script>
 <script defer src="assets/cookie-consent.js"></script>
 </body>
 </html>
