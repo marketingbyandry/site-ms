@@ -70,3 +70,33 @@ test('form-action autorise le repli formulaire de fbevents.js', () => {
     "sans ce host, le repli formulaire du Pixel Meta vers facebook.com/tr est bloque"
   );
 });
+
+test('script-src autorise le chargeur Google Tag Manager', () => {
+  assert.ok(
+    cspDirectives()['script-src'].includes('https://www.googletagmanager.com'),
+    "sans ce host, gtm.js est bloque par le CSP et le conteneur GTM ne s'execute jamais"
+  );
+});
+
+test("script-src autorise l'UI du mode Apercu/Debug de Tag Manager", () => {
+  assert.ok(
+    cspDirectives()['script-src'].includes('https://tagmanager.google.com'),
+    'sans ce host, Tag Assistant ne peut pas se connecter au site en mode Apercu'
+  );
+});
+
+test("connect-src autorise l'ingestion des events GA4 relayes par GTM", () => {
+  assert.ok(
+    cspDirectives()['connect-src'].includes('https://www.googletagmanager.com') &&
+      cspDirectives()['connect-src'].includes('https://*.google-analytics.com') &&
+      cspDirectives()['connect-src'].includes('https://*.analytics.google.com'),
+    'sans ces hosts, les hits GA4 envoyes via GTM sont bloques par le CSP'
+  );
+});
+
+test('frame-src autorise le repli iframe noscript de GTM', () => {
+  assert.ok(
+    cspDirectives()['frame-src'].includes('https://www.googletagmanager.com'),
+    'sans ce host, le fallback <noscript><iframe> de GTM est bloque'
+  );
+});
