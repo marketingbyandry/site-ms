@@ -20,8 +20,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <title>M&S Strategy, cabinet d'expertise en négociation d'énergie · Gaz · Électricité depuis 2012</title>
 <meta name="description" content="M&S Strategy, cabinet d'expertise en négociation d'énergie depuis 2012. Étude gratuite de vos contrats gaz et électricité, sans engagement, résultat sous 48h.">
 <meta name="keywords" content="courtier énergie, courtage énergie professionnels, comparer offres énergie, négocier contrat gaz électricité, courtier indépendant énergie, réduire facture énergie entreprise">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,700,900&display=swap" rel="stylesheet">
 <style>
 :root{
   --teal:#1a7a8a;
@@ -1106,8 +1110,6 @@ pb2c.addEventListener('mouseleave', () => hero.classList.remove('hr'));
 const canvas = document.getElementById('pc');
 const ctx    = canvas.getContext('2d');
 function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-resize();
-window.addEventListener('resize', resize);
 
 const N = 55;
 const ps = [];
@@ -1145,13 +1147,18 @@ class P {
     ctx.fill();
   }
 }
-for (let i = 0; i < N; i++) ps.push(new P());
 function loop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ps.forEach(p => { p.tick(); p.draw(); });
   requestAnimationFrame(loop);
 }
-loop();
+
+window.addEventListener('load', () => {
+  resize();
+  window.addEventListener('resize', resize);
+  for (let i = 0; i < N; i++) ps.push(new P());
+  loop();
+});
 
 /* ══════════════════════════════════
    SCROLL REVEAL
