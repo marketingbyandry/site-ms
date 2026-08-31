@@ -635,11 +635,24 @@ function faq(el) {
    Picks up the context saved by ms-strategy-calculateur.html
    so the prospect doesn't have to retype their situation.
    ════════════════════════════════════════ */
+// ms_consent est stocke en JSON {analytics, marketing} par assets/cookie-consent.js.
+// Un cookie absent ou d'un ancien format (accepted/refused) est traite comme
+// aucun consentement plutot que de faire planter le parsing.
+function msMarketingConsent() {
+  var match = document.cookie.match(/(?:^|;\s*)ms_consent=([^;]*)/);
+  if (!match) return false;
+  try {
+    return JSON.parse(decodeURIComponent(match[1])).marketing === true;
+  } catch (e) {
+    return false;
+  }
+}
+
 function openTallyForm(source) {
   // Signal d'intention pour le retargeting Meta : distingue les visiteurs qui
   // ont ouvert le formulaire de ceux qui n'ont fait que consulter la page.
   // RGPD : meme regle que le reste (voir onTallySubmit ci-dessous).
-  if (/(?:^|;\s*)ms_consent=accepted/.test(document.cookie) && window.fbq) {
+  if (msMarketingConsent() && window.fbq) {
     window.fbq('track', 'InitiateCheckout');
   }
 
@@ -672,7 +685,7 @@ function openTallyForm(source) {
    — rien n'est envoye a Meta si le visiteur n'a pas accepte le bandeau cookies.
    ════════════════════════════════════════ */
 function onTallySubmit(payload) {
-  if (!/(?:^|;\s*)ms_consent=accepted/.test(document.cookie)) return;
+  if (!msMarketingConsent()) return;
 
   var email = null, phone = null;
   (payload.fields || []).forEach(function (field) {
