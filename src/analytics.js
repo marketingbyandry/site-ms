@@ -20,7 +20,8 @@ const META_PIXEL_ID = '1381584920727587';
 // Selecteur des CTA suivis, aligne sur les classes utilisees dans les pages.
 const CTA_SELECTOR = 'a.cta-btn, a.pcta, a.ncta';
 
-let initialised = false;
+let postHogInitialised = false;
+let metaPixelInitialised = false;
 
 function initPostHog() {
   posthog.init(POSTHOG_TOKEN, {
@@ -78,17 +79,21 @@ function initMetaPixel() {
   window.fbq('track', 'PageView');
 }
 
-function initAnalytics() {
-  if (initialised) return;
-  initialised = true;
-
-  initPostHog();
-  initMetaPixel();
+function initAnalytics(consent) {
+  consent = consent || {};
+  if (consent.analytics && !postHogInitialised) {
+    postHogInitialised = true;
+    initPostHog();
+  }
+  if (consent.marketing && !metaPixelInitialised) {
+    metaPixelInitialised = true;
+    initMetaPixel();
+  }
 }
 
-// Contrat avec assets/cookie-consent.js : appele a l'acceptation du bandeau.
+// Contrat avec assets/cookie-consent.js : appele avec {analytics, marketing}
+// a chaque changement de consentement (acceptation, refus, ou sauvegarde des
+// preferences), et une fois au chargement si un consentement valide existe
+// deja. Idempotent par categorie : un rappel avec la meme categorie a true
+// ne reinitialise rien.
 window.msInitAnalytics = initAnalytics;
-
-if (readCookie(document.cookie, 'ms_consent') === 'accepted') {
-  initAnalytics();
-}
