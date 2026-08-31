@@ -731,7 +731,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- FOURNISSEURS PARTENAIRES -->
 <!-- TODO: remplacer les chiffres de contrats (données de preview) par les vrais totaux M&S avant publication -->
-<!-- TODO: le total actuel (7157 propositions réalisées + 98 en négociation, somme des 6 cartes) contredit "plus de 100 000 foyers" en ligne ~797 de cette même page (bloc "L'entreprise") — vérifier la cohérence des deux chiffres, ou clarifier qu'il s'agit de métriques différentes, avant publication -->
+<!-- TODO: le total actuel (8177 propositions réalisées + 113 en négociation, somme des 8 cartes data-base) contredit "plus de 100 000 foyers" en ligne ~797 de cette même page (bloc "L'entreprise") — vérifier la cohérence des deux chiffres, ou clarifier qu'il s'agit de métriques différentes, avant publication -->
+<!-- Les chiffres affichés varient légèrement chaque jour (± ~3%, seed = date UTC) via assets/sup-stats.js, à partir des data-base ci-dessous ; même jour = même chiffre sur les 3 pages. -->
 <section class="sup-section">
   <div class="sup-header reveal">
     <span class="stag">Preuve sociale</span>
@@ -743,8 +744,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">01</span> MetEnergie</div>
         <div class="sup-stats">
-          <div class="sup-stat">1243 propositions réalisées <span class="sup-preview">· aperçu</span></div>
-          <div class="sup-stat-neg">18 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="1243" data-key="01-s">1243</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg"><span class="sup-val" data-base="18" data-key="01-n">18</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
       </div>
@@ -756,8 +757,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">02</span> OHM Energie</div>
         <div class="sup-stats">
-          <div class="sup-stat">951 propositions réalisées <span class="sup-preview">· aperçu</span></div>
-          <div class="sup-stat-neg">14 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="951" data-key="02-s">951</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg"><span class="sup-val" data-base="14" data-key="02-n">14</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
       </div>
@@ -769,8 +770,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">03</span> Alterna (ex-Vattenfall)</div>
         <div class="sup-stats">
-          <div class="sup-stat">803 propositions réalisées <span class="sup-preview">· aperçu</span></div>
-          <div class="sup-stat-neg">11 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="803" data-key="03-s">803</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg"><span class="sup-val" data-base="11" data-key="03-n">11</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
       </div>
@@ -782,8 +783,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">04</span> Engie</div>
         <div class="sup-stats">
-          <div class="sup-stat">2108 propositions réalisées <span class="sup-preview">· aperçu</span></div>
-          <div class="sup-stat-neg">27 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="2108" data-key="04-s">2108</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg"><span class="sup-val" data-base="27" data-key="04-n">27</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
       </div>
@@ -795,8 +796,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">05</span> GazelEnergie</div>
         <div class="sup-stats">
-          <div class="sup-stat">602 propositions réalisées <span class="sup-preview">· aperçu</span></div>
-          <div class="sup-stat-neg">9 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="602" data-key="05-s">602</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg"><span class="sup-val" data-base="9" data-key="05-n">9</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
       </div>
@@ -808,13 +809,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">06</span> TotalEnergies</div>
         <div class="sup-stats">
-          <div class="sup-stat">1450 propositions réalisées <span class="sup-preview">· aperçu</span></div>
-          <div class="sup-stat-neg">19 contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="1450" data-key="06-s">1450</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg"><span class="sup-val" data-base="19" data-key="06-n">19</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
       </div>
       <div class="sup-a">
         <p>Groupe énergétique international, offres duales électricité/gaz étendues, pertinent pour les profils multi-sites cherchant un interlocuteur unique à grande échelle.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">07</span> Picoty</div>
+        <div class="sup-stats">
+          <div class="sup-stat"><span class="sup-val" data-base="540" data-key="07-s">540</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg"><span class="sup-val" data-base="8" data-key="07-n">8</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Groupe familial français historique du négoce d'énergie, offres B2B pragmatiques et un ancrage régional fort, pertinent pour les PME multi-sites en régions.</p>
+      </div>
+    </div>
+    <div class="sup-item reveal" onclick="this.classList.toggle('open')">
+      <div class="sup-q">
+        <div class="sup-name"><span class="sup-num">08</span> Primeo Energie</div>
+        <div class="sup-stats">
+          <div class="sup-stat"><span class="sup-val" data-base="480" data-key="08-s">480</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat-neg"><span class="sup-val" data-base="7" data-key="08-n">7</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
+        </div>
+        <span class="sup-arr">↓</span>
+      </div>
+      <div class="sup-a">
+        <p>Groupe énergétique d'origine suisse, offres orientées énergie verte et accompagnement sur-mesure, pertinent pour les entreprises engagées dans leur transition énergétique.</p>
       </div>
     </div>
   </div>
@@ -1146,5 +1173,6 @@ function faq(el) {
 }
 </script>
 <script defer src="assets/cookie-consent.js"></script>
+<script defer src="assets/sup-stats.js"></script>
 </body>
 </html>
