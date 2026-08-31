@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-THZKG49X');</script>
+<!-- End Google Tag Manager -->
+<script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
 <meta charset="UTF-8">
+<script defer src="assets/analytics.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script defer src="assets/favicon-animate.js"></script>
 <title>Baromètre M&S Strategy des prix de l'énergie | M&S Strategy</title>
 <meta name="description" content="Suivez gratuitement l'évolution des prix de gros de l'électricité (ENTSO-E) et du gaz (index PEG Month-Ahead, via CRE) pour les entreprises, mis à jour chaque mois et chaque trimestre par M&S Strategy.">
 <meta name="keywords" content="prix électricité entreprise, prix gaz entreprise, baromètre énergie, prix de gros électricité, prix gaz PEG Month-Ahead, ENTSO-E, CRE">
@@ -150,8 +164,8 @@ a{text-decoration:none;color:inherit}
 .sup-header{max-width:640px;margin-bottom:2.5rem}
 .sup-header p{color:var(--muted);font-size:.97rem;line-height:1.72;margin-top:1rem}
 .sup-list{display:flex;flex-direction:column;gap:.9rem}
-.sup-item{border:1px solid rgba(26,122,138,.14);border-radius:3px;padding:1.3rem 1.6rem;background:var(--dark);cursor:pointer;transition:border-color .25s}
-.sup-item:hover{border-color:rgba(94,207,220,.3)}
+.sup-item{border:1px solid rgba(26,122,138,.14);border-radius:3px;padding:1.3rem 1.6rem;background:var(--dark);cursor:pointer;transition:border-color .25s,border-width .25s,transform .25s}
+.sup-item:hover{border-color:rgba(94,207,220,.35);border-width:1.5px;transform:scale(1.01)}
 .sup-q{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
 .sup-name{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.98rem;color:var(--cream);display:flex;align-items:center;gap:.6rem}
 .sup-num{font-family:'Satoshi',sans-serif;font-weight:800;font-size:.8rem;color:rgba(26,122,138,.5)}
@@ -165,8 +179,23 @@ a{text-decoration:none;color:inherit}
 .sup-item.open .sup-a{max-height:260px;padding-top:.9rem}
 .sup-more{margin-top:.9rem;border:1px dashed rgba(26,122,138,.25);border-radius:3px;padding:1rem 1.6rem;text-align:center;color:var(--muted2);font-size:.85rem;font-style:italic}
 </style>
+<link rel="stylesheet" href="assets/nav-mobile.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://cabinetms.fr/"},
+    {"@type": "ListItem", "position": 2, "name": "Baromètre énergie", "item": "https://cabinetms.fr/barometre-energie.html"}
+  ]
+}
+</script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THZKG49X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <script>
 (function(){
   var m = document.cookie.match(/(?:^|;\s*)ms_variant=([AB])/);
@@ -191,6 +220,7 @@ a{text-decoration:none;color:inherit}
   </ul>
   <a href="b2b.html#upload" class="ncta">Étude gratuite</a>
 </nav>
+<script src="assets/nav-mobile.js" defer></script>
 
 <!-- HERO -->
 <section class="phero">
@@ -213,11 +243,11 @@ a{text-decoration:none;color:inherit}
   </div>
   <div class="reveal d2">
     <div class="def-box">
-      <p class="def-title">Électricité — prix moyen du marché de gros</p>
+      <p class="def-title">Électricité : prix moyen du marché de gros</p>
       <p class="def-body" id="indicateur-electricite">Première donnée mensuelle en attente de publication.</p>
     </div>
     <div class="def-box" style="margin-top:1.2rem">
-      <p class="def-title">Gaz — prix moyen du marché de gros</p>
+      <p class="def-title">Gaz : prix moyen du marché de gros</p>
       <p class="def-body" id="indicateur-gaz">Première donnée trimestrielle en attente de publication.</p>
     </div>
   </div>
@@ -246,7 +276,7 @@ a{text-decoration:none;color:inherit}
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">01</span> MetEnergie</div>
         <div class="sup-stats">
-          <div class="sup-stat"><span class="sup-val" data-base="1240" data-key="01-s">1240</span> contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="1240" data-key="01-s">1240</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
           <div class="sup-stat-neg"><span class="sup-val" data-base="18" data-key="01-n">18</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
@@ -259,7 +289,7 @@ a{text-decoration:none;color:inherit}
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">02</span> OHM Energie</div>
         <div class="sup-stats">
-          <div class="sup-stat"><span class="sup-val" data-base="950" data-key="02-s">950</span> contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="950" data-key="02-s">950</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
           <div class="sup-stat-neg"><span class="sup-val" data-base="14" data-key="02-n">14</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
@@ -272,7 +302,7 @@ a{text-decoration:none;color:inherit}
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">03</span> Alterna (ex-Vattenfall)</div>
         <div class="sup-stats">
-          <div class="sup-stat"><span class="sup-val" data-base="800" data-key="03-s">800</span> contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="800" data-key="03-s">800</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
           <div class="sup-stat-neg"><span class="sup-val" data-base="11" data-key="03-n">11</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
@@ -285,7 +315,7 @@ a{text-decoration:none;color:inherit}
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">04</span> Engie</div>
         <div class="sup-stats">
-          <div class="sup-stat"><span class="sup-val" data-base="2100" data-key="04-s">2100</span> contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="2100" data-key="04-s">2100</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
           <div class="sup-stat-neg"><span class="sup-val" data-base="27" data-key="04-n">27</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
@@ -298,7 +328,7 @@ a{text-decoration:none;color:inherit}
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">05</span> GazelEnergie</div>
         <div class="sup-stats">
-          <div class="sup-stat"><span class="sup-val" data-base="600" data-key="05-s">600</span> contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="600" data-key="05-s">600</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
           <div class="sup-stat-neg"><span class="sup-val" data-base="9" data-key="05-n">9</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
@@ -311,7 +341,7 @@ a{text-decoration:none;color:inherit}
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">06</span> TotalEnergies</div>
         <div class="sup-stats">
-          <div class="sup-stat"><span class="sup-val" data-base="1450" data-key="06-s">1450</span> contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="1450" data-key="06-s">1450</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
           <div class="sup-stat-neg"><span class="sup-val" data-base="19" data-key="06-n">19</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
@@ -324,7 +354,7 @@ a{text-decoration:none;color:inherit}
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">07</span> Picoty</div>
         <div class="sup-stats">
-          <div class="sup-stat"><span class="sup-val" data-base="540" data-key="07-s">540</span> contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="540" data-key="07-s">540</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
           <div class="sup-stat-neg"><span class="sup-val" data-base="8" data-key="07-n">8</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
@@ -337,7 +367,7 @@ a{text-decoration:none;color:inherit}
       <div class="sup-q">
         <div class="sup-name"><span class="sup-num">08</span> Primeo Energie</div>
         <div class="sup-stats">
-          <div class="sup-stat"><span class="sup-val" data-base="480" data-key="08-s">480</span> contrats signés <span class="sup-preview">· aperçu</span></div>
+          <div class="sup-stat"><span class="sup-val" data-base="480" data-key="08-s">480</span> propositions réalisées <span class="sup-preview">· aperçu</span></div>
           <div class="sup-stat-neg"><span class="sup-val" data-base="7" data-key="08-n">7</span> contrats en cours de négociation <span class="sup-preview">· aperçu</span></div>
         </div>
         <span class="sup-arr">↓</span>
@@ -427,8 +457,9 @@ a{text-decoration:none;color:inherit}
 </footer>
 <div class="fbot">
   <span>© 2026 M&S Strategy. Tous droits réservés.</span>
-  <span>Courtier en énergie indépendant depuis 2012 · Gaz · Électricité · France</span>
+  <span>Cabinet d'expertise en négociation d'énergie depuis 2012 · Gaz · Électricité · France</span>
   <span><a href="mentions-legales.html" style="color:inherit">Mentions légales</a> · <a href="cgv.html" style="color:inherit">CGV</a> · <a href="politique-confidentialite.html" style="color:inherit">Confidentialité</a> · <a href="#" style="color:inherit" onclick="window.msOpenCookieBanner&&window.msOpenCookieBanner();return false;">Gérer les cookies</a></span>
+  <div google-add-preferred-source-btn data-theme="dark"></div>
 </div>
 
 <script>
@@ -439,7 +470,6 @@ const obs = new IntersectionObserver(es => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
-<script defer src="assets/analytics.js"></script>
 <script defer src="assets/cookie-consent.js"></script>
 <script defer src="assets/sup-stats.js"></script>
 <script src="assets/barometre.js" defer></script>

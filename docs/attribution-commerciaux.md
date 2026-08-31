@@ -52,8 +52,8 @@ déposés plus de deux semaines après le mail du commercial.
 2. `npm test` (les suites couvrent la whitelist, le first-touch, le lien court
    et le repli par défaut).
 3. Déployer. Ses liens sont immédiatement actifs :
-   - `https://www.byandry.com/b2b.html?ref=<slug>&utm_source=commercial&utm_medium=affiliation&utm_campaign=<slug>`
-   - `https://www.byandry.com/c/<slug>`
+   - `https://cabinetms.fr/b2b.html?ref=<slug>&utm_source=commercial&utm_medium=affiliation&utm_campaign=<slug>`
+   - `https://cabinetms.fr/c/<slug>`
 
 ## À faire dans Tally (formulaire `kd15W1`)
 
