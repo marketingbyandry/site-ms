@@ -1,5 +1,6 @@
 (function(){
   if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var hero = document.querySelector('.phero');
   var glow = document.querySelector('.phero-glow');
   if(!hero || !glow) return;
