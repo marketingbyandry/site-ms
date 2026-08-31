@@ -86,7 +86,7 @@ a{text-decoration:none;color:inherit}
 
 /* ─── PAGE HERO ───────────────────────── */
 .phero{position:relative;padding:11rem 5vw 6rem;max-width:1100px;margin:0 auto;overflow:hidden}
-.phero::before{content:'';position:absolute;top:-10%;right:-10%;width:60%;height:140%;background:radial-gradient(circle,rgba(26,122,138,.18),transparent 65%);pointer-events:none;z-index:0}
+.phero-glow{position:absolute;top:-10%;right:-10%;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,138,.35) 0%,transparent 70%);filter:blur(80px);pointer-events:none;z-index:0;transition:transform .25s ease-out;will-change:transform}
 .phero-in{position:relative;z-index:1;max-width:700px}
 .stag{display:inline-block;font-family:'Satoshi',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-glow);background:rgba(26,122,138,.1);border:1px solid rgba(94,207,220,.18);padding:.26rem .75rem;border-radius:2px;margin-bottom:1.3rem}
 .ph1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.06;margin-bottom:1.3rem;color:var(--cream)}
@@ -225,9 +225,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="b2b.html#upload" class="ncta">Étude gratuite</a>
 </nav>
 <script src="assets/nav-mobile.js" defer></script>
+<script src="assets/hero-glow.js" defer></script>
 
 <!-- HERO -->
 <section class="phero">
+  <div class="phero-glow" aria-hidden="true"></div>
   <div class="phero-in">
     <span class="stag reveal">Indicateur gratuit, sans inscription</span>
     <h1 class="ph1 reveal d1">Baromètre M&S Strategy des <em>prix de l'énergie</em> pour les entreprises</h1>
