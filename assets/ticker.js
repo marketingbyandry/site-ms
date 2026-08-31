@@ -6,7 +6,7 @@
 
 const STATIC_ITEMS = [
   'Négociation d’énergies depuis 2012',
-  '7 180 professionnels accompagnés',
+  '8 216 professionnels accompagnés',
   'Étude gratuite · résultat sous 48h',
 ];
 
