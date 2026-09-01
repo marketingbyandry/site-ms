@@ -30,10 +30,67 @@
     return null;
   }
 
+  // assets/analytics.js (bundle PostHog + Pixel Meta, ~80KB) n'est plus chargé
+  // statiquement sur chaque page : il ne sert à rien tant qu'aucun consentement
+  // n'est accordé, donc on ne l'injecte que quand il devient utile — soit un
+  // consentement existant à charger (au repos, après le chargement de la
+  // page), soit un consentement que l'utilisateur vient de donner via ce
+  // bandeau. `window.msInitAnalytics` (exposé par assets/analytics.js une fois
+  // chargé) reste le seul point de contact, inchangé pour cookie-consent.js.
+  var ANALYTICS_SRC = 'assets/analytics.js';
+  var analyticsScriptState = 'idle'; // idle | loading | loaded
+  var analyticsReadyCallbacks = [];
+
+  function loadAnalyticsScript(onReady) {
+    if (analyticsScriptState === 'loaded') {
+      onReady();
+      return;
+    }
+    analyticsReadyCallbacks.push(onReady);
+    if (analyticsScriptState === 'loading') return;
+    analyticsScriptState = 'loading';
+    var script = document.createElement('script');
+    script.src = ANALYTICS_SRC;
+    script.onload = function () {
+      analyticsScriptState = 'loaded';
+      var callbacks = analyticsReadyCallbacks;
+      analyticsReadyCallbacks = [];
+      callbacks.forEach(function (cb) { cb(); });
+    };
+    document.head.appendChild(script);
+  }
+
+  function runWhenIdle(fn) {
+    if (window.requestIdleCallback) window.requestIdleCallback(fn, { timeout: 2000 });
+    else setTimeout(fn, 0);
+  }
+
+  // Consentement déjà accordé (visiteur qui revient) : charge le bundle après
+  // le chargement de la page plutôt qu'en bloquant le rendu initial.
+  function loadAnalyticsAtRest(consent) {
+    function start() {
+      loadAnalyticsScript(function () {
+        if (window.msInitAnalytics) window.msInitAnalytics(consent);
+      });
+    }
+    if (document.readyState === 'complete') runWhenIdle(start);
+    else window.addEventListener('load', function () { runWhenIdle(start); });
+  }
+
   function setConsent(analytics, marketing) {
     var consent = { analytics: analytics, marketing: marketing };
     setCookie(COOKIE_NAME, JSON.stringify(consent), COOKIE_MAX_AGE_DAYS);
-    if (window.msInitAnalytics) window.msInitAnalytics(consent);
+    if (analytics || marketing) {
+      // Acceptation explicite juste maintenant : on charge tout de suite (le
+      // rendu initial est déjà loin derrière, pas de raison de temporiser).
+      loadAnalyticsScript(function () {
+        if (window.msInitAnalytics) window.msInitAnalytics(consent);
+      });
+    } else if (window.msInitAnalytics) {
+      // Rien à activer, mais si le bundle était déjà chargé (consentement
+      // précédent), on relaie quand même l'info par cohérence.
+      window.msInitAnalytics(consent);
+    }
   }
 
   function injectStyles() {
@@ -143,7 +200,9 @@
 
   var existing = getConsent();
   if (existing) {
-    if (window.msInitAnalytics) window.msInitAnalytics(existing);
+    // Rien à charger si tout est refusé : le bundle ne ferait rien de toute
+    // façon (voir initAnalytics côté src/analytics.js).
+    if (existing.analytics || existing.marketing) loadAnalyticsAtRest(existing);
   } else if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', showBanner);
   } else {
