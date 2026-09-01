@@ -4,13 +4,16 @@
   var hero = document.querySelector('.phero');
   var glow = document.querySelector('.phero-glow');
   if(!hero || !glow) return;
+  var heroRect = hero.getBoundingClientRect();
+  var restRect = glow.getBoundingClientRect();
+  var restX = restRect.left - heroRect.left;
+  var restY = restRect.top - heroRect.top;
   var w = glow.offsetWidth, h = glow.offsetHeight;
-  var tx = null, ty = null, cx = null, cy = null, raf = null;
+  var tx = null, ty = null, cx = 0, cy = 0, raf = null;
   hero.addEventListener('mousemove', function(e){
     var r = hero.getBoundingClientRect();
-    tx = e.clientX - r.left - w / 2;
-    ty = e.clientY - r.top - h / 2;
-    if (cx === null) { cx = tx; cy = ty; }
+    tx = (e.clientX - r.left - w / 2) - restX;
+    ty = (e.clientY - r.top - h / 2) - restY;
     if (!raf) raf = requestAnimationFrame(step);
   });
   hero.addEventListener('mouseleave', function(){ tx = null; });
