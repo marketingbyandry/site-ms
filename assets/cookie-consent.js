@@ -30,10 +30,35 @@
     return null;
   }
 
+  // assets/analytics.js (bundle PostHog + Pixel Meta, ~80KB) n'est plus chargé
+  // statiquement sur chaque page. Le chargement pour un consentement déjà
+  // accordé (visiteur qui revient) est géré par assets/analytics-loader.js,
+  // exécuté au même endroit que l'ancien <script defer src="assets/
+  // analytics.js"> statique (tôt dans le <head>) — pour ne pas retarder par
+  // rapport à l'existant l'installation du listener cta_click et de
+  // window.fbq (voir le commentaire détaillé en tête de ce fichier-là).
+  // cookie-consent.js réutilise le même chargeur (window.__msLoadAnalyticsScript, exposé par
+  // analytics-loader.js — toujours chargé avant, voir l'ordre des <script
+  // defer> dans le HTML) pour le seul cas qui lui est propre : l'utilisateur
+  // vient d'accepter via ce bandeau.
+  function loadAnalyticsScript(onReady) {
+    if (window.__msLoadAnalyticsScript) window.__msLoadAnalyticsScript(onReady);
+  }
+
   function setConsent(analytics, marketing) {
     var consent = { analytics: analytics, marketing: marketing };
     setCookie(COOKIE_NAME, JSON.stringify(consent), COOKIE_MAX_AGE_DAYS);
-    if (window.msInitAnalytics) window.msInitAnalytics(consent);
+    if (analytics || marketing) {
+      // Acceptation explicite juste maintenant : on charge tout de suite (le
+      // rendu initial est déjà loin derrière, pas de raison de temporiser).
+      loadAnalyticsScript(function () {
+        if (window.msInitAnalytics) window.msInitAnalytics(consent);
+      });
+    } else if (window.msInitAnalytics) {
+      // Rien à activer, mais si le bundle était déjà chargé (consentement
+      // précédent), on relaie quand même l'info par cohérence.
+      window.msInitAnalytics(consent);
+    }
   }
 
   function injectStyles() {
@@ -141,12 +166,15 @@
   // sur son choix aussi facilement qu'on l'a donné (exigence CNIL).
   window.msOpenCookieBanner = showBanner;
 
-  var existing = getConsent();
-  if (existing) {
-    if (window.msInitAnalytics) window.msInitAnalytics(existing);
-  } else if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', showBanner);
-  } else {
-    showBanner();
+  // Le chargement du bundle pour un consentement déjà accordé est géré par
+  // assets/analytics-loader.js (voir plus haut) : il ne reste ici qu'à
+  // décider si le bandeau doit s'afficher — jamais si un consentement existe
+  // déjà, quel qu'il soit (y compris un refus explicite).
+  if (!getConsent()) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', showBanner);
+    } else {
+      showBanner();
+    }
   }
 })();

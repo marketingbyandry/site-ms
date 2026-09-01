@@ -26,7 +26,15 @@ let metaPixelInitialised = false;
 function initPostHog() {
   posthog.init(POSTHOG_TOKEN, {
     api_host: POSTHOG_API_HOST,
-    capture_pageleave: true
+    capture_pageleave: true,
+    // Seuls init/register/unregister/capture sont utilises ici (voir
+    // handoff.md) : on coupe explicitement les autres sous-systemes pour
+    // eviter le travail (et l'appel reseau /flags) qu'ils declenchent au
+    // chargement alors que rien ne les exploite cote produit.
+    disable_session_recording: true,
+    disable_surveys: true,
+    disable_web_experiments: true,
+    advanced_disable_feature_flags: true
   });
 
   // Variante du test A/B, tiree au sort et posee en cookie par middleware.js.

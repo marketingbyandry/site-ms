@@ -9,8 +9,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-THZKG49X');</script>
 <!-- End Google Tag Manager -->
 <script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
+<script defer src="assets/analytics-loader.js"></script>
 <meta charset="UTF-8">
-<script defer src="assets/analytics.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
@@ -94,6 +94,7 @@ a{text-decoration:none;color:inherit}
 .ticker::after{right:0;background:linear-gradient(270deg,#061117,transparent)}
 .ticker.reduced-motion{overflow-x:auto}
 .ticker-track{display:flex;align-items:center;white-space:nowrap;will-change:transform}
+@keyframes ms-ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ticker-item{display:inline-flex;align-items:baseline;gap:.4em;padding:0 1.4rem;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--cream);font-variant-numeric:tabular-nums}
 .ticker-item+.ticker-item{border-left:1px solid rgba(94,207,220,.16)}
 .ticker-item .label{color:var(--muted)}
@@ -551,7 +552,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- NAV -->
 <nav class="nav">
   <a href="index.html" class="nl">
-    <img src="assets/ms-strategy-logo.png" alt="M&S Strategy" class="nl-logo">
+    <img src="assets/ms-strategy-logo.png" width="573" height="146" alt="M&S Strategy" class="nl-logo">
   </a>
   <ul class="nlinks">
     <li><a href="b2b.html">Professionnels</a></li>
