@@ -6,9 +6,10 @@ import vm from 'node:vm';
 // Regression: assets/analytics.js (bundle PostHog + Pixel Meta, ~80KB dont
 // ~71KB jamais executes selon Lighthouse) etait charge statiquement et
 // inconditionnellement sur chaque page via <script defer>, meme quand aucun
-// consentement n'etait accorde. Il doit desormais etre injecte dynamiquement
-// par assets/cookie-consent.js, seulement quand un consentement (existant ou
-// tout juste donne) le rend utile.
+// consentement n'etait accorde. Le chargement pour un consentement deja
+// accorde est desormais gere par assets/analytics-loader.js (voir
+// test/analytics-loader.test.mjs) ; ce fichier couvre assets/cookie-consent.js,
+// qui gere l'affichage du bandeau et le cas "l'utilisateur vient d'accepter".
 
 test('aucune page HTML ne charge assets/analytics.js de facon statique', () => {
   const offenders = readdirSync('.')
@@ -17,10 +18,14 @@ test('aucune page HTML ne charge assets/analytics.js de facon statique', () => {
   assert.deepEqual(offenders, [], `balise <script> statique encore presente dans:\n${offenders.join('\n')}`);
 });
 
-test('assets/cookie-consent.js contient toujours le point de chargement dynamique du bundle', () => {
+test('assets/cookie-consent.js delegue le chargement du bundle a window.__msLoadAnalyticsScript (assets/analytics-loader.js)', () => {
   const source = readFileSync('assets/cookie-consent.js', 'utf8');
-  assert.match(source, /createElement\(['"]script['"]\)/, "le bundle n'est plus jamais injecte dynamiquement");
-  assert.match(source, /assets\/analytics\.js/, "le chemin du bundle a disparu de cookie-consent.js");
+  assert.match(source, /__msLoadAnalyticsScript/, "le point de delegation vers analytics-loader.js a disparu");
+  assert.doesNotMatch(
+    source,
+    /createElement\(['"]script['"]\)/,
+    "cookie-consent.js ne doit plus injecter lui-meme le <script> du bundle (delegue a analytics-loader.js)"
+  );
 });
 
 // --- Environnement DOM minimal pour executer assets/cookie-consent.js tel quel ---
@@ -40,90 +45,74 @@ function makeElement(tag) {
   };
 }
 
-function runCookieConsent({ cookie = '', readyState = 'complete', requestIdleCallback } = {}) {
+function runCookieConsent({ cookie = '', readyState = 'complete', loadAnalyticsScript } = {}) {
   const source = readFileSync('assets/cookie-consent.js', 'utf8');
-  const createdScripts = [];
   const byId = {};
+  const loadCalls = [];
 
   const documentObj = {
     cookie,
     readyState,
-    createElement(tag) {
-      const el = makeElement(tag);
-      if (tag === 'script') createdScripts.push(el);
-      return el;
-    },
+    createElement(tag) { return makeElement(tag); },
     getElementById(id) {
       if (!byId[id]) byId[id] = makeElement('button');
       return byId[id];
     },
-    head: { appendChild(el) { if (el.tagName === 'script' && el.onload) { /* chargement simule manuellement dans le test */ } } },
+    head: { appendChild() {} },
     body: { appendChild() {} },
     addEventListener() {},
   };
 
-  const windowObj = { document: documentObj };
-  if (requestIdleCallback) windowObj.requestIdleCallback = requestIdleCallback;
-  windowObj.addEventListener = function () {}; // pas de 'load' a simuler dans ces tests (readyState déjà 'complete')
-  windowObj.setTimeout = setTimeout;
+  // Simule assets/analytics-loader.js, deja execute avant cookie-consent.js
+  // dans l'ordre reel du document (voir test/analytics-loader.test.mjs).
+  const windowObj = {
+    document: documentObj,
+    __msLoadAnalyticsScript(onReady) {
+      loadCalls.push(onReady);
+      if (loadAnalyticsScript) loadAnalyticsScript(onReady);
+    },
+  };
+  windowObj.addEventListener = function () {};
 
   const context = { window: windowObj, document: documentObj, setTimeout, console };
   vm.createContext(context);
   vm.runInContext(source, context);
 
-  return { context, createdScripts, byId };
+  return { context, byId, loadCalls, windowObj };
 }
 
-test("consentement deja accorde (analytics:true) : le bundle est charge de facon differee, pas immediate", () => {
+test('consentement deja accorde : cookie-consent.js ne cree pas le bandeau et ne recharge pas le bundle lui-meme', () => {
   const cookie = 'ms_consent=' + encodeURIComponent(JSON.stringify({ analytics: true, marketing: false }));
-  let idleCallback = null;
-  const { createdScripts } = runCookieConsent({
-    cookie,
-    requestIdleCallback: (fn) => { idleCallback = fn; },
-  });
+  const { byId, loadCalls } = runCookieConsent({ cookie });
 
-  assert.equal(createdScripts.length, 0, "le bundle ne doit pas etre injecte de facon synchrone/immediate");
-  assert.ok(idleCallback, 'requestIdleCallback doit avoir ete programme pour charger le bundle au repos');
-
-  idleCallback();
-  assert.equal(createdScripts.length, 1, 'le bundle doit etre injecte une fois le callback idle execute');
-  assert.equal(createdScripts[0].src, 'assets/analytics.js');
+  assert.equal(Object.keys(byId).length, 0, "le bandeau ne doit pas etre affiche si un consentement existe deja");
+  assert.equal(loadCalls.length, 0, "le chargement pour un consentement existant est gere par analytics-loader.js, pas ici");
 });
 
-test('consentement refuse partout (analytics:false, marketing:false) : le bundle ne charge jamais', () => {
-  const cookie = 'ms_consent=' + encodeURIComponent(JSON.stringify({ analytics: false, marketing: false }));
-  let idleCalled = false;
-  const { createdScripts } = runCookieConsent({
-    cookie,
-    requestIdleCallback: () => { idleCalled = true; },
-  });
-
-  assert.equal(createdScripts.length, 0, 'aucun script ne doit etre cree sans consentement accorde');
-  assert.equal(idleCalled, false, "pas de chargement differe programme si rien n'est accorde");
-});
-
-test("aucun consentement existant : le bandeau s'affiche et le bundle n'est pas charge avant une action de l'utilisateur", () => {
-  const { createdScripts, byId } = runCookieConsent({ cookie: '' });
-  assert.equal(createdScripts.length, 0, "le bundle ne doit pas se charger tant que l'utilisateur n'a rien choisi");
+test("aucun consentement existant : le bandeau s'affiche et rien n'est charge avant une action de l'utilisateur", () => {
+  const { byId, loadCalls } = runCookieConsent({ cookie: '' });
   assert.ok(byId['ms-cookie-accept'], 'le bouton Accepter doit avoir ete cable (bandeau affiche)');
+  assert.equal(loadCalls.length, 0, "rien ne doit charger tant que l'utilisateur n'a rien choisi");
 });
 
-test("clic sur Accepter : le bundle est charge immediatement (pas de delai idle)", () => {
-  let idleScheduled = false;
-  const { createdScripts, byId } = runCookieConsent({
-    cookie: '',
-    requestIdleCallback: () => { idleScheduled = true; },
-  });
+test('clic sur Accepter : le bundle est charge via window.__msLoadAnalyticsScript, et window.msInitAnalytics est appele une fois pret', () => {
+  const { byId, loadCalls, windowObj } = runCookieConsent({ cookie: '' });
+
+  let initCalledWith = null;
+  windowObj.msInitAnalytics = (consent) => { initCalledWith = consent; };
 
   byId['ms-cookie-accept'].dispatchClick();
 
-  assert.equal(createdScripts.length, 1, "le clic sur Accepter doit injecter le bundle");
-  assert.equal(createdScripts[0].src, 'assets/analytics.js');
-  assert.equal(idleScheduled, false, "l'acceptation explicite ne doit pas passer par le chemin differe au repos");
+  assert.equal(loadCalls.length, 1, "le clic sur Accepter doit demander le chargement du bundle");
+  loadCalls[0](); // simule le script charge (onReady declenche par analytics-loader.js)
+  // Comparaison champ a champ : l'objet consent vient du contexte vm (autre
+  // realm), assert.deepEqual (strict) le rejetterait pour prototype differant.
+  assert.equal(initCalledWith.analytics, true);
+  assert.equal(initCalledWith.marketing, true);
 });
 
-test('clic sur "tout refuser" : le bundle ne se charge jamais', () => {
-  const { createdScripts, byId } = runCookieConsent({ cookie: '' });
+test('clic sur "tout refuser" : le bundle n\'est jamais demande', () => {
+  const { byId, loadCalls } = runCookieConsent({ cookie: '' });
   byId['ms-cookie-reject'].dispatchClick();
-  assert.equal(createdScripts.length, 0, 'un refus explicite ne doit jamais declencher le chargement du bundle');
+  assert.equal(loadCalls.length, 0, 'un refus explicite ne doit jamais declencher le chargement du bundle');
 });

@@ -31,50 +31,18 @@
   }
 
   // assets/analytics.js (bundle PostHog + Pixel Meta, ~80KB) n'est plus chargé
-  // statiquement sur chaque page : il ne sert à rien tant qu'aucun consentement
-  // n'est accordé, donc on ne l'injecte que quand il devient utile — soit un
-  // consentement existant à charger (au repos, après le chargement de la
-  // page), soit un consentement que l'utilisateur vient de donner via ce
-  // bandeau. `window.msInitAnalytics` (exposé par assets/analytics.js une fois
-  // chargé) reste le seul point de contact, inchangé pour cookie-consent.js.
-  var ANALYTICS_SRC = 'assets/analytics.js';
-  var analyticsScriptState = 'idle'; // idle | loading | loaded
-  var analyticsReadyCallbacks = [];
-
+  // statiquement sur chaque page. Le chargement pour un consentement déjà
+  // accordé (visiteur qui revient) est géré par assets/analytics-loader.js,
+  // exécuté au même endroit que l'ancien <script defer src="assets/
+  // analytics.js"> statique (tôt dans le <head>) — pour ne pas retarder par
+  // rapport à l'existant l'installation du listener cta_click et de
+  // window.fbq (voir le commentaire détaillé en tête de ce fichier-là).
+  // cookie-consent.js réutilise le même chargeur (window.__msLoadAnalyticsScript, exposé par
+  // analytics-loader.js — toujours chargé avant, voir l'ordre des <script
+  // defer> dans le HTML) pour le seul cas qui lui est propre : l'utilisateur
+  // vient d'accepter via ce bandeau.
   function loadAnalyticsScript(onReady) {
-    if (analyticsScriptState === 'loaded') {
-      onReady();
-      return;
-    }
-    analyticsReadyCallbacks.push(onReady);
-    if (analyticsScriptState === 'loading') return;
-    analyticsScriptState = 'loading';
-    var script = document.createElement('script');
-    script.src = ANALYTICS_SRC;
-    script.onload = function () {
-      analyticsScriptState = 'loaded';
-      var callbacks = analyticsReadyCallbacks;
-      analyticsReadyCallbacks = [];
-      callbacks.forEach(function (cb) { cb(); });
-    };
-    document.head.appendChild(script);
-  }
-
-  function runWhenIdle(fn) {
-    if (window.requestIdleCallback) window.requestIdleCallback(fn, { timeout: 2000 });
-    else setTimeout(fn, 0);
-  }
-
-  // Consentement déjà accordé (visiteur qui revient) : charge le bundle après
-  // le chargement de la page plutôt qu'en bloquant le rendu initial.
-  function loadAnalyticsAtRest(consent) {
-    function start() {
-      loadAnalyticsScript(function () {
-        if (window.msInitAnalytics) window.msInitAnalytics(consent);
-      });
-    }
-    if (document.readyState === 'complete') runWhenIdle(start);
-    else window.addEventListener('load', function () { runWhenIdle(start); });
+    if (window.__msLoadAnalyticsScript) window.__msLoadAnalyticsScript(onReady);
   }
 
   function setConsent(analytics, marketing) {
@@ -198,14 +166,15 @@
   // sur son choix aussi facilement qu'on l'a donné (exigence CNIL).
   window.msOpenCookieBanner = showBanner;
 
-  var existing = getConsent();
-  if (existing) {
-    // Rien à charger si tout est refusé : le bundle ne ferait rien de toute
-    // façon (voir initAnalytics côté src/analytics.js).
-    if (existing.analytics || existing.marketing) loadAnalyticsAtRest(existing);
-  } else if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', showBanner);
-  } else {
-    showBanner();
+  // Le chargement du bundle pour un consentement déjà accordé est géré par
+  // assets/analytics-loader.js (voir plus haut) : il ne reste ici qu'à
+  // décider si le bandeau doit s'afficher — jamais si un consentement existe
+  // déjà, quel qu'il soit (y compris un refus explicite).
+  if (!getConsent()) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', showBanner);
+    } else {
+      showBanner();
+    }
   }
 })();

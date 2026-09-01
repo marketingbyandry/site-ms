@@ -76,12 +76,33 @@ function startTicker(track, ticker) {
 
   // Le track contient le contenu dupliqué x2 (voir initTicker) : translater de
   // -50% ramène exactement au début de la seconde copie, donc la boucle
-  // `infinite` ne laisse aucun saut visible.
+  // `infinite` ne laisse aucun saut visible en régime établi. Cette fonction
+  // est aussi rappelée sur resize/fonts.ready — recalculer la durée change
+  // l'animation CSS sous-jacente, donc on capture la position (et un éventuel
+  // ralentissement au survol en cours) avant de la réappliquer, pour ne pas
+  // faire sauter visuellement le bandeau à ce moment-là.
   function applyAnimation() {
     const halfWidth = track.scrollWidth / 2;
     if (halfWidth <= 0) return;
-    const duration = (halfWidth / BASE_SPEED).toFixed(2);
-    track.style.animation = `ms-ticker-scroll ${duration}s linear infinite`;
+    const durationMs = (halfWidth / BASE_SPEED) * 1000;
+
+    const prevAnim = track.getAnimations && track.getAnimations()[0];
+    let progress = 0;
+    let rate = 1;
+    if (prevAnim && prevAnim.effect) {
+      const prevDurationMs = prevAnim.effect.getTiming().duration;
+      const currentTimeMs = typeof prevAnim.currentTime === 'number' ? prevAnim.currentTime : 0;
+      if (prevDurationMs) progress = ((currentTimeMs % prevDurationMs) + prevDurationMs) % prevDurationMs / prevDurationMs;
+      rate = prevAnim.playbackRate || 1;
+    }
+
+    track.style.animation = `ms-ticker-scroll ${(durationMs / 1000).toFixed(2)}s linear infinite`;
+
+    const anim = track.getAnimations && track.getAnimations()[0];
+    if (anim) {
+      anim.currentTime = progress * durationMs;
+      anim.playbackRate = rate;
+    }
   }
 
   applyAnimation();
