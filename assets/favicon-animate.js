@@ -1,6 +1,7 @@
 (function () {
   "use strict";
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (window.matchMedia && !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
   var SIZE = 64;
   var PERIOD_MS = 2600;
