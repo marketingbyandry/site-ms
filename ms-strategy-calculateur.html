@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <script defer src="assets/favicon-animate.js"></script>
-<title>Calculateur d'inaction énergétique · M&S Strategy</title>
+<title>Calculateur d'économies réalisables · M&S Strategy</title>
 <meta name="description" content="Calculez en temps réel ce que votre inaction sur votre contrat énergie vous coûte chaque mois, et ce que vous pourriez économiser.">
 <link rel="canonical" href="https://cabinetms.fr/ms-strategy-calculateur.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -538,7 +538,7 @@ input[type=range]::-moz-range-thumb {
   "@type": "BreadcrumbList",
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://cabinetms.fr/"},
-    {"@type": "ListItem", "position": 2, "name": "Calculateur d'inaction énergétique", "item": "https://cabinetms.fr/ms-strategy-calculateur.html"}
+    {"@type": "ListItem", "position": 2, "name": "Calculateur d'économies réalisables", "item": "https://cabinetms.fr/ms-strategy-calculateur.html"}
   ]
 }
 </script>
@@ -561,7 +561,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- HERO -->
 <header class="hero fade-in in">
-  <p class="hero-eyebrow">Calculateur d'inaction énergétique</p>
+  <p class="hero-eyebrow">Calculateur d'économies réalisables</p>
   <h1 class="hero-title">
     Chaque mois sans négocier<br>
     vous coûte <span class="red">de l'argent réel.</span><br>
@@ -721,7 +721,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="cta-section">
   <div class="cta-box">
     <h2>Maintenant que vous savez combien ça coûte,<br>voici comment <em>ne plus perdre un euro.</em></h2>
-    <p>Étude personnalisée · Gratuit · Sans engagement · Résultat sous 48h</p>
+    <p>Étude personnalisée · Gratuit · Sans engagement · Résultat sous 24h</p>
     <div class="cta-pair">
       <a href="b2b.html#upload" class="btn-primary" id="cta-transmit">Transmettre ma facture →</a>
       <a href="tel:0783070749" class="btn-ghost">📞 07 83 07 07 49</a>
@@ -730,7 +730,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span>100% gratuit</span>
       <span>Sans engagement</span>
       <span>Données confidentielles</span>
-      <span>Réponse sous 48h</span>
+      <span>Réponse sous 24h</span>
     </div>
   </div>
 </section>
@@ -1220,7 +1220,7 @@ function renderVerdict() {
   if (months <= 3) {
     icon.textContent  = '🚨';
     title.innerHTML   = `Fenêtre <span>critique</span> : il reste ${months} mois.`;
-    body.innerHTML    = `Votre contrat se renouvelle dans moins de 3 mois. C'est la zone où 80% des dirigeants signent sans avoir comparé, et paient le prix fort pendant les 2 à 3 années suivantes. <strong>Une intervention rapide reste possible</strong> : notre processus peut produire un tableau comparatif en 48h. Transmettez votre facture maintenant, nous lançons immédiatement l'appel d'offres.`;
+    body.innerHTML    = `Votre contrat se renouvelle dans moins de 3 mois. C'est la zone où 80% des dirigeants signent sans avoir comparé, et paient le prix fort pendant les 2 à 3 années suivantes. <strong>Une intervention rapide reste possible</strong> : notre processus peut produire un tableau comparatif en 24h. Transmettez votre facture maintenant, nous lançons immédiatement l'appel d'offres.`;
   } else if (months <= 8) {
     icon.textContent  = '⚠️';
     title.innerHTML   = `Fenêtre <span>tardive</span>, ${months} mois restants.`;
