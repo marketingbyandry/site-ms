@@ -151,56 +151,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/electricite-copropriete-paris.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.byandry.com/electricite-copropriete-lyon.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.byandry.com/electricite-copropriete-marseille.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.byandry.com/electricite-copropriete-toulouse.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.byandry.com/electricite-copropriete-montpellier.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.byandry.com/electricite-copropriete-bordeaux.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.byandry.com/electricite-copropriete-lille.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.byandry.com/electricite-copropriete-nantes.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.byandry.com/electricite-copropriete-strasbourg.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.byandry.com/electricite-copropriete-rennes.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://www.byandry.com/audit-energetique-paris.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -251,52 +201,102 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/raccordement-enedis-paris.html</loc>
+    <loc>https://www.byandry.com/tarif-electricite-professionnel-paris.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/raccordement-enedis-lyon.html</loc>
+    <loc>https://www.byandry.com/tarif-electricite-professionnel-lyon.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/raccordement-enedis-marseille.html</loc>
+    <loc>https://www.byandry.com/tarif-electricite-professionnel-marseille.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/raccordement-enedis-toulouse.html</loc>
+    <loc>https://www.byandry.com/tarif-electricite-professionnel-toulouse.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/raccordement-enedis-montpellier.html</loc>
+    <loc>https://www.byandry.com/tarif-electricite-professionnel-montpellier.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/raccordement-enedis-bordeaux.html</loc>
+    <loc>https://www.byandry.com/tarif-electricite-professionnel-bordeaux.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/raccordement-enedis-lille.html</loc>
+    <loc>https://www.byandry.com/tarif-electricite-professionnel-lille.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/raccordement-enedis-nantes.html</loc>
+    <loc>https://www.byandry.com/tarif-electricite-professionnel-nantes.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/raccordement-enedis-strasbourg.html</loc>
+    <loc>https://www.byandry.com/tarif-electricite-professionnel-strasbourg.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.byandry.com/raccordement-enedis-rennes.html</loc>
+    <loc>https://www.byandry.com/tarif-electricite-professionnel-rennes.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.byandry.com/cspe-remboursement-paris.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.byandry.com/cspe-remboursement-lyon.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.byandry.com/cspe-remboursement-marseille.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.byandry.com/cspe-remboursement-toulouse.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.byandry.com/cspe-remboursement-montpellier.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.byandry.com/cspe-remboursement-bordeaux.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.byandry.com/cspe-remboursement-lille.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.byandry.com/cspe-remboursement-nantes.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.byandry.com/cspe-remboursement-strasbourg.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.byandry.com/cspe-remboursement-rennes.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
