@@ -39,3 +39,12 @@ test('le bundle lit le cookie ms_camp pour la super-property camp', async () => 
     'la mesure de campagne par segment/email a disparu du bundle'
   );
 });
+
+test('le bundle initialise le Pixel Meta avec le bon identifiant', async () => {
+  const bundle = await readFile('assets/analytics.js', 'utf8');
+  assert.match(
+    bundle,
+    /1381584920727587/,
+    "l'identifiant du Pixel Meta a disparu du bundle"
+  );
+});

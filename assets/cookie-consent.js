@@ -13,6 +13,54 @@
       '; path=/; max-age=' + maxAge + '; SameSite=Lax; Secure';
   }
 
+  // Cookie stocké en JSON `{analytics, marketing}` — un ancien cookie au
+  // format `accepted`/`refused` ne parse pas et retombe naturellement sur
+  // null (= pas encore de consentement), ce qui rouvre le bandeau une fois
+  // pour les visiteurs existants. C'est le comportement voulu : l'ancien
+  // consentement groupait deux finalités distinctes sans les distinguer.
+  function getConsent() {
+    var raw = getCookie(COOKIE_NAME);
+    if (!raw) return null;
+    try {
+      var parsed = JSON.parse(raw);
+      if (typeof parsed.analytics === 'boolean' && typeof parsed.marketing === 'boolean') {
+        return parsed;
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  // assets/analytics.js (bundle PostHog + Pixel Meta, ~80KB) n'est plus chargé
+  // statiquement sur chaque page. Le chargement pour un consentement déjà
+  // accordé (visiteur qui revient) est géré par assets/analytics-loader.js,
+  // exécuté au même endroit que l'ancien <script defer src="assets/
+  // analytics.js"> statique (tôt dans le <head>) — pour ne pas retarder par
+  // rapport à l'existant l'installation du listener cta_click et de
+  // window.fbq (voir le commentaire détaillé en tête de ce fichier-là).
+  // cookie-consent.js réutilise le même chargeur (window.__msLoadAnalyticsScript, exposé par
+  // analytics-loader.js — toujours chargé avant, voir l'ordre des <script
+  // defer> dans le HTML) pour le seul cas qui lui est propre : l'utilisateur
+  // vient d'accepter via ce bandeau.
+  function loadAnalyticsScript(onReady) {
+    if (window.__msLoadAnalyticsScript) window.__msLoadAnalyticsScript(onReady);
+  }
+
+  function setConsent(analytics, marketing) {
+    var consent = { analytics: analytics, marketing: marketing };
+    setCookie(COOKIE_NAME, JSON.stringify(consent), COOKIE_MAX_AGE_DAYS);
+    if (analytics || marketing) {
+      // Acceptation explicite juste maintenant : on charge tout de suite (le
+      // rendu initial est déjà loin derrière, pas de raison de temporiser).
+      loadAnalyticsScript(function () {
+        if (window.msInitAnalytics) window.msInitAnalytics(consent);
+      });
+    } else if (window.msInitAnalytics) {
+      // Rien à activer, mais si le bundle était déjà chargé (consentement
+      // précédent), on relaie quand même l'info par cohérence.
+      window.msInitAnalytics(consent);
+    }
+  }
+
   function injectStyles() {
     if (document.getElementById('ms-cookie-style')) return;
     var style = document.createElement('style');
@@ -25,12 +73,19 @@
       'border-top:1px solid rgba(94,207,220,.18)}' +
       '#ms-cookie-banner p{margin:0;font-size:.85rem;line-height:1.6;max-width:640px;color:#8aacb4}' +
       '#ms-cookie-banner p a{color:#2bb5c8;text-decoration:underline}' +
+      '.ms-cookie-textlink{font:inherit;font-size:.85rem;color:#8aacb4;text-decoration:underline;' +
+      'background:none;border:0;padding:0;cursor:pointer}' +
+      '.ms-cookie-textlink:hover{color:#f5f0e8}' +
       '#ms-cookie-actions{display:flex;gap:.7rem;flex-shrink:0}' +
       '#ms-cookie-actions button{font-family:"Satoshi",sans-serif;font-weight:700;font-size:.74rem;' +
       'letter-spacing:.06em;text-transform:uppercase;padding:.65rem 1.3rem;border-radius:2px;cursor:pointer;' +
       'border:1.5px solid #4cde80;background:transparent;color:#f5f0e8;transition:background .2s,color .2s}' +
       '#ms-cookie-actions button.accept{background:#4cde80;color:#07131a}' +
       '#ms-cookie-actions button:hover{opacity:.85}' +
+      '#ms-cookie-prefs-intro{margin:0 0 .7rem;font-size:.85rem;line-height:1.6;color:#8aacb4}' +
+      '.ms-cookie-row{display:flex;align-items:flex-start;gap:.6rem;margin:0 0 .6rem;font-size:.85rem;' +
+      'line-height:1.5;color:#f5f0e8;cursor:pointer}' +
+      '.ms-cookie-row input{margin-top:.2rem;flex-shrink:0;accent-color:#4cde80}' +
       '@media(max-width:640px){#ms-cookie-banner{flex-direction:column;align-items:stretch;text-align:left}' +
       '#ms-cookie-actions{justify-content:flex-start}}';
     document.head.appendChild(style);
@@ -41,6 +96,61 @@
     if (el) el.remove();
   }
 
+  function bindMainView(banner) {
+    banner.innerHTML =
+      '<p>Nous utilisons des cookies de mesure d’audience et de suivi publicitaire (PostHog, Meta) ' +
+      'pour comprendre l’usage du site et mesurer nos campagnes. Ils ne sont déposés qu’avec votre accord. Voir notre ' +
+      '<a href="politique-confidentialite.html">politique de confidentialité</a> ou ' +
+      '<button type="button" class="ms-cookie-textlink" id="ms-cookie-reject">tout refuser</button>.</p>' +
+      '<div id="ms-cookie-actions">' +
+      '<button type="button" class="manage" id="ms-cookie-manage">Gérer</button>' +
+      '<button type="button" class="accept" id="ms-cookie-accept">Accepter</button>' +
+      '</div>';
+
+    document.getElementById('ms-cookie-accept').addEventListener('click', function () {
+      setConsent(true, true);
+      hideBanner();
+    });
+    document.getElementById('ms-cookie-reject').addEventListener('click', function () {
+      setConsent(false, false);
+      hideBanner();
+    });
+    document.getElementById('ms-cookie-manage').addEventListener('click', function () {
+      bindPreferencesView(banner);
+    });
+  }
+
+  function bindPreferencesView(banner) {
+    var current = getConsent() || { analytics: false, marketing: false };
+    banner.innerHTML =
+      '<div>' +
+      '<p id="ms-cookie-prefs-intro">Choisissez les cookies que vous acceptez. Les cookies techniques, ' +
+      'nécessaires au fonctionnement du site, sont toujours actifs. Voir notre ' +
+      '<a href="politique-confidentialite.html">politique de confidentialité</a>.</p>' +
+      '<label class="ms-cookie-row"><input type="checkbox" id="ms-cookie-cat-analytics"' +
+      (current.analytics ? ' checked' : '') + '><span><strong>Mesure d’audience</strong> — PostHog, pour comprendre ' +
+      'l’usage du site.</span></label>' +
+      '<label class="ms-cookie-row"><input type="checkbox" id="ms-cookie-cat-marketing"' +
+      (current.marketing ? ' checked' : '') + '><span><strong>Publicité</strong> — Pixel Meta, pour mesurer nos ' +
+      'campagnes Facebook/Instagram.</span></label>' +
+      '</div>' +
+      '<div id="ms-cookie-actions">' +
+      '<button type="button" class="manage" id="ms-cookie-save">Enregistrer mes choix</button>' +
+      '<button type="button" class="accept" id="ms-cookie-accept-all">Tout accepter</button>' +
+      '</div>';
+
+    document.getElementById('ms-cookie-save').addEventListener('click', function () {
+      var analytics = document.getElementById('ms-cookie-cat-analytics').checked;
+      var marketing = document.getElementById('ms-cookie-cat-marketing').checked;
+      setConsent(analytics, marketing);
+      hideBanner();
+    });
+    document.getElementById('ms-cookie-accept-all').addEventListener('click', function () {
+      setConsent(true, true);
+      hideBanner();
+    });
+  }
+
   function showBanner() {
     hideBanner();
     injectStyles();
@@ -48,33 +158,19 @@
     banner.id = 'ms-cookie-banner';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', 'Gestion des cookies');
-    banner.innerHTML =
-      '<p>Nous utilisons des cookies de mesure d’audience (PostHog) pour comprendre l’usage du site. ' +
-      'Ils ne sont déposés qu’avec votre accord. Voir notre ' +
-      '<a href="politique-confidentialite.html">politique de confidentialité</a>.</p>' +
-      '<div id="ms-cookie-actions">' +
-      '<button type="button" class="reject" id="ms-cookie-reject">Refuser</button>' +
-      '<button type="button" class="accept" id="ms-cookie-accept">Accepter</button>' +
-      '</div>';
     document.body.appendChild(banner);
-
-    document.getElementById('ms-cookie-accept').addEventListener('click', function () {
-      setCookie(COOKIE_NAME, 'accepted', COOKIE_MAX_AGE_DAYS);
-      hideBanner();
-      if (window.msInitAnalytics) window.msInitAnalytics();
-    });
-
-    document.getElementById('ms-cookie-reject').addEventListener('click', function () {
-      setCookie(COOKIE_NAME, 'refused', COOKIE_MAX_AGE_DAYS);
-      hideBanner();
-    });
+    bindMainView(banner);
   }
 
   // Exposé pour le lien "Gérer les cookies" du footer — permet de revenir
   // sur son choix aussi facilement qu'on l'a donné (exigence CNIL).
   window.msOpenCookieBanner = showBanner;
 
-  if (!getCookie(COOKIE_NAME)) {
+  // Le chargement du bundle pour un consentement déjà accordé est géré par
+  // assets/analytics-loader.js (voir plus haut) : il ne reste ici qu'à
+  // décider si le bandeau doit s'afficher — jamais si un consentement existe
+  // déjà, quel qu'il soit (y compris un refus explicite).
+  if (!getConsent()) {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', showBanner);
     } else {

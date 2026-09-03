@@ -3,12 +3,24 @@
 // depuis data/barometre-*.json, mêmes sources que assets/barometre.js)
 // + informations M&S Strategy. Chargé dynamiquement pour ne jamais figer
 // une valeur qui deviendrait fausse au fil des mises à jour du baromètre.
+//
+// Le défilement est piloté par une animation CSS (@keyframes ms-ticker-scroll,
+// voir index.html) plutôt que par une boucle rAF par frame : le travail
+// continu tourne sur le compositeur GPU au lieu du thread JS principal.
+// Le ralentissement au survol/focus utilise Animation.playbackRate
+// (Web Animations API) plutôt qu'un changement d'animation-duration : la
+// position visuelle est préservée sans saut, contrairement à un changement
+// direct de animation-duration en cours de lecture.
 
 const STATIC_ITEMS = [
   'Négociation d’énergies depuis 2012',
-  '7 180 contrats négociés',
+  '8 216 professionnels accompagnés',
   'Étude gratuite · résultat sous 48h',
 ];
+
+// Vitesses en px/s, identiques à l'ancienne implémentation JS (BASE_SPEED/HOVER_SPEED).
+const BASE_SPEED = 44.2;
+const HOVER_SPEED = 10;
 
 function formatPriceEurPerKwh(avgPriceEurPerMWh) {
   return (avgPriceEurPerMWh / 1000)
@@ -28,7 +40,7 @@ function priceItemMarkup(label, series) {
   const latest = series.at(-1);
   const previous = series.length > 1 ? series.at(-2).avgPriceEurPerMWh : undefined;
   if (!latest) return null;
-  return `<span class="label">${label}</span> ${formatPriceEurPerKwh(latest.avgPriceEurPerMWh)} €/kWh ${trendMarkup(latest.avgPriceEurPerMWh, previous)}`;
+  return `<span class="label">${label}</span> ${formatPriceEurPerKwh(latest.avgPriceEurPerMWh)} €/kWh ${trendMarkup(latest.avgPriceEurPerMWh, previous)}`;
 }
 
 async function buildItems() {
@@ -55,29 +67,6 @@ async function buildItems() {
   return items.concat(STATIC_ITEMS);
 }
 
-function makeBezier(x1, y1, x2, y2) {
-  const a = (p1, p2) => 1 - 3 * p2 + 3 * p1;
-  const b = (p1, p2) => 3 * p2 - 6 * p1;
-  const c = (p1) => 3 * p1;
-  const calcX = (t) => ((a(x1, x2) * t + b(x1, x2)) * t + c(x1)) * t;
-  const calcY = (t) => ((a(y1, y2) * t + b(y1, y2)) * t + c(y1)) * t;
-  const slopeX = (t) => 3 * a(x1, x2) * t * t + 2 * b(x1, x2) * t + c(x1);
-  function tForX(x) {
-    let t = x;
-    for (let i = 0; i < 8; i++) {
-      const s = slopeX(t);
-      if (s === 0) break;
-      t -= (calcX(t) - x) / s;
-    }
-    return t;
-  }
-  return (x) => {
-    if (x <= 0) return 0;
-    if (x >= 1) return 1;
-    return calcY(tForX(x));
-  };
-}
-
 function startTicker(track, ticker) {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) {
@@ -85,59 +74,53 @@ function startTicker(track, ticker) {
     return;
   }
 
-  const easeOut = makeBezier(0.22, 1, 0.36, 1);
-  const easeInOut = makeBezier(0.65, 0, 0.35, 1);
+  // Le track contient le contenu dupliqué x2 (voir initTicker) : translater de
+  // -50% ramène exactement au début de la seconde copie, donc la boucle
+  // `infinite` ne laisse aucun saut visible en régime établi. Cette fonction
+  // est aussi rappelée sur resize/fonts.ready — recalculer la durée change
+  // l'animation CSS sous-jacente, donc on capture la position (et un éventuel
+  // ralentissement au survol en cours) avant de la réappliquer, pour ne pas
+  // faire sauter visuellement le bandeau à ce moment-là.
+  function applyAnimation() {
+    const halfWidth = track.scrollWidth / 2;
+    if (halfWidth <= 0) return;
+    const durationMs = (halfWidth / BASE_SPEED) * 1000;
 
-  const BASE_SPEED = 44.2;
-  const HOVER_SPEED = 10;
-  const TRANSITION_MS = 900;
-
-  let currentSpeed = BASE_SPEED;
-  let speedAtTransitionStart = BASE_SPEED;
-  let targetSpeed = BASE_SPEED;
-  let transitionStart = 0;
-  let easingFn = easeOut;
-
-  function setTarget(next, easing) {
-    if (targetSpeed === next) return;
-    speedAtTransitionStart = currentSpeed;
-    targetSpeed = next;
-    transitionStart = performance.now();
-    easingFn = easing;
-  }
-
-  ticker.addEventListener('mouseenter', () => setTarget(HOVER_SPEED, easeOut));
-  ticker.addEventListener('mouseleave', () => setTarget(BASE_SPEED, easeInOut));
-  ticker.addEventListener('focusin', () => setTarget(HOVER_SPEED, easeOut));
-  ticker.addEventListener('focusout', () => setTarget(BASE_SPEED, easeInOut));
-
-  let halfWidth = 0;
-  const measure = () => { halfWidth = track.scrollWidth / 2; };
-  measure();
-  window.addEventListener('resize', measure);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-
-  let position = 0;
-  let lastFrame = performance.now();
-
-  function tick(now) {
-    const dt = Math.min(now - lastFrame, 50) / 1000;
-    lastFrame = now;
-
-    if (currentSpeed !== targetSpeed) {
-      const p = TRANSITION_MS === 0 ? 1 : Math.min((now - transitionStart) / TRANSITION_MS, 1);
-      const eased = easingFn(p);
-      currentSpeed = speedAtTransitionStart + (targetSpeed - speedAtTransitionStart) * eased;
-      if (p >= 1) currentSpeed = targetSpeed;
+    const prevAnim = track.getAnimations && track.getAnimations()[0];
+    let progress = 0;
+    let rate = 1;
+    if (prevAnim && prevAnim.effect) {
+      const prevDurationMs = prevAnim.effect.getTiming().duration;
+      const currentTimeMs = typeof prevAnim.currentTime === 'number' ? prevAnim.currentTime : 0;
+      if (prevDurationMs) progress = ((currentTimeMs % prevDurationMs) + prevDurationMs) % prevDurationMs / prevDurationMs;
+      rate = prevAnim.playbackRate || 1;
     }
 
-    position -= currentSpeed * dt;
-    if (halfWidth > 0 && position <= -halfWidth) position += halfWidth;
-    track.style.transform = `translateX(${position.toFixed(2)}px)`;
+    track.style.animation = `ms-ticker-scroll ${(durationMs / 1000).toFixed(2)}s linear infinite`;
 
-    requestAnimationFrame(tick);
+    const anim = track.getAnimations && track.getAnimations()[0];
+    if (anim) {
+      anim.currentTime = progress * durationMs;
+      anim.playbackRate = rate;
+    }
   }
-  requestAnimationFrame(tick);
+
+  applyAnimation();
+  window.addEventListener('resize', applyAnimation);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(applyAnimation);
+
+  function setPlaybackRate(rate) {
+    const anim = track.getAnimations && track.getAnimations()[0];
+    if (anim) anim.playbackRate = rate;
+  }
+
+  const slowDown = () => setPlaybackRate(HOVER_SPEED / BASE_SPEED);
+  const speedUp = () => setPlaybackRate(1);
+
+  ticker.addEventListener('mouseenter', slowDown);
+  ticker.addEventListener('mouseleave', speedUp);
+  ticker.addEventListener('focusin', slowDown);
+  ticker.addEventListener('focusout', speedUp);
 }
 
 async function initTicker() {

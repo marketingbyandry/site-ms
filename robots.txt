@@ -41,4 +41,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://www.byandry.com/sitemap.xml
+Sitemap: https://cabinetms.fr/sitemap.xml

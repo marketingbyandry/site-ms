@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-THZKG49X');</script>
+<!-- End Google Tag Manager -->
+<script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculateur d'inaction énergétique · M&S Strategy</title>
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script defer src="assets/favicon-animate.js"></script>
+<title>Calculateur d'économies réalisables · M&S Strategy</title>
 <meta name="description" content="Calculez en temps réel ce que votre inaction sur votre contrat énergie vous coûte chaque mois, et ce que vous pourriez économiser.">
+<link rel="canonical" href="https://cabinetms.fr/ms-strategy-calculateur.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
 <style>
@@ -169,7 +187,7 @@ body {
 }
 .taximeter-sub strong { color: var(--red); font-weight: 500; }
 
-/* Tick mark — orbiting dots loader */
+/* Tick mark: orbiting dots loader */
 .taximeter-tick {
   position: relative;
   width: 28px; height: 28px;
@@ -209,7 +227,7 @@ body {
   .taximeter-card.active .tick-dot { animation: none; }
 }
 
-/* Good price — reader is already below the market floor */
+/* Good price: reader is already below the market floor */
 .taximeter-card.good-price { border-color: rgba(76,222,128,.5); }
 .taximeter-card.good-price::before {
   background: radial-gradient(ellipse at 50% 0%, rgba(76,222,128,.08) 0%, transparent 60%);
@@ -338,7 +356,7 @@ input[type=range]::-moz-range-thumb {
   background: var(--teal-lt); border: 2px solid var(--dark);
 }
 
-/* Slider track fill — dynamic via JS */
+/* Slider track fill: dynamic via JS */
 .slider-track { position: relative; }
 
 /* Timeline labels */
@@ -513,21 +531,37 @@ input[type=range]::-moz-range-thumb {
 /* ── HELPER: hidden ── */
 .hidden { display: none !important; }
 </style>
+<link rel="stylesheet" href="assets/nav-mobile.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://cabinetms.fr/"},
+    {"@type": "ListItem", "position": 2, "name": "Calculateur d'économies réalisables", "item": "https://cabinetms.fr/ms-strategy-calculateur.html"}
+  ]
+}
+</script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THZKG49X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-logo">
     <div class="nav-dot"></div>
-    <img src="assets/ms-strategy-logo.png" alt="M&S Strategy">
+    <img src="assets/ms-strategy-logo.png" width="573" height="146" alt="M&S Strategy">
   </div>
   <a href="b2b.html" class="nav-back">← Retour</a>
 </nav>
+<script src="assets/nav-mobile.js" defer></script>
 
 <!-- HERO -->
 <header class="hero fade-in in">
-  <p class="hero-eyebrow">Calculateur d'inaction énergétique</p>
+  <p class="hero-eyebrow">Calculateur d'économies réalisables</p>
   <h1 class="hero-title">
     Chaque mois sans négocier<br>
     vous coûte <span class="red">de l'argent réel.</span><br>
@@ -687,7 +721,7 @@ input[type=range]::-moz-range-thumb {
 <section class="cta-section">
   <div class="cta-box">
     <h2>Maintenant que vous savez combien ça coûte,<br>voici comment <em>ne plus perdre un euro.</em></h2>
-    <p>Étude personnalisée · Gratuit · Sans engagement · Résultat sous 48h</p>
+    <p>Étude personnalisée · Gratuit · Sans engagement · Résultat sous 24h</p>
     <div class="cta-pair">
       <a href="b2b.html#upload" class="btn-primary" id="cta-transmit">Transmettre ma facture →</a>
       <a href="tel:0783070749" class="btn-ghost">📞 07 83 07 07 49</a>
@@ -696,7 +730,7 @@ input[type=range]::-moz-range-thumb {
       <span>100% gratuit</span>
       <span>Sans engagement</span>
       <span>Données confidentielles</span>
-      <span>Réponse sous 48h</span>
+      <span>Réponse sous 24h</span>
     </div>
   </div>
 </section>
@@ -724,7 +758,7 @@ const SECTOR_DATA = {
 };
 
 /* ════════════════════════════════════════
-   MARKET BENCHMARK — best achievable price
+   MARKET BENCHMARK: best achievable price
    ≤ 36 kVA (tarif bleu) : 75 €/MWh, prix plancher.
    > 36 kVA (tarif jaune/pro) : 110 €/MWh, prix plancher.
    ════════════════════════════════════════ */
@@ -734,7 +768,7 @@ function getBestPrice(kva) {
 }
 
 /* ════════════════════════════════════════
-   TIMING PENALTY — window quality
+   TIMING PENALTY: window quality
    ════════════════════════════════════════ */
 function getWindowQuality(months) {
   if (months >= 18) return { score: 1.0,  label: 'Idéal',    color: 'var(--green)',    penalty: 0 };
@@ -756,7 +790,7 @@ let demoMode = true;
 let transitioning = false;
 
 /* ════════════════════════════════════════
-   DEMO — average TPE/PME loss, shown before
+   DEMO: average TPE/PME loss, shown before
    the prospect enters their own data
    ════════════════════════════════════════ */
 const DEMO = { conso: 300, price: 118, kva: 100, months: 12 };
@@ -770,7 +804,7 @@ function startDemo() {
   lossPerSecond   = surcharge / 365 / 24 / 3600;
 
   // A single business's annual overrun ticks by fractions of a cent per
-  // second — too slow to read as "live" on arrival. Seed the counter with
+  // second, too slow to read as "live" on arrival. Seed the counter with
   // the loss already accrued since January 1st so it opens on a
   // meaningful figure, then keeps counting up in real time on top.
   const now = new Date();
@@ -892,14 +926,14 @@ function performRealCalc() {
   const timingLoss     = optimalSaving - annualSaving; // foregone savings
   const totalLoss2yr   = annualSaving * 2;              // savings over 2yr contract
 
-  // Loss per second (what the taximeter shows) — conservative estimate
+  // Loss per second (what the taximeter shows), conservative estimate
   // = surcoût annuel / 365 / 24 / 3600
   const surcharge     = annualCurrent * (baseSavingRate * 0.7);
   const surchargePerDay = surcharge / 365;
   lossPerSecond       = surcharge / 365 / 24 / 3600;
 
   // Past loss: time already spent on the current contract, counted
-  // whether the user is locked in or not — that money is already gone.
+  // whether the user is locked in or not: that money is already gone.
   const engaged      = inputEngaged.value === 'oui';
   const renewalDate  = inputRenewalDate.value ? new Date(inputRenewalDate.value) : null;
   const daysElapsed  = renewalDate ? Math.max(0, (Date.now() - renewalDate.getTime()) / 86400000) : 0;
@@ -954,7 +988,7 @@ function stopTaxi() {
 }
 
 /* ════════════════════════════════════════
-   GOOD PRICE — reader is already below the
+   GOOD PRICE: reader is already below the
    market floor: confirm it instead of faking a loss.
    ════════════════════════════════════════ */
 function showGoodPrice(price, bestPrice, kva) {
@@ -977,7 +1011,7 @@ function showGoodPrice(price, bestPrice, kva) {
   const tier = kva > 0 && kva <= 36 ? '≤ 36 kVA' : '> 36 kVA';
   document.getElementById('taxi-sub').innerHTML =
     `Bonne nouvelle : à <strong>${price} €/MWh</strong>, vous êtes déjà sous le prix plancher du marché ` +
-    `(<strong>${bestPrice} €/MWh</strong>, ${tier}). Aucune perte n'est estimée sur ce contrat — l'enjeu est ` +
+    `(<strong>${bestPrice} €/MWh</strong>, ${tier}). Aucune perte n'est estimée sur ce contrat : l'enjeu est ` +
     `désormais de sécuriser ce niveau dans la durée.`;
 
   document.getElementById('results-section').classList.remove('visible');
@@ -1186,7 +1220,7 @@ function renderVerdict() {
   if (months <= 3) {
     icon.textContent  = '🚨';
     title.innerHTML   = `Fenêtre <span>critique</span> : il reste ${months} mois.`;
-    body.innerHTML    = `Votre contrat se renouvelle dans moins de 3 mois. C'est la zone où 80% des dirigeants signent sans avoir comparé, et paient le prix fort pendant les 2 à 3 années suivantes. <strong>Une intervention rapide reste possible</strong> : notre processus peut produire un tableau comparatif en 48h. Transmettez votre facture maintenant, nous lançons immédiatement l'appel d'offres.`;
+    body.innerHTML    = `Votre contrat se renouvelle dans moins de 3 mois. C'est la zone où 80% des dirigeants signent sans avoir comparé, et paient le prix fort pendant les 2 à 3 années suivantes. <strong>Une intervention rapide reste possible</strong> : notre processus peut produire un tableau comparatif en 24h. Transmettez votre facture maintenant, nous lançons immédiatement l'appel d'offres.`;
   } else if (months <= 8) {
     icon.textContent  = '⚠️';
     title.innerHTML   = `Fenêtre <span>tardive</span>, ${months} mois restants.`;
@@ -1214,7 +1248,7 @@ startDemo();
 /* ════════════════════════════════════════
    CARRY DATA OVER TO THE UPLOAD FORM
    Saved on click so b2b.html can pre-fill its
-   message field — avoids retyping everything.
+   message field, avoids retyping everything.
    ════════════════════════════════════════ */
 document.getElementById('cta-transmit').addEventListener('click', () => {
   if (!lastCalc) return;
@@ -1234,9 +1268,10 @@ document.getElementById('cta-transmit').addEventListener('click', () => {
   ].filter(Boolean);
   try {
     localStorage.setItem('msLeadContext', JSON.stringify({ message: lines.join('\n'), ts: Date.now() }));
-  } catch (e) { /* localStorage unavailable — navigation still proceeds */ }
+  } catch (e) { /* localStorage unavailable: navigation still proceeds */ }
 });
 </script>
+<div google-add-preferred-source-btn data-theme="dark"></div>
 <script defer src="assets/speed-insights.js"></script>
 </body>
 </html>
