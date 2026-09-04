@@ -583,6 +583,8 @@ function msMarketingConsent() {
   }
 }
 
+var lastTallySource = null;
+
 function openTallyForm(source) {
   // Signal d'intention pour le retargeting Meta : distingue les visiteurs qui
   // ont ouvert le formulaire de ceux qui n'ont fait que consulter la page.
@@ -590,6 +592,11 @@ function openTallyForm(source) {
   if (msMarketingConsent() && window.fbq) {
     window.fbq('track', 'InitiateCheckout');
   }
+  // Funnel PostHog : ouverture du formulaire, avant le depot reel de la
+  // facture (voir onTallySubmit). Gate sur l'existence de window.posthog
+  // (consentement analytics), independant du gate marketing ci-dessus.
+  lastTallySource = source;
+  if (window.posthog) window.posthog.capture('tally_form_opened', { source: source });
 
   const hiddenFields = { source };
   // Commercial référent (voir assets/ref.js et middleware.js). Le champ caché
