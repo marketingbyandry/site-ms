@@ -57,10 +57,12 @@ pages qui ont l'Open Graph).
 
 ## 2. Schema HowTo — comment-ca-marche.html
 
-Les 4 étapes existantes (`.step`, lignes 226-254 : "Vous nous envoyez votre
+Les 5 étapes existantes (`.step`, lignes 226-259 : "Vous nous envoyez votre
 facture" → "Nous lançons l'appel d'offres" → "Vous recevez un comparatif
-clair" → "Nous finalisons le changement") deviennent un `HowTo.step[]`.
-Contenu repris tel quel (pas de nouvelle rédaction) :
+clair" → "Nous finalisons le changement" → "Nous suivons votre dossier dans
+la durée") deviennent un `HowTo.step[]`. Contenu repris tel quel (pas de
+nouvelle rédaction) — correction par rapport à la première lecture de ce
+document, qui n'en comptait que 4 :
 
 ```json
 {
@@ -68,10 +70,11 @@ Contenu repris tel quel (pas de nouvelle rédaction) :
   "@type": "HowTo",
   "name": "Comment fonctionne le courtage en énergie M&S Strategy",
   "step": [
-    {"@type": "HowToStep", "position": 1, "name": "Vous nous envoyez votre facture", "text": "..."},
-    {"@type": "HowToStep", "position": 2, "name": "Nous lançons l'appel d'offres", "text": "..."},
-    {"@type": "HowToStep", "position": 3, "name": "Vous recevez un comparatif clair", "text": "..."},
-    {"@type": "HowToStep", "position": 4, "name": "Nous finalisons le changement", "text": "..."}
+    {"@type": "HowToStep", "position": 1, "name": "Vous nous envoyez votre facture", "text": "Un simple envoi par email ou via notre formulaire en ligne suffit. Nous analysons votre consommation réelle, la structure de votre contrat actuel et sa date d'échéance. Cette étape est gratuite et sans engagement."},
+    {"@type": "HowToStep", "position": 2, "name": "Nous lançons l'appel d'offres", "text": "Nous consultons simultanément l'ensemble des fournisseurs actifs sur votre segment (historiques et alternatifs) au lieu de comparer seulement 3 ou 4 acteurs comme le font la plupart des comparateurs en ligne."},
+    {"@type": "HowToStep", "position": 3, "name": "Vous recevez un comparatif clair", "text": "Un tableau simple et chiffré : prix, conditions contractuelles, clauses d'indexation. Aucune pression commerciale : vous gardez la décision finale et pouvez toujours choisir de ne pas changer de fournisseur."},
+    {"@type": "HowToStep", "position": 4, "name": "Nous finalisons le changement", "text": "Si vous validez une offre, nous nous occupons des démarches administratives auprès du nouveau fournisseur. Aucune coupure de service. Le changement se fait de façon transparente pour vous."},
+    {"@type": "HowToStep", "position": 5, "name": "Nous suivons votre dossier dans la durée", "text": "Notre accompagnement ne s'arrête pas à la signature. Nous anticipons votre prochaine échéance de renouvellement et vous alertons 12 à 24 mois avant, pour ne jamais rater la meilleure fenêtre de négociation."}
   ]
 }
 ```
