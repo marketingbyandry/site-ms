@@ -627,6 +627,11 @@ function openTallyForm(source) {
    — rien n'est envoye a Meta si le visiteur n'a pas accepte le bandeau cookies.
    ════════════════════════════════════════ */
 function onTallySubmit(payload) {
+  // Funnel PostHog : depot reel de la facture. Gate independant du
+  // consentement marketing ci-dessous (Pixel Meta) : window.posthog
+  // n'existe que sous consentement analytics.
+  if (window.posthog) window.posthog.capture('lead_submitted', { source: lastTallySource });
+
   if (!msMarketingConsent()) return;
 
   var email = null, phone = null;
