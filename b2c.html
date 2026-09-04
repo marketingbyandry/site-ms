@@ -528,7 +528,15 @@ function faq(el) {
   if (!open) el.classList.add('open');
 }
 
+var lastTallySource = null;
+
 function openTallyForm(source) {
+  // Funnel PostHog : ouverture du formulaire, avant le depot reel de la
+  // facture (voir onTallySubmit). Gate sur l'existence de window.posthog
+  // (consentement analytics).
+  lastTallySource = source;
+  if (window.posthog) window.posthog.capture('tally_form_opened', { source: source });
+
   const hiddenFields = { source };
   // Commercial référent (voir assets/ref.js et middleware.js). Le champ caché
   // « ref » doit exister dans le formulaire Tally, sinon la valeur est ignorée.
