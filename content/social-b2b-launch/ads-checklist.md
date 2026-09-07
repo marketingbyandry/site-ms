@@ -21,6 +21,9 @@ mineure seulement — X sert un rôle GEO/citation plus que conversion.
   (même code que l'organique LinkedIn — pas de distinction payant/
   organique dans l'attribution, cf. spec).
 - [ ] Budget : moitié de l'enveloppe payante totale du cycle 1.
+- [ ] Installer le LinkedIn Insight Tag, ou basculer sur des Lead Gen
+  Forms natifs — sans cela, Campaign Manager ne peut pas rapporter de
+  coût par lead.
 
 ## Meta Ads Manager (Facebook + Instagram)
 
@@ -31,8 +34,16 @@ mineure seulement — X sert un rôle GEO/citation plus que conversion.
   Bordeaux, Lille, Nantes.
 - [ ] Ciblage démographique : dirigeants/gérants de TPE, centres
   d'intérêt « petite entreprise », « gestion d'entreprise ».
-- [ ] Audience lookalike : à activer une fois un volume suffisant de
-  leads Tally atteint (non disponible au lancement du cycle 1).
+- [ ] Audience lookalike : ne peut être seedée qu'à partir (a) de leads
+  Tally pour lesquels une case de consentement a été ajoutée au
+  formulaire `kd15W1` au moment de la collecte — **prérequis non fait
+  à ce jour**, ou (b) d'une audience de visiteurs du site basée sur le
+  pixel Meta, qui ne nécessite aucun import de liste ni consentement
+  supplémentaire au-delà du consentement cookies marketing déjà en
+  place. Importer la liste de leads Tally bruts sans (a) violerait la
+  limite RGPD documentée dans `docs/attribution-commerciaux.md`
+  (section « Hors périmètre »). Non disponible au lancement du cycle 1
+  dans tous les cas (volume insuffisant).
 - [ ] Créatifs : posts F1-F6 (Facebook) et I1-I4 (Instagram) du brief
   cycle 1.
 - [ ] Lien de destination : `https://cabinetms.fr/b2b.html?camp=soc-fb`
@@ -50,10 +61,19 @@ mineure seulement — X sert un rôle GEO/citation plus que conversion.
 
 ## Jalon de décision (8 à 12 semaines)
 
-- [ ] Exporter le coût par lead par plateforme (LinkedIn Campaign
-  Manager, Meta Ads Manager).
-- [ ] Croiser avec le volume de leads Tally par code `camp`
-  (`soc-li`, `soc-fb`, `soc-ig`, `soc-x`) sur la même période.
+- [ ] Calculer le coût par lead par plateforme de façon agnostique à
+  l'outil de tracking de chaque régie : dépense publicitaire (relevée
+  dans l'ads manager de chaque plateforme) ÷ nombre de leads Tally
+  attribués au code `camp` de cette plateforme (`soc-li`, `soc-fb`,
+  `soc-ig`, `soc-x`) sur la même période. Ce calcul fonctionne
+  uniformément sur les 4 plateformes sans dépendre du tracking de
+  conversion côté régie.
+- [ ] Note : les conversions rapportées côté plateforme (Meta Ads
+  Manager notamment) liront systématiquement bas — le pixel Meta est
+  soumis au consentement cookies marketing, alors que le cookie `camp`
+  est posé côté serveur pour chaque visiteur, consentement ou non. Ne
+  pas comparer les deux chiffres entre eux ; utiliser uniquement le
+  calcul par `camp` ci-dessus pour le coût par lead.
 - [ ] Réallouer le budget et la cadence de publication vers la ou les
   plateformes qui convertissent réellement, pas vers celle qui engage
   le plus.

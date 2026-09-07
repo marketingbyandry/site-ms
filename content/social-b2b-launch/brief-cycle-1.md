@@ -5,6 +5,9 @@ complète (copywriting) se fait à l'entrée en production via le pipeline
 éditorial général — ce brief fixe l'angle et la source, pas le texte
 final.
 
+Aucun chiffre non sourcé ne doit être relayé tel quel — cf. §8 de
+`docs/strategie-geo-seo/2026-07-22-strategie-geo-seo-ms-strategy.md`.
+
 ## LinkedIn (`soc-li`) — 3×/semaine, 6 posts
 
 | # | Gisement | Angle | Format | CTA |

@@ -7,7 +7,7 @@ Contenu du premier cycle de test du levier social B2B décrit dans
   organique, un par plateforme et par créneau (à transférer dans le
   calendrier éditorial Notion du pipeline général avant production).
 - `ads-checklist.md` — checklist de paramétrage des campagnes payantes
-  LinkedIn Ads et Meta Ads.
+  LinkedIn Ads, Meta Ads et X Ads.
 
 ## Gisements de contenu référencés
 
@@ -23,6 +23,6 @@ d'inventer un angle ad hoc :
 ## Attention chiffres
 
 Toute statistique relayée (économies moyennes, évolution de prix) doit
-être sourcée ou nuancée — risque déjà identifié en §8 de la stratégie
-GEO/SEO. Ne jamais reprendre telle quelle une statistique non sourcée de
-la home.
+être sourcée ou nuancée — risque déjà identifié en §8 de
+`docs/strategie-geo-seo/2026-07-22-strategie-geo-seo-ms-strategy.md`.
+Ne jamais reprendre telle quelle une statistique non sourcée de la home.

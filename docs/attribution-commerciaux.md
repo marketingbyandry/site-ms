@@ -118,14 +118,6 @@ posé en cookie `ms_camp` par `middleware.js`, sur le même modèle que `ms_ref`
 - **Whitelist séparée** (`CAMPAIGNS` dans `middleware.js`, un code par
   segment/email de la séquence de démarchage à froid,
   `content/cold-outreach-waalaxy/`).
-
-Depuis le levier social B2B
-([spec](superpowers/specs/2026-09-07-leviers-social-b2b-design.md)),
-`CAMPAIGNS` contient aussi 4 codes par plateforme — `soc-li` (LinkedIn),
-`soc-fb` (Facebook), `soc-ig` (Instagram), `soc-x` (X) — posés par les liens
-de post organiques et les annonces payantes de chaque plateforme. Même
-mécanique dernier-touch que les codes `*-e<n>` du cold outreach.
-
 - **Dernier-touch, pas premier-touch** : un nouveau `?camp=` valide écrase
   toujours la valeur précédente. Il n'y a pas de commission à protéger ici —
   au contraire, on veut savoir quel email précis a fait revenir le prospect
@@ -135,6 +127,13 @@ mécanique dernier-touch que les codes `*-e<n>` du cold outreach.
   des campagnes), jamais transmis à un tiers publicitaire. L'opt-out déjà
   présent en pied de chaque email de la séquence (« répondez STOP ») couvre
   l'opposition.
+
+Depuis le levier social B2B
+([spec](superpowers/specs/2026-09-07-leviers-social-b2b-design.md)),
+`CAMPAIGNS` contient aussi 4 codes, un par plateforme — `soc-li` (LinkedIn),
+`soc-fb` (Facebook), `soc-ig` (Instagram), `soc-x` (X) — posés par les liens
+de post organiques et les annonces payantes de chaque plateforme. Même
+mécanique dernier-touch que les codes `*-e<n>` du cold outreach.
 
 `ref` et `camp` cohabitent sur le même lien
 (`?ref=ag&camp=chr-e1`) et sont retirés ensemble de l'URL affichée par la

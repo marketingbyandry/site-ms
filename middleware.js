@@ -45,9 +45,12 @@ export const SLUGS = ['ag', 'lg', 'mv', 'pm', 'zb', 'lf'];
    SUIVI DE CAMPAGNE (camp)
 
    Un code par email de la sequence de demarchage a froid (segment + numero),
-   ex. chr-e1. Independant de `ref` : ne credite aucune commission, sert
-   uniquement a mesurer quel email ramene le plus de trafic par segment
-   (PostHog, cf. src/analytics.js).
+   ex. chr-e1. Depuis le levier social B2B, `CAMPAIGNS` contient aussi des
+   codes par plateforme sociale (soc-li, soc-fb, soc-ig, soc-x), poses par
+   les liens de post organiques et les annonces payantes de chaque
+   plateforme. Independant de `ref` : ne credite aucune commission, sert
+   uniquement a mesurer quel email ou quelle plateforme ramene le plus de
+   trafic par segment (PostHog, cf. src/analytics.js).
 
    Contrairement a `ref` (premier-touch, protege la commission du commercial
    qui a cree la demande), `camp` est dernier-touch : un nouveau `?camp=`
