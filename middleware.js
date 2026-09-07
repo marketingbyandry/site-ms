@@ -45,9 +45,12 @@ export const SLUGS = ['ag', 'lg', 'mv', 'pm', 'zb', 'lf'];
    SUIVI DE CAMPAGNE (camp)
 
    Un code par email de la sequence de demarchage a froid (segment + numero),
-   ex. chr-e1. Independant de `ref` : ne credite aucune commission, sert
-   uniquement a mesurer quel email ramene le plus de trafic par segment
-   (PostHog, cf. src/analytics.js).
+   ex. chr-e1. Depuis le levier social B2B, `CAMPAIGNS` contient aussi des
+   codes par plateforme sociale (soc-li, soc-fb, soc-ig, soc-x), poses par
+   les liens de post organiques et les annonces payantes de chaque
+   plateforme. Independant de `ref` : ne credite aucune commission, sert
+   uniquement a mesurer quel email ou quelle plateforme ramene le plus de
+   trafic par segment (PostHog, cf. src/analytics.js).
 
    Contrairement a `ref` (premier-touch, protege la commission du commercial
    qui a cree la demande), `camp` est dernier-touch : un nouveau `?camp=`
@@ -61,7 +64,9 @@ export const SLUGS = ['ag', 'lg', 'mv', 'pm', 'zb', 'lf'];
 export const CAMPAIGNS = [
   'chr-e1', 'chr-e2', 'chr-e3',
   'ind-e1', 'ind-e2', 'ind-e3',
-  'tert-e1', 'tert-e2', 'tert-e3'
+  'tert-e1', 'tert-e2', 'tert-e3',
+  // Levier social B2B (docs/superpowers/specs/2026-09-07-leviers-social-b2b-design.md)
+  'soc-li', 'soc-fb', 'soc-ig', 'soc-x'
 ];
 
 // Page d'atterrissage des liens courts /c/<slug>.
