@@ -37,8 +37,24 @@ function initPostHog() {
     advanced_disable_feature_flags: true
   });
 
+  // Expose l'instance pour les scripts inline (b2b.html/b2c.html), meme
+  // pattern que window.fbq pour le Pixel Meta : son existence signale que
+  // le consentement analytics a ete donne, sert de garde pour les captures
+  // hors de ce fichier (voir onTallySubmit/openTallyForm).
+  window.posthog = posthog;
+
   // Variante du test A/B, tiree au sort et posee en cookie par middleware.js.
-  const properties = { variant: readCookie(document.cookie, 'ms_variant') || 'A' };
+  const variant = readCookie(document.cookie, 'ms_variant') || 'A';
+  const properties = {
+    variant: variant,
+    // Property au format attendu par PostHog Experiments quand la variante
+    // est assignee par notre propre systeme plutot que par les feature
+    // flags PostHog (voir Global Constraints) : $feature/<experiment-key>.
+    // Cle "site-theme-mode" a creer cote PostHog (Experiments > New) pour
+    // que le funnel/l'analyse de significativite se rattache a cette
+    // property.
+    '$feature/site-theme-mode': variant === 'B' ? 'light' : 'dark'
+  };
 
   // Commercial referent, quand le visiteur vient d'un lien d'affiliation.
   // Permet de segmenter le tunnel visite -> clic CTA -> depot de facture par
