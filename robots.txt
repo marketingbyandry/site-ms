@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /index-b.html
+Disallow: /merci-facture.html
 
 # --- Moteurs de recherche génératifs / crawlers IA ---
 # Autorisation explicite : M&S Strategy souhaite être indexé et cité
