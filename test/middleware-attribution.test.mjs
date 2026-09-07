@@ -163,3 +163,15 @@ test('camp n_est jamais pose via le lien court /c/<slug>', () => {
   const response = call(`https://cabinetms.fr/c/${SLUG}`);
   assert.equal(campCookie(response), null);
 });
+
+test('les 4 codes de campagne social sont acceptes par le middleware', () => {
+  const socialCodes = ['soc-li', 'soc-fb', 'soc-ig', 'soc-x'];
+  for (const code of socialCodes) {
+    assert.ok(
+      CAMPAIGNS.includes(code),
+      `${code} doit figurer dans CAMPAIGNS`
+    );
+    const response = call(`https://cabinetms.fr/b2b.html?camp=${code}`);
+    assert.equal(campCookie(response), code);
+  }
+});

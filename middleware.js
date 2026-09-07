@@ -61,7 +61,9 @@ export const SLUGS = ['ag', 'lg', 'mv', 'pm', 'zb', 'lf'];
 export const CAMPAIGNS = [
   'chr-e1', 'chr-e2', 'chr-e3',
   'ind-e1', 'ind-e2', 'ind-e3',
-  'tert-e1', 'tert-e2', 'tert-e3'
+  'tert-e1', 'tert-e2', 'tert-e3',
+  // Levier social B2B (docs/superpowers/specs/2026-09-07-leviers-social-b2b-design.md)
+  'soc-li', 'soc-fb', 'soc-ig', 'soc-x'
 ];
 
 // Page d'atterrissage des liens courts /c/<slug>.
