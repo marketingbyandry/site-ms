@@ -1,6 +1,7 @@
 (function(){
-  var items = ['ma boulangerie','ma boucherie','ma plateforme industrielle','mon restaurant','mon hôtel','mon institut de beauté','mon exploitation agricole','mon lieu de réception'];
+  var defaultItems = ['ma boulangerie','ma boucherie','ma plateforme industrielle','mon restaurant','mon hôtel','mon institut de beauté','mon exploitation agricole','mon lieu de réception'];
   var input = document.getElementById('heroSearchInput');
+  var items = (input && input.getAttribute('data-items')) ? input.getAttribute('data-items').split('|') : defaultItems;
   var mirror = document.getElementById('heroSearchMirror');
   var caret = document.getElementById('heroSearchCaret');
   if(!input) return;
