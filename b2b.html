@@ -122,19 +122,19 @@ a{text-decoration:none;color:inherit}
 .pcta:hover .ca{transform:translateX(4px)}
 
 /* ─── HERO SEARCH CTA ─────────────────── */
-.psearch{display:inline-flex;align-items:center;gap:.5rem;background:rgba(94,207,220,.05);border:1px solid rgba(94,207,220,.18);border-radius:2px;padding:.5rem .5rem .5rem 1rem;transition:border-color .25s ease,transform .2s ease}
+.psearch{display:inline-flex;align-items:center;gap:.75rem;background:rgba(94,207,220,.05);border:2px solid rgba(94,207,220,.3);border-radius:999px;padding:.85rem .85rem .85rem 1.8rem;transition:border-color .25s ease,transform .2s ease}
 .psearch:focus-within{border-color:var(--teal-glow);transform:translateY(-1px)}
-.psearch-prefix{font-family:'Satoshi',sans-serif;font-size:.78rem;font-weight:700;color:var(--teal-light);white-space:nowrap}
-.psearch-wrap{position:relative;display:inline-flex;align-items:center;width:11rem}
-.psearch input{width:100%;border:none;background:transparent;outline:none;font-family:'Satoshi',sans-serif;font-size:.78rem;font-weight:700;color:var(--green-glow)}
+.psearch-prefix{font-family:'Satoshi',sans-serif;font-size:.95rem;font-weight:700;color:var(--teal-light);white-space:nowrap}
+.psearch-wrap{position:relative;display:inline-flex;align-items:center;width:14rem}
+.psearch input{width:100%;border:none;background:transparent;outline:none;font-family:'Satoshi',sans-serif;font-size:.95rem;font-weight:700;color:var(--green-glow)}
 .psearch input::placeholder{color:var(--green-glow);opacity:.9}
-.psearch-mirror{position:absolute;left:0;top:0;visibility:hidden;white-space:pre;font-family:'Satoshi',sans-serif;font-size:.78rem;font-weight:700}
-.psearch-caret{position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:.85rem;background:var(--green-glow);animation:psearchBlink 1s steps(1) infinite}
+.psearch-mirror{position:absolute;left:0;top:0;visibility:hidden;white-space:pre;font-family:'Satoshi',sans-serif;font-size:.95rem;font-weight:700}
+.psearch-caret{position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:1.05rem;background:var(--green-glow);animation:psearchBlink 1s steps(1) infinite}
 .psearch-caret.hide{opacity:0;animation:none}
 @keyframes psearchBlink{0%,49%{opacity:1}50%,100%{opacity:0}}
-.psearch-go{flex-shrink:0;width:2.1rem;height:2.1rem;border-radius:50%;border:none;cursor:pointer;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:background .2s ease,transform .2s ease}
+.psearch-go{flex-shrink:0;width:2.9rem;height:2.9rem;border-radius:50%;border:none;cursor:pointer;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;transition:background .2s ease,transform .2s ease}
 .psearch-go:hover{background:var(--teal-light);color:var(--dark);transform:scale(1.06)}
-@media(max-width:480px){.psearch-prefix{display:none}.psearch-wrap{width:8.5rem}}
+@media(max-width:480px){.psearch-prefix{display:none}.psearch-wrap{width:10rem}}
 
 /* ─── SEO / INTRO ─────────────────────── */
 .seo-intro{padding:4rem 5vw 7rem;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
