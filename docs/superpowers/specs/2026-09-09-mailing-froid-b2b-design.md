@@ -20,8 +20,7 @@ pas seulement documentée.
 
 ## Objectif
 
-Faire remonter des PME/ETI des secteurs déjà ciblés par le site
-(agriculture, industrie, logistique) vers le formulaire Tally existant
+Faire remonter des PME/ETI vers le formulaire Tally existant
 « Transmettre ma facture » (b2b.html), qui alimente le pipeline HubSpot
 « Dossier facture » déjà en place. Aucun nouveau funnel de conversion à
 construire — seule la partie acquisition (sourcing → envoi) est nouvelle.
@@ -49,7 +48,7 @@ Lot du jour (30-50 contacts, nominatif/générique + confiance)
         ▼
 Envoi Brevo API (htmlContent, throttlé)
         │
-        ├──► Clic lien attribué (camp=cold-mail) → b2b.html → Tally →
+        ├──► Clic lien attribué (camp=mail-{chr,ind,tert,agri,log}) → b2b.html → Tally →
         │    HubSpot "Dossier facture"
         │
         └──► Webhooks Brevo (unsubscribed / hard_bounce / spam /
@@ -61,10 +60,20 @@ Envoi Brevo API (htmlContent, throttlé)
 
 ### 1. Sourcing & enrichissement (Composio + Pappers/Infogreffe)
 
-- Recherche d'entreprises par code NAF correspondant aux 3 secteurs déjà
-  ciblés par le site (agriculture, industrie, logistique — mêmes secteurs
-  que le calendrier éditorial social B2B et les pages villes), filtrée sur
-  la taille PME/ETI (effectif).
+- Recherche d'entreprises par code NAF sur **5 segments**, réunion des deux
+  segmentations déjà utilisées ailleurs sur le projet (décision utilisateur
+  du 2026-09-09, correction d'une confusion initiale avec le ciblage
+  Solarair) :
+  - Précédent **Waalaxy** (`content/cold-outreach-waalaxy/`, déjà en prod) :
+    `chr` hôtellerie-restauration (NAF section I), `ind` industrie/
+    production (NAF section C), `tert` tertiaire — écoles, associations,
+    santé/EHPAD (NAF sections P/Q/S).
+  - Positionnement **cabinet d'expertise énergie** (2026-08-03) :
+    `agri` agriculture (NAF section A), `log` logistique (NAF section H).
+    `ind` est commun aux deux et n'est pas dupliqué.
+  - Filtré sur la taille PME/ETI (effectif) via `recherche-entreprises.api.gouv.fr`
+    (API publique gratuite, sans clé, confirmée en session — paramètres
+    `section_activite_principale`, `tranche_effectif_salarie`).
 - Pour chaque entreprise : raison sociale, SIREN, nom du dirigeant, site web
   si disponible (données publiques légales, aucune collecte via LinkedIn).
 - Email en cascade, jamais de pure supposition :
@@ -120,11 +129,13 @@ Un seul Google Sheet sert de file d'attente + journal :
 
 ### 5. Attribution (réutilisation du système existant)
 
-- Nouveau code `camp` ajouté à la whitelist `CAMPAIGNS` de `middleware.js` :
-  `cold-mail` (même pattern que `soc-li`/`soc-fb`/`soc-ig`/`soc-x` ajoutés
-  pour le levier social B2B — cf.
+- 5 nouveaux codes `camp` ajoutés à la whitelist `CAMPAIGNS` de
+  `middleware.js` : `mail-chr`, `mail-ind`, `mail-tert`, `mail-agri`,
+  `mail-log` — un par segment (cf. section précédente), même préfixe `mail-`
+  pour les distinguer des codes `chr-e1`/`ind-e1`/`tert-e1` du cold outreach
+  Waalaxy et `soc-li`/`soc-fb`/`soc-ig`/`soc-x` du levier social B2B (cf.
   `docs/superpowers/specs/2026-09-07-leviers-social-b2b-design.md`).
-- Chaque lien dans l'email pointe vers `b2b.html?camp=cold-mail` →
+- Chaque lien dans l'email pointe vers `b2b.html?camp=mail-<segment>` →
   `middleware.js` pose le cookie `ms_camp`, PostHog le reçoit en
   super-property, redirection propre sans trace dans l'URL affichée (même
   comportement que les autres codes `camp`).
@@ -166,7 +177,7 @@ Un seul Google Sheet sert de file d'attente + journal :
 
 ## Répartition du travail (exécution)
 
-- **Code** (`dev-builder`, repo SITE MS) : ajout du code `cold-mail` à
+- **Code** (`dev-builder`, repo SITE MS) : ajout des 5 codes `mail-*` à
   `CAMPAIGNS` dans `middleware.js` + test dédié (même pattern que les codes
   `soc-*`) ; intégration Brevo API pour l'envoi (clé API en variable
   d'environnement, jamais commitée) ; logique de plafond/vérification
