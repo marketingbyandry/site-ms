@@ -119,9 +119,15 @@ Un seul Google Sheet sert de file d'attente + journal :
 ### 4. Contenu de l'email
 
 - Pied de page CNIL obligatoire sur chaque template : identité de
-  l'émetteur (M&S Strategy, SIREN, adresse), motif de pertinence
-  professionnelle (lien avec la gestion de l'énergie de l'entreprise
-  destinataire), lien de désinscription en un clic (mécanisme Brevo natif).
+  l'émetteur (M&S Strategy, SIREN 752 139 477, 1366 Av. des Platanes 34970
+  Lattes), motif de pertinence professionnelle (lien avec la gestion de
+  l'énergie de l'entreprise destinataire), opt-out. **Mécanisme d'opt-out :
+  "répondez STOP"**, identique au précédent déjà établi et documenté pour la
+  séquence Waalaxy (`docs/attribution-commerciaux.md`) — pas de lien de
+  désinscription Brevo natif (`{{ unsubscribe }}`), dont le comportement sur
+  un envoi `htmlContent` brut hors template Brevo n'est pas confirmé avec
+  certitude. Un lien `mailto:` pré-rempli complète le texte pour le confort
+  (un clic plutôt qu'à retaper), sans dépendre de ce mécanisme incertain.
 - Corps HTML : angle "transmettez votre facture, on regarde s'il y a des
   économies" — cohérent avec le funnel Tally existant.
 - Ton et structure alignés sur les 9 templates HubSpot déjà écrits pour la
@@ -190,8 +196,15 @@ Un seul Google Sheet sert de file d'attente + journal :
 
 ## Action utilisateur restante (hors périmètre code)
 
-- Création du compte Brevo + clé API (variable d'environnement, jamais
-  commitée).
+- ~~Création du compte Brevo + clé API~~ **Fait** — compte Brevo connecté à
+  Composio (`composio link brevo`, statut `ACTIVE`), la clé n'est jamais
+  manipulée par le code ni par l'agent, Composio la porte pour les appels
+  `composio proxy`.
+- Boîte mail `prospection@mail.cabinetms.fr` (ou alias existant) à créer et
+  surveillable — c'est l'adresse d'expédition, et l'opt-out du template
+  (section suivante) repose sur "répondez STOP" comme la séquence Waalaxy
+  déjà en prod (cf. `docs/attribution-commerciaux.md`), donc les réponses à
+  cette boîte doivent être relevées régulièrement.
 - Configuration DNS du sous-domaine d'envoi `mail.cabinetms.fr` (SPF/
   DKIM) chez le registrar/hébergeur DNS de cabinetms.fr.
 - Accès Pappers/Infogreffe (API publique — vérifier si une clé
