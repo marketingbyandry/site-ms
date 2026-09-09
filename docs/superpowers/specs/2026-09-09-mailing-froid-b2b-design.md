@@ -31,7 +31,7 @@ Cycle quotidien orchestré par Composio, déclenché par une session planifiée
 Claude Code (`/schedule` — pas de nouvelle infra Vercel Cron/GitHub Action) :
 
 ```
-Pappers/Infogreffe (recherche NAF)
+recherche-entreprises.api.gouv.fr (recherche NAF)
         │
         ▼
 Enrichissement (dirigeant + email cascade)
@@ -51,14 +51,19 @@ Envoi Brevo API (htmlContent, throttlé)
         ├──► Clic lien attribué (camp=mail-{chr,ind,tert,agri,log}) → b2b.html → Tally →
         │    HubSpot "Dossier facture"
         │
-        └──► Webhooks Brevo (unsubscribed / hard_bounce / spam /
-             invalid_email) → mise à jour Google Sheet + garde-fou
-             pause automatique
+        └──► Liste de suppression Brevo interrogée à chaque envoi
+             (GET /v3/smtp/blockedContacts du jour) → mise à jour Google
+             Sheet + garde-fou pause automatique si le taux dépasse 5 %
 ```
+
+Interrogation directe plutôt que webhook entrant : évite de construire un
+nouvel endpoint Vercel pour recevoir des webhooks Brevo (aucun endpoint de
+ce type n'existe encore sur ce repo) alors que la liste de suppression est
+déjà accessible en lecture à la demande, avec le même contenu.
 
 ## Composants
 
-### 1. Sourcing & enrichissement (Composio + Pappers/Infogreffe)
+### 1. Sourcing & enrichissement (recherche-entreprises.api.gouv.fr)
 
 - Recherche d'entreprises par code NAF sur **5 segments**, réunion des deux
   segmentations déjà utilisées ailleurs sur le projet (décision utilisateur
@@ -79,7 +84,8 @@ Envoi Brevo API (htmlContent, throttlé)
 - Email en cascade, jamais de pure supposition :
   1. **Nominatif** — uniquement si un pattern d'email est confirmé par un
      exemple déjà visible publiquement sur le site de l'entreprise (page
-     équipe/mentions légales/contact nommé). Le nom du dirigeant (Pappers)
+     équipe/mentions légales/contact nommé). Le nom du dirigeant
+     (`recherche-entreprises.api.gouv.fr`, champ `dirigeants`)
      est alors combiné à ce pattern confirmé.
   2. **Générique** (repli) — adresse de rôle (contact@/direction@) trouvée
      sur la page contact publique du site.
@@ -155,8 +161,9 @@ Un seul Google Sheet sert de file d'attente + journal :
 - Vérification de la liste de suppression Brevo à l'envoi, pas seulement à
   la constitution du lot.
 - Arrêt automatique du pipeline si le taux de bounce d'une journée dépasse
-  5 % (webhook `hard_bounce`/`invalid_email` compté vs volume envoyé ce
-  jour-là) — reprise seulement après revue manuelle.
+  5 % (contacts bloqués du jour via `GET /v3/smtp/blockedContacts`, comptés
+  contre le volume déjà envoyé ce jour-là) — reprise seulement après revue
+  manuelle.
 - Aucune adresse nominative fabriquée par pure supposition — cascade
   nominatif→générique→exclusion, jamais de pattern non confirmé.
 - Validation manuelle obligatoire du lot avant tout envoi (pas
@@ -191,7 +198,7 @@ Un seul Google Sheet sert de file d'attente + journal :
 - **Contenu** (`content-builder`) : template HTML de l'email (corps + pied
   de page CNIL), aligné sur le ton des 9 templates HubSpot existants.
 - **Configuration/orchestration** (Composio, ce chantier) : requêtes
-  Pappers/Infogreffe, écriture/lecture du Google Sheet, appels Brevo API,
+  recherche-entreprises.api.gouv.fr, écriture/lecture du Google Sheet, appels Brevo API,
   planification `/schedule`.
 
 ## Action utilisateur restante (hors périmètre code)
@@ -207,9 +214,11 @@ Un seul Google Sheet sert de file d'attente + journal :
   cette boîte doivent être relevées régulièrement.
 - Configuration DNS du sous-domaine d'envoi `mail.cabinetms.fr` (SPF/
   DKIM) chez le registrar/hébergeur DNS de cabinetms.fr.
-- Accès Pappers/Infogreffe (API publique — vérifier si une clé
-  d'inscription gratuite est requise selon le volume de requêtes).
-- Partage du Google Sheet de suivi avec le compte Composio.
+- ~~Accès Pappers/Infogreffe~~ **Sans objet** — sourcing fait via
+  `recherche-entreprises.api.gouv.fr`, API publique gratuite sans clé
+  (confirmée en session le 2026-09-09), pas Pappers.
+- Compte Google Sheets connecté à Composio (`composio link googlesheets`) —
+  lien envoyé à l'utilisateur, connexion à confirmer.
 
 ## Test / vérification avant mise en production
 
