@@ -94,10 +94,10 @@ Un seul Google Sheet sert de file d'attente + journal :
 
 - `POST /v3/smtp/email` avec `htmlContent` (template HTML conservé, cf.
   contrainte explicite de l'utilisateur).
-- Domaine d'envoi à authentifier (SPF/DKIM) — sous-domaine dédié
-  recommandé (ex. `contact.cabinetms.fr`) plutôt que le domaine principal,
-  pour ne jamais exposer la réputation du site public à un incident
-  d'envoi.
+- Envoi depuis un sous-domaine dédié (`contact.cabinetms.fr`) plutôt que le
+  domaine principal, pour ne jamais exposer la réputation du site public à
+  un incident d'envoi. Authentification SPF/DKIM de ce sous-domaine à
+  configurer côté DNS (action utilisateur, cf. section dédiée).
 - Avant chaque envoi individuel : vérification contre
   `GET /v3/smtp/blockedContacts` (liste de suppression Brevo — désinscrits,
   hard bounce, plaintes spam), pas seulement au moment de la constitution
@@ -176,6 +176,16 @@ Un seul Google Sheet sert de file d'attente + journal :
 - **Configuration/orchestration** (Composio, ce chantier) : requêtes
   Pappers/Infogreffe, écriture/lecture du Google Sheet, appels Brevo API,
   planification `/schedule`.
+
+## Action utilisateur restante (hors périmètre code)
+
+- Création du compte Brevo + clé API (variable d'environnement, jamais
+  commitée).
+- Configuration DNS du sous-domaine d'envoi `contact.cabinetms.fr` (SPF/
+  DKIM) chez le registrar/hébergeur DNS de cabinetms.fr.
+- Accès Pappers/Infogreffe (API publique — vérifier si une clé
+  d'inscription gratuite est requise selon le volume de requêtes).
+- Partage du Google Sheet de suivi avec le compte Composio.
 
 ## Test / vérification avant mise en production
 
