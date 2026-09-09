@@ -94,7 +94,7 @@ Un seul Google Sheet sert de file d'attente + journal :
 
 - `POST /v3/smtp/email` avec `htmlContent` (template HTML conservé, cf.
   contrainte explicite de l'utilisateur).
-- Envoi depuis un sous-domaine dédié (`contact.cabinetms.fr`) plutôt que le
+- Envoi depuis un sous-domaine dédié (`mail.cabinetms.fr`) plutôt que le
   domaine principal, pour ne jamais exposer la réputation du site public à
   un incident d'envoi. Authentification SPF/DKIM de ce sous-domaine à
   configurer côté DNS (action utilisateur, cf. section dédiée).
@@ -181,7 +181,7 @@ Un seul Google Sheet sert de file d'attente + journal :
 
 - Création du compte Brevo + clé API (variable d'environnement, jamais
   commitée).
-- Configuration DNS du sous-domaine d'envoi `contact.cabinetms.fr` (SPF/
+- Configuration DNS du sous-domaine d'envoi `mail.cabinetms.fr` (SPF/
   DKIM) chez le registrar/hébergeur DNS de cabinetms.fr.
 - Accès Pappers/Infogreffe (API publique — vérifier si une clé
   d'inscription gratuite est requise selon le volume de requêtes).
