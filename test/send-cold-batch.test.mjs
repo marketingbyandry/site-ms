@@ -99,13 +99,15 @@ test('choisit le template du bon secteur pour chaque contact du lot', () => {
   const execCli = makeExecCli();
   const batch = [
     { email: 'resto@exemple.fr', entreprise: 'Le Bon Plat', type: 'generique', segment: 'chr', secteur: 'restaurant' },
-    { email: 'boul@exemple.fr', entreprise: 'Boulangerie Dupont', type: 'generique', segment: 'ind', secteur: 'boulangerie' }
+    { email: 'boul@exemple.fr', entreprise: 'Boulangerie Dupont', type: 'generique', segment: 'ind', secteur: 'boulangerie' },
+    { email: 'ferme@exemple.fr', entreprise: 'GAEC des Collines', type: 'generique', segment: 'agri', secteur: 'agriculture' }
   ];
   runColdBatch({
     batch,
     templates: {
       restaurant: 'TEMPLATE_RESTAURANT {{LIEN_FORMULAIRE}}',
       boulangerie: 'TEMPLATE_BOULANGERIE {{LIEN_FORMULAIRE}}',
+      agriculture: 'TEMPLATE_AGRICULTURE {{LIEN_FORMULAIRE}}',
       default: 'TEMPLATE_DEFAULT {{LIEN_FORMULAIRE}}'
     },
     alreadySentToday: 0,
@@ -116,6 +118,7 @@ test('choisit le template du bon secteur pour chaque contact du lot', () => {
   const payloads = sendCalls.map((c) => JSON.parse(c[c.indexOf('-d') + 1]));
   assert.match(payloads[0].htmlContent, /^TEMPLATE_RESTAURANT/);
   assert.match(payloads[1].htmlContent, /^TEMPLATE_BOULANGERIE/);
+  assert.match(payloads[2].htmlContent, /^TEMPLATE_AGRICULTURE/);
 });
 
 test('retombe sur le template par defaut quand le secteur est absent ou non reconnu', () => {

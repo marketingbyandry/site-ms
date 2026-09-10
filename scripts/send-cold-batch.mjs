@@ -8,7 +8,7 @@
 // manuellement (voir docs/cold-mail-runbook.md) :
 //   [{ "email": "...", "entreprise": "...", "type": "nominatif|generique",
 //      "destinataire": "Jean Dupont", "segment": "chr|ind|tert|agri|log",
-//      "secteur": "restaurant|bar|discotheque|boulangerie|boucherie|industrie" }]
+//      "secteur": "restaurant|bar|discotheque|boulangerie|boucherie|industrie|agriculture" }]
 //
 // `segment` = code CAMPAIGNS/CNAE utilise pour le lien de tracking
 // (mail-${segment}) et la conformite CNIL. `secteur` = template visuel
@@ -38,7 +38,7 @@ export const SUBJECT = "Votre facture d'énergie, mise en concurrence gratuite";
 // Un template distinct par secteur d'activite (pas de regroupement visuel) :
 // chaque contact porte son propre `secteur`, illustre avec une photo et des
 // reperes specifiques a ce metier. Les contacts sans `secteur` reconnu
-// (ou hors de ces 6 metiers, ex. segments tert/agri/log) retombent sur le
+// (ou hors de ces 7 metiers, ex. segments tert/log) retombent sur le
 // template generique `default`.
 const DEFAULT_TEMPLATE_PATH = new URL('../content/cold-mail-b2b/template.html', import.meta.url);
 export const TEMPLATE_PATHS = {
@@ -48,6 +48,7 @@ export const TEMPLATE_PATHS = {
   boulangerie: new URL('../content/cold-mail-b2b/template-boulangerie.html', import.meta.url),
   boucherie: new URL('../content/cold-mail-b2b/template-boucherie.html', import.meta.url),
   industrie: new URL('../content/cold-mail-b2b/template-industrie.html', import.meta.url),
+  agriculture: new URL('../content/cold-mail-b2b/template-agriculture.html', import.meta.url),
   default: DEFAULT_TEMPLATE_PATH
 };
 
