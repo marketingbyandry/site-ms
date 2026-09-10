@@ -175,3 +175,15 @@ test('les 4 codes de campagne social sont acceptes par le middleware', () => {
     assert.equal(campCookie(response), code);
   }
 });
+
+test('les 5 codes de campagne mailing froid sont acceptes par le middleware', () => {
+  const coldMailCodes = ['mail-chr', 'mail-ind', 'mail-tert', 'mail-agri', 'mail-log'];
+  for (const code of coldMailCodes) {
+    assert.ok(
+      CAMPAIGNS.includes(code),
+      `${code} doit figurer dans CAMPAIGNS`
+    );
+    const response = call(`https://cabinetms.fr/b2b.html?camp=${code}`);
+    assert.equal(campCookie(response), code);
+  }
+});
