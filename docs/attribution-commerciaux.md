@@ -135,6 +135,17 @@ Depuis le levier social B2B
 de post organiques et les annonces payantes de chaque plateforme. Même
 mécanique dernier-touch que les codes `*-e<n>` du cold outreach.
 
+Depuis le mailing froid B2B
+([spec](superpowers/specs/2026-09-09-mailing-froid-b2b-design.md)),
+`CAMPAIGNS` contient aussi 5 codes préfixés `mail-` — `mail-chr`, `mail-ind`,
+`mail-tert` (mêmes segments que le cold outreach Waalaxy ci-dessus) et
+`mail-agri`, `mail-log` (secteurs agriculture/logistique du positionnement
+"cabinet d'expertise énergie" du 2026-08-03). Même mécanique dernier-touch.
+Contrairement au cold outreach Waalaxy et au levier social, ce canal envoie
+depuis `prospection@mail.cabinetms.fr` via Brevo (compte connecté à
+Composio, jamais de clé API dans ce repo) — opt-out par réponse "STOP",
+identique au mécanisme déjà en place pour la séquence Waalaxy.
+
 `ref` et `camp` cohabitent sur le même lien
 (`?ref=ag&camp=chr-e1`) et sont retirés ensemble de l'URL affichée par la
 même redirection 302 — les protections déjà en place pour `ref` (pas de
