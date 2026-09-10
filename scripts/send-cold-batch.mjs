@@ -7,7 +7,13 @@
 // batch.json : tableau de contacts deja domicilies, dedoublonnes et valides
 // manuellement (voir docs/cold-mail-runbook.md) :
 //   [{ "email": "...", "entreprise": "...", "type": "nominatif|generique",
-//      "destinataire": "Jean Dupont", "segment": "chr|ind|tert|agri|log" }]
+//      "destinataire": "Jean Dupont", "segment": "chr|ind|tert|agri|log",
+//      "secteur": "restaurant|bar|discotheque|boulangerie|boucherie|industrie" }]
+//
+// `segment` = code CAMPAIGNS/CNAE utilise pour le lien de tracking
+// (mail-${segment}) et la conformite CNIL. `secteur` = template visuel
+// choisi pour l'email ; optionnel, retombe sur le template generique quand
+// absent ou non reconnu (voir TEMPLATE_PATHS).
 //
 // Imprime sur stdout un resume JSON { sent, skippedBlocked, skippedCap,
 // aborted, reason? } pour que l'operateur (ou l'agent qui a lance ce
@@ -29,18 +35,20 @@ export const SENDER_EMAIL = 'contact@mail.cabinetms.fr';
 export const SENDER_NAME = 'M&S Strategy';
 export const SUBJECT = "Votre facture d'énergie, mise en concurrence gratuite";
 
-// Un template par segment ou groupe de segments visuellement proches. `chr`
-// (hotellerie-restauration-nuit) et `ind` (production/artisanat alimentaire/
-// industrie, cf. `docs/superpowers/specs/2026-09-09-mailing-froid-b2b-design.md`)
-// ont chacun un template illustre par secteur ; `tert`/`agri`/`log` retombent
-// sur le template generique (pas encore de deuxieme cycle de contenu dedie).
+// Un template distinct par secteur d'activite (pas de regroupement visuel) :
+// chaque contact porte son propre `secteur`, illustre avec une photo et des
+// reperes specifiques a ce metier. Les contacts sans `secteur` reconnu
+// (ou hors de ces 6 metiers, ex. segments tert/agri/log) retombent sur le
+// template generique `default`.
 const DEFAULT_TEMPLATE_PATH = new URL('../content/cold-mail-b2b/template.html', import.meta.url);
 export const TEMPLATE_PATHS = {
-  chr: new URL('../content/cold-mail-b2b/template-chr.html', import.meta.url),
-  ind: new URL('../content/cold-mail-b2b/template-ind.html', import.meta.url),
-  tert: DEFAULT_TEMPLATE_PATH,
-  agri: DEFAULT_TEMPLATE_PATH,
-  log: DEFAULT_TEMPLATE_PATH
+  restaurant: new URL('../content/cold-mail-b2b/template-restaurant.html', import.meta.url),
+  bar: new URL('../content/cold-mail-b2b/template-bar.html', import.meta.url),
+  discotheque: new URL('../content/cold-mail-b2b/template-discotheque.html', import.meta.url),
+  boulangerie: new URL('../content/cold-mail-b2b/template-boulangerie.html', import.meta.url),
+  boucherie: new URL('../content/cold-mail-b2b/template-boucherie.html', import.meta.url),
+  industrie: new URL('../content/cold-mail-b2b/template-industrie.html', import.meta.url),
+  default: DEFAULT_TEMPLATE_PATH
 };
 
 // Wrapper injectable autour de la CLI composio, pour rester testable sans
@@ -109,7 +117,7 @@ export function runColdBatch({
     const contact = capped[index];
     try {
       const payload = buildColdEmailPayload(contact, {
-        template: templates[contact.segment],
+        template: templates[contact.secteur] || templates.default,
         subject: SUBJECT,
         senderEmail: SENDER_EMAIL,
         senderName: SENDER_NAME
