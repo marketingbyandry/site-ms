@@ -25,7 +25,7 @@ import {
 export const DAILY_CAP = 50;
 export const BOUNCE_THRESHOLD_PCT = 5;
 export const SEND_DELAY_MS = 3000;
-export const SENDER_EMAIL = 'prospection@mail.cabinetms.fr';
+export const SENDER_EMAIL = 'contact@mail.cabinetms.fr';
 export const SENDER_NAME = 'M&S Strategy';
 export const SUBJECT = "Votre facture d'énergie, mise en concurrence gratuite";
 export const TEMPLATE_PATH = new URL('../content/cold-mail-b2b/template.html', import.meta.url);

@@ -207,7 +207,7 @@ Un seul Google Sheet sert de file d'attente + journal :
   Composio (`composio link brevo`, statut `ACTIVE`), la clé n'est jamais
   manipulée par le code ni par l'agent, Composio la porte pour les appels
   `composio proxy`.
-- Boîte mail `prospection@mail.cabinetms.fr` (ou alias existant) à créer et
+- Boîte mail `contact@mail.cabinetms.fr` (ou alias existant) à créer et
   surveillable — c'est l'adresse d'expédition, et l'opt-out du template
   (section suivante) repose sur "répondez STOP" comme la séquence Waalaxy
   déjà en prod (cf. `docs/attribution-commerciaux.md`), donc les réponses à

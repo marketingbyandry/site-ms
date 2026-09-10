@@ -33,7 +33,7 @@ test('buildColdEmailPayload utilise le prenom pour un contact nominatif', () => 
     {
       template: '{{SALUTATION}}|{{ENTREPRISE}}|{{LIEN_FORMULAIRE}}',
       subject: 'Sujet',
-      senderEmail: 'prospection@mail.cabinetms.fr',
+      senderEmail: 'contact@mail.cabinetms.fr',
       senderName: 'M&S Strategy'
     }
   );
@@ -50,7 +50,7 @@ test('buildColdEmailPayload utilise une salutation generique pour un contact gen
     {
       template: '{{SALUTATION}}',
       subject: 'Sujet',
-      senderEmail: 'prospection@mail.cabinetms.fr',
+      senderEmail: 'contact@mail.cabinetms.fr',
       senderName: 'M&S Strategy'
     }
   );

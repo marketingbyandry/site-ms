@@ -142,7 +142,7 @@ Depuis le mailing froid B2B
 `mail-agri`, `mail-log` (secteurs agriculture/logistique du positionnement
 "cabinet d'expertise énergie" du 2026-08-03). Même mécanique dernier-touch.
 Contrairement au cold outreach Waalaxy et au levier social, ce canal envoie
-depuis `prospection@mail.cabinetms.fr` via Brevo (compte connecté à
+depuis `contact@mail.cabinetms.fr` via Brevo (compte connecté à
 Composio, jamais de clé API dans ce repo) — opt-out par réponse "STOP",
 identique au mécanisme déjà en place pour la séquence Waalaxy.
 
