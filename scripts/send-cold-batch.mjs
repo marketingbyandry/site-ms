@@ -92,20 +92,34 @@ export function runColdBatch({
   const skippedCap = toSend.slice(capped.length);
 
   const sent = [];
-  capped.forEach((contact, index) => {
-    const payload = buildColdEmailPayload(contact, {
-      template,
-      subject: SUBJECT,
-      senderEmail: SENDER_EMAIL,
-      senderName: SENDER_NAME
-    });
-    sendOne(execCli, payload);
-    sent.push(contact.email);
-    // Pas de delai apres le dernier envoi : rien a espacer derriere.
-    if (index < capped.length - 1) {
-      sleepFn(delayMs);
+  for (let index = 0; index < capped.length; index++) {
+    const contact = capped[index];
+    try {
+      const payload = buildColdEmailPayload(contact, {
+        template,
+        subject: SUBJECT,
+        senderEmail: SENDER_EMAIL,
+        senderName: SENDER_NAME
+      });
+      sendOne(execCli, payload);
+      sent.push(contact.email);
+      // Pas de delai apres le dernier envoi : rien a espacer derriere.
+      if (index < capped.length - 1) {
+        sleepFn(delayMs);
+      }
+    } catch (err) {
+      // Stop attempting further sends if one fails (fail-safe).
+      return {
+        sent,
+        skippedBlocked: skippedBlocked.map((c) => c.email),
+        skippedCap: skippedCap.map((c) => c.email),
+        aborted: true,
+        reason: 'send_error',
+        error: err.message,
+        failedContact: contact.email
+      };
     }
-  });
+  }
 
   return {
     sent,

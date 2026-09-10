@@ -110,3 +110,54 @@ test('espace les envois d_un delai entre chaque email du lot', () => {
   // Un delai apres chaque envoi sauf le dernier : 2 delais pour 3 envois.
   assert.deepEqual(sleeps, [3000, 3000]);
 });
+
+test('preserve partial send results when composio proxy fails on 2nd contact', () => {
+  let emailCallCount = 0;
+  const calls = [];
+  const execCli = (args) => {
+    calls.push(args);
+    if (args[0] === 'proxy' && args[1].includes('/blockedContacts')) {
+      return { contacts: [] };
+    }
+    if (args[0] === 'proxy' && args[1] === 'https://api.brevo.com/v3/smtp/email') {
+      emailCallCount++;
+      if (emailCallCount === 2) {
+        throw new Error('Connection timeout from composio proxy');
+      }
+      return { messageId: 'test-message-id' };
+    }
+    throw new Error(`appel composio inattendu: ${args.join(' ')}`);
+  };
+  execCli.calls = calls;
+
+  const batch = [
+    { email: 'a@exemple.fr', entreprise: 'A', type: 'generique', segment: 'ind' },
+    { email: 'b@exemple.fr', entreprise: 'B', type: 'generique', segment: 'ind' },
+    { email: 'c@exemple.fr', entreprise: 'C', type: 'generique', segment: 'ind' }
+  ];
+  const result = runColdBatch({
+    batch,
+    template: TEMPLATE,
+    alreadySentToday: 0,
+    execCli,
+    sleepFn: () => {}
+  });
+
+  assert.deepEqual(result.sent, ['a@exemple.fr']);
+  assert.equal(result.aborted, true);
+  assert.equal(result.reason, 'send_error');
+  assert.equal(result.error, 'Connection timeout from composio proxy');
+  assert.equal(result.failedContact, 'b@exemple.fr');
+
+  // Verify we attempted exactly 2 smtp/email calls (1st succeeded, 2nd failed)
+  // and did NOT attempt to send to the 3rd contact
+  const sendCalls = execCli.calls.filter((c) => c[1] === 'https://api.brevo.com/v3/smtp/email');
+  assert.equal(sendCalls.length, 2, 'should attempt 1st and 2nd, but not 3rd');
+
+  // Verify no payload was sent for c@exemple.fr (3rd contact)
+  const sentEmails = sendCalls.map((call) => {
+    const payload = JSON.parse(call[call.indexOf('-d') + 1]);
+    return payload.to[0].email;
+  });
+  assert.deepEqual(sentEmails, ['a@exemple.fr', 'b@exemple.fr'], 'attempted 1st and 2nd emails only');
+});
