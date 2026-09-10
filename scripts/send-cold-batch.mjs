@@ -28,7 +28,20 @@ export const SEND_DELAY_MS = 3000;
 export const SENDER_EMAIL = 'contact@mail.cabinetms.fr';
 export const SENDER_NAME = 'M&S Strategy';
 export const SUBJECT = "Votre facture d'énergie, mise en concurrence gratuite";
-export const TEMPLATE_PATH = new URL('../content/cold-mail-b2b/template.html', import.meta.url);
+
+// Un template par segment ou groupe de segments visuellement proches. `chr`
+// (hotellerie-restauration-nuit) et `ind` (production/artisanat alimentaire/
+// industrie, cf. `docs/superpowers/specs/2026-09-09-mailing-froid-b2b-design.md`)
+// ont chacun un template illustre par secteur ; `tert`/`agri`/`log` retombent
+// sur le template generique (pas encore de deuxieme cycle de contenu dedie).
+const DEFAULT_TEMPLATE_PATH = new URL('../content/cold-mail-b2b/template.html', import.meta.url);
+export const TEMPLATE_PATHS = {
+  chr: new URL('../content/cold-mail-b2b/template-chr.html', import.meta.url),
+  ind: new URL('../content/cold-mail-b2b/template-ind.html', import.meta.url),
+  tert: DEFAULT_TEMPLATE_PATH,
+  agri: DEFAULT_TEMPLATE_PATH,
+  log: DEFAULT_TEMPLATE_PATH
+};
 
 // Wrapper injectable autour de la CLI composio, pour rester testable sans
 // reseau (voir test/send-cold-batch.test.mjs). Chaque appel renvoie le JSON
@@ -73,7 +86,7 @@ function sendOne(execCli, payload) {
 // reseau reel dans test/send-cold-batch.test.mjs).
 export function runColdBatch({
   batch,
-  template,
+  templates,
   alreadySentToday,
   execCli = defaultExecCli,
   cap = DAILY_CAP,
@@ -96,7 +109,7 @@ export function runColdBatch({
     const contact = capped[index];
     try {
       const payload = buildColdEmailPayload(contact, {
-        template,
+        template: templates[contact.segment],
         subject: SUBJECT,
         senderEmail: SENDER_EMAIL,
         senderName: SENDER_NAME
@@ -137,9 +150,11 @@ function main() {
   }
   const alreadySentToday = Number(process.argv[3] || 0);
   const batch = JSON.parse(readFileSync(batchPath, 'utf8'));
-  const template = readFileSync(TEMPLATE_PATH, 'utf8');
+  const templates = Object.fromEntries(
+    Object.entries(TEMPLATE_PATHS).map(([segment, path]) => [segment, readFileSync(path, 'utf8')])
+  );
 
-  const result = runColdBatch({ batch, template, alreadySentToday });
+  const result = runColdBatch({ batch, templates, alreadySentToday });
   console.log(JSON.stringify(result, null, 2));
 }
 

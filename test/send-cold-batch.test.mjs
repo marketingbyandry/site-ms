@@ -3,6 +3,10 @@ import assert from 'node:assert/strict';
 import { runColdBatch, SENDER_EMAIL, SENDER_NAME } from '../scripts/send-cold-batch.mjs';
 
 const TEMPLATE = '{{SALUTATION}} {{ENTREPRISE}} {{LIEN_FORMULAIRE}}';
+// La plupart des tests ne portent pas sur la selection de template par
+// segment (couverte par son propre test ci-dessous) : le meme contenu pour
+// les 5 segments suffit a exercer le reste du comportement.
+const SAME_TEMPLATE_ALL_SEGMENTS = { chr: TEMPLATE, ind: TEMPLATE, tert: TEMPLATE, agri: TEMPLATE, log: TEMPLATE };
 
 // Simule la CLI composio sans reseau : enregistre chaque appel, repond aux
 // deux formes utilisees par le script (blockedContacts, envoi d'un email).
@@ -28,7 +32,7 @@ test('envoie tous les contacts du lot quand rien n_est bloque', () => {
     { email: 'a@exemple.fr', entreprise: 'A SARL', type: 'generique', segment: 'ind' },
     { email: 'b@exemple.fr', entreprise: 'B SARL', type: 'generique', segment: 'chr' }
   ];
-  const result = runColdBatch({ batch, template: TEMPLATE, alreadySentToday: 0, execCli, sleepFn: () => {} });
+  const result = runColdBatch({ batch, templates: SAME_TEMPLATE_ALL_SEGMENTS, alreadySentToday: 0, execCli, sleepFn: () => {} });
   assert.deepEqual(result.sent, ['a@exemple.fr', 'b@exemple.fr']);
   assert.equal(result.aborted, false);
 });
@@ -39,7 +43,7 @@ test('retire du lot un contact deja sur la liste de suppression Brevo', () => {
     { email: 'a@exemple.fr', entreprise: 'A SARL', type: 'generique', segment: 'ind' },
     { email: 'b@exemple.fr', entreprise: 'B SARL', type: 'generique', segment: 'chr' }
   ];
-  const result = runColdBatch({ batch, template: TEMPLATE, alreadySentToday: 0, execCli, sleepFn: () => {} });
+  const result = runColdBatch({ batch, templates: SAME_TEMPLATE_ALL_SEGMENTS, alreadySentToday: 0, execCli, sleepFn: () => {} });
   assert.deepEqual(result.sent, ['a@exemple.fr']);
   assert.deepEqual(result.skippedBlocked, ['b@exemple.fr']);
 });
@@ -51,7 +55,7 @@ test('n_envoie jamais plus que le plafond restant', () => {
     { email: 'b@exemple.fr', entreprise: 'B', type: 'generique', segment: 'ind' },
     { email: 'c@exemple.fr', entreprise: 'C', type: 'generique', segment: 'ind' }
   ];
-  const result = runColdBatch({ batch, template: TEMPLATE, alreadySentToday: 0, execCli, cap: 2, sleepFn: () => {} });
+  const result = runColdBatch({ batch, templates: SAME_TEMPLATE_ALL_SEGMENTS, alreadySentToday: 0, execCli, cap: 2, sleepFn: () => {} });
   assert.deepEqual(result.sent, ['a@exemple.fr', 'b@exemple.fr']);
   assert.deepEqual(result.skippedCap, ['c@exemple.fr']);
 });
@@ -60,7 +64,7 @@ test('abandonne sans rien envoyer si le taux de bounce du jour depasse le seuil'
   const execCli = makeExecCli({ blockedEmails: ['x1@e.fr', 'x2@e.fr', 'x3@e.fr'] });
   const batch = [{ email: 'a@exemple.fr', entreprise: 'A', type: 'generique', segment: 'ind' }];
   // 3 bloques / 50 deja envoyes = 6% > seuil 5%
-  const result = runColdBatch({ batch, template: TEMPLATE, alreadySentToday: 50, execCli, thresholdPct: 5 });
+  const result = runColdBatch({ batch, templates: SAME_TEMPLATE_ALL_SEGMENTS, alreadySentToday: 50, execCli, thresholdPct: 5 });
   assert.equal(result.aborted, true);
   assert.equal(result.reason, 'bounce_rate');
   assert.deepEqual(result.sent, []);
@@ -79,7 +83,7 @@ test('le payload envoye porte le bon expediteur et le bon lien de campagne', () 
   }];
   runColdBatch({
     batch,
-    template: '{{SALUTATION}}{{LIEN_FORMULAIRE}}',
+    templates: { tert: '{{SALUTATION}}{{LIEN_FORMULAIRE}}' },
     alreadySentToday: 0,
     execCli,
     sleepFn: () => {}
@@ -89,6 +93,25 @@ test('le payload envoye porte le bon expediteur et le bon lien de campagne', () 
   assert.equal(payload.sender.email, SENDER_EMAIL);
   assert.equal(payload.sender.name, SENDER_NAME);
   assert.match(payload.htmlContent, /camp=mail-tert/);
+});
+
+test('choisit le template du bon segment pour chaque contact du lot', () => {
+  const execCli = makeExecCli();
+  const batch = [
+    { email: 'resto@exemple.fr', entreprise: 'Le Bon Plat', type: 'generique', segment: 'chr' },
+    { email: 'boul@exemple.fr', entreprise: 'Boulangerie Dupont', type: 'generique', segment: 'ind' }
+  ];
+  runColdBatch({
+    batch,
+    templates: { chr: 'TEMPLATE_CHR {{LIEN_FORMULAIRE}}', ind: 'TEMPLATE_IND {{LIEN_FORMULAIRE}}' },
+    alreadySentToday: 0,
+    execCli,
+    sleepFn: () => {}
+  });
+  const sendCalls = execCli.calls.filter((c) => c[1] === 'https://api.brevo.com/v3/smtp/email');
+  const payloads = sendCalls.map((c) => JSON.parse(c[c.indexOf('-d') + 1]));
+  assert.match(payloads[0].htmlContent, /^TEMPLATE_CHR/);
+  assert.match(payloads[1].htmlContent, /^TEMPLATE_IND/);
 });
 
 test('espace les envois d_un delai entre chaque email du lot', () => {
@@ -101,7 +124,7 @@ test('espace les envois d_un delai entre chaque email du lot', () => {
   ];
   runColdBatch({
     batch,
-    template: TEMPLATE,
+    templates: SAME_TEMPLATE_ALL_SEGMENTS,
     alreadySentToday: 0,
     execCli,
     delayMs: 3000,
@@ -137,7 +160,7 @@ test('preserve partial send results when composio proxy fails on 2nd contact', (
   ];
   const result = runColdBatch({
     batch,
-    template: TEMPLATE,
+    templates: SAME_TEMPLATE_ALL_SEGMENTS,
     alreadySentToday: 0,
     execCli,
     sleepFn: () => {}
