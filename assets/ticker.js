@@ -15,7 +15,7 @@
 const STATIC_ITEMS = [
   'Négociation d’énergies depuis 2012',
   '8 216 professionnels accompagnés',
-  'Étude gratuite · résultat sous 48h',
+  'Étude gratuite · résultat sous 24h',
 ];
 
 // Vitesses en px/s, identiques à l'ancienne implémentation JS (BASE_SPEED/HOVER_SPEED).

@@ -6,7 +6,7 @@
 
 const STATIC_ITEMS = [
   'Commission standardisée, identique quel que soit le fournisseur retenu',
-  'Aucune commission cachée : notre rémunération est fixée en amont, jamais négociée offre par offre',
+  'Transparence garantie : notre rémunération est établie en amont et n\'influence jamais le choix de votre offre',
   'Étude gratuite · résultat sous 24h',
 ];
 

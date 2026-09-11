@@ -19,9 +19,10 @@
   var refMatch = document.cookie.match(/(?:^|;\s*)ms_ref=([A-Za-z0-9_-]{1,32})/);
   window.msRef = refMatch ? refMatch[1] : DEFAULT_REF;
 
-  // Code de campagne (segment + email) : optionnel, pas de repli — sert
-  // uniquement à l'analyse de performance, jamais à l'attribution
-  // commerciale ni à la commission.
+  // Code de campagne (segment + email de démarchage à froid, ou plateforme
+  // sociale soc-li/soc-fb/soc-ig/soc-x depuis le levier social B2B) :
+  // optionnel, pas de repli — sert uniquement à l'analyse de performance,
+  // jamais à l'attribution commerciale ni à la commission.
   var campMatch = document.cookie.match(/(?:^|;\s*)ms_camp=([A-Za-z0-9_-]{1,32})/);
   window.msCamp = campMatch ? campMatch[1] : null;
 })();

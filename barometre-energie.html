@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <script defer src="assets/favicon-animate.js"></script>
 <title>Baromètre M&S Strategy des prix de l'énergie | M&S Strategy</title>
-<meta name="description" content="Suivez gratuitement l'évolution des prix de gros de l'électricité (ENTSO-E) et du gaz (index PEG Month-Ahead, via CRE) pour les entreprises, mis à jour chaque mois et chaque trimestre par M&S Strategy.">
+<meta name="description" content="Suivez l'évolution des prix du gaz et de l'électricité sur le marché de gros, mise à jour régulière, pour anticiper le bon moment pour négocier.">
 <meta name="keywords" content="prix électricité entreprise, prix gaz entreprise, baromètre énergie, prix de gros électricité, prix gaz PEG Month-Ahead, ENTSO-E, CRE">
 <link rel="canonical" href="https://cabinetms.fr/barometre-energie.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -174,8 +174,8 @@ a{text-decoration:none;color:inherit}
 .sup-q{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
 .sup-name{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.98rem;color:var(--cream);display:flex;align-items:center;gap:.6rem}
 .sup-num{font-family:'Satoshi',sans-serif;font-weight:800;font-size:.8rem;color:rgba(26,122,138,.5)}
-.sup-logo{height:24px;width:auto;max-width:130px;object-fit:contain;background:#fff;border-radius:3px;padding:3px 8px;display:block}
-.sup-stats{display:flex;flex-direction:column;gap:.2rem}
+.sup-logo{height:46px;width:180px;object-fit:contain;background:#fff;border-radius:4px;padding:8px 16px;display:block}
+.sup-stats{display:flex;flex-direction:column;gap:.2rem;margin-left:2rem}
 .sup-stat{font-size:.82rem;color:var(--teal-light);white-space:nowrap}
 .sup-stat-neg{font-size:.82rem;color:var(--muted2);white-space:nowrap}
 .sup-preview{color:var(--muted2);font-style:italic}
@@ -235,7 +235,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="phero-in">
     <span class="stag reveal">Indicateur gratuit, sans inscription</span>
     <h1 class="ph1 reveal d1">Baromètre M&S Strategy des <em>prix de l'énergie</em> pour les entreprises</h1>
-    <p class="psub2 reveal d2">Le prix de gros de l'électricité (mise à jour mensuelle) et du gaz (mise à jour trimestrielle), suivis en continu à partir de sources publiques officielles, pour comprendre où en est le marché avant de renégocier votre contrat.</p>
+    <p class="psub2 reveal d2">Le prix de gros de l'électricité (mise à jour mensuelle) et du gaz (mise à jour trimestrielle), <a href="blog.html" class="ilink">suivis en continu</a> à partir de sources publiques officielles, pour comprendre où en est le marché avant de renégocier votre contrat.</p>
     <a href="b2b.html#upload" class="pcta reveal d3">Transmettre ma facture pour une étude gratuite <span class="ca">→</span></a>
   </div>
 </section>
@@ -276,7 +276,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sup-section">
   <div class="sup-header reveal">
     <h2 class="sh2">Nos fournisseurs <em>partenaires.</em></h2>
-    <p>Parmi l'ensemble du marché consulté à chaque étude, voici les fournisseurs avec lesquels nous concluons le plus de contrats pour nos clients.</p>
+    <p>Parmi l'ensemble du marché consulté à <a href="resultats.html" class="ilink">chaque étude</a>, voici les fournisseurs avec lesquels nous concluons le plus de contrats pour nos clients.</p>
   </div>
   <div class="sup-list">
     <div class="sup-item reveal" onclick="this.classList.toggle('open')">
@@ -410,7 +410,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- QUOTE BAND -->
 <div class="qband reveal">
-  <p class="qt">Un marché <em>suivi de près</em>, pour négocier au bon moment.</p>
+  <p class="qt">Un marché <em>suivi de près</em>, pour <a href="b2b.html" class="ilink">négocier au bon moment</a>.</p>
   <span class="qs">M&S Strategy · Courtier en énergie indépendant depuis 2012</span>
 </div>
 
@@ -477,6 +477,7 @@ const obs = new IntersectionObserver(es => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+<script defer src="assets/speed-insights.js"></script>
 <script defer src="assets/cookie-consent.js"></script>
 <script defer src="assets/sup-stats.js"></script>
 <script src="assets/barometre.js" defer></script>

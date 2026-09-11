@@ -128,6 +128,13 @@ posé en cookie `ms_camp` par `middleware.js`, sur le même modèle que `ms_ref`
   présent en pied de chaque email de la séquence (« répondez STOP ») couvre
   l'opposition.
 
+Depuis le levier social B2B
+([spec](superpowers/specs/2026-09-07-leviers-social-b2b-design.md)),
+`CAMPAIGNS` contient aussi 4 codes, un par plateforme — `soc-li` (LinkedIn),
+`soc-fb` (Facebook), `soc-ig` (Instagram), `soc-x` (X) — posés par les liens
+de post organiques et les annonces payantes de chaque plateforme. Même
+mécanique dernier-touch que les codes `*-e<n>` du cold outreach.
+
 `ref` et `camp` cohabitent sur le même lien
 (`?ref=ag&camp=chr-e1`) et sont retirés ensemble de l'URL affichée par la
 même redirection 302 — les protections déjà en place pour `ref` (pas de

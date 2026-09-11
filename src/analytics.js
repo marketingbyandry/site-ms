@@ -37,8 +37,24 @@ function initPostHog() {
     advanced_disable_feature_flags: true
   });
 
+  // Expose l'instance pour les scripts inline (b2b.html/b2c.html), meme
+  // pattern que window.fbq pour le Pixel Meta : son existence signale que
+  // le consentement analytics a ete donne, sert de garde pour les captures
+  // hors de ce fichier (voir onTallySubmit/openTallyForm).
+  window.posthog = posthog;
+
   // Variante du test A/B, tiree au sort et posee en cookie par middleware.js.
-  const properties = { variant: readCookie(document.cookie, 'ms_variant') || 'A' };
+  const variant = readCookie(document.cookie, 'ms_variant') || 'A';
+  const properties = {
+    variant: variant,
+    // Property au format attendu par PostHog Experiments quand la variante
+    // est assignee par notre propre systeme plutot que par les feature
+    // flags PostHog (voir Global Constraints) : $feature/<experiment-key>.
+    // Cle "site-theme-mode" a creer cote PostHog (Experiments > New) pour
+    // que le funnel/l'analyse de significativite se rattache a cette
+    // property.
+    '$feature/site-theme-mode': variant === 'B' ? 'light' : 'dark'
+  };
 
   // Commercial referent, quand le visiteur vient d'un lien d'affiliation.
   // Permet de segmenter le tunnel visite -> clic CTA -> depot de facture par
@@ -46,15 +62,16 @@ function initPostHog() {
   const ref = readCookie(document.cookie, 'ms_ref');
   if (ref) properties.ref = ref;
 
-  // Code de campagne email (segment + numero), pose cote edge comme ms_ref
-  // mais en dernier-touch : sert a comparer les segments/emails entre eux,
-  // jamais a la commission.
+  // Code de campagne (email de demarchage a froid, ou plateforme sociale
+  // depuis le levier social B2B : soc-li/soc-fb/soc-ig/soc-x), pose cote
+  // edge comme ms_ref mais en dernier-touch : sert a comparer les
+  // segments/emails/plateformes entre eux, jamais a la commission.
   //
   // `ref` reste enregistre meme apres expiration du cookie (first-touch : on
   // veut garder trace du commercial a l'origine du dossier). `camp` doit au
   // contraire disparaitre des qu'il n'y a plus de cookie ms_camp, sinon un
   // visiteur revenu des mois plus tard en organique continuerait de trainer
-  // le code de la derniere campagne email — a l'oppose du dernier-touch visee.
+  // le code de la derniere campagne — a l'oppose du dernier-touch visee.
   const camp = readCookie(document.cookie, 'ms_camp');
   if (camp) properties.camp = camp;
   else posthog.unregister('camp');
