@@ -84,6 +84,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 :root[data-theme="light"] .cta-btn.ct-green:hover{background:var(--teal);color:#fff;transform:scale(1.05);box-shadow:none}
 :root[data-theme="light"] .cta-btn.ct-outline:hover{background:var(--green);border-color:var(--green);color:var(--dark);transform:scale(1.05);box-shadow:none}
 :root[data-theme="light"] .ccb-btn:hover{background:var(--teal);color:#fff;transform:scale(1.05);box-shadow:none}
+:root[data-theme="light"] .flip-card-back{background:rgba(26,122,138,.05)}
+:root[data-theme="light"] .rule-note{background:rgba(26,122,138,.05)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Satoshi',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -329,6 +331,34 @@ a{text-decoration:none;color:inherit}
 .akpi-l{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .about-extra{margin-top:1.5rem;padding:1rem 1.2rem;background:rgba(94,207,220,.05);border-left:3px solid var(--teal-light);border-radius:0 3px 3px 0;font-size:.86rem;color:var(--muted);line-height:1.65}
 .about-extra strong{color:var(--teal-glow);font-family:'Satoshi',sans-serif;font-weight:700}
+
+/* ─── PHOTO SYSTEM / SECTION 6 ────────── */
+.photo-section{padding:7rem 5vw;background:var(--dark2);border-top:1px solid rgba(26,122,138,.1)}
+.photo-inner{max-width:1100px;margin:0 auto}
+.photo-inner>.sbody{max-width:620px}
+.photo-system-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.6rem}
+@media(max-width:768px){.photo-system-grid{grid-template-columns:repeat(2,1fr)}}
+.flip-card{position:relative;display:block;width:100%;aspect-ratio:3/4;border:none;background:none;padding:0;margin:0;font:inherit;color:inherit;text-align:inherit;cursor:pointer;-webkit-perspective:1400px;perspective:1400px}
+.flip-card-inner{position:relative;width:100%;height:100%;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;-webkit-transform:rotate3d(.18,1,.06,var(--flip-deg,0deg));transform:rotate3d(.18,1,.06,var(--flip-deg,0deg));transition:-webkit-transform .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.flip-card-front,.flip-card-back{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:4px;overflow:hidden;-webkit-transform:translateZ(0);transform:translateZ(0);will-change:transform}
+.flip-card-back{-webkit-transform:rotate3d(.18,1,.06,180deg) translateZ(0);transform:rotate3d(.18,1,.06,180deg) translateZ(0);background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.18);padding:1.2rem 1.1rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.4rem}
+.flip-back-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.1rem;color:var(--teal-glow)}
+.flip-back-text{font-size:.78rem;color:var(--muted);line-height:1.55}
+.flip-hint{position:absolute;bottom:14px;right:14px;font-family:'Satoshi',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#f5f0e8;background:rgba(7,19,26,.55);border:1px solid rgba(94,207,220,.18);padding:.3rem .55rem;border-radius:2px;backdrop-filter:blur(4px);transition:opacity .3s ease}
+.flip-card.flipped .flip-hint{opacity:0}
+.photo-ph{position:absolute;inset:0;border-radius:4px;overflow:hidden;border:1px solid rgba(43,181,200,.15);
+  background:radial-gradient(circle at 30% 20%,rgba(94,207,220,.16),transparent 55%),
+    repeating-linear-gradient(120deg,rgba(138,172,180,.09) 0 1px,transparent 1px 26px),
+    linear-gradient(165deg,var(--teal-dark) 0%,rgba(7,19,26,.95) 78%);
+  filter:grayscale(.7) sepia(.15) hue-rotate(140deg) brightness(.85);
+  transition:filter 1s cubic-bezier(.16,1,.3,1)}
+.photo-ph.in,.photo-ph:hover{filter:grayscale(0) sepia(0) hue-rotate(0) brightness(1)}
+.photo-ph .tag{position:absolute;top:14px;left:14px;font-family:'Satoshi',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#f5f0e8;background:rgba(7,19,26,.55);border:1px solid rgba(94,207,220,.18);padding:.3rem .55rem;border-radius:2px;backdrop-filter:blur(4px)}
+.photo-ph .dot-grid{position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(245,240,232,.25) 1px,transparent 1.4px);background-size:18px 18px}
+.rule-note{margin-top:2.2rem;display:flex;gap:.9rem;align-items:flex-start;padding:1.3rem 1.4rem;border:1px solid rgba(43,181,200,.15);border-radius:4px;background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9))}
+.rule-note .dot{width:8px;height:8px;border-radius:50%;background:var(--teal-light);margin-top:.45rem;flex-shrink:0}
+.rule-note p{font-size:.86rem;color:var(--muted);line-height:1.65}
+.rule-note strong{color:var(--cream);font-weight:500}
 
 /* ─── CAREERS ─────────────────────────── */
 .careers{padding:7rem 5vw;background:var(--dark);border-top:1px solid rgba(43,181,200,.08)}
@@ -953,6 +983,83 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- PHOTO SYSTEM / SECTION 6 -->
+<section class="photo-section">
+  <div class="photo-inner">
+    <span class="stag reveal">Charte visuelle</span>
+    <h2 class="sh2 reveal d1">Une seule règle, appliquée partout</h2>
+    <div class="sbody reveal d2">
+      <p>Chaque photo entre teintée dans la charte, puis reprend sa couleur au scroll ou au survol — équipe, terrain, sites clients, sans exception.</p>
+    </div>
+    <div class="photo-system-grid">
+      <button type="button" class="flip-card" aria-pressed="false" aria-label="Afficher le détail : l'équipe">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="photo-ph">
+              <span class="dot-grid"></span>
+              <span class="tag">Équipe</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">L'équipe</p>
+            <p class="flip-back-text">Des experts dédiés au suivi de vos contrats, du diagnostic à la négociation.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
+      <button type="button" class="flip-card" aria-pressed="false" aria-label="Afficher le détail : sur le terrain">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="photo-ph">
+              <span class="dot-grid"></span>
+              <span class="tag">Terrain</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">Sur le terrain</p>
+            <p class="flip-back-text">Visites de sites, relevés de consommation, audits — au plus près de votre activité.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
+      <button type="button" class="flip-card" aria-pressed="false" aria-label="Afficher le détail : chez nos clients">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="photo-ph">
+              <span class="dot-grid"></span>
+              <span class="tag">Site client</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">Chez nos clients</p>
+            <p class="flip-back-text">Un accompagnement au cas par cas, secteur par secteur, site par site.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
+      <button type="button" class="flip-card" aria-pressed="false" aria-label="Afficher le détail : nos bureaux">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="photo-ph">
+              <span class="dot-grid"></span>
+              <span class="tag">Bureaux</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">Nos bureaux</p>
+            <p class="flip-back-text">8 agences réparties en France, pour un accueil et un suivi de proximité, où que vous soyez.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
+    </div>
+    <div class="rule-note reveal d2">
+      <span class="dot"></span>
+      <p><strong>En attendant :</strong> ces vignettes sont des emplacements réservés à de vraies photos. Elles prennent leurs couleurs au fil du scroll ou au survol, en attendant d'accueillir nos équipes et nos sites.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CAREERS -->
 <section class="careers" id="careers">
   <div class="careers-inner">
@@ -1197,7 +1304,22 @@ const obs = new IntersectionObserver(es => {
     if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
   });
 }, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.reveal, .photo-ph').forEach(el => obs.observe(el));
+
+/* ══════════════════════════════════
+   PHOTO SYSTEM / FLIP CARDS
+   ══════════════════════════════════ */
+document.querySelectorAll('.flip-card').forEach(function(card){
+  var turns = 0;
+  var inner = card.querySelector('.flip-card-inner');
+  card.addEventListener('click', function(){
+    turns++;
+    inner.style.setProperty('--flip-deg', (-180 * turns) + 'deg');
+    var flipped = turns % 2 === 1;
+    card.classList.toggle('flipped', flipped);
+    card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+  });
+});
 
 /* ══════════════════════════════════
    FAQ ACCORDION
