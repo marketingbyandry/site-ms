@@ -339,10 +339,9 @@ a{text-decoration:none;color:inherit}
 .photo-system-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.6rem}
 @media(max-width:768px){.photo-system-grid{grid-template-columns:repeat(2,1fr)}}
 .flip-card{position:relative;display:block;width:100%;aspect-ratio:3/4;border:none;background:none;padding:0;margin:0;font:inherit;color:inherit;text-align:inherit;cursor:pointer;perspective:1400px}
-.flip-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateY(0deg);transition:transform .7s cubic-bezier(.4,0,.2,1)}
-.flip-card.flipped .flip-card-inner{transform:rotateY(180deg)}
+.flip-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotate3d(.18,1,.06,var(--flip-deg,0deg));transition:transform .9s cubic-bezier(.16,1,.3,1)}
 .flip-card-front,.flip-card-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:4px;overflow:hidden}
-.flip-card-back{transform:rotateY(180deg);background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.18);padding:1.2rem 1.1rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.4rem}
+.flip-card-back{transform:rotate3d(.18,1,.06,180deg);background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.18);padding:1.2rem 1.1rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.4rem}
 .flip-back-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.1rem;color:var(--teal-glow)}
 .flip-back-text{font-size:.78rem;color:var(--muted);line-height:1.55}
 .flip-hint{position:absolute;bottom:14px;right:14px;font-family:'Satoshi',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#f5f0e8;background:rgba(7,19,26,.55);border:1px solid rgba(94,207,220,.18);padding:.3rem .55rem;border-radius:2px;backdrop-filter:blur(4px);transition:opacity .3s ease}
@@ -1311,8 +1310,12 @@ document.querySelectorAll('.reveal, .photo-ph').forEach(el => obs.observe(el));
    PHOTO SYSTEM / FLIP CARDS
    ══════════════════════════════════ */
 document.querySelectorAll('.flip-card').forEach(function(card){
+  var turns = 0;
+  var inner = card.querySelector('.flip-card-inner');
   card.addEventListener('click', function(){
-    var flipped = !card.classList.contains('flipped');
+    turns++;
+    inner.style.setProperty('--flip-deg', (-180 * turns) + 'deg');
+    var flipped = turns % 2 === 1;
     card.classList.toggle('flipped', flipped);
     card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
   });
