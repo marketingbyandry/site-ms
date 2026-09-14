@@ -599,7 +599,7 @@ const html = () => readFileSync('b2b.html', 'utf8');
 test('b2b.html insère le comparatif entre "sur-mesure" et le formulaire d\'étude', () => {
   const source = html();
   const valsCloseIdx = source.indexOf('</section>', source.indexOf('<section class="vals">'));
-  const compareIdx = source.indexOf('<div class="compare">');
+  const compareIdx = source.indexOf('class="compare');
   const uploadIdx = source.indexOf('<section class="upload-section" id="upload">');
   assert.ok(compareIdx > valsCloseIdx, 'le comparatif doit venir après "sur-mesure"');
   assert.ok(uploadIdx > compareIdx, 'le formulaire d\'étude doit venir après le comparatif');
@@ -694,7 +694,7 @@ test('b2c.html charge le CSS partagé chantier-sections.css', () => {
 test('b2c.html insère le comparatif entre "sur-mesure" et le formulaire d\'étude', () => {
   const source = html();
   const valsCloseIdx = source.indexOf('</section>', source.indexOf('<section class="vals">'));
-  const compareIdx = source.indexOf('<div class="compare">');
+  const compareIdx = source.indexOf('class="compare');
   const uploadIdx = source.indexOf('<section class="upload-section" id="upload">');
   assert.ok(compareIdx > valsCloseIdx);
   assert.ok(uploadIdx > compareIdx);
