@@ -1098,7 +1098,10 @@ test('blog.html ajoute une vignette photo sur chacune des 9 cartes article', () 
 
 test('chaque vignette précède le res-tag de sa carte', () => {
   const source = html();
-  const cardRe = /<a href="[^"]+" class="res-card[^"]*">/g;
+  // (?! tool-card) exclut la 10e carte .res-card de blog.html, le lien
+  // "Outil interactif" vers ms-strategy-calculateur.html — ce n'est pas un
+  // article, il ne reçoit pas de photo (portée : "une photo par article").
+  const cardRe = /<a href="[^"]+" class="res-card(?! tool-card)[^"]*">/g;
   let match;
   let checked = 0;
   while ((match = cardRe.exec(source)) !== null) {
@@ -1130,7 +1133,7 @@ import re
 with open('blog.html', encoding='utf8') as fh:
     html = fh.read()
 
-pattern = re.compile(r'(<a href="[^"]+" class="res-card[^"]*">\n)(\s*)(<span class="res-tag">)')
+pattern = re.compile(r'(<a href="[^"]+" class="res-card(?! tool-card)[^"]*">\n)(\s*)(<span class="res-tag">)')
 
 def insert_thumb(m):
     indent = m.group(2)
