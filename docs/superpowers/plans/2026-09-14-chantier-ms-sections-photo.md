@@ -613,9 +613,13 @@ test('le comparatif B2B reprend les 5 lignes verbatim du gabarit', () => {
   assert.match(source, /Alerte avant échéance de contrat/);
   assert.match(source, /Temps interne/);
   assert.match(source, /Sur économies réalisées/);
-  assert.match(source, /Recommandé/);
+  assert.match(source, /<div class="cell brand">/);
 });
 ```
+
+Note : "Recommandé" est généré par CSS (`.compare-top .cell.brand::after{content:"Recommandé"}`,
+déjà dans `assets/chantier-sections.css`), jamais présent dans le HTML source de `b2b.html` —
+le test vérifie donc la marque `class="cell brand"` qui déclenche ce badge, pas le mot lui-même.
 
 - [ ] **Step 2: Run test to verify it fails**
 
