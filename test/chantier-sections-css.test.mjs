@@ -48,7 +48,7 @@ test('chantier-sections.css définit les classes des sections 2, 3, 4, 5 et 7', 
   assert.match(source, /\.console-standalone\{/);
   assert.match(source, /\.console-panel\{/);
   assert.match(source, /\.btn-aurora\{/);
-  assert.match(source, /\.btn-aurora:hover::before\{/);
+  assert.match(source, /\.btn-aurora:hover::after\{/);
 });
 
 test('chantier-sections.css respecte prefers-reduced-motion sur ses animations', () => {
