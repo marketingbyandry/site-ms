@@ -29,3 +29,7 @@ test('chaque vignette précède le res-tag de sa carte', () => {
 test('blog.html observe .photo-ph dans son reveal scroll', () => {
   assert.match(html(), /document\.querySelectorAll\('\.reveal,\s*\.photo-ph'\)\.forEach\(el => obs\.observe\(el\)\);/);
 });
+
+test('blog.html charge le CSS partagé chantier-sections.css', () => {
+  assert.match(html(), /<link rel="stylesheet" href="assets\/chantier-sections\.css">/);
+});

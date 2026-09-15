@@ -1166,6 +1166,8 @@ par :
 document.querySelectorAll('.reveal, .photo-ph').forEach(el => obs.observe(el));
 ```
 
+**Correctif post-revue (whole-branch review)** : ce plan original omettait un `<link rel="stylesheet" href="assets/chantier-sections.css">` dans `<head>` de `blog.html`, contrairement aux 14 autres pages touchées par ce chantier qui l'ont chacune ajouté dans leur propre tâche. Sans ce lien, les 9 vignettes insérées ici (et la classe `btn-aurora` de la Task 9 sur le bouton nav de cette page) étaient sans style. Ajouté lors de la revue finale de branche, avec une assertion dans `test/blog-thumbnails.test.mjs`. C'est la 4e lacune de ce type détectée sur ce projet.
+
 - [ ] **Step 5: Run test to verify it passes**
 
 Run: `npm test -- --test-name-pattern="blog.html"`
