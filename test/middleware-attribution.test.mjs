@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import middleware, { SLUGS, CAMPAIGNS } from '../middleware.js';
+import middleware, { SLUGS, CAMPAIGNS, config } from '../middleware.js';
 
 const [SLUG, OTHER_SLUG] = SLUGS;
 const [CAMP, OTHER_CAMP] = CAMPAIGNS;
@@ -174,4 +174,35 @@ test('les 4 codes de campagne social sont acceptes par le middleware', () => {
     const response = call(`https://cabinetms.fr/b2b.html?camp=${code}`);
     assert.equal(campCookie(response), code);
   }
+});
+
+test('la landing de prospection est couverte par le middleware', () => {
+  assert.ok(
+    config.matcher.includes('/prospect.html'),
+    'sans entree dans le matcher, ?ref= et ?camp= ne seraient jamais lus sur prospect.html'
+  );
+});
+
+test('la personnalisation survit au nettoyage de ref et camp', () => {
+  // ?nom=/?secteur=/?accroche= alimentent l_affichage de la page : ils
+  // doivent rester dans l_URL apres la redirection d_attribution, la ou ref
+  // et camp en disparaissent.
+  const response = call(
+    `https://cabinetms.fr/prospect.html?nom=Lavandys&secteur=Blanchisserie&accroche=Test&ref=${SLUG}&camp=${CAMP}`
+  );
+  assert.equal(response.status, 302);
+  const location = new URL(response.headers.get('location'));
+  assert.equal(location.searchParams.get('ref'), null);
+  assert.equal(location.searchParams.get('camp'), null);
+  assert.equal(location.searchParams.get('nom'), 'Lavandys');
+  assert.equal(location.searchParams.get('secteur'), 'Blanchisserie');
+  assert.equal(location.searchParams.get('accroche'), 'Test');
+});
+
+test('ref et camp sont poses en cookie depuis un lien de prospection', () => {
+  const response = call(
+    `https://cabinetms.fr/prospect.html?nom=Lavandys&ref=${SLUG}&camp=${CAMP}`
+  );
+  assert.equal(refCookie(response), SLUG);
+  assert.equal(campCookie(response), CAMP);
 });
