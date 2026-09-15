@@ -76,3 +76,19 @@ test('le repli ne renvoie jamais de HTML a interpreter', () => {
   assert.ok(bloc.texte.includes('<img src=x onerror=alert(1)>'));
   assert.ok(!bloc.texte.includes('&lt;'), 'aucun echappement ici : c_est le role de textContent');
 });
+
+test('les textes affiches portent une vraie typographie francaise', () => {
+  // Garde-fou : ces chaines sont lues par des prospects. Un « d_energie »
+  // herite d_un brouillon ASCII ne doit jamais atteindre la page.
+  const { match, fallback } = load();
+  const affiches = ['Cimenterie', 'Blanchisserie', 'Data center', 'Frigorifique', 'Papeterie', 'Verrerie']
+    .map((s) => match(s))
+    .concat([fallback('Agriculture')]);
+
+  for (const bloc of affiches) {
+    for (const valeur of [bloc.titre, bloc.texte]) {
+      assert.ok(!valeur.includes('_'), `apostrophe ASCII degradee dans : ${valeur.slice(0, 60)}`);
+      assert.ok(!/\bd_/.test(valeur), `elision mal ecrite dans : ${valeur.slice(0, 60)}`);
+    }
+  }
+});

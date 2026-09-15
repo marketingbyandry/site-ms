@@ -1,20 +1,20 @@
 /* ════════════════════════════════════════
    BLOCS ARGUMENTAIRES PAR SECTEUR — prospect.html
 
-   Chaque entree associe des mots-cles a un argumentaire court, affiche sous
-   le hero de la landing de prospection quand l_URL porte ?secteur=<texte>.
+   Chaque entrée associe des mots-clés à un argumentaire court, affiché sous
+   le hero de la landing de prospection quand l'URL porte ?secteur=<texte>.
 
-   Bibliotheque volontairement ouverte : un nouveau secteur demarche = une
-   entree de plus ici, sans toucher a prospect.html. Un secteur pas encore
-   couvert n_est jamais une page cassee — MSSectorBlocks.fallback() produit
-   un bloc generique a partir du texte brut du parametre.
+   Bibliothèque volontairement ouverte : un nouveau secteur démarché = une
+   entrée de plus ici, sans toucher à prospect.html. Un secteur pas encore
+   couvert n'est jamais une page cassée — MSSectorBlocks.fallback() produit
+   un bloc générique à partir du texte brut du paramètre.
 
-   Les mots-cles sont ecrits DEJA normalises (minuscules, sans accents) :
-   c_est sous cette forme que le texte entrant leur est compare.
+   Les mots-clés sont écrits DÉJÀ normalisés (minuscules, sans accents) :
+   c'est sous cette forme que le texte entrant leur est comparé.
 
-   Ces fonctions sont pures et ne touchent pas au DOM — c_est ce qui permet
-   de les tester dans un contexte Node (test/sector-blocks.test.mjs) et a
-   prospect.html d_injecter leur sortie via textContent.
+   Ces fonctions sont pures et ne touchent pas au DOM — c'est ce qui permet
+   de les tester dans un contexte Node (test/sector-blocks.test.mjs) et à
+   prospect.html d'injecter leur sortie via textContent.
    ════════════════════════════════════════ */
 (function () {
   var BLOCKS = [
@@ -53,8 +53,8 @@
   var FALLBACK_TITRE = 'Votre secteur';
 
   // Minuscules + suppression des accents, pour que « Pâte à papier »,
-  // « PATE A PAPIER » et « pate a papier » tombent tous sur la meme entree.
-  // \u0300-\u036f = diacritiques combinants isoles par la decomposition NFD.
+  // « PATE A PAPIER » et « pate a papier » tombent tous sur la même entrée.
+  // \u0300-\u036f = diacritiques combinants isolés par la décomposition NFD.
   function normalize(value) {
     if (typeof value !== 'string') return '';
     return value
@@ -79,14 +79,14 @@
   }
 
   // Repli pour tout secteur pas encore couvert par BLOCKS : on cite le texte
-  // brut du parametre (injecte ensuite via textContent, donc jamais
-  // interprete comme du HTML).
+  // brut du paramètre (injecté ensuite via textContent, donc jamais
+  // interprété comme du HTML).
   function fallback(secteurRaw) {
     if (typeof secteurRaw !== 'string' || !secteurRaw.trim()) return null;
     var secteur = secteurRaw.trim();
     return {
       titre: FALLBACK_TITRE,
-      texte: 'Votre activite (' + secteur + ') implique une consommation d_energie qui pese sur vos charges. Nous la mettons en concurrence entre tous les fournisseurs du marche pour la reduire, gratuitement et sans engagement.'
+      texte: 'Votre activité (' + secteur + ') implique une consommation d\u2019énergie qui pèse sur vos charges. Nous la mettons en concurrence entre tous les fournisseurs du marché pour la réduire, gratuitement et sans engagement.'
     };
   }
 
