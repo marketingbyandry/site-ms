@@ -65,7 +65,7 @@ Pour chaque entreprise retenue à l'étape 1 :
 Avant d'ajouter une ligne, lire les lignes existantes du Sheet :
 
 ```bash
-composio execute "GOOGLESHEETS_VALUES_GET" -d '{"spreadsheet_id":"10vsPDhWLJfvUGK_MeZcPkbkhbhuix5Ton5KwMhnj6Fg","range":"D:D"}'
+composio execute "GOOGLESHEETS_VALUES_GET" -d '{"spreadsheet_id":"10vsPDhWLJfvUGK_MeZcPkbkhbhuix5Ton5KwMhnj6Fg","range":"Feuille 1!D:D"}'
 ```
 
 et exclure tout email déjà présent, quel que soit son statut.
@@ -77,9 +77,9 @@ vide :
 
 ```bash
 composio execute "GOOGLESHEETS_SPREADSHEETS_VALUES_APPEND" -d '{
-  "spreadsheet_id": "10vsPDhWLJfvUGK_MeZcPkbkhbhuix5Ton5KwMhnj6Fg",
-  "range": "A:H",
-  "value_input_option": "RAW",
+  "spreadsheetId": "10vsPDhWLJfvUGK_MeZcPkbkhbhuix5Ton5KwMhnj6Fg",
+  "range": "Feuille 1!A:H",
+  "valueInputOption": "RAW",
   "values": [["Exemple SARL","123456789","ind","contact@exemple.fr","generique","haute","à valider",""]]
 }'
 ```
@@ -88,6 +88,14 @@ Objectif : 30 à 50 lignes prêtes à valider par cycle (le plafond d'envoi
 réel de 50/jour est de toute façon appliqué par `scripts/send-cold-batch.mjs`,
 donc un lot légèrement plus grand n'est pas un problème — le surplus attend
 le lendemain).
+
+**Attention à la casse des paramètres** : contrairement à la plupart des
+outils Composio Google Sheets (`spreadsheet_id`, `value_input_option`,
+snake_case), `GOOGLESHEETS_SPREADSHEETS_VALUES_APPEND` attend `spreadsheetId`
+et `valueInputOption` en camelCase — vérifié via
+`composio execute "<slug>" --get-schema` en cas de doute sur un autre outil.
+`range` doit toujours être qualifié par le nom d'onglet exact (`Feuille 1!A:H`,
+jamais `A:H` seul).
 
 ## 5. Validation manuelle
 
