@@ -59,3 +59,20 @@ test('un secteur absent ne met pas de parametre vide dans l_URL', () => {
   const [link] = buildLinks(rows, OPTIONS);
   assert.equal(new URL(link.url).searchParams.has('secteur'), false);
 });
+
+test('un code de campagne inconnu fait echouer la generation', () => {
+  // middleware.js ne pose le cookie que pour un code de CAMPAIGNS : une faute
+  // de frappe rendrait toute la campagne muette cote mesure, sans aucun signal
+  // ni a la generation ni a l_arrivee.
+  const rows = parseCsv('Entreprise,Secteur/Activité\nLavandys,Blanchisserie\n');
+  assert.throws(
+    () => buildLinks(rows, { ...OPTIONS, camp: 'ind-e9' }),
+    /Code de campagne inconnu : ind-e9/
+  );
+});
+
+test('un code de campagne reel est accepte', () => {
+  const rows = parseCsv('Entreprise,Secteur/Activité\nLavandys,Blanchisserie\n');
+  const [link] = buildLinks(rows, { ...OPTIONS, camp: 'soc-li' });
+  assert.equal(new URL(link.url).searchParams.get('camp'), 'soc-li');
+});

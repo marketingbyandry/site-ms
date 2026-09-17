@@ -21,27 +21,27 @@
     {
       keywords: ['ciment'],
       titre: 'Cimenterie',
-      texte: "Les cimenteries sont éligibles aux tarifs réduits électro-intensifs (NAF 23.51Z) : nous vérifions votre éligibilité et la faisons valoir dans la négociation, en plus de la mise en concurrence des fournisseurs."
+      texte: "Les cimenteries figurent parmi les activités éligibles au statut électro-intensif (NAF 23.51Z), sous conditions de consommation propres à chaque site : nous vérifions votre éligibilité réelle et la faisons valoir dans la négociation, en plus de la mise en concurrence des fournisseurs."
     },
     {
       keywords: ['blanchisserie', 'pressing'],
       titre: 'Blanchisserie industrielle',
-      texte: "Séchage, repassage, eau chaude : les blanchisseries industrielles comptent parmi les activités les plus consommatrices d’énergie du secteur des services. Un poste sur lequel la mise en concurrence pèse lourd."
+      texte: "Séchage, repassage, eau chaude : les blanchisseries industrielles comptent parmi les activités les plus consommatrices d'énergie du secteur des services. Un poste sur lequel la mise en concurrence pèse lourd."
     },
     {
       keywords: ['data center', 'datacenter', 'cloud', 'hpc'],
       titre: 'Data center',
-      texte: "Les data centers sont éligibles au tarif réduit électro-intensif dédié (NAF 63.11Z) : nous nous assurons qu’il est bien appliqué, en plus de la mise en concurrence de l’ensemble des fournisseurs du marché."
+      texte: "Les centres de données peuvent relever du tarif réduit électro-intensif dédié, sous conditions de consommation et d'efficacité énergétique propres à chaque site : nous vérifions votre éligibilité réelle, en plus de la mise en concurrence de l'ensemble des fournisseurs du marché."
     },
     {
       keywords: ['frigorifique', 'froid'],
       titre: 'Logistique frigorifique',
-      texte: "Le froid industriel tourne 24h/24 : la facture d’électricité est un poste fixe et lourd, sur lequel une renégociation bien menée produit un effet immédiat et durable."
+      texte: "Le froid industriel tourne 24h/24 : la facture d'électricité est un poste fixe et lourd, sur lequel une renégociation bien menée produit un effet immédiat et durable."
     },
     {
       keywords: ['papeterie', 'pate a papier', 'papetier'],
       titre: 'Papeterie',
-      texte: "Séchage du papier, production de pâte : la papeterie est l’un des secteurs industriels les plus intensifs en énergie, potentiellement éligible aux tarifs réduits électro-intensifs."
+      texte: "Séchage du papier, production de pâte : la papeterie est l'un des secteurs industriels les plus intensifs en énergie, potentiellement éligible aux tarifs réduits électro-intensifs."
     },
     {
       keywords: ['verrerie', 'flaconnage', 'verrier'],
@@ -86,7 +86,7 @@
     var secteur = secteurRaw.trim();
     return {
       titre: FALLBACK_TITRE,
-      texte: 'Votre activité (' + secteur + ') implique une consommation d\u2019énergie qui pèse sur vos charges. Nous la mettons en concurrence entre tous les fournisseurs du marché pour la réduire, gratuitement et sans engagement.'
+      texte: 'Votre activité (' + secteur + ') implique une consommation d\'énergie qui pèse sur vos charges. Nous la mettons en concurrence entre tous les fournisseurs du marché pour la réduire, gratuitement et sans engagement.'
     };
   }
 

@@ -112,10 +112,62 @@ Script générique (pattern `scripts/build-analytics.mjs`) :
 
 `nom`, `secteur`, `accroche` : lecture via `URLSearchParams`, injection via
 `textContent`/`el.textContent =`, jamais via template string HTML. Le
-matching sectoriel ne fait que sélectionner un bloc HTML **prédéfini** dans
+matching sectoriel ne fait que sélectionner un bloc **prédéfini** dans
 `assets/sector-blocks.js` — le texte du paramètre `secteur` n'est jamais lui
 même interprété comme HTML, sauf dans le repli générique où il est inséré
 via `textContent` au même titre que `nom`/`accroche`.
+
+Avant injection, les trois valeurs sont débarrassées des caractères de
+contrôle, invisibles et bidirectionnels (`U+202A`–`U+202E`, `U+200B`,
+`U+FEFF`…) : `textContent` ferme le XSS mais pas l'usurpation visuelle, et un
+`U+202E` dans `nom` inverse l'ordre d'affichage de la fin du H1. Puis elles
+sont plafonnées en longueur, coupées sur une limite de mot et rééquilibrées
+en parenthèses.
+
+### Deux risques acceptés, tranchés le 2026-09-17
+
+Relecture `quality-reviewer` du 2026-09-17 sur la branche
+`worktree-prospect-landing-page`. Les deux points ci-dessous sont des
+propriétés du design « texte libre en paramètre d'URL », pas des bugs
+d'implémentation : ils sont documentés ici pour être décidés plutôt que
+découverts.
+
+**1. Texte arbitraire affiché sur le domaine de confiance.** `accroche`
+autorise 240 caractères libres affichés sous le H1 sur une URL
+`cabinetms.fr`, au-dessus d'un vrai formulaire. Un tiers qui devine le motif
+d'URL dispose donc d'une page à texte libre hébergée sur le domaine du
+cabinet, exploitable en hameçonnage.
+
+Option écartée : signer les liens (HMAC posé par
+`scripts/build-prospect-links.mjs`, vérifié dans `middleware.js` qui couvre
+déjà la route). Elle ferme le trou, mais impose de passer par le script pour
+tout lien, ce qui casse précisément le geste que la page doit servir —
+fabriquer une URL à la main pour un prospect traité au cas par cas.
+
+Retenu : assainissement des caractères de contrôle et bidirectionnels (fait),
+`noindex` + `Disallow` (fait), et risque résiduel accepté au vu du volume —
+démarchage nominatif de quelques dizaines de prospects, URL non publiée. **À
+rouvrir** si la page passe en diffusion large (annonce payante, QR code
+imprimé, lien en signature de mail) : à ce moment, la signature HMAC devient
+le bon arbitrage.
+
+**2. Paramètres de personnalisation et mesure.** Le conteneur GTM est chargé
+sans condition dans le `<head>`, hors du gating de consentement
+(`assets/analytics-loader.js`) : une URL portant `?nom=<entreprise>` lui
+serait transmise dès le premier affichage, et enregistrée par PostHog en
+`$current_url`. Pour un prospect en nom propre (EI, EURL au patronyme),
+c'est une donnée personnelle traitée sans base claire.
+
+Retenu : la lecture des paramètres est placée **avant** le tag GTM, et l'URL
+est nettoyée par `history.replaceState` dans la foulée — aucun script de
+mesure ne voit jamais les paramètres. Même intention que le nettoyage de
+`ref`/`camp` côté edge, pour un paramètre qui identifie plus directement
+encore. Contrepartie assumée : un rechargement manuel de la page retombe sur
+la version générique.
+
+`politique-confidentialite.html` reste à compléter (paramètres de
+personnalisation, champ `entreprise` transmis à Tally) — hors périmètre de ce
+chantier, à traiter avec la prochaine passe sur les pages légales.
 
 ## Tests
 

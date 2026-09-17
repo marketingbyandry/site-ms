@@ -35,9 +35,27 @@ Un secteur non couvert affiche un bloc générique citant le libellé tel quel.
 dans `BLOCKS` (mots-clés sans accents, en minuscules) et une assertion dans
 `test/sector-blocks.test.mjs`.
 
+## Ce que la page fait des valeurs reçues
+
+Avant affichage, chaque valeur est débarrassée des caractères invisibles et
+bidirectionnels, normalisée en espaces, plafonnée en longueur (80 caractères
+pour `nom` et `secteur`, 240 pour `accroche`) et coupée sur une limite de mot
+avec « … ». Elle est écrite via `textContent` : du HTML dans un paramètre
+s'affiche en toutes lettres, il ne s'exécute pas.
+
+Les trois paramètres sont ensuite **retirés de l'URL affichée**
+(`history.replaceState`), avant que GTM ou PostHog n'aient pu la lire : le nom
+d'un prospect n'a pas à rester dans la barre d'adresse ni dans les outils de
+mesure. Conséquence à connaître : un rechargement manuel de la page retombe
+sur la version générique — c'est voulu.
+
 ## Générer les liens d'une liste
 
     npm run prospect:links -- <fichier.csv> --camp=ind-e1 --out="$HOME/liens.csv"
+
+Le code passé à `--camp` doit exister dans `CAMPAIGNS` (`middleware.js`),
+sinon la génération échoue : un code inventé produirait des liens que le
+middleware ignore, et toute la campagne serait muette côté mesure.
 
 Colonnes lues par défaut : `Entreprise` et `Secteur/Activité`
 (surchargeables par `--nom-col=` / `--secteur-col=`). Le CSV d'entrée reste

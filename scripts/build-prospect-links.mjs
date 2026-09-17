@@ -16,6 +16,7 @@
 
 import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync } from 'node:fs';
+import { CAMPAIGNS } from '../middleware.js';
 
 const DEFAULTS = {
   base: 'https://cabinetms.fr/prospect.html',
@@ -68,6 +69,15 @@ export function parseCsv(text) {
 export function buildLinks(rows, options = {}) {
   const { base, nomCol, secteurCol, camp } = { ...DEFAULTS, ...options };
 
+  // Un code hors whitelist n'est jamais pose en cookie par middleware.js : la
+  // campagne partirait muette cote mesure, sans aucun signal a la generation
+  // ni a l'arrivee. Mieux vaut echouer ici que decouvrir le trou apres coup.
+  if (camp && !CAMPAIGNS.includes(camp)) {
+    throw new Error(
+      `Code de campagne inconnu : ${camp}. Codes valides : ${CAMPAIGNS.join(', ')}`
+    );
+  }
+
   return rows
     .map((row) => ({ nom: row[nomCol] || '', secteur: row[secteurCol] || '' }))
     .filter((entry) => entry.nom !== '')
@@ -81,7 +91,11 @@ export function buildLinks(rows, options = {}) {
 }
 
 function csvEscape(value) {
-  return /[",\n]/.test(value) ? `"${value.replace(/"/g, '""')}"` : value;
+  // Un nom d'entreprise commencant par = + - @ serait interprete comme une
+  // formule a l'ouverture dans Excel/Sheets : on le neutralise par une
+  // apostrophe, convention usuelle pour ce cas.
+  const safe = /^[=+\-@]/.test(value) ? `'${value}` : value;
+  return /[",\n]/.test(safe) ? `"${safe.replace(/"/g, '""')}"` : safe;
 }
 
 function parseArgs(argv) {
@@ -90,6 +104,11 @@ function parseArgs(argv) {
   let out = null;
 
   for (const arg of argv) {
+    // Les options s'ecrivent --cle=valeur. Un « --camp ind-e1 » ecrit avec une
+    // espace ferait passer le code pour le fichier d'entree : on le refuse.
+    if (arg.startsWith('--') && !arg.includes('=')) {
+      throw new Error(`Option malformee : ${arg}. Les options s'ecrivent --cle=valeur.`);
+    }
     if (arg.startsWith('--camp=')) options.camp = arg.slice('--camp='.length);
     else if (arg.startsWith('--nom-col=')) options.nomCol = arg.slice('--nom-col='.length);
     else if (arg.startsWith('--secteur-col=')) options.secteurCol = arg.slice('--secteur-col='.length);
@@ -101,14 +120,23 @@ function parseArgs(argv) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const { input, out, options } = parseArgs(process.argv.slice(2));
+  let input, out, options, links;
 
-  if (!input) {
-    console.error('Usage : node scripts/build-prospect-links.mjs <fichier.csv> [--camp=code] [--nom-col=…] [--secteur-col=…] [--base=…] [--out=…]');
+  try {
+    ({ input, out, options } = parseArgs(process.argv.slice(2)));
+
+    if (!input) {
+      throw new Error('Usage : node scripts/build-prospect-links.mjs <fichier.csv> [--camp=code] [--nom-col=…] [--secteur-col=…] [--base=…] [--out=…]');
+    }
+
+    links = buildLinks(parseCsv(readFileSync(input, 'utf8')), options);
+  } catch (error) {
+    // Message lisible plutot qu_une trace Node : ces erreurs sont des fautes
+    // de frappe en ligne de commande, pas des bugs.
+    console.error(error.message);
     process.exit(1);
   }
 
-  const links = buildLinks(parseCsv(readFileSync(input, 'utf8')), options);
   const csv = ['Entreprise,Secteur,URL']
     .concat(links.map((l) => [l.nom, l.secteur, l.url].map(csvEscape).join(',')))
     .join('\n') + '\n';

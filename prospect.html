@@ -1,6 +1,83 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<!-- ════════════════════════════════════════
+     LECTURE DES PARAMÈTRES DE PERSONNALISATION
+
+     Volontairement placé AVANT le tag GTM et tout script de mesure : les
+     paramètres sont lus, assainis, puis retirés de l'URL affichée avant que
+     quoi que ce soit n'ait pu la transmettre. Sans cette position, le nom de
+     l'entreprise démarchée partirait dans le conteneur GTM (chargé sans
+     condition, hors du gating de consentement) et dans $current_url de
+     PostHog. Même intention que le nettoyage de ref/camp côté edge
+     (middleware.js), pour un paramètre qui identifie plus directement encore.
+
+     Le rendu, lui, se fait en bas de page : il a besoin du DOM.
+
+     ?nom=      nom de l'entreprise démarchée (H1 + champ caché Tally)
+     ?secteur=  secteur d'activité, texte libre, matché par mots-clés contre
+                assets/sector-blocks.js (repli générique si inconnu)
+     ?accroche= phrase courte personnalisée, rédigée au cas par cas
+     ════════════════════════════════════════ -->
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+
+  // Caractères de contrôle C0/C1, séparateurs de ligne, espaces de largeur
+  // nulle et marques bidirectionnelles : invisibles à la lecture, mais
+  // capables de retourner ou de disloquer le texte affiché.
+  var INVISIBLES = /[\u0000-\u001f\u007f-\u009f\u00ad\u200b-\u200f\u2028\u2029\u202a-\u202e\u2060-\u2064\u2066-\u206f\ufeff]/g;
+
+  function read(name, maxLength) {
+    var value = (params.get(name) || '')
+      .replace(INVISIBLES, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (!value) return '';
+    if (value.length <= maxLength) return value;
+
+    // Coupe sur le dernier espace avant la limite, pour ne pas laisser un mot
+    // tronqué en deux : les libellés NAF complets dépassent facilement la
+    // centaine de caractères.
+    var coupe = value.slice(0, maxLength);
+    var dernierEspace = coupe.lastIndexOf(' ');
+    if (dernierEspace > maxLength / 2) coupe = coupe.slice(0, dernierEspace);
+
+    // Puis on referme : le repli générique affiche le secteur entre
+    // parenthèses, donc une parenthèse ouverte laissée par la coupe
+    // (« usinage (mécanique générale, décolletage… ») desequilibre la phrase.
+    while (compte(coupe, '(') > compte(coupe, ')')) {
+      coupe = coupe.slice(0, coupe.lastIndexOf('('));
+    }
+
+    return coupe.replace(/[\s,;:(\[«-]+$/, '') + '…';
+  }
+
+  function compte(texte, caractere) {
+    return texte.split(caractere).length - 1;
+  }
+
+  var nom = read('nom', 80);
+  var secteur = read('secteur', 80);
+  var accroche = read('accroche', 240);
+
+  window.msProspect = { nom: nom, secteur: secteur, accroche: accroche };
+
+  // Lu par openTallyForm() : le commercial retrouve le prospect dans Tally
+  // sans avoir à recouper l'horodatage.
+  window.msProspectNom = nom || null;
+
+  // Les utm_* et tout le reste sont conservés ; un rechargement manuel
+  // retombe sur la version générique, compromis accepté.
+  if (window.history && window.history.replaceState && (nom || secteur || accroche)) {
+    var propre = new URL(window.location.href);
+    propre.searchParams.delete('nom');
+    propre.searchParams.delete('secteur');
+    propre.searchParams.delete('accroche');
+    window.history.replaceState(null, '', propre.toString());
+  }
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,7 +85,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-THZKG49X');</script>
 <!-- End Google Tag Manager -->
-<script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
 <script defer src="assets/analytics-loader.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -243,6 +319,15 @@ a{text-decoration:none;color:inherit}
 .p-secteur-in{max-width:700px}
 </style>
 <meta name="robots" content="noindex, follow">
+<!-- Apercu de partage volontairement generique : ces liens circulent en mail
+     et en messagerie privee, et un apercu vide y fait spam. Aucune donnee de
+     prospect ici — la personnalisation vit dans l'URL, jamais dans les meta. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="M&S Strategy">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Étude énergie pour votre entreprise | M&S Strategy">
+<meta property="og:description" content="Étude gratuite de vos contrats gaz et électricité : mise en concurrence de tous les fournisseurs du marché, résultat sous 24h.">
+<meta property="og:image" content="https://cabinetms.fr/assets/ms-strategy-logo.png">
 <link rel="stylesheet" href="assets/nav-mobile.css">
 </head>
 <body>
@@ -271,7 +356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <img src="assets/ms-strategy-logo.png" width="573" height="146" alt="M&S Strategy" class="nl-logo">
   </a>
   <ul class="nlinks">
-    <li><a href="b2b.html" class="active">Professionnels</a></li>
+    <li><a href="b2b.html">Professionnels</a></li>
     <li><a href="b2c.html">Particuliers</a></li>
     <li><a href="comment-ca-marche.html">Comment ça marche</a></li>
     <li><a href="resultats.html">Résultats</a></li>
@@ -290,7 +375,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="phero-in">
     <span class="stag reveal">TPE · PME · ETI · Gaz · Électricité</span>
     <h1 class="ph1 reveal d1"><span id="p-h1-nom"></span><span id="p-h1-base">Économisez votre énergie, </span><em>nous négocions votre contrat.</em></h1>
-    <p id="p-accroche" class="p-accroche p-hidden"></p>
+    <p id="p-accroche" class="p-accroche p-hidden reveal d2"></p>
     <p class="psub2 reveal d2">Nous mettons l'ensemble des fournisseurs du marché en concurrence pour votre entreprise, mono-site ou multi-sites, tous secteurs. Étude gratuite, sans engagement, résultat sous 24h.</p>
     <div class="pstats2 reveal d2">
       <div class="si"><span class="sn">19%</span><span class="sl">Économies moyennes</span></div>
@@ -414,7 +499,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="uform reveal d1">
     <div class="utrust">🔒 <span><strong>Transmission chiffrée et confidentielle.</strong> Votre facture et vos coordonnées sont reçues sur un espace privé, consulté uniquement par notre équipe, jamais partagées ni publiées.</span></div>
-    <button type="button" class="usubmit" onclick="openTallyForm('b2b')">Transmettre ma facture en toute sécurité →</button>
+    <button type="button" class="usubmit" onclick="openTallyForm('prospect')">Transmettre ma facture en toute sécurité →</button>
   </div>
 </section>
 
@@ -501,7 +586,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <span>© 2026 M&S Strategy. Tous droits réservés.</span>
   <span>Cabinet d'expertise en négociation d'énergie depuis 2012 · Gaz · Électricité · France</span>
   <span><a href="mentions-legales.html" style="color:inherit">Mentions légales</a> · <a href="cgv.html" style="color:inherit">CGV</a> · <a href="politique-confidentialite.html" style="color:inherit">Confidentialité</a> · <a href="#" style="color:inherit" onclick="window.msOpenCookieBanner&&window.msOpenCookieBanner();return false;">Gérer les cookies</a></span>
-  <div google-add-preferred-source-btn data-theme="dark"></div>
 </div>
 
 <script>
@@ -626,35 +710,20 @@ function onTallySubmit(payload) {
 <script src="assets/sector-blocks.js"></script>
 <script>
 /* ════════════════════════════════════════
-   PERSONNALISATION DEPUIS L'URL
+   RENDU DE LA PERSONNALISATION
 
-   ?nom=      nom de l'entreprise démarchée (H1 + champ caché Tally)
-   ?secteur=  secteur d'activité, texte libre, matché par mots-clés contre
-              assets/sector-blocks.js (repli générique si inconnu)
-   ?accroche= phrase courte personnalisée, rédigée au cas par cas
-
-   Les trois valeurs viennent de l'URL, donc d'une source non fiable : elles
-   ne sont écrites que via textContent, jamais via innerHTML. Les longueurs
-   sont plafonnées pour qu'une URL fabriquée ne disloque pas la mise en page.
+   Les valeurs ont déjà été lues, assainies et retirées de l'URL par le script
+   placé en tête de page (avant GTM) ; ici on ne fait que les écrire dans le
+   DOM, via textContent exclusivement — jamais innerHTML.
 
    Sans paramètre, le markup reste dans son état par défaut : la page est la
    version générique B2B, sans nom ni bloc sectoriel.
    ════════════════════════════════════════ */
 (function () {
-  var params = new URLSearchParams(window.location.search);
-
-  function read(name, maxLength) {
-    var value = (params.get(name) || '').replace(/\s+/g, ' ').trim();
-    return value ? value.slice(0, maxLength) : '';
-  }
-
-  var nom = read('nom', 80);
-  var secteur = read('secteur', 80);
-  var accroche = read('accroche', 240);
-
-  // Lu par openTallyForm() plus haut : le commercial retrouve le prospect
-  // dans Tally sans avoir à recouper l'horodatage.
-  window.msProspectNom = nom || null;
+  var perso = window.msProspect || { nom: '', secteur: '', accroche: '' };
+  var nom = perso.nom;
+  var secteur = perso.secteur;
+  var accroche = perso.accroche;
 
   if (nom) {
     document.getElementById('p-h1-nom').textContent = nom + ', ';
