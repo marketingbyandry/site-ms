@@ -99,7 +99,7 @@ resté ouvert le plus longtemps est l'intégration des posts LinkedIn au blog (v
 
 ## État actuel du code
 
-- **Site statique pur** : 10 pages `.html`, pas de build, CSS dans des `<style>` par
+- **Site statique pur** : 11 pages `.html`, pas de build, CSS dans des `<style>` par
   page, JS vanilla inline. Pas de composants partagés — toute modification commune à
   plusieurs pages (nav, footer, fonts...) doit être répétée fichier par fichier.
 - **Dépôt** : `git@github.com:marketingbyandry/site-ms.git`, branche `main`.
@@ -116,6 +116,11 @@ resté ouvert le plus longtemps est l'intégration des posts LinkedIn au blog (v
     `resultats.html` et une nouvelle CTA band sur `index.html`.
   - `ms-strategy-landing-2.html` — landing page publicitaire, volontairement **non
     liée** à la nav principale (page de campagne autonome).
+  - `prospect.html` — landing de démarchage personnalisée par paramètres d'URL
+    (`?nom=`/`?secteur=`/`?accroche=`), également non liée à la nav. En `noindex` et
+    exclue dans `robots.txt` : elle affiche le nom du prospect démarché. Blocs
+    argumentaires sectoriels dans `assets/sector-blocks.js`, mode d'emploi dans
+    `docs/prospect-landing.md`.
 - **Typographie** : Instrument Serif (titres/sous-titres) + Satoshi (corps de texte,
   toutes graisses 300–900). JetBrains Mono conservé volontairement pour l'affichage
   chiffré du calculateur (effet "taximètre").

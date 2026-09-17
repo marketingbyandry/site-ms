@@ -10,6 +10,7 @@ export const config = {
     '/resultats.html',
     '/ms-strategy-landing-2.html',
     '/ms-strategy-calculateur.html',
+    '/prospect.html',
     '/c/:slug*'
   ]
 };
