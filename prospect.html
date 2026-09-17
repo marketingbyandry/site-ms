@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- ════════════════════════════════════════
      LECTURE DES PARAMÈTRES DE PERSONNALISATION
 
      Volontairement placé AVANT le tag GTM et tout script de mesure : les
-     paramètres sont lus, assainis, puis retirés de l'URL affichée avant que
-     quoi que ce soit n'ait pu la transmettre. Sans cette position, le nom de
+     paramètres sont lus, assainis, puis retirés de l'URL affichée avant
+     qu'aucun script côté client n'ait pu la lire. La requête HTTP initiale,
+     elle, porte les paramètres — l'edge Vercel les voit et ils atterrissent
+     dans les logs d'accès : c'est du first-party, irréductible sans passer en
+     POST. Sans cette position en revanche, le nom de
      l'entreprise démarchée partirait dans le conteneur GTM (chargé sans
      condition, hors du gating de consentement) et dans $current_url de
      PostHog. Même intention que le nettoyage de ref/camp côté edge
@@ -23,16 +28,23 @@
 (function () {
   var params = new URLSearchParams(window.location.search);
 
-  // Caractères de contrôle C0/C1, séparateurs de ligne, espaces de largeur
-  // nulle et marques bidirectionnelles : invisibles à la lecture, mais
-  // capables de retourner ou de disloquer le texte affiché.
-  var INVISIBLES = /[\u0000-\u001f\u007f-\u009f\u00ad\u200b-\u200f\u2028\u2029\u202a-\u202e\u2060-\u2064\u2066-\u206f\ufeff]/g;
+  // Caractères de contrôle C0/C1, espaces de largeur nulle et marques
+  // bidirectionnelles : invisibles à la lecture, mais capables de retourner ou
+  // de disloquer le texte affiché. Tabulation, saut de ligne et retour chariot
+  // en sont volontairement exclus — ce sont des espaces légitimes (une raison
+  // sociale venue d'une cellule CSV multiligne en contient), normalisés juste
+  // après ; les retirer ici collerait les mots entre eux.
+  var INVISIBLES = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f\u00ad\u061c\u200b-\u200f\u2028\u2029\u202a-\u202e\u2060-\u2064\u2066-\u206f\ufeff]/g;
 
-  function read(name, maxLength) {
-    var value = (params.get(name) || '')
+  function nettoie(name) {
+    return (params.get(name) || '')
       .replace(INVISIBLES, '')
       .replace(/\s+/g, ' ')
       .trim();
+  }
+
+  function read(name, maxLength) {
+    var value = nettoie(name);
     if (!value) return '';
     if (value.length <= maxLength) return value;
 
@@ -50,7 +62,12 @@
       coupe = coupe.slice(0, coupe.lastIndexOf('('));
     }
 
-    return coupe.replace(/[\s,;:(\[«-]+$/, '') + '…';
+    coupe = coupe.replace(/[\s,;:(\[«-]+$/, '');
+    // Cas dégénéré (valeur sans espace commençant par une parenthèse) : la
+    // coupe propre ne laisse rien, on retombe sur une coupe dure plutôt que
+    // d'afficher une ellipse seule.
+    if (!coupe) coupe = value.slice(0, maxLength);
+    return coupe + '…';
   }
 
   function compte(texte, caractere) {
@@ -64,11 +81,15 @@
   window.msProspect = { nom: nom, secteur: secteur, accroche: accroche };
 
   // Lu par openTallyForm() : le commercial retrouve le prospect dans Tally
-  // sans avoir à recouper l'horodatage.
-  window.msProspectNom = nom || null;
+  // sans avoir à recouper l'horodatage. Volontairement la valeur NON tronquée
+  // — la coupe à 80 caractères sert la mise en page, pas la donnée transmise,
+  // et une raison sociale amputée serait à recouper à la main.
+  window.msProspectNom = nettoie('nom') || null;
 
-  // Les utm_* et tout le reste sont conservés ; un rechargement manuel
-  // retombe sur la version générique, compromis accepté.
+  // Les utm_* et tout le reste sont conservés. Contrepartie assumée : toute
+  // navigation qui recharge réellement la page (rechargement manuel, retour
+  // arrière hors bfcache depuis un lien de la nav) retombe sur la version
+  // générique.
   if (window.history && window.history.replaceState && (nom || secteur || accroche)) {
     var propre = new URL(window.location.href);
     propre.searchParams.delete('nom');
@@ -86,8 +107,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-THZKG49X');</script>
 <!-- End Google Tag Manager -->
 <script defer src="assets/analytics-loader.js"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">

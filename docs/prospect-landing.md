@@ -46,8 +46,13 @@ s'affiche en toutes lettres, il ne s'exécute pas.
 Les trois paramètres sont ensuite **retirés de l'URL affichée**
 (`history.replaceState`), avant que GTM ou PostHog n'aient pu la lire : le nom
 d'un prospect n'a pas à rester dans la barre d'adresse ni dans les outils de
-mesure. Conséquence à connaître : un rechargement manuel de la page retombe
-sur la version générique — c'est voulu.
+mesure côté client. Conséquence à connaître : toute navigation qui recharge
+réellement la page retombe sur la version générique — rechargement manuel,
+mais aussi retour arrière depuis un lien de la nav quand le navigateur ne
+restaure pas la page depuis son cache. C'est voulu.
+
+Le nom transmis au champ caché Tally `entreprise` est, lui, la raison sociale
+**complète** : la coupe à 80 caractères ne concerne que l'affichage.
 
 ## Générer les liens d'une liste
 

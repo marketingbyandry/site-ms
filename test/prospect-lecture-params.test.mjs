@@ -114,3 +114,26 @@ test('les espaces multiples sont normalises', () => {
   const { perso } = lire('?nom=Lavandys%20%20%20SAS');
   assert.equal(perso.nom, 'Lavandys SAS');
 });
+
+test('un saut de ligne devient une espace, pas une soudure', () => {
+  // Une raison sociale venue d_une cellule CSV multiligne contient un \\n :
+  // le retirer comme un caractere invisible collerait les mots entre eux.
+  assert.equal(lire('?nom=Soci%C3%A9t%C3%A9%20A%0AB').perso.nom, 'Société A B');
+  assert.equal(lire('?nom=Soci%C3%A9t%C3%A9%09SAS').perso.nom, 'Société SAS');
+});
+
+test('le nom transmis a Tally n_est jamais tronque', () => {
+  // La coupe a 80 caracteres sert la mise en page ; le commercial, lui, a
+  // besoin de la raison sociale entiere dans les reponses Tally.
+  const long = 'Compagnie Generale des Etablissements Metallurgiques et Papetiers de la Region Rhone-Alpes';
+  const { perso, nom } = lire('?nom=' + encodeURIComponent(long));
+  assert.ok(perso.nom.endsWith('…'), 'l_affichage doit rester tronque');
+  assert.equal(nom, long, 'la valeur transmise a Tally doit etre complete');
+});
+
+test('une valeur sans espace ne se reduit jamais a une ellipse seule', () => {
+  // Cas degenere : parenthese en tete et aucun espace exploitable.
+  const { perso } = lire('?secteur=' + encodeURIComponent('(' + 'a'.repeat(120)));
+  assert.notEqual(perso.secteur, '…');
+  assert.ok(perso.secteur.length > 10);
+});

@@ -45,34 +45,50 @@ fonctions pures (testables sans DOM) :
 window.MSSectorBlocks = {
   match(secteurRaw) { /* normalise (minuscule, sans accents) et cherche
                           une entrée dont un des mots-clés est inclus dans
-                          le texte normalisé ; retourne le HTML du bloc ou
+                          le texte normalisé ; retourne { titre, texte } ou
                           null si aucune correspondance */ },
-  fallback(secteurRaw) { /* bloc générique, construit à partir du texte
-                             brut du paramètre */ }
+  fallback(secteurRaw) { /* { titre, texte } générique, construit à partir
+                             du texte brut du paramètre */ }
 };
 ```
+
+Les deux renvoient du **texte brut, jamais du HTML** : la page écrit `titre`
+et `texte` via `textContent`, donc aucune balise ne peut entrer par cette
+voie, même en modifiant la bibliothèque.
 
 Entrées initiales (reprises des 6 secteurs déjà identifiés dans
 `leads_energo_intensifs.csv`) :
 
 | Secteur | Mots-clés | Argumentaire |
 |---|---|---|
-| Cimenterie | `ciment` | « Les cimenteries sont éligibles aux tarifs réduits électro-intensifs (NAF 23.51Z) : on vérifie votre éligibilité et on la fait valoir dans la négociation. » |
+| Cimenterie | `ciment` | « Les cimenteries figurent parmi les activités éligibles au statut électro-intensif (NAF 23.51Z), sous conditions de consommation propres à chaque site : nous vérifions votre éligibilité réelle et la faisons valoir dans la négociation. » |
 | Blanchisserie | `blanchisserie`, `pressing` | « Séchage, repassage, eau chaude : les blanchisseries industrielles comptent parmi les activités les plus consommatrices d'énergie du secteur des services. » |
-| Data center | `data center`, `datacenter`, `cloud`, `hpc` | « Les data centers sont éligibles au tarif réduit électro-intensif dédié (NAF 63.11Z) : on s'assure qu'il est bien appliqué, en plus de la mise en concurrence des fournisseurs. » |
-| Frigorifique | `frigorifique`, `froid` | « Le froid industriel tourne 24h/24 : la facture d'électricité est un poste fixe et lourd, sur lequel une renégociation bien menée a un effet immédiat. » |
-| Papeterie | `papeterie`, `pâte à papier`, `papetier` | « Séchage du papier, production de pâte : la papeterie est l'un des secteurs industriels les plus intensifs en énergie. » |
+| Data center | `data center`, `datacenter`, `cloud`, `hpc` | « Les centres de données peuvent relever du tarif réduit électro-intensif dédié, sous conditions de consommation et d'efficacité énergétique propres à chaque site : nous vérifions votre éligibilité réelle. » |
+| Frigorifique | `frigorifique`, `froid` | « Le froid industriel tourne 24h/24 : la facture d'électricité est un poste fixe et lourd, sur lequel une renégociation bien menée produit un effet immédiat. » |
+| Papeterie | `papeterie`, `pate a papier`, `papetier` | « Séchage du papier, production de pâte : la papeterie est l'un des secteurs industriels les plus intensifs en énergie, potentiellement éligible aux tarifs réduits électro-intensifs. » |
 | Verrerie | `verrerie`, `flaconnage`, `verrier` | « Fours à haute température, fusion continue : la verrerie industrielle a un profil de consommation qui justifie une étude tarifaire dédiée. » |
+
+**Règle de rédaction, non négociable** : l'éligibilité au statut
+électro-intensif ne découle jamais du seul code NAF — elle dépend d'un ratio
+de consommation rapporté à la valeur ajoutée, apprécié entreprise par
+entreprise. Tout argumentaire ajouté à la bibliothèque doit rester au
+conditionnel (« figurent parmi les activités éligibles », « peuvent relever
+de ») et mentionner les conditions. Une affirmation sèche adressée par écrit
+à un prospect démarché relève de la pratique commerciale trompeuse, et se
+voit immédiatement d'un responsable énergie qui connaît le dispositif.
+
+Les mots-clés s'écrivent sans accents et en minuscules : ils sont comparés au
+texte du paramètre une fois normalisé.
 
 Repli générique (`secteur` fourni mais sans correspondance) : « Votre
 activité ({secteur}) implique une consommation d'énergie qui pèse sur vos
-charges — on la met en concurrence entre tous les fournisseurs pour la
-réduire, gratuitement et sans engagement. »
+charges. Nous la mettons en concurrence entre tous les fournisseurs du marché
+pour la réduire, gratuitement et sans engagement. »
 
 Sans `secteur` du tout : aucun bloc affiché.
 
 Cette bibliothèque s'enrichit au fil des campagnes (nouvelle entrée = un
-objet `{keywords, html}` de plus dans `assets/sector-blocks.js`), sans
+objet `{keywords, titre, texte}` de plus dans `assets/sector-blocks.js`), sans
 jamais casser la page pour un secteur pas encore couvert.
 
 ### Paramètre `accroche`
@@ -160,10 +176,17 @@ c'est une donnée personnelle traitée sans base claire.
 
 Retenu : la lecture des paramètres est placée **avant** le tag GTM, et l'URL
 est nettoyée par `history.replaceState` dans la foulée — aucun script de
-mesure ne voit jamais les paramètres. Même intention que le nettoyage de
-`ref`/`camp` côté edge, pour un paramètre qui identifie plus directement
-encore. Contrepartie assumée : un rechargement manuel de la page retombe sur
-la version générique.
+mesure **côté client** ne voit les paramètres. La requête HTTP initiale, elle,
+les porte : l'edge Vercel la traite et elle atterrit dans les logs d'accès.
+C'est du first-party et c'est irréductible sans passer en POST, mais la
+distinction mérite d'être écrite plutôt que laissée à l'implicite. Même
+intention que le nettoyage de `ref`/`camp` côté edge, pour un paramètre qui
+identifie plus directement encore.
+
+Contrepartie assumée : toute navigation qui recharge réellement la page
+retombe sur la version générique — rechargement manuel, mais aussi retour
+arrière depuis un lien de la nav lorsque le bfcache ne s'applique pas. Le
+comportement du retour arrière n'est donc pas déterministe.
 
 `politique-confidentialite.html` reste à compléter (paramètres de
 personnalisation, champ `entreprise` transmis à Tally) — hors périmètre de ce

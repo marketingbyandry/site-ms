@@ -99,7 +99,7 @@ resté ouvert le plus longtemps est l'intégration des posts LinkedIn au blog (v
 
 ## État actuel du code
 
-- **Site statique pur** : 10 pages `.html`, pas de build, CSS dans des `<style>` par
+- **Site statique pur** : 11 pages `.html`, pas de build, CSS dans des `<style>` par
   page, JS vanilla inline. Pas de composants partagés — toute modification commune à
   plusieurs pages (nav, footer, fonts...) doit être répétée fichier par fichier.
 - **Dépôt** : `git@github.com:marketingbyandry/site-ms.git`, branche `main`.

@@ -40,9 +40,24 @@ test('aucune ecriture HTML dans le chemin de personnalisation', () => {
 
 test('les parametres d_URL ne rejoignent jamais un attribut', () => {
   // Une valeur d_URL posee via setAttribute ouvrirait un vecteur (href
-  // javascript:, style, srcset) que textContent ne couvre pas.
-  const perso = HTML.slice(HTML.indexOf('LECTURE DES PARAMÈTRES'), HTML.indexOf('Google Tag Manager'));
-  assert.equal(/setAttribute/.test(perso), false, 'le bloc de lecture ne doit poser aucun attribut');
+  // javascript:, style, srcset) que textContent ne couvre pas. On couvre les
+  // deux blocs — lecture en tete ET rendu en bas de page, ou un attribut
+  // pourrait justement etre pose a partir d_une valeur d_URL.
+  const lecture = HTML.slice(HTML.indexOf('LECTURE DES PARAMÈTRES'), HTML.indexOf('Google Tag Manager'));
+  const rendu = HTML.slice(HTML.indexOf('RENDU DE LA PERSONNALISATION'));
+
+  assert.equal(/setAttribute/.test(lecture), false, 'le bloc de lecture ne doit poser aucun attribut');
+  assert.equal(/setAttribute/.test(rendu), false, 'le bloc de rendu ne doit poser aucun attribut');
+});
+
+test('la declaration d_encodage tient dans les 1024 premiers octets', () => {
+  // Spec HTML : au-dela, le prepasseur ne la trouve pas et le navigateur
+  // retombe sur son encodage par defaut — mojibake integral sur une page dont
+  // tout le texte est accentue. L_en-tete HTTP de Vercel masque le probleme en
+  // production, pas en file:// ni derriere un serveur sans charset.
+  const octets = Buffer.from(HTML, 'utf8').indexOf(Buffer.from('<meta charset', 'utf8'));
+  assert.notEqual(octets, -1, 'meta charset absent');
+  assert.ok(octets < 1024, `meta charset a l_octet ${octets}, hors des 1024 premiers`);
 });
 
 test('les caracteres invisibles et bidirectionnels sont retires', () => {

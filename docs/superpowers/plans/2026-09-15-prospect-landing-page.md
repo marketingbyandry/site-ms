@@ -10,6 +10,12 @@
 
 **Spec:** `docs/superpowers/specs/2026-09-08-prospect-landing-page-design.md`
 
+> ⚠️ **Plan exécuté, conservé comme trace.** Les argumentaires cimenterie et
+> data center qu'il contient affirmaient une éligibilité électro-intensive sans
+> condition : corrigé en relecture (commit `a646eb2`). Ne pas recopier les
+> textes d'ici — la version qui fait foi est `assets/sector-blocks.js`, et la
+> règle de rédaction est dans la spec.
+
 ## Global Constraints
 
 - Site statique : aucune étape de build pour le HTML ni pour `assets/sector-blocks.js` — le fichier est écrit à la main et commité tel quel (seul `assets/analytics.js` est généré).
