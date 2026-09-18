@@ -1,0 +1,121 @@
+/* assets/chantier-sections.css
+   Styles partagés pour les sections du "Chantier MS" (gabarit
+   https://claude.ai/code/artifact/6d344bec-a46b-4e6d-9730-e7080b932e7c)
+   déployées sur plusieurs pages du site. Un seul fichier pour éviter de
+   dupliquer ce CSS 15 fois — voir
+   docs/superpowers/specs/2026-09-14-chantier-ms-sections-photo-design.md */
+
+:root{
+  --line:rgba(43,181,200,.28);
+  --surface:#0e2b34;
+  --surface-2:#123640;
+  --ok:var(--green);
+  --bad:#e05555;
+}
+:root[data-theme="light"]{
+  --line:rgba(26,122,138,.18);
+  --surface:rgba(26,122,138,.05);
+  --surface-2:rgba(26,122,138,.09);
+}
+
+/* ─── PHOTO PLACEHOLDER — règle de traitement photo (Section 6) ─── */
+.photo-section{padding:7rem 5vw;background:var(--dark2);border-top:1px solid rgba(26,122,138,.1)}
+.photo-inner{max-width:1100px;margin:0 auto}
+.photo-inner>.sbody{max-width:620px}
+.photo-system-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.6rem}
+@media(max-width:768px){.photo-system-grid{grid-template-columns:repeat(2,1fr)}}
+.flip-card{position:relative;display:block;width:100%;aspect-ratio:3/4;border:none;background:none;padding:0;margin:0;font:inherit;color:inherit;text-align:inherit;cursor:pointer;-webkit-perspective:1400px;perspective:1400px}
+.flip-card-inner{position:relative;width:100%;height:100%;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;-webkit-transform:rotate3d(.18,1,.06,var(--flip-deg,0deg));transform:rotate3d(.18,1,.06,var(--flip-deg,0deg));transition:-webkit-transform .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.flip-card-front,.flip-card-back{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:4px;overflow:hidden;-webkit-transform:translateZ(0);transform:translateZ(0);will-change:transform}
+.flip-card-back{-webkit-transform:rotate3d(.18,1,.06,180deg) translateZ(0);transform:rotate3d(.18,1,.06,180deg) translateZ(0);background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));border:1px solid rgba(43,181,200,.18);padding:1.2rem 1.1rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.4rem}
+.flip-back-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.1rem;color:var(--teal-glow)}
+.flip-back-text{font-size:.78rem;color:var(--muted);line-height:1.55}
+.flip-hint{position:absolute;bottom:14px;right:14px;font-family:'Satoshi',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#f5f0e8;background:rgba(7,19,26,.55);border:1px solid rgba(94,207,220,.18);padding:.3rem .55rem;border-radius:2px;backdrop-filter:blur(4px);transition:opacity .3s ease}
+.flip-card.flipped .flip-hint{opacity:0}
+:root[data-theme="light"] .flip-card-back{background:rgba(26,122,138,.05)}
+
+.photo-ph{position:absolute;inset:0;border-radius:4px;overflow:hidden;border:1px solid rgba(43,181,200,.15);
+  background:radial-gradient(circle at 30% 20%,rgba(94,207,220,.16),transparent 55%),
+    repeating-linear-gradient(120deg,rgba(138,172,180,.09) 0 1px,transparent 1px 26px),
+    linear-gradient(165deg,var(--teal-dark,#0d4f5c) 0%,rgba(7,19,26,.95) 78%);
+  filter:grayscale(.7) sepia(.15) hue-rotate(140deg) brightness(.85);
+  transition:filter 1s cubic-bezier(.16,1,.3,1)}
+.photo-ph.in,.photo-ph:hover{filter:grayscale(0) sepia(0) hue-rotate(0) brightness(1)}
+.photo-ph .tag{position:absolute;top:14px;left:14px;font-family:'Satoshi',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#f5f0e8;background:rgba(7,19,26,.55);border:1px solid rgba(94,207,220,.18);padding:.3rem .55rem;border-radius:2px;backdrop-filter:blur(4px)}
+.photo-ph .dot-grid{position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(245,240,232,.25) 1px,transparent 1.4px);background-size:18px 18px}
+
+.rule-note{margin-top:2.2rem;display:flex;gap:.9rem;align-items:flex-start;padding:1.3rem 1.4rem;border:1px solid rgba(43,181,200,.15);border-radius:4px;background:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9))}
+.rule-note .dot{width:8px;height:8px;border-radius:50%;background:var(--teal-light);margin-top:.45rem;flex-shrink:0}
+.rule-note p{font-size:.86rem;color:var(--muted);line-height:1.65}
+
+/* Emplacements photo hors carte flip (vignette blog, bannière article) :
+   .photo-ph est position:absolute par défaut (pour remplir un parent
+   .flip-card-front en inset:0). Ces deux variantes le transforment en
+   bloc autonome dimensionné par aspect-ratio, tout en restant le contexte
+   de positionnement de ses enfants .dot-grid/.tag (position:relative,
+   jamais static, sinon .dot-grid se positionnerait par rapport à un
+   ancêtre plus lointain). */
+.blog-thumb{position:relative;aspect-ratio:16/9;margin-bottom:1.2rem}
+.article-banner{position:relative;aspect-ratio:21/9;margin-bottom:2rem}
+
+/* ─── SECTION 2 : bandeau chiffres en miroir ─────────────────────── */
+.mirror-row{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.mirror-row:not(:last-child){margin-bottom:18px}
+.mirror-row .stat,.mirror-row .visual{padding:40px 44px;display:flex;flex-direction:column;justify-content:center}
+.mirror-row .visual{padding:0;min-height:220px;position:relative}
+@media (max-width:760px){.mirror-row{grid-template-columns:1fr}}
+.mirror-row .stat .num{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,4.6vw,64px);color:var(--teal-light);font-variant-numeric:tabular-nums;line-height:1}
+.mirror-row .stat .label{margin-top:10px;color:var(--muted);font-size:14px;max-width:26ch}
+.mirror-row .stat .src{margin-top:16px;font-family:monospace;font-size:10px;color:var(--muted);opacity:.7;text-transform:uppercase;letter-spacing:.06em}
+.mirror-row .visual .photo-ph{border-radius:0;border:none;position:absolute;inset:0}
+
+/* ─── SECTION 3 : grille de résultats par secteur ────────────────── */
+.cases-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+.cases-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:860px){.cases-grid-3{grid-template-columns:1fr}}
+.case-card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:14px;padding:26px;background:var(--surface);transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s ease,background .4s ease}
+.case-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal-light),var(--green));opacity:.8}
+.case-card:hover{transform:translateY(-6px);border-color:var(--teal-mid);background:var(--surface-2)}
+.case-card .sector{font-family:monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.case-card .delta{font-family:'Instrument Serif',serif;font-weight:400;font-size:36px;color:var(--green-glow,#7aeea4);margin-top:14px}
+.case-card .desc{margin-top:10px;font-size:14px;color:var(--cream);opacity:.85;line-height:1.5}
+.case-card .foot{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.logo-ph{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--teal),var(--teal-dark,#0d4f5c));display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:10px;color:var(--cream);flex-shrink:0}
+.case-card .foot .sites{font-size:12px;color:var(--muted)}
+.sample-tag{font-family:monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line);padding:4px 8px;border-radius:5px}
+
+/* ─── SECTION 4 : comparatif ──────────────────────────────────────── */
+.compare{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.compare::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal-light),var(--green));opacity:.8;z-index:1}
+.compare-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;background:var(--surface)}
+.compare-top .cell{padding:22px 22px 18px}
+.compare-top .cell.brand{background:linear-gradient(135deg,rgba(26,122,138,.18),rgba(76,222,128,.10));position:relative}
+.compare-top .cell.brand::after{content:"Recommandé";position:absolute;top:14px;right:16px;font-family:monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--green-glow,#7aeea4);border:1px solid rgba(76,222,128,.4);padding:3px 7px;border-radius:100px}
+.compare-top h4{font-size:16px;font-weight:500;font-family:'Satoshi',sans-serif}
+.compare-top .cell:first-child h4{opacity:0}
+.compare-row{display:grid;grid-template-columns:1.4fr 1fr 1fr;border-top:1px solid var(--line)}
+.compare-row .cell{padding:16px 22px;font-size:14px;display:flex;align-items:center}
+.compare-row .cell:first-child{color:var(--cream);opacity:.9}
+.compare-row:hover{background:var(--surface)}
+.mark{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px}
+.mark.ok{background:rgba(76,222,128,.14);color:var(--ok)}
+.mark.bad{background:rgba(226,118,95,.12);color:var(--bad)}
+
+/* ─── SECTION 5 : widget console (autonome, hors hero) ───────────── */
+.console-standalone{border-radius:20px;overflow:hidden;position:relative;background:radial-gradient(circle at 75% 30%,rgba(94,207,220,.14),transparent 55%),linear-gradient(160deg,var(--dark),#041017 120%);border:1px solid var(--line);padding:clamp(40px,6vw,80px)}
+.console-panel{margin-top:44px;max-width:420px;border:1px solid var(--line);border-radius:14px;padding:22px 24px;background:rgba(245,240,232,.04);backdrop-filter:blur(6px);transition:border-color .3s ease}
+.console-panel:hover{border-color:var(--teal-light)}
+.console-panel .row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line)}
+.console-panel .row:last-child{border-bottom:none}
+.console-panel .k{font-family:monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.console-panel .v{font-family:monospace;font-size:14px;color:var(--teal-glow);font-variant-numeric:tabular-nums}
+.console-panel .v.up{color:var(--green-glow,#7aeea4)}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;margin-right:7px;box-shadow:0 0 0 0 rgba(76,222,128,.6);animation:cs-pulse 2.4s infinite}
+@keyframes cs-pulse{0%{box-shadow:0 0 0 0 rgba(76,222,128,.5)}70%{box-shadow:0 0 0 9px rgba(76,222,128,0)}100%{box-shadow:0 0 0 0 rgba(76,222,128,0)}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}}
+
+/* ─── SECTION 7 : effet bouton "aurora" au survol ────────────────── */
+.btn-aurora{position:relative;z-index:0;overflow:hidden}
+.btn-aurora::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(130px 80px at 50% 18%,var(--green-glow,#7aeea4),var(--teal-light) 50%,transparent 78%);mix-blend-mode:screen;opacity:0;transition:opacity .45s ease}
+.btn-aurora:hover::after{opacity:.55}
+@media (prefers-reduced-motion:reduce){.btn-aurora::after{transition:none}}

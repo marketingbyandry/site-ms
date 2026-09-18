@@ -26,6 +26,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,700,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/chantier-sections.css">
 <style>
 :root{
   --teal:#1a7a8a;
@@ -84,6 +85,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 :root[data-theme="light"] .cta-btn.ct-green:hover{background:var(--teal);color:#fff;transform:scale(1.05);box-shadow:none}
 :root[data-theme="light"] .cta-btn.ct-outline:hover{background:var(--green);border-color:var(--green);color:var(--dark);transform:scale(1.05);box-shadow:none}
 :root[data-theme="light"] .ccb-btn:hover{background:var(--teal);color:#fff;transform:scale(1.05);box-shadow:none}
+:root[data-theme="light"] .rule-note{background:rgba(26,122,138,.05)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Satoshi',sans-serif;background:var(--dark);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -330,6 +332,9 @@ a{text-decoration:none;color:inherit}
 .about-extra{margin-top:1.5rem;padding:1rem 1.2rem;background:rgba(94,207,220,.05);border-left:3px solid var(--teal-light);border-radius:0 3px 3px 0;font-size:.86rem;color:var(--muted);line-height:1.65}
 .about-extra strong{color:var(--teal-glow);font-family:'Satoshi',sans-serif;font-weight:700}
 
+/* ─── PHOTO SYSTEM / SECTION 6 ────────── */
+.rule-note strong{color:var(--cream);font-weight:500}
+
 /* ─── CAREERS ─────────────────────────── */
 .careers{padding:7rem 5vw;background:var(--dark);border-top:1px solid rgba(43,181,200,.08)}
 .careers-inner{max-width:1100px;margin:0 auto}
@@ -568,7 +573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#careers">Rejoindre</a></li>
   </ul>
   <a href="tel:0952926498" class="nphone">📞 09 52 92 64 98</a>
-  <a href="b2b.html#upload" class="ncta">Étude gratuite</a>
+  <a href="b2b.html#upload" class="ncta btn-aurora">Étude gratuite</a>
 </nav>
 <script src="assets/nav-mobile.js" defer></script>
 
@@ -593,7 +598,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="si"><span class="sn">70M</span><span class="sl">kWh négociés 2025</span></div>
       </div>
       <p class="psub">Nous négocions pour vous auprès de l'ensemble des fournisseurs du marché. Vous payez ainsi le juste prix, sans effort et sans surprise.</p>
-      <a href="b2b.html" class="pcta">Obtenir mon étude gratuite <span class="ca">→</span></a>
+      <a href="b2b.html" class="pcta btn-aurora">Obtenir mon étude gratuite <span class="ca">→</span></a>
     </div>
   </div>
 
@@ -607,7 +612,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         On compare, <em>vous économisez.</em>
       </h2>
       <p class="psub">Votre énergie au meilleur prix, tout simplement.</p>
-      <a href="b2c.html" class="pcta">Découvrir les offres <span class="ca">→</span></a>
+      <a href="b2c.html" class="pcta btn-aurora">Découvrir les offres <span class="ca">→</span></a>
     </div>
   </div>
 
@@ -627,6 +632,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="pit"><span class="pnum g">100.000</span><span class="plb">Clients accompagnés</span></div>
     <div class="pit"><span class="pnum t">80+</span><span class="plb">Collaborateurs · 8 agences</span></div>
     <div class="pit"><span class="pnum g">24h</span><span class="plb">Délai d'analyse</span></div>
+  </div>
+</section>
+
+<!-- CHIFFRES EN MIROIR (Chantier MS, Section 2) -->
+<section class="market-section" style="padding-top:0">
+  <div class="mirror-row reveal">
+    <div class="stat">
+      <div class="num">8 216</div>
+      <p class="label">professionnels déjà accompagnés dans la négociation de leurs contrats</p>
+    </div>
+    <div class="visual"><div class="photo-ph"><span class="dot-grid"></span><span class="tag">équipe</span></div></div>
+  </div>
+  <div class="mirror-row reveal d1">
+    <div class="visual"><div class="photo-ph"><span class="dot-grid"></span><span class="tag">terrain</span></div></div>
+    <div class="stat">
+      <div class="num">94%</div>
+      <p class="label">de taux de renouvellement des contrats négociés par le cabinet</p>
+      <p class="src">gabarit — donnée d'exemple</p>
+    </div>
+  </div>
+  <div class="rule-note reveal d2">
+    <span class="dot"></span>
+    <p><strong>En attendant :</strong> ces emplacements sont réservés à de vraies photos, même règle de traitement que la section "Charte visuelle" plus bas sur cette page.</p>
   </div>
 </section>
 
@@ -867,7 +895,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="sh2">Votre offre d'énergie est-elle toujours <em>adaptée au marché</em> ?</h2>
     <p class="sbody">Faites analyser gratuitement votre contrat par un expert dédié.</p>
     <div class="cta-actions">
-      <a href="ms-strategy-calculateur.html" class="cta-btn ct-teal">Lancer le calculateur <span class="ca">→</span></a>
+      <a href="ms-strategy-calculateur.html" class="cta-btn ct-teal btn-aurora">Lancer le calculateur <span class="ca">→</span></a>
     </div>
   </div>
 </section>
@@ -953,6 +981,83 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- PHOTO SYSTEM / SECTION 6 -->
+<section class="photo-section">
+  <div class="photo-inner">
+    <span class="stag reveal">Charte visuelle</span>
+    <h2 class="sh2 reveal d1">Une seule règle, appliquée partout</h2>
+    <div class="sbody reveal d2">
+      <p>Chaque photo entre teintée dans la charte, puis reprend sa couleur au scroll ou au survol — équipe, terrain, sites clients, sans exception.</p>
+    </div>
+    <div class="photo-system-grid">
+      <button type="button" class="flip-card" aria-pressed="false" aria-label="Afficher le détail : l'équipe">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="photo-ph">
+              <span class="dot-grid"></span>
+              <span class="tag">Équipe</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">L'équipe</p>
+            <p class="flip-back-text">Des experts dédiés au suivi de vos contrats, du diagnostic à la négociation.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
+      <button type="button" class="flip-card" aria-pressed="false" aria-label="Afficher le détail : sur le terrain">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="photo-ph">
+              <span class="dot-grid"></span>
+              <span class="tag">Terrain</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">Sur le terrain</p>
+            <p class="flip-back-text">Visites de sites, relevés de consommation, audits — au plus près de votre activité.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
+      <button type="button" class="flip-card" aria-pressed="false" aria-label="Afficher le détail : chez nos clients">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="photo-ph">
+              <span class="dot-grid"></span>
+              <span class="tag">Site client</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">Chez nos clients</p>
+            <p class="flip-back-text">Un accompagnement au cas par cas, secteur par secteur, site par site.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
+      <button type="button" class="flip-card" aria-pressed="false" aria-label="Afficher le détail : nos bureaux">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="photo-ph">
+              <span class="dot-grid"></span>
+              <span class="tag">Bureaux</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">Nos bureaux</p>
+            <p class="flip-back-text">8 agences réparties en France, pour un accueil et un suivi de proximité, où que vous soyez.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
+    </div>
+    <div class="rule-note reveal d2">
+      <span class="dot"></span>
+      <p><strong>En attendant :</strong> ces vignettes sont des emplacements réservés à de vraies photos. Elles prennent leurs couleurs au fil du scroll ou au survol, en attendant d'accueillir nos équipes et nos sites.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CAREERS -->
 <section class="careers" id="careers">
   <div class="careers-inner">
@@ -992,7 +1097,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Un vrai plan de carrière vous attend.</h3>
         <p>Rejoignez l'une de nos 8 agences en France, et construisez quelque chose qui vous ressemble.</p>
       </div>
-      <a href="mailto:msstrategy@yahoo.com" class="ccb-btn">Candidater →</a>
+      <a href="mailto:msstrategy@yahoo.com" class="ccb-btn btn-aurora">Candidater →</a>
     </div>
   </div>
 </section>
@@ -1045,8 +1150,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="sh2">Prêt à <em>reprendre la main ?</em></h2>
     <p class="sbody">Étude gratuite, sans engagement. Réponse sous 24h, quel que soit votre profil.</p>
     <div class="cta-actions">
-      <a href="b2b.html#upload" class="cta-btn ct-teal">Professionnels · Étude gratuite <span class="ca">→</span></a>
-      <a href="b2c.html" class="cta-btn ct-green">Particuliers · Découvrir les offres <span class="ca">→</span></a>
+      <a href="b2b.html#upload" class="cta-btn ct-teal btn-aurora">Professionnels · Étude gratuite <span class="ca">→</span></a>
+      <a href="b2c.html" class="cta-btn ct-green btn-aurora">Particuliers · Découvrir les offres <span class="ca">→</span></a>
     </div>
   </div>
 </section>
@@ -1197,7 +1302,22 @@ const obs = new IntersectionObserver(es => {
     if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
   });
 }, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.reveal, .photo-ph').forEach(el => obs.observe(el));
+
+/* ══════════════════════════════════
+   PHOTO SYSTEM / FLIP CARDS
+   ══════════════════════════════════ */
+document.querySelectorAll('.flip-card').forEach(function(card){
+  var turns = 0;
+  var inner = card.querySelector('.flip-card-inner');
+  card.addEventListener('click', function(){
+    turns++;
+    inner.style.setProperty('--flip-deg', (-180 * turns) + 'deg');
+    var flipped = turns % 2 === 1;
+    card.classList.toggle('flipped', flipped);
+    card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+  });
+});
 
 /* ══════════════════════════════════
    FAQ ACCORDION
