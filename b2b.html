@@ -183,18 +183,31 @@ a{text-decoration:none;color:inherit}
 .vt{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.92rem;color:var(--cream);margin-bottom:.5rem}
 .vb{font-size:.86rem;color:var(--muted);line-height:1.65}
 
-/* Cartes secteurs en flip 3D (photo devant, texte explicatif au dos) :
-   réutilise .flip-card/.flip-card-inner/.flip-card-front/.flip-card-back
-   de assets/chantier-sections.css (mêmes mécaniques que Section 6). Ici la
-   face avant reste en flux normal (tête .vhead + photo), pas de .tag en
-   overlay sur la photo : l'intitulé du secteur doit rester lisible hors
-   image, contrairement aux cartes "Équipe/Terrain" de l'accueil. */
-.vcard-flip .flip-card-front{display:flex;flex-direction:column;gap:.85rem;padding:1.3rem 1.3rem 1.5rem;background:var(--surface);border:1px solid var(--line)}
-.vcard-flip .flip-card-back{background:var(--surface);border-color:var(--line)}
-.vcard-flip .vhead{display:flex;align-items:baseline;gap:.6rem}
-.vcard-flip .vn{font-size:1.4rem;color:rgba(26,122,138,.5);margin-bottom:0}
-.vcard-flip .vt{font-size:.92rem;margin-bottom:0}
-.vcard-flip .photo-ph{position:relative;flex:1;border-radius:4px}
+/* Cartes secteurs : texte et photo sur une même face (pas de rotation).
+   Au repos, les deux zones se partagent la carte à parts égales ; au survol
+   de l'une, elle prend le dessus (flex-grow) et l'autre se retire — et
+   inversement. .photo-ph:hover (règle partagée de chantier-sections.css)
+   colore déjà la photo à son propre survol ; on ajoute juste le retrait du
+   texte au survol de la photo, et la mise en valeur inverse. */
+.sector-card{position:relative;display:flex;min-height:300px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.sector-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal-light),var(--green));opacity:.8;z-index:2}
+.sc-text{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;gap:.6rem;padding:1.7rem 1.5rem;background:var(--surface);transition:flex-grow .55s cubic-bezier(.16,1,.3,1),opacity .4s ease}
+.sc-text .vn{font-size:1.4rem;color:rgba(26,122,138,.5);margin-bottom:0}
+.sc-text .vt{margin-bottom:0}
+.sc-text .vb{margin:0}
+.sc-photo{position:relative;flex:1;transition:flex-grow .55s cubic-bezier(.16,1,.3,1)}
+.sc-photo .photo-ph{position:absolute;inset:0;border-radius:0;border:none;border-left:1px solid var(--line)}
+.sector-card:has(.sc-text:hover) .sc-text{flex-grow:1.9}
+.sector-card:has(.sc-text:hover) .sc-photo{flex-grow:.45}
+.sector-card:has(.sc-photo:hover) .sc-photo{flex-grow:1.9}
+.sector-card:has(.sc-photo:hover) .sc-text{flex-grow:.45;opacity:.5}
+@media(max-width:560px){
+  .sector-card{flex-direction:column;min-height:0}
+  .sc-photo{aspect-ratio:16/9}
+  .sc-photo .photo-ph{border-left:none;border-top:1px solid var(--line)}
+  .sector-card:has(.sc-text:hover) .sc-text,.sector-card:has(.sc-text:hover) .sc-photo,
+  .sector-card:has(.sc-photo:hover) .sc-text,.sector-card:has(.sc-photo:hover) .sc-photo{flex-grow:1;opacity:1}
+}
 
 /* ─── UPLOAD / ÉTUDE GRATUITE ─────────── */
 .upload-section{padding:7rem 5vw;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;scroll-margin-top:112px}
@@ -505,45 +518,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Notre expertise couvre l'ensemble des profils de consommation professionnelle.</p>
     </div>
     <div class="vgrid">
-      <button type="button" class="flip-card vcard-flip reveal" aria-pressed="false" aria-label="Afficher le détail : Industrie & production">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div class="vhead"><span class="vn">01</span><span class="vt">Industrie & production</span></div>
-            <div class="photo-ph"><span class="dot-grid"></span></div>
-          </div>
-          <div class="flip-card-back">
-            <p class="flip-back-title">Industrie & production</p>
-            <p class="flip-back-text">Sites à forte consommation, puissance souscrite élevée, besoins de continuité : agroalimentaire, métallurgie, plasturgie, logistique. Nous négocions des conditions adaptées à vos contraintes de production.</p>
-          </div>
+      <article class="sector-card reveal">
+        <div class="sc-text">
+          <span class="vn">01</span>
+          <h3 class="vt">Industrie & production</h3>
+          <p class="vb">Sites à forte consommation, puissance souscrite élevée, besoins de continuité : agroalimentaire, métallurgie, plasturgie, logistique. Nous négocions des conditions adaptées à vos contraintes de production.</p>
         </div>
-        <span class="flip-hint">Détail</span>
-      </button>
-      <button type="button" class="flip-card vcard-flip reveal d1" aria-pressed="false" aria-label="Afficher le détail : Commerce & multi-sites">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div class="vhead"><span class="vn">02</span><span class="vt">Commerce & multi-sites</span></div>
-            <div class="photo-ph"><span class="dot-grid"></span></div>
-          </div>
-          <div class="flip-card-back">
-            <p class="flip-back-title">Commerce & multi-sites</p>
-            <p class="flip-back-text">Réseaux de boutiques, franchises, agences ou cabinets médicaux répartis sur le territoire. Nous consolidons vos volumes pour un pouvoir de négociation renforcé.</p>
-          </div>
+        <div class="sc-photo">
+          <div class="photo-ph"><span class="dot-grid"></span></div>
         </div>
-        <span class="flip-hint">Détail</span>
-      </button>
-      <button type="button" class="flip-card vcard-flip reveal d2" aria-pressed="false" aria-label="Afficher le détail : Tertiaire & collectivités">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div class="vhead"><span class="vn">03</span><span class="vt">Tertiaire & collectivités</span></div>
-            <div class="photo-ph"><span class="dot-grid"></span></div>
-          </div>
-          <div class="flip-card-back">
-            <p class="flip-back-title">Tertiaire & collectivités</p>
-            <p class="flip-back-text">Bureaux, copropriétés professionnelles, mairies, écoles et structures publiques ou parapubliques bénéficient d'un accompagnement rigoureux, adapté aux procédures propres à chaque structure.</p>
-          </div>
+      </article>
+      <article class="sector-card reveal d1">
+        <div class="sc-text">
+          <span class="vn">02</span>
+          <h3 class="vt">Commerce & multi-sites</h3>
+          <p class="vb">Réseaux de boutiques, franchises, agences ou cabinets médicaux répartis sur le territoire. Nous consolidons vos volumes pour un pouvoir de négociation renforcé.</p>
         </div>
-        <span class="flip-hint">Détail</span>
-      </button>
+        <div class="sc-photo">
+          <div class="photo-ph"><span class="dot-grid"></span></div>
+        </div>
+      </article>
+      <article class="sector-card reveal d2">
+        <div class="sc-text">
+          <span class="vn">03</span>
+          <h3 class="vt">Tertiaire & collectivités</h3>
+          <p class="vb">Bureaux, copropriétés professionnelles, mairies, écoles et structures publiques ou parapubliques bénéficient d'un accompagnement rigoureux, adapté aux procédures propres à chaque structure.</p>
+        </div>
+        <div class="sc-photo">
+          <div class="photo-ph"><span class="dot-grid"></span></div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -694,23 +698,6 @@ const obs = new IntersectionObserver(es => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-const photoObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); photoObs.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.photo-ph').forEach(el => photoObs.observe(el));
-
-document.querySelectorAll('.flip-card').forEach(function(card){
-  var turns = 0;
-  var inner = card.querySelector('.flip-card-inner');
-  card.addEventListener('click', function(){
-    turns++;
-    inner.style.setProperty('--flip-deg', (-180 * turns) + 'deg');
-    var flipped = turns % 2 === 1;
-    card.classList.toggle('flipped', flipped);
-    card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
-  });
-});
 
 function faq(el) {
   const open = el.classList.contains('open');
