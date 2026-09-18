@@ -6,11 +6,16 @@
    docs/superpowers/specs/2026-09-14-chantier-ms-sections-photo-design.md */
 
 :root{
-  --line:rgba(43,181,200,.15);
-  --surface:linear-gradient(135deg,rgba(13,79,92,.35),rgba(10,26,31,.9));
-  --surface-2:rgba(13,79,92,.18);
+  --line:rgba(43,181,200,.28);
+  --surface:#0e2b34;
+  --surface-2:#123640;
   --ok:var(--green);
   --bad:#e05555;
+}
+:root[data-theme="light"]{
+  --line:rgba(26,122,138,.18);
+  --surface:rgba(26,122,138,.05);
+  --surface-2:rgba(26,122,138,.09);
 }
 
 /* ─── PHOTO PLACEHOLDER — règle de traitement photo (Section 6) ─── */
@@ -68,7 +73,8 @@
 .cases-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px;flex-wrap:wrap}
 .cases-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media (max-width:860px){.cases-grid-3{grid-template-columns:1fr}}
-.case-card{border:1px solid var(--line);border-radius:14px;padding:26px;background:var(--surface);transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s ease,background .4s ease}
+.case-card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:14px;padding:26px;background:var(--surface);transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .4s ease,background .4s ease}
+.case-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal-light),var(--green));opacity:.8}
 .case-card:hover{transform:translateY(-6px);border-color:var(--teal-mid);background:var(--surface-2)}
 .case-card .sector{font-family:monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .case-card .delta{font-family:'Instrument Serif',serif;font-weight:400;font-size:36px;color:var(--green-glow,#7aeea4);margin-top:14px}
@@ -79,7 +85,8 @@
 .sample-tag{font-family:monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line);padding:4px 8px;border-radius:5px}
 
 /* ─── SECTION 4 : comparatif ──────────────────────────────────────── */
-.compare{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.compare{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.compare::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal-light),var(--green));opacity:.8;z-index:1}
 .compare-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;background:var(--surface)}
 .compare-top .cell{padding:22px 22px 18px}
 .compare-top .cell.brand{background:linear-gradient(135deg,rgba(26,122,138,.18),rgba(76,222,128,.10));position:relative}

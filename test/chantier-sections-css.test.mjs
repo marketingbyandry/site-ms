@@ -7,11 +7,25 @@ const css = () => readFileSync('assets/chantier-sections.css', 'utf8');
 
 test('chantier-sections.css définit les tokens de mapping gabarit → site', () => {
   const source = css();
-  assert.match(source, /--line:\s*rgba\(43,181,200,\.15\)/);
-  assert.match(source, /--surface:\s*linear-gradient/);
-  assert.match(source, /--surface-2:\s*rgba\(13,79,92,\.18\)/);
+  assert.match(source, /--line:\s*rgba\(43,181,200,\.28\)/);
+  assert.match(source, /--surface:\s*#0e2b34/);
+  assert.match(source, /--surface-2:\s*#123640/);
   assert.match(source, /--ok:\s*var\(--green\)/);
   assert.match(source, /--bad:\s*#e05555/);
+});
+
+test('chantier-sections.css fournit des tokens de surface dédiés au thème clair (pas de dégradé sombre hors-thème)', () => {
+  const source = css();
+  const lightRoot = source.match(/:root\[data-theme="light"\]\{[^}]*\}/);
+  assert.ok(lightRoot, ':root[data-theme="light"] doit redéfinir --line/--surface/--surface-2');
+  assert.match(lightRoot[0], /--surface:\s*rgba\(26,122,138,/);
+  assert.match(lightRoot[0], /--surface-2:\s*rgba\(26,122,138,/);
+});
+
+test('chantier-sections.css marque .case-card et .compare d\'un accent cyan→vert plutôt que d\'un simple aplat', () => {
+  const source = css();
+  assert.match(source, /\.case-card::before\{[^}]*linear-gradient\(90deg,var\(--teal-light\),var\(--green\)\)/);
+  assert.match(source, /\.compare::before\{[^}]*linear-gradient\(90deg,var\(--teal-light\),var\(--green\)\)/);
 });
 
 test('chantier-sections.css définit les classes de la Section 6 (photo system, déjà shippé PR #76)', () => {
