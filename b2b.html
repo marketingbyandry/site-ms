@@ -183,6 +183,19 @@ a{text-decoration:none;color:inherit}
 .vt{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.92rem;color:var(--cream);margin-bottom:.5rem}
 .vb{font-size:.86rem;color:var(--muted);line-height:1.65}
 
+/* Cartes secteurs en flip 3D (photo devant, texte explicatif au dos) :
+   réutilise .flip-card/.flip-card-inner/.flip-card-front/.flip-card-back
+   de assets/chantier-sections.css (mêmes mécaniques que Section 6). Ici la
+   face avant reste en flux normal (tête .vhead + photo), pas de .tag en
+   overlay sur la photo : l'intitulé du secteur doit rester lisible hors
+   image, contrairement aux cartes "Équipe/Terrain" de l'accueil. */
+.vcard-flip .flip-card-front{display:flex;flex-direction:column;gap:.85rem;padding:1.3rem 1.3rem 1.5rem;background:var(--surface);border:1px solid var(--line)}
+.vcard-flip .flip-card-back{background:var(--surface);border-color:var(--line)}
+.vcard-flip .vhead{display:flex;align-items:baseline;gap:.6rem}
+.vcard-flip .vn{font-size:1.4rem;color:rgba(26,122,138,.5);margin-bottom:0}
+.vcard-flip .vt{font-size:.92rem;margin-bottom:0}
+.vcard-flip .photo-ph{position:relative;flex:1;border-radius:4px}
+
 /* ─── UPLOAD / ÉTUDE GRATUITE ─────────── */
 .upload-section{padding:7rem 5vw;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;scroll-margin-top:112px}
 @media(max-width:768px){.upload-section{grid-template-columns:1fr;gap:3rem}}
@@ -492,21 +505,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Notre expertise couvre l'ensemble des profils de consommation professionnelle.</p>
     </div>
     <div class="vgrid">
-      <div class="vcard reveal">
-        <div class="vn">01</div>
-        <div class="vt">Industrie & production</div>
-        <p class="vb">Sites à forte consommation, puissance souscrite élevée, besoins de continuité : agroalimentaire, métallurgie, plasturgie, logistique. Nous négocions des conditions adaptées à vos contraintes de production.</p>
-      </div>
-      <div class="vcard reveal d1">
-        <div class="vn">02</div>
-        <div class="vt">Commerce & multi-sites</div>
-        <p class="vb">Réseaux de boutiques, franchises, agences ou cabinets médicaux répartis sur le territoire. Nous consolidons vos volumes pour un pouvoir de négociation renforcé.</p>
-      </div>
-      <div class="vcard reveal d2">
-        <div class="vn">03</div>
-        <div class="vt">Tertiaire & collectivités</div>
-        <p class="vb">Bureaux, copropriétés professionnelles, mairies, écoles et structures publiques ou parapubliques bénéficient d'un accompagnement rigoureux, adapté aux procédures propres à chaque structure.</p>
-      </div>
+      <button type="button" class="flip-card vcard-flip reveal" aria-pressed="false" aria-label="Afficher le détail : Industrie & production">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="vhead"><span class="vn">01</span><span class="vt">Industrie & production</span></div>
+            <div class="photo-ph"><span class="dot-grid"></span></div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">Industrie & production</p>
+            <p class="flip-back-text">Sites à forte consommation, puissance souscrite élevée, besoins de continuité : agroalimentaire, métallurgie, plasturgie, logistique. Nous négocions des conditions adaptées à vos contraintes de production.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
+      <button type="button" class="flip-card vcard-flip reveal d1" aria-pressed="false" aria-label="Afficher le détail : Commerce & multi-sites">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="vhead"><span class="vn">02</span><span class="vt">Commerce & multi-sites</span></div>
+            <div class="photo-ph"><span class="dot-grid"></span></div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">Commerce & multi-sites</p>
+            <p class="flip-back-text">Réseaux de boutiques, franchises, agences ou cabinets médicaux répartis sur le territoire. Nous consolidons vos volumes pour un pouvoir de négociation renforcé.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
+      <button type="button" class="flip-card vcard-flip reveal d2" aria-pressed="false" aria-label="Afficher le détail : Tertiaire & collectivités">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="vhead"><span class="vn">03</span><span class="vt">Tertiaire & collectivités</span></div>
+            <div class="photo-ph"><span class="dot-grid"></span></div>
+          </div>
+          <div class="flip-card-back">
+            <p class="flip-back-title">Tertiaire & collectivités</p>
+            <p class="flip-back-text">Bureaux, copropriétés professionnelles, mairies, écoles et structures publiques ou parapubliques bénéficient d'un accompagnement rigoureux, adapté aux procédures propres à chaque structure.</p>
+          </div>
+        </div>
+        <span class="flip-hint">Détail</span>
+      </button>
     </div>
   </div>
 </section>
@@ -657,6 +694,23 @@ const obs = new IntersectionObserver(es => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+const photoObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); photoObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.photo-ph').forEach(el => photoObs.observe(el));
+
+document.querySelectorAll('.flip-card').forEach(function(card){
+  var turns = 0;
+  var inner = card.querySelector('.flip-card-inner');
+  card.addEventListener('click', function(){
+    turns++;
+    inner.style.setProperty('--flip-deg', (-180 * turns) + 'deg');
+    var flipped = turns % 2 === 1;
+    card.classList.toggle('flipped', flipped);
+    card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+  });
+});
 
 function faq(el) {
   const open = el.classList.contains('open');
