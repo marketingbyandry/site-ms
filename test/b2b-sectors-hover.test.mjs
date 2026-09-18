@@ -28,16 +28,24 @@ test('b2b.html garde le texte de chaque secteur visible sans interaction (h3 + p
   assert.match(section, /<h3 class="vt">Tertiaire & collectivités<\/h3>\s*<p class="vb">Bureaux, copropriétés/);
 });
 
-test('b2b.html définit une emphase au survol réciproque entre .sc-text et .sc-photo', () => {
+test('b2b.html définit une emphase au survol réciproque, mais légère (pas de quasi-disparition)', () => {
   const source = html();
   const styleOpen = source.indexOf('<style>');
   const styleClose = source.indexOf('</style>');
   const inlineStyle = source.slice(styleOpen, styleClose);
 
-  assert.match(inlineStyle, /\.sector-card:has\(\.sc-text:hover\) \.sc-text\{[^}]*flex-grow:1\.9/);
-  assert.match(inlineStyle, /\.sector-card:has\(\.sc-text:hover\) \.sc-photo\{[^}]*flex-grow:\.45/);
-  assert.match(inlineStyle, /\.sector-card:has\(\.sc-photo:hover\) \.sc-photo\{[^}]*flex-grow:1\.9/);
-  assert.match(inlineStyle, /\.sector-card:has\(\.sc-photo:hover\) \.sc-text\{[^}]*flex-grow:\.45/);
+  assert.match(inlineStyle, /\.sector-card:has\(\.sc-text:hover\) \.sc-text\{[^}]*flex-grow:1\.35/);
+  assert.match(inlineStyle, /\.sector-card:has\(\.sc-text:hover\) \.sc-photo\{[^}]*flex-grow:\.75/);
+  assert.match(inlineStyle, /\.sector-card:has\(\.sc-photo:hover\) \.sc-photo\{[^}]*flex-grow:1\.35/);
+  assert.match(inlineStyle, /\.sector-card:has\(\.sc-photo:hover\) \.sc-text\{[^}]*flex-grow:\.75/);
+});
+
+test('b2b.html donne un format quasi carré/portrait aux cartes secteurs par défaut', () => {
+  const source = html();
+  const styleOpen = source.indexOf('<style>');
+  const styleClose = source.indexOf('</style>');
+  const inlineStyle = source.slice(styleOpen, styleClose);
+  assert.match(inlineStyle, /\.sector-card\{[^}]*aspect-ratio:4\/5/);
 });
 
 test('b2b.html neutralise la bascule au survol sur mobile (pas de hover tactile fiable)', () => {
