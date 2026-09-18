@@ -189,22 +189,21 @@ a{text-decoration:none;color:inherit}
    inversement. .photo-ph:hover (règle partagée de chantier-sections.css)
    colore déjà la photo à son propre survol ; on ajoute juste le retrait du
    texte au survol de la photo, et la mise en valeur inverse. */
-.sector-card{position:relative;display:flex;min-height:300px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.sector-card{position:relative;display:flex;flex-direction:column-reverse;min-height:300px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
 .sector-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal-light),var(--green));opacity:.8;z-index:2}
 .sc-text{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;gap:.6rem;padding:1.7rem 1.5rem;background:var(--surface);transition:flex-grow .55s cubic-bezier(.16,1,.3,1),opacity .4s ease}
 .sc-text .vn{font-size:1.4rem;color:rgba(26,122,138,.5);margin-bottom:0}
 .sc-text .vt{margin-bottom:0}
 .sc-text .vb{margin:0}
 .sc-photo{position:relative;flex:1;transition:flex-grow .55s cubic-bezier(.16,1,.3,1)}
-.sc-photo .photo-ph{position:absolute;inset:0;border-radius:0;border:none;border-left:1px solid var(--line)}
+.sc-photo .photo-ph{position:absolute;inset:0;border-radius:0;border:none;border-bottom:1px solid var(--line)}
 .sector-card:has(.sc-text:hover) .sc-text{flex-grow:1.9}
 .sector-card:has(.sc-text:hover) .sc-photo{flex-grow:.45}
 .sector-card:has(.sc-photo:hover) .sc-photo{flex-grow:1.9}
 .sector-card:has(.sc-photo:hover) .sc-text{flex-grow:.45;opacity:.5}
 @media(max-width:560px){
-  .sector-card{flex-direction:column;min-height:0}
+  .sector-card{min-height:0}
   .sc-photo{aspect-ratio:16/9}
-  .sc-photo .photo-ph{border-left:none;border-top:1px solid var(--line)}
   .sector-card:has(.sc-text:hover) .sc-text,.sector-card:has(.sc-text:hover) .sc-photo,
   .sector-card:has(.sc-photo:hover) .sc-text,.sector-card:has(.sc-photo:hover) .sc-photo{flex-grow:1;opacity:1}
 }
