@@ -194,14 +194,16 @@ a{text-decoration:none;color:inherit}
 .sc-text{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;gap:.6rem;padding:1.7rem 1.5rem;background:var(--surface);transition:flex-grow .55s cubic-bezier(.16,1,.3,1),opacity .4s ease}
 .sc-text .vn{font-size:1.4rem;color:rgba(26,122,138,.5);margin-bottom:0}
 .sc-text .vt{margin-bottom:0}
-.sc-text .vb{margin:0}
+.sc-text .vb{margin:0;line-height:1.6;max-height:3.2em;overflow:hidden;transition:max-height .55s cubic-bezier(.16,1,.3,1)}
 .sc-photo{position:relative;flex:1;transition:flex-grow .55s cubic-bezier(.16,1,.3,1)}
 .sc-photo .photo-ph{position:absolute;inset:0;border-radius:0;border:none;border-bottom:1px solid var(--line)}
 .sector-card:has(.sc-text:hover) .sc-text{flex-grow:1.35}
+.sector-card:has(.sc-text:hover) .sc-text .vb{max-height:14em}
 .sector-card:has(.sc-text:hover) .sc-photo{flex-grow:.75}
 .sector-card:has(.sc-photo:hover) .sc-photo{flex-grow:1.35}
 .sector-card:has(.sc-photo:hover) .sc-text{flex-grow:.75;opacity:.7}
 @media(max-width:560px){
+  .sc-text .vb{max-height:none}
   .sector-card:has(.sc-text:hover) .sc-text,.sector-card:has(.sc-text:hover) .sc-photo,
   .sector-card:has(.sc-photo:hover) .sc-text,.sector-card:has(.sc-photo:hover) .sc-photo{flex-grow:1;opacity:1}
 }

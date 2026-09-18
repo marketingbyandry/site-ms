@@ -48,6 +48,15 @@ test('b2b.html donne un format quasi carré/portrait aux cartes secteurs par dé
   assert.match(inlineStyle, /\.sector-card\{[^}]*aspect-ratio:4\/5/);
 });
 
+test('b2b.html réduit le texte à un aperçu (~2 lignes) par défaut et le révèle au survol du texte', () => {
+  const source = html();
+  const styleOpen = source.indexOf('<style>');
+  const styleClose = source.indexOf('</style>');
+  const inlineStyle = source.slice(styleOpen, styleClose);
+  assert.match(inlineStyle, /\.sc-text \.vb\{[^}]*max-height:3\.2em[^}]*overflow:hidden/);
+  assert.match(inlineStyle, /\.sector-card:has\(\.sc-text:hover\) \.sc-text \.vb\{[^}]*max-height:14em/);
+});
+
 test('b2b.html neutralise la bascule au survol sur mobile (pas de hover tactile fiable)', () => {
   const source = html();
   const styleOpen = source.indexOf('<style>');
@@ -56,4 +65,5 @@ test('b2b.html neutralise la bascule au survol sur mobile (pas de hover tactile 
   const mobileBlock = inlineStyle.match(/@media\(max-width:560px\)\{[^]*?\n\}/);
   assert.ok(mobileBlock, 'un correctif mobile pour .sector-card doit exister');
   assert.match(mobileBlock[0], /flex-grow:1;opacity:1/);
+  assert.match(mobileBlock[0], /\.sc-text \.vb\{max-height:none\}/, 'le texte doit rester complet sur mobile, faute de hover tactile fiable');
 });
