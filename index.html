@@ -340,6 +340,9 @@ a{text-decoration:none;color:inherit}
 .careers-inner{max-width:1100px;margin:0 auto}
 .careers-top{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-bottom:3.5rem;align-items:start}
 @media(max-width:768px){.careers-top{grid-template-columns:1fr;gap:2rem}}
+.careers-video{position:relative;max-width:720px;margin:0 auto 3.5rem;border-radius:14px;overflow:hidden;border:1px solid var(--line,rgba(43,181,200,.28));background:var(--dark2)}
+.careers-video::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal-light),var(--green));opacity:.8;z-index:1}
+.careers-video video{display:block;width:100%;aspect-ratio:16/9;background:#000}
 .careers-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 @media(max-width:700px){.careers-pillars{grid-template-columns:1fr}}
 .cpillar{border:1px solid rgba(76,222,128,.14);border-radius:3px;padding:1.9rem;background:rgba(76,222,128,.03);transition:border-color .25s,transform .25s}
@@ -1082,6 +1085,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Dans une atmosphère de startup, les idées innovantes émergent et les commerciaux construisent leur propre trajectoire. Les défis quotidiens renforcent la détermination. L'évolution est réelle, pas seulement promise.</p>
         <p>Nous sponsorisons également des projets, des événements et des associations. <a href="mailto:msstrategy@yahoo.com" style="color:var(--teal-light)">Contactez-nous</a> pour toute demande de partenariat ou de sponsoring.</p>
       </div>
+    </div>
+    <div class="careers-video reveal d2">
+      <video controls preload="metadata" poster="assets/careers-video-poster.webp" playsinline>
+        <source src="assets/careers-video.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="careers-pillars">
       <div class="cpillar reveal">
