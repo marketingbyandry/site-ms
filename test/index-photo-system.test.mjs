@@ -36,3 +36,14 @@ test('index.html conserve le gestionnaire JS de bascule des cartes flip', () => 
 test('index.html observe toujours .photo-ph dans le reveal scroll', () => {
   assert.match(html(), /document\.querySelectorAll\('\.reveal,\s*\.photo-ph'\)\.forEach\(el => obs\.observe\(el\)\);/);
 });
+
+test('index.html affiche la vraie photo équipe (carte flip Section 6 + bandeau Section 2), garde le filtre .photo-ph', () => {
+  const source = html();
+  const styleOpen = source.indexOf('<style>');
+  const styleClose = source.indexOf('</style>');
+  const inlineStyle = source.slice(styleOpen, styleClose);
+  assert.match(inlineStyle, /\.photo-ph-team-banner\{background:url\("assets\/team-photo\.webp"\)/);
+  assert.match(inlineStyle, /\.photo-ph-team-card\{background:url\("assets\/team-photo\.webp"\)/);
+  assert.match(source, /<div class="visual"><div class="photo-ph photo-ph-team-banner"><span class="tag">équipe<\/span><\/div><\/div>/);
+  assert.match(source, /<div class="photo-ph photo-ph-team-card">\s*<span class="tag">Équipe<\/span>/);
+});

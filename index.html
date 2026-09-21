@@ -396,6 +396,10 @@ a{text-decoration:none;color:inherit}
 .sup-a{font-size:.89rem;color:var(--muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
 .sup-item.open .sup-a{max-height:260px;padding-top:.9rem}
 .sup-more{margin-top:.9rem;border:1px dashed rgba(26,122,138,.25);border-radius:3px;padding:1rem 1.6rem;text-align:center;color:var(--muted2);font-size:.85rem;font-style:italic}
+
+/* ─── PHOTO ÉQUIPE (vraie photo, garde le traitement filter de .photo-ph) ─── */
+.photo-ph-team-banner{background:url("assets/team-photo.webp") center/cover no-repeat}
+.photo-ph-team-card{background:url("assets/team-photo.webp") 78% center/cover no-repeat}
 </style>
 <link rel="canonical" href="https://cabinetms.fr/">
 <meta property="og:type" content="website">
@@ -642,7 +646,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="num">8 216</div>
       <p class="label">professionnels déjà accompagnés dans la négociation de leurs contrats</p>
     </div>
-    <div class="visual"><div class="photo-ph"><span class="dot-grid"></span><span class="tag">équipe</span></div></div>
+    <div class="visual"><div class="photo-ph photo-ph-team-banner"><span class="tag">équipe</span></div></div>
   </div>
   <div class="mirror-row reveal d1">
     <div class="visual"><div class="photo-ph"><span class="dot-grid"></span><span class="tag">terrain</span></div></div>
@@ -993,8 +997,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" class="flip-card" aria-pressed="false" aria-label="Afficher le détail : l'équipe">
         <div class="flip-card-inner">
           <div class="flip-card-front">
-            <div class="photo-ph">
-              <span class="dot-grid"></span>
+            <div class="photo-ph photo-ph-team-card">
               <span class="tag">Équipe</span>
             </div>
           </div>
