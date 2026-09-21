@@ -48,12 +48,12 @@ test('index.html affiche la vraie photo équipe (carte flip Section 6 + bandeau 
   assert.match(source, /<div class="photo-ph photo-ph-team-card">\s*<span class="tag">Équipe<\/span>/);
 });
 
-test('index.html affiche la vraie photo terrain (carte flip Section 6 + bandeau Section 2), garde le filtre .photo-ph', () => {
+test('index.html affiche la vraie photo terrain (bandeau Section 2, reprend le visuel industrie & production de b2b) et la carte flip terrain, garde le filtre .photo-ph', () => {
   const source = html();
   const styleOpen = source.indexOf('<style>');
   const styleClose = source.indexOf('</style>');
   const inlineStyle = source.slice(styleOpen, styleClose);
-  assert.match(inlineStyle, /\.photo-ph-terrain-banner\{background:url\("assets\/terrain-photo\.webp"\)/);
+  assert.match(inlineStyle, /\.photo-ph-terrain-banner\{background:url\("assets\/industrie-production-photo\.webp"\)/);
   assert.match(inlineStyle, /\.photo-ph-terrain-card\{background:url\("assets\/terrain-photo\.webp"\)/);
   assert.match(source, /<div class="visual"><div class="photo-ph photo-ph-terrain-banner"><span class="tag">terrain<\/span><\/div><\/div>/);
   assert.match(source, /<div class="photo-ph photo-ph-terrain-card">\s*<span class="tag">Terrain<\/span>/);
@@ -66,4 +66,14 @@ test('index.html affiche la vraie photo bureaux (carte flip Section 6), garde le
   const inlineStyle = source.slice(styleOpen, styleClose);
   assert.match(inlineStyle, /\.photo-ph-bureaux-card\{background:url\("assets\/bureaux-photo\.webp"\)/);
   assert.match(source, /<div class="photo-ph photo-ph-bureaux-card">\s*<span class="tag">Bureaux<\/span>/);
+});
+
+test('index.html affiche la vraie photo site client (dernière carte flip Section 6, reprend le visuel industrie & production), garde le filtre .photo-ph', () => {
+  const source = html();
+  const styleOpen = source.indexOf('<style>');
+  const styleClose = source.indexOf('</style>');
+  const inlineStyle = source.slice(styleOpen, styleClose);
+  assert.match(inlineStyle, /\.photo-ph-siteclient-card\{background:url\("assets\/industrie-production-photo\.webp"\)/);
+  assert.match(source, /<div class="photo-ph photo-ph-siteclient-card">\s*<span class="tag">Site client<\/span>/);
+  assert.doesNotMatch(source, /<div class="photo-ph">\s*<span class="dot-grid"><\/span>\s*<span class="tag">Site client<\/span>/, 'le dot-grid décoratif doit être retiré sur une vraie photo');
 });
