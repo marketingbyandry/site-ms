@@ -87,3 +87,13 @@ test('b2b.html affiche la vraie photo "Tertiaire & collectivités", garde le fil
   assert.match(inlineStyle, /\.photo-ph-tertiaire\{background:url\("assets\/tertiaire-collectivites-photo\.webp"\)/);
   assert.match(section, /<div class="photo-ph photo-ph-tertiaire"><\/div>/);
 });
+
+test('b2b.html affiche la vraie photo "Industrie & production", garde le filtre .photo-ph', () => {
+  const source = html();
+  const section = sectionSlice(source);
+  const styleOpen = source.indexOf('<style>');
+  const styleClose = source.indexOf('</style>');
+  const inlineStyle = source.slice(styleOpen, styleClose);
+  assert.match(inlineStyle, /\.photo-ph-industrie\{background:url\("assets\/industrie-production-photo\.webp"\)/);
+  assert.match(section, /<div class="photo-ph photo-ph-industrie"><\/div>/);
+});
