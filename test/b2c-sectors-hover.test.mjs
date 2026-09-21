@@ -68,3 +68,13 @@ test('b2c.html affiche la vraie photo "Appartement & maison", garde le filtre .p
   assert.match(inlineStyle, /\.photo-ph-appartement\{background:url\("assets\/appartement-maison-photo\.webp"\)/);
   assert.match(section, /<div class="photo-ph photo-ph-appartement"><\/div>/);
 });
+
+test('b2c.html affiche la vraie photo "Résidence principale ou secondaire", garde le filtre .photo-ph', () => {
+  const source = html();
+  const section = sectionSlice(source);
+  const styleOpen = source.indexOf('<style>');
+  const styleClose = source.indexOf('</style>');
+  const inlineStyle = source.slice(styleOpen, styleClose);
+  assert.match(inlineStyle, /\.photo-ph-residence\{background:url\("assets\/residence-principale-photo\.webp"\)/);
+  assert.match(section, /<div class="photo-ph photo-ph-residence"><\/div>/);
+});
