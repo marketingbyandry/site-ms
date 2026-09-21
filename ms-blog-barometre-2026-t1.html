@@ -24,6 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/chantier-sections.css">
 <style>
 :root {
   --dark: #0a1a1f;
@@ -303,6 +304,9 @@ footer a { color: var(--teal-bright); text-decoration: none; }
   .counter-main { font-size: 3.5rem; }
   .floating-cta { bottom: 1rem; right: 1rem; }
 }
+
+/* ── BANNIÈRE (vraie photo) ── */
+.article-banner{background:url("assets/barometre-2026-t1-photo.webp") center 60%/cover no-repeat}
 </style>
 <link rel="canonical" href="https://cabinetms.fr/ms-blog-barometre-2026-t1.html">
 <meta property="og:type" content="website">
@@ -357,11 +361,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav>
   <a href="index.html" class="nav-logo"><img src="assets/ms-strategy-logo.png" width="573" height="146" alt="M&S Strategy"></a>
-  <a href="#cta" class="nav-cta">Étude gratuite →</a>
+  <a href="#cta" class="nav-cta btn-aurora">Étude gratuite →</a>
 </nav>
 
 <article>
   <header class="hero">
+    <div class="photo-ph article-banner"></div>
     <div class="article-meta">
       <a href="blog.html" class="meta-tag" style="text-decoration:none">← Tous les articles</a>
       <span class="meta-tag">Baromètre Énergie</span>
@@ -418,7 +423,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="cta-section reveal">
         <p class="cta-title">Votre entreprise paie-t-elle le juste prix ?</p>
         <p class="cta-sub">Transmettez votre dernière facture énergie. Nous vous indiquons sous 24h si une opportunité existe, gratuitement et sans engagement.</p>
-        <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
+        <a href="b2b.html#upload" class="cta-btn btn-aurora">Obtenir mon étude gratuite →</a>
         <p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 24h</p>
       </div>
     </div>
@@ -462,6 +467,11 @@ const revObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
 }, { threshold: 0.1 });
 revealEls.forEach(el => revObs.observe(el));
+
+const photoObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); photoObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.photo-ph').forEach(el => photoObs.observe(el));
 
 // ── Animated counters (hero stats)
 function animateCount(el, target, suffix, duration = 1400) {

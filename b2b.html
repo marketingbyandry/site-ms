@@ -26,6 +26,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/chantier-sections.css">
 <style>
 :root{
   --teal:#1a7a8a;
@@ -181,6 +182,37 @@ a{text-decoration:none;color:inherit}
 .vn{font-family:'Satoshi',sans-serif;font-weight:800;font-size:2.8rem;color:rgba(26,122,138,.15);line-height:1;margin-bottom:.6rem}
 .vt{font-family:'Satoshi',sans-serif;font-weight:700;font-size:.92rem;color:var(--cream);margin-bottom:.5rem}
 .vb{font-size:.86rem;color:var(--muted);line-height:1.65}
+
+/* Cartes secteurs : texte et photo sur une même face (pas de rotation).
+   Au repos, les deux zones se partagent la carte à parts égales ; au survol
+   de l'une, elle prend le dessus (flex-grow) et l'autre se retire — et
+   inversement. .photo-ph:hover (règle partagée de chantier-sections.css)
+   colore déjà la photo à son propre survol ; on ajoute juste le retrait du
+   texte au survol de la photo, et la mise en valeur inverse. */
+.sector-card{position:relative;display:flex;flex-direction:column-reverse;aspect-ratio:4/5;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.sector-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal-light),var(--green));opacity:.8;z-index:2}
+.sc-text{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;gap:.6rem;padding:1.7rem 1.5rem;background:var(--surface);transition:flex-grow .55s cubic-bezier(.16,1,.3,1),opacity .4s ease}
+.sc-text .vn{font-size:1.4rem;color:rgba(26,122,138,.5);margin-bottom:0}
+.sc-text .vt{margin-bottom:0}
+.sc-text .vb{margin:0;line-height:1.6;max-height:3.2em;overflow:hidden;transition:max-height .55s cubic-bezier(.16,1,.3,1)}
+.sc-photo{position:relative;flex:1;transition:flex-grow .55s cubic-bezier(.16,1,.3,1)}
+.sc-photo .photo-ph{position:absolute;inset:0;border-radius:0;border:none;border-bottom:1px solid var(--line)}
+.sector-card:has(.sc-text:hover) .sc-text{flex-grow:1.35}
+.sector-card:has(.sc-text:hover) .sc-text .vb{max-height:14em}
+.sector-card:has(.sc-text:hover) .sc-photo{flex-grow:.75}
+.sector-card:has(.sc-photo:hover) .sc-photo{flex-grow:1.35}
+.sector-card:has(.sc-photo:hover) .sc-text{flex-grow:.75;opacity:.7}
+@media(max-width:560px){
+  .sc-text .vb{max-height:none}
+  .sector-card:has(.sc-text:hover) .sc-text,.sector-card:has(.sc-text:hover) .sc-photo,
+  .sector-card:has(.sc-photo:hover) .sc-text,.sector-card:has(.sc-photo:hover) .sc-photo{flex-grow:1;opacity:1}
+}
+/* ─── PHOTO COMMERCE & MULTI-SITES (vraie photo, garde le traitement filter de .photo-ph) ─── */
+.photo-ph-commerce{background:url("assets/commerce-multisites-photo.webp") center/cover no-repeat}
+/* ─── PHOTO TERTIAIRE & COLLECTIVITÉS (vraie photo, garde le traitement filter de .photo-ph) ─── */
+.photo-ph-tertiaire{background:url("assets/tertiaire-collectivites-photo.webp") center/cover no-repeat}
+/* ─── PHOTO INDUSTRIE & PRODUCTION (vraie photo, garde le traitement filter de .photo-ph) ─── */
+.photo-ph-industrie{background:url("assets/industrie-production-photo.webp") center/cover no-repeat}
 
 /* ─── UPLOAD / ÉTUDE GRATUITE ─────────── */
 .upload-section{padding:7rem 5vw;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;scroll-margin-top:112px}
@@ -363,7 +395,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="index.html#careers">Rejoindre</a></li>
   </ul>
   <a href="tel:0952926498" class="nphone">📞 09 52 92 64 98</a>
-  <a href="#upload" class="ncta">Étude gratuite</a>
+  <a href="#upload" class="ncta btn-aurora">Étude gratuite</a>
 </nav>
 <script src="assets/nav-mobile.js" defer></script>
 <script src="assets/hero-glow.js" defer></script>
@@ -452,6 +484,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- RÉSULTATS PAR SECTEUR (Chantier MS, Section 3) -->
+<section class="cases-section" style="padding:6rem 5vw;max-width:1100px;margin:0 auto">
+  <div class="cases-head reveal">
+    <div>
+      <h2 class="sh2">Ce que la négociation change, secteur par secteur</h2>
+    </div>
+    <span class="sample-tag">gabarit — données d'exemple</span>
+  </div>
+  <div class="cases-grid-3">
+    <div class="case-card reveal">
+      <p class="sector">Restauration · 14 sites</p>
+      <p class="delta">−21%</p>
+      <p class="desc">sur la part énergie du compte d'exploitation, après remise en concurrence des contrats électricité.</p>
+      <div class="foot"><div class="logo-ph">RX</div><span class="sites">Réseau multi-sites</span></div>
+    </div>
+    <div class="case-card reveal d1">
+      <p class="sector">Industrie agroalimentaire</p>
+      <p class="delta">−17%</p>
+      <p class="desc">de facture gaz sur un site de production, contrat renégocié 4 mois avant échéance.</p>
+      <div class="foot"><div class="logo-ph">IA</div><span class="sites">Site unique</span></div>
+    </div>
+    <div class="case-card reveal d2">
+      <p class="sector">Commerce de détail</p>
+      <p class="delta">−19%</p>
+      <p class="desc">sur l'ensemble du parc, avec un interlocuteur unique pour 22 points de vente.</p>
+      <div class="foot"><div class="logo-ph">CD</div><span class="sites">22 sites</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- SECTORS -->
 <section class="vals">
   <div class="vals-inner">
@@ -461,22 +523,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Notre expertise couvre l'ensemble des profils de consommation professionnelle.</p>
     </div>
     <div class="vgrid">
-      <div class="vcard reveal">
-        <div class="vn">01</div>
-        <div class="vt">Industrie & production</div>
-        <p class="vb">Sites à forte consommation, puissance souscrite élevée, besoins de continuité : agroalimentaire, métallurgie, plasturgie, logistique. Nous négocions des conditions adaptées à vos contraintes de production.</p>
-      </div>
-      <div class="vcard reveal d1">
-        <div class="vn">02</div>
-        <div class="vt">Commerce & multi-sites</div>
-        <p class="vb">Réseaux de boutiques, franchises, agences ou cabinets médicaux répartis sur le territoire. Nous consolidons vos volumes pour un pouvoir de négociation renforcé.</p>
-      </div>
-      <div class="vcard reveal d2">
-        <div class="vn">03</div>
-        <div class="vt">Tertiaire & collectivités</div>
-        <p class="vb">Bureaux, copropriétés professionnelles, mairies, écoles et structures publiques ou parapubliques bénéficient d'un accompagnement rigoureux, adapté aux procédures propres à chaque structure.</p>
-      </div>
+      <article class="sector-card reveal">
+        <div class="sc-text">
+          <span class="vn">01</span>
+          <h3 class="vt">Industrie & production</h3>
+          <p class="vb">Sites à forte consommation, puissance souscrite élevée, besoins de continuité : agroalimentaire, métallurgie, plasturgie, logistique. Nous négocions des conditions adaptées à vos contraintes de production.</p>
+        </div>
+        <div class="sc-photo">
+          <div class="photo-ph photo-ph-industrie"></div>
+        </div>
+      </article>
+      <article class="sector-card reveal d1">
+        <div class="sc-text">
+          <span class="vn">02</span>
+          <h3 class="vt">Commerce & multi-sites</h3>
+          <p class="vb">Réseaux de boutiques, franchises, agences ou cabinets médicaux répartis sur le territoire. Nous consolidons vos volumes pour un pouvoir de négociation renforcé.</p>
+        </div>
+        <div class="sc-photo">
+          <div class="photo-ph photo-ph-commerce"></div>
+        </div>
+      </article>
+      <article class="sector-card reveal d2">
+        <div class="sc-text">
+          <span class="vn">03</span>
+          <h3 class="vt">Tertiaire & collectivités</h3>
+          <p class="vb">Bureaux, copropriétés professionnelles, mairies, écoles et structures publiques ou parapubliques bénéficient d'un accompagnement rigoureux, adapté aux procédures propres à chaque structure.</p>
+        </div>
+        <div class="sc-photo">
+          <div class="photo-ph photo-ph-tertiaire"></div>
+        </div>
+      </article>
     </div>
+  </div>
+</section>
+
+<!-- COMPARATIF (Chantier MS, Section 4) -->
+<section class="compare-section" style="padding:6rem 5vw;max-width:900px;margin:0 auto">
+  <h2 class="sh2 reveal" style="margin-bottom:2rem;text-align:center">Sans courtier, contre avec M&amp;S Strategy</h2>
+  <div class="compare reveal d1">
+    <div class="compare-top">
+      <div class="cell"></div>
+      <div class="cell"><h4>Seul face au fournisseur</h4></div>
+      <div class="cell brand"><h4>Avec M&amp;S Strategy</h4></div>
+    </div>
+    <div class="compare-row"><div class="cell">Mise en concurrence des offres</div><div class="cell"><span class="mark bad">✕</span></div><div class="cell"><span class="mark ok">✓</span></div></div>
+    <div class="compare-row"><div class="cell">Suivi des marchés de gros</div><div class="cell"><span class="mark bad">✕</span></div><div class="cell"><span class="mark ok">✓</span></div></div>
+    <div class="compare-row"><div class="cell">Interlocuteur dédié</div><div class="cell"><span class="mark bad">✕</span></div><div class="cell"><span class="mark ok">✓</span></div></div>
+    <div class="compare-row"><div class="cell">Alerte avant échéance de contrat</div><div class="cell"><span class="mark bad">✕</span></div><div class="cell"><span class="mark ok">✓</span></div></div>
+    <div class="compare-row"><div class="cell">Coût du service</div><div class="cell">Temps interne</div><div class="cell">Sur économies réalisées</div></div>
   </div>
 </section>
 

@@ -24,6 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/chantier-sections.css">
 <style>
 :root {
   --dark: #0a1a1f;
@@ -303,6 +304,9 @@ footer a { color: var(--teal-bright); text-decoration: none; }
   .counter-main { font-size: 3.5rem; }
   .floating-cta { bottom: 1rem; right: 1rem; }
 }
+
+/* ── BANNIÈRE (vraie photo, reprise de la carte "terrain" b2b.html, garde le filter .photo-ph) ── */
+.article-banner{background:url("assets/terrain-photo.webp") center 25%/cover no-repeat}
 </style>
 <link rel="canonical" href="https://cabinetms.fr/ms-blog-article-1.html">
 <meta property="og:type" content="website">
@@ -356,11 +360,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav>
   <a href="index.html" class="nav-logo"><img src="assets/ms-strategy-logo.png" width="573" height="146" alt="M&S Strategy"></a>
-  <a href="#cta" class="nav-cta">Étude gratuite →</a>
+  <a href="#cta" class="nav-cta btn-aurora">Étude gratuite →</a>
 </nav>
 
 <article>
   <header class="hero">
+    <div class="photo-ph article-banner"></div>
     <div class="article-meta">
       <a href="blog.html" class="meta-tag" style="text-decoration:none">← Tous les articles</a>
       <span class="meta-tag">Industrie & Logistique</span>
@@ -522,7 +527,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="cta-section reveal">
         <p class="cta-title">Votre site industriel paie-t-il le juste prix ?</p>
         <p class="cta-sub">Transmettez votre dernière facture énergie. Nous vous indiquons sous 24h si une opportunité existe, gratuitement et sans engagement.</p>
-        <a href="mailto:msstrategy@yahoo.com" class="cta-btn">Transmettre ma facture →</a>
+        <a href="mailto:msstrategy@yahoo.com" class="cta-btn btn-aurora">Transmettre ma facture →</a>
         <p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 24h</p>
       </div>
     </div>
@@ -577,6 +582,11 @@ const revObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
 }, { threshold: 0.1 });
 revealEls.forEach(el => revObs.observe(el));
+
+const photoObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); photoObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.photo-ph').forEach(el => photoObs.observe(el));
 
 // ── Animated counters (hero stats)
 function animateCount(el, target, suffix, duration = 1400) {
