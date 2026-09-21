@@ -1,7 +1,7 @@
 // test/comment-ca-marche-console.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 
 const html = () => readFileSync('comment-ca-marche.html', 'utf8');
 
@@ -24,4 +24,14 @@ test('le widget console affiche les 4 lignes du gabarit sans étiquette de fraî
   assert.match(source, /−4,2%/);
   assert.match(source, /favorable/);
   assert.match(source, />8\s?216</);
+});
+
+test('le widget "marché en un coup d\'œil" a une photo de fond en webp, assombrie pour la lisibilité du texte', () => {
+  const source = html();
+  const styleOpen = source.indexOf('<style>');
+  const styleClose = source.indexOf('</style>');
+  const inlineStyle = source.slice(styleOpen, styleClose);
+  assert.match(inlineStyle, /\.console-standalone\{background-image:[^}]*url\("assets\/marche-widget-bg\.webp"\)[^}]*\}/);
+  assert.match(inlineStyle, /\.console-standalone\{background-image:linear-gradient\(160deg,rgba\(7,19,26,/, 'un dégradé sombre doit précéder la photo pour garder le texte lisible');
+  assert.ok(existsSync('assets/marche-widget-bg.webp'), "l'asset marche-widget-bg.webp doit exister");
 });
