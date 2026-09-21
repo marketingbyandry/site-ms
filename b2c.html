@@ -200,6 +200,8 @@ a{text-decoration:none;color:inherit}
 .photo-ph-residence{background:url("assets/residence-principale-photo.webp") center/cover no-repeat}
 /* ─── PHOTO DÉMÉNAGEMENT & EMMÉNAGEMENT (vraie photo, garde le traitement filter de .photo-ph) ─── */
 .photo-ph-demenagement{background:url("assets/demenagement-photo.webp") center/cover no-repeat}
+/* ─── FILTRE ALLÉGÉ POUR LES 3 PHOTOS SECTEURS (état au repos moins désaturé que le défaut .photo-ph) ─── */
+.photo-ph-appartement,.photo-ph-residence,.photo-ph-demenagement{filter:grayscale(.4) sepia(.08) hue-rotate(140deg) brightness(.92)}
 
 /* ─── UPLOAD / ÉTUDE GRATUITE ─────────── */
 .upload-section{padding:7rem 5vw;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;scroll-margin-top:80px}
