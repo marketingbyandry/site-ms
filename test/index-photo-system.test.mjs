@@ -58,3 +58,12 @@ test('index.html affiche la vraie photo terrain (carte flip Section 6 + bandeau 
   assert.match(source, /<div class="visual"><div class="photo-ph photo-ph-terrain-banner"><span class="tag">terrain<\/span><\/div><\/div>/);
   assert.match(source, /<div class="photo-ph photo-ph-terrain-card">\s*<span class="tag">Terrain<\/span>/);
 });
+
+test('index.html affiche la vraie photo bureaux (carte flip Section 6), garde le filtre .photo-ph', () => {
+  const source = html();
+  const styleOpen = source.indexOf('<style>');
+  const styleClose = source.indexOf('</style>');
+  const inlineStyle = source.slice(styleOpen, styleClose);
+  assert.match(inlineStyle, /\.photo-ph-bureaux-card\{background:url\("assets\/bureaux-photo\.webp"\)/);
+  assert.match(source, /<div class="photo-ph photo-ph-bureaux-card">\s*<span class="tag">Bureaux<\/span>/);
+});
