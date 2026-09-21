@@ -14,9 +14,9 @@ test('index.html insère la Section 2 (chiffres en miroir) entre .brand et .seo-
   assert.ok(seoIdx > mirrorIdx, 'seo-intro doit venir après les chiffres en miroir');
 });
 
-test('la Section 2 affiche les deux chiffres du gabarit avec le badge donnée d\'exemple', () => {
+test('la Section 2 affiche les deux chiffres, sans mention "gabarit — donnée d\'exemple"', () => {
   const source = html();
   assert.match(source, /8\s?216/);
   assert.match(source, />94%</);
-  assert.match(source, /gabarit — donnée d'exemple/);
+  assert.doesNotMatch(source, /gabarit — donnée d'exemple/);
 });

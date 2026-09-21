@@ -20,7 +20,9 @@ test('comment-ca-marche.html insère le widget console entre les étapes et "Com
 
 test('le widget console affiche les 4 lignes du gabarit sans étiquette de fraîcheur (décision utilisateur)', () => {
   const source = html();
-  assert.match(source, /0,182 €\/kWh/);
+  // valeur alignée sur le prix de gros élec. le plus récent (data/barometre-electricite.json,
+  // même source que le bandeau ticker.js) pour rester raccord avec le reste du site
+  assert.match(source, /0,1039 €\/kWh/);
   assert.match(source, /−4,2%/);
   assert.match(source, /favorable/);
   assert.match(source, />8\s?216</);
