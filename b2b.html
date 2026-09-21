@@ -207,6 +207,8 @@ a{text-decoration:none;color:inherit}
   .sector-card:has(.sc-text:hover) .sc-text,.sector-card:has(.sc-text:hover) .sc-photo,
   .sector-card:has(.sc-photo:hover) .sc-text,.sector-card:has(.sc-photo:hover) .sc-photo{flex-grow:1;opacity:1}
 }
+/* ─── PHOTO COMMERCE & MULTI-SITES (vraie photo, garde le traitement filter de .photo-ph) ─── */
+.photo-ph-commerce{background:url("assets/commerce-multisites-photo.webp") center/cover no-repeat}
 
 /* ─── UPLOAD / ÉTUDE GRATUITE ─────────── */
 .upload-section{padding:7rem 5vw;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;scroll-margin-top:112px}
@@ -534,7 +536,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="vb">Réseaux de boutiques, franchises, agences ou cabinets médicaux répartis sur le territoire. Nous consolidons vos volumes pour un pouvoir de négociation renforcé.</p>
         </div>
         <div class="sc-photo">
-          <div class="photo-ph"><span class="dot-grid"></span></div>
+          <div class="photo-ph photo-ph-commerce"></div>
         </div>
       </article>
       <article class="sector-card reveal d2">
