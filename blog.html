@@ -123,6 +123,16 @@ a{text-decoration:none;color:inherit}
 .tool-card:hover{border-color:rgba(76,222,128,.5)}
 .tool-card .res-tag{color:var(--green);background:rgba(76,222,128,.09);border-color:rgba(76,222,128,.2)}
 
+/* ─── ARTICLES COMPACTS (52 analyses SEO, groupées par catégorie) ─── */
+.res-mini-grid{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem}
+.res-mini{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;padding:.9rem 1.15rem;border:1px solid rgba(26,122,138,.14);border-radius:4px;background:rgba(13,79,92,.05);transition:border-color .2s,background .2s,transform .2s}
+.res-mini:hover{border-color:rgba(94,207,220,.4);background:rgba(13,79,92,.1);transform:translateX(2px)}
+.res-mini-text{display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.res-mini-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:1rem;color:var(--cream);line-height:1.3}
+.res-mini-hook{font-size:.8rem;color:var(--muted);line-height:1.5}
+.res-mini-read{font-size:.7rem;color:var(--muted2);white-space:nowrap;flex-shrink:0}
+@media(max-width:640px){.res-mini{flex-direction:column;align-items:flex-start;gap:.4rem}}
+
 /* ─── QUOTE BAND ─────────────────────── */
 .qband{padding:5rem 5vw;background:linear-gradient(135deg,var(--teal-dark),rgba(7,19,26,.95));border-top:1px solid rgba(94,207,220,.1);border-bottom:1px solid rgba(94,207,220,.1);text-align:center;position:relative;overflow:hidden}
 .qband::before{content:'"';position:absolute;left:4vw;top:-1.5rem;font-family:'Satoshi',sans-serif;font-size:18rem;font-weight:300;color:rgba(255,255,255,.03);pointer-events:none;line-height:1}
@@ -209,21 +219,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ARTICLES -->
 <section class="res-band">
-  <p class="res-label reveal">Analyses</p>
+  <p class="res-label reveal">Outil interactif</p>
   <div class="res-grid">
-    <a href="ms-blog-article-1.html" class="res-card reveal">
-      <div class="photo-ph blog-thumb blog-thumb-article-1"><span class="dot-grid"></span></div>
-      <span class="res-tag">Industrie & Logistique</span>
-      <h2 class="res-title">Énergie industrielle : pourquoi votre site paie trop</h2>
-      <p class="res-desc">Les sites industriels et logistiques comptent parmi les plus gros consommateurs d'énergie du tissu économique français. Voici pourquoi la majorité surpaye, et comment y remédier.</p>
-      <p class="res-read">8 min de lecture</p>
-    </a>
-    <a href="ms-blog-article-2.html" class="res-card reveal d1">
-      <div class="photo-ph blog-thumb blog-thumb-article-2"><span class="dot-grid"></span></div>
-      <span class="res-tag">Stratégie contractuelle</span>
-      <h2 class="res-title">Anticiper son renouvellement, c'est mieux négocier</h2>
-      <p class="res-desc">Pour un site industriel, le moment où vous signez vaut plus que le fournisseur choisi. La courbe des opportunités, expliquée à partir de dix ans de négociations.</p>
-      <p class="res-read">9 min de lecture</p>
+    <a href="ms-strategy-calculateur.html" class="res-card tool-card reveal">
+      <span class="res-tag">Calculateur</span>
+      <h2 class="res-title">Calculateur d'économies réalisables</h2>
+      <p class="res-desc">Renseignez votre consommation et votre date d'échéance : le calculateur estime en temps réel ce que l'inaction vous coûte, et ce qu'une négociation pourrait vous rapporter.</p>
+      <p class="res-link">Essayer le calculateur →</p>
     </a>
   </div>
 
@@ -280,13 +282,421 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </a>
   </div>
 
-  <p class="res-label reveal">Outil interactif</p>
+  <p class="res-label reveal">Analyses</p>
   <div class="res-grid">
-    <a href="ms-strategy-calculateur.html" class="res-card tool-card reveal">
-      <span class="res-tag">Calculateur</span>
-      <h2 class="res-title">Calculateur d'économies réalisables</h2>
-      <p class="res-desc">Renseignez votre consommation et votre date d'échéance : le calculateur estime en temps réel ce que l'inaction vous coûte, et ce qu'une négociation pourrait vous rapporter.</p>
-      <p class="res-link">Essayer le calculateur →</p>
+    <a href="ms-blog-article-1.html" class="res-card reveal">
+      <div class="photo-ph blog-thumb blog-thumb-article-1"><span class="dot-grid"></span></div>
+      <span class="res-tag">Industrie & Logistique</span>
+      <h2 class="res-title">Énergie industrielle : pourquoi votre site paie trop</h2>
+      <p class="res-desc">Les sites industriels et logistiques comptent parmi les plus gros consommateurs d'énergie du tissu économique français. Voici pourquoi la majorité surpaye, et comment y remédier.</p>
+      <p class="res-read">8 min de lecture</p>
+    </a>
+    <a href="ms-blog-article-2.html" class="res-card reveal d1">
+      <div class="photo-ph blog-thumb blog-thumb-article-2"><span class="dot-grid"></span></div>
+      <span class="res-tag">Stratégie contractuelle</span>
+      <h2 class="res-title">Anticiper son renouvellement, c'est mieux négocier</h2>
+      <p class="res-desc">Pour un site industriel, le moment où vous signez vaut plus que le fournisseur choisi. La courbe des opportunités, expliquée à partir de dix ans de négociations.</p>
+      <p class="res-read">9 min de lecture</p>
+    </a>
+  </div>
+
+  <p class="res-label reveal" style="margin-top:2.4rem">Marché &amp; prix</p>
+  <div class="res-mini-grid">
+    <a href="arenh-entreprise-fin-dispositif.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">ARENH entreprise : ce que la fin du dispositif change pour votre contrat</span>
+        <span class="res-mini-hook">Pendant plus de quinze ans, l'ARENH a joué un rôle discret mais réel dans la construction des offres…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="capn-contrat-nucleaire-long-terme.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Contrat CAPN : le nouveau mécanisme nucléaire de long terme pour les entreprises</span>
+        <span class="res-mini-hook">Après des années de débats sur l'avenir de la production nucléaire française post-ARENH, un nouveau type de…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="effacement-electrique-nebef-entreprise.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Effacement électrique NEBEF : comment une entreprise peut valoriser sa flexibilité</span>
+        <span class="res-mini-hook">Réduire volontairement sa consommation d'électricité à certains moments précis peut rapporter de l'argent à…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="mecanisme-capacite-electricite-entreprise.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Mécanisme de capacité électricité entreprise : une ligne discrète mais réelle sur la facture</span>
+        <span class="res-mini-hook">Peu d'entreprises savent identifier, sur leur facture d'électricité, la contribution liée au mécanisme de…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="prix-kwh-professionnel-2026.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Prix du kWh professionnel en 2026 : comprendre ce que vous payez réellement</span>
+        <span class="res-mini-hook">Chaque mois, votre entreprise règle une facture d'électricité sans toujours savoir ce qui compose réellement…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="prix-marche-gros-electricite.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Prix marché de gros électricité : comment il détermine votre facture pro</span>
+        <span class="res-mini-hook">Quand une entreprise reçoit une nouvelle proposition de contrat d'électricité, elle constate souvent un écart…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="vnu-2026-versement-nucleaire-universel.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">VNU 2026 : ce que le versement nucléaire universel change pour les entreprises</span>
+        <span class="res-mini-hook">Depuis la fin annoncée de l'ARENH, un nouveau mécanisme s'installe progressivement dans le paysage électrique…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+  </div>
+
+  <p class="res-label reveal" style="margin-top:2.4rem">Fournisseurs &amp; contrats</p>
+  <div class="res-mini-grid">
+    <a href="comparatif-fournisseurs-electricite-pro.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Comparatif fournisseur électricité pro : comment comparer sans se tromper</span>
+        <span class="res-mini-hook">Face à la multiplication des offres d'électricité destinées aux professionnels, établir un comparatif…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="compteur-c4-tarif-hta-entreprise.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Compteur C4 et tarif HTA : ce que les entreprises raccordées en haute tension doivent savoir</span>
+        <span class="res-mini-hook">Votre site industriel ou tertiaire est raccordé en haute tension et vous avez repéré la mention « compteur C4…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="courtier-en-energie-role.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Courtier en énergie : quel est son rôle pour une entreprise ?</span>
+        <span class="res-mini-hook">Face à la complexité croissante des marchés de l'électricité et du gaz, de plus en plus d'entreprises se…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="decrypter-facture-electricite-pro.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Comment décrypter sa facture d'électricité professionnelle ligne par ligne</span>
+        <span class="res-mini-hook">Devant une facture d'électricité professionnelle qui aligne des dizaines de lignes et de sigles techniques,…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="mentions-obligatoires-facture-electricite-pro.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Mentions obligatoires sur la facture d'électricité professionnelle : la checklist complète</span>
+        <span class="res-mini-hook">Reçue chaque mois ou chaque trimestre, la facture d'électricité professionnelle comporte une série de…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="prix-fixe-vs-indexe-electricite-pro.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Prix fixe ou indexé électricité pro : quelle formule choisir ?</span>
+        <span class="res-mini-hook">Au moment de signer ou renouveler un contrat d'électricité, toute entreprise se retrouve confrontée au même…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="puissance-souscrite-entreprise-kva.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Puissance souscrite entreprise en kVA : comment bien la calibrer</span>
+        <span class="res-mini-hook">Choisie une fois au moment du raccordement, la puissance souscrite est souvent oubliée pendant toute la durée…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="resilier-contrat-electricite-entreprise.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Résilier contrat électricité entreprise : la procédure à connaître</span>
+        <span class="res-mini-hook">Un contrat d'électricité professionnel arrive à échéance, ou une opportunité de meilleure offre se présente :…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="tarifs-horosaisonniers-electricite-pro.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Tarifs horosaisonniers HPH HCH HPE HCE : comment ça marche pour une entreprise</span>
+        <span class="res-mini-hook">HPH, HCH, HPE, HCE : ces sigles intriguent souvent les dirigeants qui découvrent leur facture d'électricité…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+  </div>
+
+  <p class="res-label reveal" style="margin-top:2.4rem">Réglementation &amp; fiscalité</p>
+  <div class="res-mini-grid">
+    <a href="accise-electricite-gaz-2026.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Accise sur l'électricité et le gaz en 2026 : ce qui change pour les entreprises</span>
+        <span class="res-mini-hook">Depuis la réforme de la fiscalité énergétique, la taxe intérieure sur la consommation finale d'électricité…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="decret-tertiaire-obligations.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Décret tertiaire obligations : ce que doivent faire les entreprises</span>
+        <span class="res-mini-hook">Depuis son entrée en application, le décret tertiaire impose à un grand nombre d'entreprises et de…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="statut-electro-intensif-turpe-industrie.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Statut électro-intensif et TURPE : quels avantages pour l'industrie</span>
+        <span class="res-mini-hook">Pour une entreprise industrielle dont l'électricité représente une part majeure des coûts de production, le…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="turpe-2026-professionnels.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">TURPE 2026 : ce que les professionnels doivent savoir sur cette ligne de facture</span>
+        <span class="res-mini-hook">Sur une facture d'électricité professionnelle, une ligne intrigue souvent les dirigeants et responsables…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="tva-electricite-professionnelle.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">TVA électricité professionnelle : quel taux s'applique et comment le vérifier</span>
+        <span class="res-mini-hook">Sur une facture d'électricité professionnelle, la ligne TVA électricité professionnelle mérite une attention…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+  </div>
+
+  <p class="res-label reveal" style="margin-top:2.4rem">Efficacité énergétique</p>
+  <div class="res-mini-grid">
+    <a href="audit-energetique-obligatoire-entreprise.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Audit énergétique obligatoire entreprise : qui est concerné et comment s'y conformer</span>
+        <span class="res-mini-hook">Certaines entreprises ont l'obligation légale de réaliser un audit énergétique obligatoire, sous peine de…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="iso-50001-entreprise.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">ISO 50001 entreprise : comprendre la norme et son intérêt</span>
+        <span class="res-mini-hook">Face à la hausse durable des coûts de l'énergie, de plus en plus de dirigeants s'interrogent sur l'intérêt de…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+  </div>
+
+  <p class="res-label reveal" style="margin-top:2.4rem">Renouvelable &amp; solaire</p>
+  <div class="res-mini-grid">
+    <a href="agrivoltaisme-terrain-agricole.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Agrivoltaïsme : quelles opportunités pour les exploitations agricoles</span>
+        <span class="res-mini-hook">Entre la hausse des charges d'exploitation et la recherche de revenus complémentaires, de nombreux…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="autoconsommation-collective-entreprise.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Autoconsommation collective entreprise : comment ça fonctionne</span>
+        <span class="res-mini-hook">Plusieurs entreprises situées dans la même zone d'activité, un bailleur et ses locataires, ou encore un…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="corporate-ppa-electricite.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Corporate PPA électricité : un outil réservé aux grands groupes ?</span>
+        <span class="res-mini-hook">Longtemps réservé aux très grandes entreprises industrielles, le corporate PPA électricité s'invite désormais…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="garanties-origine-electricite-verte-entreprise.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Garanties d'origine électricité verte entreprise : comment ça fonctionne vraiment</span>
+        <span class="res-mini-hook">De plus en plus d'entreprises souhaitent afficher une consommation d'électricité verte dans leur…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="hangar-photovoltaique-agricole.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Hangar photovoltaïque agricole : quelle rentabilité pour l'exploitant ?</span>
+        <span class="res-mini-hook">De nombreux exploitants agricoles envisagent la construction ou la rénovation d'un hangar photovoltaïque…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="ombrieres-photovoltaiques-parking.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Ombrière photovoltaïque parking : un investissement pertinent pour votre entreprise ?</span>
+        <span class="res-mini-hook">Un parking d'entreprise, un centre commercial ou une zone logistique disposent souvent d'une surface au sol…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+  </div>
+
+  <p class="res-label reveal" style="margin-top:2.4rem">Aides &amp; financement</p>
+  <div class="res-mini-grid">
+    <a href="cee-entreprise-2026.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">CEE entreprise 2026 : comment financer vos travaux d'économies d'énergie</span>
+        <span class="res-mini-hook">Réduire la facture énergétique d'une entreprise passe souvent par des travaux (isolation, éclairage,…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="fonds-chaleur-ademe.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Fonds chaleur Ademe : une aide clé pour décarboner la chaleur en entreprise</span>
+        <span class="res-mini-hook">Le chauffage et les besoins de process thermique représentent une part importante des dépenses énergétiques…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="prime-advenir-borne-recharge.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Prime Advenir borne recharge : quelles aides pour l'entreprise en 2026</span>
+        <span class="res-mini-hook">Installer des bornes de recharge pour véhicules électriques représente un investissement non négligeable pour…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+  </div>
+
+  <p class="res-label reveal" style="margin-top:2.4rem">Verticaux sectoriels</p>
+  <div class="res-mini-grid">
+    <a href="achat-groupe-energie-pme-franchises.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Achat groupé d'énergie pour PME et franchises : bonne ou fausse bonne idée ?</span>
+        <span class="res-mini-hook">Mutualiser les volumes d'achat d'électricité et de gaz entre plusieurs PME ou entre les franchisés d'un même…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="consommation-energie-datacenter.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Consommation énergie data center : enjeux et optimisation</span>
+        <span class="res-mini-hook">Un data center fonctionne 24h/24, 365 jours par an, sans tolérance pour la coupure. Cette contrainte de…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="consommation-energie-restaurant.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Consommation énergie restaurant : comprendre et réduire sa facture</span>
+        <span class="res-mini-hook">Cuisine en continu, chambres froides qui tournent 24h/24, éclairage de salle, climatisation en été : la…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="economies-energie-boulangerie.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Économie énergie boulangerie : où se cachent les postes de consommation</span>
+        <span class="res-mini-hook">Entre le four, la chambre de fermentation, la vitrine réfrigérée et le pétrin, une boulangerie-pâtisserie…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="economies-energie-hotellerie.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Économies énergie hôtellerie : les leviers concrets pour réduire la facture</span>
+        <span class="res-mini-hook">Chauffage, eau chaude sanitaire, climatisation, blanchisserie, restauration : un établissement hôtelier…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="electricite-clinique-hopital-ehpad.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Électricité clinique, hôpital, EHPAD : maîtriser un poste de dépense sous haute contrainte</span>
+        <span class="res-mini-hook">Continuité des soins, équipements médicaux sensibles, confort thermique des résidents : l'électricité…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="electricite-exploitation-agricole-hors-solaire.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Électricité exploitation agricole : maîtriser la facture hors photovoltaïque</span>
+        <span class="res-mini-hook">Attention, cet article ne traite pas du photovoltaïque agricole : pour tout ce qui concerne l'agrivoltaïsme…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="energie-camping-hotellerie-plein-air.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Énergie camping hôtellerie de plein air : gérer une consommation ultra-saisonnière</span>
+        <span class="res-mini-hook">Terrain fermé neuf mois par an puis ouvert à pleine capacité en quelques semaines, mobil-homes climatisés,…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="energie-collectivites-marches-publics.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Achat énergie collectivité : comment fonctionnent les marchés publics d'énergie</span>
+        <span class="res-mini-hook">Comment une mairie, une communauté de communes ou un établissement public doit-il s'y prendre pour acheter…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="energie-reseau-franchise-multisites.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Énergie en réseau franchise multi-sites : comment reprendre la main sur vos contrats</span>
+        <span class="res-mini-hook">Gérer l'électricité et le gaz de dizaines de points de vente répartis sur tout le territoire pose un défi que…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+  </div>
+
+  <p class="res-label reveal" style="margin-top:2.4rem">Mobilité &amp; bâtiment</p>
+  <div class="res-mini-grid">
+    <a href="bornes-recharge-entreprise-loi-lom.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Installation borne recharge entreprise : ce qu'impose la loi LOM</span>
+        <span class="res-mini-hook">Flotte de véhicules qui s'électrifie, salariés qui demandent à recharger sur le parking de l'entreprise,…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="contrat-maintenance-p1-p2-p3-cpe.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Contrat de maintenance P1 P2 P3 et CPE : comprendre la clause qui pèse sur votre facture</span>
+        <span class="res-mini-hook">Chauffage collectif, climatisation, chaufferie centralisée : de nombreuses entreprises et copropriétés…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="decret-bacs-obligations.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Décret BACS : quelles obligations pour les bâtiments tertiaires</span>
+        <span class="res-mini-hook">Moins connu que le décret tertiaire, le décret BACS impose lui aussi des obligations précises aux…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="gtb-gestion-technique-batiment.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">GTB gestion technique bâtiment : ce que ça change pour votre facture</span>
+        <span class="res-mini-hook">Chauffage qui tourne dans des bureaux vides, éclairage allumé toute la nuit, climatisation mal régulée : dans…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="re2020-bbio-explication.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">RE2020 BBIO explication : comprendre cet indicateur clé du bâtiment neuf</span>
+        <span class="res-mini-hook">Un permis de construire refusé, un bureau d'études qui évoque un "Bbio trop élevé", un maître d'ouvrage qui…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+  </div>
+
+  <p class="res-label reveal" style="margin-top:2.4rem">Copropriété</p>
+  <div class="res-mini-grid">
+    <a href="colonnes-montantes-enedis-loi-elan.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Colonnes montantes Enedis loi ELAN : quel impact pour la copropriété</span>
+        <span class="res-mini-hook">Câbles vétustes courant dans les cages d'escalier, transfert de propriété vers Enedis annoncé mais pas…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="dpe-collectif-copropriete.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">DPE collectif copropriété : comprendre son impact sur les charges</span>
+        <span class="res-mini-hook">Étiquette énergétique affichée dans les annonces de vente, obligation de rénovation qui se profile pour les…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="droit-a-la-prise-copropriete.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Droit à la prise copropriété : ce qu'il faut savoir avant d'installer une borne</span>
+        <span class="res-mini-hook">Un copropriétaire souhaite installer une borne de recharge pour son véhicule électrique sur sa place de…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
+    </a>
+    <a href="electricite-parties-communes-copropriete.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">Électricité parties communes copropriété : bien gérer le contrat du syndic</span>
+        <span class="res-mini-hook">Ascenseur, éclairage des couloirs, ventilation, portail motorisé, parfois chauffage collectif : l'électricité…</span>
+      </span>
+      <span class="res-mini-read">4 min</span>
+    </a>
+    <a href="pppt-copropriete-plan-pluriannuel-travaux.html" class="res-mini reveal">
+      <span class="res-mini-text">
+        <span class="res-mini-title">PPPT copropriété plan pluriannuel de travaux : ce que ça implique pour l'électricité de l'immeuble</span>
+        <span class="res-mini-hook">Voté ou en cours d'élaboration dans de nombreuses copropriétés, le PPPT copropriété plan pluriannuel de…</span>
+      </span>
+      <span class="res-mini-read">3 min</span>
     </a>
   </div>
 </section>
