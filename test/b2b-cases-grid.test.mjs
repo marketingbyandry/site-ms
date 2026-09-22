@@ -18,9 +18,9 @@ test('b2b.html insère la grille de résultats par secteur entre les 4 étapes e
   assert.ok(valsIdx > casesIdx, '"sur-mesure" doit venir après la grille de résultats');
 });
 
-test('la grille de résultats affiche le badge "gabarit — données d\'exemple" et 3 cas sectoriels', () => {
+test('la grille de résultats affiche 3 cas sectoriels sans le badge "gabarit — données d\'exemple"', () => {
   const source = html();
-  assert.match(source, /gabarit — données d'exemple/);
+  assert.doesNotMatch(source, /gabarit — données d'exemple/);
   assert.match(source, /Restauration · 14 sites/);
   assert.match(source, /−21%/);
   assert.match(source, /Industrie agroalimentaire/);
