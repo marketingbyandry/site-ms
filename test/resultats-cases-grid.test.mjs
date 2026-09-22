@@ -18,9 +18,9 @@ test('resultats.html insère la grille de résultats entre "méthode structurée
   assert.ok(valsIdx > casesIdx, '"économies adaptées" doit venir après la grille de résultats');
 });
 
-test('la grille de résultats affiche le badge et les 3 cas sectoriels du gabarit', () => {
+test('la grille de résultats affiche les 3 cas sectoriels sans le badge "gabarit — données d\'exemple"', () => {
   const source = html();
-  assert.match(source, /gabarit — données d'exemple/);
+  assert.doesNotMatch(source, /gabarit — données d'exemple/);
   assert.match(source, /−21%/);
   assert.match(source, /−17%/);
   assert.match(source, /−19%/);

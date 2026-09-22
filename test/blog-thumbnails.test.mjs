@@ -7,8 +7,22 @@ const html = () => readFileSync('blog.html', 'utf8');
 
 test('blog.html ajoute une vignette photo sur chacune des 9 cartes article', () => {
   const source = html();
-  const count = (source.match(/<div class="photo-ph blog-thumb">/g) || []).length;
+  const count = (source.match(/<div class="photo-ph blog-thumb[^"]*">/g) || []).length;
   assert.equal(count, 9, 'les 9 cartes .res-card doivent recevoir une vignette photo');
+});
+
+test('chacune des 9 vignettes affiche une vraie photo (pas seulement le placeholder texturé)', () => {
+  const source = html();
+  const modifiers = [
+    'blog-thumb-article-1', 'blog-thumb-article-2',
+    'blog-thumb-barometre-2022', 'blog-thumb-barometre-2023', 'blog-thumb-barometre-2024',
+    'blog-thumb-barometre-2025', 'blog-thumb-barometre-2026-t1', 'blog-thumb-barometre-2026-t2',
+    'blog-thumb-barometre-2026-t3',
+  ];
+  for (const cls of modifiers) {
+    assert.match(source, new RegExp(`<div class="photo-ph blog-thumb ${cls}">`), `la carte ${cls} doit porter sa classe de vignette`);
+    assert.match(source, new RegExp(`\\.${cls}\\{background:url\\("assets/[^"]+\\.webp"\\)[^}]*no-repeat\\}`), `${cls} doit avoir une vraie photo en background`);
+  }
 });
 
 test('chaque vignette précède le res-tag de sa carte', () => {
