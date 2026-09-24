@@ -89,13 +89,13 @@ test('b2c.html affiche la vraie photo "Déménagement & emménagement", garde le
   assert.match(section, /<div class="photo-ph photo-ph-demenagement"><\/div>/);
 });
 
-test('b2c.html allège le filtre grayscale/sepia au repos sur les 3 photos secteurs (moins désaturé que le défaut .photo-ph)', () => {
+test('b2c.html ne réapplique pas de filtre de couleur sur les 3 photos secteurs (couleurs naturelles)', () => {
   const source = html();
   const styleOpen = source.indexOf('<style>');
   const styleClose = source.indexOf('</style>');
   const inlineStyle = source.slice(styleOpen, styleClose);
-  assert.match(
+  assert.doesNotMatch(
     inlineStyle,
-    /\.photo-ph-appartement,\.photo-ph-residence,\.photo-ph-demenagement\{filter:grayscale\(\.4\) sepia\(\.08\) hue-rotate\(140deg\) brightness\(\.92\)\}/
+    /\.photo-ph-appartement,\.photo-ph-residence,\.photo-ph-demenagement\{filter:/
   );
 });
