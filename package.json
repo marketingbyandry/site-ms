@@ -5,7 +5,9 @@
   "scripts": {
     "build:analytics": "node scripts/build-analytics.mjs",
     "build:speed-insights": "node scripts/build-speed-insights.mjs",
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "audit": "node scripts/site-audit.mjs",
+    "audit:visual": "node scripts/visual-check.mjs"
   },
   "dependencies": {
     "@vercel/edge": "^1.1.2",
