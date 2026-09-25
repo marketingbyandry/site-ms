@@ -1,13 +1,13 @@
 # SITE MS — Instructions projet
 
 ## Testing
-Après toute modification HTML/CSS/JS sur ce repo, lancer la suite de tests complète (`npm test`) et confirmer que tous les tests passent avant de committer (baseline actuelle : 173 tests). Si un changement modifie du texte ou du markup testé, mettre à jour l'assertion concernée dans le même commit.
+Après toute modification HTML/CSS/JS sur ce repo, lancer la suite de tests complète (`npm test`) et confirmer que tous les tests passent avant de committer (ne pas figer de nombre de tests ici : il change à chaque feature, 0 échec est la seule règle). Si un changement modifie du texte ou du markup testé, mettre à jour l'assertion concernée dans le même commit.
 
 ## Image & Asset Pipeline
 Pour les visuels sourcés (ex. via Savee) : télécharger l'original, convertir en WebP (ou JPEG optimisé si WebP non supporté), viser <300KB, stocker sous `assets/`, référencer avec largeur/hauteur explicites. Ne jamais laisser de placeholder base64 ou de texte "exemple/gabarit" dans du HTML committé.
 
 ## Git / PR Workflow
-Flux par défaut : travailler sur une branche de fonctionnalité (worktree), committer avec un message concis, ouvrir une PR (`gh pr create`), attendre les checks, merger (`gh pr merge --squash`). Rapporter le numéro de PR et le SHA du merge dans le message final.
+Flux par défaut : travailler sur une branche de fonctionnalité (worktree), committer avec un message concis, ouvrir une PR (`gh pr create`, ou les outils MCP GitHub en session web où `gh` n'existe pas), attendre les checks, merger en squash. Rapporter le numéro de PR et le SHA du merge dans le message final.
 
 ## Environment Preflight
 Avant d'installer des toolchains (Homebrew, ffmpeg, yt-dlp) ou de télécharger des médias volumineux, vérifier l'espace disque libre (`df -h /`) et interrompre avec un avertissement si < 10GB. Préférer les binaires précompilés aux compilations source.
