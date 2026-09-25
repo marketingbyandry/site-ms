@@ -9,6 +9,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ASSET_MAX_BYTES = 300 * 1024;
 const STALE_DAYS = 180;
 // Pages volontairement hors sitemap (robots.txt Disallow, remerciements, variantes A/B).
+// Les pages en meta robots noindex sont aussi exclues.
 const SITEMAP_EXCLUDE = /^(index-b|merci-.*)\.html$/;
 
 const strip = (s) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -63,9 +64,11 @@ export function auditPage(name, html, { exists = () => true, today = new Date() 
     if (/(…|\.\.\.)$/.test(description.trim())) issues.push({ check: 'description', msg: 'Meta description tronquée (finit par « … »)' });
   }
   if (h1Count !== 1) issues.push({ check: 'h1', msg: `${h1Count} balise(s) <h1> au lieu d'une` });
-  if (ld.length === 0) issues.push({ check: 'jsonld', msg: 'Aucune donnée structurée JSON-LD' });
+  const noindex = /noindex/i.test(metaContent(html, 'name', 'robots') ?? '');
+  // Une page noindex (légal, remerciement, landing pub) n'a besoin ni de JSON-LD ni de canonical.
+  if (ld.length === 0 && !noindex) issues.push({ check: 'jsonld', msg: 'Aucune donnée structurée JSON-LD' });
   if (ldTypes.includes('__invalid__')) issues.push({ check: 'jsonld', msg: 'Bloc JSON-LD invalide (JSON illisible)' });
-  if (!canonical) issues.push({ check: 'canonical', msg: 'Pas de <link rel="canonical">' });
+  if (!canonical && !noindex) issues.push({ check: 'canonical', msg: 'Pas de <link rel="canonical">' });
 
   for (const tag of html.match(/<img\b[^>]*>/gi) ?? []) {
     const src = attr(tag, 'src') ?? '';
@@ -109,7 +112,8 @@ export function auditSite(root = ROOT, { today = new Date() } = {}) {
     const listed = sitemapPaths(readFileSync(join(root, 'sitemap.xml'), 'utf8'));
     for (const p of listed) if (!resolveInternal(p, exists)) site.push({ check: 'sitemap', msg: `URL du sitemap sans fichier : ${p}` });
     const listedSet = new Set(listed.map((p) => (p.endsWith('.html') ? p : `${p}.html`)));
-    for (const p of pages) if (!listedSet.has(p) && !SITEMAP_EXCLUDE.test(p)) site.push({ check: 'sitemap', msg: `Page absente du sitemap : ${p}` });
+    const noindex = (p) => /noindex/i.test(metaContent(readFileSync(join(root, p), 'utf8'), 'name', 'robots') ?? '');
+    for (const p of pages) if (!listedSet.has(p) && !SITEMAP_EXCLUDE.test(p) && !noindex(p)) site.push({ check: 'sitemap', msg: `Page absente du sitemap : ${p}` });
   } else site.push({ check: 'sitemap', msg: 'sitemap.xml absent' });
 
   if (!exists('llms.txt')) site.push({ check: 'llms', msg: 'llms.txt absent' });

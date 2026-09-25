@@ -46,3 +46,11 @@ test('auditSite : le vrai site n\'a ni lien interne cassé ni placeholder visibl
   const issues = report.pages.flatMap((p) => p.issues.map((i) => `${p.page}: ${i.msg}`));
   assert.deepEqual(issues.filter((i) => /Lien interne cassé|Texte provisoire|JSON-LD invalide/.test(i)), []);
 });
+
+test('auditPage : une page noindex n\'exige ni JSON-LD ni canonical', () => {
+  const html = clean
+    .replace(/<script type="application\/ld\+json">.*?<\/script>/, '')
+    .replace(/<link rel="canonical"[^>]*>/, '<meta name="robots" content="noindex, follow">');
+  const c = checks(auditPage('cgv.html', html));
+  assert.ok(!c.includes('jsonld') && !c.includes('canonical'), c.join(','));
+});

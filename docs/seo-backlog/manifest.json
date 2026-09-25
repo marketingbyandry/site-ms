@@ -1,0 +1,88 @@
+{
+  "generated": "2026-09-25",
+  "source": "npm run audit + docs/strategie-geo-seo/2026-07-22-strategie-geo-seo-ms-strategy.md",
+  "rule": "Reprendre au premier item 'pending'. Passer à 'done' dès que l'item est mergé.",
+  "items": [
+    {
+      "id": "seo-01",
+      "priority": 1,
+      "status": "pending",
+      "title": "Rapatrier les sources markdown des 52 articles dans le repo",
+      "why": "scripts/build-seo-articles.mjs lit ~/Documents/Energie-Blog-Articles/articles : aucune session cloud ni aucun collaborateur ne peut régénérer ou corriger un article.",
+      "action": "Copier les .md dans content/seo-articles/, faire pointer le script dessus par défaut.",
+      "needs": "Andry (fichiers sur son ordinateur)",
+      "effort": "S"
+    },
+    {
+      "id": "seo-02",
+      "priority": 2,
+      "status": "pending",
+      "title": "Meta descriptions des 52 articles : coupées en plein milieu de phrase",
+      "why": "truncateForMeta coupe l'intro à 155 caractères et ajoute « … ». Dans Google, c'est un extrait tronqué au lieu d'un argument de clic.",
+      "action": "Ajouter un champ description dédié dans chaque source (ou couper à la fin de la dernière phrase complète < 155 car.), puis régénérer.",
+      "pages": 52,
+      "blockedBy": "seo-01",
+      "effort": "M"
+    },
+    {
+      "id": "seo-03",
+      "priority": 3,
+      "status": "pending",
+      "title": "98 titles de plus de 70 caractères (médiane 79, max 113)",
+      "why": "Google affiche ~60 caractères : le suffixe « | M&S Strategy » et la fin du titre disparaissent.",
+      "action": "Titre éditorial dans le <h1>, title raccourci (< 65 car.) dans le <title>. Pour les articles : champ seoTitle dans le générateur.",
+      "pages": 98,
+      "effort": "M"
+    },
+    {
+      "id": "seo-04",
+      "priority": 4,
+      "status": "pending",
+      "title": "33 meta descriptions trop longues (pages villes + home, b2b, b2c)",
+      "why": "Les pages courtier-energie-* dépassent 220 caractères : Google coupe l'argument.",
+      "action": "Réécrire à 140-155 caractères. Pages villes : ville + bénéfice + preuve en une phrase.",
+      "pages": 33,
+      "effort": "S"
+    },
+    {
+      "id": "seo-05",
+      "priority": 5,
+      "status": "done",
+      "title": "16 logos fournisseurs sans width/height (index.html, barometre-energie.html)",
+      "why": "Attributs absents, mais la CSS .sup-logo fixe déjà 180×46 : pas de CLS réel. Ajoutés par hygiène.",
+      "action": "Fait : width=180 height=46 sur les 16 logos.",
+      "pages": 2,
+      "effort": "S"
+    },
+    {
+      "id": "seo-06",
+      "priority": 6,
+      "status": "pending",
+      "title": "Page À propos / expertise + sameAs (Phase 1 de la stratégie, non livrée)",
+      "why": "Aucune page auteur/entreprise, aucun sameAs dans le JSON-LD : les LLM et Google ont peu de signaux de confiance (E-E-A-T).",
+      "action": "Créer la page, ajouter sameAs (LinkedIn, Societe.com, Google Business Profile) au JSON-LD ProfessionalService.",
+      "needs": "Andry (liens officiels, bio, photo)",
+      "effort": "M"
+    },
+    {
+      "id": "seo-07",
+      "priority": 7,
+      "status": "pending",
+      "title": "Statistique « 19 % d'économies moyennes » non sourcée (home)",
+      "why": "Déjà signalé dans la stratégie §8 : bride la citabilité LLM et expose côté DGCCRF.",
+      "action": "Ajouter la méthodologie datée (période, nombre de contrats) ou nuancer la formulation.",
+      "needs": "Décision Andry",
+      "effort": "S"
+    },
+    {
+      "id": "seo-08",
+      "priority": 8,
+      "status": "pending",
+      "title": "Mesure GEO/AEO impossible actuellement",
+      "why": "HubSpot : le suivi AEO renvoie une erreur de permission ; les analytics de contenu HubSpot sont vides car le site est hébergé sur Vercel, pas sur HubSpot.",
+      "action": "Faire accorder la permission AEO par l'admin HubSpot, ou choisir un tracker de visibilité LLM (stratégie §8).",
+      "needs": "Admin HubSpot",
+      "effort": "S"
+    }
+  ]
+}
