@@ -18,5 +18,9 @@ Pour toute génération en lot (articles, pages, migrations multi-fichiers) : cr
 ## Recon Before Edit
 Avant de modifier une zone du code peu familière (templates, middleware, système de couleurs), utiliser un sub-agent (outil Agent) en lecture seule pour cartographier les fichiers concernés et les tests qui les couvrent, avant d'éditer quoi que ce soit.
 
+## Outillage Claude
+- **Playwright MCP** (`.mcp.json`) : après une modification visuelle, vérifier le rendu réel de la page (desktop + mobile, console sans erreur) en plus de `npm test`. En session cloud, lancer le serveur avec `--browser chromium --executable-path /opt/pw-browsers/chromium`.
+- **taste-skill : ne pas l'utiliser sur ce repo.** Ses règles par défaut contredisent la DA existante (il bannit Instrument Serif, suppose React/Tailwind, propose des photos placeholder picsum). Il est réservé aux nouveaux sites clients.
+
 ## Creative/Visual Work
 Avant de produire un rendu visuel (mockup, campagne, direction artistique), faire confirmer par l'utilisateur : l'audience, le ton (3 adjectifs), ce que le rendu ne doit PAS être, et une image de référence si disponible. Ne générer qu'après confirmation — évite les premiers jets rejetés.
