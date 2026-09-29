@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts.local.css">
+<style>
+:root{
+  --teal:#1a7a8a;--teal-dark:#0d4f5c;--teal-light:#2bb5c8;--teal-glow:#5ecfdc;
+  --green:#4cde80;--dark:#07131a;--cream:#f5f0e8;--muted:#8aacb4;--red:#e05555;--amber:#e0a855;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--dark)}
+body{font-family:'Manrope',sans-serif;color:var(--cream);-webkit-font-smoothing:antialiased}
+#stage{position:absolute;inset:0;overflow:hidden}
+.glow{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none}
+#glowRed{width:1100px;height:1100px;background:rgba(224,85,85,.20)}
+#glowTeal{width:1300px;height:1300px;background:rgba(26,122,138,.42)}
+#glowGreen{width:900px;height:900px;background:rgba(76,222,128,.14)}
+#grid{position:absolute;inset:0;background-image:linear-gradient(rgba(94,207,220,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(94,207,220,.045) 1px,transparent 1px);background-size:90px 90px;mask-image:radial-gradient(ellipse at 50% 45%,#000 20%,transparent 75%)}
+.scene{position:absolute;inset:0}
+.a{will-change:transform,opacity}
+.serif{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.01em}
+.it{font-style:italic}
+.mono{font-family:'JetBrains Mono',monospace}
+.eyebrow{font-size:30px;letter-spacing:.3em;text-transform:uppercase;font-weight:600}
+.center{position:absolute;left:0;right:0;text-align:center}
+
+/* S1 */
+#s1 h1{font-size:104px;line-height:1.08}
+.red{color:var(--red)}
+.tealtxt{color:var(--teal-glow)}
+#taxi{position:absolute;left:70px;right:70px;top:1010px;height:560px;border:2px solid rgba(224,85,85,.38);border-radius:18px;background:linear-gradient(180deg,rgba(13,31,40,.92),rgba(9,22,30,.92));text-align:center}
+#taxiLabel{position:absolute;top:84px;left:0;right:0;font-size:28px;letter-spacing:.28em;color:var(--red);font-weight:700}
+#taxiLabel .dot{display:inline-block;width:20px;height:20px;border-radius:50%;background:var(--red);margin-right:16px;vertical-align:1px}
+#taxiNum{position:absolute;top:170px;left:0;right:0;font-weight:700;color:var(--red);font-size:196px;line-height:1;white-space:nowrap}
+#taxiNum .c{font-size:.36em;opacity:.8}
+#taxiNum .e{font-size:.3em;opacity:.45;margin-left:.15em}
+#taxiSub{position:absolute;top:420px;left:60px;right:60px;font-size:30px;line-height:1.45;color:var(--muted)}
+
+/* S2 */
+#s2 h2{font-size:118px;line-height:1.02}
+.row{position:absolute;left:80px;right:80px;height:150px;border-bottom:1px solid rgba(138,172,180,.16)}
+.row .lbl{position:absolute;left:0;top:34px;font-size:44px;font-weight:500;color:var(--cream)}
+.row .pill{position:absolute;right:0;top:34px;font-size:26px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:10px 20px;border-radius:6px;border:2px solid currentColor}
+.row .bar{position:absolute;left:0;top:108px;height:12px;border-radius:6px}
+#callout{position:absolute;left:80px;right:80px;top:1540px;padding:40px 44px;border-radius:18px;background:rgba(224,168,85,.10);border:2px solid rgba(224,168,85,.55)}
+#callout .big{font-size:128px;line-height:.9;color:var(--amber);font-weight:700}
+#callout .txt{font-size:50px;line-height:1.15;margin-top:14px}
+
+/* S3 */
+#s3 h1{font-size:132px;line-height:1.02}
+
+/* S4 */
+.stat{position:absolute;left:0;right:0;text-align:center}
+.stat .n{font-size:230px;font-weight:700;line-height:1;color:var(--teal-light);letter-spacing:-.03em}
+.stat .l{font-size:36px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:10px}
+.rule{position:absolute;left:300px;right:300px;height:2px;background:rgba(138,172,180,.22)}
+
+/* S5 */
+#s5 h1{font-size:150px;line-height:1}
+.chip{display:inline-block;font-size:34px;font-weight:600;padding:18px 34px;border-radius:999px;border:2px solid rgba(76,222,128,.5);color:var(--green)}
+
+/* S6 */
+#s6 h2{font-size:100px;line-height:1.05}
+#cta{position:absolute;left:110px;right:110px;top:1290px;height:156px;background:var(--teal);color:#fff;font-weight:700;font-size:40px;letter-spacing:.14em;display:flex;align-items:center;justify-content:center;gap:28px;border-radius:4px;overflow:hidden}
+#ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.35);width:40px;height:40px;margin:-20px 0 0 -20px}
+#finger{position:absolute;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;background:rgba(245,240,232,.22);border:4px solid rgba(245,240,232,.85);box-shadow:0 10px 40px rgba(0,0,0,.4)}
+#url{font-size:48px;font-weight:600;letter-spacing:.04em}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="grid"></div>
+  <div class="glow" id="glowRed"></div>
+  <div class="glow" id="glowTeal"></div>
+  <div class="glow" id="glowGreen"></div>
+
+  <!-- S1 · Hook : le taximètre du calculateur -->
+  <section class="scene" id="s1">
+    <div class="center eyebrow a tealtxt" style="top:330px" data-in="0.05" data-out="3.72">Calculateur d'économies réalisables</div>
+    <h1 class="center serif" style="top:430px">
+      <div class="a" data-in="0.12" data-out="3.72">Chaque mois sans négocier</div>
+      <div class="a" data-in="0.32" data-out="3.74">vous coûte <span class="red">de l'argent réel.</span></div>
+    </h1>
+    <div id="taxi" class="a" data-in="0.55" data-out="3.78" data-dy="60">
+      <div id="taxiLabel" class="mono"><span class="dot" id="taxiDot"></span>PERTE MOYENNE CONSTATÉE · TPE/PME</div>
+      <div id="taxiNum" class="mono"><span id="taxiMinus">−</span><span id="taxiInt">0</span><span class="c" id="taxiCents">,00</span><span class="e">€</span></div>
+      <div id="taxiSub">Cumul depuis le 1<sup>er</sup> janvier pour une TPE/PME moyenne<br>(300 MWh/an à 118 €/MWh)</div>
+    </div>
+  </section>
+
+  <!-- S2 · La fenêtre de négociation -->
+  <section class="scene" id="s2">
+    <h2 class="center serif" style="top:250px">
+      <div class="a" data-in="4.08" data-out="7.72">Votre fenêtre</div>
+      <div class="a it tealtxt" data-in="4.22" data-out="7.74">de négociation.</div>
+    </h2>
+    <div id="rows"></div>
+    <div id="callout" class="a" data-in="5.75" data-out="7.78" data-dy="50">
+      <div class="big mono">80 %</div>
+      <div class="txt">des dirigeants arrivent ici,<br><span style="color:var(--muted)">à J − 6 mois.</span></div>
+    </div>
+  </section>
+
+  <!-- S3 · Révélation -->
+  <section class="scene" id="s3">
+    <img id="logo3" class="a" src="logo.png" data-in="8.1" data-out="10.72" data-dy="30" style="position:absolute;left:250px;top:560px;width:580px">
+    <h1 class="center serif" style="top:880px">
+      <div class="a" data-in="8.45" data-out="10.74">Réduisez vos factures,</div>
+      <div class="a" data-in="8.65" data-out="10.76">pas <span class="it tealtxt">votre confort.</span></div>
+    </h1>
+  </section>
+
+  <!-- S4 · Preuves -->
+  <section class="scene" id="s4">
+    <div class="center serif it a" style="top:250px;font-size:64px;color:var(--muted)" data-in="11.05" data-out="14.72">Vous êtes professionnel ?</div>
+    <div class="stat a" style="top:420px" data-in="11.2" data-out="14.72"><div class="n" id="st1">0 %</div><div class="l">Économies moyennes</div></div>
+    <div class="rule a" style="top:835px" data-in="11.7" data-out="14.74"></div>
+    <div class="stat a" style="top:890px" data-in="11.85" data-out="14.74"><div class="n" id="st2">0 h</div><div class="l">Délai de réponse</div></div>
+    <div class="rule a" style="top:1305px" data-in="12.35" data-out="14.76"></div>
+    <div class="stat a" style="top:1360px" data-in="12.5" data-out="14.76"><div class="n" id="st3">0 M</div><div class="l">kWh négociés en 2025</div></div>
+  </section>
+
+  <!-- S5 · Le modèle -->
+  <section class="scene" id="s5">
+    <h1 class="center serif" style="top:640px">
+      <div class="a" data-in="15.08" data-out="17.22">Vous ne nous</div>
+      <div class="a" data-in="15.25" data-out="17.24">payez <span class="it" style="color:var(--green)">jamais.</span></div>
+    </h1>
+    <div class="center a" style="top:1020px" data-in="15.6" data-out="17.26"><span class="chip">Courtier 100 % indépendant · depuis 2012</span></div>
+    <div class="center a" style="top:1130px;font-size:34px;color:var(--muted);line-height:1.5" data-in="15.75" data-out="17.28">Rémunérés par les fournisseurs,<br>commission standardisée.</div>
+  </section>
+
+  <!-- S6 · CTA -->
+  <section class="scene" id="s6">
+    <img class="a" src="logo.png" data-in="17.55" data-out="99" data-dy="30" style="position:absolute;left:300px;top:430px;width:480px">
+    <h2 class="center serif" style="top:720px">
+      <div class="a" data-in="17.7" data-out="99">Votre prochain contrat</div>
+      <div class="a" data-in="17.85" data-out="99">énergie se joue</div>
+      <div class="a it tealtxt" data-in="18.0" data-out="99">aujourd'hui.</div>
+    </h2>
+    <div id="cta" class="a" data-in="18.35" data-out="99" data-dy="50"><span>OBTENIR MON ÉTUDE GRATUITE</span><span>→</span><div id="ripple"></div></div>
+    <div class="center a" id="url" style="top:1530px" data-in="19.45" data-out="99">cabinetms.fr</div>
+    <div id="finger"></div>
+  </section>
+</div>
+
+<script>
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=x=>1-Math.pow(1-x,3);
+const eOut5=x=>1-Math.pow(1-x,5);
+const eIO=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const lerp=(a,b,x)=>a+(b-a)*x;
+
+// S2 rows : contenu repris de la section « Votre fenêtre de négociation » du site
+const ROWS=[
+  ['J − 24 mois','Optimal','#4cde80',1.00],
+  ['J − 18 mois','Favorable','#2bb5c8',.78],
+  ['J − 12 mois','Correct','#8aacb4',.56],
+  ['J − 6 mois','Tardif','#e0a855',.32],
+  ['J − 0','Critique','#e05555',.10],
+];
+const rowsEl=document.getElementById('rows');
+ROWS.forEach((r,i)=>{
+  const d=document.createElement('div');
+  d.className='row a';d.dataset.in=(4.45+i*.17).toFixed(2);d.dataset.out=(7.7+i*.015).toFixed(3);
+  d.style.top=(620+i*170)+'px';
+  d.innerHTML=`<div class="lbl mono">${r[0]}</div><div class="pill" style="color:${r[2]}">${r[1]}</div><div class="bar" style="background:${r[2]}"></div>`;
+  rowsEl.appendChild(d);
+});
+const rowEls=[...rowsEl.children];
+
+const anims=[...document.querySelectorAll('.a')];
+const fmtInt=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+const TAXI=1249.89;
+
+window.render=function(t){
+  // entrées/sorties génériques : entrée rapide puis maintien, sortie en montant (passage par le fond)
+  for(const el of anims){
+    const tin=+el.dataset.in, tout=+el.dataset.out, dy=+(el.dataset.dy||46);
+    const pi=eOut5(seg(t,tin,tin+.55)), po=eIO(seg(t,tout,tout+.26));
+    el.style.opacity=(pi*(1-po)).toFixed(4);
+    el.style.transform=`translateY(${((1-pi)*dy-po*34).toFixed(2)}px)`;
+    el.style.filter=pi<1?`blur(${((1-pi)*10).toFixed(2)}px)`:'none';
+  }
+
+  // lumières d'ambiance : rouge (perte) → teal (M&S) → vert (fin)
+  const red=1-seg(t,7.6,8.6), teal=seg(t,7.8,9.2), green=seg(t,14.8,16)*(1-.5*seg(t,17.4,18.4));
+  const g=(id,o,x,y)=>{const e=document.getElementById(id);e.style.opacity=o;e.style.left=x+'px';e.style.top=y+'px';};
+  g('glowRed',red,lerp(-200,-60,Math.sin(t*.5)*.5+.5),lerp(820,980,Math.sin(t*.37)*.5+.5));
+  g('glowTeal',.25+.75*teal,lerp(-300,-100,Math.sin(t*.3+1)*.5+.5),lerp(-300,300,t/21));
+  g('glowGreen',green,500+Math.sin(t*.6)*80,1100+Math.cos(t*.4)*60);
+  document.getElementById('grid').style.transform=`translateY(${(-t*9).toFixed(2)}px)`;
+
+  // S1 : taximètre qui défile (0,70 s → 3,2 s), puis léger « tic » des centimes
+  const p=eOut(seg(t,.7,3.2));
+  let v=TAXI*p; if(t>3.2) v=TAXI+(t-3.2)*.07;
+  document.getElementById('taxiInt').textContent=fmtInt(Math.floor(v));
+  document.getElementById('taxiCents').textContent=','+String(Math.floor((v%1)*100)).padStart(2,'0');
+  document.getElementById('taxiDot').style.opacity=(.35+.65*(Math.sin(t*8)*.5+.5)).toFixed(3);
+  document.getElementById('taxi').style.boxShadow=`0 0 ${(60*p).toFixed(1)}px rgba(224,85,85,${(.18*p).toFixed(3)})`;
+
+  // S2 : barres qui se remplissent, puis focus sur J − 6
+  rowEls.forEach((el,i)=>{
+    const bp=eOut(seg(t,4.6+i*.17,5.3+i*.17));
+    el.querySelector('.bar').style.width=(ROWS[i][3]*920*bp).toFixed(1)+'px';
+    const focus=seg(t,5.6,6.0);
+    if(i!==3) el.style.opacity=(+el.style.opacity*(1-.55*focus)).toFixed(4);
+    else el.style.transform+=` scale(${(1+.04*eOut(focus)).toFixed(4)})`;
+  });
+
+  // S4 : compteurs
+  const cnt=(id,a,val,suf)=>{document.getElementById(id).textContent=Math.round(val*eOut(seg(t,a,a+.8)))+suf;};
+  cnt('st1',11.3,19,' %');cnt('st2',11.95,24,' h');cnt('st3',12.6,70,' M');
+
+  // S6 : un doigt appuie sur le vrai bouton du site
+  const f=document.getElementById('finger'), cta=document.getElementById('cta'), rp=document.getElementById('ripple');
+  const fin=seg(t,18.75,19.2), press=seg(t,19.2,19.32)-seg(t,19.32,19.5), fout=seg(t,19.7,20.0);
+  f.style.opacity=(eOut(fin)*(1-fout)).toFixed(3);
+  f.style.left=lerp(900,640,eIO(fin)).toFixed(1)+'px';
+  f.style.top=lerp(1720,1380,eIO(fin)).toFixed(1)+'px';
+  f.style.transform=`scale(${(1-.18*press).toFixed(3)})`;
+  cta.style.transform+=` scale(${(1-.035*press).toFixed(4)})`;
+  const rpp=seg(t,19.26,19.9);
+  rp.style.left='530px';rp.style.top='88px';
+  rp.style.opacity=(rpp>0?(1-rpp)*.9:0).toFixed(3);
+  rp.style.transform=`scale(${(1+eOut(rpp)*26).toFixed(2)})`;
+  const done=eOut(seg(t,19.3,19.7));
+  cta.style.background=`rgb(${lerp(26,76,done)|0},${lerp(122,222,done)|0},${lerp(138,128,done)|0})`;
+  cta.style.color=done>.5?'#07131a':'#fff';
+};
+window.render(0);
+</script>
+</body>
+</html>
