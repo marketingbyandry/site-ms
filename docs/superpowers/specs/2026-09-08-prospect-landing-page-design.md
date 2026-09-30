@@ -1,0 +1,213 @@
+# Landing page personnalisée de prospection (`prospect.html`) — spec
+
+## Contexte
+
+La liste de 37 prospects énergo-intensifs constituée le 2026-09-08
+(`~/Documents/leads_energo_intensifs.csv`) doit être démarchée avec un lien
+personnalisé plutôt qu'un renvoi générique vers `b2b.html`. Le besoin dépasse
+cette liste : toute campagne de démarchage à venir, quel que soit le secteur
+(agriculture, restauration, tourisme/hôtellerie, métallurgie, etc.), doit
+pouvoir réutiliser le même mécanisme sans modification de code à chaque
+nouveau secteur ciblé.
+
+Le site est statique (Vercel, pas de backend) et personnalise déjà l'URL côté
+edge pour l'attribution commerciale (`ref`) et le suivi de campagne (`camp`,
+cf. `docs/superpowers/specs/2026-08-12-camp-tracking-design.md`). Le même
+principe — paramètres d'URL lus côté client, aucun stockage serveur — s'étend
+ici à l'affichage du nom du prospect et de son secteur.
+
+## Mécanisme
+
+### Page `prospect.html`
+
+Nouvelle page autonome (HTML/CSS/JS inline, comme `b2b.html`), construite sur
+le même gabarit visuel (palette, structure hero, offre, FAQ, formulaire
+Tally). Pas d'include partagé — cohérent avec le fonctionnement actuel du
+site où chaque page HTML est indépendante.
+
+Trois paramètres d'URL, tous facultatifs, tous injectés via `textContent`
+(jamais `innerHTML` avec concaténation de chaîne) :
+
+- `nom` — nom de l'entreprise. Affiché dans le H1 : sans `nom`, « Économisez
+  votre énergie, nous négocions votre contrat. » ; avec `nom`, « {nom},
+  économisez sur votre énergie — nous négocions votre contrat. »
+- `secteur` — texte libre (ex. `Cimenterie`, `Agriculture`), voir
+  bibliothèque de blocs ci-dessous.
+- `accroche` — texte libre court, optionnel, affiché dans un encart dédié
+  sous le H1 (voir plus bas).
+
+### Bibliothèque de blocs sectoriels — `assets/sector-blocks.js`
+
+Fichier séparé de la page, chargé par `prospect.html`, exposant des
+fonctions pures (testables sans DOM) :
+
+```js
+window.MSSectorBlocks = {
+  match(secteurRaw) { /* normalise (minuscule, sans accents) et cherche
+                          une entrée dont un des mots-clés est inclus dans
+                          le texte normalisé ; retourne { titre, texte } ou
+                          null si aucune correspondance */ },
+  fallback(secteurRaw) { /* { titre, texte } générique, construit à partir
+                             du texte brut du paramètre */ }
+};
+```
+
+Les deux renvoient du **texte brut, jamais du HTML** : la page écrit `titre`
+et `texte` via `textContent`, donc aucune balise ne peut entrer par cette
+voie, même en modifiant la bibliothèque.
+
+Entrées initiales (reprises des 6 secteurs déjà identifiés dans
+`leads_energo_intensifs.csv`) :
+
+| Secteur | Mots-clés | Argumentaire |
+|---|---|---|
+| Cimenterie | `ciment` | « Les cimenteries figurent parmi les activités éligibles au statut électro-intensif (NAF 23.51Z), sous conditions de consommation propres à chaque site : nous vérifions votre éligibilité réelle et la faisons valoir dans la négociation. » |
+| Blanchisserie | `blanchisserie`, `pressing` | « Séchage, repassage, eau chaude : les blanchisseries industrielles comptent parmi les activités les plus consommatrices d'énergie du secteur des services. » |
+| Data center | `data center`, `datacenter`, `cloud`, `hpc` | « Les centres de données peuvent relever du tarif réduit électro-intensif dédié, sous conditions de consommation et d'efficacité énergétique propres à chaque site : nous vérifions votre éligibilité réelle. » |
+| Frigorifique | `frigorifique`, `froid` | « Le froid industriel tourne 24h/24 : la facture d'électricité est un poste fixe et lourd, sur lequel une renégociation bien menée produit un effet immédiat. » |
+| Papeterie | `papeterie`, `pate a papier`, `papetier` | « Séchage du papier, production de pâte : la papeterie est l'un des secteurs industriels les plus intensifs en énergie, potentiellement éligible aux tarifs réduits électro-intensifs. » |
+| Verrerie | `verrerie`, `flaconnage`, `verrier` | « Fours à haute température, fusion continue : la verrerie industrielle a un profil de consommation qui justifie une étude tarifaire dédiée. » |
+
+**Règle de rédaction, non négociable** : l'éligibilité au statut
+électro-intensif ne découle jamais du seul code NAF — elle dépend d'un ratio
+de consommation rapporté à la valeur ajoutée, apprécié entreprise par
+entreprise. Tout argumentaire ajouté à la bibliothèque doit rester au
+conditionnel (« figurent parmi les activités éligibles », « peuvent relever
+de ») et mentionner les conditions. Une affirmation sèche adressée par écrit
+à un prospect démarché relève de la pratique commerciale trompeuse, et se
+voit immédiatement d'un responsable énergie qui connaît le dispositif.
+
+Les mots-clés s'écrivent sans accents et en minuscules : ils sont comparés au
+texte du paramètre une fois normalisé.
+
+Repli générique (`secteur` fourni mais sans correspondance) : « Votre
+activité ({secteur}) implique une consommation d'énergie qui pèse sur vos
+charges. Nous la mettons en concurrence entre tous les fournisseurs du marché
+pour la réduire, gratuitement et sans engagement. »
+
+Sans `secteur` du tout : aucun bloc affiché.
+
+Cette bibliothèque s'enrichit au fil des campagnes (nouvelle entrée = un
+objet `{keywords, titre, texte}` de plus dans `assets/sector-blocks.js`), sans
+jamais casser la page pour un secteur pas encore couvert.
+
+### Paramètre `accroche`
+
+Phrase courte et personnalisée, sourcée manuellement : quand une URL de
+prospect est fournie, scraping (firecrawl) + lecture du contenu pour en
+extraire un élément pertinent (activité précise, signal énergétique,
+actualité), puis construction du lien complet avec `accroche` déjà rempli.
+Aucune automatisation de cette étape dans le repo — c'est un geste
+assisté, au cas par cas, pas un script.
+
+### CTA — `openTallyForm`
+
+Même formulaire Tally que `b2b.html`. `hiddenFields` reçoit `entreprise:
+nom` si `nom` est présent, sur le modèle de `ref`/`camp` existants.
+
+**Action manuelle utilisateur requise, hors périmètre code** : créer le
+champ caché `entreprise` dans l'éditeur Tally (sinon ignoré silencieusement,
+même limite déjà documentée pour `ref`/`camp`).
+
+### Attribution — `middleware.js`
+
+`/prospect.html` ajouté au `matcher`, pour bénéficier du même traitement
+`ref`/`camp`/variante déjà en place sur `b2b.html`. Aucun changement aux
+whitelists `SLUGS`/`CAMPAIGNS` — les liens de prospection réutilisent les
+codes `camp` existants (`chr-e1`, etc.) ou `soc-*`, selon le canal.
+
+### Génération de liens en masse — `scripts/build-prospect-links.mjs`
+
+Script générique (pattern `scripts/build-analytics.mjs`) :
+
+- Entrée : chemin CSV passé en argument (`node scripts/build-prospect-links.mjs <chemin.csv>`), colonnes `Entreprise` et `Secteur/Activité` par défaut, noms de colonnes surchargeables par flags — le CSV source reste hors du repo (ex. `~/Documents/leads_energo_intensifs.csv`), jamais committé, pour ne pas versionner des données de prospection.
+- Sortie : CSV avec une colonne URL supplémentaire (`https://cabinetms.fr/prospect.html?nom=<encodé>&secteur=<encodé>&camp=<code>`), `camp` passé en argument, `accroche` absent (réservée aux prospects traités individuellement via scraping).
+- Le mapping mots-clés → bloc se fait au rendu de la page (`assets/sector-blocks.js`), pas à la génération du lien : le texte brut du CSV suffit, aucune étape de codage manuel du secteur en amont.
+
+### Sécurité
+
+`nom`, `secteur`, `accroche` : lecture via `URLSearchParams`, injection via
+`textContent`/`el.textContent =`, jamais via template string HTML. Le
+matching sectoriel ne fait que sélectionner un bloc **prédéfini** dans
+`assets/sector-blocks.js` — le texte du paramètre `secteur` n'est jamais lui
+même interprété comme HTML, sauf dans le repli générique où il est inséré
+via `textContent` au même titre que `nom`/`accroche`.
+
+Avant injection, les trois valeurs sont débarrassées des caractères de
+contrôle, invisibles et bidirectionnels (`U+202A`–`U+202E`, `U+200B`,
+`U+FEFF`…) : `textContent` ferme le XSS mais pas l'usurpation visuelle, et un
+`U+202E` dans `nom` inverse l'ordre d'affichage de la fin du H1. Puis elles
+sont plafonnées en longueur, coupées sur une limite de mot et rééquilibrées
+en parenthèses.
+
+### Deux risques acceptés, tranchés le 2026-09-17
+
+Relecture `quality-reviewer` du 2026-09-17 sur la branche
+`worktree-prospect-landing-page`. Les deux points ci-dessous sont des
+propriétés du design « texte libre en paramètre d'URL », pas des bugs
+d'implémentation : ils sont documentés ici pour être décidés plutôt que
+découverts.
+
+**1. Texte arbitraire affiché sur le domaine de confiance.** `accroche`
+autorise 240 caractères libres affichés sous le H1 sur une URL
+`cabinetms.fr`, au-dessus d'un vrai formulaire. Un tiers qui devine le motif
+d'URL dispose donc d'une page à texte libre hébergée sur le domaine du
+cabinet, exploitable en hameçonnage.
+
+Option écartée : signer les liens (HMAC posé par
+`scripts/build-prospect-links.mjs`, vérifié dans `middleware.js` qui couvre
+déjà la route). Elle ferme le trou, mais impose de passer par le script pour
+tout lien, ce qui casse précisément le geste que la page doit servir —
+fabriquer une URL à la main pour un prospect traité au cas par cas.
+
+Retenu : assainissement des caractères de contrôle et bidirectionnels (fait),
+`noindex` + `Disallow` (fait), et risque résiduel accepté au vu du volume —
+démarchage nominatif de quelques dizaines de prospects, URL non publiée. **À
+rouvrir** si la page passe en diffusion large (annonce payante, QR code
+imprimé, lien en signature de mail) : à ce moment, la signature HMAC devient
+le bon arbitrage.
+
+**2. Paramètres de personnalisation et mesure.** Le conteneur GTM est chargé
+sans condition dans le `<head>`, hors du gating de consentement
+(`assets/analytics-loader.js`) : une URL portant `?nom=<entreprise>` lui
+serait transmise dès le premier affichage, et enregistrée par PostHog en
+`$current_url`. Pour un prospect en nom propre (EI, EURL au patronyme),
+c'est une donnée personnelle traitée sans base claire.
+
+Retenu : la lecture des paramètres est placée **avant** le tag GTM, et l'URL
+est nettoyée par `history.replaceState` dans la foulée — aucun script de
+mesure **côté client** ne voit les paramètres. La requête HTTP initiale, elle,
+les porte : l'edge Vercel la traite et elle atterrit dans les logs d'accès.
+C'est du first-party et c'est irréductible sans passer en POST, mais la
+distinction mérite d'être écrite plutôt que laissée à l'implicite. Même
+intention que le nettoyage de `ref`/`camp` côté edge, pour un paramètre qui
+identifie plus directement encore.
+
+Contrepartie assumée : toute navigation qui recharge réellement la page
+retombe sur la version générique — rechargement manuel, mais aussi retour
+arrière depuis un lien de la nav lorsque le bfcache ne s'applique pas. Le
+comportement du retour arrière n'est donc pas déterministe.
+
+`politique-confidentialite.html` reste à compléter (paramètres de
+personnalisation, champ `entreprise` transmis à Tally) — hors périmètre de ce
+chantier, à traiter avec la prochaine passe sur les pages légales.
+
+## Tests
+
+- `test/sector-blocks.test.mjs` (nouveau) : fonctions pures de
+  `assets/sector-blocks.js` — correspondance par mot-clé (insensible à la
+  casse et aux accents) pour chacune des 6 entrées, absence de
+  correspondance → repli générique, `secteur` vide → pas de bloc.
+- `test/middleware-attribution.test.mjs` (extension) : `/prospect.html`
+  couvert par le même comportement `ref`/`camp`/redirection que `b2b.html`.
+
+## Hors périmètre
+
+- Automatisation du scraping/génération d'`accroche` dans le repo (reste
+  un geste manuel assisté, cas par cas).
+- Pages statiques générées par prospect (écarté au profit des paramètres
+  d'URL — cf. décision du 2026-09-08).
+- Import de la liste de prospects ou de la page vers une plateforme
+  publicitaire.
+- Dashboard de suivi des conversions par prospect individuel, au-delà de
+  l'attribution `camp`/`ref` déjà existante.

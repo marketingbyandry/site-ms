@@ -5,6 +5,7 @@
   "scripts": {
     "build:analytics": "node scripts/build-analytics.mjs",
     "build:speed-insights": "node scripts/build-speed-insights.mjs",
+    "prospect:links": "node scripts/build-prospect-links.mjs",
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
