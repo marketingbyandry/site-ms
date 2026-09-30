@@ -9,7 +9,7 @@
 - **Modèle économique** : le service est **gratuit pour le client**. M&S Strategy est rémunéré par les fournisseurs via une commission standardisée intégrée au contrat. Le client ne paie rien, qu'il signe ou non à l'issue de l'étude.
 - **Zone d'intervention** : France entière (siège à Lattes, 34).
 - **Ancienneté** : depuis 2012. SIREN 752 139 477.
-- **Promesse** : étude gratuite, sans engagement, premier retour sous 48 h après réception de la facture.
+- **Promesse** : étude gratuite, sans engagement, premier retour sous 24 h après réception de la facture.
 - **Fenêtre de négociation recommandée** : idéalement 12 à 24 mois avant l'échéance du contrat en cours. M&S Strategy peut intervenir même si le contrat est encore en cours.
 - **Différence avec un comparateur en ligne** : un comparateur présente des offres standardisées ; un courtier analyse la situation réelle du client (profil de consommation, multi-sites, échéances) et négocie sur mesure.
 

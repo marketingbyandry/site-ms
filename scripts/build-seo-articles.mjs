@@ -11,6 +11,7 @@ import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { homedir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
+import { loadPartials, applyPartials } from './build-partials.mjs';
 
 export const TEMPLATE_PATH = new URL('../templates/blog-article-template.html', import.meta.url);
 
@@ -253,7 +254,9 @@ export function defaultSourceDir() {
 }
 
 export function buildAllArticles(sourceDir, outputDir) {
-  const template = readFileSync(TEMPLATE_PATH, 'utf8');
+  // Les blocs partagés (bouton flottant, réassurance…) sont rendus depuis
+  // partials/ + data/site.json, pour ne jamais figer une valeur périmée.
+  const template = applyPartials(readFileSync(TEMPLATE_PATH, 'utf8'), loadPartials());
   const files = readdirSync(sourceDir).filter((f) => f.endsWith('.md')).sort();
   const results = [];
   for (const file of files) {
