@@ -1,5 +1,5 @@
 import { chromium } from '/opt/node22/lib/node_modules/playwright/index.mjs';
-const b = await chromium.launch();
+const b = await chromium.launch({ args: ['--lang=fr-FR'] });
 const ctx = await b.newContext({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 2, locale: 'fr-FR', timezoneId: 'Europe/Paris' });
 const fs = await import('fs');
 const fcss = fs.readFileSync('brag-output/work/calc/fonts-inject.css','utf8');
@@ -18,6 +18,7 @@ await p.selectOption('#input-engaged','non'); await p.selectOption('#input-secto
 await p.locator('#input-months').fill('12').catch(()=>{});
 await p.locator('#input-months').dispatchEvent('input');
 await p.waitForTimeout(4000);
+await p.evaluate(()=>{const d=document.querySelector('#input-renewal-date'); d.type='text'; d.value='15/01/2024';});
 await p.locator('.inputs-section').screenshot({ path: dir+'inputs.png' });
 await p.locator('#taximeter').screenshot({ path: dir+'taxi-1.png' });
 await p.locator('.results-grid').screenshot({ path: dir+'results.png' });
