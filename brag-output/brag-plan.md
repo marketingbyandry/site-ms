@@ -118,3 +118,10 @@ Transition mood: soft → fin
 
 **Music mood for this video:** nappe instrumentale premium/feutrée, jamais dominante, rythme métronomique discret pour les reveals séquentiels
 **Audio summary:** silence → voix calme et confiante posée sur une nappe quasi imperceptible → légers ticks synchronisés sur chaque preuve → swell doux et fade-out final sur le retour du logo.
+
+## Rendu (réalisé)
+- **Fichiers :** `brag.mp4` (1080×1920, 30 fps, 36 s, -14 LUFS), `brag.jpg` (couverture), `share-copy.txt`.
+- **Voix off :** Artlist, ElevenLabs Multilingual v2, voix « Gravity », français. 1,3 s de silence insérés après « …renouvellent » pour laisser lire « 100 000 ».
+- **Durée :** 36 s au lieu de ~24 s, les timings étant dérivés de la durée réelle de la voix (30 s de parole).
+- **Police UI :** Manrope (Satoshi indisponible hors ligne).
+- **Re-générer :** `work/timings.js` (horaires mesurés sur la voix) → `python3 work/audio.py` → `node work/render.mjs` (serveur local sur le port 8765 à la racine du dépôt).

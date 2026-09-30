@@ -111,7 +111,7 @@ def breath(dur, level):
 put(sfx, breath(1.2, .10), s2 - .5)
 put(sfx, breath(1.6, .12), s5 - .4)
 # texture haute du trait de lumière pendant l'écriture de la tagline
-wa, wb = T['tag_a'], T['tag_b']
+wa, wb = T['tag_a1'], T['tag_b2']
 n = int((wb - wa) * SR); tt = np.arange(n) / SR
 shimmer = hp(rng.standard_normal(n), 6000) * .018 * np.sin(np.pi * tt / (wb - wa)) ** .5
 put(sfx, shimmer, wa)

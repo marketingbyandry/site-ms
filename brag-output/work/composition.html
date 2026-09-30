@@ -196,19 +196,19 @@ window.render=function(t){
     S($('logo2'),li*(1-out),`scale(${(1.03-.03*eOut5(seg(t,T.s2,T.s2+.9))).toFixed(4)})`);
     $('logo2').style.filter=`blur(${((1-li)*8).toFixed(2)}px) drop-shadow(0 0 ${(30*(1-seg(t,T.s2+.4,T.s2+1.6))).toFixed(1)}px rgba(94,207,220,.55))`;
     // écriture au trait de lumière : ligne 1 puis ligne 2
-    const span=T.tag_b-T.tag_a, w1=L1.w/(L1.w+L2.w);
-    const p=seg(t,T.tag_a,T.tag_b), p1=clamp(p/w1), p2=clamp((p-w1)/(1-w1));
+    // chaque ligne s'écrit pendant que la voix la prononce (timings mesurés sur la voix off)
+    const p1=seg(t,T.tag_a1,T.tag_b1), p2=seg(t,T.tag_a2,T.tag_b2);
     const cl=(el,f)=>{el.querySelector('span').style.clipPath=`inset(-20px ${((1-f)*100).toFixed(2)}% -20px 0)`;S(el,1-out);};
     cl($('tl1'),p1);cl($('tl2'),p2);
-    const onL2=p>w1, L=onL2?L2:L1, f=onL2?p2:p1;
-    const writing=p>0&&p<1;
+    const onL2=t>=T.tag_a2, L=onL2?L2:L1, f=onL2?p2:p1, pe=onL2?T.tag_b2:T.tag_b1;
+    const writing=f>0&&f<1;
     const x=L.x+L.w*f;
     const tail=Math.min(260,L.w*f);
-    const so=writing?1:1-seg(t,T.tag_b,T.tag_b+.5);
-    S($('st'),(p>0?so:0)*(1-out));
-    $('st').style.left=(writing?x-tail:L2.x+L2.w*seg(t,T.tag_b,T.tag_b+.5)*0).toFixed(1)+'px';
-    $('st').style.width=(writing?tail:L2.w).toFixed(1)+'px';
-    $('st').style.top=(writing?L.y:L2.y).toFixed(1)+'px';
+    const so=writing?1:1-seg(t,pe,pe+.4);
+    S($('st'),(p1>0?so:0)*(1-out));
+    $('st').style.left=(writing?x-tail:L.x).toFixed(1)+'px';
+    $('st').style.width=(writing?tail:L.w).toFixed(1)+'px';
+    $('st').style.top=L.y.toFixed(1)+'px';
     S($('sth'),writing?1:0);$('sth').style.left=x.toFixed(1)+'px';$('sth').style.top=(L.y+1.5).toFixed(1)+'px';
     const si=eOut(seg(t,T.sub,T.sub+.6));
     S($('sub2'),si*(1-out),`translateY(${((1-si)*14).toFixed(1)}px)`);
