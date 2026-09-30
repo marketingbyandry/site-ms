@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { runColdBatch, SENDER_EMAIL, SENDER_NAME } from '../scripts/send-cold-batch.mjs';
+import { runColdBatch, SENDER_EMAIL, SENDER_NAME, SUBJECTS, TEMPLATE_PATHS, sectorKey } from '../scripts/send-cold-batch.mjs';
 
 const TEMPLATE = '{{SALUTATION}} {{ENTREPRISE}} {{LIEN_FORMULAIRE}}';
 // La plupart des tests ne portent pas sur la selection de template par
@@ -209,4 +209,41 @@ test('preserve partial send results when composio proxy fails on 2nd contact', (
     return payload.to[0].email;
   });
   assert.deepEqual(sentEmails, ['a@exemple.fr', 'b@exemple.fr'], 'attempted 1st and 2nd emails only');
+});
+
+test('se rabat sur segment quand batch.json ne porte que le metier dans segment (runbook etape 5)', () => {
+  const execCli = makeExecCli();
+  const batch = [
+    { email: 'resto@exemple.fr', entreprise: 'Le Bon Plat', type: 'generique', segment: 'restaurant' },
+    { email: 'ecole@exemple.fr', entreprise: 'Ecole A', type: 'generique', segment: 'tert' }
+  ];
+  runColdBatch({
+    batch,
+    templates: { restaurant: 'TEMPLATE_RESTAURANT', default: 'TEMPLATE_DEFAULT' },
+    alreadySentToday: 0,
+    execCli,
+    sleepFn: () => {}
+  });
+  const sendCalls = execCli.calls.filter((c) => c[1] === 'https://api.brevo.com/v3/smtp/email');
+  const payloads = sendCalls.map((c) => JSON.parse(c[c.indexOf('-d') + 1]));
+  assert.match(payloads[0].htmlContent, /^TEMPLATE_RESTAURANT/);
+  assert.equal(payloads[0].subject, "Le Bon Plat : l'énergie en cuisine, au bon prix ?");
+  assert.match(payloads[1].htmlContent, /^TEMPLATE_DEFAULT/);
+  assert.equal(payloads[1].subject, "Question sur le contrat d'énergie de Ecole A");
+  assert.equal(typeof payloads[0].textContent, 'string');
+});
+
+test('sectorKey privilegie secteur, puis segment, puis default', () => {
+  assert.equal(sectorKey({ secteur: 'bar', segment: 'discotheque' }), 'bar');
+  assert.equal(sectorKey({ secteur: 'entrepot', segment: 'boucherie' }), 'boucherie');
+  assert.equal(sectorKey({ segment: 'log' }), 'default');
+});
+
+test('chaque template a un objet dedie, personnalise et sans mot declencheur de spam', () => {
+  assert.deepEqual(Object.keys(SUBJECTS).sort(), Object.keys(TEMPLATE_PATHS).sort());
+  for (const subject of Object.values(SUBJECTS)) {
+    assert.match(subject, /\{\{ENTREPRISE\}\}/);
+    assert.ok(!/gratuit|offre|promo|!/i.test(subject), subject);
+    assert.ok(subject.length <= 70, subject);
+  }
 });
