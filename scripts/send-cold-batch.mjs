@@ -33,7 +33,29 @@ export const BOUNCE_THRESHOLD_PCT = 5;
 export const SEND_DELAY_MS = 3000;
 export const SENDER_EMAIL = 'contact@mail.cabinetms.fr';
 export const SENDER_NAME = 'M&S Strategy';
-export const SUBJECT = "Votre facture d'énergie, mise en concurrence gratuite";
+// Un objet par metier, personnalise avec le nom de l'entreprise. Pas de mot
+// declencheur de filtre anti-spam ("gratuit", "offre", "promo") : l'objet
+// doit ressembler a un email ecrit a la main, pas a une newsletter.
+export const SUBJECTS = {
+  restaurant: "{{ENTREPRISE}} : l'énergie en cuisine, au bon prix ?",
+  bar: "{{ENTREPRISE}} : votre contrat d'énergie date de quand ?",
+  discotheque: "{{ENTREPRISE}} : l'énergie de nuit coûte-t-elle trop cher ?",
+  boulangerie: "{{ENTREPRISE}} : le four, le fournil et le contrat d'énergie",
+  boucherie: "{{ENTREPRISE}} : chaîne du froid et facture d'électricité",
+  industrie: "{{ENTREPRISE}} : votre exposition au prix de l'électricité",
+  agriculture: "{{ENTREPRISE}} : le poste énergie de l'exploitation",
+  default: "Question sur le contrat d'énergie de {{ENTREPRISE}}"
+};
+
+// Le runbook (docs/cold-mail-runbook.md, etape 5) ne renseigne que `segment`
+// dans batch.json, en y mettant le metier precis quand il est connu :
+// `secteur` reste prioritaire s'il est fourni, sinon on se rabat sur
+// `segment`, puis sur le template generique.
+export function sectorKey(contact) {
+  if (contact.secteur && TEMPLATE_PATHS[contact.secteur]) return contact.secteur;
+  if (contact.segment && TEMPLATE_PATHS[contact.segment]) return contact.segment;
+  return 'default';
+}
 
 // Un template distinct par secteur d'activite (pas de regroupement visuel) :
 // chaque contact porte son propre `secteur`, illustre avec une photo et des
@@ -118,8 +140,8 @@ export function runColdBatch({
     const contact = capped[index];
     try {
       const payload = buildColdEmailPayload(contact, {
-        template: templates[contact.secteur] || templates.default,
-        subject: SUBJECT,
+        template: templates[sectorKey(contact)] || templates.default,
+        subject: SUBJECTS[sectorKey(contact)],
         senderEmail: SENDER_EMAIL,
         senderName: SENDER_NAME
       });

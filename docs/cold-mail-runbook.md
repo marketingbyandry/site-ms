@@ -146,6 +146,14 @@ template) → ajouter l'adresse à la liste de suppression Brevo
 (`composio execute "BREVO_DELETE_CONTACT" -d '{"identifier":"<email>"}'`)
 et marquer la ligne correspondante du Sheet `statut = "désinscrit"`.
 
+## 9. Suivi des réponses « intéressé »
+
+Les templates proposent une alternative sans friction au formulaire :
+répondre « intéressé » à l'email. À chaque cycle, relever ces réponses dans
+la boîte `contact@mail.cabinetms.fr`, marquer la ligne du Sheet
+`statut = "intéressé"` et les signaler à l'utilisateur dans le message de
+fin de cycle pour rappel téléphonique dans la journée.
+
 ## Avant le premier cycle réel
 
 - Essai à blanc sur un petit échantillon (5-10 entreprises réelles, lot

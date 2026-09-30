@@ -5,8 +5,10 @@ import {
   buildColdEmailPayload,
   enforceDailyCap,
   isBounceRateSafe,
-  filterBlockedContacts
+  filterBlockedContacts,
+  htmlToText
 } from '../lib/brevo-cold-outreach.mjs';
+import { readFileSync, readdirSync } from 'node:fs';
 
 test('fillTemplate remplace tous les tokens connus', () => {
   const result = fillTemplate('{{SALUTATION}} {{ENTREPRISE}}', {
@@ -88,3 +90,58 @@ test('filterBlockedContacts separe les contacts supprimes des autres, insensible
   assert.deepEqual(toSend.map((c) => c.email), ['a@exemple.fr', 'c@exemple.fr']);
   assert.deepEqual(skipped.map((c) => c.email), ['B@Exemple.fr']);
 });
+
+test('buildColdEmailPayload personnalise l_objet avec les tokens du template', () => {
+  const payload = buildColdEmailPayload(
+    { email: 'contact@exemple.fr', entreprise: 'Le Zinc', type: 'generique', segment: 'bar' },
+    {
+      template: '<p>{{SALUTATION}}</p>',
+      subject: '{{ENTREPRISE}} : votre contrat',
+      senderEmail: 'contact@mail.cabinetms.fr',
+      senderName: 'M&S Strategy'
+    }
+  );
+  assert.equal(payload.subject, 'Le Zinc : votre contrat');
+  assert.equal(payload.textContent, 'Bonjour,');
+});
+
+test('htmlToText retire head, commentaires et preheader, garde les URL des liens', () => {
+  const html = [
+    '<html><head><title>T</title><style>p{}</style></head><body>',
+    '<div style="display: none; max-height: 0;">Aperçu masqué</div>',
+    '<!--[if mso]><v:rect></v:rect><![endif]-->',
+    '<div>Bonjour,</div><div>Coût&nbsp;: 24&ndash;48h &amp; plus<br>ligne 2</div>',
+    '<a href="https://cabinetms.fr/b2b.html?camp=mail-bar">Faire analyser ma facture</a>',
+    '<a href="mailto:contact@mail.cabinetms.fr?subject=STOP">cliquez ici</a>',
+    '</body></html>'
+  ].join('');
+  const text = htmlToText(html);
+  assert.ok(!text.includes('Aperçu masqué'));
+  assert.ok(!text.includes('v:rect'));
+  assert.ok(!text.includes('<'));
+  assert.match(text, /^Bonjour,\nCoût : 24–48h & plus\nligne 2/);
+  assert.match(text, /Faire analyser ma facture \(https:\/\/cabinetms\.fr\/b2b\.html\?camp=mail-bar\)/);
+  assert.match(text, /cliquez ici \(contact@mail\.cabinetms\.fr\?subject=STOP\)/);
+});
+
+// Garde-fous sur les vrais templates : tokens attendus, mentions CNIL
+// obligatoires (spec, section conformite) et version texte exploitable.
+const TEMPLATE_DIR = new URL('../content/cold-mail-b2b/', import.meta.url);
+for (const file of readdirSync(TEMPLATE_DIR).filter((f) => f.endsWith('.html'))) {
+  test(`template ${file} : tokens, mentions CNIL et version texte`, () => {
+    const html = readFileSync(new URL(file, TEMPLATE_DIR), 'utf8');
+    assert.match(html, /\{\{SALUTATION\}\}/);
+    assert.match(html, /\{\{ENTREPRISE\}\}/);
+    assert.match(html, /href="\{\{LIEN_FORMULAIRE\}\}"/);
+    assert.match(html, /SIREN 752 139 477/);
+    assert.match(html, /répondez STOP/);
+    assert.match(html, /mailto:contact@mail\.cabinetms\.fr\?subject=STOP/);
+    assert.match(html, /Répondez simplement «&nbsp;intéressé&nbsp;»/);
+    const filled = fillTemplate(html, { SALUTATION: 'Bonjour,', ENTREPRISE: 'Exemple SARL', LIEN_FORMULAIRE: 'https://cabinetms.fr/b2b.html?camp=mail-test' });
+    assert.ok(!/\{\{\w+\}\}/.test(filled), 'token non rempli');
+    const text = htmlToText(filled);
+    assert.match(text, /^Bonjour,/m);
+    assert.match(text, /Faire analyser ma facture \(https:\/\/cabinetms\.fr\/b2b\.html\?camp=mail-test\)/);
+    assert.ok(!/[<>]/.test(text), 'balise HTML restante dans la version texte');
+  });
+}
