@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts.local.css">
+<script src="timings.js"></script>
+<style>
+:root{
+  --dark:#07131a;--teal:#1a7a8a;--teal-glow:#5ecfdc;--green:#4cde80;--green-glow:#7aeea4;
+  --cream:#f5f0e8;--muted:#8aacb4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+body{font-family:'Manrope',sans-serif;color:var(--cream);-webkit-font-smoothing:antialiased}
+#stage{position:absolute;inset:0;overflow:hidden;background:var(--dark)}
+#black{position:absolute;inset:0;background:#000;pointer-events:none}
+#vignette{position:absolute;inset:0;background:radial-gradient(ellipse 80% 65% at 50% 50%,transparent 40%,rgba(0,0,0,.72) 100%)}
+.halo{position:absolute;border-radius:50%;pointer-events:none;will-change:transform,opacity}
+#halo{width:1500px;height:1500px;margin:-750px 0 0 -750px;
+  background:radial-gradient(circle,rgba(26,122,138,.62) 0%,rgba(26,122,138,.34) 26%,rgba(122,238,164,.13) 48%,rgba(122,238,164,0) 68%);filter:blur(40px)}
+#halo2{width:1100px;height:1100px;margin:-550px 0 0 -550px;
+  background:radial-gradient(circle,rgba(94,207,220,.22) 0%,rgba(76,222,128,.08) 40%,transparent 66%);filter:blur(50px)}
+#grain{position:absolute;inset:0;mix-blend-mode:overlay;opacity:.5;pointer-events:none}
+#cam{position:absolute;inset:0;transform-origin:50% 48%}
+.layer{position:absolute;inset:0}
+.serif{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.005em}
+
+/* S2 */
+#logo2{position:absolute;left:335px;width:410px;top:720px}
+.tline{position:absolute;left:0;right:0;text-align:center;font-size:62px;line-height:1}
+.tline span{display:inline-block;padding:0 4px 14px}
+.streak{position:absolute;height:3px;border-radius:2px;background:#dffbff;
+  box-shadow:0 0 6px 1px rgba(94,207,220,.95),0 0 22px 4px rgba(94,207,220,.55),0 0 60px 10px rgba(26,122,138,.35)}
+.streakHead{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;
+  box-shadow:0 0 18px 6px rgba(160,245,255,.9),0 0 60px 20px rgba(94,207,220,.45)}
+#sub2{position:absolute;left:0;right:0;top:1250px;text-align:center;font-size:34px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* S3 */
+.beat{position:absolute;inset:0}
+.gauge{position:absolute;left:190px;top:470px;width:700px;height:700px}
+.num{position:absolute;left:0;right:0;top:640px;text-align:center;font-weight:800;font-size:250px;line-height:1;letter-spacing:-.04em;
+  background:linear-gradient(180deg,#e9fdff 0%,#5ecfdc 45%,#4cde80 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.num .pct{font-size:.5em;letter-spacing:0;margin-left:.04em}
+.cap{position:absolute;left:0;right:0;top:1120px;text-align:center;font-size:36px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:600}
+#b3 .num{top:760px;font-size:210px;font-variant-numeric:tabular-nums}
+#b3 .cap{top:1030px}
+#b3 .rule{position:absolute;left:340px;right:340px;top:1000px;height:2px;background:linear-gradient(90deg,transparent,rgba(94,207,220,.9),transparent)}
+#corner{position:absolute;left:70px;bottom:92px;width:190px}
+
+/* S4 */
+#s4eyebrow{position:absolute;left:0;right:0;top:470px;text-align:center;font-size:30px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.capsule{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;padding:34px 64px;border-radius:999px;font-size:52px;font-weight:600;color:var(--cream);
+  background:linear-gradient(180deg,rgba(20,44,54,.72),rgba(9,24,32,.72));border:1.5px solid rgba(94,207,220,.75);
+  box-shadow:0 0 0 1px rgba(94,207,220,.08),0 0 40px rgba(94,207,220,.18),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.capsule .dot{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--green-glow);box-shadow:0 0 14px var(--green-glow);margin-right:26px;vertical-align:8px}
+.link{position:absolute;left:539px;width:2px;background:linear-gradient(180deg,rgba(94,207,220,.9),rgba(122,238,164,.9));box-shadow:0 0 12px rgba(94,207,220,.8);transform-origin:50% 0}
+
+/* S5 */
+#logo5{position:absolute;left:243px;width:594px;top:700px}
+#sig{position:absolute;left:0;right:0;top:1000px;text-align:center;font-size:96px;line-height:1}
+#url{position:absolute;left:0;right:0;top:1150px;text-align:center;font-size:36px;letter-spacing:.16em;color:var(--muted);font-weight:500}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="halo" id="halo"></div>
+  <div class="halo" id="halo2"></div>
+  <div id="cam">
+    <!-- S2 · le wordmark se fige, la tagline s'écrit au trait de lumière -->
+    <div class="layer" id="s2">
+      <img id="logo2" src="logo.png" width="573" height="146" alt="">
+      <div class="tline serif" id="tl1" style="top:1000px"><span>Cabinet de courtage en énergie,</span></div>
+      <div class="tline serif" id="tl2" style="top:1090px"><span>indépendant depuis 2012.</span></div>
+      <div class="streak" id="st"></div><div class="streakHead" id="sth"></div>
+      <div id="sub2">Tous les fournisseurs, en concurrence</div>
+    </div>
+
+    <!-- S3 · les chiffres réels du site -->
+    <div class="layer" id="s3">
+      <div class="beat" id="b1">
+        <svg class="gauge" viewBox="0 0 700 700"><defs>
+          <linearGradient id="gg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1a7a8a"/><stop offset=".6" stop-color="#5ecfdc"/><stop offset="1" stop-color="#7aeea4"/></linearGradient>
+          <filter id="gl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          <path class="track" d="" fill="none" stroke="rgba(138,172,180,.14)" stroke-width="10" stroke-linecap="round"/>
+          <path class="fill" d="" fill="none" stroke="url(#gg)" stroke-width="10" stroke-linecap="round" filter="url(#gl)"/>
+        </svg>
+        <div class="num"><span class="v">0</span><span class="pct">%</span></div>
+        <div class="cap">économies moyennes</div>
+      </div>
+      <div class="beat" id="b2">
+        <svg class="gauge" viewBox="0 0 700 700">
+          <path class="track" d="" fill="none" stroke="rgba(138,172,180,.14)" stroke-width="10" stroke-linecap="round"/>
+          <path class="fill" d="" fill="none" stroke="url(#gg)" stroke-width="10" stroke-linecap="round" filter="url(#gl)"/>
+        </svg>
+        <div class="num"><span class="v">0</span><span class="pct">%</span></div>
+        <div class="cap">taux de renouvellement</div>
+      </div>
+      <div class="beat" id="b3">
+        <div class="num"><span class="v">0</span></div>
+        <div class="rule"></div>
+        <div class="cap">clients accompagnés</div>
+      </div>
+    </div>
+
+    <!-- S4 · profils accompagnés (exemples illustratifs) -->
+    <div class="layer" id="s4">
+      <div id="s4eyebrow">Exemples de profils accompagnés</div>
+      <div class="link" id="l1" style="top:748px;height:122px"></div>
+      <div class="link" id="l2" style="top:1008px;height:122px"></div>
+      <div class="capsule" id="c1" style="top:610px"><span class="dot"></span>Boulangerie</div>
+      <div class="capsule" id="c2" style="top:870px"><span class="dot"></span>Hôtellerie-restauration</div>
+      <div class="capsule" id="c3" style="top:1130px"><span class="dot"></span>Site industriel énergivore</div>
+    </div>
+
+    <img id="corner" src="logo.png" width="573" height="146" alt="">
+  </div>
+
+  <!-- S5 · retour du logo -->
+  <div class="layer" id="s5">
+    <img id="logo5" src="logo.png" width="573" height="146" alt="">
+    <div id="sig" class="serif">Votre énergie, négociée.</div>
+    <div id="url">cabinetms.fr</div>
+  </div>
+
+  <canvas id="grain" width="540" height="960"></canvas>
+  <div id="vignette"></div>
+  <div id="black"></div>
+</div>
+<script>
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=x=>1-Math.pow(1-x,3);
+const eOut5=x=>1-Math.pow(1-x,5);
+const eIO=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const lerp=(a,b,x)=>a+(b-a)*x;
+const $=id=>document.getElementById(id);
+const S=(el,o,tr)=>{el.style.opacity=(+o).toFixed(4);if(tr!==undefined)el.style.transform=tr;};
+
+// --- jauges : arc de 270° ---
+const CX=350,CY=350,R=300,A0=135,SWEEP=270;
+const pt=a=>{const r=a*Math.PI/180;return [CX+R*Math.cos(r),CY+R*Math.sin(r)];};
+const arc=f=>{if(f<=0.0005)return '';const a1=A0+SWEEP*f;const [x0,y0]=pt(A0),[x1,y1]=pt(a1);
+  return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${R} ${R} 0 ${SWEEP*f>180?1:0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;};
+for(const id of ['b1','b2']) $(id).querySelector('.track').setAttribute('d',arc(1));
+
+// --- grain déterministe (même bruit pour une même frame) ---
+const gc=$('grain').getContext('2d'), gimg=gc.createImageData(540,960);
+function grain(frame){
+  let s=(frame*2654435761)>>>0;
+  const d=gimg.data;
+  for(let i=0;i<d.length;i+=4){s^=s<<13;s>>>=0;s^=s>>>17;s^=s<<5;s>>>=0;const v=s&255;d[i]=d[i+1]=d[i+2]=v;d[i+3]=38;}
+  gc.putImageData(gimg,0,0);
+}
+
+// --- mesure des lignes de tagline (pour caler le trait de lumière sur l'écriture) ---
+let L1,L2;
+function measure(){
+  const m=el=>{const r=el.querySelector('span').getBoundingClientRect();return {x:r.left,w:r.width,y:r.bottom-6};};
+  L1=m($('tl1'));L2=m($('tl2'));
+}
+
+const fmt=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+
+window.render=function(t){
+  const T=window.T;
+  if(!L1) measure();
+  grain(Math.round(t*30));
+
+  // ---------- fond : halo (hero-glow du site) ----------
+  const hIn=eOut(seg(t,.4,2.6));
+  let hx=760-40*seg(t,0,T.s2), hy=1350-60*seg(t,0,T.s2), hs=.78+.15*eOut(seg(t,.4,T.s2)), ho=hIn;
+  // dérive lente sur tout le film, puis recentrage en S5
+  const drift=seg(t,T.s2,T.s5);
+  hx+=-120*Math.sin(drift*Math.PI*.9); hy+=-380*drift;
+  const c5=eIO(seg(t,T.s5,T.s5+1.2));
+  hx=lerp(hx,540,c5); hy=lerp(hy,1180,c5);
+  const breath=1+.018*Math.sin(t*1.3);
+  const endFade=1-seg(t,T.fade,T.fade+1.5);
+  ho*= (1-.55*seg(t,T.s5-.25,T.s5)*(1-seg(t,T.s5+.2,T.s5+1.1))) * endFade;
+  S($('halo'),ho,`translate(${hx.toFixed(1)}px,${hy.toFixed(1)}px) scale(${(hs*breath).toFixed(4)})`);
+  S($('halo2'),ho*(.5+.5*seg(t,T.s2,T.s2+1)),`translate(${(1080-hx*.6).toFixed(1)}px,${(1900-hy*.7).toFixed(1)}px) scale(${breath.toFixed(4)})`);
+
+  // noir d'ouverture (0–0.4 s) et respiration noire avant S5
+  const blk=Math.max(1-seg(t,0,.45), seg(t,T.s5-.3,T.s5-.05)*(1-seg(t,T.s5+.15,T.s5+.35)), seg(t,T.fade+1.3,T.fade+1.6));
+  S($('black'),blk);
+
+  // ---------- caméra : drift imperceptible pendant les preuves ----------
+  const cd=seg(t,T.s3,T.s5);
+  $('cam').style.transform=`scale(${(1+.03*cd).toFixed(4)}) rotate(${(-.35*cd).toFixed(3)}deg) translate(${(-6*cd).toFixed(2)}px,${(-10*cd).toFixed(2)}px)`;
+
+  // ---------- S2 ----------
+  const s2on=t>=T.s2-.01 && t<T.s3;
+  $('s2').style.display=s2on?'block':'none';
+  if(s2on){
+    const li=eOut(seg(t,T.s2,T.s2+.5)), out=seg(t,T.s3-.35,T.s3);
+    S($('logo2'),li*(1-out),`scale(${(1.03-.03*eOut5(seg(t,T.s2,T.s2+.9))).toFixed(4)})`);
+    $('logo2').style.filter=`blur(${((1-li)*8).toFixed(2)}px) drop-shadow(0 0 ${(30*(1-seg(t,T.s2+.4,T.s2+1.6))).toFixed(1)}px rgba(94,207,220,.55))`;
+    // écriture au trait de lumière : ligne 1 puis ligne 2
+    const span=T.tag_b-T.tag_a, w1=L1.w/(L1.w+L2.w);
+    const p=seg(t,T.tag_a,T.tag_b), p1=clamp(p/w1), p2=clamp((p-w1)/(1-w1));
+    const cl=(el,f)=>{el.querySelector('span').style.clipPath=`inset(-20px ${((1-f)*100).toFixed(2)}% -20px 0)`;S(el,1-out);};
+    cl($('tl1'),p1);cl($('tl2'),p2);
+    const onL2=p>w1, L=onL2?L2:L1, f=onL2?p2:p1;
+    const writing=p>0&&p<1;
+    const x=L.x+L.w*f;
+    const tail=Math.min(260,L.w*f);
+    const so=writing?1:1-seg(t,T.tag_b,T.tag_b+.5);
+    S($('st'),(p>0?so:0)*(1-out));
+    $('st').style.left=(writing?x-tail:L2.x+L2.w*seg(t,T.tag_b,T.tag_b+.5)*0).toFixed(1)+'px';
+    $('st').style.width=(writing?tail:L2.w).toFixed(1)+'px';
+    $('st').style.top=(writing?L.y:L2.y).toFixed(1)+'px';
+    S($('sth'),writing?1:0);$('sth').style.left=x.toFixed(1)+'px';$('sth').style.top=(L.y+1.5).toFixed(1)+'px';
+    const si=eOut(seg(t,T.sub,T.sub+.6));
+    S($('sub2'),si*(1-out),`translateY(${((1-si)*14).toFixed(1)}px)`);
+  }
+
+  // ---------- S3 : trois beats, coupe sèche ----------
+  const s3on=t>=T.s3&&t<T.s4;
+  $('s3').style.display=s3on?'block':'none';
+  const b1=t>=T.s3&&t<T.n94-.1, b2=t>=T.n94-.1&&t<T.n100k-.1, b3=t>=T.n100k-.1&&t<T.s4;
+  $('b1').style.display=b1?'block':'none';$('b2').style.display=b2?'block':'none';$('b3').style.display=b3?'block':'none';
+  const gauge=(id,t0,dur,val)=>{
+    const e=$(id), g=eOut(seg(t,t0,t0+dur)), f=g*val/100;
+    e.querySelector('.fill').setAttribute('d',arc(f));
+    e.querySelector('.v').textContent=Math.round(val*g);
+    const n=e.querySelector('.num');
+    n.style.opacity=(.25+.75*g).toFixed(3);
+    n.style.filter=`drop-shadow(0 0 ${(10+40*g).toFixed(1)}px rgba(94,207,220,${(.15+.35*g).toFixed(3)}))`;
+    const ci=eOut(seg(t,t0+dur*.6,t0+dur+.3));
+    S(e.querySelector('.cap'),ci,`translateY(${((1-ci)*12).toFixed(1)}px)`);
+  };
+  if(b1) gauge('b1',T.n19,.7,19);
+  if(b2) gauge('b2',T.n94,.5,94);
+  if(b3){
+    const e=$('b3'), p=seg(t,T.n100k,T.n100k+.45), settle=seg(t,T.n100k+.45,T.n100k+.75);
+    let v=p<1?Math.round(100000*eOut(p)):Math.round(100046-46*eOut(settle));
+    if(p>=1&&settle===0)v=100046;
+    e.querySelector('.v').textContent=fmt(v);
+    const n=e.querySelector('.num'); n.style.filter=`drop-shadow(0 0 ${(20+30*p).toFixed(1)}px rgba(94,207,220,.4))`;
+    const ri=eOut(seg(t,T.n100k+.3,T.n100k+.9));
+    $('b3').querySelector('.rule').style.transform=`scaleX(${ri.toFixed(3)})`;
+    S(e.querySelector('.cap'),ri,`translateY(${((1-ri)*12).toFixed(1)}px)`);
+  }
+
+  // ---------- S4 : capsules reliées par un trait de lumière ----------
+  const s4on=t>=T.s4&&t<T.s5;
+  $('s4').style.display=s4on?'block':'none';
+  if(s4on){
+    const out=seg(t,T.s5-.45,T.s5-.2);
+    const ei=eOut(seg(t,T.s4,T.s4+.5)); S($('s4eyebrow'),ei*(1-out));
+    const caps=[['c1',T.tag1],['c2',T.tag2],['c3',T.tag3]];
+    caps.forEach(([id,t0],i)=>{
+      const ci=eOut(seg(t,t0,t0+.35));
+      const next=i<2?caps[i+1][1]:1e9;
+      const dim=1-.5*seg(t,next,next+.4);
+      S($(id),ci*dim*(1-out),`translateX(-50%) translateY(${((1-ci)*10).toFixed(1)}px)`);
+      $(id).style.boxShadow=`0 0 0 1px rgba(94,207,220,.08),0 0 ${(40+50*(1-seg(t,t0+.35,t0+1.2))*ci).toFixed(1)}px rgba(94,207,220,${(.18+.2*(1-seg(t,t0+.35,t0+1.2))*ci).toFixed(3)}),inset 0 1px 0 rgba(255,255,255,.08)`;
+    });
+    const lk=(id,t0)=>{const f=eIO(seg(t,t0-.35,t0));S($(id),(f>0?1:0)*(1-out)*.9,`scaleY(${f.toFixed(4)})`);};
+    lk('l1',T.tag2);lk('l2',T.tag3);
+  }
+
+  // petit logo en coin pendant les preuves
+  const co=seg(t,T.s3,T.s3+.4)*(1-seg(t,T.s5-.45,T.s5-.2));
+  S($('corner'),.55*co);
+
+  // ---------- S5 : retour du logo ----------
+  const s5on=t>=T.s5;
+  $('s5').style.display=s5on?'block':'none';
+  if(s5on){
+    const li=eOut(seg(t,T.s5+.1,T.s5+1.1));
+    S($('logo5'),li*endFade,`scale(${(1.04-.04*eOut5(seg(t,T.s5+.1,T.s5+1.5))).toFixed(4)})`);
+    $('logo5').style.filter=`blur(${((1-li)*10).toFixed(2)}px) drop-shadow(0 0 ${(40*li).toFixed(1)}px rgba(94,207,220,.25))`;
+    const si=eOut(seg(t,T.s5+.35,T.s5+1.25));
+    S($('sig'),si*endFade,`translateY(${((1-si)*12).toFixed(1)}px)`);
+    S($('url'),eOut(seg(t,T.s5+.7,T.s5+1.5))*endFade);
+  }
+};
+</script>
+</body>
+</html>

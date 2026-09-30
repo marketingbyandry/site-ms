@@ -1,0 +1,8 @@
+# Fichiers intermédiaires /brag (captures, rendus de contrôle, pistes brutes)
+work/*.png
+work/*.jpg
+work/*.mp4
+work/*.wav
+work/ffpath
+work/*.mp3
+work/node_modules/
