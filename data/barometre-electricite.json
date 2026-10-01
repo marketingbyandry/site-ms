@@ -11,6 +11,12 @@
       "avgPriceEurPerMWh": 103.9,
       "source": "ENTSO-E Transparency Platform",
       "fetchedAt": "2026-08-01T08:13:32.761Z"
+    },
+    {
+      "period": "2026-09",
+      "avgPriceEurPerMWh": 149.75,
+      "source": "ENTSO-E Transparency Platform",
+      "fetchedAt": "2026-10-01T12:19:16.045Z"
     }
   ]
 }
