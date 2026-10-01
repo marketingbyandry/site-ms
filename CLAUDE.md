@@ -20,3 +20,6 @@ Avant de modifier une zone du code peu familière (templates, middleware, systè
 
 ## Creative/Visual Work
 Avant de produire un rendu visuel (mockup, campagne, direction artistique), faire confirmer par l'utilisateur : l'audience, le ton (3 adjectifs), ce que le rendu ne doit PAS être, et une image de référence si disponible. Ne générer qu'après confirmation — évite les premiers jets rejetés.
+
+## Blocs partagés (partials)
+Les blocs répétés sur toutes les pages (bouton flottant, réassurance CTA, bandeau contact) ne s'éditent jamais page par page : modifier `partials/*.html` ou les variables de `data/site.json` (ex. `delai`), puis lancer `npm run build:partials`. Un test échoue si une page est désynchronisée ou si un délai de réponse annoncé dans le texte diffère de `data/site.json`.
