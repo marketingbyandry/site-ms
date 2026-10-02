@@ -241,8 +241,8 @@ body {
   border-radius: 2px 2px 0 0;
   background: rgba(224,85,85,.12);
   transform-origin: bottom;
-  animation: tb-grow .5s cubic-bezier(.2,.8,.2,1) both;
-  animation-delay: calc(var(--i) * 25ms);
+  animation: tb-grow .35s cubic-bezier(.2,.8,.2,1) both;
+  animation-delay: calc(min(var(--i), 12) * 30ms);
 }
 .tb::after {
   content: ''; position: absolute; left: 0; right: 0; bottom: 0;
@@ -251,14 +251,12 @@ body {
   transition: height .6s ease-out;
 }
 .tb-current { box-shadow: 0 0 12px rgba(224,85,85,.45); }
-.tb-current::after { animation: tb-pulse 1.6s ease-in-out infinite; }
 .tb-future { background: transparent; border: 1px dashed rgba(224,85,85,.45); border-bottom: none; }
 @keyframes tb-grow { from { transform: scaleY(0); } }
-@keyframes tb-pulse { 50% { opacity: .55; } }
 .taxi-bars-axis {
   position: relative; height: 1rem; margin-top: .4rem;
-  font-family: 'JetBrains Mono', monospace; font-size: .6rem;
-  color: var(--muted2); text-transform: lowercase;
+  font-family: 'JetBrains Mono', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: lowercase;
 }
 .taxi-bars-axis span { position: absolute; top: 0; white-space: nowrap; }
 #taxi-bars-start { left: 0; }
@@ -270,7 +268,8 @@ body {
 }
 .taxi-bars-caption strong { color: var(--red); font-weight: 500; }
 @media (prefers-reduced-motion: reduce) {
-  .tb, .tb-current::after { animation: none; }
+  .tb { animation: none; }
+  .tb::after { transition: none; }
 }
 
 /* Good price: reader is already below the market floor */
@@ -479,7 +478,7 @@ input[type=range]::-moz-range-thumb {
 }
 .chart-legend .lg { display: inline-flex; align-items: center; gap: .45rem; }
 .chart-legend .lg::before { content: ''; width: 16px; height: 3px; border-radius: 2px; }
-.chart-legend .lg-red::before   { background: rgba(224,85,85,.85); box-shadow: 0 0 0 3px rgba(224,85,85,.14); }
+.chart-legend .lg-red::before   { background: repeating-linear-gradient(90deg, rgba(224,85,85,.9) 0 5px, transparent 5px 8px); box-shadow: 0 0 0 3px rgba(224,85,85,.14); }
 .chart-legend .lg-green::before { background: var(--green); }
 .chart-legend .lg-teal::before  { height: 10px; width: 10px; background: rgba(43,181,200,.15); border: 1px dashed var(--teal-glow); }
 .chart-summary { margin-top: .9rem; font-size: .8rem; color: var(--muted); line-height: 1.55; }
@@ -1338,7 +1337,7 @@ function drawChart(progress = 1) {
     ctx.beginPath(); ctx.moveTo(x, padT - 4); ctx.lineTo(x, H - padB); ctx.stroke();
   });
   ctx.setLineDash([]);
-  ctx.font = `600 ${narrow ? 9 : 10}px Satoshi, sans-serif`;
+  ctx.font = `600 ${narrow ? 10 : 11}px Satoshi, sans-serif`;
   ctx.fillStyle = 'rgba(94,207,220,.9)';
   ctx.textAlign = 'right';
   ctx.fillText(narrow ? 'Renouv. lancé' : 'Renouvellement lancé', xLaunch - 4, padT - 8);
@@ -1346,19 +1345,19 @@ function drawChart(progress = 1) {
   ctx.fillText(narrow ? 'Contrat 2 · 3 ans' : 'Nouveau contrat · 3 ans', xTerm + 4, padT - 8);
 
   // Grid + axis (starts at 0 €)
-  ctx.font = `${narrow ? 9 : 10}px JetBrains Mono, monospace`;
+  ctx.font = `${narrow ? 10 : 11}px JetBrains Mono, monospace`;
   ctx.textAlign = 'right';
   for (let i = 0; i <= 4; i++) {
     const v = (i / 4) * maxV, y = py(v);
     ctx.strokeStyle = i === 0 ? 'rgba(138,172,180,.35)' : 'rgba(26,122,138,.12)';
     ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
-    ctx.fillStyle = 'rgba(138,172,180,.55)';
+    ctx.fillStyle = 'rgba(138,172,180,.9)';
     ctx.fillText(i === 0 ? '0 €' : fmtAxis(v), padL - 6, y + 3);
   }
-  ctx.font = `${narrow ? 9 : 10}px Satoshi, sans-serif`;
+  ctx.font = `${narrow ? 10 : 11}px Satoshi, sans-serif`;
   ctx.textAlign = 'center';
   for (let y = 0; y <= p.months / 12; y++) {
-    ctx.fillStyle = 'rgba(138,172,180,.5)';
+    ctx.fillStyle = 'rgba(138,172,180,.9)';
     ctx.fillText(`An ${y}`, px(y * 12), H - 8);
   }
 
@@ -1381,8 +1380,11 @@ function drawChart(progress = 1) {
   ctx.fill();
 
   ctx.lineJoin = 'round';
+  // Dashed so the two scenarios differ by pattern, not by red/green alone
   ctx.beginPath(); path(p.mid, 0, last);
-  ctx.strokeStyle = 'rgba(224,85,85,.85)'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.setLineDash([7, 5]);
+  ctx.strokeStyle = 'rgba(224,85,85,.9)'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.setLineDash([]);
 
   ctx.beginPath(); path(p.ms, 0, last);
   ctx.strokeStyle = 'rgba(76,222,128,.95)'; ctx.lineWidth = 2.5; ctx.stroke();
@@ -1408,7 +1410,7 @@ function renderChartSummary(p) {
 function animateChart() {
   if (chartAnim) cancelAnimationFrame(chartAnim);
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { drawChart(1); return; }
-  const start = performance.now(), duration = 1100;
+  const start = performance.now(), duration = 800;
   const step = (now) => {
     const t = Math.min((now - start) / duration, 1);
     drawChart(1 - Math.pow(1 - t, 3));
