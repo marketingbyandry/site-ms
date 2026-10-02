@@ -13,12 +13,21 @@
 .ss-trigger{
   display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
   width:36px;height:36px;margin-right:.9rem;padding:0;
-  background:none;border:1px solid rgba(138,172,180,.28);border-radius:2px;
-  color:var(--muted,#8aacb4);cursor:pointer;
-  transition:color .2s,border-color .2s;
+  background:none;border:none;border-radius:2px;
+  color:var(--green,#4cde80);cursor:pointer;
+  transition:color .2s,filter .2s;
+  /* Petit saut pour attirer l'œil : 3 rebonds après le chargement, puis repos */
+  animation:ss-hop 2.4s ease-in-out 1.2s 3;
 }
-.ss-trigger:hover,.ss-trigger:focus-visible{color:var(--cream,#f5f0e8);border-color:var(--ss-accent)}
-.ss-trigger:focus-visible{outline:2px solid var(--ss-accent);outline-offset:2px}
+.ss-trigger svg{width:20px;height:20px}
+.ss-trigger:hover,.ss-trigger:focus-visible{filter:drop-shadow(0 0 6px rgba(76,222,128,.55));animation:none}
+.ss-trigger:focus-visible{outline:2px solid var(--green,#4cde80);outline-offset:2px}
+@keyframes ss-hop{
+  0%,30%,100%{transform:translateY(0)}
+  8%{transform:translateY(-6px)}
+  16%{transform:translateY(0)}
+  22%{transform:translateY(-3px)}
+}
 .ss-trigger--solo{margin-left:auto}
 /* Loupe + téléphone (ou CTA) dans un même bloc : la nav garde sa
    répartition d'origine et le téléphone reste espacé de « Étude gratuite ». */
@@ -165,5 +174,6 @@ body.ss-open{overflow:hidden}
 
 @media(prefers-reduced-motion:reduce){
   .ss-overlay,.ss-dialog{transition:none}
+  .ss-trigger{animation:none}
   .is-loading .ss-bar svg{animation:none}
 }
