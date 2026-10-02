@@ -424,7 +424,19 @@ input[type=range]::-moz-range-thumb {
   letter-spacing: .18em; text-transform: uppercase;
   color: var(--muted2); margin-bottom: 1.4rem;
 }
-#projection-chart { width: 100%; height: 140px; }
+#projection-chart { width: 100%; height: 240px; display: block; }
+@media (max-width: 560px) { #projection-chart { height: 220px; } }
+.chart-legend {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.2rem;
+  margin-top: 1rem; font-size: .72rem; color: var(--muted);
+}
+.chart-legend .lg { display: inline-flex; align-items: center; gap: .45rem; }
+.chart-legend .lg::before { content: ''; width: 16px; height: 3px; border-radius: 2px; }
+.chart-legend .lg-red::before   { background: rgba(224,85,85,.85); box-shadow: 0 0 0 3px rgba(224,85,85,.14); }
+.chart-legend .lg-green::before { background: var(--green); }
+.chart-legend .lg-teal::before  { height: 10px; width: 10px; background: rgba(43,181,200,.15); border: 1px dashed var(--teal-glow); }
+.chart-summary { margin-top: .9rem; font-size: .8rem; color: var(--muted); line-height: 1.55; }
+.chart-summary strong { color: var(--green); font-weight: 500; }
 
 /* ── VERDICT ── */
 .verdict-box {
@@ -691,7 +703,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="result-cell">
       <div class="result-cell-label label-green">Économie potentielle</div>
       <div class="result-cell-num num-green" id="res-saving">–</div>
-      <div class="result-cell-sub">Estimation sur la durée du prochain contrat (2 ans)</div>
+      <div class="result-cell-sub">Prix négocié seul, sur la durée du prochain contrat (3 ans)</div>
     </div>
     <div class="result-cell">
       <div class="result-cell-label label-teal">Fenêtre de négociation</div>
@@ -702,8 +714,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Chart -->
   <div class="chart-section">
-    <div class="chart-title">Projection sur 3 ans : avec vs sans négociation</div>
-    <canvas id="projection-chart"></canvas>
+    <div class="chart-title">Coût cumulé sur 6 ans : avec vs sans négociation</div>
+    <canvas id="projection-chart" role="img" aria-label="Coût cumulé depuis 0 € : sans négociation, le prix augmente de 5 à 7 % par an ; avec M&amp;S Strategy, le prix est bloqué 3 ans et le renouvellement est lancé 18 mois avant l'échéance."></canvas>
+    <div class="chart-legend">
+      <span class="lg lg-red">Sans négociation · hausses de 5 à 7 %/an</span>
+      <span class="lg lg-green">Avec M&amp;S Strategy · prix bloqué 3 ans</span>
+      <span class="lg lg-teal">Renouvellement lancé 18 mois avant l'échéance</span>
+    </div>
+    <p class="chart-summary" id="chart-summary"></p>
   </div>
 
   <!-- Verdict -->
@@ -924,7 +942,7 @@ function performRealCalc() {
   // Loss per year vs optimal timing
   const optimalSaving  = annualCurrent * baseSavingRate;
   const timingLoss     = optimalSaving - annualSaving; // foregone savings
-  const totalLoss2yr   = annualSaving * 2;              // savings over 2yr contract
+  const totalSaving3yr = annualSaving * 3;              // savings over 3yr contract
 
   // Loss per second (what the taximeter shows), conservative estimate
   // = surcoût annuel / 365 / 24 / 3600
@@ -949,7 +967,7 @@ function performRealCalc() {
   lastCalc = {
     conso, price, sector, months, wq, kva, bestPrice,
     annualCurrent, annualSaving, optimalSaving,
-    timingLoss, totalLoss2yr, surcharge, achievableSavingRate, sd,
+    timingLoss, totalSaving3yr, surcharge, achievableSavingRate, sd,
     engaged, renewalDate, daysElapsed, pastLoss, futureLockedLoss
   };
 
@@ -1047,7 +1065,7 @@ function renderTaxi(total) {
    ════════════════════════════════════════ */
 function renderResults() {
   if (!lastCalc) return;
-  const { annualSaving, totalLoss2yr, months, wq, timingLoss, conso, sd, achievableSavingRate, annualCurrent } = lastCalc;
+  const { annualSaving, totalSaving3yr, months, wq, timingLoss, conso, sd, achievableSavingRate, annualCurrent } = lastCalc;
 
   // Show results section
   const rs = document.getElementById('results-section');
@@ -1055,7 +1073,7 @@ function renderResults() {
 
   // Animate numbers
   animNum('res-annual', Math.round(annualSaving), '€/an');
-  animNum('res-saving', Math.round(totalLoss2yr), '€ sur 2 ans');
+  animNum('res-saving', Math.round(totalSaving3yr), '€ sur 3 ans');
 
   // Window status
   const resWindow = document.getElementById('res-window');
@@ -1068,8 +1086,9 @@ function renderResults() {
       ? `À ${months} mois de l'échéance, encore exploitable.`
       : `À ${months} mois de l'échéance : position favorable.`;
 
-  // Draw chart
-  drawChart();
+  // Draw chart: grows from 0 € on first display, redrawn instantly afterwards
+  if (rs.dataset.scrolled) drawChart();
+  else animateChart();
 
   // Verdict
   renderVerdict();
@@ -1099,108 +1118,160 @@ function animNum(id, target, suffix) {
 }
 
 /* ════════════════════════════════════════
-   CHART
+   CHART: cumulative cost from 0 €
+   Sans négociation : prix actuel relevé de 5 à 7 % à chaque anniversaire.
+   Avec M&S : prix négocié bloqué 3 ans ; le renouvellement est lancé
+   18 mois avant l'échéance et bloque le contrat suivant (3 ans) au
+   niveau de marché de ce moment-là (+6 %/an, hypothèse prudente).
    ════════════════════════════════════════ */
-function drawChart() {
+/* projection:start */
+function buildProjection(annualCurrent, savingRate) {
+  const years = 6, contractYears = 3, renewalLead = 1.5;
+  const hikeLow = .05, hikeMid = .06, hikeHigh = .07, marketGrowth = .06;
+  const months  = years * 12;
+  const monthly = annualCurrent / 12;
+  const msMonthly1 = monthly * (1 - savingRate);
+  const renewalAt  = contractYears - renewalLead;
+
+  const low = [0], mid = [0], high = [0], ms = [0];
+  for (let m = 1; m <= months; m++) {
+    const year = Math.floor((m - 1) / 12);
+    low.push(low[m - 1]   + monthly * Math.pow(1 + hikeLow, year));
+    mid.push(mid[m - 1]   + monthly * Math.pow(1 + hikeMid, year));
+    high.push(high[m - 1] + monthly * Math.pow(1 + hikeHigh, year));
+    // Contract k (k ≥ 1) is locked at the market level reached when its
+    // renewal was launched, i.e. 18 months before the previous term.
+    const k = Math.floor((m - 1) / (contractYears * 12));
+    const lockedAt = k === 0 ? 0 : k * contractYears - renewalLead;
+    ms.push(ms[m - 1] + msMonthly1 * Math.pow(1 + marketGrowth, lockedAt));
+  }
+  return { months, contractYears, renewalAt, low, mid, high, ms };
+}
+/* projection:end */
+
+const fmtEur = (v) => Math.round(v).toLocaleString('fr-FR') + ' €';
+const fmtAxis = (v) => v >= 1e6
+  ? (v / 1e6).toLocaleString('fr-FR', { maximumFractionDigits: 1 }) + ' M€'
+  : v >= 1e4 ? Math.round(v / 1e3).toLocaleString('fr-FR') + ' k€'
+  : Math.round(v).toLocaleString('fr-FR') + ' €';
+
+let chartAnim = null;
+
+// Draws the curves up to `progress` (0 → 1) so they visibly grow from 0 €.
+function drawChart(progress = 1) {
   if (!lastCalc) return;
   const { annualCurrent, achievableSavingRate } = lastCalc;
+  const p = buildProjection(annualCurrent, achievableSavingRate);
 
   const canvas = document.getElementById('projection-chart');
   const ctx    = canvas.getContext('2d');
-  const W = canvas.offsetWidth * 2;
-  const H = 280;
-  canvas.width  = W;
-  canvas.height = H;
-  ctx.scale(1, 1);
-
-  const YEARS = 4;
-  const POINTS = YEARS * 12 + 1;  // monthly
-  const marketGrowth = 0.06 / 12; // 6%/yr
-
-  const noAction  = [];
-  const withMs    = [];
-
-  for (let i = 0; i < POINTS; i++) {
-    const compounding = Math.pow(1 + marketGrowth, i);
-    noAction.push(annualCurrent / 12 * compounding);
-    withMs.push(annualCurrent / 12 * (1 - achievableSavingRate) * compounding);
-  }
-
-  // Scale
-  const allVals = [...noAction, ...withMs];
-  const minV = Math.min(...allVals) * .95;
-  const maxV = Math.max(...allVals) * 1.05;
-
-  const px = (i) => (i / (POINTS - 1)) * (W - 60) + 30;
-  const py = (v) => H - 30 - ((v - minV) / (maxV - minV)) * (H - 50);
-
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth;
+  const H = canvas.offsetHeight;
+  canvas.width  = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, W, H);
 
-  // Grid
-  ctx.strokeStyle = 'rgba(26,122,138,.12)';
-  ctx.lineWidth   = 1;
-  for (let y = 0; y <= 4; y++) {
-    const yy = H - 30 - (y / 4) * (H - 50);
-    ctx.beginPath(); ctx.moveTo(30, yy); ctx.lineTo(W - 30, yy); ctx.stroke();
-    const val = minV + (y / 4) * (maxV - minV);
-    ctx.fillStyle = 'rgba(138,172,180,.5)';
-    ctx.font = `${W * .012}px JetBrains Mono, monospace`;
-    ctx.textAlign = 'right';
-    ctx.fillText(Math.round(val).toLocaleString('fr-FR') + ' €', 26, yy + 4);
-  }
+  const narrow = W < 480;
+  const padL = narrow ? 42 : 56, padR = 12, padT = 30, padB = 26;
+  // Round axis steps (1, 2, 2.5, 5 × 10ⁿ) so ticks read 50 k€, 100 k€…
+  const rawStep = p.high[p.months] / 4;
+  const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
+  const tick = [1, 2, 2.5, 5, 10].map((s) => s * mag).find((s) => s >= rawStep);
+  const maxV = tick * 4;
+  const px = (m) => padL + (m / p.months) * (W - padL - padR);
+  const py = (v) => H - padB - (v / maxV) * (H - padT - padB);
+  const last = Math.max(1, Math.round(p.months * progress));
 
-  // Year labels
-  ctx.fillStyle = 'rgba(138,172,180,.45)';
-  ctx.font = `${W * .012}px Satoshi, sans-serif`;
+  // Renewal window: from launch (18 months before term) to the new contract
+  const xLaunch = px(p.renewalAt * 12), xTerm = px(p.contractYears * 12);
+  ctx.fillStyle = 'rgba(43,181,200,.07)';
+  ctx.fillRect(xLaunch, padT, xTerm - xLaunch, H - padT - padB);
+  ctx.setLineDash([3, 4]);
+  ctx.strokeStyle = 'rgba(94,207,220,.55)';
+  ctx.lineWidth = 1;
+  [xLaunch, xTerm].forEach((x) => {
+    ctx.beginPath(); ctx.moveTo(x, padT - 4); ctx.lineTo(x, H - padB); ctx.stroke();
+  });
+  ctx.setLineDash([]);
+  ctx.font = `600 ${narrow ? 9 : 10}px Satoshi, sans-serif`;
+  ctx.fillStyle = 'rgba(94,207,220,.9)';
+  ctx.textAlign = 'right';
+  ctx.fillText(narrow ? 'Renouv. lancé' : 'Renouvellement lancé', xLaunch - 4, padT - 8);
+  ctx.textAlign = 'left';
+  ctx.fillText(narrow ? 'Contrat 2 · 3 ans' : 'Nouveau contrat · 3 ans', xTerm + 4, padT - 8);
+
+  // Grid + axis (starts at 0 €)
+  ctx.font = `${narrow ? 9 : 10}px JetBrains Mono, monospace`;
+  ctx.textAlign = 'right';
+  for (let i = 0; i <= 4; i++) {
+    const v = (i / 4) * maxV, y = py(v);
+    ctx.strokeStyle = i === 0 ? 'rgba(138,172,180,.35)' : 'rgba(26,122,138,.12)';
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    ctx.fillStyle = 'rgba(138,172,180,.55)';
+    ctx.fillText(i === 0 ? '0 €' : fmtAxis(v), padL - 6, y + 3);
+  }
+  ctx.font = `${narrow ? 9 : 10}px Satoshi, sans-serif`;
   ctx.textAlign = 'center';
-  for (let y = 0; y <= YEARS; y++) {
-    const xi = px(y * 12);
-    ctx.fillText(`An ${y}`, xi, H - 8);
-    ctx.strokeStyle = 'rgba(26,122,138,.1)';
-    ctx.lineWidth = .5;
-    ctx.beginPath(); ctx.moveTo(xi, 30); ctx.lineTo(xi, H - 25); ctx.stroke();
+  for (let y = 0; y <= p.months / 12; y++) {
+    ctx.fillStyle = 'rgba(138,172,180,.5)';
+    ctx.fillText(`An ${y}`, px(y * 12), H - 8);
   }
 
-  // Fill area between curves
-  ctx.beginPath();
-  ctx.moveTo(px(0), py(noAction[0]));
-  for (let i = 1; i < POINTS; i++) ctx.lineTo(px(i), py(noAction[i]));
-  for (let i = POINTS - 1; i >= 0; i--) ctx.lineTo(px(i), py(withMs[i]));
-  ctx.closePath();
-  ctx.fillStyle = 'rgba(76,222,128,.07)';
+  const path = (serie, from, to) => {
+    ctx.moveTo(px(from), py(serie[from]));
+    for (let m = from + 1; m <= to; m++) ctx.lineTo(px(m), py(serie[m]));
+  };
+  const back = (serie, from, to) => {
+    for (let m = from; m >= to; m--) ctx.lineTo(px(m), py(serie[m]));
+  };
+
+  // Uncertainty band of price hikes (5 % → 7 %/an)
+  ctx.beginPath(); path(p.high, 0, last); back(p.low, last, 0); ctx.closePath();
+  ctx.fillStyle = 'rgba(224,85,85,.14)';
   ctx.fill();
 
-  // No-action line (red)
-  ctx.beginPath();
-  ctx.moveTo(px(0), py(noAction[0]));
-  for (let i = 1; i < POINTS; i++) ctx.lineTo(px(i), py(noAction[i]));
-  ctx.strokeStyle = 'rgba(224,85,85,.7)';
-  ctx.lineWidth = W * .003;
+  // Savings area between the no-action curve and the M&S curve
+  ctx.beginPath(); path(p.low, 0, last); back(p.ms, last, 0); ctx.closePath();
+  ctx.fillStyle = 'rgba(76,222,128,.08)';
+  ctx.fill();
+
   ctx.lineJoin = 'round';
-  ctx.stroke();
+  ctx.beginPath(); path(p.mid, 0, last);
+  ctx.strokeStyle = 'rgba(224,85,85,.85)'; ctx.lineWidth = 2; ctx.stroke();
 
-  // With M&S line (green)
-  ctx.beginPath();
-  ctx.moveTo(px(0), py(withMs[0]));
-  for (let i = 1; i < POINTS; i++) ctx.lineTo(px(i), py(withMs[i]));
-  ctx.strokeStyle = 'rgba(76,222,128,.8)';
-  ctx.lineWidth = W * .003;
-  ctx.stroke();
+  ctx.beginPath(); path(p.ms, 0, last);
+  ctx.strokeStyle = 'rgba(76,222,128,.95)'; ctx.lineWidth = 2.5; ctx.stroke();
 
-  // Legend
-  const lx = W - 200;
-  const ly = 20;
-  ctx.fillStyle = 'rgba(224,85,85,.7)';
-  ctx.fillRect(lx, ly, 20, 3);
-  ctx.fillStyle = 'rgba(138,172,180,.8)';
-  ctx.font = `${W * .013}px Satoshi, sans-serif`;
-  ctx.textAlign = 'left';
-  ctx.fillText('Sans négociation', lx + 26, ly + 5);
+  // Common starting point
+  ctx.beginPath(); ctx.arc(px(0), py(0), 3.5, 0, Math.PI * 2);
+  ctx.fillStyle = '#5ecfdc'; ctx.fill();
 
-  ctx.fillStyle = 'rgba(76,222,128,.8)';
-  ctx.fillRect(lx, ly + 18, 20, 3);
-  ctx.fillStyle = 'rgba(138,172,180,.8)';
-  ctx.fillText('Avec M&S Strategy', lx + 26, ly + 23);
+  renderChartSummary(p);
+}
+
+function renderChartSummary(p) {
+  const term = p.contractYears * 12;
+  const priceOnly = lastCalc.annualSaving * p.contractYears;
+  const lo3 = p.low[term] - p.ms[term], hi3 = p.high[term] - p.ms[term];
+  const lo6 = p.low[p.months] - p.ms[p.months], hi6 = p.high[p.months] - p.ms[p.months];
+  document.getElementById('chart-summary').innerHTML =
+    `Sur les 3 ans du contrat : <strong>${fmtEur(lo3)} à ${fmtEur(hi3)}</strong> d'écart, ` +
+    `dont ${fmtEur(priceOnly)} grâce au prix négocié et le reste grâce au blocage face aux hausses. ` +
+    `Sur 6 ans, avec le renouvellement anticipé : <strong>${fmtEur(lo6)} à ${fmtEur(hi6)}</strong>.`;
+}
+
+function animateChart() {
+  if (chartAnim) cancelAnimationFrame(chartAnim);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { drawChart(1); return; }
+  const start = performance.now(), duration = 1100;
+  const step = (now) => {
+    const t = Math.min((now - start) / duration, 1);
+    drawChart(1 - Math.pow(1 - t, 3));
+    chartAnim = t < 1 ? requestAnimationFrame(step) : null;
+  };
+  chartAnim = requestAnimationFrame(step);
 }
 
 /* ════════════════════════════════════════
@@ -1208,13 +1279,13 @@ function drawChart() {
    ════════════════════════════════════════ */
 function renderVerdict() {
   if (!lastCalc) return;
-  const { months, annualSaving, totalLoss2yr, wq, conso, achievableSavingRate } = lastCalc;
+  const { months, annualSaving, totalSaving3yr, wq, conso, achievableSavingRate } = lastCalc;
 
   const icon  = document.getElementById('verdict-icon');
   const title = document.getElementById('verdict-title');
   const body  = document.getElementById('verdict-body');
 
-  const saving2yr = Math.round(totalLoss2yr).toLocaleString('fr-FR');
+  const saving3yr = Math.round(totalSaving3yr).toLocaleString('fr-FR');
   const savingAnn = Math.round(annualSaving).toLocaleString('fr-FR');
 
   if (months <= 3) {
@@ -1228,11 +1299,11 @@ function renderVerdict() {
   } else if (months <= 14) {
     icon.textContent  = '✓';
     title.innerHTML   = `Fenêtre <span style="color:var(--teal-glow)">optimale</span> : vous êtes au bon moment.`;
-    body.innerHTML    = `${months} mois avant votre échéance, vous êtes exactement dans la fenêtre où nos résultats sont les meilleurs. Les fournisseurs sont en compétition ouverte, le marché est lisible, et vous avez le temps de choisir sans pression. <strong>Économie estimée sur 2 ans : ${saving2yr} €.</strong> Il n'y a aucune raison d'attendre.`;
+    body.innerHTML    = `${months} mois avant votre échéance, vous êtes exactement dans la fenêtre où nos résultats sont les meilleurs. Les fournisseurs sont en compétition ouverte, le marché est lisible, et vous avez le temps de choisir sans pression. <strong>Économie estimée sur 3 ans : ${saving3yr} €.</strong> Il n'y a aucune raison d'attendre.`;
   } else {
     icon.textContent  = '⚡';
     title.innerHTML   = `<span style="color:var(--green)">Excellente position</span>, ${months} mois d'avance.`;
-    body.innerHTML    = `Vous êtes dans une position rare : suffisamment en avance pour choisir le meilleur moment de marché plutôt que de subir le contexte. Nous pouvons lancer une analyse maintenant, identifier la fenêtre optimale, et vous alerter quand les conditions sont les plus favorables. <strong>Économie potentielle sur 2 ans : ${saving2yr} €.</strong>`;
+    body.innerHTML    = `Vous êtes dans une position rare : suffisamment en avance pour choisir le meilleur moment de marché plutôt que de subir le contexte. Nous pouvons lancer une analyse maintenant, identifier la fenêtre optimale, et vous alerter quand les conditions sont les plus favorables. <strong>Économie potentielle sur 3 ans : ${saving3yr} €.</strong>`;
   }
 }
 
