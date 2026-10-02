@@ -20,7 +20,10 @@
 .ss-trigger:hover,.ss-trigger:focus-visible{color:var(--cream,#f5f0e8);border-color:var(--ss-accent)}
 .ss-trigger:focus-visible{outline:2px solid var(--ss-accent);outline-offset:2px}
 .ss-trigger--solo{margin-left:auto}
-.nav .nlinks{margin-left:auto;margin-right:auto}
+/* Loupe + téléphone (ou CTA) dans un même bloc : la nav garde sa
+   répartition d'origine et le téléphone reste espacé de « Étude gratuite ». */
+.ss-nav-group{display:flex;align-items:center;gap:1rem}
+.ss-nav-group .ss-trigger{margin-right:0}
 
 /* Entrée « Rechercher » du menu burger (mobile, pages avec liens de nav) */
 .ss-menu-item{display:none}
@@ -32,7 +35,8 @@
 .ss-menu-btn:hover{color:var(--cream,#f5f0e8)}
 @media(max-width:768px){
   .nav .ss-trigger{display:none}
-  .nav .nlinks{margin:0}
+  /* Loupe masquée : le bloc s'efface, la nav mobile reste celle d'origine */
+  .ss-nav-group{display:contents}
   .ss-menu-item{display:list-item}
 }
 /* Très petits écrans (320 px) : la loupe ferait passer le CTA des pages
@@ -101,6 +105,30 @@ body.ss-open{overflow:hidden}
 .ss-cities a{color:var(--ss-accent);text-decoration:none}
 .ss-cities a:hover{text-decoration:underline;text-underline-offset:2px}
 .ss-empty{font-size:.92rem;color:var(--cream,#f5f0e8);padding:1rem .7rem .2rem}
+
+/* Aperçu des 3 meilleurs résultats */
+.ss-cards{list-style:none;margin:0;padding:0 .3rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+.ss-cards > li{display:flex}
+.ss-card{
+  display:flex;flex-direction:column;flex:1;
+  padding:.95rem 1rem .85rem;border:1px solid var(--ss-line);border-left-width:1px;
+  background:rgba(26,122,138,.05);
+}
+.ss-card:hover,.ss-card.is-active{border-color:var(--ss-accent);border-left-color:var(--ss-accent)}
+.ss-card .ss-title{font-size:.9rem}
+.ss-card .ss-excerpt{
+  font-size:.8rem;line-height:1.55;margin-top:.4rem;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+}
+.ss-card-foot{
+  display:flex;justify-content:space-between;align-items:center;gap:.5rem;
+  margin-top:auto;padding-top:.75rem;font-size:.7rem;color:var(--muted,#8aacb4);
+}
+.ss-card-go{color:var(--ss-accent);font-weight:700;margin-left:auto}
+@media(max-width:640px){
+  .ss-cards{grid-template-columns:1fr}
+  .ss-card .ss-excerpt{-webkit-line-clamp:2}
+}
 
 /* Suggestions */
 .ss-chips{display:flex;flex-wrap:wrap;gap:.5rem;padding:0 .7rem}

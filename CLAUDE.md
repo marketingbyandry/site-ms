@@ -1,7 +1,7 @@
 # SITE MS — Instructions projet
 
 ## Testing
-Après toute modification HTML/CSS/JS sur ce repo, lancer la suite de tests complète (`npm test`) et confirmer que tous les tests passent avant de committer (baseline actuelle : 217 tests). Si un changement modifie du texte ou du markup testé, mettre à jour l'assertion concernée dans le même commit.
+Après toute modification HTML/CSS/JS sur ce repo, lancer la suite de tests complète (`npm test`) et confirmer que tous les tests passent avant de committer (baseline actuelle : 218 tests). Si un changement modifie du texte ou du markup testé, mettre à jour l'assertion concernée dans le même commit.
 
 ## Image & Asset Pipeline
 Pour les visuels sourcés (ex. via Savee) : télécharger l'original, convertir en WebP (ou JPEG optimisé si WebP non supporté), viser <300KB, stocker sous `assets/`, référencer avec largeur/hauteur explicites. Ne jamais laisser de placeholder base64 ou de texte "exemple/gabarit" dans du HTML committé.

@@ -49,7 +49,10 @@ const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', 
 
 async function hydrate(pf, search, limit) {
   const data = await Promise.all(search.results.slice(0, limit).map((r) => r.data()));
-  return data.map((d) => ({ url: d.url, title: d.meta.title || d.url, excerpt: d.excerpt }));
+  return data.map((d) => ({
+    url: d.url, title: d.meta.title || d.url, excerpt: d.excerpt,
+    description: d.meta.description, category: d.meta.category, readtime: d.meta.readtime,
+  }));
 }
 
 async function runSearch(raw, { typing, limit }) {
@@ -86,6 +89,20 @@ function itemHtml(r, index) {
     + `<span class="ss-excerpt">${r.excerpt}</span></a>${cities}</li>`;
 }
 
+// Carte d'aperçu des 3 meilleurs résultats : catégorie, titre, description
+// de l'article (plus lisible que l'extrait) et temps de lecture.
+const PREVIEW_COUNT = 3;
+
+function cardHtml(r, index) {
+  const kind = (r.category ? escapeHtml(r.category) : kindOf(r.url)) + (r.cities ? ` · ${escapeHtml(r.cities[0].label)}` : '');
+  const text = r.description ? escapeHtml(r.description) : r.excerpt;
+  return `<li role="presentation"><a class="ss-item ss-card" id="ss-opt-${index}" role="option" href="${escapeHtml(r.url)}" data-pos="${index}">`
+    + `<span class="ss-kind">${kind}</span>`
+    + `<span class="ss-title">${escapeHtml(r.title)}</span>`
+    + `<span class="ss-excerpt">${text}</span>`
+    + `<span class="ss-card-foot">${r.readtime ? escapeHtml(r.readtime) : ''}<span class="ss-card-go" aria-hidden="true">Lire →</span></span></a></li>`;
+}
+
 function popularHtml(title) {
   return `<p class="ss-label">${title}</p><div class="ss-chips">`
     + POPULAR.map(([label, q]) => `<button type="button" class="ss-chip" data-q="${escapeHtml(q)}">${escapeHtml(label)}</button>`).join('')
@@ -102,8 +119,14 @@ function resultsHtml(raw, res) {
   const labels = res.topics.map((t) => t.label).join(' · ');
   const topicTitle = (prefix) => `${prefix}${labels ? ' : ' + escapeHtml(labels) : ''}`;
   if (res.primary.length) {
-    if (res.intent) html += `<p class="ss-label">${topicTitle('Meilleures réponses')}</p>`;
-    html += '<ul class="ss-list" role="listbox" aria-label="Résultats">' + res.primary.map((r) => itemHtml(r, pos++)).join('') + '</ul>';
+    const top = res.primary.slice(0, PREVIEW_COUNT);
+    const rest = res.primary.slice(PREVIEW_COUNT);
+    html += `<p class="ss-label">${res.intent ? topicTitle('Meilleures réponses') : 'Les plus pertinents'}</p>`;
+    html += '<ul class="ss-cards" role="listbox" aria-label="Meilleurs résultats">' + top.map((r) => cardHtml(r, pos++)).join('') + '</ul>';
+    if (rest.length) {
+      html += '<p class="ss-label">Autres pages</p>'
+        + '<ul class="ss-list" role="listbox" aria-label="Résultats">' + rest.map((r) => itemHtml(r, pos++)).join('') + '</ul>';
+    }
   }
   if (res.extra.length) {
     html += `<p class="ss-label">${res.intent ? 'Autres résultats' : topicTitle('Sujets liés')}</p>`
@@ -265,7 +288,15 @@ function mountTrigger(onActivate) {
   btn.title = 'Rechercher (Ctrl+K)';
   btn.innerHTML = LOUPE;
   const anchor = nav.querySelector('.nphone') || nav.querySelector('.ncta') || nav.querySelector('.nav-cta');
-  if (anchor && anchor.parentNode === nav) nav.insertBefore(btn, anchor);
+  if (anchor && anchor.parentNode === nav && nav.querySelector('.nlinks')) {
+    // La loupe est groupée avec l'élément qu'elle précède (téléphone ou CTA) :
+    // la nav garde le même nombre d'éléments, donc la répartition
+    // space-between d'origine (liens, téléphone, « Étude gratuite ») ne bouge pas.
+    const group = document.createElement('div');
+    group.className = 'ss-nav-group';
+    nav.insertBefore(group, anchor);
+    group.append(btn, anchor);
+  } else if (anchor && anchor.parentNode === nav) nav.insertBefore(btn, anchor);
   else nav.appendChild(btn);
   btn.addEventListener('click', onActivate);
   btn.addEventListener('pointerenter', () => loadEngine(), { once: true });

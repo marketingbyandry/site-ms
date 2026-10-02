@@ -84,7 +84,18 @@ test('l’index de recherche est à jour avec les pages du site (sinon : npm run
 
 test('le titre des résultats vient de la balise <title>, sans le nom du cabinet', () => {
   const html = '<html><head><title>Plan du site | M&amp;S Strategy</title></head><body class="x"><h1>Accroche</h1></body></html>';
-  assert.match(withTitleMeta(html), /<body class="x"><span data-pagefind-meta="title" hidden>Plan du site<\/span>/);
+  assert.match(withTitleMeta(html), /<body class="x"><div data-pagefind-ignore hidden><span data-pagefind-meta="title" hidden>Plan du site<\/span><\/div>/);
+});
+
+test('les articles exposent description, catégorie et temps de lecture aux cartes d’aperçu', () => {
+  const html = '<html><head><title>Prix du kWh | M&amp;S Strategy</title><meta name="description" content="Ce que vous payez."></head>'
+    + '<body><div class="article-meta"><a class="meta-tag">← Tous</a><span class="meta-tag">Marché &amp; prix</span><span class="meta-read">4 min de lecture</span></div></body></html>';
+  const out = withTitleMeta(html);
+  assert.match(out, /data-pagefind-meta="description" hidden>Ce que vous payez\.</);
+  assert.match(out, /data-pagefind-meta="category" hidden>Marché &amp; prix</);
+  assert.match(out, /data-pagefind-meta="readtime" hidden>4 min de lecture</);
+  // Une page sans ces informations n'a que le titre.
+  assert.doesNotMatch(withTitleMeta('<title>Plan du site</title><body>'), /description|category|readtime/);
 });
 
 test('la recherche est branchée sur toutes les pages sauf les pages de conversion', () => {

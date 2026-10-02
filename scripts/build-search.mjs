@@ -42,11 +42,22 @@ function visibleText(html) {
 // plutôt que le premier <h1>, souvent une accroche hors contexte
 // (« Comprendre le marché pour mieux négocier. » sur blog.html).
 // Ajouté uniquement au contenu passé à Pagefind, pas aux fichiers.
+// Pour les cartes d'aperçu des meilleurs résultats : description, catégorie
+// et temps de lecture des articles (absents des pages qui n'en ont pas).
 export function withTitleMeta(html) {
   const m = /<title>([^<]*)<\/title>/i.exec(html);
   if (!m) return html;
   const title = m[1].replace(/\s*[|–-]\s*M&(amp;)?S Strategy\s*$/, '').trim();
-  return html.replace(/<body([^>]*)>/i, `<body$1><span data-pagefind-meta="title" hidden>${title}</span>`);
+  const meta = { title };
+  const desc = /<meta name="description" content="([^"]*)"/i.exec(html);
+  const category = /<span class="meta-tag">([^<]+)<\/span>/.exec(html);
+  const read = /<span class="meta-read">([^<]+)<\/span>/.exec(html);
+  if (desc) meta.description = desc[1].trim();
+  if (category) meta.category = category[1].trim();
+  if (read) meta.readtime = read[1].trim();
+  const spans = Object.entries(meta).map(([k, v]) => `<span data-pagefind-meta="${k}" hidden>${v}</span>`).join('');
+  // data-pagefind-ignore : métadonnées lues, texte non indexé (pas de doublon dans les extraits).
+  return html.replace(/<body([^>]*)>/i, `<body$1><div data-pagefind-ignore hidden>${spans}</div>`);
 }
 
 async function main() {
