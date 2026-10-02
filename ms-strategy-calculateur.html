@@ -227,7 +227,54 @@ body {
   .taximeter-card.active .tick-dot { animation: none; }
 }
 
+/* Monthly loss histogram: one bar per month, current month fills live */
+.taxi-bars { display: none; margin: 1.3rem auto .2rem; max-width: 560px; }
+.taxi-bars-plot { margin: 0 auto; }
+.taxi-bars.visible { display: block; }
+.taxi-bars-row {
+  display: flex; align-items: flex-end;
+  gap: 3px; height: 64px;
+}
+.tb {
+  flex: 1 1 0; min-width: 3px;
+  position: relative; overflow: hidden;
+  border-radius: 2px 2px 0 0;
+  background: rgba(224,85,85,.12);
+  transform-origin: bottom;
+  animation: tb-grow .5s cubic-bezier(.2,.8,.2,1) both;
+  animation-delay: calc(var(--i) * 25ms);
+}
+.tb::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+  height: calc(var(--fill) * 100%);
+  background: linear-gradient(to top, rgba(224,85,85,.5), var(--red));
+  transition: height .6s ease-out;
+}
+.tb-current { box-shadow: 0 0 12px rgba(224,85,85,.45); }
+.tb-current::after { animation: tb-pulse 1.6s ease-in-out infinite; }
+.tb-future { background: transparent; border: 1px dashed rgba(224,85,85,.45); border-bottom: none; }
+@keyframes tb-grow { from { transform: scaleY(0); } }
+@keyframes tb-pulse { 50% { opacity: .55; } }
+.taxi-bars-axis {
+  position: relative; height: 1rem; margin-top: .4rem;
+  font-family: 'JetBrains Mono', monospace; font-size: .6rem;
+  color: var(--muted2); text-transform: lowercase;
+}
+.taxi-bars-axis span { position: absolute; top: 0; white-space: nowrap; }
+#taxi-bars-start { left: 0; }
+#taxi-bars-end   { right: 0; }
+#taxi-bars-now   { transform: translateX(-50%); color: var(--red); }
+.taxi-bars-caption {
+  margin-top: .5rem; font-size: .72rem; color: var(--muted);
+  font-family: 'Satoshi', sans-serif;
+}
+.taxi-bars-caption strong { color: var(--red); font-weight: 500; }
+@media (prefers-reduced-motion: reduce) {
+  .tb, .tb-current::after { animation: none; }
+}
+
 /* Good price: reader is already below the market floor */
+.taximeter-card.good-price .taxi-bars { display: none; }
 .taximeter-card.good-price { border-color: rgba(76,222,128,.5); }
 .taximeter-card.good-price::before {
   background: radial-gradient(ellipse at 50% 0%, rgba(76,222,128,.08) 0%, transparent 60%);
@@ -594,6 +641,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="taximeter-cents" id="taxi-cents">,00</span>
       <span style="font-size:.28em;color:rgba(224,85,85,.4);margin-left:.1em">€</span>
     </div>
+    <div class="taxi-bars" id="taxi-bars">
+      <div class="taxi-bars-plot" id="taxi-bars-plot">
+        <div class="taxi-bars-row" id="taxi-bars-row" role="img" aria-label="Perte mois par mois"></div>
+        <div class="taxi-bars-axis" aria-hidden="true">
+          <span id="taxi-bars-start"></span><span id="taxi-bars-now">auj.</span><span id="taxi-bars-end"></span>
+        </div>
+      </div>
+      <p class="taxi-bars-caption" id="taxi-bars-caption">1 bâton = 1 mois</p>
+    </div>
     <div class="taxi-calc-overlay hidden" id="taxi-calc-overlay">
       <span class="calc-spinner"></span>
       <span class="calc-text">Calcul de votre situation en cours…</span>
@@ -834,6 +890,7 @@ function startDemo() {
   document.getElementById('taxi-sub').innerHTML =
     `Cumul depuis le 1er janvier pour une TPE/PME moyenne (${DEMO.conso} MWh/an à ${DEMO.price} €/MWh) · renseignez vos données ci-dessous pour votre propre calcul.`;
   startTaxi();
+  renderBars(startOfYear, 0, surcharge / 365, 'depuis le 1er janvier');
 }
 
 /* ════════════════════════════════════════
@@ -972,7 +1029,90 @@ function performRealCalc() {
   };
 
   startTaxi();
+  renderBars(
+    renewalDate || new Date(new Date().getFullYear(), 0, 1),
+    engaged ? months : 0,
+    surchargePerDay,
+    renewalDate ? 'depuis votre dernier renouvellement' : 'à ce rythme depuis le 1er janvier'
+  );
   renderResults();
+}
+
+/* ════════════════════════════════════════
+   MONTHLY BARS: one bar per month under the counter
+   ════════════════════════════════════════ */
+/* bars:start */
+function buildMonthBars(start, now, futureMonths, perDay) {
+  const MAX = 24;
+  const daysIn = (y, m) => new Date(y, m + 1, 0).getDate();
+  const bars = [];
+  const cur = new Date(now.getFullYear(), now.getMonth(), 1);
+  for (let d = new Date(start.getFullYear(), start.getMonth(), 1); d <= cur; d.setMonth(d.getMonth() + 1)) {
+    const y = d.getFullYear(), m = d.getMonth(), days = daysIn(y, m);
+    // The first month only counts from the renewal day onwards.
+    const fromDay = (y === start.getFullYear() && m === start.getMonth()) ? start.getDate() - 1 : 0;
+    const isCurrent = d.getTime() === cur.getTime();
+    const daysLost = isCurrent
+      ? Math.max(0, (now - d) / 86400000 - fromDay)
+      : days - fromDay;
+    bars.push({ year: y, month: m, state: isCurrent ? 'current' : 'past', full: days * perDay, filled: daysLost * perDay });
+  }
+  const shown = bars.slice(-MAX);
+  for (let i = 1; i <= Math.min(futureMonths, MAX); i++) {
+    const d = new Date(now.getFullYear(), now.getMonth() + i, 1);
+    shown.push({ year: d.getFullYear(), month: d.getMonth(), state: 'future', full: daysIn(d.getFullYear(), d.getMonth()) * perDay, filled: 0 });
+  }
+  return shown;
+}
+/* bars:end */
+
+let barsState = null;
+
+function renderBars(start, futureMonths, perDay, reference) {
+  const bars = buildMonthBars(start, new Date(), futureMonths, perDay);
+  const max  = Math.max(...bars.map((b) => b.full));
+  const row  = document.getElementById('taxi-bars-row');
+  const fmtMonth = (b) => new Date(b.year, b.month, 1)
+    .toLocaleDateString('fr-FR', bars[0].year === bars[bars.length - 1].year ? { month: 'short' } : { month: 'short', year: '2-digit' });
+
+  row.innerHTML = bars.map((b, i) =>
+    `<span class="tb tb-${b.state}" style="--i:${i};height:${(b.full / max * 100).toFixed(1)}%;--fill:${(b.filled / b.full).toFixed(3)}"></span>`
+  ).join('');
+
+  const cur = bars.findIndex((b) => b.state === 'current');
+  const startEl = document.getElementById('taxi-bars-start');
+  const endEl   = document.getElementById('taxi-bars-end');
+  const nowEl   = document.getElementById('taxi-bars-now');
+  startEl.textContent = cur > 1 ? fmtMonth(bars[0]) : '';
+  endEl.textContent   = cur < bars.length - 2 ? fmtMonth(bars[bars.length - 1]) : '';
+  nowEl.style.left    = `${(cur + .5) / bars.length * 100}%`;
+
+  const monthly = Math.round(perDay * 365 / 12).toLocaleString('fr-FR');
+  const future  = bars.some((b) => b.state === 'future') ? ' · en pointillé : mois encore engagés' : '';
+  document.getElementById('taxi-bars-caption').innerHTML =
+    `<strong>${monthly} €</strong> perdus par mois ${reference} · 1 bâton = 1 mois${future}`;
+  // Block width follows the bar count so the axis labels sit under their bars.
+  document.getElementById('taxi-bars-plot').style.maxWidth = `${Math.min(560, bars.length * 25)}px`;
+  document.getElementById('taxi-bars').classList.add('visible');
+  row.setAttribute('aria-label', `${monthly} € perdus par mois, ${bars.length} mois représentés`);
+
+  barsState = { el: row.children[cur], bar: bars[cur], start, perDay };
+}
+
+// Called on each counter tick: refills the current month's bar.
+function refreshCurrentBar() {
+  if (!barsState || !barsState.el) return;
+  const { el, bar, start, perDay } = barsState;
+  const now = new Date();
+  if (now.getMonth() !== bar.month) return;
+  const fromDay = (start.getFullYear() === bar.year && start.getMonth() === bar.month) ? start.getDate() - 1 : 0;
+  const lost = Math.max(0, (now - new Date(bar.year, bar.month, 1)) / 86400000 - fromDay) * perDay;
+  el.style.setProperty('--fill', (lost / bar.full).toFixed(4));
+}
+
+function hideBars() {
+  barsState = null;
+  document.getElementById('taxi-bars').classList.remove('visible');
 }
 
 /* ════════════════════════════════════════
@@ -1003,6 +1143,7 @@ function stopTaxi() {
   document.getElementById('taxi-int').textContent = '0';
   document.getElementById('taxi-cents').textContent = ',00';
   document.getElementById('taxi-sub').innerHTML = 'Renseignez vos données ci-dessous pour activer le compteur.';
+  hideBars();
 }
 
 /* ════════════════════════════════════════
@@ -1033,6 +1174,7 @@ function showGoodPrice(price, bestPrice, kva) {
     `désormais de sécuriser ce niveau dans la durée.`;
 
   document.getElementById('results-section').classList.remove('visible');
+  hideBars();
 }
 
 function renderTaxi(total) {
@@ -1041,6 +1183,7 @@ function renderTaxi(total) {
 
   document.getElementById('taxi-int').textContent = intPart.toLocaleString('fr-FR');
   document.getElementById('taxi-cents').textContent = ',' + centPart;
+  refreshCurrentBar();
 
   if (lastCalc) {
     const { conso, sector, surcharge, daysElapsed, pastLoss, engaged, futureLockedLoss } = lastCalc;
