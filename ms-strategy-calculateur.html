@@ -227,53 +227,54 @@ body {
   .taximeter-card.active .tick-dot { animation: none; }
 }
 
-/* Monthly loss histogram: one bar per month, current month fills live */
-.taxi-bars { display: none; margin: 1.3rem auto .2rem; max-width: 560px; }
-.taxi-bars-plot { margin: 0 auto; }
-.taxi-bars.visible { display: block; }
-.taxi-bars-row {
-  display: flex; align-items: flex-end;
-  gap: 3px; height: 64px;
+/* Horizontal comparison: annual cost without vs with M&S */
+.taxi-compare { display: none; margin: 1.4rem auto .2rem; max-width: 620px; text-align: left; }
+.taxi-compare.visible { display: block; }
+.tc-row {
+  display: grid; grid-template-columns: 9.5rem 1fr 7.5rem;
+  align-items: center; gap: .9rem; margin-bottom: .7rem;
 }
-.tb {
-  flex: 1 1 0; min-width: 3px;
-  position: relative; overflow: hidden;
-  border-radius: 2px 2px 0 0;
-  background: rgba(224,85,85,.12);
-  transform-origin: bottom;
-  animation: tb-grow .35s cubic-bezier(.2,.8,.2,1) both;
-  animation-delay: calc(min(var(--i), 12) * 30ms);
+.tc-label { font-family: 'Satoshi', sans-serif; font-size: .8rem; color: var(--muted); }
+.tc-value {
+  font-family: var(--mono); font-size: .85rem; font-weight: 700;
+  text-align: right; white-space: nowrap;
 }
-.tb::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: 0;
-  height: calc(var(--fill) * 100%);
-  background: linear-gradient(to top, rgba(224,85,85,.5), var(--red));
-  transition: height .6s ease-out;
+.tc-without .tc-value { color: var(--red); }
+.tc-with .tc-value    { color: var(--green); }
+.tc-track { height: 22px; background: rgba(138,172,180,.06); border-radius: 3px; overflow: hidden; }
+.tc-bar {
+  position: relative; height: 100%; border-radius: 3px;
+  width: calc(var(--w) * 100%);
+  transform-origin: left;
+  animation: tc-grow .45s cubic-bezier(.2,.8,.2,1) both;
 }
-.tb-current { box-shadow: 0 0 12px rgba(224,85,85,.45); }
-.tb-future { background: transparent; border: 1px dashed rgba(224,85,85,.45); border-bottom: none; }
-@keyframes tb-grow { from { transform: scaleY(0); } }
-.taxi-bars-axis {
-  position: relative; height: 1rem; margin-top: .4rem;
-  font-family: 'JetBrains Mono', monospace; font-size: .68rem;
-  color: var(--muted); text-transform: lowercase;
+.tc-without .tc-bar { background: linear-gradient(90deg, rgba(224,85,85,.35), rgba(224,85,85,.7)); }
+.tc-with .tc-bar    { background: linear-gradient(90deg, rgba(76,222,128,.3), rgba(76,222,128,.75)); animation-delay: .12s; }
+/* Part of the red bar beyond the green one: the overspend the counter accumulates */
+.tc-excess {
+  position: absolute; top: 0; bottom: 0; right: 0;
+  width: calc(var(--x) * 100%);
+  background: repeating-linear-gradient(135deg, var(--red) 0 4px, rgba(224,85,85,.35) 4px 8px);
+  border-left: 2px solid var(--dark);
 }
-.taxi-bars-axis span { position: absolute; top: 0; white-space: nowrap; }
-#taxi-bars-start { left: 0; }
-#taxi-bars-end   { right: 0; }
-#taxi-bars-now   { transform: translateX(-50%); color: var(--red); }
-.taxi-bars-caption {
-  margin-top: .5rem; font-size: .72rem; color: var(--muted);
-  font-family: 'Satoshi', sans-serif;
+@keyframes tc-grow { from { transform: scaleX(0); } }
+.tc-caption {
+  margin-top: .4rem; text-align: center;
+  font-family: 'Satoshi', sans-serif; font-size: .78rem; color: var(--muted);
 }
-.taxi-bars-caption strong { color: var(--red); font-weight: 500; }
-@media (prefers-reduced-motion: reduce) {
-  .tb { animation: none; }
-  .tb::after { transition: none; }
+.tc-caption strong { color: var(--red); font-weight: 500; }
+.tc-caption .tc-swatch {
+  display: inline-block; width: 14px; height: 10px; margin-right: .35rem; vertical-align: -1px;
+  background: repeating-linear-gradient(135deg, var(--red) 0 3px, rgba(224,85,85,.35) 3px 6px);
 }
+@media (max-width: 560px) {
+  .tc-row { grid-template-columns: 1fr auto; gap: .35rem .6rem; }
+  .tc-track { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (prefers-reduced-motion: reduce) { .tc-bar { animation: none; } }
 
 /* Good price: reader is already below the market floor */
-.taximeter-card.good-price .taxi-bars { display: none; }
+.taximeter-card.good-price .taxi-compare { display: none; }
 .taximeter-card.good-price { border-color: rgba(76,222,128,.5); }
 .taximeter-card.good-price::before {
   background: radial-gradient(ellipse at 50% 0%, rgba(76,222,128,.08) 0%, transparent 60%);
@@ -640,14 +641,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="taximeter-cents" id="taxi-cents">,00</span>
       <span style="font-size:.28em;color:rgba(224,85,85,.4);margin-left:.1em">€</span>
     </div>
-    <div class="taxi-bars" id="taxi-bars">
-      <div class="taxi-bars-plot" id="taxi-bars-plot">
-        <div class="taxi-bars-row" id="taxi-bars-row" role="img" aria-label="Perte mois par mois"></div>
-        <div class="taxi-bars-axis" aria-hidden="true">
-          <span id="taxi-bars-start"></span><span id="taxi-bars-now">auj.</span><span id="taxi-bars-end"></span>
-        </div>
+    <div class="taxi-compare" id="taxi-compare" role="img" aria-label="Coût annuel sans et avec M&amp;S Strategy">
+      <div class="tc-row tc-without">
+        <span class="tc-label">Sans M&amp;S Strategy</span>
+        <div class="tc-track"><div class="tc-bar" id="tc-bar-without" style="--w:1"><span class="tc-excess" id="tc-excess"></span></div></div>
+        <span class="tc-value" id="tc-val-without">–</span>
       </div>
-      <p class="taxi-bars-caption" id="taxi-bars-caption">1 bâton = 1 mois</p>
+      <div class="tc-row tc-with">
+        <span class="tc-label">Avec M&amp;S Strategy</span>
+        <div class="tc-track"><div class="tc-bar" id="tc-bar-with"></div></div>
+        <span class="tc-value" id="tc-val-with">–</span>
+      </div>
+      <p class="tc-caption" id="tc-caption"></p>
     </div>
     <div class="taxi-calc-overlay hidden" id="taxi-calc-overlay">
       <span class="calc-spinner"></span>
@@ -889,7 +894,7 @@ function startDemo() {
   document.getElementById('taxi-sub').innerHTML =
     `Cumul depuis le 1er janvier pour une TPE/PME moyenne (${DEMO.conso} MWh/an à ${DEMO.price} €/MWh) · renseignez vos données ci-dessous pour votre propre calcul.`;
   startTaxi();
-  renderBars(startOfYear, 0, surcharge / 365, 'depuis le 1er janvier');
+  renderCompare(annual, surcharge);
 }
 
 /* ════════════════════════════════════════
@@ -1028,90 +1033,53 @@ function performRealCalc() {
   };
 
   startTaxi();
-  renderBars(
-    renewalDate || new Date(new Date().getFullYear(), 0, 1),
-    engaged ? months : 0,
-    surchargePerDay,
-    renewalDate ? 'depuis votre dernier renouvellement' : 'à ce rythme depuis le 1er janvier'
-  );
+  renderCompare(annualCurrent, surcharge);
   renderResults();
 }
 
 /* ════════════════════════════════════════
-   MONTHLY BARS: one bar per month under the counter
+   COMPARISON BARS: annual cost without vs with M&S
+   The gap is the same overspend the counter accumulates.
    ════════════════════════════════════════ */
-/* bars:start */
-function buildMonthBars(start, now, futureMonths, perDay) {
-  const MAX = 24;
-  const daysIn = (y, m) => new Date(y, m + 1, 0).getDate();
-  const bars = [];
-  const cur = new Date(now.getFullYear(), now.getMonth(), 1);
-  for (let d = new Date(start.getFullYear(), start.getMonth(), 1); d <= cur; d.setMonth(d.getMonth() + 1)) {
-    const y = d.getFullYear(), m = d.getMonth(), days = daysIn(y, m);
-    // The first month only counts from the renewal day onwards.
-    const fromDay = (y === start.getFullYear() && m === start.getMonth()) ? start.getDate() - 1 : 0;
-    const isCurrent = d.getTime() === cur.getTime();
-    const daysLost = isCurrent
-      ? Math.max(0, (now - d) / 86400000 - fromDay)
-      : days - fromDay;
-    bars.push({ year: y, month: m, state: isCurrent ? 'current' : 'past', full: days * perDay, filled: daysLost * perDay });
+/* compare:start */
+function buildCompare(annualCurrent, surcharge) {
+  const without = annualCurrent;
+  const withMs  = Math.max(0, annualCurrent - surcharge);
+  return {
+    without, withMs,
+    excess: without - withMs,
+    withRatio: without > 0 ? withMs / without : 0,
+    excessRatio: without > 0 ? (without - withMs) / without : 0,
+    monthly: (without - withMs) / 12,
+  };
+}
+/* compare:end */
+
+function renderCompare(annualCurrent, surcharge) {
+  const c = buildCompare(annualCurrent, surcharge);
+  const eur = (v) => Math.round(v).toLocaleString('fr-FR') + ' €';
+  const block = document.getElementById('taxi-compare');
+  const barWith = document.getElementById('tc-bar-with');
+  const barWithout = document.getElementById('tc-bar-without');
+
+  barWith.style.setProperty('--w', c.withRatio.toFixed(4));
+  document.getElementById('tc-excess').style.setProperty('--x', c.excessRatio.toFixed(4));
+  document.getElementById('tc-val-without').textContent = eur(c.without) + '/an';
+  document.getElementById('tc-val-with').textContent = eur(c.withMs) + '/an';
+  document.getElementById('tc-caption').innerHTML =
+    `<span class="tc-swatch" aria-hidden="true"></span>Surcoût : <strong>${eur(c.excess)} par an</strong>, soit ${eur(c.monthly)} par mois`;
+  block.setAttribute('aria-label',
+    `Coût annuel : ${eur(c.without)} sans M&S Strategy, ${eur(c.withMs)} avec, soit ${eur(c.excess)} de surcoût par an`);
+
+  // Replay the grow animation only when the block first appears
+  if (!block.classList.contains('visible')) {
+    [barWith, barWithout].forEach((el) => { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; });
   }
-  const shown = bars.slice(-MAX);
-  for (let i = 1; i <= Math.min(futureMonths, MAX); i++) {
-    const d = new Date(now.getFullYear(), now.getMonth() + i, 1);
-    shown.push({ year: d.getFullYear(), month: d.getMonth(), state: 'future', full: daysIn(d.getFullYear(), d.getMonth()) * perDay, filled: 0 });
-  }
-  return shown;
-}
-/* bars:end */
-
-let barsState = null;
-
-function renderBars(start, futureMonths, perDay, reference) {
-  const bars = buildMonthBars(start, new Date(), futureMonths, perDay);
-  const max  = Math.max(...bars.map((b) => b.full));
-  const row  = document.getElementById('taxi-bars-row');
-  const fmtMonth = (b) => new Date(b.year, b.month, 1)
-    .toLocaleDateString('fr-FR', bars[0].year === bars[bars.length - 1].year ? { month: 'short' } : { month: 'short', year: '2-digit' });
-
-  row.innerHTML = bars.map((b, i) =>
-    `<span class="tb tb-${b.state}" style="--i:${i};height:${(b.full / max * 100).toFixed(1)}%;--fill:${(b.filled / b.full).toFixed(3)}"></span>`
-  ).join('');
-
-  const cur = bars.findIndex((b) => b.state === 'current');
-  const startEl = document.getElementById('taxi-bars-start');
-  const endEl   = document.getElementById('taxi-bars-end');
-  const nowEl   = document.getElementById('taxi-bars-now');
-  startEl.textContent = cur > 1 ? fmtMonth(bars[0]) : '';
-  endEl.textContent   = cur < bars.length - 2 ? fmtMonth(bars[bars.length - 1]) : '';
-  nowEl.style.left    = `${(cur + .5) / bars.length * 100}%`;
-
-  const monthly = Math.round(perDay * 365 / 12).toLocaleString('fr-FR');
-  const future  = bars.some((b) => b.state === 'future') ? ' · en pointillé : mois encore engagés' : '';
-  document.getElementById('taxi-bars-caption').innerHTML =
-    `<strong>${monthly} €</strong> perdus par mois ${reference} · 1 bâton = 1 mois${future}`;
-  // Block width follows the bar count so the axis labels sit under their bars.
-  document.getElementById('taxi-bars-plot').style.maxWidth = `${Math.min(560, bars.length * 25)}px`;
-  document.getElementById('taxi-bars').classList.add('visible');
-  row.setAttribute('aria-label', `${monthly} € perdus par mois, ${bars.length} mois représentés`);
-
-  barsState = { el: row.children[cur], bar: bars[cur], start, perDay };
+  block.classList.add('visible');
 }
 
-// Called on each counter tick: refills the current month's bar.
-function refreshCurrentBar() {
-  if (!barsState || !barsState.el) return;
-  const { el, bar, start, perDay } = barsState;
-  const now = new Date();
-  if (now.getMonth() !== bar.month) return;
-  const fromDay = (start.getFullYear() === bar.year && start.getMonth() === bar.month) ? start.getDate() - 1 : 0;
-  const lost = Math.max(0, (now - new Date(bar.year, bar.month, 1)) / 86400000 - fromDay) * perDay;
-  el.style.setProperty('--fill', (lost / bar.full).toFixed(4));
-}
-
-function hideBars() {
-  barsState = null;
-  document.getElementById('taxi-bars').classList.remove('visible');
+function hideCompare() {
+  document.getElementById('taxi-compare').classList.remove('visible');
 }
 
 /* ════════════════════════════════════════
@@ -1142,7 +1110,7 @@ function stopTaxi() {
   document.getElementById('taxi-int').textContent = '0';
   document.getElementById('taxi-cents').textContent = ',00';
   document.getElementById('taxi-sub').innerHTML = 'Renseignez vos données ci-dessous pour activer le compteur.';
-  hideBars();
+  hideCompare();
 }
 
 /* ════════════════════════════════════════
@@ -1173,7 +1141,7 @@ function showGoodPrice(price, bestPrice, kva) {
     `désormais de sécuriser ce niveau dans la durée.`;
 
   document.getElementById('results-section').classList.remove('visible');
-  hideBars();
+  hideCompare();
 }
 
 function renderTaxi(total) {
@@ -1182,7 +1150,6 @@ function renderTaxi(total) {
 
   document.getElementById('taxi-int').textContent = intPart.toLocaleString('fr-FR');
   document.getElementById('taxi-cents').textContent = ',' + centPart;
-  refreshCurrentBar();
 
   if (lastCalc) {
     const { conso, sector, surcharge, daysElapsed, pastLoss, engaged, futureLockedLoss } = lastCalc;
