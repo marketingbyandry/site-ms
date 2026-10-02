@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build:analytics": "node scripts/build-analytics.mjs",
+    "build:partials": "node scripts/build-partials.mjs",
     "build:speed-insights": "node scripts/build-speed-insights.mjs",
     "test": "node --test test/*.test.mjs",
     "build:search": "node scripts/build-search.mjs"
