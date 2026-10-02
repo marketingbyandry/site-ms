@@ -16,8 +16,8 @@
   background:none;border:none;border-radius:2px;
   color:var(--green,#4cde80);cursor:pointer;
   transition:color .2s,filter .2s;
-  /* Petit saut pour attirer l'œil : 3 rebonds après le chargement, puis repos */
-  animation:ss-hop 2.4s ease-in-out 1.2s 3;
+  /* Petit saut pour attirer l’œil, toutes les 2,5 s (arrêté au survol) */
+  animation:ss-hop 2.5s ease-in-out 1s infinite;
 }
 .ss-trigger svg{width:20px;height:20px}
 .ss-trigger:hover,.ss-trigger:focus-visible{filter:drop-shadow(0 0 6px rgba(76,222,128,.55));animation:none}
