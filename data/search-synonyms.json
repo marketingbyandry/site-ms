@@ -1,0 +1,135 @@
+{
+  "_comment": "Dictionnaire métier de la recherche du site. Si la recherche d'un visiteur contient un des 'triggers' (comparaison sans accents ni majuscules), les 'terms' sont aussi cherchés et leurs résultats sont ajoutés sous les résultats directs. Les 'terms' doivent correspondre à du vocabulaire réellement présent sur le site : test/site-search.test.mjs le vérifie à partir du lexique généré par npm run build:search.",
+  "entries": [
+    {
+      "label": "Réduire sa facture",
+      "triggers": ["facture trop chere", "facture chere", "facture elevee", "payer moins cher", "reduire facture", "reduire ma facture", "baisser facture", "economiser", "economies", "trop cher"],
+      "terms": ["decrypter facture", "renegociation contrat", "courtier energie role"]
+    },
+    {
+      "label": "Taxes sur l'énergie",
+      "triggers": ["taxe", "taxes", "impot", "impots", "fiscalite", "ticfe", "ticgn"],
+      "terms": ["accise", "cspe", "tva electricite"]
+    },
+    {
+      "label": "Compteur et puissance",
+      "triggers": ["compteur", "linky", "kva", "puissance", "abonnement"],
+      "terms": ["puissance souscrite", "compteur c4", "tarifs horosaisonniers"]
+    },
+    {
+      "label": "Recharge de véhicules électriques",
+      "triggers": ["voiture electrique", "vehicule electrique", "irve", "recharge", "borne", "bornes"],
+      "terms": ["bornes recharge", "advenir", "droit a la prise"]
+    },
+    {
+      "label": "Solaire et photovoltaïque",
+      "triggers": ["solaire", "panneau", "panneaux", "photovoltaique", "pv"],
+      "terms": ["photovoltaique", "autoconsommation", "agrivoltaisme", "ombrieres"]
+    },
+    {
+      "label": "Nucléaire et régulation des prix",
+      "triggers": ["nucleaire", "edf", "prix regule", "regulation"],
+      "terms": ["arenh", "vnu", "capn"]
+    },
+    {
+      "label": "Prix de l'électricité",
+      "triggers": ["prix", "tarif", "tarifs", "cout", "combien", "kwh", "mwh"],
+      "terms": ["prix kwh professionnel", "tarif electricite professionnel", "barometre"]
+    },
+    {
+      "label": "Changer de fournisseur",
+      "triggers": ["resilier", "resiliation", "changer de fournisseur", "changer fournisseur", "fournisseur", "fournisseurs", "fin de contrat", "renouvellement"],
+      "terms": ["resilier contrat", "comparatif fournisseurs", "renouvellement contrat"]
+    },
+    {
+      "label": "Copropriété",
+      "triggers": ["copropriete", "copro", "syndic", "immeuble", "parties communes"],
+      "terms": ["copropriete", "parties communes", "colonnes montantes"]
+    },
+    {
+      "label": "Obligations réglementaires",
+      "triggers": ["obligation", "obligations", "obligatoire", "reglementation", "decret", "loi", "norme"],
+      "terms": ["decret tertiaire", "decret bacs", "audit energetique obligatoire"]
+    },
+    {
+      "label": "Aides et financements",
+      "triggers": ["aide", "aides", "subvention", "subventions", "prime", "primes", "financement"],
+      "terms": ["cee", "fonds chaleur", "advenir"]
+    },
+    {
+      "label": "Offre fixe ou indexée",
+      "triggers": ["fixe", "indexe", "variable", "type de contrat", "offre"],
+      "terms": ["prix fixe indexe"]
+    },
+    {
+      "label": "Électricité verte",
+      "triggers": ["verte", "vert", "renouvelable", "renouvelables", "decarbonee", "rse"],
+      "terms": ["garanties origine", "corporate ppa"]
+    },
+    {
+      "label": "Gaz",
+      "triggers": ["gaz", "chauffage", "chaudiere"],
+      "terms": ["gaz professionnel", "fonds chaleur"]
+    },
+    {
+      "label": "Remboursement de taxe",
+      "triggers": ["remboursement", "rembourser", "trop percu", "recuperer"],
+      "terms": ["cspe remboursement"]
+    },
+    {
+      "label": "Marché de gros",
+      "triggers": ["bourse", "marche de gros", "spot", "cours"],
+      "terms": ["prix marche gros", "barometre"]
+    },
+    {
+      "label": "Restauration",
+      "triggers": ["restaurant", "restaurants", "restauration", "brasserie", "cuisine"],
+      "terms": ["consommation energie restaurant"]
+    },
+    {
+      "label": "Boulangerie",
+      "triggers": ["boulangerie", "boulanger", "patisserie", "four"],
+      "terms": ["economies energie boulangerie"]
+    },
+    {
+      "label": "Hôtellerie et camping",
+      "triggers": ["hotel", "hotels", "hotellerie", "camping", "gite", "tourisme"],
+      "terms": ["economies energie hotellerie", "energie camping"]
+    },
+    {
+      "label": "Santé",
+      "triggers": ["clinique", "hopital", "ehpad", "sante", "maison de retraite"],
+      "terms": ["electricite clinique"]
+    },
+    {
+      "label": "Data center",
+      "triggers": ["datacenter", "data center", "serveur", "serveurs"],
+      "terms": ["data center"]
+    },
+    {
+      "label": "Agriculture",
+      "triggers": ["agriculteur", "agricole", "ferme", "exploitation agricole", "elevage"],
+      "terms": ["exploitation agricole", "agrivoltaisme", "hangar photovoltaique"]
+    },
+    {
+      "label": "Collectivités",
+      "triggers": ["commune", "mairie", "collectivite", "collectivites", "marche public", "marches publics"],
+      "terms": ["energie collectivites"]
+    },
+    {
+      "label": "Réseaux et multi-sites",
+      "triggers": ["franchise", "franchises", "reseau", "multisite", "multisites", "plusieurs sites", "groupement"],
+      "terms": ["franchise multi sites", "achat groupe"]
+    },
+    {
+      "label": "Industrie",
+      "triggers": ["industrie", "industriel", "usine", "production", "hta"],
+      "terms": ["electro intensif", "compteur c4", "effacement"]
+    },
+    {
+      "label": "Le rôle du courtier",
+      "triggers": ["courtier", "courtage", "intermediaire", "gratuit", "commission", "comment ca marche"],
+      "terms": ["courtier en energie role", "comment ca marche"]
+    }
+  ]
+}

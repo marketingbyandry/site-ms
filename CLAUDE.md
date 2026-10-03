@@ -18,6 +18,16 @@ Pour toute génération en lot (articles, pages, migrations multi-fichiers) : cr
 ## Recon Before Edit
 Avant de modifier une zone du code peu familière (templates, middleware, système de couleurs), utiliser un sub-agent (outil Agent) en lecture seule pour cartographier les fichiers concernés et les tests qui les couvrent, avant d'éditer quoi que ce soit.
 
+## Recherche du site (Pagefind)
+- Index statique généré par `npm run build:search` : `pagefind/` + `assets/search-lexicon.json` (vocabulaire pour la correction des fautes). Vercel ne fait pas de build : **relancer `npm run build:search` après tout ajout ou modification de contenu, et committer les fichiers générés.** `test/site-search.test.mjs` échoue si une page est ajoutée ou supprimée sans reconstruire l'index.
+- Nouvelle page : ajouter `<script type="module" src="assets/site-search.js"></script>` avant `</head>` (sauf pages de conversion : landing-2, calculateur).
+- Mots-clés contextuels : `data/search-synonyms.json` (déclencheurs → termes cherchés). Les termes doivent exister sur le site (vérifié par les tests).
+- Logique (correction, synonymes, regroupement des pages villes) : `assets/search-core.js`, testée en Node. Interface : `assets/site-search.js` + `.css`, page `recherche.html` (noindex).
+
+## Outillage Claude
+- **Playwright MCP** (`.mcp.json`) : après une modification visuelle, vérifier le rendu réel de la page (desktop + mobile, console sans erreur) en plus de `npm test`. En session cloud, lancer le serveur avec `--browser chromium --executable-path /opt/pw-browsers/chromium`.
+- **taste-skill : ne pas l'utiliser sur ce repo.** Ses règles par défaut contredisent la DA existante (il bannit Instrument Serif, suppose React/Tailwind, propose des photos placeholder picsum). Il est réservé aux nouveaux sites clients.
+
 ## Creative/Visual Work
 Avant de produire un rendu visuel (mockup, campagne, direction artistique), faire confirmer par l'utilisateur : l'audience, le ton (3 adjectifs), ce que le rendu ne doit PAS être, et une image de référence si disponible. Ne générer qu'après confirmation — évite les premiers jets rejetés.
 

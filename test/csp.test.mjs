@@ -100,3 +100,10 @@ test('frame-src autorise le repli iframe noscript de GTM', () => {
     'sans ce host, le fallback <noscript><iframe> de GTM est bloque'
   );
 });
+
+test("script-src autorise le WebAssembly de Pagefind (recherche du site)", () => {
+  assert.ok(
+    cspDirectives()['script-src'].includes("'wasm-unsafe-eval'"),
+    "sans 'wasm-unsafe-eval', Pagefind ne peut pas charger son moteur et la recherche reste vide"
+  );
+});
