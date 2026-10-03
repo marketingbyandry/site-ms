@@ -7,6 +7,8 @@
     "build:partials": "node scripts/build-partials.mjs",
     "build:speed-insights": "node scripts/build-speed-insights.mjs",
     "test": "node --test test/*.test.mjs",
+    "audit": "node scripts/site-audit.mjs",
+    "audit:visual": "node scripts/visual-check.mjs",
     "build:search": "node scripts/build-search.mjs"
   },
   "dependencies": {
