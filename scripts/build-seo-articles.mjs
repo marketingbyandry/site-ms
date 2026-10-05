@@ -7,7 +7,7 @@
 // Usage : node scripts/build-seo-articles.mjs [dossier-source-markdown]
 // Par défaut, le dossier source est ~/Documents/Energie-Blog-Articles/articles
 
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { homedir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
@@ -253,6 +253,12 @@ export function defaultSourceDir() {
   return path.join(homedir(), 'Documents', 'Energie-Blog-Articles', 'articles');
 }
 
+export const HAND_CRAFTED_MARKER = '<!-- layout:v2';
+
+export function isHandCrafted(file) {
+  return existsSync(file) && readFileSync(file, 'utf8').includes(HAND_CRAFTED_MARKER);
+}
+
 export function buildAllArticles(sourceDir, outputDir) {
   // Les blocs partagés (bouton flottant, réassurance…) sont rendus depuis
   // partials/ + data/site.json, pour ne jamais figer une valeur périmée.
@@ -264,7 +270,10 @@ export function buildAllArticles(sourceDir, outputDir) {
     const markdown = readFileSync(path.join(sourceDir, file), 'utf8');
     const data = buildArticleData(slug, markdown);
     const html = renderArticleHtml(template, data);
-    writeFileSync(path.join(outputDir, `${slug}.html`), html);
+    const target = path.join(outputDir, `${slug}.html`);
+    // Une page passée en mise en page v2 est retouchée à la main : on ne l'écrase pas.
+    if (isHandCrafted(target)) { results.push(data); continue; }
+    writeFileSync(target, html);
     results.push(data);
   }
   return results;
