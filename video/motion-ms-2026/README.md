@@ -17,6 +17,11 @@ cd landscape && npx hyperframes check && npx hyperframes render -f 30 -o ../rend
 cd ../vertical && npx hyperframes check && npx hyperframes render -f 30 -o ../renders/ms-strategy-motion-9x16.mp4
 ```
 
+## Variante voix féminine
+- Voix « Clémence - Advertising » (ElevenLabs, eleven_multilingual_v2), même texte, « M&S Stratégie » prononcé à la française.
+- Chaque phrase est replacée au début exact de la phrase d'Hugo : l'animation est identique, seule la voix change. Niveau aligné sur Hugo (-19,5 LUFS).
+- Rendu : `VOICE=clemence node build.mjs` puis render dans `landscape-clemence/` et `vertical-clemence/` → `renders/*-voix-femme.mp4`.
+
 ## Audio
 - Voix off : ElevenLabs, voix « Hugo from Paris », modèle eleven_multilingual_v2. Les scènes sont calées au mot près sur sa transcription (Scribe), avec un décalage de +1,7 s (le hook occupe 0 → 1,9 s).
 - Musique : ElevenLabs Music v2.5 (instrumentale, transcription vide), lue à partir de 6,7 s pour que son arrêt net tombe à 23,3 s sur la signature. 0,55 pendant le hook, 0,3 sous la voix, 0,75 sur le logo.
