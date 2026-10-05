@@ -1,11 +1,11 @@
 # Film motion design M&S Strategy (2026)
 
-Film de marque de 23 s, en deux formats : 16:9 (site, LinkedIn) et 9:16 (Reels, Stories, Shorts).
+Film de marque de 24,3 s, en deux formats : 16:9 (site, LinkedIn) et 9:16 (Reels, Stories, Shorts).
 Cible : dirigeants de PME et ETI. Ton : percutant, premium, confiant.
 
 ## Contenu
 - `brag-plan.md` : angle, storyboard, voix off, choix audio (le « pourquoi »).
-- `src/template.html` : la composition unique (HTML + GSAP), source de vérité des deux formats.
+- `src/template.html` : la composition unique. Le hook est sur la timeline principale, le récit est un sous-timeline `st` posé à 1,3 s.
 - `src/assets/` : polices (Instrument Serif, Manrope), logo, voix off et musique ElevenLabs, bruitages (Kenney, CC0).
 - `build.mjs` : génère `landscape/` et `vertical/` à partir du template.
 - `renders/` : les MP4 finaux.
@@ -18,8 +18,9 @@ cd ../vertical && npx hyperframes check && npx hyperframes render -f 30 -o ../re
 ```
 
 ## Audio
-- Voix off : ElevenLabs, voix « Hugo from Paris », modèle eleven_multilingual_v2. Les scènes sont calées au mot près sur sa transcription (Scribe), avec un décalage de +0,4 s.
-- Musique : ElevenLabs Music v2.5 (instrumentale, transcription vide), lue à partir de 8 s pour que son arrêt net tombe à 22 s sur la signature. Volume baissé sous la voix (0,3), puis remonté à 0,75 sur le logo.
+- Voix off : ElevenLabs, voix « Hugo from Paris », modèle eleven_multilingual_v2. Les scènes sont calées au mot près sur sa transcription (Scribe), avec un décalage de +1,7 s (le hook occupe 0 → 1,9 s).
+- Musique : ElevenLabs Music v2.5 (instrumentale, transcription vide), lue à partir de 6,7 s pour que son arrêt net tombe à 23,3 s sur la signature. 0,55 pendant le hook, 0,3 sous la voix, 0,75 sur le logo.
+- Hook : sound design ElevenLabs (impact grave calé sur J−0 à 1,35 s) + tics Kenney qui ralentissent avec le compteur.
 - Projet ElevenLabs : flow « M&S Strategy — Motion design 2026 ».
 
 ## Chiffres affichés (tous repris de index.html)

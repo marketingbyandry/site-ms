@@ -104,6 +104,19 @@
       #s6 .contact { margin-top: 36px; font-size: 26px; font-weight: 700; letter-spacing: 0.06em; color: var(--cream); }
       #s6 .eyebrow { margin-top: 18px; color: var(--muted); font-size: 18px; }
 
+
+      /* HOOK */
+      .hk-svg { position: absolute; left: 0; top: 0; transform-origin: 50% 50%; }
+      #hk-line { fill: none; stroke: var(--teal-glow); stroke-width: 5; stroke-linejoin: round; filter: drop-shadow(0 0 14px rgba(94,207,220,0.9)); }
+      #hk-line2 { fill: none; stroke: rgba(94,207,220,0.35); stroke-width: 26; stroke-linejoin: round; filter: blur(18px); }
+      #hk-eb { font-size: 24px; margin-bottom: 18px; }
+      #hk-num { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 300px; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--cream); text-shadow: 0 0 60px rgba(7,19,26,0.9); transform-origin: 50% 50%; }
+      #hk-j, #hk-val { display: inline-block; }
+      #hk-val { transform-origin: 50% 52%; }
+      #hk-flash { position: absolute; inset: 0; opacity: 0; background: radial-gradient(ellipse at center, rgba(224,85,85,0.0) 20%, rgba(224,85,85,0.55) 100%); }
+      .v #hk-num { font-size: 230px; }
+      .v #hk-eb { font-size: 20px; }
+
       /* ---------- Vertical 9:16 ---------- */
       .v .hud { left: 60px; right: 60px; top: 70px; font-size: 16px; }
       .v .hud .r { display: none; }
@@ -131,9 +144,9 @@
     </style>
   </head>
   <body>
-    <div id="root" class="{{ORI_CLASS}}" data-composition-id="main" data-start="0" data-width="{{W}}" data-height="{{H}}" data-duration="23">
+    <div id="root" class="{{ORI_CLASS}}" data-composition-id="main" data-start="0" data-width="{{W}}" data-height="{{H}}" data-duration="24.3">
       <!-- Fond persistant -->
-      <div id="bg" class="clip" data-start="0" data-duration="23" data-track-index="0">
+      <div id="bg" class="clip" data-start="0" data-duration="24.3" data-track-index="0">
         <div class="bg">
           <div class="grid" id="grid"></div>
           <div class="halo" id="halo"></div>
@@ -143,13 +156,13 @@
       </div>
 
       <!-- HUD éditorial (scènes 1 à 5) -->
-      <div id="hud" class="clip" data-start="0" data-duration="13.4" data-track-index="1">
+      <div id="hud" class="clip" data-start="1.3" data-duration="13.4" data-track-index="1">
         <div class="hud" id="hud-inner"><div><b>M&amp;S Strategy</b> · Courtier en énergie indépendant</div><div class="r">Gaz · Électricité · Depuis 2012</div></div>
         <div class="counter" id="counter"><span class="cnum"><span class="cn" id="c01">01</span><span class="cn" id="c02">02</span><span class="cn" id="c03">03</span><span class="cn" id="c04">04</span><span class="cn" id="c05">05</span></span> / 05</div>
       </div>
 
       <!-- S1 Hook : 0 → 3.1 -->
-      <section id="s1" class="clip" data-start="0" data-duration="3.1" data-track-index="2">
+      <section id="s1" class="clip" data-start="1.3" data-duration="3.1" data-track-index="2">
         <div class="center" id="s1-in">
           <h1 class="serif">
             <div class="line">
@@ -164,7 +177,7 @@
       </section>
 
       <!-- S2 Urgence : 3.1 → 6.75 -->
-      <section id="s2" class="clip" data-start="3.1" data-duration="3.65" data-track-index="2">
+      <section id="s2" class="clip" data-start="4.4" data-duration="3.65" data-track-index="2">
         <div id="s2-in" class="clip">
           <div class="head">
             <div class="eyebrow" id="s2-eb">Votre fenêtre de négociation</div>
@@ -186,7 +199,7 @@
       </section>
 
       <!-- S3 Concurrence : 6.75 → 9.45 -->
-      <section id="s3" class="clip" data-start="6.75" data-duration="2.7" data-track-index="2">
+      <section id="s3" class="clip" data-start="8.05" data-duration="2.7" data-track-index="2">
         <div id="s3-in" class="clip">
           <div class="head">
             <div class="eyebrow" id="s3-eb">Appel d'offres simultané</div>
@@ -209,7 +222,7 @@
       </section>
 
       <!-- S4 Preuve : 9.45 → 11.65 -->
-      <section id="s4" class="clip" data-start="9.45" data-duration="2.2" data-track-index="2">
+      <section id="s4" class="clip" data-start="10.75" data-duration="2.2" data-track-index="2">
         <div class="center" id="s4-in">
           <div class="pct serif" id="pct"><span id="pct-n">0</span><small>%</small></div>
           <div class="lbl" id="pct-l">d'économies en moyenne</div>
@@ -222,7 +235,7 @@
       </section>
 
       <!-- S5 Punch : 11.65 → 13.4 -->
-      <section id="s5" class="clip" data-start="11.65" data-duration="1.75" data-track-index="2">
+      <section id="s5" class="clip" data-start="12.95" data-duration="1.75" data-track-index="2">
         <div class="center" id="s5-in">
           <h2 class="serif">
             <div class="line"><span class="w" data-layout-allow-overflow><i>Vous</i></span><span class="w" data-layout-allow-overflow><i>ne</i></span><span class="w" data-layout-allow-overflow><i>nous</i></span><span class="w" data-layout-allow-overflow><i>payez</i></span><span class="w" data-layout-allow-overflow><i><em>jamais.</em></i></span></div>
@@ -232,7 +245,7 @@
       </section>
 
       <!-- S6 Signature : 13.4 → 23 -->
-      <section id="s6" class="clip" data-start="13.4" data-duration="9.6" data-track-index="2">
+      <section id="s6" class="clip" data-start="14.7" data-duration="9.6" data-track-index="2">
         <div class="center" id="s6-in">
           <img class="logo" id="logo" src="assets/img/ms-strategy-logo.png" width="573" height="146" alt="M&amp;S Strategy" />
           <div class="cta serif" id="cta"><div class="line"><span class="w" data-layout-allow-overflow><i>Votre étude gratuite,</i></span></div></div>
@@ -242,115 +255,186 @@
         </div>
       </section>
 
+
+      <!-- HOOK 0 → 1.95 : compte à rebours de l'échéance -->
+      <section id="hook" class="clip" data-start="0" data-duration="1.9" data-track-index="4">
+        <div id="hk-zoomfade" class="clip">
+          <div id="hk-shake" class="clip">
+            <svg id="hk-svg" class="hk-svg" viewBox="0 0 {{W}} {{H}}" width="{{W}}" height="{{H}}">
+              <path id="hk-line2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M0 0" />
+              <path id="hk-line" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M0 0" />
+            </svg>
+            <div class="center">
+              <div class="eyebrow" id="hk-eb">Échéance de votre contrat d'énergie</div>
+              <div id="hk-num" data-layout-allow-overflow data-layout-allow-overlap><span id="hk-j">J−</span><span id="hk-val" data-layout-allow-overflow data-layout-allow-overlap>730</span></div>
+            </div>
+          </div>
+          <div id="hk-flash"></div>
+        </div>
+      </section>
+
       <!-- Balayage lumineux aux changements de scène -->
-      <div id="fx" class="clip" data-start="0" data-duration="23" data-track-index="3"><div class="sweep" id="sweep" data-layout-allow-overflow></div></div>
+      <div id="fx" class="clip" data-start="0" data-duration="24.3" data-track-index="3"><div class="sweep" id="sweep" data-layout-allow-overflow></div></div>
 
       <!-- Audio -->
-      <audio id="vo" src="assets/audio/voiceover.mp3" data-start="0.4" data-duration="17.46" data-track-index="10" data-volume="1"></audio>
-      <audio id="music" src="assets/audio/music.mp3" data-start="0" data-duration="23" data-media-start="8" data-track-index="11" data-volume="1"
-        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.25,"v":0.3},{"t":17.9,"v":0.3},{"t":18.4,"v":0.75},{"t":22.2,"v":0.75},{"t":23,"v":0}]}]}'></audio>
-      <audio id="sfx-hook" src="assets/sfx/impactSoft_heavy_003.ogg" data-start="2.2" data-duration="0.54" data-track-index="12" data-volume="0.7"></audio>
-      <audio id="sfx-late" src="assets/sfx/impactSoft_medium_001.ogg" data-start="5.7" data-duration="0.18" data-track-index="12" data-volume="0.6"></audio>
-      <audio id="sfx-c1" src="assets/sfx/click2.ogg" data-start="7.0" data-duration="0.06" data-track-index="13" data-volume="0.5"></audio>
-      <audio id="sfx-c2" src="assets/sfx/click2.ogg" data-start="7.24" data-duration="0.06" data-track-index="13" data-volume="0.5"></audio>
-      <audio id="sfx-c3" src="assets/sfx/click2.ogg" data-start="7.48" data-duration="0.06" data-track-index="13" data-volume="0.5"></audio>
-      <audio id="sfx-c4" src="assets/sfx/click2.ogg" data-start="7.72" data-duration="0.06" data-track-index="13" data-volume="0.5"></audio>
-      <audio id="sfx-win" src="assets/sfx/impactSoft_medium_001.ogg" data-start="8.67" data-duration="0.18" data-track-index="12" data-volume="0.7"></audio>
-      <audio id="sfx-logo" src="assets/sfx/impactSoft_heavy_001.ogg" data-start="13.55" data-duration="0.57" data-track-index="12" data-volume="0.8"></audio>
+      <audio id="vo" src="assets/audio/voiceover.mp3" data-start="1.7" data-duration="17.46" data-track-index="10" data-volume="1"></audio>
+      <audio id="music" src="assets/audio/music.mp3" data-start="0" data-duration="24.3" data-media-start="6.7" data-track-index="11" data-volume="1"
+        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.15,"v":0.55},{"t":1.5,"v":0.55},{"t":1.8,"v":0.3},{"t":19.2,"v":0.3},{"t":19.7,"v":0.75},{"t":23.5,"v":0.75},{"t":24.3,"v":0}]}]}'></audio>
+      <audio id="sfx-tick1" src="assets/sfx/click2.ogg" data-start="0.06" data-duration="0.055" data-track-index="14" data-volume="0.35"></audio>
+      <audio id="sfx-tick2" src="assets/sfx/click2.ogg" data-start="0.13" data-duration="0.055" data-track-index="14" data-volume="0.40"></audio>
+      <audio id="sfx-tick3" src="assets/sfx/click2.ogg" data-start="0.21" data-duration="0.055" data-track-index="14" data-volume="0.45"></audio>
+      <audio id="sfx-tick4" src="assets/sfx/click2.ogg" data-start="0.31" data-duration="0.055" data-track-index="14" data-volume="0.50"></audio>
+      <audio id="sfx-tick5" src="assets/sfx/click2.ogg" data-start="0.43" data-duration="0.055" data-track-index="14" data-volume="0.55"></audio>
+      <audio id="sfx-tick6" src="assets/sfx/click2.ogg" data-start="0.58" data-duration="0.055" data-track-index="14" data-volume="0.60"></audio>
+      <audio id="sfx-tick7" src="assets/sfx/click2.ogg" data-start="0.78" data-duration="0.055" data-track-index="14" data-volume="0.65"></audio>
+      <audio id="sfx-tick8" src="assets/sfx/click2.ogg" data-start="1.04" data-duration="0.055" data-track-index="14" data-volume="0.70"></audio>
+      <audio id="sfx-boom" src="assets/sfx/hook-countdown.mp3" data-start="1.15" data-duration="0.88" data-media-start="0" data-track-index="15" data-volume="1"></audio>
+      <audio id="sfx-hook" src="assets/sfx/impactSoft_heavy_003.ogg" data-start="3.5" data-duration="0.54" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-late" src="assets/sfx/impactSoft_medium_001.ogg" data-start="7" data-duration="0.18" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-c1" src="assets/sfx/click2.ogg" data-start="8.3" data-duration="0.06" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-c2" src="assets/sfx/click2.ogg" data-start="8.54" data-duration="0.06" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-c3" src="assets/sfx/click2.ogg" data-start="8.78" data-duration="0.06" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-c4" src="assets/sfx/click2.ogg" data-start="9.02" data-duration="0.06" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-win" src="assets/sfx/impactSoft_medium_001.ogg" data-start="9.97" data-duration="0.18" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-logo" src="assets/sfx/impactSoft_heavy_001.ogg" data-start="14.85" data-duration="0.57" data-track-index="12" data-volume="0.8"></audio>
     </div>
 
     <script>
       const V = {{IS_V}};
       const tl = gsap.timeline({ paused: true });
+      const st = gsap.timeline();
       const E = "expo.out";
-      tl.set("#sweep", { x: -260 }, 0);
+      st.set("#sweep", { x: -260 }, 0);
 
       // Révèle les mots (.w > i) d'un conteneur aux instants donnés (secondes, temps global).
       function words(sel, times, dur = 0.55) {
         const els = document.querySelectorAll(sel + " .w > i");
         els.forEach((el, k) => {
-          tl.fromTo(el, { yPercent: 150 }, { yPercent: 0, duration: dur, ease: E }, times[Math.min(k, times.length - 1)]);
+          st.fromTo(el, { yPercent: 150 }, { yPercent: 0, duration: dur, ease: E }, times[Math.min(k, times.length - 1)]);
         });
       }
       function sweep(t) {
-        tl.fromTo("#sweep", { x: -260 }, { x: {{W}} + 600, duration: 0.45, ease: "power2.inOut", immediateRender: false }, t - 0.2);
+        st.fromTo("#sweep", { x: -260 }, { x: {{W}} + 600, duration: 0.45, ease: "power2.inOut", immediateRender: false }, t - 0.2);
       }
       function exit(sel, t) {
-        tl.to(sel, { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.22, ease: "power2.in" }, t - 0.22);
+        st.to(sel, { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.22, ease: "power2.in" }, t - 0.22);
       }
       function count(n, t) {
         const prev = String(parseInt(n, 10) - 1).padStart(2, "0");
-        tl.fromTo("#c" + prev, { opacity: 1 }, { opacity: 0, duration: 0.01, immediateRender: false }, t);
-        tl.fromTo("#c" + n, { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: false }, t);
+        st.fromTo("#c" + prev, { opacity: 1 }, { opacity: 0, duration: 0.01, immediateRender: false }, t);
+        st.fromTo("#c" + n, { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: false }, t);
       }
 
       // Fond : dérive lente du halo
-      tl.fromTo("#halo", { x: V ? -120 : -360, y: V ? -380 : -120, scale: 0.9 }, { x: V ? 120 : 360, y: V ? 260 : 80, scale: 1.15, duration: 23, ease: "none" }, 0);
-      tl.fromTo("#halo2", { x: V ? 200 : 480, y: V ? 520 : 260, opacity: 0.5 }, { x: V ? -160 : -420, y: V ? -300 : -180, opacity: 1, duration: 23, ease: "none" }, 0);
-      tl.fromTo("#grid", { y: 0 }, { y: 120, duration: 23, ease: "none" }, 0);
-      tl.fromTo("#hud-inner", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.1);
-      tl.fromTo("#counter", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.1);
+      st.fromTo("#halo", { x: V ? -120 : -360, y: V ? -380 : -120, scale: 0.9 }, { x: V ? 120 : 360, y: V ? 260 : 80, scale: 1.15, duration: 24.3, ease: "none" }, 0);
+      st.fromTo("#halo2", { x: V ? 200 : 480, y: V ? 520 : 260, opacity: 0.5 }, { x: V ? -160 : -420, y: V ? -300 : -180, opacity: 1, duration: 24.3, ease: "none" }, 0);
+      st.fromTo("#grid", { y: 0 }, { y: 120, duration: 24.3, ease: "none" }, 0);
+      st.fromTo("#hud-inner", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.1);
+      st.fromTo("#counter", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.1);
 
       // S1 : calé sur la voix (+0.4 s)
-      words("#s1", [0.4, 0.72, 1.05, 1.39, 1.85, 2.01, 2.22]);
-      tl.fromTo("#today", { scale: 1.18 }, { scale: 1, duration: 0.6, ease: E }, 2.22);
-      tl.fromTo("#s1-ul", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: E }, 2.3);
+      words("#s1", [0.58, 0.72, 1.05, 1.39, 1.85, 2.01, 2.22]);
+      st.fromTo("#today", { scale: 1.18 }, { scale: 1, duration: 0.6, ease: E }, 2.22);
+      st.fromTo("#s1-ul", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: E }, 2.3);
       exit("#s1-in", 3.1);
 
       // S2
       sweep(3.1); count("02", 3.1);
-      tl.fromTo("#s2-eb", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 3.15);
-      tl.fromTo("#track", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: E }, 3.2);
+      st.fromTo("#s2-eb", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 3.15);
+      st.fromTo("#track", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: E }, 3.2);
       words("#s2 .big", [3.8, 4.11, 4.55, 5.06, 5.69], 0.5);
-      tl.fromTo("#fill", { scaleX: 0 }, { scaleX: 0.75, duration: 2.4, ease: "power1.inOut" }, 3.3);
+      st.fromTo("#fill", { scaleX: 0 }, { scaleX: 0.75, duration: 2.4, ease: "power1.inOut" }, 3.3);
       const tw = document.getElementById("track").offsetWidth;
-      tl.fromTo("#hdot", { x: 0 }, { x: tw * 0.75, duration: 2.4, ease: "power1.inOut" }, 3.3);
-      tl.fromTo("#late-note", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: E }, 5.7);
-      tl.fromTo("#ring", { scale: 1, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.8, ease: "power2.out" }, 5.7);
-      tl.fromTo("#n-late .dot", { scale: 1 }, { scale: 1.35, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, 5.7);
+      st.fromTo("#hdot", { x: 0 }, { x: tw * 0.75, duration: 2.4, ease: "power1.inOut" }, 3.3);
+      st.fromTo("#late-note", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: E }, 5.7);
+      st.fromTo("#ring", { scale: 1, opacity: 0.9 }, { scale: 3.2, opacity: 0, duration: 0.8, ease: "power2.out" }, 5.7);
+      st.fromTo("#n-late .dot", { scale: 1 }, { scale: 1.35, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, 5.7);
       exit("#s2-in", 6.75);
 
       // S3
       sweep(6.75); count("03", 6.75);
-      tl.fromTo("#s3-eb", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 6.8);
+      st.fromTo("#s3-eb", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 6.8);
       words("#s3 h2", [6.85, 7.55], 0.55);
       document.querySelectorAll("#cards .card").forEach((c, k) => {
-        tl.fromTo(c, { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: E }, 7.0 + k * 0.12);
-        tl.fromTo(c.querySelector(".bar"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: E }, 7.15 + k * 0.12);
+        st.fromTo(c, { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: E }, 7.0 + k * 0.12);
+        st.fromTo(c.querySelector(".bar"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: E }, 7.15 + k * 0.12);
       });
       // « pour vous » : la meilleure offre s'allume, les autres s'effacent
-      tl.to("#cards .card:not(.win)", { opacity: 0.28, duration: 0.3, ease: "power2.out" }, 8.67);
-      tl.fromTo("#win", { scale: 1 }, { scale: 1.08, duration: 0.4, ease: "back.out(2)" }, 8.67);
-      tl.fromTo("#win-glow", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 8.67);
-      tl.to("#win-bar", { backgroundColor: "#4cde80", duration: 0.3 }, 8.67);
-      tl.to("#win-tag", { opacity: 0, duration: 0.15 }, 8.67);
-      tl.fromTo("#win-best", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: E }, 8.72);
+      st.to("#cards .card:not(.win)", { opacity: 0.28, duration: 0.3, ease: "power2.out" }, 8.67);
+      st.fromTo("#win", { scale: 1 }, { scale: 1.08, duration: 0.4, ease: "back.out(2)" }, 8.67);
+      st.fromTo("#win-glow", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 8.67);
+      st.to("#win-bar", { backgroundColor: "#4cde80", duration: 0.3 }, 8.67);
+      st.to("#win-tag", { opacity: 0, duration: 0.15 }, 8.67);
+      st.fromTo("#win-best", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: E }, 8.72);
       exit("#s3-in", 9.45);
 
       // S4 : 19 % en comptage sur « Dix-neuf pour cent »
       sweep(9.45); count("04", 9.45);
-      tl.fromTo("#pct", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.5, ease: E }, 9.5);
+      st.fromTo("#pct", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.5, ease: E }, 9.5);
       const cnt = { v: 0 };
-      tl.to(cnt, { v: 19, duration: 0.55, ease: "power2.out", onUpdate: () => { document.getElementById("pct-n").textContent = Math.round(cnt.v); } }, 9.5);
-      tl.fromTo("#pct-l", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 9.95);
-      tl.fromTo("#stats", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 10.2);
+      st.to(cnt, { v: 19, duration: 0.55, ease: "power2.out", onUpdate: () => { document.getElementById("pct-n").textContent = Math.round(cnt.v); } }, 9.5);
+      st.fromTo("#pct-l", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 9.95);
+      st.fromTo("#stats", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, 10.2);
       exit("#s4-in", 11.65);
 
       // S5
       sweep(11.65); count("05", 11.65);
       words("#s5", [11.73, 11.9, 12.2, 12.36, 12.85], 0.45);
-      tl.fromTo("#s5-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: E }, 12.45);
+      st.fromTo("#s5-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: E }, 12.45);
       exit("#s5-in", 13.4);
-      tl.to("#hud-inner, #counter", { opacity: 0, duration: 0.25 }, 13.15);
+      st.to("#hud-inner, #counter", { opacity: 0, duration: 0.25 }, 13.15);
 
       // S6 : signature (« M&S Strategy » à 13.58)
-      tl.fromTo("#logo", { opacity: 0, scale: 0.86, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.8, ease: E }, 13.5);
+      st.fromTo("#logo", { opacity: 0, scale: 0.86, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.8, ease: E }, 13.5);
       words("#s6 .cta", [15.4], 0.6);
-      tl.fromTo("#pill", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 16.75);
-      tl.fromTo("#contact", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: E }, 17.6);
-      tl.fromTo("#tagline", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 18.1);
-      tl.to("#s6-in", { scale: 1.04, duration: 9, ease: "none" }, 13.5);
+      st.fromTo("#pill", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 16.75);
+      st.fromTo("#contact", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: E }, 17.6);
+      st.fromTo("#tagline", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 18.1);
+      st.to("#s6-in", { scale: 1.04, duration: 9, ease: "none" }, 13.5);
 
+      
+      // ---------- HOOK 0 → 1.95 s : compte à rebours de l'échéance ----------
+      (function () {
+        // Courbe de prix « électrocardiogramme du marché », pseudo-aléatoire mais déterministe
+        const W = {{W}}, H = {{H}};
+        let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+        const n = 46, base = V ? H * 0.72 : H * 0.78, top = V ? H * 0.30 : H * 0.18;
+        let d = "";
+        for (let k = 0; k <= n; k++) {
+          const x = -40 + (W + 80) * (k / n);
+          const trend = base - (base - top) * Math.pow(k / n, 1.6);
+          const jitter = (rnd() - 0.5) * (V ? 150 : 190) * (k % 5 === 0 ? 1.8 : 1);
+          d += (k ? " L" : "M") + x.toFixed(1) + " " + (trend + jitter).toFixed(1);
+        }
+        document.getElementById("hk-line").setAttribute("d", d);
+        document.getElementById("hk-line2").setAttribute("d", d);
+      })();
+      tl.fromTo("#hk-line, #hk-line2", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 1.35, ease: "power1.out" }, 0);
+      tl.fromTo("#hk-eb", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: E }, 0.05);
+      tl.fromTo("#hk-num", { scale: 0.92, filter: "blur(10px)" }, { scale: 1, filter: "blur(0px)", duration: 1.3, ease: "power3.in" }, 0.03);
+      const days = { d: 730 };
+      tl.fromTo(days, { d: 730 }, { d: 0, duration: 1.3, ease: "power2.out", onUpdate: () => {
+        document.getElementById("hk-val").textContent = Math.ceil(days.d - 0.001);
+      } }, 0.05);
+      // 1.35 s : J−0, tout bascule au rouge
+      tl.to("#hk-num", { color: "#e05555", duration: 0.08 }, 1.35);
+      tl.to("#hk-line", { stroke: "#e05555", duration: 0.15 }, 1.35);
+      tl.to("#hk-line2", { stroke: "rgba(224,85,85,0.45)", duration: 0.15 }, 1.35);
+      tl.to("#hk-eb", { color: "#e05555", duration: 0.08 }, 1.35);
+      tl.fromTo("#hk-num", { scale: 1 }, { scale: 1.16, duration: 0.18, ease: "back.out(3)", immediateRender: false }, 1.35);
+      tl.fromTo("#hk-flash", { opacity: 0 }, { opacity: 0.85, duration: 0.06 }, 1.35);
+      tl.to("#hk-flash", { opacity: 0, duration: 0.45, ease: "power2.out" }, 1.42);
+      [10, -9, 7, -5, 3, 0].forEach((x, k) => tl.to("#hk-shake", { x: x * (V ? 0.7 : 1), y: (k % 2 ? 4 : -4) * (k < 5 ? 1 : 0), duration: 0.035, ease: "none" }, 1.35 + k * 0.035));
+      // 1.6 s : plongée dans le « 0 », portail vers la phrase
+      tl.to("#hk-j", { opacity: 0, x: V ? -60 : -120, duration: 0.14, ease: "power2.in" }, 1.54);
+      tl.to("#hk-val", { x: V ? -135 : -182, duration: 0.2, ease: "power2.inOut" }, 1.5);
+      tl.to("#hk-val", { scale: 26, duration: 0.3, ease: "power2.in" }, 1.56);
+      tl.to("#hk-val", { opacity: 0, duration: 0.08, ease: "power1.in" }, 1.8);
+      tl.to("#hk-zoomfade", { opacity: 0, duration: 0.18, ease: "power1.in" }, 1.78);
+      tl.to("#hk-svg, #hk-eb", { opacity: 0, duration: 0.2 }, 1.58);
+      tl.fromTo("#hk-svg", { scale: 1 }, { scale: 1.25, duration: 0.4, ease: "power3.in", immediateRender: false }, 1.58);
+
+      tl.add(st, 1.3);
       window.__timelines["main"] = tl;
     </script>
   </body>
