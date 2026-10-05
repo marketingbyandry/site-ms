@@ -1,0 +1,912 @@
+{
+  "compteur-c4-tarif-hta-entreprise": {
+    "status": "done",
+    "toc": [
+      "Le compteur C4",
+      "Les entreprises concernées",
+      "La tarification HTA",
+      "La courbe de charge",
+      "Votre analyse gratuite"
+    ],
+    "tldr": [
+      {
+        "k": "Le principe",
+        "text": "Le compteur C4 télérelève la consommation au pas de dix minutes sur les sites raccordés en haute tension (HTA)."
+      },
+      {
+        "k": "Le levier",
+        "text": "Choisir l'option tarifaire adaptée au profil réel du site, et non celle souscrite au raccordement."
+      },
+      {
+        "k": "La donnée clé",
+        "text": "La courbe de charge révèle pics, sous-utilisation de la puissance et marges d'ajustement."
+      }
+    ],
+    "notes": [
+      {
+        "section": 0,
+        "quote": true,
+        "text": "elle expose aussi immédiatement toute anomalie de dimensionnement ou tout dépassement de puissance"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "Trop d'entreprises se contentent de recevoir cette courbe sans jamais l'exploiter"
+      }
+    ]
+  },
+  "courtier-en-energie-role": {
+    "status": "done",
+    "toc": [
+      "Un intermédiaire indépendant",
+      "Ses missions concrètes",
+      "Pourquoi ne pas négocier seul",
+      "Sa rémunération",
+      "Reconnaître un courtier sérieux",
+      "Les moments clés",
+      "Votre vérification gratuite"
+    ],
+    "tldr": [
+      {
+        "k": "Le rôle",
+        "text": "Un intermédiaire indépendant qui met les fournisseurs en concurrence pour vous ; il ne vend pas d'énergie."
+      },
+      {
+        "k": "Le coût",
+        "text": "Le plus souvent, une commission versée par le fournisseur retenu, sans frais direct pour l'entreprise."
+      },
+      {
+        "k": "Le bon réflexe",
+        "text": "Exiger indépendance, transparence sur la rémunération et un comparatif écrit et argumenté."
+      }
+    ],
+    "notes": [
+      {
+        "section": 0,
+        "quote": true,
+        "text": "le courtier ne vend pas d'énergie lui-même"
+      },
+      {
+        "section": 4,
+        "label": "Signal d'alerte",
+        "text": "Un courtier qui ne travaille qu'avec un seul fournisseur ne peut pas réellement mettre le marché en concurrence."
+      }
+    ]
+  },
+  "decrypter-facture-electricite-pro": {
+    "status": "done",
+    "toc": [
+      "Les blocs d'une facture",
+      "Négociable ou non",
+      "La formule tarifaire",
+      "Les pièges fréquents",
+      "Votre facture décryptée"
+    ],
+    "tldr": [
+      {
+        "k": "La structure",
+        "text": "Abonnement, consommation, acheminement (TURPE), taxes et TVA : toujours les mêmes blocs."
+      },
+      {
+        "k": "Le tri",
+        "text": "Seule la part fourniture se négocie ; TURPE et taxes sont identiques chez tous les fournisseurs."
+      },
+      {
+        "k": "Les pièges",
+        "text": "Puissance surdimensionnée, TVA incohérente, régularisation tardive, reconduction tacite."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "seule la part fourniture (le prix du kWh et l'abonnement associés) résulte d'un choix commercial du fournisseur"
+      },
+      {
+        "section": 3,
+        "label": "Première étape",
+        "text": "Vérifier que toutes les mentions obligatoires de la facture sont présentes et cohérentes."
+      }
+    ]
+  },
+  "mentions-obligatoires-facture-electricite-pro": {
+    "status": "done",
+    "toc": [
+      "Pourquoi ces mentions comptent",
+      "Contrat et site",
+      "Prix, consommation et taxes",
+      "En cas d'anomalie",
+      "Votre facture vérifiée"
+    ],
+    "tldr": [
+      {
+        "k": "L'enjeu",
+        "text": "Ces mentions permettent de vérifier ce que vous payez, poste par poste, et pas seulement le total."
+      },
+      {
+        "k": "À surveiller",
+        "text": "La puissance souscrite en kVA : mal reportée ou jamais réajustée, elle pèse sur chaque facture."
+      },
+      {
+        "k": "Le contrôle",
+        "text": "L'addition des lignes détaillées doit reconstituer exactement le montant final."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "une puissance souscrite mal reportée ou jamais réajustée depuis l'installation initiale peut peser inutilement sur le montant facturé chaque mois"
+      },
+      {
+        "section": 2,
+        "quote": true,
+        "text": "toute incohérence entre le détail et le total mérite une vérification approfondie"
+      }
+    ]
+  },
+  "prix-fixe-vs-indexe-electricite-pro": {
+    "status": "done",
+    "toc": [
+      "Les deux formules",
+      "Le prix fixe",
+      "Le prix indexé",
+      "Choisir selon votre profil",
+      "Votre analyse gratuite"
+    ],
+    "tldr": [
+      {
+        "k": "Prix fixe",
+        "text": "Le prix du kWh est figé sur toute la durée du contrat, généralement 1 à 3 ans : visibilité budgétaire maximale."
+      },
+      {
+        "k": "Prix indexé",
+        "text": "Le prix suit un indice de marché : il capte les baisses mais reste exposé aux hausses, souvent sans plafond."
+      },
+      {
+        "k": "Le critère",
+        "text": "Votre trésorerie et votre tolérance au risque comptent plus que la tendance du marché."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "le choix du calendrier de négociation compte autant que le choix de la formule elle-même"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "une formule fixe à un tarif surévalué reste une mauvaise affaire"
+      }
+    ]
+  },
+  "puissance-souscrite-entreprise-kva": {
+    "status": "done",
+    "toc": [
+      "Ce qu'est la puissance souscrite",
+      "Les risques d'un mauvais calibrage",
+      "Évaluer le bon niveau",
+      "Les sites à forte puissance",
+      "Votre vérification gratuite"
+    ],
+    "tldr": [
+      {
+        "k": "Ce qu'elle pèse",
+        "text": "La puissance en kVA sert de base à l'abonnement et au TURPE, quelle que soit votre consommation réelle."
+      },
+      {
+        "k": "Trop haute ou trop basse",
+        "text": "Surdimensionnée, elle gonfle chaque facture ; sous-dimensionnée, elle expose à des dépassements pénalisants."
+      },
+      {
+        "k": "La méthode",
+        "text": "Partir des pics de puissance appelée sur les douze derniers mois."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "un abonnement et un TURPE plus élevés que nécessaire, mois après mois, sans aucun bénéfice en contrepartie"
+      },
+      {
+        "section": 3,
+        "label": "Seuil à connaître",
+        "text": "Généralement à partir de 36 kVA : grille tarifaire, facturation et TVA sur l'abonnement changent."
+      }
+    ]
+  },
+  "resilier-contrat-electricite-entreprise": {
+    "status": "done",
+    "toc": [
+      "Un cadre propre aux pros",
+      "Les 4 étapes",
+      "Les pièges fréquents",
+      "Le bon moment, la bonne offre",
+      "Votre vérification gratuite"
+    ],
+    "tldr": [
+      {
+        "k": "Le cadre",
+        "text": "Engagement, préavis, reconduction tacite : rien n'est aussi libre que chez les particuliers."
+      },
+      {
+        "k": "L'ordre",
+        "text": "Sécuriser la nouvelle offre avant de résilier l'ancienne, sans aucune coupure de courant."
+      },
+      {
+        "k": "Le piège n°1",
+        "text": "Manquer la fenêtre de préavis, et repartir pour une durée parfois longue."
+      }
+    ],
+    "notes": [
+      {
+        "section": 0,
+        "quote": true,
+        "text": "ces pénalités peuvent représenter une part non négligeable de la facture restant à courir jusqu'à l'échéance initiale"
+      },
+      {
+        "section": 1,
+        "quote": true,
+        "text": "aucune coupure de courant n'intervient lors d'un changement de fournisseur, seule la facturation change de mains"
+      }
+    ]
+  },
+  "tarifs-horosaisonniers-electricite-pro": {
+    "status": "done",
+    "toc": [
+      "Le principe horosaisonnier",
+      "HPH, HCH, HPE, HCE",
+      "Les entreprises concernées",
+      "Décaler ses usages",
+      "Votre grille vérifiée"
+    ],
+    "tldr": [
+      {
+        "k": "Le principe",
+        "text": "Le prix du kWh change selon la saison et l'heure : les heures pleines d'hiver coûtent le plus cher."
+      },
+      {
+        "k": "Les 4 plages",
+        "text": "Heures pleines et creuses, en hiver et en été, plus parfois des jours de pointe mobile."
+      },
+      {
+        "k": "Le levier",
+        "text": "Décaler une partie des usages vers les heures creuses ; sans cela, la grille peut pénaliser."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "méritent d'être vérifiées précisément plutôt que supposées identiques d'une entreprise à l'autre"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "un tarif horosaisonnier mal choisi peut au contraire pénaliser une entreprise dont la consommation reste concentrée sur les heures pleines"
+      }
+    ]
+  },
+  "arenh-entreprise-fin-dispositif": {
+    "status": "done",
+    "toc": [
+      "L'ARENH en bref",
+      "La fin du dispositif",
+      "Les effets sur vos contrats",
+      "S'adapter",
+      "Votre exposition analysée"
+    ],
+    "tldr": [
+      {
+        "k": "Ce qui disparaît",
+        "text": "Un accès régulé à une part du nucléaire d'EDF, qui amortissait la volatilité du marché de gros."
+      },
+      {
+        "k": "L'effet",
+        "text": "Un prix du kWh plus sensible au marché et des écarts plus marqués entre fournisseurs."
+      },
+      {
+        "k": "La parade",
+        "text": "Soigner le moment de la négociation et comparer les offres sans attendre la dernière minute."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "une part plus importante de l'approvisionnement des fournisseurs dépendra directement des conditions de marché au moment de l'achat"
+      },
+      {
+        "section": 2,
+        "quote": true,
+        "text": "comparer plusieurs offres devient plus déterminant que jamais"
+      }
+    ]
+  },
+  "capn-contrat-nucleaire-long-terme": {
+    "status": "done",
+    "toc": [
+      "Le contrat CAPN",
+      "Ce qui change pour vous",
+      "Un mécanisme en stabilisation",
+      "Négocier votre contrat",
+      "Votre offre vérifiée"
+    ],
+    "tldr": [
+      {
+        "k": "Le principe",
+        "text": "Un contrat de long terme négocié entre EDF et chaque fournisseur, sur une part du parc nucléaire existant."
+      },
+      {
+        "k": "La différence",
+        "text": "Fini le tarif régulé unique de l'ARENH : les conditions varient d'un fournisseur à l'autre."
+      },
+      {
+        "k": "La règle",
+        "text": "Un CAPN mis en avant ne garantit pas une offre compétitive : seule une comparaison chiffrée tranche."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "la stratégie d'approvisionnement propre à chaque fournisseur, longtemps peu visible pour le client final, devient un facteur de différenciation plus déterminant"
+      },
+      {
+        "section": 2,
+        "quote": true,
+        "text": "Seule une comparaison chiffrée permet de trancher"
+      }
+    ]
+  },
+  "mecanisme-capacite-electricite-entreprise": {
+    "status": "done",
+    "toc": [
+      "À quoi sert le mécanisme",
+      "Son effet sur la facture",
+      "Le rôle de votre profil",
+      "Dans la comparaison des offres",
+      "Votre facture analysée"
+    ],
+    "tldr": [
+      {
+        "k": "Le but",
+        "text": "Garantir assez de puissance disponible lors des pics de consommation, notamment par grand froid."
+      },
+      {
+        "k": "Le piège",
+        "text": "Son coût est souvent fondu dans la part fourniture, sans ligne dédiée toujours explicite."
+      },
+      {
+        "k": "Le levier",
+        "text": "Consommer moins pendant les pointes nationales, en début de soirée l'hiver, réduit votre contribution."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "ce qui peut expliquer une partie des écarts observés entre deux offres apparemment similaires"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "il est facile de le perdre de vue lors d'une mise en concurrence fondée uniquement sur le prix du kWh affiché en tête d'offre"
+      }
+    ]
+  },
+  "prix-kwh-professionnel-2026": {
+    "status": "done",
+    "toc": [
+      "Ce qui compose le prix",
+      "Des prix très variables",
+      "Les causes des écarts",
+      "Payez-vous le juste prix ?",
+      "Votre prix vérifié"
+    ],
+    "tldr": [
+      {
+        "k": "4 composantes",
+        "text": "Fourniture, acheminement (TURPE), taxes et marge du fournisseur, seule variable réellement négociable."
+      },
+      {
+        "k": "Les écarts",
+        "text": "Moment de signature, formule, durée et profil horaire font fortement varier le prix."
+      },
+      {
+        "k": "La vérification",
+        "text": "Sans tarif réglementé de référence, seule la comparaison avec le marché actuel fait foi."
+      }
+    ],
+    "notes": [
+      {
+        "section": 0,
+        "quote": true,
+        "text": "Comprendre cette décomposition est la première étape pour identifier où se situent les marges de négociation possibles"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "Beaucoup d'entreprises reconduisent leur contrat sans vérifier si les conditions obtenues restent alignées avec le marché actuel"
+      }
+    ]
+  },
+  "prix-marche-gros-electricite": {
+    "status": "done",
+    "toc": [
+      "Le marché de gros",
+      "Des années de volatilité",
+      "Du marché à votre offre",
+      "La fin de l'ARENH",
+      "Votre contrat comparé"
+    ],
+    "tldr": [
+      {
+        "k": "Deux marchés",
+        "text": "Le spot pour le lendemain, le marché à terme pour les mois et années à venir, base des prix fixes."
+      },
+      {
+        "k": "La volatilité",
+        "text": "Nucléaire, prix du gaz, météo et demande industrielle font bouger les prix depuis 2021-2022."
+      },
+      {
+        "k": "Le timing",
+        "text": "À volume égal, la date de signature peut changer fortement votre facture."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "un contrat signé pendant une période de tension sur les marchés se traduit mécaniquement par un tarif plus élevé"
+      },
+      {
+        "section": 2,
+        "quote": true,
+        "text": "Deux entreprises consommant un volume identique peuvent se retrouver avec des factures très différentes selon la période à laquelle elles ont signé leur contrat"
+      }
+    ]
+  },
+  "vnu-2026-versement-nucleaire-universel": {
+    "status": "done",
+    "toc": [
+      "Un mécanisme de redistribution",
+      "Ce qui change pour vous",
+      "Une visibilité à consolider",
+      "VNU ou CAPN ?",
+      "Votre prix vérifié"
+    ],
+    "tldr": [
+      {
+        "k": "Le principe",
+        "text": "Un reversement mutualisé, financé par EDF quand les prix de marché dépassent certains seuils."
+      },
+      {
+        "k": "L'effet",
+        "text": "Plus indirect que l'ARENH : il dépend du marché et de la façon dont chaque fournisseur le répercute."
+      },
+      {
+        "k": "La vigilance",
+        "text": "Deux offres proches sur le papier peuvent intégrer le VNU de façon très différente."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "Avec le VNU, l'effet est plus indirect"
+      },
+      {
+        "section": 3,
+        "label": "À distinguer",
+        "text": "Le CAPN est un contrat de long terme ; le VNU, une redistribution mutualisée. Les deux peuvent coexister dans une même offre."
+      }
+    ]
+  },
+  "accise-electricite-gaz-2026": {
+    "status": "done",
+    "toc": [
+      "Ce qu'est l'accise",
+      "Une trajectoire qui évolue",
+      "Des taux selon votre profil",
+      "Pourquoi la vérifier",
+      "Votre facture vérifiée"
+    ],
+    "tldr": [
+      {
+        "k": "La taxe",
+        "text": "L'accise (ex-TICFE pour l'électricité, ex-TICGN pour le gaz) s'applique à chaque kWh, sans contrepartie de service."
+      },
+      {
+        "k": "Les taux",
+        "text": "Taux de droit commun pour la plupart des PME ; taux réduits pour certains profils électro- ou gazo-intensifs."
+      },
+      {
+        "k": "Le contrôle",
+        "text": "Non négociable, mais son application correcte se vérifie à chaque échéance."
+      }
+    ],
+    "notes": [
+      {
+        "section": 0,
+        "quote": true,
+        "text": "l'accise est une taxe pure, sans contrepartie de service"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "une erreur de classification peut se traduire par une application incorrecte du taux, dans un sens comme dans l'autre"
+      }
+    ]
+  },
+  "turpe-2026-professionnels": {
+    "status": "done",
+    "toc": [
+      "Ce qu'est le TURPE",
+      "Pourquoi il évolue",
+      "Son poids sur la facture",
+      "Les leviers d'optimisation",
+      "Votre facture vérifiée"
+    ],
+    "tldr": [
+      {
+        "k": "Le principe",
+        "text": "Le TURPE rémunère les réseaux ; fixé par la CRE, il est identique quel que soit le fournisseur."
+      },
+      {
+        "k": "L'évolution",
+        "text": "Révisé en général chaque 1er août, il suit sa propre trajectoire, indépendante du marché de gros."
+      },
+      {
+        "k": "Les leviers",
+        "text": "Ajuster la puissance souscrite et choisir l'option tarifaire adaptée à votre rythme de consommation."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "Une entreprise qui négocie agressivement sa part fourniture peut ainsi voir une partie de ses économies rognées par une hausse du TURPE"
+      },
+      {
+        "section": 2,
+        "quote": true,
+        "text": "la puissance souscrite influence directement le montant du TURPE payé, indépendamment de la consommation réelle"
+      }
+    ]
+  },
+  "tva-electricite-professionnelle": {
+    "status": "done",
+    "toc": [
+      "Les taux applicables",
+      "Une distinction mal comprise",
+      "La récupération de TVA",
+      "Un exemple chiffré",
+      "Le lien avec le reste",
+      "Votre facture vérifiée"
+    ],
+    "ctaSlots": {
+      "soft": 1,
+      "strong": 3
+    },
+    "tldr": [
+      {
+        "k": "Deux taux",
+        "text": "5,5 % sur l'abonnement jusqu'à 36 kVA, 20 % sur la consommation."
+      },
+      {
+        "k": "Au-delà de 36 kVA",
+        "text": "Toute la facture, abonnement compris, passe au taux normal de 20 %."
+      },
+      {
+        "k": "Pour qui c'est un coût",
+        "text": "Récupérable pour la plupart des entreprises ; un coût réel pour les structures non assujetties."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "Vérifier que le bon taux est appliqué sur chaque ligne de la facture fait partie des points de contrôle basiques"
+      },
+      {
+        "section": 3,
+        "label": "L'exemple en bref",
+        "text": "À 12 kVA : 110,48 € de TVA par mois. Au-delà de 36 kVA : 117 € sur la même base."
+      }
+    ]
+  },
+  "statut-electro-intensif-turpe-industrie": {
+    "status": "done",
+    "toc": [
+      "Le statut électro-intensif",
+      "Les avantages tarifaires",
+      "Les conditions",
+      "La vigilance sur le reste",
+      "Votre structure tarifaire"
+    ],
+    "tldr": [
+      {
+        "k": "Le statut",
+        "text": "Réservé aux industriels dont l'électricité pèse sur la compétitivité, selon des critères réglementaires précis."
+      },
+      {
+        "k": "L'avantage",
+        "text": "Une réduction du TURPE pour les profils à utilisation élevée et stable de la puissance souscrite."
+      },
+      {
+        "k": "La limite",
+        "text": "Il ne touche pas la part fourniture, qui reste à négocier séparément."
+      }
+    ],
+    "notes": [
+      {
+        "section": 2,
+        "label": "Preuve à fournir",
+        "text": "Des données de comptage précises, sur une durée suffisante, issues du comptage télérelevé du site."
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "Une entreprise peut ainsi bénéficier d'un TURPE optimisé tout en payant, sur le reste de sa facture, un prix du kWh nettement supérieur à ce que le marché permettrait d'obtenir"
+      }
+    ]
+  },
+  "achat-groupe-energie-pme-franchises": {
+    "status": "done",
+    "toc": [
+      "Le principe",
+      "L'intérêt pour les franchises",
+      "Les limites",
+      "Groupé ou individualisé",
+      "Votre situation comparée"
+    ],
+    "tldr": [
+      {
+        "k": "Le principe",
+        "text": "Regrouper les volumes de plusieurs entités pour peser davantage face aux fournisseurs."
+      },
+      {
+        "k": "La limite",
+        "text": "Des profils hétérogènes et un contrat collectif figé peuvent desservir certains sites."
+      },
+      {
+        "k": "L'alternative",
+        "text": "Un accompagnement site par site, coordonné au niveau du siège."
+      }
+    ],
+    "notes": [
+      {
+        "section": 2,
+        "quote": true,
+        "text": "un contrat groupé mal structuré peut figer l'ensemble des franchisés sur une durée ou une formule tarifaire qui ne convient plus à certains d'entre eux"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "l'essentiel reste de comparer régulièrement les conditions obtenues avec celles disponibles sur le marché"
+      }
+    ]
+  },
+  "energie-reseau-franchise-multisites": {
+    "status": "done",
+    "toc": [
+      "Le défi multi-sites",
+      "Contrat unique ou séparé",
+      "Harmoniser sans uniformiser",
+      "Piloter par la donnée",
+      "Votre parc analysé"
+    ],
+    "tldr": [
+      {
+        "k": "Le constat",
+        "text": "Une mosaïque de contrats signés à des dates et conditions différentes, sans vision consolidée."
+      },
+      {
+        "k": "La méthode",
+        "text": "Harmoniser critères et calendrier au siège, garder un contrat adapté à chaque site."
+      },
+      {
+        "k": "Le premier chantier",
+        "text": "Un tableau de bord : fournisseur, échéance et prix du kWh, site par site."
+      }
+    ],
+    "notes": [
+      {
+        "section": 2,
+        "quote": true,
+        "text": "harmoniser la méthode plutôt que le contrat lui-même"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "Sans une consolidation minimale des données de consommation et de facturation de chaque site, aucune décision éclairée n'est possible au niveau du siège"
+      }
+    ]
+  },
+  "consommation-energie-restaurant": {
+    "status": "done",
+    "toc": [
+      "Où part l'énergie",
+      "Les gestes immédiats",
+      "Le contrat de fourniture",
+      "Les investissements",
+      "La saisonnalité",
+      "Votre contrat vérifié"
+    ],
+    "tldr": [
+      {
+        "k": "Le poids",
+        "text": "L'énergie figure souvent parmi les trois premiers postes de charges, après le loyer et la masse salariale."
+      },
+      {
+        "k": "Les postes",
+        "text": "La cuisine concentre souvent 40 à 50 % de la consommation ; le froid tourne sans interruption."
+      },
+      {
+        "k": "Le levier rapide",
+        "text": "Vérifier le contrat : puissance, option tarifaire et saisonnalité propres à la restauration."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "label": "Bon à savoir",
+        "text": "Chaque degré de moins dans une chambre froide fait grimper la consommation de 3 à 5 %."
+      },
+      {
+        "section": 2,
+        "quote": true,
+        "text": "une puissance mal calibrée entraîne des pénalités de dépassement récurrentes, notamment lors des coups de feu en cuisine"
+      }
+    ]
+  },
+  "economies-energie-boulangerie": {
+    "status": "done",
+    "toc": [
+      "Le four",
+      "Le froid et les vitrines",
+      "Chauffage, éclairage, fermentation",
+      "Les heures creuses la nuit",
+      "Le contrat de fourniture",
+      "Votre comparatif gratuit"
+    ],
+    "tldr": [
+      {
+        "k": "Poste n°1",
+        "text": "Le four, dont la consommation dépend du préchauffage, de l'isolation et des ouvertures de porte."
+      },
+      {
+        "k": "Poste n°2",
+        "text": "Le froid, qui tourne 24 heures sur 24 et dérive vite sans entretien."
+      },
+      {
+        "k": "Le levier caché",
+        "text": "Aligner les heures creuses du contrat sur vos horaires de production nocturne."
+      }
+    ],
+    "notes": [
+      {
+        "section": 0,
+        "quote": true,
+        "text": "regrouper les fournées pour limiter les cycles de préchauffage"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "Une vérification ponctuelle de cette adéquation, souvent négligée, peut à elle seule générer des économies sans aucun changement d'équipement ni de comportement"
+      }
+    ]
+  },
+  "economies-energie-hotellerie": {
+    "status": "done",
+    "toc": [
+      "Un profil en continu",
+      "La gestion technique du bâtiment",
+      "Obligations et audit",
+      "Saisonnalité et contrat",
+      "Le contrat d'énergie",
+      "Votre facture analysée"
+    ],
+    "tldr": [
+      {
+        "k": "Le profil",
+        "text": "Chauffage, climatisation et eau chaude tournent 24 heures sur 24, au rythme de l'occupation."
+      },
+      {
+        "k": "Le levier technique",
+        "text": "Une GTB qui adapte chauffage et climatisation au taux d'occupation réel des chambres."
+      },
+      {
+        "k": "Le levier immédiat",
+        "text": "Comparer le contrat de fourniture, sans investissement ni délai de mise en œuvre."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "Une chambre inoccupée n'a pas besoin d'être chauffée ou climatisée au même niveau qu'une chambre occupée"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "un contrat fixe sécurise le budget mais ne tient pas compte des variations de consommation"
+      }
+    ]
+  },
+  "electricite-clinique-hopital-ehpad": {
+    "status": "done",
+    "toc": [
+      "Un profil hors norme",
+      "Décret tertiaire et contraintes",
+      "Le pilotage technique",
+      "Le contrat de fourniture",
+      "Votre budget sécurisé"
+    ],
+    "tldr": [
+      {
+        "k": "La contrainte",
+        "text": "Une consommation continue et élevée, sans creux la nuit ni le week-end."
+      },
+      {
+        "k": "La règle d'or",
+        "text": "Économiser sans jamais toucher aux espaces à exigence sanitaire stricte."
+      },
+      {
+        "k": "Le levier sans risque",
+        "text": "Vérifier le contrat de fourniture, sans aucune conséquence sur la continuité des soins."
+      }
+    ],
+    "notes": [
+      {
+        "section": 1,
+        "quote": true,
+        "text": "priorité constante donnée à la sécurité des soins sur toute mesure d'économie"
+      },
+      {
+        "section": 3,
+        "quote": true,
+        "text": "ces éléments méritent une attention au moins équivalente à celle portée aux investissements techniques"
+      }
+    ]
+  },
+  "energie-collectivites-marches-publics": {
+    "status": "done",
+    "toc": [
+      "Acheter autrement",
+      "TURPE et fiscalité",
+      "Se faire accompagner",
+      "Les groupements de commandes",
+      "Vos contrats comparés"
+    ],
+    "tldr": [
+      {
+        "k": "La règle",
+        "text": "L'achat d'énergie reste soumis au Code de la commande publique : une consultation est obligatoire."
+      },
+      {
+        "k": "Le levier oublié",
+        "text": "Calibrer la puissance souscrite de chaque bâtiment du patrimoine."
+      },
+      {
+        "k": "L'option",
+        "text": "Rejoindre un groupement de commandes, souvent pertinent pour les petites communes."
+      }
+    ],
+    "notes": [
+      {
+        "section": 0,
+        "quote": true,
+        "text": "une collectivité ne peut pas simplement signer un contrat de gré à gré avec un fournisseur"
+      },
+      {
+        "section": 2,
+        "label": "Ce que fait le courtier",
+        "text": "Il sécurise le volet technique et tarifaire ; la procédure de marché public reste portée par la collectivité."
+      }
+    ]
+  }
+}

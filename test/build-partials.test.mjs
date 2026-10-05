@@ -34,9 +34,15 @@ test('toutes les pages sont synchronisées avec partials/ et data/site.json', ()
 });
 
 test('les templates d\'articles embarquent les blocs partagés', () => {
-  for (const tpl of ['blog-article-template.html', 'barometre-article-template.html']) {
+  // Le gabarit v2 n'a volontairement pas de bouton flottant (CTA intercalés à la place).
+  const expected = {
+    'blog-article-template.html': ['floating-cta', 'cta-reassure'],
+    'barometre-article-template.html': ['floating-cta', 'cta-reassure'],
+    'blog-article-v2-template.html': ['cta-reassure'],
+  };
+  for (const [tpl, names] of Object.entries(expected)) {
     const html = readFileSync(path.join(ROOT, 'templates', tpl), 'utf8');
-    for (const name of ['floating-cta', 'cta-reassure']) {
+    for (const name of names) {
       assert.match(html, new RegExp(`<!-- partial:${name} -->`), `${tpl} : ${name}`);
     }
   }

@@ -71,10 +71,11 @@ nav {
 .nav-logo { display: flex; align-items: center; }
 .nav-logo img { height: 26px; width: auto; display: block; }
 .nav-cta {
-  font-family: 'Satoshi', sans-serif; font-size: .72rem; font-weight: 700;
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;
   padding: .5rem 1.2rem; border: 1px solid var(--green);
-  color: var(--green); text-decoration: none; border-radius: 2px;
+  color: var(--green); text-decoration: none; border-radius: 0;
   transition: background .2s, color .2s;
 }
 .nav-cta:hover { background: var(--green); color: var(--dark); }
@@ -97,15 +98,15 @@ nav {
   margin-bottom: 2rem;
 }
 .meta-tag {
-  font-family: 'Satoshi', sans-serif; font-size: .65rem; font-weight: 700;
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
   color: var(--teal-light);
   background: rgba(43,181,200,.1);
   border: 1px solid rgba(43,181,200,.2);
-  padding: .28rem .75rem; border-radius: 2px;
+  padding: .28rem .85rem; border-radius: 999px;
 }
 .meta-read { font-size: .8rem; color: var(--muted); }
-.meta-read::before { content: '⏱ '; opacity: .6; }
+.meta-read { display: inline-flex; align-items: center; gap: .4rem; }
 
 .hero-title {
   font-family: 'Instrument Serif', serif; font-weight: 400;
@@ -149,7 +150,7 @@ a.ilink:hover { border-bottom-color: var(--teal-light); }
 .callout {
   background: linear-gradient(135deg, rgba(13,79,92,.4), rgba(26,122,138,.15));
   border: 1px solid rgba(43,181,200,.2);
-  border-radius: 4px; padding: 2rem;
+  border-radius: 0; padding: 2rem;
   margin: 2.5rem 0;
 }
 .callout-title {
@@ -162,7 +163,7 @@ a.ilink:hover { border-bottom-color: var(--teal-light); }
 .cta-section {
   background: linear-gradient(135deg, var(--teal-deep), rgba(10,26,31,.95));
   border: 1px solid rgba(43,181,200,.15);
-  border-radius: 6px; padding: 3rem 2.5rem;
+  border-radius: 0; padding: 3rem 2.5rem;
   margin: 4rem 0; text-align: center;
 }
 .cta-title {
@@ -175,27 +176,12 @@ a.ilink:hover { border-bottom-color: var(--teal-light); }
   background: var(--green); color: var(--dark);
   font-family: 'Satoshi', sans-serif; font-weight: 800;
   font-size: .9rem; letter-spacing: .04em;
-  padding: 1rem 2.5rem; border-radius: 2px; text-decoration: none;
+  padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none;
   transition: transform .15s, box-shadow .2s;
 }
 .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(76,222,128,.3); }
+.cta-section .cta-btn { font-weight: 500; letter-spacing: .02em; }
 .cta-reassure { margin-top: 1rem; font-size: .75rem; color: var(--muted); }
-
-/* ── FLOATING CTA ── */
-.floating-cta {
-  position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
-  opacity: 0; transform: translateY(12px);
-  transition: opacity .3s, transform .3s;
-  pointer-events: none;
-}
-.floating-cta.visible { opacity: 1; transform: none; pointer-events: all; }
-.floating-cta a {
-  display: flex; align-items: center; gap: .6rem;
-  background: var(--green); color: var(--dark);
-  font-family: 'Satoshi', sans-serif; font-weight: 800; font-size: .8rem;
-  padding: .85rem 1.4rem; border-radius: 3px; text-decoration: none;
-  box-shadow: 0 8px 28px rgba(0,0,0,.4);
-}
 
 /* ── FOOTER ── */
 footer {
@@ -207,11 +193,172 @@ footer p { color: var(--muted); font-size: .82rem; line-height: 1.8; }
 footer a { color: var(--teal-bright); text-decoration: none; }
 
 /* ── REVEAL ── */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .4s ease-out, transform .4s ease-out; }
 .reveal.visible { opacity: 1; transform: none; }
 
-@media (max-width: 640px) {
-  .floating-cta { bottom: 1rem; right: 1rem; }
+/* ══ LAYOUT V2 (éditorial : sommaire + colonne de lecture + marge) ══ */
+:root { --rail: 250px; --note: 230px; --line: rgba(43,181,200,.16); --panel: rgba(13,32,40,.72); --warn: #ffcf7a; }
+.hero { max-width: 1320px; }
+.v2-layout {
+  max-width: 1320px; margin: 0 auto; padding: 0 5vw 6rem;
+  display: grid; grid-template-columns: minmax(0, 1fr);
+}
+.v2-main { min-width: 0; max-width: var(--body-max); margin: 0 auto; width: 100%; }
+.v2-section { scroll-margin-top: 6rem; }
+
+.svg-ico { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Accessibilité : lien d'évitement, cibles tactiles, focus, ancres sous le menu fixe */
+.skip-link { position: absolute; left: 1rem; top: -100px; z-index: 300; background: var(--green); color: var(--dark); padding: .8rem 1.2rem; font-weight: 700; text-decoration: none; }
+.skip-link:focus { top: 1rem; }
+.hit { position: relative; }
+.hit::after { content: ''; position: absolute; inset: -13px -4px; }
+#cta, #contenu { scroll-margin-top: 6rem; }
+.v2-section > p { max-width: 68ch; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Sommaire */
+.toc { margin: 0 0 1rem; border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.toc summary {
+  cursor: pointer; list-style: none; padding: .9rem 1.1rem; min-height: 44px;
+  font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.toc summary::-webkit-details-marker { display: none; }
+.toc summary::after { content: '+'; font-size: 1.1rem; color: var(--muted); }
+.toc[open] summary::after { content: '−'; }
+.toc ol { list-style: none; margin: 0; padding: 0 1.1rem 1rem; counter-reset: toc; color: inherit; }
+.toc li { margin: 0; counter-increment: toc; }
+.toc a {
+  display: flex; gap: .7rem; padding: .5rem 0; min-height: 44px; align-items: center;
+  color: var(--muted); text-decoration: none; font-size: .88rem; line-height: 1.35;
+  transition: color .2s;
+}
+.toc a::before { content: counter(toc, decimal-leading-zero); font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.toc a:hover, .toc a.is-active { color: var(--cream); }
+.toc a.is-active::before { color: var(--green); }
+.toc-progress { height: 2px; background: rgba(43,181,200,.12); margin: 0 1.1rem 1rem; border-radius: 0; overflow: hidden; }
+.toc-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--teal-mid), var(--green)); }
+
+/* L'essentiel en 30 secondes */
+.tldr { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: 0; }
+.tldr-item { background: var(--dark2); padding: 1.3rem 1.4rem; }
+.tldr-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal-light); margin-bottom: .5rem; }
+.tldr-item p { margin: 0; font-size: .95rem; line-height: 1.55; color: var(--cream); }
+
+/* Notes de marge (en ligne sur mobile) */
+.note { border-left: 2px solid var(--green); padding: .3rem 0 .3rem 1.1rem; margin: 0 0 1.6rem; }
+.note-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.note p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--muted); }
+.note.quote p { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.3rem; line-height: 1.3; color: var(--cream); }
+
+/* Module : la partie immergée du prix */
+.iceberg { border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: .6rem 0 2.2rem; background: var(--panel); }
+.iceberg-top { padding: 1.4rem 1.5rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.iceberg-top .lbl { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.iceberg-top .big { font-family: 'Instrument Serif', serif; font-size: 1.9rem; line-height: 1; color: var(--cream); }
+.waterline { display: flex; align-items: center; gap: .8rem; padding: 0 1.5rem; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.waterline::before, .waterline::after { content: ''; flex: 1; border-top: 1px dashed rgba(94,207,220,.45); }
+.iceberg-list { list-style: none; margin: 0; padding: 1rem 1.5rem 1.4rem; display: grid; gap: .55rem; background: linear-gradient(180deg, rgba(13,79,92,.18), rgba(13,79,92,.42)); color: inherit; }
+.iceberg-list li { margin: 0; display: flex; justify-content: space-between; gap: 1rem; font-size: .93rem; color: var(--cream); }
+.iceberg-list .tag { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; align-self: center; }
+
+/* Module : 5 critères en cartes */
+.criteria { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); color: inherit; }
+.criteria li { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 0; padding: 1.4rem; display: flex; flex-direction: column; gap: .7rem; transition: border-color .2s; }
+.criteria li:hover { border-color: rgba(94,207,220,.4); }
+.criteria .head { display: flex; align-items: center; gap: .75rem; color: var(--teal-light); }
+.criteria .n { margin-left: auto; font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.criteria h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); line-height: 1.3; }
+.criteria p { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--muted); }
+
+/* CTA intercalés */
+.cta-inline {
+  margin: 2.8rem 0; border-radius: 0; padding: 1.8rem;
+  border: 1px solid rgba(76,222,128,.28);
+  background: linear-gradient(120deg, rgba(76,222,128,.07), rgba(13,79,92,.35));
+  display: grid; gap: 1.4rem; align-items: center;
+}
+.cta-inline .eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.cta-inline .t { font-family: 'Instrument Serif', serif; font-size: 1.55rem; line-height: 1.15; color: var(--cream); margin-bottom: .5rem; }
+.cta-inline .s { font-size: .93rem; color: var(--muted); margin: 0; line-height: 1.55; }
+.cta-inline .actions { display: flex; flex-direction: column; gap: .7rem; align-items: flex-start; }
+.cta-inline .cta-btn { padding: .95rem 1.8rem; }
+.cta-btn--ghost { background: transparent; color: var(--green); border: 1px solid var(--green); }
+.cta-btn--ghost:hover { background: var(--green); color: var(--dark); }
+.cta-inline .alt { font-size: .82rem; color: var(--teal-light); }
+.cta-inline .micro { font-size: .75rem; color: var(--muted); }
+.steps { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; color: inherit; counter-reset: st; }
+.steps li { margin: 0; counter-increment: st; display: flex; gap: .7rem; align-items: baseline; font-size: .9rem; color: var(--cream); }
+.steps li::before { content: counter(st); flex: none; width: 1.5rem; height: 1.5rem; border-radius: 50%; display: inline-grid; place-items: center; font-size: .75rem; font-weight: 700; color: var(--dark); background: var(--green); }
+.cta-btn:focus-visible, .toc a:focus-visible, .toc summary:focus-visible, a.ilink:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Module : exemple chiffré A vs B */
+.versus { display: grid; gap: 1rem; margin: .6rem 0 1rem; }
+.offer { border: 1px solid var(--line); border-radius: 0; background: var(--panel); padding: 1.4rem 1.5rem; }
+.offer.win { border-color: rgba(76,222,128,.5); }
+.offer-h { display: flex; justify-content: space-between; align-items: center; gap: .8rem; margin-bottom: .6rem; }
+.offer-h strong { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.badge { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; white-space: nowrap; }
+.badge.trap { color: var(--warn); border: 1px solid rgba(255,207,122,.4); }
+.badge.ok { color: var(--green); border: 1px solid rgba(76,222,128,.45); }
+.offer table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.offer caption { text-align: left; font-size: .8rem; color: var(--muted); padding-bottom: .4rem; }
+.offer th, .offer td { padding: .5rem 0; border-bottom: 1px solid rgba(43,181,200,.1); text-align: left; font-weight: 400; color: var(--muted); }
+.offer td { text-align: right; color: var(--cream); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.offer tr.hidden-cost th, .offer tr.hidden-cost td { color: var(--warn); }
+.offer tr.total th, .offer tr.total td { border-bottom: 0; padding-top: .9rem; font-weight: 700; color: var(--cream); font-size: 1rem; }
+.verdict { display: flex; gap: 1.2rem; align-items: center; border-radius: 0; padding: 1.1rem 1.4rem; background: rgba(255,207,122,.07); border: 1px solid rgba(255,207,122,.3); margin-bottom: 1.6rem; }
+.verdict .big { font-family: 'Instrument Serif', serif; font-size: 2rem; line-height: 1; color: var(--warn); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.verdict p { margin: 0; font-size: .93rem; color: var(--cream); line-height: 1.5; }
+
+/* Module : calendrier */
+.timeline { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; color: inherit; }
+.timeline li { margin: 0; display: grid; grid-template-columns: 1.2rem 1fr; gap: 1rem; padding-bottom: 1.4rem; position: relative; }
+.timeline li::before { content: ''; width: 12px; height: 12px; border-radius: 50%; margin-top: .3rem; background: var(--dot); box-shadow: 0 0 0 4px rgba(43,181,200,.12); }
+.timeline li:not(:last-child)::after { content: ''; position: absolute; left: 5px; top: 1.2rem; bottom: 0; width: 2px; background: var(--line); }
+.timeline .when { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dot); }
+.timeline h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); margin: .2rem 0 .3rem; line-height: 1.3; }
+.timeline p { margin: 0; font-size: .9rem; color: var(--muted); line-height: 1.55; }
+.meter { display: flex; align-items: center; gap: .7rem; margin-top: .6rem; font-size: .75rem; color: var(--muted); }
+.meter i { flex: 0 0 120px; height: 4px; border-radius: 0; background: rgba(43,181,200,.14); overflow: hidden; }
+.meter b { display: block; height: 100%; background: var(--dot); }
+
+@media (min-width: 720px) {
+  .tldr { grid-template-columns: repeat(3, 1fr); }
+  .versus { grid-template-columns: 1fr 1fr; }
+  .cta-inline { grid-template-columns: minmax(0, 1fr) auto; padding: 2rem 2.2rem; }
+  .cta-inline .actions { align-items: flex-end; text-align: right; }
+}
+
+/* ≥ 1024px : rail collant à gauche (bande photo + sommaire) */
+@media (min-width: 1024px) {
+  .v2-layout { grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: 3.5rem; }
+  .v2-main { max-width: var(--body-max); margin: 0; }
+  .v2-rail {
+    position: sticky; top: 6rem; align-self: start; margin-top: 3.4rem;
+  }
+  .toc { margin: 0; background: transparent; border: 0; }
+  .toc summary { pointer-events: none; padding: 0 0 .6rem; min-height: 0; }
+  .toc summary::after, .toc[open] summary::after { content: none; }
+  .toc ol { padding: 0; }
+  .toc-progress { margin: 0 0 .6rem; }
+}
+
+/* ≥ 1320px : marge éditoriale à droite, modules pleine largeur */
+@media (min-width: 1320px) {
+  .v2-main { max-width: none; }
+  .v2-section { display: grid; grid-template-columns: minmax(0, 1fr) var(--note); column-gap: 3rem; align-items: start; }
+  .v2-section > * { grid-column: 1; }
+  .v2-section > .wide { grid-column: 1 / -1; }
+  .v2-section > .note { grid-column: 2; grid-row: span 3; margin-top: .4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cta-btn, .criteria li, .toc a { transition: none; }
+  .cta-btn:hover { transform: none; }
 }
 </style>
 <link rel="canonical" href="https://cabinetms.fr/tva-electricite-professionnelle.html">
@@ -263,6 +410,7 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 <div id="progress-bar"></div>
 
 <nav>
@@ -270,73 +418,157 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#cta" class="nav-cta">Étude gratuite →</a>
 </nav>
 
+<!-- gabarit:v2 — généré par scripts/build-seo-articles.mjs depuis data/articles-v2.json -->
+<main id="contenu">
 <article>
   <header class="hero">
-    <div class="photo-ph article-banner"></div>
     <div class="article-meta">
-      <a href="blog.html" class="meta-tag" style="text-decoration:none">← Tous les articles</a>
+      <a href="blog.html" class="meta-tag hit" style="text-decoration:none">← Tous les articles</a>
       <span class="meta-tag">Réglementation &amp; fiscalité</span>
-      <span class="meta-read">4 min de lecture</span>
+      <span class="meta-read"><svg class="svg-ico" style="width:15px;height:15px" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>4 min de lecture</span>
     </div>
-    <h1 class="hero-title">TVA électricité professionnelle : quel taux s'applique et comment le vérifier</h1>
-    <p class="hero-intro">Sur une facture d'électricité professionnelle, la ligne TVA électricité professionnelle mérite une attention particulière : contrairement à une idée répandue, plusieurs taux peuvent s'appliquer selon la puissance souscrite et la nature de l'abonnement, avec des conséquences directes sur le montant réellement dû.</p>
+    <h1 class="hero-title">TVA électricité professionnelle&nbsp;: quel taux s'applique et comment le vérifier</h1>
+    <p class="hero-intro">Sur une facture d'électricité professionnelle, la ligne TVA électricité professionnelle mérite une attention particulière&nbsp;: contrairement à une idée répandue, plusieurs taux peuvent s'appliquer selon la puissance souscrite et la nature de l'abonnement, avec des conséquences directes sur le montant réellement dû.</p>
+
+    <div class="tldr" role="list" aria-label="L'essentiel en 30 secondes">
+      <div class="tldr-item" role="listitem"><span class="tldr-k">Deux taux</span><p>5,5&nbsp;% sur l'abonnement jusqu'à 36&nbsp;kVA, 20&nbsp;% sur la consommation.</p></div>
+      <div class="tldr-item" role="listitem"><span class="tldr-k">Au-delà de 36&nbsp;kVA</span><p>Toute la facture, abonnement compris, passe au taux normal de 20&nbsp;%.</p></div>
+      <div class="tldr-item" role="listitem"><span class="tldr-k">Pour qui c'est un coût</span><p>Récupérable pour la plupart des entreprises&nbsp;; un coût réel pour les structures non assujetties.</p></div>
+    </div>
   </header>
 
-  <div class="article-body">
+  <div class="v2-layout">
 
-    <h2>Les taux applicables selon la puissance souscrite</h2>
-
-    <p>La TVA sur l'électricité professionnelle distingue deux composantes de la facture, chacune pouvant relever d'un taux différent :</p>
-
-    <ul class="checklist">
-      <li>la <strong>part abonnement</strong> bénéficie du taux réduit de 5,5 % lorsque la puissance souscrite est inférieure ou égale à 36 kVA, ce seuil correspondant généralement aux petites et moyennes structures (commerces, bureaux, petites entreprises artisanales) ;</li>
-      <li>la <strong>part consommation</strong> (le kWh consommé) est en revanche soumise au taux normal de 20 %, quelle que soit la puissance souscrite.</li>
-    </ul>
-
-    <p>Au-delà de 36 kVA, c'est-à-dire pour les sites à plus forte consommation, l'intégralité de la facture, abonnement compris, est soumise au taux normal de 20 %.</p>
-
-    <h2>Pourquoi cette distinction est souvent mal comprise</h2>
-
-    <p>Cette répartition entre deux taux sur une même facture surprend fréquemment les dirigeants et responsables administratifs, qui s'attendent à un taux unique. Or c'est bien la coexistence de ces deux taux, sur les factures des entreprises à puissance souscrite modérée, qui explique certains écarts constatés entre entreprises de taille comparable mais de puissance souscrite différente.</p>
-
-    <p>Vérifier que le bon taux est appliqué sur chaque ligne de la facture fait partie des points de contrôle basiques lors de toute vérification de facture, au même titre que la cohérence du <a href="prix-kwh-professionnel-2026.html" class="ilink">prix du kWh professionnel</a> facturé.</p>
-
-    <h2>Le cas particulier de la récupération de TVA</h2>
-
-    <p>Pour la grande majorité des entreprises assujetties à la TVA, celle-ci reste récupérable dans les conditions de droit commun, qu'elle soit facturée au taux réduit ou au taux normal. La question de la TVA électricité professionnelle est donc, pour ces entreprises, davantage une question de trésorerie à court terme (l'avance de TVA) qu'un coût définitif.</p>
-
-    <p>Elle reste en revanche un coût réel pour les structures non assujetties ou partiellement assujetties à la TVA, notamment certaines associations, collectivités ou professions exonérées, pour lesquelles chaque euro de TVA non récupérable pèse directement sur le budget.</p>
-
-    <h2>Un exemple chiffré pour une PME</h2>
-
-    <p>Prenons le cas d'une PME artisanale souscrivant une puissance de 12 kVA, avec un abonnement mensuel de 45 € HT et une consommation mensuelle de 3 000 kWh facturée 0,18 € HT le kWh, soit 540 € HT de part consommation. L'abonnement, soumis au taux réduit de 5,5 % puisque la puissance souscrite reste sous le seuil de 36 kVA, génère une TVA de 2,48 €. La part consommation, elle, relève du taux normal de 20 %, soit une TVA de 108 €. Au total, la facture mensuelle TTC s'élève à environ 695,48 € (585 € HT + 110,48 € de TVA), la TVA globale représentant ainsi un taux effectif proche de 19 % du montant hors taxes, malgré la coexistence des deux taux.</p>
-
-    <p>Si cette même entreprise venait à dépasser le seuil de 36 kVA, l'intégralité de la facture basculerait au taux de 20 %, portant la TVA due à 117 € sur la même base, soit environ 7 € de TVA supplémentaire chaque mois du seul fait du changement de taux applicable à l'abonnement. Un écart modeste à l'échelle mensuelle, mais qui illustre bien pourquoi la vérification du seuil de puissance retenu sur la facture reste un point de contrôle systématique lors de toute analyse.</p>
-
-    <h2>Le lien avec les autres composantes de la facture</h2>
-
-    <p>La TVA s'applique en dernier lieu, une fois additionnées la part fourniture, le <a href="turpe-2026-professionnels.html" class="ilink">TURPE</a> et les diverses contributions et accises. Une erreur sur l'assiette de calcul en amont (par exemple une puissance souscrite mal déclarée) peut donc se répercuter jusque sur le montant de TVA facturé, ce qui justifie une vérification ligne par ligne de la facture plutôt qu'un simple contrôle du total.</p>
-
-    <h2>Vérifier la cohérence de sa facture dans son ensemble</h2>
-
-    <p>La TVA n'est qu'un élément parmi d'autres dans la structure d'une facture d'électricité professionnelle. C'est pourquoi une vérification isolée du taux de TVA appliqué reste insuffisante : elle doit s'inscrire dans une analyse globale de la facture, idéalement réalisée par un <a href="courtier-en-energie-role.html" class="ilink">courtier en énergie</a>, capable de vérifier simultanément la cohérence du taux de TVA, du TURPE et du prix de la part fourniture.</p>
-
-    <div id="cta">
-      <div class="cta-section reveal">
-        <p class="cta-title">Vérifier la cohérence de sa facture dans son ensemble</p>
-        <p class="cta-sub">Vous avez un doute sur le taux de TVA appliqué à votre abonnement, ou sur la cohérence globale de votre facture d'électricité professionnelle ? Envoyez-nous votre dernière facture : nous vérifions gratuitement chaque ligne, du taux de TVA au prix de la part fourniture, et vous signalons toute anomalie de calcul.</p>
-        <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
-        <!-- partial:cta-reassure --><p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 24h</p><!-- /partial:cta-reassure -->
-      </div>
+    <div class="v2-rail">
+    <details class="toc" id="toc">
+      <summary>Sommaire</summary>
+      <div class="toc-progress" aria-hidden="true"><span id="toc-progress"></span></div>
+      <ol>
+        <li><a href="#les-taux-applicables-selon-la-puissance-souscrite">Les taux applicables</a></li>
+        <li><a href="#pourquoi-cette-distinction-est-souvent-mal-compris">Une distinction mal comprise</a></li>
+        <li><a href="#le-cas-particulier-de-la-recuperation-de-tva">La récupération de TVA</a></li>
+        <li><a href="#un-exemple-chiffre-pour-une-pme">Un exemple chiffré</a></li>
+        <li><a href="#le-lien-avec-les-autres-composantes-de-la-facture">Le lien avec le reste</a></li>
+        <li><a href="#votre-etude">Votre facture vérifiée</a></li>
+      </ol>
+    </details>
     </div>
 
-    <div class="callout reveal">
-      <p class="callout-title">Lire aussi</p>
-      <p><a href="blog.html" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
-    </div>
+    <div class="v2-main">
 
+      <section class="v2-section" id="les-taux-applicables-selon-la-puissance-souscrite">
+
+        <h2>Les taux applicables selon la puissance souscrite</h2>
+
+        <p>La TVA sur l'électricité professionnelle distingue deux composantes de la facture, chacune pouvant relever d'un taux différent&nbsp;:</p>
+
+        <ul class="checklist">
+          <li>la <strong>part abonnement</strong> bénéficie du taux réduit de 5,5&nbsp;% lorsque la puissance souscrite est inférieure ou égale à 36&nbsp;kVA, ce seuil correspondant généralement aux petites et moyennes structures (commerces, bureaux, petites entreprises artisanales)&nbsp;;</li>
+          <li>la <strong>part consommation</strong> (le kWh consommé) est en revanche soumise au taux normal de 20&nbsp;%, quelle que soit la puissance souscrite.</li>
+        </ul>
+
+        <p>Au-delà de 36&nbsp;kVA, c'est-à-dire pour les sites à plus forte consommation, l'intégralité de la facture, abonnement compris, est soumise au taux normal de 20&nbsp;%.</p>
+
+      </section>
+
+      <section class="v2-section" id="pourquoi-cette-distinction-est-souvent-mal-compris">
+
+        <h2>Pourquoi cette distinction est souvent mal comprise</h2>
+
+        <p>Cette répartition entre deux taux sur une même facture surprend fréquemment les dirigeants et responsables administratifs, qui s'attendent à un taux unique. Or c'est bien la coexistence de ces deux taux, sur les factures des entreprises à puissance souscrite modérée, qui explique certains écarts constatés entre entreprises de taille comparable mais de puissance souscrite différente.</p>
+
+        <aside class="note quote">
+          <p>«&nbsp;Vérifier que le bon taux est appliqué sur chaque ligne de la facture fait partie des points de contrôle basiques&nbsp;»</p>
+        </aside>
+
+        <p>Vérifier que le bon taux est appliqué sur chaque ligne de la facture fait partie des points de contrôle basiques lors de toute vérification de facture, au même titre que la cohérence du <a href="prix-kwh-professionnel-2026.html" class="ilink">prix du kWh professionnel</a> facturé.</p>
+
+        <aside class="cta-inline wide" aria-label="Faire vérifier ma facture">
+          <div>
+            <p class="eyebrow">Vérifiez votre facture</p>
+            <p class="t">Ces lignes sont-elles justes sur votre facture&nbsp;?</p>
+            <p class="s">Envoyez votre dernière facture&nbsp;: nous vérifions taxes, acheminement et options tarifaires.</p>
+          </div>
+          <div class="actions">
+            <a href="b2b.html#upload" class="cta-btn cta-btn--ghost">Faire vérifier ma facture →</a>
+            <span class="micro">Gratuit · Sans engagement · Réponse sous 24h</span>
+          </div>
+        </aside>
+
+      </section>
+
+      <section class="v2-section" id="le-cas-particulier-de-la-recuperation-de-tva">
+
+        <h2>Le cas particulier de la récupération de TVA</h2>
+
+        <p>Pour la grande majorité des entreprises assujetties à la TVA, celle-ci reste récupérable dans les conditions de droit commun, qu'elle soit facturée au taux réduit ou au taux normal. La question de la TVA électricité professionnelle est donc, pour ces entreprises, davantage une question de trésorerie à court terme (l'avance de TVA) qu'un coût définitif.</p>
+
+        <p>Elle reste en revanche un coût réel pour les structures non assujetties ou partiellement assujetties à la TVA, notamment certaines associations, collectivités ou professions exonérées, pour lesquelles chaque euro de TVA non récupérable pèse directement sur le budget.</p>
+
+      </section>
+
+      <section class="v2-section" id="un-exemple-chiffre-pour-une-pme">
+
+        <h2>Un exemple chiffré pour une PME</h2>
+
+        <p>Prenons le cas d'une PME artisanale souscrivant une puissance de 12&nbsp;kVA, avec un abonnement mensuel de 45&nbsp;€ HT et une consommation mensuelle de 3 000&nbsp;kWh facturée 0,18&nbsp;€ HT le kWh, soit 540&nbsp;€ HT de part consommation. L'abonnement, soumis au taux réduit de 5,5&nbsp;% puisque la puissance souscrite reste sous le seuil de 36&nbsp;kVA, génère une TVA de 2,48&nbsp;€. La part consommation, elle, relève du taux normal de 20&nbsp;%, soit une TVA de 108&nbsp;€. Au total, la facture mensuelle TTC s'élève à environ 695,48&nbsp;€ (585&nbsp;€ HT + 110,48&nbsp;€ de TVA), la TVA globale représentant ainsi un taux effectif proche de 19&nbsp;% du montant hors taxes, malgré la coexistence des deux taux.</p>
+
+        <aside class="note">
+          <span class="note-k">L'exemple en bref</span>
+          <p>À 12&nbsp;kVA&nbsp;: 110,48&nbsp;€ de TVA par mois. Au-delà de 36&nbsp;kVA&nbsp;: 117&nbsp;€ sur la même base.</p>
+        </aside>
+
+        <p>Si cette même entreprise venait à dépasser le seuil de 36&nbsp;kVA, l'intégralité de la facture basculerait au taux de 20&nbsp;%, portant la TVA due à 117&nbsp;€ sur la même base, soit environ 7&nbsp;€ de TVA supplémentaire chaque mois du seul fait du changement de taux applicable à l'abonnement. Un écart modeste à l'échelle mensuelle, mais qui illustre bien pourquoi la vérification du seuil de puissance retenu sur la facture reste un point de contrôle systématique lors de toute analyse.</p>
+
+        <aside class="cta-inline wide" aria-label="Calculer votre écart réel">
+          <div>
+            <p class="eyebrow">Et sur votre facture&nbsp;?</p>
+            <p class="t">Combien pourriez-vous économiser&nbsp;?</p>
+            <ol class="steps">
+              <li>Vous envoyez votre dernière facture d'électricité</li>
+              <li>Nous la confrontons aux offres réellement disponibles</li>
+              <li>Vous savez si un changement est pertinent</li>
+            </ol>
+          </div>
+          <div class="actions">
+            <a href="b2b.html#upload" class="cta-btn cta-btn--inline">Calculer mon écart réel →</a>
+            <a href="ms-strategy-calculateur.html" class="alt hit">ou faire une première estimation en ligne →</a>
+            <span class="micro">Gratuit · Données confidentielles · Réponse sous 24h</span>
+          </div>
+        </aside>
+
+      </section>
+
+      <section class="v2-section" id="le-lien-avec-les-autres-composantes-de-la-facture">
+
+        <h2>Le lien avec les autres composantes de la facture</h2>
+
+        <p>La TVA s'applique en dernier lieu, une fois additionnées la part fourniture, le <a href="turpe-2026-professionnels.html" class="ilink">TURPE</a> et les diverses contributions et accises. Une erreur sur l'assiette de calcul en amont (par exemple une puissance souscrite mal déclarée) peut donc se répercuter jusque sur le montant de TVA facturé, ce qui justifie une vérification ligne par ligne de la facture plutôt qu'un simple contrôle du total.</p>
+
+      </section>
+
+      <section class="v2-section" id="votre-etude">
+        <h2>Vérifier la cohérence de sa facture dans son ensemble</h2>
+        <p>La TVA n'est qu'un élément parmi d'autres dans la structure d'une facture d'électricité professionnelle. C'est pourquoi une vérification isolée du taux de TVA appliqué reste insuffisante&nbsp;: elle doit s'inscrire dans une analyse globale de la facture, idéalement réalisée par un <a href="courtier-en-energie-role.html" class="ilink">courtier en énergie</a>, capable de vérifier simultanément la cohérence du taux de TVA, du TURPE et du prix de la part fourniture.</p>
+        <div id="cta" class="wide">
+          <div class="cta-section reveal">
+            <p class="cta-title">Votre facture, analysée gratuitement</p>
+            <p class="cta-sub">Vous avez un doute sur le taux de TVA appliqué à votre abonnement, ou sur la cohérence globale de votre facture d'électricité professionnelle&nbsp;? Envoyez-nous votre dernière facture&nbsp;: nous vérifions gratuitement chaque ligne, du taux de TVA au prix de la part fourniture, et vous signalons toute anomalie de calcul.</p>
+            <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
+            <!-- partial:cta-reassure --><p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 24h</p><!-- /partial:cta-reassure -->
+          </div>
+        </div>
+
+        <div class="callout reveal wide">
+          <p class="callout-title">Lire aussi</p>
+          <p><a href="blog.html" class="hit" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
+        </div>
+      </section>
+
+    </div>
   </div>
 </article>
+</main>
 
 <footer>
   <p>
@@ -349,17 +581,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div google-add-preferred-source-btn data-theme="dark"></div>
 </footer>
 
-<!-- partial:floating-cta --><div class="floating-cta" id="floating-cta">
-  <a href="#cta">Étude gratuite · 24h →</a>
-</div><!-- /partial:floating-cta -->
-
 <script>
 // ── Progress bar
 const bar = document.getElementById('progress-bar');
 window.addEventListener('scroll', () => {
   const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
   bar.style.width = pct + '%';
-  document.getElementById('floating-cta').classList.toggle('visible', window.scrollY > 400);
 });
 
 // ── Scroll reveal
@@ -373,6 +600,33 @@ const photoObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); photoObs.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.photo-ph').forEach(el => photoObs.observe(el));
+
+// ── Sommaire : ouvert en desktop, section active, progression
+const toc = document.getElementById('toc');
+const tocProgress = document.getElementById('toc-progress');
+const wide = window.matchMedia('(min-width: 1024px)');
+const syncToc = () => { toc.open = wide.matches; };
+syncToc();
+wide.addEventListener('change', syncToc);
+toc.addEventListener('toggle', () => { if (wide.matches && !toc.open) toc.open = true; });
+toc.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (!wide.matches) toc.open = false; }));
+
+const tocLinks = new Map([...toc.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const id = e.target.id;
+    tocLinks.forEach((a, key) => {
+      a.classList.toggle('is-active', key === id);
+      if (key === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  });
+}, { rootMargin: '-35% 0px -60% 0px' });
+document.querySelectorAll('.v2-section').forEach(s => secObs.observe(s));
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  tocProgress.style.width = Math.min(100, pct) + '%';
+}, { passive: true });
 </script>
 <script defer src="assets/speed-insights.js"></script>
 </body>

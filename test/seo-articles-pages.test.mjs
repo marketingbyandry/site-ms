@@ -18,8 +18,8 @@ test('chaque article SEO a une page HTML générée à la racine du dépôt', ()
 
 // Articles dont la bannière porte une vraie photo choisie à la main (chacun a son propre
 // test `*-banner-photo.test.mjs`). Tous les autres gardent le placeholder dégradé.
-// Pages en mise en page v2 (layout:v2) : sans bannière photo, retouchées à la main.
-const isV2 = (source) => source.includes('<!-- layout:v2');
+// Pages en mise en page v2 (faite main « layout:v2 » ou générée « gabarit:v2 ») : sans bannière photo.
+const isV2 = (source) => /<!-- (layout|gabarit):v2/.test(source);
 
 test('chaque page article SEO utilise le placeholder photo nu (pas de vraie photo inventée)', () => {
   for (const slug of SLUGS) {
