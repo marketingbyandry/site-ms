@@ -54,12 +54,16 @@ test('l’exemple chiffré est juste : chaque total égale la somme de ses ligne
   assert.match(html(), /\+140&nbsp;€/);
 });
 
-test('la photo est une bande fine dans le rail collant, plus une bannière en tête', () => {
+test('plus aucune photo : ni bannière ni bande, rail collant = sommaire seul', () => {
   const source = html();
-  const hero = source.slice(source.indexOf('<header class="hero">'), source.indexOf('</header>'));
-  assert.doesNotMatch(hero, /article-banner/);
-  assert.match(source, /<div class="v2-rail">\s*<div class="photo-ph article-banner"><\/div>/);
+  assert.doesNotMatch(source, /article-banner|savee-photo/);
   assert.match(source, /\.v2-rail \{\s*position: sticky;[^}]*align-self: start;/);
+});
+
+test('bouton du haut carré, bouton final dégraissé', () => {
+  const style = html().slice(html().indexOf('<style>'), html().indexOf('</style>'));
+  assert.match(style, /\.nav-cta \{[^}]*border-radius: 0;/);
+  assert.match(style, /\.cta-section \.cta-btn \{ font-weight: 500;/);
 });
 
 test('pas de bouton flottant ni de coins à peine arrondis : carré ou pilule', () => {
