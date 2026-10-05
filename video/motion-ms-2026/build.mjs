@@ -2,7 +2,7 @@
 import { readFileSync, writeFileSync, mkdirSync, cpSync, rmSync } from 'node:fs';
 const here = new URL('.', import.meta.url).pathname;
 const tpl = readFileSync(here + 'src/template.html', 'utf8');
-// VOICE=clemence génère la variante voix féminine dans landscape-clemence/ et vertical-clemence/.
+// VOICE=clemence|genevieve génère la variante voix féminine dans landscape-<voix>/ et vertical-<voix>/.
 const voice = process.env.VOICE || '';
 const formats = [
   { dir: 'landscape', W: 1920, H: 1080, ORI: '16:9', cls: '', v: 'false' },
@@ -15,8 +15,11 @@ for (const f of formats) {
   cpSync(here + 'src/assets', out + '/assets', { recursive: true });
   const html = tpl.replaceAll('{{W}}', f.W).replaceAll('{{H}}', f.H).replaceAll('{{ORI}}', f.ORI)
     .replaceAll('{{ORI_CLASS}}', f.cls).replaceAll('{{IS_V}}', f.v);
-  const voiced = voice
-    ? html.replace('assets/audio/voiceover.mp3" data-start="1.7" data-duration="17.46"', `assets/audio/voiceover-${voice}.mp3" data-start="1.7" data-duration="17.29"`)
+  // Placement de chaque voix alternative (fichiers déjà calés phrase par phrase sur le minutage d'Hugo).
+  const voices = { clemence: { start: '1.7', dur: '17.29' }, genevieve: { start: '1.55', dur: '17.74' } };
+  const v = voices[voice];
+  const voiced = v
+    ? html.replace('assets/audio/voiceover.mp3" data-start="1.7" data-duration="17.46"', `assets/audio/voiceover-${voice}.mp3" data-start="${v.start}" data-duration="${v.dur}"`)
     : html;
   writeFileSync(out + '/index.html', voiced);
   console.log('built', out.slice(here.length));
