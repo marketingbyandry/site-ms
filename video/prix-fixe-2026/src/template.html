@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width={{W}}, height={{H}}" />
+    <title>MS Strategy · Les avantages du prix fixe ({{ORI}})</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Barlow Condensed"; src: url("assets/fonts/bc-900i.woff2") format("woff2"); font-style: italic; font-weight: 900; }
+      @font-face { font-family: "Barlow Condensed"; src: url("assets/fonts/bc-800i.woff2") format("woff2"); font-style: italic; font-weight: 800; }
+      @font-face { font-family: "Barlow Condensed"; src: url("assets/fonts/bc-800.woff2") format("woff2"); font-style: normal; font-weight: 800; }
+      @font-face { font-family: "Instrument Serif"; src: url("assets/fonts/is-italic.woff2") format("woff2"); font-style: italic; font-weight: 400; }
+      @font-face { font-family: "Manrope"; src: url("assets/fonts/manrope.woff2") format("woff2"); font-weight: 300 800; }
+
+      /* Thème clair du site (index.html, data-theme="light") */
+      :root {
+        --paper: #faf8f5; --panel: #ebebeb; --ink: #0c2635; --ink2: #163a4d;
+        --teal: #1a7a8a; --teal-light: #2bb5c8; --green: #4cde80; --red: #e05555; --muted: #6b6058;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Manrope", sans-serif; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); }
+      .clip { position: absolute; inset: 0; }
+      .abs { position: absolute; }
+      .xl { font-family: "Barlow Condensed", sans-serif; font-style: italic; font-weight: 900; text-transform: uppercase; line-height: 0.84; letter-spacing: -0.005em; white-space: nowrap; }
+      .lbl { font-family: "Manrope", sans-serif; font-weight: 800; font-size: 22px; letter-spacing: 0.26em; text-transform: uppercase; }
+      .serif { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; text-transform: none; letter-spacing: -0.01em; }
+      .tag { display: inline-block; padding: 0.06em 0.22em 0.02em; transform: skewX(-12deg); }
+      .tag > span { display: inline-block; transform: skewX(12deg); }
+      .t-ink { background: var(--ink); color: var(--paper); }
+      .t-teal { background: var(--teal); color: #fff; }
+      .t-green { background: var(--green); color: var(--ink); }
+      .t-red { background: var(--red); color: #fff; }
+      .outline { color: transparent; -webkit-text-stroke: 3px var(--ink); }
+      .c-teal { color: var(--teal); } .c-red { color: var(--red); }
+      .mask-logo { background: var(--ink); -webkit-mask: url("assets/img/ms-strategy-logo.png") center / contain no-repeat; mask: url("assets/img/ms-strategy-logo.png") center / contain no-repeat; }
+      .mask-tiger { -webkit-mask: url("assets/img/favicon-tiger-mask.png") center / contain no-repeat; mask: url("assets/img/favicon-tiger-mask.png") center / contain no-repeat; }
+
+      /* Fond : rayures fines, typo géante en contour, bandes biaisées */
+      #stripes { position: absolute; inset: -10%; background: repeating-linear-gradient(115deg, rgba(12,38,53,0.035) 0 2px, transparent 2px 26px); }
+      #bigword { position: absolute; left: 0; top: 50%; margin-top: -260px; font-size: 520px; color: transparent; -webkit-text-stroke: 2px rgba(12,38,53,0.07); }
+      .edge { position: absolute; width: 180px; height: 160%; top: -30%; transform: skewX(-8deg); }
+      #edge1 { left: -170px; background: var(--teal); }
+      #edge2 { left: 14px; width: 18px; background: var(--green); }
+      #edge3 { right: -180px; background: var(--ink); }
+
+      /* Balayage de transition : trois lames biaisées */
+      #wipe { pointer-events: none; z-index: 50; }
+      .blade { position: absolute; top: -20%; height: 140%; transform: skewX(-20deg); }
+      #bl1 { width: 22%; background: var(--green); }
+      #bl2 { width: 30%; background: var(--teal); }
+      #bl3 { left: -75%; width: 250%; background: var(--ink); }
+
+      /* Habillage type diffusion sportive */
+      #bug { position: absolute; left: 64px; top: 52px; display: flex; align-items: stretch; height: 58px; z-index: 40; }
+      #bug > div { display: flex; align-items: center; padding: 0 22px; transform: skewX(-12deg); }
+      #bug > div > span { transform: skewX(12deg); display: inline-block; }
+      #bug-ms { background: var(--ink); color: #fff; font-family: "Barlow Condensed"; font-style: italic; font-weight: 900; font-size: 34px; letter-spacing: 0.02em; }
+      #bug-ch { background: var(--teal); color: #fff; font-family: "Barlow Condensed"; font-style: italic; font-weight: 800; font-size: 30px; letter-spacing: 0.06em; min-width: 300px; position: relative; overflow: hidden; }
+      #bug-ch span { position: absolute; left: 26px; top: 50%; margin-top: -0.6em; line-height: 1.2; }
+      #bug-clock { background: var(--paper); color: var(--ink); border: 3px solid var(--ink); font-family: "Barlow Condensed"; font-style: normal; font-weight: 800; font-size: 32px; letter-spacing: 0.04em; }
+      #bug-num { background: var(--green); color: var(--ink); font-family: "Barlow Condensed"; font-style: italic; font-weight: 900; font-size: 32px; }
+
+      /* S1 : le marché s'emballe / vous ne bougez pas */
+      #mkt { position: absolute; inset: 0; }
+      #ticker { position: absolute; left: 0; bottom: 70px; height: 64px; width: 100%; background: var(--ink); overflow: hidden; }
+      #ticker-in { position: absolute; left: 0; top: 0; height: 64px; display: flex; align-items: center; gap: 46px; white-space: nowrap; font-family: "Barlow Condensed"; font-style: italic; font-weight: 800; font-size: 34px; color: #fff; letter-spacing: 0.05em; }
+      #ticker-in b { color: var(--red); font-weight: 900; }
+      #h1a { left: 120px; top: 190px; font-size: 230px; }
+      #h1b { left: 150px; top: 400px; font-size: 230px; }
+      #flat { position: absolute; left: 0; top: 700px; height: 16px; width: 100%; background: var(--teal); transform-origin: 0 50%; }
+      #flat-tag { position: absolute; right: 120px; top: 610px; font-size: 64px; }
+      #h1c { left: 120px; top: 170px; font-size: 150px; }
+      #h1d { left: 120px; top: 340px; font-size: 190px; }
+
+      /* S2 : prix figé */
+      #s2-a { left: 120px; top: 230px; }
+      #s2-a .lbl { color: var(--muted); }
+      #pf { font-size: 250px; margin-top: 44px; }
+      #tile { right: 150px; top: 200px; width: 560px; height: 480px; background: var(--ink); color: #fff; clip-path: polygon(0 0, 88% 0, 100% 13%, 100% 100%, 12% 100%, 0 87%); }
+      #tile .lbl { position: absolute; left: 50px; top: 46px; color: rgba(255,255,255,0.6); font-size: 20px; }
+      #kwh { position: absolute; left: 50px; top: 150px; font-size: 170px; color: #fff; text-transform: none; }
+      #lock { position: absolute; right: 54px; top: 40px; width: 74px; height: 92px; }
+      #lock-sh { position: absolute; left: 14px; top: 0; width: 46px; height: 50px; border: 10px solid var(--green); border-bottom: 0; transform-origin: 50% 100%; }
+      #lock-bd { position: absolute; left: 0; bottom: 0; width: 74px; height: 50px; background: var(--green); }
+      #frost { position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(43,181,200,0.28) 0 10px, transparent 10px 30px); }
+      #fige { right: 110px; top: 610px; font-size: 150px; }
+      #years { left: 120px; top: 700px; display: flex; align-items: baseline; gap: 26px; }
+      #years .n { font-size: 300px; }
+      #years .s { font-size: 110px; }
+
+      /* S3 : coût connu */
+      .half { position: absolute; inset: 0; }
+      #hA { background: var(--panel); clip-path: polygon(0 0, 57% 0, 45% 100%, 0 100%); }
+      #hB { background: var(--ink); color: #fff; clip-path: polygon(57% 0, 100% 0, 100% 100%, 45% 100%); }
+      .bars { position: absolute; display: flex; align-items: flex-end; gap: 14px; height: 380px; }
+      .bars i { display: block; width: 38px; height: 100%; transform-origin: 50% 100%; }
+      #barsA { left: 110px; top: 330px; }
+      #barsA i { background: var(--red); }
+      #barsB { right: 120px; top: 330px; }
+      #barsB i { background: var(--teal-light); transform: scaleY(0.55); }
+      #a-lbl { left: 110px; top: 200px; }
+      #a-h { left: 110px; top: 740px; font-size: 130px; }
+      #b-lbl { right: 120px; top: 200px; color: rgba(255,255,255,0.65); text-align: right; }
+      #b-h { right: 120px; top: 750px; font-size: 104px; color: #fff; text-align: right; }
+      #b-line { right: 120px; top: 498px; width: 638px; height: 6px; background: var(--green); transform-origin: 100% 50%; }
+      #sight { right: 230px; top: 436px; width: 130px; height: 130px; }
+      #sight i { position: absolute; width: 34px; height: 34px; border: 7px solid var(--green); }
+      #sight i:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; }
+      #sight i:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; }
+      #sight i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; }
+      #sight i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+      #prec { right: 120px; top: 880px; font-size: 64px; }
+
+      /* S4 : budget tenu */
+      #s4-h { left: 120px; top: 160px; font-size: 150px; }
+      #s4-h2 { left: 126px; top: 326px; font-size: 76px; }
+      #cols { left: 200px; top: 450px; display: flex; gap: 34px; }
+      .col { position: relative; width: 470px; height: 520px; background: var(--panel); transform: skewX(-10deg); overflow: hidden; }
+      .col .fill { position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: var(--teal); transform-origin: 50% 100%; }
+      .col .fill::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,0.10) 0 6px, transparent 6px 22px); }
+      .col .cl { position: absolute; left: 44px; top: 30px; transform: skewX(10deg); font-size: 20px; color: var(--muted); }
+      .col .cn { position: absolute; left: 40px; top: 96px; transform: skewX(10deg); font-size: 150px; }
+      #level { left: 150px; top: 702px; width: 1580px; height: 8px; background: var(--green); transform-origin: 0 50%; }
+      #check { left: 1690px; top: 660px; width: 92px; height: 92px; background: var(--green); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+      #check i { position: absolute; left: 24px; top: 18px; width: 30px; height: 48px; border-right: 10px solid var(--ink); border-bottom: 10px solid var(--ink); transform: rotate(40deg); }
+
+      /* S5 : meilleure défense */
+      #wallL, #wallR { position: absolute; top: -10%; height: 120%; width: 54%; background: var(--red); }
+      #wallL { left: -54%; transform: skewX(-10deg); }
+      #wallR { right: -54%; transform: skewX(-10deg); }
+      #wallL::after, #wallR::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,0.12) 0 8px, transparent 8px 26px); }
+      #marge { left: 0; right: 0; top: 400px; text-align: center; font-size: 170px; }
+      #marge-k { left: 0; right: 0; top: 330px; text-align: center; color: var(--muted); }
+      #card-wrap { left: 300px; top: 120px; width: 560px; height: 840px; perspective: 1600px; }
+      #card { position: absolute; inset: 0; transform-style: preserve-3d; }
+      #card-face { position: absolute; inset: 0; background: linear-gradient(160deg, #2bb5c8 0%, #1a7a8a 46%, #0c2635 100%); clip-path: polygon(0 7%, 12% 0, 88% 0, 100% 7%, 100% 86%, 50% 100%, 0 86%); overflow: hidden; }
+      #card-face::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,0.07) 0 10px, transparent 10px 34px); }
+      #card-inner { position: absolute; inset: 14px; clip-path: polygon(0 7%, 12% 0, 88% 0, 100% 7%, 100% 86%, 50% 100%, 0 86%); border: 0; }
+      #c-rate { position: absolute; left: 52px; top: 60px; font-size: 150px; color: #fff; }
+      #c-pos { position: absolute; left: 60px; top: 196px; font-size: 52px; color: var(--green); }
+      #c-tiger { position: absolute; right: 30px; top: 50px; width: 330px; height: 330px; background: #fff; opacity: 0.95; }
+      #c-name { position: absolute; left: 0; right: 0; top: 400px; text-align: center; font-size: 100px; color: #fff; }
+      #c-rule { position: absolute; left: 70px; right: 70px; top: 506px; height: 4px; background: var(--green); }
+      #c-stats { position: absolute; left: 76px; right: 76px; top: 530px; display: grid; grid-template-columns: 1fr 1fr; row-gap: 4px; column-gap: 40px; }
+      #c-stats div { display: flex; align-items: baseline; gap: 14px; color: #fff; }
+      #c-stats b { font-family: "Barlow Condensed"; font-style: italic; font-weight: 900; font-size: 64px; min-width: 66px; }
+      #c-stats span { font-family: "Barlow Condensed"; font-weight: 800; font-size: 38px; letter-spacing: 0.06em; opacity: 0.85; }
+      #c-shine { position: absolute; top: -20%; left: -60%; width: 34%; height: 140%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); transform: skewX(-20deg); }
+      #s5-t { left: 960px; top: 300px; }
+      #s5-t .lbl { color: var(--muted); }
+      #s5-t1 { font-size: 120px; margin-top: 18px; }
+      #s5-t2 { font-size: 210px; margin-top: 76px; }
+
+      /* S6 : appel à l'action */
+      #s6-logo { left: 120px; top: 150px; width: 470px; height: 120px; }
+      #s6-a { left: 120px; top: 330px; font-size: 150px; }
+      #s6-g { left: 128px; top: 505px; font-size: 96px; }
+      #band { left: -5%; top: 620px; width: 110%; height: 360px; background: var(--ink); transform: skewY(-3deg); }
+      #s6-q1 { left: 140px; top: 650px; font-size: 64px; color: rgba(255,255,255,0.7); }
+      #s6-q2 { left: 140px; top: 745px; font-size: 120px; color: #fff; white-space: normal; width: 1700px; }
+      #s6-q2 em { font-style: italic; color: var(--green); }
+      #rep { right: 120px; top: 130px; display: flex; align-items: stretch; height: 120px; }
+      #rep > div { display: flex; align-items: center; padding: 0 30px; transform: skewX(-12deg); }
+      #rep > div > span { transform: skewX(12deg); display: inline-block; }
+      #rep-a { background: var(--ink); color: #fff; font-size: 56px; }
+      #rep-b { background: var(--green); color: var(--ink); font-size: 96px; }
+
+      /* S7 : signature */
+      #s7-logo { left: 50%; top: 250px; width: 760px; height: 194px; margin-left: -380px; }
+      #s7-t { left: 0; right: 0; top: 500px; text-align: center; font-size: 150px; }
+      #s7-strip { left: 0; right: 0; top: 760px; height: 120px; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; gap: 50px; font-family: "Barlow Condensed"; font-style: italic; font-weight: 800; font-size: 54px; letter-spacing: 0.04em; }
+      #s7-strip i { width: 14px; height: 14px; background: var(--green); transform: skewX(-12deg); }
+      #s7-sub { left: 0; right: 0; top: 916px; text-align: center; color: var(--muted); font-size: 22px; }
+
+      /* ===== 9:16 ===== */
+      .v .edge { transform: skewX(-3deg); }
+      .v #edge1 { left: -178px; } .v #edge2 { left: 8px; width: 14px; } .v #edge3 { right: -178px; }
+      .v #bigword { font-size: 380px; margin-top: -190px; }
+      .v #bug { left: 50px; top: 120px; height: 52px; }
+      .v #bug-ms { font-size: 30px; } .v #bug-ch { font-size: 26px; min-width: 250px; } .v #bug-clock, .v #bug-num { font-size: 28px; }
+      .v #bug > div { padding: 0 16px; }
+      .v #ticker { bottom: 330px; }
+      .v #h1a { left: 70px; top: 380px; font-size: 200px; }
+      .v #h1b { left: 70px; top: 570px; font-size: 168px; }
+      .v #flat { top: 1180px; }
+      .v #flat-tag { right: 70px; top: 1110px; }
+      .v #h1c { left: 70px; top: 420px; font-size: 150px; }
+      .v #h1d { left: 70px; top: 580px; font-size: 170px; white-space: normal; width: 940px; }
+      .v #s2-a { left: 70px; top: 330px; }
+      .v #pf { font-size: 210px; }
+      .v #tile { left: 70px; right: auto; top: 720px; width: 600px; height: 470px; }
+      .v #fige { left: 430px; right: auto; top: 1110px; font-size: 140px; }
+      .v #years { left: 70px; top: 1340px; }
+      .v #years .n { font-size: 260px; }
+      .v #hA { clip-path: polygon(0 0, 100% 0, 100% 44%, 0 54%); }
+      .v #hB { clip-path: polygon(0 54%, 100% 44%, 100% 100%, 0 100%); }
+      .v #a-lbl { left: 70px; top: 270px; }
+      .v #barsA { left: 70px; top: 330px; height: 300px; }
+      .v #a-h { left: 70px; top: 680px; font-size: 104px; }
+      .v #b-lbl { right: 70px; top: 1110px; }
+      .v #barsB { right: 70px; top: 1170px; height: 300px; }
+      .v #b-line { right: 70px; top: 1302px; width: 584px; }
+      .v #sight { right: 167px; top: 1240px; }
+      .v #b-h { right: 70px; top: 1510px; font-size: 104px; }
+      .v #prec { right: 70px; top: 1630px; font-size: 56px; }
+      .v .bars i { width: 36px; } .v .bars { gap: 12px; }
+      .v #s4-h { left: 70px; top: 330px; font-size: 128px; white-space: normal; width: 900px; }
+      .v #s4-h2 { left: 74px; top: 590px; font-size: 64px; }
+      .v #cols { left: 120px; top: 760px; gap: 22px; }
+      .v .col { width: 270px; height: 760px; }
+      .v .col .cn { font-size: 110px; left: 30px; top: 86px; }
+      .v .col .cl { left: 34px; font-size: 16px; }
+      .v #level { left: 40px; top: 1136px; width: 1000px; }
+      .v #check { left: 960px; top: 1094px; }
+      .v #marge { top: 820px; font-size: 150px; }
+      .v #marge-k { top: 750px; }
+      .v #wallL, .v #wallR { width: 56%; }
+      .v #card-wrap { left: 50%; margin-left: -250px; top: 250px; width: 500px; height: 750px; }
+      .v #c-rate { font-size: 130px; left: 46px; top: 54px; }
+      .v #c-pos { top: 174px; left: 52px; font-size: 46px; }
+      .v #c-tiger { width: 290px; height: 290px; }
+      .v #c-name { top: 352px; font-size: 90px; }
+      .v #c-rule { top: 452px; }
+      .v #c-stats { top: 474px; left: 64px; right: 64px; }
+      .v #c-stats b { font-size: 56px; } .v #c-stats span { font-size: 34px; }
+      .v #s5-t { left: 70px; top: 1080px; }
+      .v #s5-t1 { font-size: 110px; }
+      .v #s5-t2 { font-size: 170px; }
+      .v #s6-logo { left: 70px; top: 300px; width: 420px; height: 108px; }
+      .v #s6-a { left: 70px; top: 470px; font-size: 128px; white-space: normal; width: 940px; }
+      .v #s6-g { left: 76px; top: 740px; font-size: 90px; }
+      .v #band { top: 980px; height: 480px; transform: skewY(-5deg); }
+      .v #s6-q1 { left: 70px; top: 1010px; font-size: 56px; }
+      .v #s6-q2 { left: 70px; top: 1080px; font-size: 110px; white-space: normal; width: 940px; line-height: 0.9; }
+      .v #rep { right: auto; left: 70px; top: 1540px; height: 110px; }
+      .v #s7-logo { top: 520px; width: 820px; height: 209px; margin-left: -410px; }
+      .v #s7-t { top: 800px; font-size: 150px; white-space: normal; }
+      .v #s7-strip { top: 1150px; height: 210px; flex-direction: column; gap: 6px; font-size: 54px; }
+      .v #s7-strip i { display: none; }
+      .v #s7-sub { top: 1400px; font-size: 18px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="{{ORI_CLASS}}" data-composition-id="main" data-start="0" data-width="{{W}}" data-height="{{H}}" data-duration="33">
+      <div id="bg" class="clip" data-start="0" data-duration="33" data-track-index="0">
+        <div id="stripes"></div>
+        <div id="bigword" class="xl" data-layout-ignore>PRIX FIXE · PRIX FIXE · PRIX FIXE · PRIX FIXE</div>
+        <div id="edge1" class="edge"></div><div id="edge2" class="edge"></div><div id="edge3" class="edge"></div>
+      </div>
+
+      <!-- S1 : hook, le marché s'emballe puis se fige -->
+      <section id="s1" class="clip" data-start="0" data-duration="4.5" data-track-index="2">
+        <div id="s1-in" class="clip">
+          <svg id="mkt" viewBox="0 0 {{W}} {{H}}" preserveAspectRatio="none">
+            <path id="mkt-area" d="" fill="rgba(224,85,85,0.10)" />
+            <path id="mkt-line" d="" fill="none" stroke="#e05555" stroke-width="12" stroke-linejoin="miter" />
+          </svg>
+          <div id="ticker"><div id="ticker-in"></div></div>
+          <div id="h1a" class="abs xl" data-layout-allow-overlap>Le marché</div>
+          <div id="h1b" class="abs xl" data-layout-allow-overlap><span class="tag t-red"><span>s'emballe ?</span></span></div>
+          <div id="flat" data-layout-allow-overlap></div>
+          <div id="flat-tag" class="abs xl" data-layout-allow-overlap><span class="tag t-teal"><span>Prix fixe</span></span></div>
+          <div id="h1c" class="abs xl" data-layout-allow-overlap>Vous,</div>
+          <div id="h1d" class="abs xl" data-layout-allow-overlap>vous ne <span class="tag t-green"><span>bougez pas.</span></span></div>
+        </div>
+      </section>
+
+      <!-- S2 : prix figé 1 à 3 ans -->
+      <section id="s2" class="clip" data-start="4.5" data-duration="4.7" data-track-index="2">
+        <div id="s2-in" class="clip">
+          <div id="s2-a" class="abs">
+            <div class="lbl">Avec un</div>
+            <div id="pf" class="xl c-teal">Prix fixe</div>
+          </div>
+          <div id="tile" class="abs">
+            <div id="frost"></div>
+            <div class="lbl">Votre kilowattheure</div>
+            <div id="kwh" class="xl">€/kWh</div>
+            <div id="lock"><div id="lock-sh"></div><div id="lock-bd"></div></div>
+          </div>
+          <div id="fige" class="abs xl" data-layout-allow-overlap><span class="tag t-green"><span>Figé.</span></span></div>
+          <div id="years" class="abs">
+            <div class="xl s">Pour</div>
+            <div id="y1" class="xl n">1</div>
+            <div id="ya" class="xl s">à</div>
+            <div id="y3" class="xl n c-teal">3</div>
+            <div id="yy" class="xl s">ans</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- S3 : marché de gros vs votre coût -->
+      <section id="s3" class="clip" data-start="9.2" data-duration="4.4" data-track-index="2">
+        <div id="s3-in" class="clip">
+          <div id="hA" class="half">
+            <div id="a-lbl" class="abs lbl c-red">Marché de gros</div>
+            <div id="barsA" class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div id="a-h" class="abs xl">Peut <span class="c-red">flamber.</span></div>
+          </div>
+          <div id="hB" class="half">
+            <div id="b-lbl" class="abs lbl">Votre coût</div>
+            <div id="barsB" class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div id="b-line" class="abs"></div>
+            <div id="sight" class="abs"><i></i><i></i><i></i><i></i></div>
+            <div id="b-h" class="abs xl">Vous le connaissez.</div>
+            <div id="prec" class="abs xl"><span class="tag t-green"><span>Précisément.</span></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- S4 : budget sur plusieurs exercices -->
+      <section id="s4" class="clip" data-start="13.6" data-duration="2.9" data-track-index="2">
+        <div id="s4-in" class="clip">
+          <div id="s4-h" class="abs xl">Votre budget <span class="c-teal">tient.</span></div>
+          <div id="s4-h2" class="abs xl"><span class="tag t-ink"><span>Sur plusieurs exercices</span></span></div>
+          <div id="cols" class="abs">
+            <div class="col" id="col1"><div class="fill"></div><div class="lbl cl">Exercice</div><div class="xl cn">N</div></div>
+            <div class="col" id="col2"><div class="fill"></div><div class="lbl cl">Exercice</div><div class="xl cn">N+1</div></div>
+            <div class="col" id="col3"><div class="fill"></div><div class="lbl cl">Exercice</div><div class="xl cn">N+2</div></div>
+          </div>
+          <div id="level" class="abs" data-layout-allow-overlap></div>
+          <div id="check" class="abs" data-layout-allow-overlap><i></i></div>
+        </div>
+      </section>
+
+      <!-- S5 : marge serrée, la carte « Prix fixe » -->
+      <section id="s5" class="clip" data-start="16.5" data-duration="4.1" data-track-index="2">
+        <div id="s5-in" class="clip">
+          <div id="marge-k" class="abs lbl">Quand la marge est</div>
+          <div id="marge" class="abs xl">Serrée</div>
+          <div id="wallL" data-layout-allow-overlap></div><div id="wallR" data-layout-allow-overlap></div>
+          <div id="card-wrap" class="abs" data-layout-allow-overlap>
+            <div id="card">
+              <div id="card-face">
+                <div id="c-rate" class="xl">99</div>
+                <div id="c-pos" class="xl">DEF</div>
+                <div id="c-tiger" class="mask-tiger"></div>
+                <div id="c-name" class="xl">Prix fixe</div>
+                <div id="c-rule"></div>
+                <div id="c-stats">
+                  <div><b class="st">99</b><span>VIS</span></div>
+                  <div><b class="st">99</b><span>STA</span></div>
+                  <div><b class="st">99</b><span>BUD</span></div>
+                  <div><b class="st">99</b><span>SÉR</span></div>
+                </div>
+                <div id="c-shine"></div>
+              </div>
+            </div>
+          </div>
+          <div id="s5-t" class="abs">
+            <div class="lbl">C'est votre</div>
+            <div id="s5-t1" class="xl">Meilleure</div>
+            <div id="s5-t2" class="xl"><span class="tag t-ink"><span>défense.</span></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- S6 : MS Stratégie analyse votre facture -->
+      <section id="s6" class="clip" data-start="20.6" data-duration="7.35" data-track-index="2">
+        <div id="s6-in" class="clip">
+          <div id="s6-logo" class="abs mask-logo"></div>
+          <div id="s6-a" class="abs xl">Analyse votre facture</div>
+          <div id="s6-g" class="abs xl"><span class="tag t-green"><span>Gratuitement.</span></span></div>
+          <div id="band" class="abs" data-layout-allow-overlap></div>
+          <div id="s6-q1" class="abs xl">Et vous dit si</div>
+          <div id="s6-q2" class="abs xl">un prix fixe <em>plus compétitif</em> vous attend.</div>
+          <div id="rep" class="abs xl"><div id="rep-a"><span>Réponse en</span></div><div id="rep-b"><span>24h</span></div></div>
+        </div>
+      </section>
+
+      <!-- S7 : signature -->
+      <section id="s7" class="clip" data-start="27.95" data-duration="5.05" data-track-index="2">
+        <div id="s7-in" class="clip">
+          <div id="s7-logo" class="abs mask-logo"></div>
+          <div id="s7-t" class="abs xl">Prix fixe. <span class="c-teal">Budget tenu.</span></div>
+          <div id="s7-strip" class="abs"><span>cabinetms.fr</span><i></i><span>09 52 92 64 98</span></div>
+          <div id="s7-sub" class="abs lbl">Étude gratuite · Sans engagement · Réponse en 24h</div>
+        </div>
+      </section>
+
+      <div id="hud" class="clip" data-start="4.5" data-duration="23.45" data-track-index="3">
+        <div id="bug" data-layout-allow-occlusion>
+          <div id="bug-ms"><span>MS</span></div>
+          <div id="bug-ch"><span id="ch1">Prix figé</span><span id="ch2">Coût connu</span><span id="ch3">Budget tenu</span><span id="ch4">Défense</span><span id="ch5">Votre étude</span></div>
+          <div id="bug-num"><span id="bug-n">01</span></div>
+          <div id="bug-clock"><span id="clock">00:00</span></div>
+        </div>
+      </div>
+
+      <div id="wipe" class="clip" data-layout-ignore data-start="0" data-duration="33" data-track-index="4">
+        <div id="bl1" class="blade"></div><div id="bl2" class="blade"></div><div id="bl3" class="blade"></div>
+      </div>
+
+      <audio id="vo" src="assets/audio/voiceover.mp3" data-start="0.25" data-duration="27.56" data-track-index="10" data-volume="1"></audio>
+      <audio id="music" src="assets/audio/music.mp3" data-start="0" data-duration="33" data-media-start="0" data-track-index="11" data-volume="1"
+        data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.75},{"t":0.35,"v":0.75},{"t":0.6,"v":0.24},{"t":27.6,"v":0.24},{"t":28.0,"v":0.7},{"t":31.6,"v":0.7},{"t":33,"v":0}]}]}'></audio>
+      <audio id="sfx-hit0" src="assets/sfx/impactSoft_heavy_003.ogg" data-start="0" data-duration="0.54" data-track-index="12" data-volume="0.9"></audio>
+      <audio id="sfx-wh0" src="assets/sfx/whoosh.mp3" data-start="0" data-duration="0.7" data-track-index="13" data-volume="0.6"></audio>
+      <audio id="sfx-emb" src="assets/sfx/impactSoft_medium_001.ogg" data-start="1.57" data-duration="0.18" data-track-index="14" data-volume="0.7"></audio>
+      <audio id="sfx-freeze" src="assets/sfx/impactSoft_heavy_001.ogg" data-start="2.71" data-duration="0.57" data-track-index="12" data-volume="0.85"></audio>
+      <audio id="sfx-pas" src="assets/sfx/impactSoft_medium_001.ogg" data-start="3.89" data-duration="0.18" data-track-index="14" data-volume="0.55"></audio>
+      <audio id="sfx-w1" src="assets/sfx/whoosh.mp3" data-start="4.28" data-duration="0.7" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-fige" src="assets/sfx/impactSoft_heavy_003.ogg" data-start="7.01" data-duration="0.54" data-track-index="12" data-volume="0.8"></audio>
+      <audio id="sfx-y1" src="assets/sfx/click2.ogg" data-start="7.83" data-duration="0.06" data-track-index="14" data-volume="0.6"></audio>
+      <audio id="sfx-y3" src="assets/sfx/click2.ogg" data-start="8.21" data-duration="0.06" data-track-index="14" data-volume="0.6"></audio>
+      <audio id="sfx-w2" src="assets/sfx/whoosh.mp3" data-start="8.98" data-duration="0.7" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-fl" src="assets/sfx/impactSoft_medium_001.ogg" data-start="10.46" data-duration="0.18" data-track-index="14" data-volume="0.7"></audio>
+      <audio id="sfx-pr" src="assets/sfx/click2.ogg" data-start="12.48" data-duration="0.06" data-track-index="14" data-volume="0.6"></audio>
+      <audio id="sfx-w3" src="assets/sfx/whoosh.mp3" data-start="13.38" data-duration="0.7" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-c1" src="assets/sfx/click2.ogg" data-start="14.23" data-duration="0.06" data-track-index="14" data-volume="0.55"></audio>
+      <audio id="sfx-c2" src="assets/sfx/click2.ogg" data-start="14.61" data-duration="0.06" data-track-index="14" data-volume="0.55"></audio>
+      <audio id="sfx-c3" src="assets/sfx/click2.ogg" data-start="15.03" data-duration="0.06" data-track-index="14" data-volume="0.55"></audio>
+      <audio id="sfx-lvl" src="assets/sfx/impactSoft_medium_001.ogg" data-start="15.43" data-duration="0.18" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="sfx-w4" src="assets/sfx/whoosh.mp3" data-start="16.28" data-duration="0.7" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-sq" src="assets/sfx/impactSoft_medium_001.ogg" data-start="17.76" data-duration="0.18" data-track-index="14" data-volume="0.6"></audio>
+      <audio id="sfx-card" src="assets/sfx/impactSoft_heavy_003.ogg" data-start="18.5" data-duration="0.54" data-track-index="12" data-volume="0.9"></audio>
+      <audio id="sfx-crowd" src="assets/sfx/crowd.mp3" data-start="18.5" data-duration="1.0" data-track-index="15" data-volume="0.32"></audio>
+      <audio id="sfx-def" src="assets/sfx/impactSoft_medium_001.ogg" data-start="19.34" data-duration="0.18" data-track-index="14" data-volume="0.7"></audio>
+      <audio id="sfx-w5" src="assets/sfx/whoosh.mp3" data-start="20.38" data-duration="0.7" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-logo" src="assets/sfx/impactSoft_heavy_001.ogg" data-start="20.9" data-duration="0.57" data-track-index="12" data-volume="0.8"></audio>
+      <audio id="sfx-gr" src="assets/sfx/click2.ogg" data-start="22.74" data-duration="0.06" data-track-index="14" data-volume="0.6"></audio>
+      <audio id="sfx-cmp" src="assets/sfx/impactSoft_medium_001.ogg" data-start="24.9" data-duration="0.18" data-track-index="14" data-volume="0.6"></audio>
+      <audio id="sfx-rep" src="assets/sfx/click2.ogg" data-start="26.32" data-duration="0.06" data-track-index="14" data-volume="0.6"></audio>
+      <audio id="sfx-w6" src="assets/sfx/whoosh.mp3" data-start="27.73" data-duration="0.7" data-track-index="13" data-volume="0.55"></audio>
+      <audio id="sfx-end" src="assets/sfx/impactSoft_heavy_001.ogg" data-start="27.95" data-duration="0.57" data-track-index="12" data-volume="0.85"></audio>
+    </div>
+
+    <script>
+      const V = {{IS_V}};
+      const W = {{W}}, H = {{H}};
+      const tl = gsap.timeline({ paused: true });
+      const E = "expo.out";
+
+      // Hasard déterministe : même rendu à chaque image
+      let seed = 7;
+      const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+
+      function slam(sel, t, from = {}) {
+        tl.fromTo(sel, Object.assign({ opacity: 0, scale: 1.9, x: -80, filter: "blur(10px)" }, from),
+          { opacity: 1, scale: 1, x: 0, y: 0, filter: "blur(0px)", duration: 0.32, ease: E }, t);
+      }
+      function slide(sel, t, dx = -140) {
+        tl.fromTo(sel, { opacity: 0, x: dx, skewX: -18 }, { opacity: 1, x: 0, skewX: 0, duration: 0.4, ease: E }, t);
+      }
+      function shake(sel, t0, t1, amp) {
+        for (let t = t0; t < t1 - 0.049; t += 0.05) tl.to(sel, { x: (rnd() - 0.5) * amp, y: (rnd() - 0.5) * amp, duration: 0.05, ease: "none" }, t);
+        tl.to(sel, { x: 0, y: 0, duration: 0.05, ease: "none" }, t1);
+      }
+      // Balayage centré sur tm : l'écran est couvert par la lame sombre à tm
+      function wipe(tm) {
+        tl.fromTo("#bl1", { xPercent: -560 }, { xPercent: 560, duration: 0.62, ease: "power3.inOut", immediateRender: false }, tm - 0.36);
+        tl.fromTo("#bl2", { xPercent: -420 }, { xPercent: 420, duration: 0.62, ease: "power3.inOut", immediateRender: false }, tm - 0.33);
+        tl.fromTo("#bl3", { x: -2.3 * W }, { x: 2.3 * W, duration: 0.6, ease: "power2.inOut", immediateRender: false }, tm - 0.3);
+      }
+      function chapter(n, t) {
+        if (n > 1) tl.to("#ch" + (n - 1), { yPercent: -160, duration: 0.25, ease: "power2.in" }, t);
+        tl.fromTo("#ch" + n, { yPercent: 160 }, { yPercent: 0, duration: 0.35, ease: E }, t + 0.1);
+        tl.set("#bug-n", { textContent: "0" + n }, t + 0.1);
+        tl.fromTo("#bug-num", { scale: 1.4 }, { scale: 1, duration: 0.3, ease: E, immediateRender: n === 1 }, t + 0.1);
+      }
+
+      // ===== Fond =====
+      tl.set("#bl1, #bl2", { xPercent: -600 }, 0);
+      tl.set("#bug-ch span", { yPercent: 160 }, 0);
+      tl.set("#bl3", { x: -2.3 * W }, 0);
+      tl.fromTo("#bigword", { x: 0 }, { x: -1400, duration: 33, ease: "none" }, 0);
+      tl.fromTo("#stripes", { x: 0 }, { x: -260, duration: 33, ease: "none" }, 0);
+      tl.fromTo(".edge", { xPercent: -140 }, { xPercent: 0, duration: 0.5, ease: E, stagger: 0.05 }, 0.02);
+
+      // ===== S1 : le marché s'emballe =====
+      (function () {
+        const n = 46, pts = [];
+        let y = H * (V ? 0.62 : 0.66);
+        for (let k = 0; k <= n; k++) {
+          const x = (k / n) * (W + 40) - 20;
+          y += (rnd() - 0.56) * H * (V ? 0.09 : 0.16);
+          if (k % 9 === 6) y -= H * 0.12;
+          y = Math.max(H * 0.18, Math.min(H * 0.88, y));
+          pts.push([x, y]);
+        }
+        const d = "M" + pts.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L");
+        document.getElementById("mkt-line").setAttribute("d", d);
+        document.getElementById("mkt-area").setAttribute("d", d + " L" + (W + 20) + " " + H + " L-20 " + H + " Z");
+        const ticks = []; const items = ["Marché de gros <b>▲</b>", "Volatilité <b>▲</b>", "Tension <b>▲</b>", "Prix spot <b>▼</b>", "Hausse <b>▲</b>"];
+        for (let k = 0; k < 18; k++) ticks.push(items[k % items.length]);
+        document.getElementById("ticker-in").innerHTML = ticks.join("<span>/</span>");
+      })();
+      const len = document.getElementById("mkt-line").getTotalLength();
+      tl.set("#mkt-line", { attr: { "stroke-dasharray": len, "stroke-dashoffset": len } }, 0);
+      tl.to("#mkt-line", { attr: { "stroke-dashoffset": len * 0.18 }, duration: 2.6, ease: "power1.in" }, 0);
+      tl.fromTo("#mkt-area", { opacity: 0 }, { opacity: 1, duration: 1.2 }, 0.4);
+      tl.fromTo("#ticker", { yPercent: 120 }, { yPercent: 0, duration: 0.3, ease: E }, 0.1);
+      tl.fromTo("#ticker-in", { x: 0 }, { x: -900, duration: 2.6, ease: "power1.in" }, 0.1);
+      slam("#h1a", 0.12);
+      slam("#h1b", 1.5, { x: 120, rotation: -4 });
+      shake("#s1-in", 0.05, 2.71, V ? 26 : 34);
+      // 2.71 : tout se fige
+      tl.set("#mkt-line", { attr: { stroke: "#b9b4ad" } }, 2.71);
+      tl.set("#mkt-area", { opacity: 0.25 }, 2.71);
+      tl.set("#ticker-in", { color: "#9fb0b8" }, 2.71);
+      tl.set("#h1a, #h1b", { opacity: 0 }, 2.71);
+      tl.fromTo("#flat", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "expo.inOut" }, 2.64);
+      tl.fromTo("#flat-tag", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.35, ease: E }, 2.9);
+      slam("#h1c", 2.71, { scale: 1.5 });
+      slam("#h1d", 3.4, { scale: 1.5 });
+      tl.fromTo("#h1d .tag", { backgroundColor: "#0c2635", color: "#faf8f5" }, { backgroundColor: "#4cde80", color: "#0c2635", duration: 0.15 }, 3.89);
+
+      // ===== S2 : prix figé =====
+      wipe(4.5);
+      chapter(1, 4.5);
+      tl.fromTo("#hud", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 4.5);
+      tl.fromTo("#bug", { x: -500 }, { x: 0, duration: 0.5, ease: E }, 4.55);
+      tl.to({ s: 0 }, { s: 23, duration: 23.4, ease: "none", onUpdate: function () {
+        const s = Math.floor(this.targets()[0].s); document.getElementById("clock").textContent = "00:" + String(s).padStart(2, "0");
+      } }, 4.5);
+      slide("#s2-a .lbl", 4.9);
+      slam("#pf", 5.25);
+      tl.fromTo("#tile", { opacity: 0, x: V ? 0 : 300, y: V ? 200 : 0, rotation: 4 }, { opacity: 1, x: 0, y: 0, rotation: 0, duration: 0.5, ease: E }, 5.95);
+      tl.fromTo("#frost", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 7.0);
+      tl.fromTo("#lock-sh", { y: -26 }, { y: 0, duration: 0.18, ease: "power4.in" }, 6.85);
+      shake("#tile", 6.2, 7.0, 10);
+      slam("#fige", 7.01, { rotation: -8 });
+      tl.fromTo("#tile", { scale: 1.06 }, { scale: 1, duration: 0.3, ease: E, immediateRender: false }, 7.03);
+      slide("#years .s:first-child", 7.55);
+      slam("#y1", 7.8, { x: 0, y: 60 });
+      slide("#ya", 8.07, -40);
+      slam("#y3", 8.18, { x: 0, y: 60 });
+      slide("#yy", 8.45, -40);
+
+      // ===== S3 : marché de gros / votre coût =====
+      wipe(9.2);
+      chapter(2, 9.2);
+      tl.fromTo("#hA", { xPercent: V ? 0 : -60, yPercent: V ? -60 : 0 }, { xPercent: 0, yPercent: 0, duration: 0.45, ease: E }, 9.2);
+      tl.fromTo("#hB", { xPercent: V ? 0 : 60, yPercent: V ? 60 : 0 }, { xPercent: 0, yPercent: 0, duration: 0.45, ease: E }, 9.25);
+      slide("#a-lbl", 9.45);
+      const barsA = document.querySelectorAll("#barsA i");
+      barsA.forEach(b => tl.set(b, { scaleY: 0.15 + rnd() * 0.4 }, 9.2));
+      for (let t = 9.45; t < 13.4; t += 0.16) {
+        const hot = t >= 10.4;
+        barsA.forEach(b => tl.to(b, { scaleY: hot ? 0.35 + rnd() * 0.65 : 0.15 + rnd() * 0.55, duration: 0.14, ease: "power2.out" }, t));
+      }
+      slam("#a-h", 10.42);
+      slide("#b-lbl", 11.2, 140);
+      tl.fromTo("#barsB i", { scaleY: 0, opacity: 0.22 }, { scaleY: 0.55, duration: 0.35, ease: E, stagger: 0.03 }, 9.55);
+      tl.to("#barsB i", { opacity: 1, duration: 0.25, stagger: 0.02 }, 11.25);
+      tl.fromTo("#b-line", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.inOut" }, 11.75);
+      slam("#b-h", 11.3);
+      tl.fromTo("#sight", { opacity: 0, scale: 2.4, rotation: 45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: E }, 12.4);
+      slam("#prec", 12.48, { rotation: -6 });
+
+      // ===== S4 : budget tenu =====
+      wipe(13.6);
+      chapter(3, 13.6);
+      slam("#s4-h", 13.9);
+      ["#col1", "#col2", "#col3"].forEach((c, k) => {
+        const t = [14.2, 14.58, 15.0][k];
+        tl.fromTo(c, { opacity: 0, y: V ? 300 : 220 }, { opacity: 1, y: 0, duration: 0.4, ease: E }, t);
+        tl.fromTo(c + " .fill", { scaleY: 0 }, { scaleY: 1, duration: 0.45, ease: E }, t + 0.08);
+      });
+      slide("#s4-h2", 15.4);
+      tl.fromTo("#level", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.inOut" }, 15.4);
+      tl.fromTo("#check", { opacity: 0, scale: 2.2, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }, 15.75);
+
+      // ===== S5 : marge serrée, carte prix fixe =====
+      wipe(16.5);
+      chapter(4, 16.5);
+      slide("#marge-k", 16.85);
+      slam("#marge", 17.4, { scale: 1.2 });
+      tl.to("#wallL", { xPercent: V ? 46 : 63, duration: 0.55, ease: "power3.in" }, 17.25);
+      tl.to("#wallR", { xPercent: V ? -46 : -63, duration: 0.55, ease: "power3.in" }, 17.25);
+      tl.to("#marge", { scaleX: 0.55, duration: 0.5, ease: "power3.in" }, 17.3);
+      shake("#s5-in", 17.8, 18.45, 14);
+      tl.to("#wallL", { xPercent: -40, duration: 0.35, ease: E }, 18.5);
+      tl.to("#wallR", { xPercent: 40, duration: 0.35, ease: E }, 18.5);
+      tl.to("#marge, #marge-k", { opacity: 0, duration: 0.12 }, 18.5);
+      tl.fromTo("#card", { rotationY: -200, scale: 0.4, opacity: 0 }, { rotationY: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, 18.5);
+      tl.fromTo("#c-tiger", { opacity: 0, scale: 1.3 }, { opacity: 0.95, scale: 1, duration: 0.5, ease: E }, 18.8);
+      document.querySelectorAll("#c-stats .st").forEach((el, k) => {
+        tl.fromTo({ v: 0 }, { v: 0 }, { v: 99, duration: 0.7, ease: "power2.out", onUpdate: function () { el.textContent = Math.round(this.targets()[0].v); } }, 18.75 + k * 0.08);
+      });
+      tl.fromTo("#c-rate", { scale: 2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: E }, 18.9);
+      tl.fromTo("#c-shine", { xPercent: 0 }, { xPercent: 560, duration: 0.6, ease: "power2.inOut" }, 19.3);
+      slide("#s5-t .lbl", 18.55, 140);
+      slam("#s5-t1", 19.0);
+      slam("#s5-t2", 19.32, { rotation: -6 });
+      tl.fromTo("#card-wrap", { y: 0 }, { y: -16, duration: 1.3, ease: "sine.inOut" }, 19.3);
+
+      // ===== S6 : MS Stratégie =====
+      wipe(20.6);
+      chapter(5, 20.6);
+      tl.fromTo("#s6-logo", { opacity: 0, x: -200, skewX: -20 }, { opacity: 1, x: 0, skewX: 0, duration: 0.45, ease: E }, 20.85);
+      slam("#s6-a", 21.7);
+      slam("#s6-g", 22.72, { rotation: -6 });
+      tl.fromTo("#band", { xPercent: -110 }, { xPercent: 0, duration: 0.45, ease: E }, 23.45);
+      slide("#s6-q1", 23.6);
+      slam("#s6-q2", 24.2);
+      tl.fromTo("#s6-q2 em", { color: "#ffffff" }, { color: "#4cde80", duration: 0.2 }, 24.9);
+      tl.fromTo("#rep", { opacity: 0, x: 200 }, { opacity: 1, x: 0, duration: 0.4, ease: E }, 26.28);
+      tl.fromTo("#rep-b", { scale: 1.6 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 26.9);
+      tl.to("#hud", { opacity: 0, duration: 0.2 }, 27.6);
+
+      // ===== S7 : signature =====
+      wipe(27.95);
+      tl.fromTo("#s7-logo", { opacity: 0, scale: 1.4, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.6, ease: E }, 28.0);
+      slam("#s7-t", 28.5);
+      tl.fromTo("#s7-strip", { xPercent: -105 }, { xPercent: 0, duration: 0.5, ease: E }, 29.1);
+      tl.fromTo("#s7-strip span", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: E, stagger: 0.12 }, 29.35);
+      tl.fromTo("#s7-sub", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 30.0);
+      tl.fromTo("#s7-in", { scale: 1 }, { scale: 1.035, duration: 5.05, ease: "none" }, 27.95);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
