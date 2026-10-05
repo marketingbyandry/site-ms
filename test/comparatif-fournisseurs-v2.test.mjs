@@ -53,3 +53,19 @@ test('l’exemple chiffré est juste : chaque total égale la somme de ses ligne
   assert.deepEqual(totals, [13520, 13660]);
   assert.match(html(), /\+140&nbsp;€/);
 });
+
+test('la photo est une bande fine dans le rail collant, plus une bannière en tête', () => {
+  const source = html();
+  const hero = source.slice(source.indexOf('<header class="hero">'), source.indexOf('</header>'));
+  assert.doesNotMatch(hero, /article-banner/);
+  assert.match(source, /<div class="v2-rail">\s*<div class="photo-ph article-banner"><\/div>/);
+  assert.match(source, /\.v2-rail \{\s*position: sticky;[^}]*align-self: start;/);
+});
+
+test('pas de bouton flottant ni de coins à peine arrondis : carré ou pilule', () => {
+  const source = html();
+  assert.doesNotMatch(source, /floating-cta/);
+  const style = source.slice(source.indexOf('<style>'), source.indexOf('</style>'));
+  const radii = [...style.matchAll(/border-radius:\s*([^;}]+)/g)].map((m) => m[1].trim());
+  for (const r of radii) assert.ok(['0', '999px', '50%'].includes(r), `rayon interdit : ${r}`);
+});
