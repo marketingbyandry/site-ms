@@ -8,9 +8,21 @@
   </url>
   <url>
     <loc>https://cabinetms.fr/b2b.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cabinetms.fr/courtier-electricite-professionnel.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cabinetms.fr/courtier-gaz-professionnel.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cabinetms.fr/b2c.html</loc>
@@ -500,7 +512,7 @@
   </url>
   <url>
     <loc>https://cabinetms.fr/courtier-en-energie-role.html</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>

@@ -172,3 +172,25 @@ test('aucune ancre « cliquez ici » sur les liens du chantier', () => {
     assert.doesNotMatch(norm(read(f)), />\s*(cliquez ici|en savoir plus)\s*</, f);
   }
 });
+
+// ---------- Tâche 6 : indexation + anti-cannibalisation ----------
+const NEW_PAGES = ['courtier-electricite-professionnel.html', 'courtier-gaz-professionnel.html', ...ARTICLES.map((s) => `${s}.html`)];
+
+test('nouvelles pages dans sitemap.xml, plan-du-site.html et llms.txt', () => {
+  const sitemap = read('sitemap.xml'), plan = read('plan-du-site.html'), llms = read('llms.txt');
+  for (const p of NEW_PAGES) {
+    assert.equal(sitemap.split(`<loc>https://cabinetms.fr/${p}</loc>`).length - 1, 1, `sitemap : ${p}`);
+    assert.ok(hasLink(plan, p), `plan-du-site : ${p}`);
+  }
+  for (const p of ['courtier-electricite-professionnel.html', 'courtier-gaz-professionnel.html']) {
+    assert.ok(llms.includes(`https://cabinetms.fr/${p}`), `llms.txt : ${p}`);
+  }
+});
+
+test('anti-cannibalisation : chaque mot-clé principal n\'est dans le title que de sa page', () => {
+  const files = readdirSync('.').filter((f) => f.endsWith('.html'));
+  for (const [target, { key }] of Object.entries(TARGETS)) {
+    const offenders = files.filter((f) => f !== target && norm(titleOf(read(f))).includes(key));
+    assert.deepEqual(offenders, [], `« ${key} » réservé à ${target}`);
+  }
+});
