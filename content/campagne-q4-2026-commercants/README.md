@@ -53,14 +53,56 @@ fait » → « Les étiquettes cachées » (la facture lue comme 5 étiquettes d
 prix) → « Le vrai prix » → « Black Week à l'envers » (Black Friday le 27/11,
 Cyber Monday le 30/11).
 
-## Rôle de chaque plateforme
+## Charte des voix (V2) : un ton par audience
 
-| Plateforme | Code `camp` | Cible dans la cible | Format | Rôle |
+Un même angle par jour, mais **quatre textes écrits pour quatre publics
+différents**, pas une copie déclinée. Tons validés le 06/10/2026.
+
+| | LinkedIn | Facebook | Instagram | X |
 |---|---|---|---|---|
-| LinkedIn | `soc-li` | Dirigeants de réseaux, franchises, multi-sites | Post texte *answer-first*, 120 à 200 mots | Conversion |
-| Facebook | `soc-fb` | Commerçants indépendants, ancrage local (Montpellier en priorité) | Post court et simple, image | Conversion |
-| Instagram | `soc-ig` | Commerçants, notoriété | Visuel (brief) + légende, lien en bio | Notoriété et preuve |
-| X | `soc-x` | Presse, LLM, curieux | 1 tweet ou thread court, chiffre ou prise de position | Citation et GEO |
+| **Code `camp`** | `soc-li` | `soc-fb` | `soc-ig` | `soc-x` |
+| **Pour qui** | Dirigeants de réseaux, DAF, franchiseurs | Commerçants indépendants, 40-60 ans, de quartier | Commerçants 25-45 ans, créateurs de boutique | Journalistes, analystes, curieux, IA |
+| **Voix** | Expert, chiffré. **« Je »** sur le profil du dirigeant, « nous » sur la page | Chaleureux, concret, de quartier | Visuel, rythmé, en **« vous »** | Mélange : tranchant (tweets) et pédagogue (threads) |
+| **Ce qu'on y fait** | Un point de vue argumenté, des faits sourcés cités en fin de post | Un bon tuyau entre voisins, une question pour les commentaires, des références locales | L'image d'abord. Phrases courtes, accroche dans la 1re ligne, coulisses et visages | Un chiffre sourcé et une position, ou un thread qui explique |
+| **Ce qu'on n'y fait pas** | Les émojis décoratifs, le jargon gratuit | Le jargon (TURPE, accise sans explication), les longs pavés | Les pavés de texte, le tutoiement | « Bonjour », les émojis, les points d'exclamation |
+| **Longueur** | 120 à 200 mots | 40 à 90 mots | Légende de 20 à 60 mots + script ou slides | Tweet ≤ 280 caractères, ou thread de 4 à 6 tweets |
+
+**LinkedIn, deux comptes :** 4 posts par semaine sur la page M&S et 3 sur
+le profil du dirigeant (mardi, mercredi, dimanche). Les posts en « je »
+expriment des **opinions et des observations qualitatives**. Ils ne
+contiennent aucun chiffre interne inventé, et **le dirigeant les relit et
+valide** pour qu'ils reflètent sa vraie expérience.
+
+## Rythme statique / vidéo
+
+La même grille revient chaque semaine. Elle s'appuie sur les benchmarks
+2026 (voir [`recherche-concurrents.md`](recherche-concurrents.md) §3) :
+sur LinkedIn, le carrousel PDF est le format le plus engageant ; sur
+Instagram, le Reel apporte la portée et le carrousel les sauvegardes ; sur
+Facebook, la vidéo repart d'Instagram.
+
+| Jour | LinkedIn | Instagram | Facebook | X |
+|---|---|---|---|---|
+| Lundi | Page · **carrousel PDF** | Carrousel | Image | Tweet chiffre |
+| Mardi | Profil · **vidéo** 45-90 s | **Reel** | **Reel** (reprise IG) | Thread |
+| Mercredi | Profil · texte long | Carrousel mixte (images + clip) | Texte + question | Tweet position |
+| Jeudi | Page · **carrousel PDF** | Image unique | Image | Visuel chiffre |
+| Vendredi | Page · **vidéo** 45-90 s | **Reel** | **Vidéo** (reprise) | **Clip** 30 s |
+| Samedi | Page · image / infographie | Carrousel | Photo locale | Tweet |
+| Dimanche | Profil · texte court | **Reel coulisses** | **Vidéo** (reprise) | Thread récap |
+
+**Bilan sur la campagne :** 110 formats vidéo sur 312 (35 %), 202
+statiques.
+
+**Production réaliste :** il n'y a que **3 tournages-sources par semaine**
+(mardi, vendredi, dimanche). Chacun est décliné en 4 montages : vertical
+pour Instagram et Facebook, carré ou horizontal pour LinkedIn, extrait de
+30 s pour X. Concrètement, **une demi-journée de tournage toutes les deux
+semaines** (6 vidéos), au téléphone, dans de vrais commerces et au
+bureau. Chaque jour vidéo contient un script plan par plan.
+
+Exceptions assumées à la grille : le Black Friday (27/11) et Noël (25/12)
+gardent leur visuel signature.
 
 ## Le parcours : chaque post renvoie à son étape
 
@@ -127,8 +169,11 @@ produit des factures, pas vers ce qui produit des likes.
 
 ## Règles de rédaction (à respecter pour toute retouche)
 
-- **Aucun chiffre non sourcé.** Les seuls chiffres utilisés viennent des
-  pages du site : 36 kVA, 1 000 m², 3 à 5 % par degré de chambre froide,
+- **Aucun chiffre non sourcé.** Deux sources sont admises : les faits
+  externes publics listés dans
+  [`recherche-concurrents.md`](recherche-concurrents.md) §2 (CRE,
+  BOFiP, Médiateur de l'énergie, fédérations), cités dans le post, et les
+  chiffres des pages du site : 36 kVA, 1 000 m², 3 à 5 % par degré de chambre froide,
   40 à 50 % de la consommation en cuisine, contrats fixes de 1 à 3 ans,
   alerte 12 à 24 mois, retour sous 24h, depuis 2012, TURPE révisé au
   1er août. Les statistiques de la home (19 %, 70M kWh, 80 % des
@@ -149,11 +194,11 @@ produit des factures, pas vers ce qui produit des likes.
 
 ## Points à vérifier avant publication
 
-- **Page TVA à revérifier** : `tva-electricite-professionnelle.html`
-  indique un taux réduit de 5,5 % sur l'abonnement ≤ 36 kVA. Ce taux
-  réduit a été supprimé par la loi de finances 2025 (abonnement à 20 %
-  depuis le 1er août 2025). Le post du 13/11 ne cite volontairement
-  aucun taux, mais il renvoie vers cette page : la corriger avant le 13/11.
+- **Page TVA à corriger sur le site** : `tva-electricite-professionnelle.html`
+  indique encore un taux réduit de 5,5 % sur l'abonnement ≤ 36 kVA. Ce
+  taux a été supprimé au 1er août 2025 (art. 20 de la loi de finances
+  2025, confirmé par le BOFiP) : la TVA est à 20 % sur toute la facture.
+  Le post du 13/11 renvoie vers cette page, il faut donc la corriger avant.
 - **Post du 30/12** : à réécrire avec les vrais enseignements de la
   campagne (cf. note dans le fichier).
 - **Visuels « Baromètre »** (01/11, 19/11, 20/12) : utiliser le graphique
