@@ -129,3 +129,46 @@ for (const slug of ARTICLES) {
     assert.ok(hasLink(read('blog.html'), `${slug}.html`), 'absent de blog.html');
   });
 }
+
+// ---------- Tâche 5 : maillage ----------
+const CITIES = ['paris', 'lille', 'strasbourg', 'lyon', 'rennes', 'nantes', 'bordeaux', 'toulouse', 'montpellier', 'marseille'];
+
+test('triangle des pages de service', () => {
+  const b2b = read('b2b.html');
+  assert.ok(hasLink(b2b, 'courtier-electricite-professionnel.html'));
+  assert.ok(hasLink(b2b, 'courtier-gaz-professionnel.html'));
+  for (const slug of ARTICLES) assert.ok(hasLink(b2b, `${slug}.html`), `b2b.html → ${slug}`);
+});
+
+test('pages villes → pages de service', () => {
+  for (const c of CITIES) {
+    const courtier = read(`courtier-energie-${c}.html`);
+    assert.ok(hasLink(courtier, 'b2b.html'), `courtier-energie-${c} → b2b`);
+    assert.ok(hasLink(courtier, 'courtier-electricite-professionnel.html'), `courtier-energie-${c} → électricité`);
+    assert.ok(hasLink(read(`gaz-professionnel-${c}.html`), 'courtier-gaz-professionnel.html'), `gaz-professionnel-${c} → gaz`);
+    assert.ok(hasLink(read(`tarif-electricite-professionnel-${c}.html`), 'courtier-electricite-professionnel.html'), `tarif-${c} → électricité`);
+  }
+});
+
+test('articles existants proches → page de service', () => {
+  const map = {
+    'courtier-en-energie-role.html': 'b2b.html',
+    'comparatif-fournisseurs-electricite-pro.html': 'courtier-electricite-professionnel.html',
+    'prix-fixe-vs-indexe-electricite-pro.html': 'courtier-electricite-professionnel.html',
+    'resilier-contrat-electricite-entreprise.html': 'courtier-electricite-professionnel.html',
+    'decrypter-facture-electricite-pro.html': 'courtier-electricite-professionnel.html',
+    'turpe-2026-professionnels.html': 'courtier-electricite-professionnel.html',
+    'achat-groupe-energie-pme-franchises.html': 'b2b.html',
+  };
+  for (const [file, href] of Object.entries(map)) assert.ok(hasLink(read(file), href), `${file} → ${href}`);
+});
+
+test('courtier-en-energie-role.html recentré sur la définition', () => {
+  assert.match(norm(titleOf(read('courtier-en-energie-role.html'))), /^qu'est-ce qu'un courtier en energie/);
+});
+
+test('aucune ancre « cliquez ici » sur les liens du chantier', () => {
+  for (const f of ['b2b.html', 'courtier-electricite-professionnel.html', 'courtier-gaz-professionnel.html', ...ARTICLES.map((s) => `${s}.html`)]) {
+    assert.doesNotMatch(norm(read(f)), />\s*(cliquez ici|en savoir plus)\s*</, f);
+  }
+});
