@@ -199,6 +199,16 @@ produit des factures, pas vers ce qui produit des likes.
   taux a été supprimé au 1er août 2025 (art. 20 de la loi de finances
   2025, confirmé par le BOFiP) : la TVA est à 20 % sur toute la facture.
   Le post du 13/11 renvoie vers cette page, il faut donc la corriger avant.
+- **Posts LinkedIn en « je »** (profil du dirigeant, mardi, mercredi et
+  dimanche) : à faire relire et valider par le dirigeant. Ils expriment des
+  observations qualitatives (« ce que je vois souvent… ») qui doivent
+  correspondre à son expérience réelle.
+- **Données concurrents** (`recherche-concurrents.md` §1) : collectées par
+  recherche web, sans accès direct à LinkedIn, Instagram, TikTok ni
+  YouTube. À recontrôler avant de s'en servir.
+- **Tournages** : 3 vidéos-sources par semaine, scripts plan par plan dans
+  chaque jour vidéo. Les commerces partenaires filmés (boutique,
+  restaurant, boulangerie, hôtel) doivent donner leur accord écrit.
 - **Post du 30/12** : à réécrire avec les vrais enseignements de la
   campagne (cf. note dans le fichier).
 - **Visuels « Baromètre »** (01/11, 19/11, 20/12) : utiliser le graphique
