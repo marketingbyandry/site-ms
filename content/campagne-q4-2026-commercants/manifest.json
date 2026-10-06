@@ -1,0 +1,1569 @@
+{
+  "campagne": "Pas de -50 % — commerçants, Q4 2026",
+  "periode": "2026-10-15 → 2026-12-31",
+  "total_jours": 78,
+  "total_posts": 312,
+  "regle_reprise": "Reprendre au premier item dont statut = pending. Un fichier par jour, écrit puis marqué done.",
+  "items": [
+    {
+      "jour": 1,
+      "date": "2026-10-15",
+      "jour_semaine": "jeudi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Manifeste : cette fin d'année, pas de -50 % chez nous",
+      "etape": "TOFU",
+      "matrice": "Inspirer",
+      "gisement": "coulisses",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-15.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 2,
+      "date": "2026-10-16",
+      "jour_semaine": "vendredi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Où se cache la date d'échéance de votre contrat (reconduction tacite)",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "resilier-contrat-electricite-entreprise.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-16.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 3,
+      "date": "2026-10-17",
+      "jour_semaine": "samedi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "La vitrine qui reste allumée : l'éclairage, poste discret de la saison",
+      "etape": "TOFU",
+      "matrice": "Divertir",
+      "gisement": "pilier SEO",
+      "destination": "economies-energie-boulangerie.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-17.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 4,
+      "date": "2026-10-18",
+      "jour_semaine": "dimanche",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Courtier, fournisseur, comparateur : qui fait quoi",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "courtier-en-energie-role.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-18.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 5,
+      "date": "2026-10-19",
+      "jour_semaine": "lundi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Lire sa facture en 5 blocs",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "decrypter-facture-electricite-pro.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-19.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 6,
+      "date": "2026-10-20",
+      "jour_semaine": "mardi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Ce qui se négocie, ce qui ne bouge pas (fourniture vs TURPE et taxes)",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "turpe-2026-professionnels.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-20.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 7,
+      "date": "2026-10-21",
+      "jour_semaine": "mercredi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Un courtier gratuit, ça cache quoi ? La réponse honnête",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "preuve sociale",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-21.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 8,
+      "date": "2026-10-22",
+      "jour_semaine": "jeudi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Restaurateurs : le froid tourne même quand vous fermez",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "consommation-energie-restaurant.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-22.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 9,
+      "date": "2026-10-23",
+      "jour_semaine": "vendredi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Prix fixe ou indexé, avant une saison chargée",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "prix-fixe-vs-indexe-electricite-pro.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-23.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 10,
+      "date": "2026-10-24",
+      "jour_semaine": "samedi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Boulangers : le four, premier poste de la facture",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "economies-energie-boulangerie.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-24.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 11,
+      "date": "2026-10-25",
+      "jour_semaine": "dimanche",
+      "phase": "1 · Avant la vitrine",
+      "angle": "La fin de l'ARENH, en clair pour un commerçant",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "arenh-entreprise-fin-dispositif.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-25.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 12,
+      "date": "2026-10-26",
+      "jour_semaine": "lundi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "La puissance souscrite que personne n'a revue depuis l'ouverture",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "puissance-souscrite-entreprise-kva.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-26.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 13,
+      "date": "2026-10-27",
+      "jour_semaine": "mardi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Contrat en cours ? On prépare le dossier quand même",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "coulisses",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-27.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 14,
+      "date": "2026-10-28",
+      "jour_semaine": "mercredi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Même commission quel que soit le fournisseur : pourquoi ça compte",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "preuve sociale",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-28.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 15,
+      "date": "2026-10-29",
+      "jour_semaine": "jeudi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "La fenêtre de renégociation n'est pas celle qu'on croit (12-24 mois)",
+      "etape": "MOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-29.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 16,
+      "date": "2026-10-30",
+      "jour_semaine": "vendredi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Plusieurs boutiques : mutualiser plutôt que subir",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "pilier SEO",
+      "destination": "energie-reseau-franchise-multisites.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-30.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 17,
+      "date": "2026-10-31",
+      "jour_semaine": "samedi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Halloween : les lignes de facture qui font vraiment peur",
+      "etape": "TOFU",
+      "matrice": "Divertir",
+      "gisement": "pilier SEO",
+      "destination": "accise-electricite-gaz-2026.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-10-31.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 18,
+      "date": "2026-11-01",
+      "jour_semaine": "dimanche",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Avant de parler prix, regardez le marché (Baromètre)",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "baromètre",
+      "destination": "barometre-energie.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-01.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 19,
+      "date": "2026-11-02",
+      "jour_semaine": "lundi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Lancement : en novembre vous baissez vos prix. Qui baisse les vôtres ?",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "coulisses",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-02.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 20,
+      "date": "2026-11-03",
+      "jour_semaine": "mardi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Une remise coûte de la marge une fois ; une charge mal négociée la coûte tous les mois",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "pilier SEO",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-03.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 21,
+      "date": "2026-11-04",
+      "jour_semaine": "mercredi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Le coût de l'inaction, mois après mois (calculateur)",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "pilier SEO",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-04.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 22,
+      "date": "2026-11-05",
+      "jour_semaine": "jeudi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Ce que les fournisseurs regardent pour fixer votre prix",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "ms-strategy-landing-2.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-05.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 23,
+      "date": "2026-11-06",
+      "jour_semaine": "vendredi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "3 ou 4 offres comparées, ou tout le marché ?",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "preuve sociale",
+      "destination": "comparatif-fournisseurs-electricite-pro.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-06.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 24,
+      "date": "2026-11-07",
+      "jour_semaine": "samedi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Samedi de rush : vous n'avez pas le temps, c'est justement le principe",
+      "etape": "MOFU",
+      "matrice": "Inspirer",
+      "gisement": "coulisses",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-07.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 25,
+      "date": "2026-11-08",
+      "jour_semaine": "dimanche",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Pourquoi on ne vous fera jamais de -50 %",
+      "etape": "MOFU",
+      "matrice": "Inspirer",
+      "gisement": "coulisses",
+      "destination": "courtier-en-energie-role.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-08.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 26,
+      "date": "2026-11-09",
+      "jour_semaine": "lundi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Étiquette n°1 : l'abonnement (puissance souscrite)",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "puissance-souscrite-entreprise-kva.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-09.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 27,
+      "date": "2026-11-10",
+      "jour_semaine": "mardi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Étiquette n°2 : le prix du kWh",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "prix-kwh-professionnel-2026.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-10.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 28,
+      "date": "2026-11-11",
+      "jour_semaine": "mercredi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Étiquette n°3 : le TURPE, même prix chez tout le monde",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "turpe-2026-professionnels.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-11.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 29,
+      "date": "2026-11-12",
+      "jour_semaine": "jeudi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Étiquette n°4 : l'accise, une taxe à vérifier",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "accise-electricite-gaz-2026.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-12.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 30,
+      "date": "2026-11-13",
+      "jour_semaine": "vendredi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Étiquette n°5 : la TVA (et le seuil des 36 kVA)",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "tva-electricite-professionnelle.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-13.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 31,
+      "date": "2026-11-14",
+      "jour_semaine": "samedi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Récap : sur 5 étiquettes, lesquelles se négocient vraiment",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "pilier SEO",
+      "destination": "decrypter-facture-electricite-pro.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-14.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 32,
+      "date": "2026-11-15",
+      "jour_semaine": "dimanche",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Cuisine au gaz : le deuxième contrat qu'on oublie",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "gaz-professionnel-montpellier.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-15.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 33,
+      "date": "2026-11-16",
+      "jour_semaine": "lundi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Le moment de signer compte autant que la formule",
+      "etape": "MOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "prix-fixe-vs-indexe-electricite-pro.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-16.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 34,
+      "date": "2026-11-17",
+      "jour_semaine": "mardi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "L'indexé : les baisses en direct, les hausses aussi",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "prix-fixe-vs-indexe-electricite-pro.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-17.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 35,
+      "date": "2026-11-18",
+      "jour_semaine": "mercredi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "VNU : deux offres identiques sur le papier ne le sont pas forcément",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "vnu-2026-versement-nucleaire-universel.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-18.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 36,
+      "date": "2026-11-19",
+      "jour_semaine": "jeudi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Le Baromètre : des sources publiques, gratuit, sans inscription",
+      "etape": "MOFU",
+      "matrice": "Éduquer",
+      "gisement": "baromètre",
+      "destination": "barometre-energie.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-19.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 37,
+      "date": "2026-11-20",
+      "jour_semaine": "vendredi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Vous gardez la décision finale (et le droit de ne rien changer)",
+      "etape": "BOFU",
+      "matrice": "Convaincre",
+      "gisement": "preuve sociale",
+      "destination": "b2b.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-20.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 38,
+      "date": "2026-11-21",
+      "jour_semaine": "samedi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Restaurateurs : pointe du midi, pointe du soir, jours de fermeture",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "tarifs-horosaisonniers-electricite-pro.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-21.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 39,
+      "date": "2026-11-22",
+      "jour_semaine": "dimanche",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Hôteliers : la saison d'hiver se prépare aussi sur la facture",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "economies-energie-hotellerie.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-22.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 40,
+      "date": "2026-11-23",
+      "jour_semaine": "lundi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Black Week à l'envers : cette semaine, zéro réduction promise",
+      "etape": "BOFU",
+      "matrice": "Convaincre",
+      "gisement": "coulisses",
+      "destination": "b2b.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-23.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 41,
+      "date": "2026-11-24",
+      "jour_semaine": "mardi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Ce qu'il faut pour l'étude : une facture, un relevé, une date",
+      "etape": "BOFU",
+      "matrice": "Convaincre",
+      "gisement": "coulisses",
+      "destination": "b2b.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-24.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 42,
+      "date": "2026-11-25",
+      "jour_semaine": "mercredi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Le déroulé exact, de la facture au nouveau contrat",
+      "etape": "BOFU",
+      "matrice": "Convaincre",
+      "gisement": "preuve sociale",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-25.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 43,
+      "date": "2026-11-26",
+      "jour_semaine": "jeudi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Demain, tout le monde vous parlera de prix barrés",
+      "etape": "TOFU",
+      "matrice": "Divertir",
+      "gisement": "coulisses",
+      "destination": "ms-strategy-landing-2.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-26.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 44,
+      "date": "2026-11-27",
+      "jour_semaine": "vendredi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "BLACK FRIDAY : notre offre, la même que d'habitude. Gratuite, sans date limite",
+      "etape": "BOFU",
+      "matrice": "Convaincre",
+      "gisement": "coulisses",
+      "destination": "b2b.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-27.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 45,
+      "date": "2026-11-28",
+      "jour_semaine": "samedi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Rush du samedi : n'en lisez pas plus aujourd'hui, enregistrez ce post",
+      "etape": "MOFU",
+      "matrice": "Divertir",
+      "gisement": "coulisses",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-28.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 46,
+      "date": "2026-11-29",
+      "jour_semaine": "dimanche",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Après le Black Friday : regarder ses charges, pas seulement ses ventes",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "pilier SEO",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-29.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 47,
+      "date": "2026-11-30",
+      "jour_semaine": "lundi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Cyber Monday : 3 minutes en ligne, le calculateur",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "pilier SEO",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-11-30.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 48,
+      "date": "2026-12-01",
+      "jour_semaine": "mardi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 1/24 : trouver sa date d'échéance",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "resilier-contrat-electricite-entreprise.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-01.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 49,
+      "date": "2026-12-02",
+      "jour_semaine": "mercredi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 2/24 : le préavis, ce délai qui piège",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "resilier-contrat-electricite-entreprise.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-02.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 50,
+      "date": "2026-12-03",
+      "jour_semaine": "jeudi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 3/24 : les pénalités de sortie d'un prix fixe",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "resilier-contrat-electricite-entreprise.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-03.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 51,
+      "date": "2026-12-04",
+      "jour_semaine": "vendredi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 4/24 : vos pics de puissance des 12 derniers mois",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "puissance-souscrite-entreprise-kva.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-04.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 52,
+      "date": "2026-12-05",
+      "jour_semaine": "samedi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 5/24 : l'éclairage de vitrine et des réserves",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "economies-energie-boulangerie.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-05.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 53,
+      "date": "2026-12-06",
+      "jour_semaine": "dimanche",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 6/24 : joints, condenseurs, dégivrage",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "economies-energie-boulangerie.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-06.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 54,
+      "date": "2026-12-07",
+      "jour_semaine": "lundi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 7/24 : la consigne de la chambre froide",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "consommation-energie-restaurant.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-07.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 55,
+      "date": "2026-12-08",
+      "jour_semaine": "mardi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 8/24 : l'option tarifaire et vos horaires",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "tarifs-horosaisonniers-electricite-pro.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-08.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 56,
+      "date": "2026-12-09",
+      "jour_semaine": "mercredi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 9/24 : le mécanisme de capacité, la ligne des grands froids",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "mecanisme-capacite-electricite-entreprise.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-09.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 57,
+      "date": "2026-12-10",
+      "jour_semaine": "jeudi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 10/24 : les CEE pour financer un équipement",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "cee-entreprise-2026.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-10.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 58,
+      "date": "2026-12-11",
+      "jour_semaine": "vendredi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 11/24 : les mentions obligatoires de votre facture",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "mentions-obligatoires-facture-electricite-pro.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-11.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 59,
+      "date": "2026-12-12",
+      "jour_semaine": "samedi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 12/24 : ouvertures du dimanche et dépassements de puissance",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "puissance-souscrite-entreprise-kva.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-12.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 60,
+      "date": "2026-12-13",
+      "jour_semaine": "dimanche",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 13/24 : l'électricité verte, ce que vos clients voient vraiment",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "garanties-origine-electricite-verte-entreprise.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-13.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 61,
+      "date": "2026-12-14",
+      "jour_semaine": "lundi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 14/24 : électricité et gaz, deux échéances à aligner",
+      "etape": "MOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "resilier-contrat-electricite-entreprise.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-14.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 62,
+      "date": "2026-12-15",
+      "jour_semaine": "mardi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 15/24 : plusieurs points de vente, un seul dossier",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "pilier SEO",
+      "destination": "achat-groupe-energie-pme-franchises.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-15.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 63,
+      "date": "2026-12-16",
+      "jour_semaine": "mercredi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 16/24 : plus de 1 000 m² ? Le décret tertiaire",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "decret-tertiaire-obligations.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-16.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 64,
+      "date": "2026-12-17",
+      "jour_semaine": "jeudi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 17/24 : le parking et la loi LOM",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "bornes-recharge-entreprise-loi-lom.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-17.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 65,
+      "date": "2026-12-18",
+      "jour_semaine": "vendredi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 18/24 : les formules hybrides fixe + indexé",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "prix-fixe-vs-indexe-electricite-pro.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-18.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 66,
+      "date": "2026-12-19",
+      "jour_semaine": "samedi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 19/24 : régularisations et estimations",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "decrypter-facture-electricite-pro.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-19.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 67,
+      "date": "2026-12-20",
+      "jour_semaine": "dimanche",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 20/24 : lire le Baromètre en 1 minute",
+      "etape": "MOFU",
+      "matrice": "Éduquer",
+      "gisement": "baromètre",
+      "destination": "barometre-energie.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-20.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 68,
+      "date": "2026-12-21",
+      "jour_semaine": "lundi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 21/24 : le jour le plus court, l'éclairage le plus long",
+      "etape": "TOFU",
+      "matrice": "Divertir",
+      "gisement": "pilier SEO",
+      "destination": "consommation-energie-restaurant.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-21.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 69,
+      "date": "2026-12-22",
+      "jour_semaine": "mardi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 22/24 : contrat en cours, dossier prêt pour la prochaine fenêtre",
+      "etape": "BOFU",
+      "matrice": "Convaincre",
+      "gisement": "coulisses",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-22.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 70,
+      "date": "2026-12-23",
+      "jour_semaine": "mercredi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 23/24 : une facture, 24h, un comparatif",
+      "etape": "BOFU",
+      "matrice": "Convaincre",
+      "gisement": "preuve sociale",
+      "destination": "b2b.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-23.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 71,
+      "date": "2026-12-24",
+      "jour_semaine": "jeudi",
+      "phase": "3 · L'Avent des charges",
+      "angle": "Case 24/24 : le cadeau, une alerte 12 à 24 mois avant l'échéance",
+      "etape": "CARE",
+      "matrice": "Inspirer",
+      "gisement": "coulisses",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-24.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 72,
+      "date": "2026-12-25",
+      "jour_semaine": "vendredi",
+      "phase": "4 · L'inventaire",
+      "angle": "Noël : aujourd'hui, on ne vous vend rien",
+      "etape": "CARE",
+      "matrice": "Inspirer",
+      "gisement": "coulisses",
+      "destination": "",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-25.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 73,
+      "date": "2026-12-26",
+      "jour_semaine": "samedi",
+      "phase": "4 · L'inventaire",
+      "angle": "L'inventaire : vous comptez votre stock, comptez aussi vos contrats",
+      "etape": "CARE",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "decrypter-facture-electricite-pro.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-26.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 74,
+      "date": "2026-12-27",
+      "jour_semaine": "dimanche",
+      "phase": "4 · L'inventaire",
+      "angle": "Les 24 cases en une seule liste (à enregistrer)",
+      "etape": "CARE",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-27.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 75,
+      "date": "2026-12-28",
+      "jour_semaine": "lundi",
+      "phase": "4 · L'inventaire",
+      "angle": "Ce que 2026 a changé : ARENH, VNU, accise",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "gisement": "pilier SEO",
+      "destination": "vnu-2026-versement-nucleaire-universel.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-28.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 76,
+      "date": "2026-12-29",
+      "jour_semaine": "mardi",
+      "phase": "4 · L'inventaire",
+      "angle": "Rendez-vous 2027 : mettre l'échéance au calendrier",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "gisement": "pilier SEO",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-29.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 77,
+      "date": "2026-12-30",
+      "jour_semaine": "mercredi",
+      "phase": "4 · L'inventaire",
+      "angle": "78 jours sans promo : ce qu'on retient",
+      "etape": "CARE",
+      "matrice": "Inspirer",
+      "gisement": "coulisses",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": false,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-30.md",
+      "statut": "pending"
+    },
+    {
+      "jour": 78,
+      "date": "2026-12-31",
+      "jour_semaine": "jeudi",
+      "phase": "4 · L'inventaire",
+      "angle": "Pas de -50 %. Juste le bon prix, pour toute la durée du contrat",
+      "etape": "BOFU",
+      "matrice": "Convaincre",
+      "gisement": "coulisses",
+      "destination": "b2b.html",
+      "candidat_pub": true,
+      "plateformes": [
+        "linkedin",
+        "facebook",
+        "instagram",
+        "x"
+      ],
+      "fichier": "posts/2026-12-31.md",
+      "statut": "pending"
+    }
+  ]
+}
