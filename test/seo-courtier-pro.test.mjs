@@ -64,3 +64,51 @@ test('b2b.html : FAQ de 8 questions identique au JSON-LD', () => {
   assert.equal(visible.length, 8, `8 questions visibles attendues, trouvé ${visible.length}`);
   assert.deepEqual(faqLd(h), visible);
 });
+
+// ---------- Tâches 2 et 3 : pages de service ----------
+const SERVICE_PAGES = {
+  'courtier-electricite-professionnel.html': {
+    mustLink: ['b2b.html', 'courtier-gaz-professionnel.html', 'turpe-2026-professionnels.html',
+      'prix-fixe-vs-indexe-electricite-pro.html', 'puissance-souscrite-entreprise-kva.html',
+      'vnu-2026-versement-nucleaire-universel.html', 'comparatif-fournisseurs-electricite-pro.html',
+      'tarif-electricite-professionnel-paris.html'],
+    terms: ['c5', 'c4', 'puissance souscrite', 'turpe', 'accise', 'arenh', 'prix fixe', 'indexe'],
+  },
+  'courtier-gaz-professionnel.html': {
+    mustLink: ['b2b.html', 'courtier-electricite-professionnel.html', 'accise-electricite-gaz-2026.html',
+      'gaz-professionnel-paris.html'],
+    terms: ['t1', 't4', 'peg', 'ttf', 'accise', 'cta', 'echeance'],
+  },
+};
+
+for (const [file, spec] of Object.entries(SERVICE_PAGES)) {
+  test(`${file} : existe, title/meta/H1 ciblés`, { skip: !existsSync(file) && 'page pas encore créée' }, () => {
+    const h = read(file);
+    assert.ok(norm(titleOf(h)).includes(TARGETS[file].key), `title = ${titleOf(h)}`);
+    assert.ok(norm(metaOf(h)).includes(TARGETS[file].key.replace(' professionnel', '')), `meta = ${metaOf(h)}`);
+    assert.ok(norm(h1Of(h)).includes(TARGETS[file].h1), `h1 = ${h1Of(h)}`);
+  });
+
+  test(`${file} : JSON-LD Service + FAQPage (8 Q identiques) + BreadcrumbList`, { skip: !existsSync(file) && 'page pas encore créée' }, () => {
+    const h = read(file);
+    const types = ldTypes(h);
+    for (const t of ['Service', 'FAQPage', 'BreadcrumbList', 'Organization']) assert.ok(types.includes(t), `${t} manquant`);
+    assert.equal(faqVisible(h).length, 8);
+    assert.deepEqual(faqLd(h), faqVisible(h));
+    assert.match(h, /<link rel="canonical" href="https:\/\/cabinetms\.fr\/[a-z-]+\.html">/);
+    assert.match(h, /<script type="module" src="assets\/site-search\.js"><\/script>/);
+  });
+
+  test(`${file} : contenu spécifique (≥ 1 200 mots, termes techniques) et liens sortants`, { skip: !existsSync(file) && 'page pas encore créée' }, () => {
+    const h = read(file);
+    const main = h.slice(h.indexOf('<section class="phero">'), h.lastIndexOf('</main>') > 0 ? h.lastIndexOf('</main>') : h.indexOf('<footer'));
+    const text = norm(main.replace(/<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' '));
+    const words = text.split(' ').filter(Boolean).length;
+    assert.ok(words >= 1200, `≥ 1 200 mots attendus, trouvé ${words}`);
+    for (const t of spec.terms) assert.ok(text.includes(t), `terme « ${t} » absent`);
+    for (const href of spec.mustLink) assert.ok(hasLink(h, href), `lien vers ${href} manquant`);
+    // Les liens « Pour aller plus loin » (service-rel) citent légitimement des pages villes.
+    const sansMaillage = norm(main.replace(/<section class="city-rel service-rel">[\s\S]*?<\/section>/, '').replace(/<[^>]+>/g, ' '));
+    assert.doesNotMatch(sansMaillage, /toulouse|blagnac|colomiers/, 'reste du gabarit ville');
+  });
+}
