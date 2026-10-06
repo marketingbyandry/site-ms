@@ -10,7 +10,7 @@ Dans une petite structure, le dirigeant gère souvent l'énergie lui-même, entr
 
 ## TPE : contrats C5 et gaz T1-T2
 
-Pour une très petite entreprise, l'électricité relève en général de la catégorie dite **C5**, c'est-à-dire un raccordement en basse tension avec une puissance souscrite limitée. Pour le gaz, les petits consommateurs se situent le plus souvent sur les profils **T1 ou T2**, selon leur consommation annuelle.
+Pour une très petite entreprise, l'électricité relève en général de la catégorie dite **C5**, c'est-à-dire un raccordement en basse tension avec une puissance souscrite limitée. Pour le gaz, les petits consommateurs se situent le plus souvent sur les profils **T1/T2**, selon leur consommation annuelle.
 
 Ce que cela implique en pratique :
 
@@ -22,7 +22,7 @@ Pour le détail technique de chaque énergie, vous pouvez vous reporter à nos p
 
 ## PME : contrats C4 et gaz T2-T3
 
-Une PME dont la consommation est plus importante relève plus souvent de la catégorie **C4** pour l'électricité (puissance souscrite plus élevée), et des profils **T2 ou T3** pour le gaz. Notre article sur le [compteur C4 et le tarif HTA](compteur-c4-tarif-hta-entreprise.md) précise ce qui distingue ces configurations.
+Une PME dont la consommation est plus importante relève plus souvent de la catégorie **C4** pour l'électricité (puissance souscrite plus élevée), et des profils **T2/T3** pour le gaz. Pour mémoire : T1/T2 pour les petits consommateurs, T2/T3 pour les PME, T4 pour l'industrie, TP pour les très gros sites situés à proximité du réseau de transport. Notre article sur le [compteur C4 et ses tarifs](compteur-c4-tarif-hta-entreprise.md) précise ce qui distingue ces configurations.
 
 À ce niveau, plusieurs paramètres prennent de l'importance :
 

@@ -163,6 +163,12 @@ test('articles existants proches → page de service', () => {
   for (const [file, href] of Object.entries(map)) assert.ok(hasLink(read(file), href), `${file} → ${href}`);
 });
 
+// Title figé : le générateur scripts/build-seo-articles.mjs pourrait le régénérer depuis le H1 et écraser ce title voulu.
+test('courtier-en-energie-role.html : title exact figé', () => {
+  assert.equal(titleOf(read('courtier-en-energie-role.html')),
+    "Qu'est-ce qu'un courtier en énergie ? Rôle, rémunération, intérêt | M&S Strategy");
+});
+
 test('courtier-en-energie-role.html recentré sur la définition', () => {
   assert.match(norm(titleOf(read('courtier-en-energie-role.html'))), /^qu'est-ce qu'un courtier en energie/);
 });
