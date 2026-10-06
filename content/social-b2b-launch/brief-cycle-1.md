@@ -8,6 +8,16 @@ final.
 Aucun chiffre non sourcé ne doit être relayé tel quel — cf. §8 de
 `docs/strategie-geo-seo/2026-07-22-strategie-geo-seo-ms-strategy.md`.
 
+> **Remplacé pour le T4 2026** par la campagne quotidienne
+> [`content/campagne-q4-2026-commercants/`](../campagne-q4-2026-commercants/README.md)
+> (15/10 → 31/12, cible commerçants). Les angles de ce brief y sont
+> rédigés en entier : L1 → 18/10, L3 → 28/10, L4 → 21/10, L5 → 27/10,
+> L6 → 29/10, F6 → 30/10, I2 → 25/11. Autre changement : les CTA ne
+> pointent plus tous vers `b2b.html`. Chaque post renvoie vers la page de
+> son étape du funnel (article en TOFU, calculateur ou Baromètre en MOFU,
+> `b2b.html` en BOFU). Les liens ci-dessous restent la référence pour un
+> éventuel cycle 2 hors campagne.
+
 ## LinkedIn (`soc-li`) — 3×/semaine, 6 posts
 
 | # | Gisement | Angle | Format | CTA |

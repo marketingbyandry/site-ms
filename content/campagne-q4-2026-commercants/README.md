@@ -147,6 +147,24 @@ produit des factures, pas vers ce qui produit des likes.
 - **Revue :** chaque lot hebdomadaire passe par `quality-reviewer` puis par
   une relecture humaine avant programmation.
 
+## Points à vérifier avant publication
+
+- **Page TVA à revérifier** : `tva-electricite-professionnelle.html`
+  indique un taux réduit de 5,5 % sur l'abonnement ≤ 36 kVA. Ce taux
+  réduit a été supprimé par la loi de finances 2025 (abonnement à 20 %
+  depuis le 1er août 2025). Le post du 13/11 ne cite volontairement
+  aucun taux, mais il renvoie vers cette page : la corriger avant le 13/11.
+- **Post du 30/12** : à réécrire avec les vrais enseignements de la
+  campagne (cf. note dans le fichier).
+- **Visuels « Baromètre »** (01/11, 19/11, 20/12) : utiliser le graphique
+  réel de la page au jour de publication. Aucun chiffre ne doit être saisi
+  à la main.
+- **Calculateur filmé** (04/11, 30/11) : valeurs de démonstration
+  explicitement marquées « exemple » à l'écran.
+- **Domaine** : les liens utilisent `cabinetms.fr`, comme le brief
+  cycle 1. Vérifier que c'est bien le domaine de production au moment de
+  la programmation.
+
 ## Reprise après interruption
 
 Lire `manifest.json`, reprendre au premier item `"statut": "pending"`,

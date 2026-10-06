@@ -8,6 +8,9 @@ Contenu du premier cycle de test du levier social B2B décrit dans
   calendrier éditorial Notion du pipeline général avant production).
 - `ads-checklist.md` — checklist de paramétrage des campagnes payantes
   LinkedIn Ads, Meta Ads et X Ads.
+- Suite : la campagne quotidienne du T4 2026 pour les commerçants
+  (312 posts rédigés, routage par étape du funnel) se trouve dans
+  [`../campagne-q4-2026-commercants/`](../campagne-q4-2026-commercants/README.md).
 
 ## Gisements de contenu référencés
 
