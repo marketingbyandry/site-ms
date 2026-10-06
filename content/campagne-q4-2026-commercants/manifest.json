@@ -933,7 +933,7 @@
         "facebook": "photo locale",
         "x": "tweet (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 32,
@@ -963,7 +963,7 @@
         "facebook": "vidéo (reprise)",
         "x": "thread récap (pédagogue)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 33,
@@ -993,7 +993,7 @@
         "facebook": "image",
         "x": "tweet chiffre (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 34,
@@ -1023,7 +1023,7 @@
         "facebook": "reel (reprise Instagram)",
         "x": "thread (pédagogue)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 35,
@@ -1053,7 +1053,7 @@
         "facebook": "texte + question",
         "x": "tweet prise de position (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 36,
@@ -1083,7 +1083,7 @@
         "facebook": "image",
         "x": "visuel chiffre"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 37,
@@ -1113,7 +1113,7 @@
         "facebook": "vidéo (reprise)",
         "x": "clip vidéo 30 s (reprise)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 38,
@@ -1143,7 +1143,7 @@
         "facebook": "photo locale",
         "x": "tweet (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 39,
@@ -1173,7 +1173,7 @@
         "facebook": "vidéo (reprise)",
         "x": "thread récap (pédagogue)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 40,
@@ -1203,7 +1203,7 @@
         "facebook": "image",
         "x": "tweet chiffre (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 41,
@@ -1233,7 +1233,7 @@
         "facebook": "reel (reprise Instagram)",
         "x": "thread (pédagogue)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 42,
@@ -1263,7 +1263,7 @@
         "facebook": "texte + question",
         "x": "tweet prise de position (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 43,
@@ -1293,7 +1293,7 @@
         "facebook": "image",
         "x": "visuel chiffre"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 44,
@@ -1323,7 +1323,7 @@
         "facebook": "vidéo (reprise)",
         "x": "clip vidéo 30 s (reprise)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 45,
@@ -1353,7 +1353,7 @@
         "facebook": "photo locale",
         "x": "tweet (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 46,
@@ -1383,7 +1383,7 @@
         "facebook": "vidéo (reprise)",
         "x": "thread récap (pédagogue)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 47,
@@ -1413,7 +1413,7 @@
         "facebook": "image",
         "x": "tweet chiffre (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 48,
@@ -1443,7 +1443,7 @@
         "facebook": "reel (reprise Instagram)",
         "x": "thread (pédagogue)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 49,
@@ -1473,7 +1473,7 @@
         "facebook": "texte + question",
         "x": "tweet prise de position (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 50,
@@ -1503,7 +1503,7 @@
         "facebook": "image",
         "x": "visuel chiffre"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 51,
@@ -1533,7 +1533,7 @@
         "facebook": "vidéo (reprise)",
         "x": "clip vidéo 30 s (reprise)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 52,
@@ -1563,7 +1563,7 @@
         "facebook": "photo locale",
         "x": "tweet (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 53,
@@ -1593,7 +1593,7 @@
         "facebook": "vidéo (reprise)",
         "x": "thread récap (pédagogue)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 54,
@@ -1623,7 +1623,7 @@
         "facebook": "image",
         "x": "tweet chiffre (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 55,
@@ -1653,7 +1653,7 @@
         "facebook": "reel (reprise Instagram)",
         "x": "thread (pédagogue)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 56,
@@ -1683,7 +1683,7 @@
         "facebook": "texte + question",
         "x": "tweet prise de position (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 57,
@@ -1713,7 +1713,7 @@
         "facebook": "image",
         "x": "visuel chiffre"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 58,
@@ -1743,7 +1743,7 @@
         "facebook": "vidéo (reprise)",
         "x": "clip vidéo 30 s (reprise)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 59,
@@ -1773,7 +1773,7 @@
         "facebook": "photo locale",
         "x": "tweet (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 60,
@@ -1803,7 +1803,7 @@
         "facebook": "vidéo (reprise)",
         "x": "thread récap (pédagogue)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 61,
@@ -1833,7 +1833,7 @@
         "facebook": "image",
         "x": "tweet chiffre (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 62,
@@ -1863,7 +1863,7 @@
         "facebook": "reel (reprise Instagram)",
         "x": "thread (pédagogue)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 63,
@@ -1893,7 +1893,7 @@
         "facebook": "texte + question",
         "x": "tweet prise de position (tranchant)"
       },
-      "statut_v2": "pending"
+      "statut_v2": "done"
     },
     {
       "jour": 64,
