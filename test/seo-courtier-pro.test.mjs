@@ -112,3 +112,20 @@ for (const [file, spec] of Object.entries(SERVICE_PAGES)) {
     assert.doesNotMatch(sansMaillage, /toulouse|blagnac|colomiers/, 'reste du gabarit ville');
   });
 }
+
+// ---------- Tâche 4 : articles ----------
+export const ARTICLES = ['courtier-energie-gratuit-remuneration', 'courtier-ou-comparateur-energie-pro',
+  'choisir-courtier-energie-criteres-pieges', 'courtage-energie-tpe-pme'];
+
+for (const slug of ARTICLES) {
+  test(`article ${slug} : généré, lié à b2b, source versionnée, listé dans blog.html`, () => {
+    assert.ok(existsSync(`${slug}.html`), `${slug}.html absent`);
+    assert.ok(existsSync(`content/seo-courtier/${slug}.md`), 'copie markdown versionnée absente');
+    const h = read(`${slug}.html`);
+    assert.ok(hasLink(h, 'b2b.html'), 'lien vers b2b.html manquant');
+    const words = h.replace(/<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+    assert.ok(words >= 1200, `≥ 1 200 mots attendus, trouvé ${words}`);
+    for (const t of Object.values(TARGETS)) assert.ok(!norm(titleOf(h)).includes(t.key), `title cannibalise « ${t.key} »`);
+    assert.ok(hasLink(read('blog.html'), `${slug}.html`), 'absent de blog.html');
+  });
+}
