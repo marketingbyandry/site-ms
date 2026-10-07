@@ -6,8 +6,8 @@ import { CATEGORY_BY_SLUG } from '../scripts/build-seo-articles.mjs';
 
 const SLUGS = Object.keys(CATEGORY_BY_SLUG);
 
-test('les 52 slugs du corpus SEO sont bien référencés', () => {
-  assert.equal(SLUGS.length, 52);
+test('les 56 slugs du corpus SEO sont bien référencés', () => {
+  assert.equal(SLUGS.length, 56);
 });
 
 test('chaque article SEO a une page HTML générée à la racine du dépôt', () => {

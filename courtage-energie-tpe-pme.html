@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-THZKG49X');</script>
+<!-- End Google Tag Manager -->
+<script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script defer src="assets/favicon-animate.js"></script>
+<title>Courtage en énergie pour TPE et PME : ce que ça change vraiment | M&S Strategy</title>
+<meta name="description" content="Le courtage en énergie n'est pas réservé aux grands comptes : une TPE ou une PME peut aussi en tirer parti, à condition de savoir à quel moment cela…">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/chantier-sections.css">
+<style>
+:root {
+  --dark: #0a1a1f;
+  --dark2: #0d2028;
+  --teal-deep: #0d4f5c;
+  --teal-mid: #1a7a8a;
+  --teal-bright: #2bb5c8;
+  --teal-light: #5ecfdc;
+  --green: #4cde80;
+  --cream: #f5f0e8;
+  --muted: #8aacb4;
+  --body-max: 720px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Satoshi', sans-serif;
+  background: var(--dark);
+  color: var(--cream);
+  line-height: 1.75;
+  font-size: 17px;
+  font-weight: 300;
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--teal-mid), var(--green));
+  width: 0%; z-index: 200;
+  transition: width .1s linear;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem 5vw;
+  background: rgba(10,26,31,.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(43,181,200,.1);
+}
+.nav-logo { display: flex; align-items: center; }
+.nav-logo img { height: 26px; width: auto; display: block; }
+.nav-cta {
+  font-family: 'Satoshi', sans-serif; font-size: .72rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .5rem 1.2rem; border: 1px solid var(--green);
+  color: var(--green); text-decoration: none; border-radius: 2px;
+  transition: background .2s, color .2s;
+}
+.nav-cta:hover { background: var(--green); color: var(--dark); }
+
+/* ── HERO ── */
+.hero {
+  padding: 9rem 5vw 5rem;
+  max-width: 1100px; margin: 0 auto;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 60px; right: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,122,138,.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.article-meta {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.meta-tag {
+  font-family: 'Satoshi', sans-serif; font-size: .65rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--teal-light);
+  background: rgba(43,181,200,.1);
+  border: 1px solid rgba(43,181,200,.2);
+  padding: .28rem .75rem; border-radius: 2px;
+}
+.meta-read { font-size: .8rem; color: var(--muted); }
+.meta-read::before { content: '⏱ '; opacity: .6; }
+
+.hero-title {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.08; max-width: 820px;
+  margin-bottom: 1.6rem;
+}
+.hero-title .accent { color: var(--green); }
+.hero-title .accent-teal { color: var(--teal-light); font-style: italic; font-family: 'Instrument Serif', serif; font-weight: 400; }
+
+.hero-intro {
+  font-size: 1.15rem; color: var(--muted); max-width: 640px;
+  line-height: 1.7; margin-bottom: 2.5rem;
+}
+
+/* ── ARTICLE BODY ── */
+.article-body {
+  max-width: var(--body-max);
+  margin: 0 auto;
+  padding: 0 5vw 6rem;
+}
+
+h2 {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.15; margin: 3.5rem 0 1.2rem;
+  color: var(--cream);
+}
+
+p { margin-bottom: 1.4rem; }
+p strong { color: var(--cream); font-weight: 500; }
+
+ul, ol { margin: 0 0 1.4rem 1.3rem; color: var(--muted); }
+ul li, ol li { margin-bottom: .6rem; line-height: 1.6; }
+ul li strong, ol li strong { color: var(--cream); font-weight: 500; }
+
+a.ilink { color: var(--teal-light); border-bottom: 1px solid rgba(94,207,220,.3); }
+a.ilink:hover { border-bottom-color: var(--teal-light); }
+
+/* ── CALLOUT BOX ── */
+.callout {
+  background: linear-gradient(135deg, rgba(13,79,92,.4), rgba(26,122,138,.15));
+  border: 1px solid rgba(43,181,200,.2);
+  border-radius: 4px; padding: 2rem;
+  margin: 2.5rem 0;
+}
+.callout-title {
+  font-family: 'Satoshi', sans-serif; font-weight: 800;
+  font-size: 1rem; color: var(--green); margin-bottom: .8rem;
+}
+.callout p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  background: linear-gradient(135deg, var(--teal-deep), rgba(10,26,31,.95));
+  border: 1px solid rgba(43,181,200,.15);
+  border-radius: 6px; padding: 3rem 2.5rem;
+  margin: 4rem 0; text-align: center;
+}
+.cta-title {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: 1.6rem; color: var(--cream); margin-bottom: .8rem;
+}
+.cta-sub { color: var(--muted); margin-bottom: 2rem; font-size: .97rem; }
+.cta-btn {
+  display: inline-block;
+  background: var(--green); color: var(--dark);
+  font-family: 'Satoshi', sans-serif; font-weight: 800;
+  font-size: .9rem; letter-spacing: .04em;
+  padding: 1rem 2.5rem; border-radius: 2px; text-decoration: none;
+  transition: transform .15s, box-shadow .2s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(76,222,128,.3); }
+.cta-reassure { margin-top: 1rem; font-size: .75rem; color: var(--muted); }
+
+/* ── FLOATING CTA ── */
+.floating-cta {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .3s, transform .3s;
+  pointer-events: none;
+}
+.floating-cta.visible { opacity: 1; transform: none; pointer-events: all; }
+.floating-cta a {
+  display: flex; align-items: center; gap: .6rem;
+  background: var(--green); color: var(--dark);
+  font-family: 'Satoshi', sans-serif; font-weight: 800; font-size: .8rem;
+  padding: .85rem 1.4rem; border-radius: 3px; text-decoration: none;
+  box-shadow: 0 8px 28px rgba(0,0,0,.4);
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 3rem 5vw;
+  border-top: 1px solid rgba(43,181,200,.1);
+  text-align: center;
+}
+footer p { color: var(--muted); font-size: .82rem; line-height: 1.8; }
+footer a { color: var(--teal-bright); text-decoration: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 640px) {
+  .floating-cta { bottom: 1rem; right: 1rem; }
+}
+</style>
+<link rel="canonical" href="https://cabinetms.fr/courtage-energie-tpe-pme.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="M&S Strategy">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Courtage en énergie pour TPE et PME : ce que ça change vraiment | M&S Strategy">
+<meta property="og:description" content="Le courtage en énergie n'est pas réservé aux grands comptes : une TPE ou une PME peut aussi en tirer parti, à condition de savoir à quel moment cela…">
+<meta property="og:url" content="https://cabinetms.fr/courtage-energie-tpe-pme.html">
+<meta property="og:image" content="https://cabinetms.fr/assets/ms-strategy-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://cabinetms.fr/courtage-energie-tpe-pme.html#article",
+  "headline": "Courtage en énergie pour TPE et PME : ce que ça change vraiment",
+  "description": "Le courtage en énergie n'est pas réservé aux grands comptes : une TPE ou une PME peut aussi en tirer parti, à condition de savoir à quel moment cela…",
+  "image": "https://cabinetms.fr/assets/ms-strategy-logo.png",
+  "author": {
+    "@id": "https://cabinetms.fr/#organization"
+  },
+  "publisher": {
+    "@id": "https://cabinetms.fr/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://cabinetms.fr/courtage-energie-tpe-pme.html"
+  },
+  "inLanguage": "fr-FR"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://cabinetms.fr/"},
+    {"@type": "ListItem", "position": 2, "name": "Ressources & analyses", "item": "https://cabinetms.fr/blog.html"},
+    {"@type": "ListItem", "position": 3, "name": "Courtage en énergie pour TPE et PME : ce que ça change vraiment", "item": "https://cabinetms.fr/courtage-energie-tpe-pme.html"}
+  ]
+}
+</script>
+<script type="module" src="assets/site-search.js"></script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THZKG49X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="progress-bar"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/ms-strategy-logo.png" width="573" height="146" alt="M&S Strategy"></a>
+  <a href="#cta" class="nav-cta">Étude gratuite →</a>
+</nav>
+
+<article>
+  <header class="hero">
+    <div class="photo-ph article-banner"></div>
+    <div class="article-meta">
+      <a href="blog.html" class="meta-tag" style="text-decoration:none">← Tous les articles</a>
+      <span class="meta-tag">Fournisseurs &amp; contrats</span>
+      <span class="meta-read">6 min de lecture</span>
+    </div>
+    <h1 class="hero-title">Courtage en énergie pour TPE et PME : ce que ça change vraiment</h1>
+    <p class="hero-intro">Le courtage en énergie n'est pas réservé aux grands comptes : une TPE ou une PME peut aussi en tirer parti, à condition de savoir à quel moment cela devient pertinent. Tout dépend de la taille de vos contrats, du nombre de sites et du temps dont vous disposez pour suivre vos échéances. Voici comment cela se présente selon que vous êtes une très petite entreprise ou une PME plus structurée.</p>
+  </header>
+
+  <div class="article-body">
+
+    <h2>Le courtage en énergie, c'est pour les petites entreprises aussi ?</h2>
+
+    <p>Oui. Les courtiers en énergie travaillent avec des entreprises de toutes tailles, des commerces et artisans jusqu'aux groupes multi-sites. Ce qui change d'une taille à l'autre, ce n'est pas le principe, mais la nature des contrats et l'enjeu financier.</p>
+
+    <p>Dans une petite structure, le dirigeant gère souvent l'énergie lui-même, entre deux autres priorités. Le contrat est reconduit sans trop y penser, ou souscrit à la suite d'un démarchage téléphonique. L'intérêt d'un courtier est alors de déléguer cette veille : quelqu'un compare les offres, surveille la date de fin de contrat et vous prévient avant qu'elle n'arrive. Notre page <a href="b2b.html" class="ilink">courtier en énergie pro</a> présente cet accompagnement dans son ensemble.</p>
+
+    <h2>TPE : contrats C5 et gaz T1-T2</h2>
+
+    <p>Pour une très petite entreprise, l'électricité relève en général de la catégorie dite <strong>C5</strong>, c'est-à-dire un raccordement en basse tension avec une puissance souscrite limitée. Pour le gaz, les petits consommateurs se situent le plus souvent sur les profils <strong>T1/T2</strong>, selon leur consommation annuelle.</p>
+
+    <p>Ce que cela implique en pratique :</p>
+
+    <ul class="checklist">
+      <li><strong>Des contrats relativement standardisés</strong> : les offres des fournisseurs pour ces profils sont assez normées, et les écarts portent surtout sur le prix de l'énergie, la durée et les conditions de résiliation.</li>
+      <li><strong>Un volume modeste</strong> : l'écart de prix compte, mais il se joue sur de petites quantités. La valeur du courtier se situe souvent davantage dans le gain de temps et la vigilance que dans une négociation fine.</li>
+      <li><strong>Un risque de reconduction tacite</strong> : en l'absence de suivi, on peut rester plusieurs années sur une offre qui n'est plus la plus adaptée.</li>
+    </ul>
+
+    <p>Pour le détail technique de chaque énergie, vous pouvez vous reporter à nos pages <a href="courtier-electricite-professionnel.html" class="ilink">courtier en électricité professionnel</a> et <a href="courtier-gaz-professionnel.html" class="ilink">courtier en gaz professionnel</a>. Les catégories exactes de votre site figurent sur vos factures : en cas de doute, c'est le premier élément que nous vérifions ensemble.</p>
+
+    <h2>PME : contrats C4 et gaz T2-T3</h2>
+
+    <p>Une PME dont la consommation est plus importante relève plus souvent de la catégorie <strong>C4</strong> pour l'électricité (puissance souscrite plus élevée), et des profils <strong>T2/T3</strong> pour le gaz. Pour mémoire : T1/T2 pour les petits consommateurs, T2/T3 pour les PME, T4 pour l'industrie, TP pour les très gros sites situés à proximité du réseau de transport. Notre article sur le <a href="compteur-c4-tarif-hta-entreprise.html" class="ilink">compteur C4 et ses tarifs</a> précise ce qui distingue ces configurations.</p>
+
+    <p>À ce niveau, plusieurs paramètres prennent de l'importance :</p>
+
+    <ul class="checklist">
+      <li><strong>La structure du contrat</strong> : durée d'engagement, mode de calcul du prix, conditions de résiliation et clauses de révision pèsent davantage sur le coût total.</li>
+      <li><strong>Le calendrier de signature</strong> : le moment où l'on sollicite le marché influence les offres reçues. Mieux vaut anticiper la fin de contrat que la subir.</li>
+      <li><strong>La complexité de la facture</strong> : puissance souscrite, acheminement, taxes. Une lecture attentive permet de repérer d'éventuels écarts avec le contrat.</li>
+    </ul>
+
+    <p>Dans ce cas, la mise en concurrence menée par un courtier a plus de poids, car chaque point d'écart sur le prix de l'énergie s'applique à un volume plus important. Sur la fiscalité, notre article sur l'<a href="accise-electricite-gaz-2026.html" class="ilink">accise sur l'électricité et le gaz</a> donne un éclairage utile.</p>
+
+    <h2>À partir de quand le courtage est-il rentable ?</h2>
+
+    <p>Il n'existe pas de seuil universel, et nous ne prétendons pas en fixer un. La réponse dépend d'un calcul simple, que vous pouvez faire vous-même : l'écart de prix obtenu, multiplié par votre consommation annuelle, puis par la durée du contrat.</p>
+
+    <p><strong>Exemple illustratif, à titre de calcul uniquement et non de promesse.</strong> Imaginons une entreprise qui consomme 100 MWh d'électricité par an. Chaque différence de 1 € par MWh sur le prix de l'énergie représente alors 100 € sur une année, et environ 300 € sur un contrat de trois ans. Ce chiffre n'est qu'une illustration arithmétique : l'écart réellement obtenu varie selon le marché, le fournisseur et votre profil. Pour situer votre prix actuel, vous pouvez le rapprocher des repères de notre article sur le <a href="prix-kwh-professionnel-2026.html" class="ilink">prix du kWh professionnel</a>.</p>
+
+    <p>Ce calcul montre deux choses :</p>
+
+    <ul class="checklist">
+      <li><strong>Plus la consommation est élevée, plus un petit écart pèse.</strong> Un même point d'écart a un effet plus marqué sur une PME que sur une très petite structure.</li>
+      <li><strong>Le temps gagné compte aussi.</strong> Même quand l'écart de prix est faible, le fait de ne plus avoir à surveiller ses échéances et à démarcher soi-même plusieurs fournisseurs a une valeur, difficile à chiffrer mais bien réelle pour un dirigeant occupé.</li>
+    </ul>
+
+    <p>Comme le courtier est généralement rémunéré par le fournisseur retenu, vous n'avez pas à avancer de frais pour le savoir. Nous détaillons ce mécanisme dans l'article <a href="courtier-energie-gratuit-remuneration.html" class="ilink">Un courtier en énergie est-il gratuit ?</a>.</p>
+
+    <h2>Multi-sites et franchises</h2>
+
+    <p>Plus vous avez de sites, plus il est utile de centraliser. Un réseau de boutiques, une franchise ou une PME avec plusieurs établissements gère en réalité plusieurs contrats, avec des échéances qui ne tombent pas le même jour. Sans vision d'ensemble, certains sites restent sur d'anciennes offres pendant que d'autres ont été renégociés.</p>
+
+    <p>Un courtier peut dans ce cas :</p>
+
+    <ul class="checklist">
+      <li><strong>Recenser tous vos points de livraison</strong> et leurs dates d'échéance.</li>
+      <li><strong>Étudier l'opportunité d'un regroupement</strong> des contrats, lorsque c'est possible et pertinent.</li>
+      <li><strong>Proposer un calendrier de renégociation</strong> qui évite de se retrouver avec une dizaine de dates différentes à surveiller.</li>
+    </ul>
+
+    <p>Pour les réseaux et franchises, notre article sur l'<a href="achat-groupe-energie-pme-franchises.html" class="ilink">achat groupé d'énergie pour PME et franchises</a> détaille cette logique. Dans tous les cas, la faisabilité dépend des conditions propres à chaque fournisseur et à chaque contrat.</p>
+
+    <h2>Quelles précautions prendre avant de s'engager ?</h2>
+
+    <p>Quelle que soit la taille de l'entreprise, quelques réflexes simples permettent d'aborder sereinement une mise en concurrence.</p>
+
+    <ul class="checklist">
+      <li><strong>Repérez la date de fin de votre contrat actuel.</strong> Elle figure sur le contrat ou sur vos factures. Les conditions de résiliation et le préavis varient d'un contrat à l'autre : notre article sur la <a href="resilier-contrat-electricite-entreprise.html" class="ilink">résiliation d'un contrat d'électricité d'entreprise</a> en détaille les points d'attention.</li>
+      <li><strong>Rassemblez vos dernières factures.</strong> Elles permettent de déterminer votre catégorie de compteur, votre puissance souscrite et votre consommation annuelle, soit les trois éléments qui orientent les offres.</li>
+      <li><strong>Posez la question de la durée.</strong> Un engagement plus long peut sécuriser le prix, mais il vous lie plus longtemps. Notre article sur le <a href="prix-fixe-vs-indexe-electricite-pro.html" class="ilink">prix fixe et le prix indexé</a> vous aide à choisir en connaissance de cause.</li>
+      <li><strong>Demandez un comparatif écrit.</strong> Il vous permet de décider à votre rythme et de conserver une trace des hypothèses retenues.</li>
+    </ul>
+
+    <p>Si vous préférez avancer avec un interlocuteur qui connaît le sujet, c'est précisément le rôle d'un courtier. Si vous préférez gérer seul, ces repères vous donnent une base solide pour le faire.</p>
+
+    <h2>Lancer son étude</h2>
+
+    <p>Si vous dirigez une TPE ou une PME et que vous vous demandez où vous en êtes, le plus simple est de partir de vos documents : votre dernière facture d'électricité, celle de gaz le cas échéant, et la date de fin de vos contrats. À partir de là, nous vous indiquons honnêtement si une mise en concurrence a un intérêt dans votre cas, ou si votre contrat actuel reste raisonnable.</p>
+
+    <div id="cta">
+      <div class="cta-section reveal">
+        <p class="cta-title">Lancer son étude</p>
+        <p class="cta-sub">L'étude est gratuite et sans engagement. Pour en savoir plus sur notre démarche, consultez notre page <a href="b2b.html" class="ilink">courtier en énergie pro</a>, puis envoyez-nous votre facture depuis cette page pour lancer votre étude.</p>
+        <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
+        <!-- partial:cta-reassure --><p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 24h</p><!-- /partial:cta-reassure -->
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <p class="callout-title">Lire aussi</p>
+      <p><a href="blog.html" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <p>
+    <strong style="color:var(--cream)">M&S Strategy</strong> · Courtage en énergie depuis 2012<br>
+    1366 Av. des Platanes, 34970 Lattes ·
+    <a href="tel:0952926498">09 52 92 64 98</a> ·
+    <a href="mailto:msstrategy@yahoo.com">msstrategy@yahoo.com</a><br>
+    SIREN 752 139 477
+  </p>
+  <div google-add-preferred-source-btn data-theme="dark"></div>
+</footer>
+
+<!-- partial:floating-cta --><div class="floating-cta" id="floating-cta">
+  <a href="#cta">Étude gratuite · 24h →</a>
+</div><!-- /partial:floating-cta -->
+
+<script>
+// ── Progress bar
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = pct + '%';
+  document.getElementById('floating-cta').classList.toggle('visible', window.scrollY > 400);
+});
+
+// ── Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+revealEls.forEach(el => revObs.observe(el));
+
+const photoObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); photoObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.photo-ph').forEach(el => photoObs.observe(el));
+</script>
+<script defer src="assets/speed-insights.js"></script>
+</body>
+</html>
