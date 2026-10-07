@@ -12,11 +12,23 @@
     burger.innerHTML = '<span></span><span></span><span></span>';
     nav.insertBefore(burger, links);
 
+    function openHeight(){
+      // scrollHeight is read after the class toggle so it already reflects the
+      // open-state padding, giving the max-height transition a real target
+      // instead of an oversized fixed value (which reads as an abrupt reveal).
+      // Capped to the space actually available below the bar so a short
+      // viewport (or a longer link list later) still scrolls instead of
+      // overflowing past a body that's scroll-locked while open.
+      var available = window.innerHeight - nav.getBoundingClientRect().bottom;
+      return Math.min(links.scrollHeight, available);
+    }
+
     function setOpen(open){
       nav.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
       document.body.classList.toggle('nav-scroll-lock', open);
+      links.style.maxHeight = open ? openHeight() + 'px' : '0px';
     }
 
     burger.addEventListener('click', function(){
