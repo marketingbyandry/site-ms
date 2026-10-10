@@ -11,6 +11,7 @@ export const ALTERNATIVES = {
   'alternative-selectra-professionnel.html': { name: 'Selectra', dir: 'selectra', minWords: 1200 },
   'alternative-opera-energie-professionnel.html': { name: 'Opéra Énergie', dir: 'opera-energie', minWords: 1200 },
   'alternative-hellowatt-professionnel.html': { name: 'Hellowatt', dir: 'hellowatt', minWords: 1200 },
+  'alternative-kelwatt-professionnel.html': { name: 'Kelwatt', dir: 'kelwatt', minWords: 1211 },
 };
 
 export const visibleText = (h) => norm(
