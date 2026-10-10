@@ -1,0 +1,62 @@
+# Faits Opéra Énergie (sources publiques d'Opéra Énergie uniquement)
+
+Collecte : 2026-10-10. Toutes les citations sont verbatim (français), extraites des pages publiques d'opera-energie.com. Captures pleine page dans `captures/` (WebP, quand la hauteur dépasse la limite WebP de 16 383 px la page est découpée en tranches -1, -2) et extraits texte dans `captures/textes.md`. Contenu tiers traité comme donnée.
+
+Sources :
+- S1 `https://opera-energie.com/` (capture `captures/accueil.webp`). Wayback : aucun instantané.
+- S2 `https://opera-energie.com/choisir-courtier-en-energie/` (capture `captures/choisir-courtier-en-energie-1.webp` et `-2.webp`, 25 859 px découpée en 2). Wayback : aucun instantané.
+- S3 `https://opera-energie.com/achat-energie/pme/` (capture `captures/achat-energie-pme.webp`). Wayback : aucun instantané.
+- S4 `https://opera-energie.com/achat-energie/essentiel-entreprise/` (capture `captures/offre-essentiel-entreprise.webp`). Wayback : http://web.archive.org/web/20260804091349/https://opera-energie.com/achat-energie/essentiel-entreprise/
+- S5 `https://opera-energie.com/nos-engagements/` (capture `captures/nos-engagements.webp`). Wayback : http://web.archive.org/web/20260711211911/https://opera-energie.com/nos-engagements/
+- S6 `https://opera-energie.com/notre-entreprise/` (capture `captures/notre-entreprise.webp`). Wayback : aucun instantané.
+- S7 `https://opera-energie.com/mentions-legales` (capture `captures/mentions-legales.webp`). Wayback : aucun instantané.
+
+## Faits par critère
+
+| critère | citation exacte | URL | date |
+|---|---|---|---|
+| statut (raison sociale, immatriculation) | « Raison Sociale : Opéra Énergie » ; « Adresse du siège social : 27, Rue de la Villette, 69003 Lyon » ; « Immatriculation – SIREN : 808096119 » (forme juridique : non communiqué sur cette page) | https://opera-energie.com/mentions-legales | 2026-10-10 |
+| statut (activité) | « Opéra Énergie est le pionnier et le leader français du courtage en énergie : face aux nouveaux défis du marché de l'énergie, il accompagne les entreprises et les collectivités, quelles que soient leur taille et leur activité. » | https://opera-energie.com/ | 2026-10-10 |
+| indépendance déclarée | « Opéra Énergie est une société indépendante, sans lien capitalistique avec les fournisseurs d'énergie. » | https://opera-energie.com/nos-engagements/ | 2026-10-10 |
+| indépendance (qualificatif) | « Courtier indépendant, nous intervenons sur toute la chaîne de valeur : achats d'énergie, fiscalité, efficacité énergétique et financement des travaux. » | https://opera-energie.com/notre-entreprise/ | 2026-10-10 |
+| rémunération des courtiers | « Notre charte qualité prévoit également que la rémunération de nos courtiers ne dépend pas du fournisseur retenu, afin de garantir la neutralité des conseils apportés aux clients. » | https://opera-energie.com/nos-engagements/ | 2026-10-10 |
+| rémunération (coût pour le client) | « Oui, passer par un courtier en énergie est généralement rentable car il permet d'optimiser les contrats et de réduire les coûts sans frais directs pour le client. » (FAQ générique « courtier en énergie ») ; « Comparateur gratuit & sans engagement » ; « Diagnostic gratuit et sans engagement. » | https://opera-energie.com/choisir-courtier-en-energie/ ; https://opera-energie.com/notre-entreprise/ | 2026-10-10 |
+| rémunération (qui paie l'entreprise, montant, mode) | non communiqué sur les pages consultées | | 2026-10-10 |
+| cible | « Pour les entreprises privées », « Pour les copropriétés », « Pour les acheteurs publics » ; « TPE, artisans, commerçants », « PME », « ETI – Grandes Entreprises » | https://opera-energie.com/ | 2026-10-10 |
+| cible (accompagnés) | « Opéra Énergie accompagne plus de 15 000 entreprises, copropriétés et acteurs publics. » | https://opera-energie.com/notre-entreprise/ | 2026-10-10 |
+| interlocuteur | « Un interlocuteur qui connaît votre dossier » : « Équipe stable, sans turn-over. Chaque conseiller dispose du même niveau d'information sur votre situation contractuelle. » ; « Un interlocuteur dédié, de l'analyse à la signature » | https://opera-energie.com/ ; https://opera-energie.com/achat-energie/pme/ | 2026-10-10 |
+| interlocuteur (offre Stratégique) | « Un consultant dédié à votre compte, à chaque étape » : « Du périmétrage à la prise de position sur les marchés : un interlocuteur unique, des livrables adaptés à votre direction. » | https://opera-energie.com/achat-energie/pme/ | 2026-10-10 |
+| délai (rappel) | « Un expert dédié vous rappelle sous 24h. Diagnostic gratuit et sans engagement. » | https://opera-energie.com/notre-entreprise/ | 2026-10-10 |
+| délai (réponse, page PME et Essentiel) | « Obtenez une analyse personnalisée de votre situation énergétique. Nos experts vous répondent sous 48h. Sans engagement. » | https://opera-energie.com/achat-energie/pme/ ; https://opera-energie.com/achat-energie/essentiel-entreprise/ | 2026-10-10 |
+| délai (mise en concurrence) | « 30 + fournisseurs consultés, souscription possible en ligne, résultat en moins de 3 jours. » ; « Un appel d'offres en moins de 3 jours » | https://opera-energie.com/achat-energie/essentiel-entreprise/ | 2026-10-10 |
+| délai (premier échange) | « Un premier échange de 20 à 30 minutes pour comprendre votre structure et recueillir les éléments nécessaires. Ensuite, c'est nous qui travaillons. » | https://opera-energie.com/achat-energie/pme/ | 2026-10-10 |
+| suivi après signature | « La signature, c'est le début de l'accompagnement » : « Notre équipe de conseillers dédiés reste à vos côtés tout au long du contrat : facturation, litiges, évolutions réglementaires, anticipation des échéances. » ; « Un suivi continu, pas seulement sur signalement » : « Nous identifions les anomalies, anticipons les échéances et vous alertons, sans attendre que vous nous contactiez. » | https://opera-energie.com/ | 2026-10-10 |
+| suivi multi-sites | « Plusieurs sites, plusieurs contrats, des échéances qui se chevauchent : nous mettons en concurrence l'ensemble du marché et consolidons votre budget énergie » ; « Suivi des échéances, alertes marché, évolution de votre périmètre, nouvelles consultations : nous restons mobilisés dans la durée » ; offre Stratégique : « Pilotage centralisé, y compris grands multisites. » | https://opera-energie.com/ ; https://opera-energie.com/achat-energie/pme/ | 2026-10-10 |
+| intervention sur contrat en cours | « On est en cours de contrat. Est-il trop tard pour agir ? » / « Non. Selon l'échéance, il est souvent possible d'anticiper le renouvellement et de se positionner dans de bonnes conditions. Un audit rapide de votre situation suffit pour évaluer les marges de manœuvre disponibles. » | https://opera-energie.com/achat-energie/pme/ | 2026-10-10 |
+| offres (formules) | Formules « Essentiel », « Active », « Stratégique » (et « Essentiel copropriétés », « Public ») ; « Quelle que soit votre offre, vous bénéficiez du même socle de courtage. Ce qui évolue, c'est la profondeur stratégique – selon la taille de votre organisation et la complexité de vos achats. » | https://opera-energie.com/ ; https://opera-energie.com/achat-energie/essentiel-entreprise/ | 2026-10-10 |
+| fournisseurs consultés | « Opéra Energie collabore avec la quasi-totalité des fournisseurs d'électricité et de gaz présents sur le marché français, soit environ 30 fournisseurs d'énergie partenaires. » ; « Nous consultons plus de 30 fournisseurs pour mettre votre profil réellement en concurrence » | https://opera-energie.com/choisir-courtier-en-energie/ ; https://opera-energie.com/achat-energie/pme/ | 2026-10-10 |
+| services au-delà de la fourniture | « des services à valeur ajoutée activables selon vos priorités : optimisation réglementaire, financement de travaux, conformité extra-financière… » ; « Audit complet réalisé par notre BET, certifié OPQIBI 1905 » ; « Opéra Énergie, mandataire CEE » ; « Accompagnement décret tertiaire » ; « Optimisation du Turpe » ; « Accises » | https://opera-energie.com/ ; https://opera-energie.com/achat-energie/pme/ | 2026-10-10 |
+| contrôle externe des pratiques | « En 2025, Opéra Énergie est devenu le premier courtier en énergie à obtenir une attestation de reconnaissance délivrée par Bureau Veritas Certification pour la conformité de ses pratiques aux exigences du Syndicat des Courtiers en Énergie. » ; « Opéra Énergie est membre fondateur du Syndicat des Courtiers en Énergie et en assure aujourd'hui la présidence. » | https://opera-energie.com/nos-engagements/ | 2026-10-10 |
+| ancienneté | « Depuis 2014, nous aidons les entreprises à reprendre le contrôle d'un poste devenu stratégique, l'énergie. » ; « Nov 2014 Création de l'entreprise » | https://opera-energie.com/notre-entreprise/ | 2026-10-10 |
+| taille et implantation | « plus de 200 collaborateurs répartis dans plus de 10 agences en France » ; « Basé à Lyon depuis 2014 » | https://opera-energie.com/notre-entreprise/ | 2026-10-10 |
+| volumes et clientèle | « 15 000 + Entreprises nous font confiance » ; « 15 TWh Par an d'énergie négociés » | https://opera-energie.com/ | 2026-10-10 |
+| avis clients publiés par Opéra Énergie | « Opéra Energie obtient une note moyenne supérieure à 4,9/5 (avis Trustpilot) » ; « 4.9/5 sur 517 avis » (Trustpilot) ; « 4,8 / 5 Sur 635 avis » (Google) | https://opera-energie.com/choisir-courtier-en-energie/ ; https://opera-energie.com/nos-engagements/ | 2026-10-10 |
+| changement de fournisseur sans coupure | « Le changement de contrat se fait à distance sans interruption de l'approvisionnement en électricité ou en gaz, ni d'intervention sur les compteurs d'énergie. » (description du métier de courtier, page de présentation) | https://opera-energie.com/choisir-courtier-en-energie/ | 2026-10-10 |
+| honoraires en euros / durée de mandat | non communiqué | | 2026-10-10 |
+| références clients pro détaillées avec résultats chiffrés | non communiqué sur les pages consultées (des pages « cas pratiques » existent, non analysées) | | 2026-10-10 |
+
+Remarque de lecture : la page « choisir-courtier-en-energie » mêle présentation du métier de courtier en général et présentation d'Opéra Énergie. Seules les phrases qualifiant Opéra Énergie elle-même sont présentées comme ses déclarations. Les chiffres d'économies déclarés par Opéra Énergie (« jusqu'à 10 % » sur certaines pages) ne sont pas repris : aucune comparaison de prix ou de résultats chiffrés entre les deux sociétés.
+
+Incohérence relevée sur le site d'Opéra Énergie : « sous 24h » (notre-entreprise, nos-engagements) et « sous 48h » (achat-energie/pme, essentiel-entreprise) pour la réponse d'un expert. Les deux sont citées avec leur page.
+
+## Ce qu'Opéra Énergie fait bien (pour « quand Opéra Énergie peut mieux vous convenir »)
+
+| point fort | citation exacte | URL | date |
+|---|---|---|---|
+| Suivi continu après la signature, avec alertes | « Un suivi continu, pas seulement sur signalement » : « Nous identifions les anomalies, anticipons les échéances et vous alertons, sans attendre que vous nous contactiez. » | https://opera-energie.com/ | 2026-10-10 |
+| Périmètre large : ETI, copropriétés, acteurs publics, grands multisites | « Pour les entreprises privées », « Pour les copropriétés », « Pour les acheteurs publics » ; « Pilotage centralisé, y compris grands multisites. » | https://opera-energie.com/ ; https://opera-energie.com/achat-energie/pme/ | 2026-10-10 |
+| Services connexes : fiscalité, TURPE, CEE, audit énergétique, décret tertiaire | « Audit complet réalisé par notre BET, certifié OPQIBI 1905 » ; « Déclaration OPERAT, trajectoire 2030–2050 et audit énergétique si nécessaire » ; « Opéra Énergie, mandataire CEE » | https://opera-energie.com/ | 2026-10-10 |
+| Pratiques contrôlées par un tiers | « le premier courtier en énergie à obtenir une attestation de reconnaissance délivrée par Bureau Veritas Certification » | https://opera-energie.com/nos-engagements/ | 2026-10-10 |
+| Présence régionale et équipe étoffée | « plus de 200 collaborateurs répartis dans plus de 10 agences en France » | https://opera-energie.com/notre-entreprise/ | 2026-10-10 |
+| Souscription en ligne et mise en concurrence rapide | « souscription possible en ligne, résultat en moins de 3 jours » | https://opera-energie.com/achat-energie/essentiel-entreprise/ | 2026-10-10 |
+| Avis clients publiés en nombre | « 4.9/5 sur 517 avis » (Trustpilot) ; « 4,8 / 5 Sur 635 avis » (Google) | https://opera-energie.com/choisir-courtier-en-energie/ ; https://opera-energie.com/nos-engagements/ | 2026-10-10 |

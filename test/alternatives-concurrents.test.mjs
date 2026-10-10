@@ -9,6 +9,7 @@ import { read, norm, titleOf, metaOf, h1Of, ldTypes, ldNodes, faqVisible, faqLd,
 // minWords : voir docs/alternatives/<dir>/serp.md (max(1200, round(0.8 x médiane SERP))).
 export const ALTERNATIVES = {
   'alternative-selectra-professionnel.html': { name: 'Selectra', dir: 'selectra', minWords: 1200 },
+  'alternative-opera-energie-professionnel.html': { name: 'Opéra Énergie', dir: 'opera-energie', minWords: 1200 },
 };
 
 export const visibleText = (h) => norm(
