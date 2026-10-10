@@ -6,7 +6,7 @@ import { CATEGORY_BY_SLUG } from '../scripts/build-seo-articles.mjs';
 
 const SLUGS = Object.keys(CATEGORY_BY_SLUG);
 
-test('sitemap.xml référence les 52 pages articles SEO avec le format attendu', () => {
+test('sitemap.xml référence les 56 pages articles SEO avec le format attendu', () => {
   const sitemap = readFileSync('sitemap.xml', 'utf8');
   for (const slug of SLUGS) {
     const entryRe = new RegExp(

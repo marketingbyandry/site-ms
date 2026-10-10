@@ -6,14 +6,8 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 const PHOTO = 'assets/comparatif-fournisseurs-savee-photo.webp';
 const html = () => readFileSync('comparatif-fournisseurs-electricite-pro.html', 'utf8');
 
-test('comparatif-fournisseurs-electricite-pro.html affiche la vraie photo bannière', () => {
-  const source = html();
-  const styleOpen = source.indexOf('<style>');
-  const styleClose = source.indexOf('</style>');
-  const inlineStyle = source.slice(styleOpen, styleClose);
-  assert.match(inlineStyle, /\.article-banner\{background:url\("assets\/comparatif-fournisseurs-savee-photo\.webp"\)/);
-  assert.match(source, /<div class="photo-ph article-banner"><\/div>/, 'le dot-grid décoratif doit être retiré sur une vraie photo');
-});
+// Le test « affiche la vraie photo bannière » est retiré : le gabarit v2 (PR #100) supprime toute bannière photo
+// (cf. comparatif-fournisseurs-v2.test.mjs). Le fichier image reste en place.
 
 test('la photo bannière du comparatif existe et reste sous 300 Ko', () => {
   assert.ok(existsSync(PHOTO), `${PHOTO} doit exister`);
