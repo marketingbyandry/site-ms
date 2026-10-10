@@ -43,7 +43,7 @@ Sources :
 | avis clients publiés par Opéra Énergie | « Opéra Energie obtient une note moyenne supérieure à 4,9/5 (avis Trustpilot) » ; « 4.9/5 sur 517 avis » (Trustpilot) ; « 4,8 / 5 Sur 635 avis » (Google) | https://opera-energie.com/choisir-courtier-en-energie/ ; https://opera-energie.com/nos-engagements/ | 2026-10-10 |
 | changement de fournisseur sans coupure | « Le changement de contrat se fait à distance sans interruption de l'approvisionnement en électricité ou en gaz, ni d'intervention sur les compteurs d'énergie. » (description du métier de courtier, page de présentation) | https://opera-energie.com/choisir-courtier-en-energie/ | 2026-10-10 |
 | honoraires en euros / durée de mandat | non communiqué | | 2026-10-10 |
-| références clients pro détaillées avec résultats chiffrés | non communiqué sur les pages consultées (des pages « cas pratiques » existent, non analysées) | | 2026-10-10 |
+| références clients pro détaillées avec résultats chiffrés | non lu : des pages « cas pratiques » existent (liste dans le plan du site, ex. https://opera-energie.com/cas-pratiques) mais n'ont pas été analysées ; la page n'affirme rien à ce sujet | | 2026-10-10 |
 
 Remarque de lecture : la page « choisir-courtier-en-energie » mêle présentation du métier de courtier en général et présentation d'Opéra Énergie. Seules les phrases qualifiant Opéra Énergie elle-même sont présentées comme ses déclarations. Les chiffres d'économies déclarés par Opéra Énergie (« jusqu'à 10 % » sur certaines pages) ne sont pas repris : aucune comparaison de prix ou de résultats chiffrés entre les deux sociétés.
 
