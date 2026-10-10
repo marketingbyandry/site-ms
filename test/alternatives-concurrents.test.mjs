@@ -10,6 +10,7 @@ import { read, norm, titleOf, metaOf, h1Of, ldTypes, ldNodes, faqVisible, faqLd,
 export const ALTERNATIVES = {
   'alternative-selectra-professionnel.html': { name: 'Selectra', dir: 'selectra', minWords: 1200 },
   'alternative-opera-energie-professionnel.html': { name: 'Opéra Énergie', dir: 'opera-energie', minWords: 1200 },
+  'alternative-hellowatt-professionnel.html': { name: 'Hellowatt', dir: 'hellowatt', minWords: 1200 },
 };
 
 export const visibleText = (h) => norm(
