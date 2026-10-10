@@ -1,6 +1,6 @@
 # Extraits texte des pages Hello Watt (collecte 2026-10-10, Firecrawl `firecrawl_scrape`, markdown)
 
-Passages verbatim utilisés dans `../faits.md`. Les captures WebP du même dossier font foi pour la mise en page ; ce fichier sert de recherche plein texte. Les pages S7 (courtier-energie) et S8 (avis/concurrent) n'ont pas de capture image : leurs extraits ci-dessous sont la seule trace conservée, avec les liens Wayback à compléter si besoin.
+Passages verbatim utilisés dans `../faits.md`. Les captures WebP du même dossier font foi pour la mise en page ; ce fichier sert de recherche plein texte. Les pages S7 (courtier-energie) et S8 (avis/concurrent) ont aussi une capture image (courtier-energie.webp, avis-concurrent.webp).
 
 ## https://www.hellowatt.fr/
 
