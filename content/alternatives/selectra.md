@@ -21,7 +21,7 @@ Cette page compare deux services qui répondent au même besoin : choisir et sou
 
 **À qui elle s'adresse.** Selectra affirme que le courtage en énergie « s'adresse à tous les profils » : petits professionnels et TPE, PME et PMI, grands comptes, copropriétés.
 
-**Comment elle fonctionne.** Selectra décrit un parcours en ligne et par téléphone. Un conseiller analyse votre contrat actuel et remet, sous 24 heures ouvrées, un devis chiffré de 3 à 5 offres ciblées. Elle annonce un changement de fournisseur en 21 jours en moyenne, sans coupure. Son comparateur affiche 11 fournisseurs et 38 offres professionnelles.
+**Comment elle fonctionne.** Selectra décrit un parcours en ligne et par téléphone. Un expert B2B analyse votre contrat actuel et remet, sous 24 heures ouvrées, un devis chiffré de 3 à 5 offres ciblées sur votre profil. Elle annonce un changement de fournisseur en 21 jours en moyenne, sans coupure. Son comparateur affiche 11 fournisseurs et 38 offres professionnelles.
 
 **Ce qu'elle fait bien.** Elle publie des estimations chiffrées pour un petit site, elle répond vite et elle accompagne aussi sur des sujets voisins de la fourniture, comme les certificats d'économies d'énergie (CEE) et l'audit énergétique. Nous y revenons plus bas.
 
@@ -35,10 +35,11 @@ Les informations sur Selectra proviennent de ses pages publiques, consultées le
 | Indépendance déclarée | « Aucun lien capitalistique avec les professionnels référencés », capital détenu à 100 % par les deux fondateurs (https://entreprises.selectra.info/methodologie) | Indépendant de tout fournisseur, consulte tous les fournisseurs du marché |
 | Rémunération déclarée | Rémunérée par les fournisseurs partenaires à chaque contrat souscrit, sans surcoût pour le client (https://entreprises.selectra.info/methodologie) | Commission fournisseur standardisée, intégrée au contrat ; rien à payer pour le client, qu'il signe ou non |
 | Cible principale | « Tous les profils » : TPE, PME et PMI, grands comptes, copropriétés (https://entreprises.selectra.info/energie/courtier-energie) | Professionnels (TPE, PME, ETI) en priorité, et particuliers |
-| Interlocuteur | « Un expert dédié » ; un conseiller rappelle par téléphone (https://entreprises.selectra.info/energie ; https://entreprises.selectra.info/energie/courtier-energie) | Un interlocuteur unique pour l'ensemble du parc, y compris multi-sites |
+| Interlocuteur | « Un expert dédié » ; « Un expert vous rappelle » par téléphone (https://entreprises.selectra.info/energie ; https://entreprises.selectra.info/energie/courtier-energie) | Un interlocuteur unique pour l'ensemble du parc, y compris multi-sites |
 | Délai de premier retour | Devis chiffré « sous 24 h ouvrées » (https://entreprises.selectra.info/energie) | Premier retour sous 24 h après réception de la facture |
 | Suivi après signature | « Le service Selectra s'arrête à la gestion de la souscription » ; ensuite, le contact reste le service client du fournisseur (https://entreprises.selectra.info/methodologie) | Suivi du dossier jusqu'au prochain renouvellement |
-| Fournisseurs consultés | 11 fournisseurs comparés en direct, 38 offres professionnelles (https://entreprises.selectra.info/energie) | Tous les fournisseurs actifs du marché |
+| Fournisseurs consultés | 11 fournisseurs comparés en direct sur son comparateur ; déclare viser l'intégralité des offres du marché, partenaires ou non (https://entreprises.selectra.info/energie ; https://entreprises.selectra.info/methodologie) | Tous les fournisseurs actifs du marché |
+| Ancienneté | « Née en 2007 et toujours dirigée par ses fondateurs » (https://entreprises.selectra.info/methodologie) | Depuis 2012 |
 
 Deux critères sont absents de ce tableau, faute de source publique côté Selectra : le suivi multi-sites après signature (pilotage, alertes d'échéance) et le nombre de clients professionnels. Ils sont « non communiqué ».
 
@@ -48,9 +49,9 @@ Le profil visé est précis : une PME ou une ETI qui exploite plusieurs sites, d
 
 **1. Un suivi qui ne s'arrête pas à la signature.** Selectra indique que son service « s'arrête à la gestion de la souscription ». Pendant la vie du contrat, le contact est le service client du fournisseur. Pour un site unique, cela peut suffire. Pour plusieurs sites aux échéances différentes, la question se pose : qui surveille les dates, qui relance la mise en concurrence ? Chez M&S Strategy, le dossier reste suivi jusqu'au prochain renouvellement. Preuve : notre page [Comment ça marche](comment-ca-marche.html) décrit chaque étape. Dans notre cas client du commerce de détail, un interlocuteur unique a géré 22 points de vente (voir [Résultats](resultats.html)).
 
-**2. Une intervention possible sur un contrat en cours.** Vous n'avez pas besoin d'attendre l'échéance pour lancer l'analyse. Nous identifions la fenêtre de négociation la plus favorable, idéalement 12 à 24 mois avant la fin du contrat, et nous préparons le renouvellement en amont. Preuve : cette méthode est décrite sur notre page [Professionnels](b2b.html). Une négociation lancée tôt obtient structurellement de meilleurs résultats qu'une négociation lancée dans l'urgence.
+**2. Une intervention possible sur un contrat en cours.** Vous n'avez pas besoin d'attendre l'échéance pour lancer l'analyse. Nous identifions la fenêtre de négociation la plus favorable, idéalement 12 à 24 mois avant la fin du contrat, et nous préparons le renouvellement en amont. Preuve : cette méthode est décrite sur notre page [Professionnels](b2b.html). Une négociation lancée tôt laisse davantage de marge de manœuvre qu'une négociation lancée dans l'urgence.
 
-**3. Une analyse de votre situation réelle, pas une offre de catalogue.** Un comparateur affiche des offres standardisées. Un courtier analyse votre profil de consommation, vos sites, vos échéances, puis négocie sur mesure. Preuve : l'étude part de votre facture, et vous recevez un premier retour sous 24 h après réception. Pour une entreprise multi-sites, la consolidation des volumes via des groupements d'achat peut ouvrir des conditions habituellement réservées aux grands comptes.
+**3. Une mise en concurrence de l'ensemble des fournisseurs, puis une négociation.** Selectra indique qu'un expert B2B analyse votre contrat actuel et vous remet 3 à 5 offres ciblées sur votre profil. M&S Strategy analyse aussi la structure de vos contrats, puis lance un appel d'offres simultané auprès de l'ensemble des fournisseurs actifs sur le marché professionnel et négocie avec eux. Preuve : l'étude part de votre facture, et vous recevez un premier retour sous 24 h après réception. Pour une entreprise multi-sites, nos groupements d'achat permettent à vos volumes de peser autant que ceux d'un grand groupe (voir [Professionnels](b2b.html)).
 
 **4. Des résultats et une méthode publiés.** Actif depuis 2012, M&S Strategy a négocié 70M de kWh en 2025 et affiche 19 % d'économies moyennes. Sur trois cas publiés : −21 % pour un réseau de restauration de 14 sites, −17 % de facture gaz pour un site agroalimentaire, −19 % pour 22 points de vente. Ces chiffres sont des moyennes constatées, le résultat dépend de votre profil. Preuve : notre [baromètre énergie](barometre-energie.html) est public et en explique la méthodologie : marché day-ahead ENTSO-E pour l'électricité, index PEG Month-Ahead pour le gaz.
 
@@ -86,8 +87,8 @@ Selectra indique que son service est gratuit pour le client, sans surcoût s'il 
 **Peut-on quitter Selectra ou son contrat en cours de route ?**
 Cela dépend du contrat signé avec le fournisseur : durée, préavis et conditions de résiliation figurent dans ce contrat. Selectra ne publie pas de durée de mandat, c'est un point non communiqué. Relisez votre contrat, puis faites-nous analyser la situation. M&S Strategy peut intervenir même si le contrat est encore en cours.
 
-**Quelle différence entre Selectra et un courtier indépendant comme M&S Strategy ?**
-Les deux services sont gratuits pour le client et rémunérés par les fournisseurs. La différence porte sur la manière de travailler. Selectra présente un comparateur de 11 fournisseurs et un parcours en ligne et téléphonique, et son service s'arrête à la souscription. M&S Strategy consulte tous les fournisseurs actifs, négocie sur mesure à partir de votre situation réelle et suit le dossier jusqu'au renouvellement.
+**Quelle différence entre Selectra et M&S Strategy ?**
+Les deux services sont gratuits pour le client et rémunérés par les fournisseurs. La différence porte sur la manière de travailler. Selectra présente un comparateur de 11 fournisseurs, déclare viser l'intégralité des offres du marché, partenaires ou non, et son service s'arrête à la souscription. M&S Strategy lance un appel d'offres auprès de l'ensemble des fournisseurs actifs, négocie à partir de votre situation et suit le dossier jusqu'au renouvellement.
 
 **Le changement de fournisseur provoque-t-il une coupure ?**
 Non. Le compteur et le réseau de distribution ne changent pas. Seul le contrat commercial change. Selectra annonce elle aussi un changement sans coupure.

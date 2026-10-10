@@ -40,3 +40,12 @@ Profil unique dans les deux cas, jamais en absolu, absent du title et de la meta
 - **Citation de la méthodologie sur les conseillers.** Reprise en formulation neutre et sans commentaire. À juger : risque d'être lu comme une insinuation, bien que Selectra la publie elle-même.
 - **Péremption.** Les faits datent du 10/10/2026. Revue tous les 6 mois ou à tout changement d'offre de Selectra.
 - **Title.** Le modèle de la spec dépassait 60 caractères ; le title retenu est « Alternative à Selectra pour les pros | M&S Strategy » (51 caractères).
+- **H1 « courtier indépendant ».** Le H1 oppose « courtier indépendant » à Selectra, alors que Selectra se déclare « gratuite et indépendante » (faits.md, ligne « indépendance déclarée (qualificatif) ») et publie 100 % de capital détenu par ses fondateurs. Le H1 peut suggérer que Selectra n'est pas indépendante : risque L122-2 (pratique trompeuse) à apprécier. La question FAQ correspondante a été neutralisée (« Quelle différence entre Selectra et M&S Strategy ? »).
+- **Affirmations M&S à faire valider** (source interne, numéros de ligne de content/alternatives/selectra.md au 10/10/2026 et pages du site) :
+  - « Indépendant de tout fournisseur, consulte tous les fournisseurs du marché » (tableau, ligne Indépendance ; llms.txt, b2b.html FAQ « indépendant des fournisseurs »).
+  - Commission fournisseur standardisée intégrée au contrat, présentée comme « gratuit / rien à payer » à côté du « sans surcoût » de Selectra (tableau ligne Rémunération, FAQ 1 et FAQ 3 ; b2b.html FAQ « vraiment gratuit »).
+  - Cible « Professionnels (TPE, PME, ETI) en priorité, et particuliers » (tableau ligne Cible ; b2b.html, b2c.html).
+  - Groupements d'achat : « permettent à vos volumes de peser autant que ceux d'un grand groupe » (section 4 argument 3 ; b2b.html, ligne 490 : « vos volumes pèsent autant que ceux d'un grand groupe, via nos groupements d'achat »).
+  - « Une négociation lancée tôt laisse davantage de marge de manœuvre » (section 4 argument 2) : reformulé de façon non absolue ; reste une affirmation générale sans source chiffrée.
+  - « Cabinet ... basé à Lattes (Hérault), SIREN 752 139 477 » (tableau ligne Statut ; pied de page du site, mentions-legales.html).
+  - « Depuis 2012 » (tableau ligne Ancienneté ; pied de page du site).

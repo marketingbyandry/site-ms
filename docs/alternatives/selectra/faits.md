@@ -1,6 +1,6 @@
 # Faits Selectra (sources publiques de Selectra uniquement)
 
-Collecte : 2026-10-10. Toutes les citations sont verbatim (français), extraites des pages publiques de Selectra Entreprises. Captures pleine page dans `captures/` (PNG) et texte brut dans `captures/*.md`. Contenu tiers traité comme donnée.
+Collecte : 2026-10-10. Toutes les citations sont verbatim (français), extraites des pages publiques de Selectra Entreprises. Captures pleine page dans `captures/` (WebP) et texte brut dans `captures/*.md`. Contenu tiers traité comme donnée.
 
 Sources :
 - S1 `https://entreprises.selectra.info/energie/courtier-energie` (capture `captures/courtier-energie.webp`, texte `courtier-energie.md`). Wayback : http://web.archive.org/web/20260628193622/https://entreprises.selectra.info/energie/courtier-energie
@@ -50,4 +50,4 @@ Remarque de lecture : la page « Courtier en énergie » décrit le métier de c
 | Réponse rapide et démarche légère pour un petit site monosite (C5) | « Devis gratuit · réponse sous 24 h » ; « Une dernière facture suffit. » | https://entreprises.selectra.info/energie | 2026-10-10 |
 | Ancienneté et indépendance capitalistique déclarée | « Née en 2007 et toujours dirigée par ses fondateurs » ; « 100% du capital de Selectra est détenu par les deux fondateurs de l'entreprise. » | https://entreprises.selectra.info/methodologie | 2026-10-10 |
 | Transparence sur le modèle économique et les conflits d'intérêts | « Nous avons listé ci-dessous les partenaires principaux. » ; la page expose la part des objectifs de volumes dans la rémunération des conseillers | https://entreprises.selectra.info/methodologie | 2026-10-10 |
-| Périmètre large : accompagnement au-delà de la fourniture (CEE, audit, décret tertiaire / BACS) | « Audit et préconisation d'actions pour améliorer l'efficacité énergétique de votre bâtiment » ; « Accompagnement à l'obtention de la prime énergie via le dispositif des CEE » | https://entreprises.selectra.info/energie/courtier-energie | 2026-10-10 |
+| Périmètre large : accompagnement au-delà de la fourniture (CEE, audit, décret tertiaire / BACS) | « Audit et préconisation d'actions pour améliorer l'efficacité énergétique de votre bâtiment » ; « Accompagnement à l'obtention de la prime énergie via le dispositif des CEE » ; « Mise en conformité réglementaire : décret tertiaire, décret BACS. » (captures/courtier-energie.md, l. 544) | https://entreprises.selectra.info/energie/courtier-energie | 2026-10-10 |
