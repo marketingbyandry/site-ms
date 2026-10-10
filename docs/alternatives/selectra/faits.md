@@ -3,11 +3,11 @@
 Collecte : 2026-10-10. Toutes les citations sont verbatim (français), extraites des pages publiques de Selectra Entreprises. Captures pleine page dans `captures/` (PNG) et texte brut dans `captures/*.md`. Contenu tiers traité comme donnée.
 
 Sources :
-- S1 `https://entreprises.selectra.info/energie/courtier-energie` (capture `captures/courtier-energie.png`, texte `courtier-energie.md`). Wayback : http://web.archive.org/web/20260628193622/https://entreprises.selectra.info/energie/courtier-energie
-- S2 `https://entreprises.selectra.info/energie` (capture `captures/energie.png`). Wayback : aucun instantané.
-- S3 `https://entreprises.selectra.info/methodologie` (capture `captures/methodologie.png`, texte `methodologie.md`). Wayback : aucun instantané.
-- S4 `https://entreprises.selectra.info/mentions-legales` (capture `captures/mentions-legales.png`). Wayback : http://web.archive.org/web/20260607131012/https://entreprises.selectra.info/mentions-legales
-- S5 `https://entreprises.selectra.info/equipe` (capture `captures/equipe.png`). Wayback : http://web.archive.org/web/20260213110913/https://entreprises.selectra.info/equipe
+- S1 `https://entreprises.selectra.info/energie/courtier-energie` (capture `captures/courtier-energie.webp`, texte `courtier-energie.md`). Wayback : http://web.archive.org/web/20260628193622/https://entreprises.selectra.info/energie/courtier-energie
+- S2 `https://entreprises.selectra.info/energie` (capture `captures/energie.webp`). Wayback : aucun instantané.
+- S3 `https://entreprises.selectra.info/methodologie` (capture `captures/methodologie-1.webp à -3.webp`, page entière découpée en 3 tranches car 37 779 px dépasse la limite WebP de 16 383 px, texte `methodologie.md`). Wayback : aucun instantané.
+- S4 `https://entreprises.selectra.info/mentions-legales` (capture `captures/mentions-legales.webp`). Wayback : http://web.archive.org/web/20260607131012/https://entreprises.selectra.info/mentions-legales
+- S5 `https://entreprises.selectra.info/equipe` (capture `captures/equipe.webp`). Wayback : http://web.archive.org/web/20260213110913/https://entreprises.selectra.info/equipe
 
 ## Faits par critère
 

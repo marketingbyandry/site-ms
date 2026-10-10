@@ -144,3 +144,8 @@ each('dossier de preuves : faits.md, serp.md, note-avocat.md et au moins une cap
 each('anti-cannibalisation : aucun mot-clé de TARGETS dans le title', (h) => {
   for (const { key } of Object.values(TARGETS)) assert.ok(!norm(titleOf(h)).includes(key), `title contient « ${key} »`);
 });
+
+test('.vercelignore exclut docs/ (dossiers de preuves non déployés)', () => {
+  const lines = read('.vercelignore').split(/\r?\n/).map((l) => l.trim());
+  assert.ok(lines.includes('docs/'), '.vercelignore doit contenir « docs/ »');
+});
