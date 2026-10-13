@@ -27,7 +27,7 @@ function msMarketingConsentFor(source, cookie) {
   return fn();
 }
 
-for (const file of ['b2b.html', 'b2c.html']) {
+for (const file of ['b2b.html', 'b2c.html', 'ms-strategy-landing-2.html']) {
   const source = extractMsMarketingConsent(file);
 
   test(`${file}: aucun cookie ms_consent -> pas de consentement marketing`, () => {
