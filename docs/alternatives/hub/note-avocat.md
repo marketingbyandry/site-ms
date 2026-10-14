@@ -9,7 +9,7 @@ Page : `alternatives-courtier-energie.html` (hub, aucune marque dans le title, l
 | Courtage en activité depuis 2012, SIREN 752 139 477 | 829, 891, 895 | llms.txt:11 ; pied de page de toutes les pages ; b2b.html:21 | Autorisée |
 | Consulte plusieurs fournisseurs (« comme elles »), analyse à partir de la facture et de l'échéance | 829 | b2b.html:489, 500, 525 (appel d'offres simultané auprès des fournisseurs pertinents) | Hors liste autorisée, présent sur b2b. Le hub ne l'oppose pas aux plateformes (checklist 9) |
 | Analyse de la situation réelle (profil, multi-sites, échéances) et négociation sur mesure | 828 | llms.txt:14 ; b2b.html:489 | Hors liste autorisée, présent sur b2b |
-| « Là où un comparateur classe des offres publiées » | 828 | Catégorie générale ; formulation reprise de ce que les comparateurs écrivent d'eux-mêmes (pages Hellowatt, Kelwatt) | À relire : généralisation de catégorie, pas une affirmation sur une marque |
+| « Là où un comparateur classe des offres publiées » | 828 | Pages approuvées : Hellowatt (« un comparateur qui classe des offres », alternative-hellowatt-professionnel.html:786) et Kelwatt (« un classement par prix, score ou avis clients », alternative-kelwatt-professionnel.html:794 et :986). Formulation de catégorie, nom de marque absent du hub | Fondée sur le service décrit par ces deux comparateurs ; ne vise aucune marque |
 | Baromètre public avec méthodologie (ENTSO-E day-ahead, CRE PEG) | 830 | barometre-energie.html:271 ; llms.txt:45 | Autorisée |
 | Fenêtre idéale 12 à 24 mois avant l'échéance, intervention possible avec un contrat en cours | 831 | llms.txt:13 ; b2b.html:327 | Autorisée |
 | Aucune coupure (seul le contrat commercial change) | 832 | b2b.html (FAQ coupure) ; llms.txt:19 | Fait technique |
@@ -25,7 +25,7 @@ Affirmations « À confirmer par Antoine » (« interlocuteur unique pour l'ense
 - Colonnes « Ce qu'elle fait bien » et « Quand cette option peut mieux vous convenir » renseignées pour les 5 catégories, y compris « Je ne fais rien » ; M&S ne gagne pas sur tous les critères.
 - Le tableau compare des catégories, pas des sociétés (phrase d'introduction). Aucun nom de concurrent dans le tableau, le title, la meta ni le titre.
 - Aucun superlatif ni « meilleure alternative » sur le hub.
-- Section « Trois modèles » : n'oppose pas « courtier indépendant » aux plateformes ; précise que les plateformes présentent aussi la consultation de plusieurs fournisseurs.
+- Section « Trois modèles » et meta / og:description / JSON-LD / intro : parlent de « cabinet de courtage » (et non de « courtier indépendant »), sans l'opposer aux plateformes de courtage ; précise que les plateformes présentent aussi la consultation de plusieurs fournisseurs. Aucune différence de taille, de parcours ou de suivi après signature n'est affirmée (le « suivi après signature » reste « À confirmer par Antoine » et n'est pas utilisé).
 
 ## 3. Cartes concurrents — points de vigilance
 
