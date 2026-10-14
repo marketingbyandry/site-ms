@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = process.argv[2] ?? join(ROOT, '.audit-captures');
-const PAGES = ['index.html', 'b2b.html', 'b2c.html', 'blog.html', 'comment-ca-marche.html', 'resultats.html', 'barometre-energie.html', 'ms-strategy-calculateur.html', 'alternative-selectra-professionnel.html', 'alternative-opera-energie-professionnel.html', 'alternative-hellowatt-professionnel.html', 'alternative-kelwatt-professionnel.html'];
+const PAGES = ['index.html', 'b2b.html', 'b2c.html', 'blog.html', 'comment-ca-marche.html', 'resultats.html', 'barometre-energie.html', 'ms-strategy-calculateur.html', 'alternative-selectra-professionnel.html', 'alternative-opera-energie-professionnel.html', 'alternative-hellowatt-professionnel.html', 'alternative-kelwatt-professionnel.html', 'alternative-papernest-professionnel.html'];
 const VIEWPORTS = { mobile: { width: 390, height: 844 }, desktop: { width: 1440, height: 900 } };
 
 function loadPlaywright() {
