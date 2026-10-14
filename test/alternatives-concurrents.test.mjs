@@ -4,7 +4,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readdirSync } from 'node:fs';
-import { read, norm, titleOf, metaOf, h1Of, ldTypes, ldNodes, faqVisible, faqLd, TARGETS } from './helpers/seo-html.mjs';
+import { read, norm, titleOf, metaOf, h1Of, ldTypes, ldNodes, faqVisible, faqLd, hasLink, TARGETS } from './helpers/seo-html.mjs';
 
 // minWords : voir docs/alternatives/<dir>/serp.md (max(1200, round(0.8 x médiane SERP))).
 export const ALTERNATIVES = {
@@ -152,4 +152,74 @@ each('anti-cannibalisation : aucun mot-clé de TARGETS dans le title', (h) => {
 test('.vercelignore exclut docs/ (dossiers de preuves non déployés)', () => {
   const lines = read('.vercelignore').split(/\r?\n/).map((l) => l.trim());
   assert.ok(lines.includes('docs/'), '.vercelignore doit contenir « docs/ »');
+});
+
+// ── Hub, maillage, indexation (Task 7) ──
+const HUB = 'alternatives-courtier-energie.html';
+const SLUGS = Object.keys(ALTERNATIVES);
+const brands = () => Object.values(ALTERNATIVES).map((a) => norm(a.name));
+
+test('hub : existe, 800 à 1 200 mots, title/meta sans nom de concurrent ni mot-clé TARGETS', () => {
+  const h = load(HUB);
+  const n = mainWords(h);
+  assert.ok(n >= 800 && n <= 1200, `800 à 1 200 mots attendus, trouvé ${n}`);
+  assert.ok(titleOf(h).length <= 60, `title = ${titleOf(h)} (${titleOf(h).length})`);
+  assert.ok(metaOf(h).length > 0 && metaOf(h).length <= 155, `meta (${metaOf(h).length})`);
+  const head = norm(`${titleOf(h)} ${metaOf(h)}`);
+  for (const b of brands()) assert.ok(!head.includes(b), `marque « ${b} » dans title/meta`);
+  for (const { key } of Object.values(TARGETS)) assert.ok(!norm(titleOf(h)).includes(key), `title contient « ${key} »`);
+  assert.doesNotMatch(head, /courtier ou comparateur/);
+  assert.equal((h.match(/<h1[\s>]/g) || []).length, 1);
+  assert.ok(norm(h1Of(h)).includes("alternatives aux plateformes de courtage et aux comparateurs d'energie pour les pros"), h1Of(h));
+  assert.ok(h.includes(`<link rel="canonical" href="https://cabinetms.fr/${HUB}">`));
+  const types = ldTypes(h);
+  for (const t of ['Article', 'BreadcrumbList']) assert.ok(types.includes(t), `${t} absent`);
+  for (const t of ['Review', 'AggregateRating']) assert.ok(!types.includes(t));
+  assert.ok((h.match(/href="b2b\.html#upload"/g) || []).length >= 2);
+  // tableau par catégorie : aucune marque
+  const tbl = (h.match(/<table class="alt-compare"[\s\S]*?<\/table>/) || [''])[0];
+  assert.ok(tbl, 'tableau de catégories manquant');
+  for (const b of brands()) assert.ok(!norm(tbl).includes(b), `marque « ${b} » dans le tableau`);
+  const t = visibleText(h);
+  assert.doesNotMatch(t, /le meilleur|le moins cher|imbattable|arnaque/);
+});
+
+test('hub : lie chaque page ALTERNATIVES et courtier-ou-comparateur-energie-pro.html', () => {
+  const h = load(HUB);
+  for (const s of SLUGS) assert.ok(hasLink(h, s), `lien manquant vers ${s}`);
+  assert.ok(hasLink(h, 'courtier-ou-comparateur-energie-pro.html'));
+});
+
+test('chaque page : lie le hub et les 4 autres pages dans nav.alt-others', () => {
+  for (const slug of SLUGS) {
+    const h = load(slug);
+    const m = h.match(/<nav class="alt-others"[\s\S]*?<\/nav>/);
+    assert.ok(m, `${slug} : nav.alt-others manquant`);
+    assert.ok(hasLink(m[0], HUB), `${slug} : lien hub manquant`);
+    for (const o of SLUGS.filter((s) => s !== slug)) assert.ok(hasLink(m[0], o), `${slug} : lien vers ${o} manquant`);
+    assert.ok(!hasLink(m[0], slug), `${slug} : s'auto-référence`);
+    assert.match(norm(m[0]), /comparer avec d'autres acteurs/);
+  }
+});
+
+test('liens entrants vers le hub (ancre descriptive) depuis b2b, courtier-électricité, courtier-gaz, comparatif fournisseurs', () => {
+  for (const f of ['b2b.html', 'courtier-electricite-professionnel.html', 'courtier-gaz-professionnel.html', 'comparatif-fournisseurs-electricite-pro.html']) {
+    const h = read(f);
+    const m = [...h.matchAll(/<a\b[^>]*href="alternatives-courtier-energie\.html(?:#[^"]*)?"[^>]*>([\s\S]*?)<\/a>/g)];
+    assert.ok(m.length >= 1, `${f} : lien vers le hub manquant`);
+    for (const [, txt] of m) {
+      const a = norm(txt.replace(/<[^>]+>/g, ''));
+      assert.ok(a.split(' ').length >= 3 && !/cliquez ici|en savoir plus|ici$/.test(a), `${f} : ancre non descriptive « ${a} »`);
+    }
+  }
+});
+
+test('hub + 5 pages présents dans sitemap.xml, plan-du-site.html et llms.txt', () => {
+  const sm = read('sitemap.xml'), plan = read('plan-du-site.html'), llms = read('llms.txt');
+  for (const s of [HUB, ...SLUGS]) {
+    assert.ok(sm.includes(`<loc>https://cabinetms.fr/${s}</loc>`), `sitemap : ${s}`);
+    assert.ok(hasLink(plan, s), `plan-du-site : ${s}`);
+    assert.ok(llms.includes(`cabinetms.fr/${s}`), `llms.txt : ${s}`);
+  }
+  assert.ok(llms.includes('cabinetms.fr/courtier-ou-comparateur-energie-pro.html'), 'llms.txt : courtier-ou-comparateur');
 });
