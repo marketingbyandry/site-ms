@@ -159,8 +159,19 @@ section { padding-block: 72px; }
 @media (max-width: 520px) { .cases { grid-template-columns: 1fr; } }
 .suppliers { margin-top: 44px; display: grid; gap: 16px; }
 .suppliers p { margin: 0; font-size: 14px; color: var(--muted); }
-.supplier-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 36px; }
+.supplier-ticker { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.supplier-logos { display: flex; width: max-content; animation: supplier-scroll 28s linear infinite; }
+.supplier-ticker:hover .supplier-logos { animation-play-state: paused; }
+/* Chaque série couvre au moins la largeur max du conteneur (1080px) : la boucle reste continue sur grand écran. */
+.supplier-set { display: flex; align-items: center; justify-content: space-between; gap: 56px; min-width: 1080px; padding-right: 56px; }
 .supplier-logos img { width: 110px; height: auto; filter: brightness(0) invert(1); opacity: .7; }
+@keyframes supplier-scroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .supplier-ticker { -webkit-mask-image: none; mask-image: none; }
+  .supplier-logos { width: auto; animation: none; }
+  .supplier-set { flex-wrap: wrap; justify-content: flex-start; gap: 18px 36px; min-width: 0; padding-right: 0; }
+  .supplier-set[aria-hidden] { display: none; }
+}
 
 /* FAQ courte */
 .faq { display: grid; gap: 0; max-width: 760px; }
@@ -316,13 +327,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="suppliers">
         <p>Nous comparons notamment les offres de</p>
-        <div class="supplier-logos">
-          <img src="assets/engie-logo.png" width="180" height="46" alt="Engie">
-          <img src="assets/TotalEnergies.png" width="180" height="46" alt="TotalEnergies">
-          <img src="assets/Logo_OHM_Energie.png" width="180" height="46" alt="OHM Énergie">
-          <img src="assets/Logo_Alterna.webp" width="180" height="46" alt="Alterna">
-          <img src="assets/Logo_Primeo.webp" width="180" height="46" alt="Primeo Energie">
-          <img src="assets/Logo_METEnergie.png.webp" width="180" height="46" alt="MET Énergie">
+        <div class="supplier-ticker">
+          <div class="supplier-logos">
+            <div class="supplier-set">
+              <img src="assets/engie-logo.png" width="180" height="46" alt="Engie">
+              <img src="assets/TotalEnergies.png" width="180" height="46" alt="TotalEnergies">
+              <img src="assets/Logo_OHM_Energie.png" width="180" height="46" alt="OHM Énergie">
+              <img src="assets/Logo_Alterna.webp" width="180" height="46" alt="Alterna">
+              <img src="assets/Logo_Primeo.webp" width="180" height="46" alt="Primeo Energie">
+              <img src="assets/Logo_METEnergie.png.webp" width="180" height="46" alt="MET Énergie">
+            </div>
+            <div class="supplier-set" aria-hidden="true">
+              <img src="assets/engie-logo.png" width="180" height="46" alt="">
+              <img src="assets/TotalEnergies.png" width="180" height="46" alt="">
+              <img src="assets/Logo_OHM_Energie.png" width="180" height="46" alt="">
+              <img src="assets/Logo_Alterna.webp" width="180" height="46" alt="">
+              <img src="assets/Logo_Primeo.webp" width="180" height="46" alt="">
+              <img src="assets/Logo_METEnergie.png.webp" width="180" height="46" alt="">
+            </div>
+          </div>
         </div>
       </div>
     </div>
