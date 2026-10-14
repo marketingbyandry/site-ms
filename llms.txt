@@ -24,6 +24,16 @@
 
 - [Accueil](https://cabinetms.fr/) : présentation du cabinet et FAQ générale sur le courtage en énergie.
 - [Professionnels (TPE, PME, ETI)](https://cabinetms.fr/b2b.html) : offre de courtage énergie pour entreprises, multi-sites, FAQ pro.
+- [Courtier électricité professionnel](https://cabinetms.fr/courtier-electricite-professionnel.html) : courtage en électricité pour TPE, PME et entreprises (C5, C4, HTA), prix fixe ou indexé, TURPE et fin de l'ARENH.
+- [Courtier gaz professionnel](https://cabinetms.fr/courtier-gaz-professionnel.html) : courtage en gaz naturel pour entreprises (profils T1 à T4, TP), indexation PEG/TTF, échéances de contrat.
+- [Courtier ou comparateur d'énergie pro](https://cabinetms.fr/courtier-ou-comparateur-energie-pro.html) : différences de modèle entre courtier indépendant et comparateur en ligne pour une entreprise.
+- [Alternatives aux plateformes de courtage et aux comparateurs](https://cabinetms.fr/alternatives-courtier-energie.html) : tableau par catégorie d'acteurs et renvoi vers les pages comparatives ci-dessous.
+- Pages comparatives (service comparé critère par critère, à partir des pages publiques de chaque acteur, avec les cas où il peut mieux convenir) :
+  - [Alternative à Selectra pour les pros](https://cabinetms.fr/alternative-selectra-professionnel.html)
+  - [Alternative à Opéra Énergie pour les pros](https://cabinetms.fr/alternative-opera-energie-professionnel.html)
+  - [Alternative à Hellowatt pour les pros](https://cabinetms.fr/alternative-hellowatt-professionnel.html)
+  - [Alternative à Kelwatt pour les pros](https://cabinetms.fr/alternative-kelwatt-professionnel.html)
+  - [Alternative à Papernest pour les pros](https://cabinetms.fr/alternative-papernest-professionnel.html)
 - [Particuliers](https://cabinetms.fr/b2c.html) : offre de courtage énergie pour les particuliers.
 - [Comment ça marche](https://cabinetms.fr/comment-ca-marche.html) : le déroulé de l'accompagnement, étape par étape.
 - [Résultats](https://cabinetms.fr/resultats.html) : exemples de résultats et économies obtenues.

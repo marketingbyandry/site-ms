@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-THZKG49X');</script>
+<!-- End Google Tag Manager -->
+<script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
+<script defer src="assets/analytics-loader.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script defer src="assets/favicon-animate.js"></script>
+<title>Alternatives aux comparateurs d'énergie pro | M&amp;S Strategy</title>
+<meta name="description" content="Plateforme de courtage, comparateur ou cabinet de courtage : modèles comparés pour votre contrat d'énergie pro, et quand une autre convient mieux.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/chantier-sections.css">
+<style>
+:root {
+  --dark: #0a1a1f;
+  --dark2: #0d2028;
+  --teal-deep: #0d4f5c;
+  --teal-mid: #1a7a8a;
+  --teal-bright: #2bb5c8;
+  --teal-light: #5ecfdc;
+  --green: #4cde80;
+  --cream: #f5f0e8;
+  --muted: #8aacb4;
+  --body-max: 720px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Satoshi', sans-serif;
+  background: var(--dark);
+  color: var(--cream);
+  line-height: 1.75;
+  font-size: 17px;
+  font-weight: 300;
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--teal-mid), var(--green));
+  width: 0%; z-index: 200;
+  transition: width .1s linear;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem 5vw;
+  background: rgba(10,26,31,.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(43,181,200,.1);
+}
+.nav-logo { display: flex; align-items: center; }
+.nav-logo img { height: 26px; width: auto; display: block; }
+.nav-cta {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .5rem 1.2rem; border: 1px solid var(--green);
+  color: var(--green); text-decoration: none; border-radius: 0;
+  transition: background .2s, color .2s;
+}
+.nav-cta:hover { background: var(--green); color: var(--dark); }
+
+/* ── HERO ── */
+.hero {
+  padding: 9rem 5vw 5rem;
+  max-width: 1100px; margin: 0 auto;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 60px; right: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,122,138,.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.article-meta {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.meta-tag {
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--teal-light);
+  background: rgba(43,181,200,.1);
+  border: 1px solid rgba(43,181,200,.2);
+  padding: .28rem .85rem; border-radius: 999px;
+}
+.meta-read { font-size: .8rem; color: var(--muted); }
+.meta-read { display: inline-flex; align-items: center; gap: .4rem; }
+
+.hero-title {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.08; max-width: 820px;
+  margin-bottom: 1.6rem;
+}
+.hero-title .accent { color: var(--green); }
+.hero-title .accent-teal { color: var(--teal-light); font-style: italic; font-family: 'Instrument Serif', serif; font-weight: 400; }
+
+.hero-intro {
+  font-size: 1.15rem; color: var(--muted); max-width: 640px;
+  line-height: 1.7; margin-bottom: 2.5rem;
+}
+
+/* ── ARTICLE BODY ── */
+.article-body {
+  max-width: var(--body-max);
+  margin: 0 auto;
+  padding: 0 5vw 6rem;
+}
+
+h2 {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.15; margin: 3.5rem 0 1.2rem;
+  color: var(--cream);
+}
+
+p { margin-bottom: 1.4rem; }
+p strong { color: var(--cream); font-weight: 500; }
+
+ul, ol { margin: 0 0 1.4rem 1.3rem; color: var(--muted); }
+ul li, ol li { margin-bottom: .6rem; line-height: 1.6; }
+ul li strong, ol li strong { color: var(--cream); font-weight: 500; }
+
+a.ilink { color: var(--teal-light); border-bottom: 1px solid rgba(94,207,220,.3); }
+a.ilink:hover { border-bottom-color: var(--teal-light); }
+
+/* ── CALLOUT BOX ── */
+.callout {
+  background: linear-gradient(135deg, rgba(13,79,92,.4), rgba(26,122,138,.15));
+  border: 1px solid rgba(43,181,200,.2);
+  border-radius: 0; padding: 2rem;
+  margin: 2.5rem 0;
+}
+.callout-title {
+  font-family: 'Satoshi', sans-serif; font-weight: 800;
+  font-size: 1rem; color: var(--green); margin-bottom: .8rem;
+}
+.callout p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  background: linear-gradient(135deg, var(--teal-deep), rgba(10,26,31,.95));
+  border: 1px solid rgba(43,181,200,.15);
+  border-radius: 0; padding: 3rem 2.5rem;
+  margin: 4rem 0; text-align: center;
+}
+.cta-title {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: 1.6rem; color: var(--cream); margin-bottom: .8rem;
+}
+.cta-sub { color: var(--muted); margin-bottom: 2rem; font-size: .97rem; }
+.cta-btn {
+  display: inline-block;
+  background: var(--green); color: var(--dark);
+  font-family: 'Satoshi', sans-serif; font-weight: 800;
+  font-size: .9rem; letter-spacing: .04em;
+  padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none;
+  transition: transform .15s, box-shadow .2s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(76,222,128,.3); }
+.cta-section .cta-btn { font-weight: 500; letter-spacing: .02em; }
+.cta-reassure { margin-top: 1rem; font-size: .75rem; color: var(--muted); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 3rem 5vw;
+  border-top: 1px solid rgba(43,181,200,.1);
+  text-align: center;
+}
+footer p { color: var(--muted); font-size: .82rem; line-height: 1.8; }
+footer a { color: var(--teal-bright); text-decoration: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .4s ease-out, transform .4s ease-out; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ══ LAYOUT V2 (éditorial : sommaire + colonne de lecture + marge) ══ */
+:root { --rail: 250px; --note: 230px; --line: rgba(43,181,200,.16); --panel: rgba(13,32,40,.72); --warn: #ffcf7a; }
+.hero { max-width: 1320px; }
+.v2-layout {
+  max-width: 1320px; margin: 0 auto; padding: 0 5vw 6rem;
+  display: grid; grid-template-columns: minmax(0, 1fr);
+}
+.v2-main { min-width: 0; max-width: var(--body-max); margin: 0 auto; width: 100%; }
+.v2-section { scroll-margin-top: 6rem; }
+
+.svg-ico { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Accessibilité : lien d'évitement, cibles tactiles, focus, ancres sous le menu fixe */
+.skip-link { position: absolute; left: 1rem; top: -100px; z-index: 300; background: var(--green); color: var(--dark); padding: .8rem 1.2rem; font-weight: 700; text-decoration: none; }
+.skip-link:focus { top: 1rem; }
+.hit { position: relative; }
+.hit::after { content: ''; position: absolute; inset: -13px -4px; }
+#cta, #contenu { scroll-margin-top: 6rem; }
+.v2-section > p { max-width: 68ch; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Sommaire */
+.toc { margin: 0 0 1rem; border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.toc summary {
+  cursor: pointer; list-style: none; padding: .9rem 1.1rem; min-height: 44px;
+  font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.toc summary::-webkit-details-marker { display: none; }
+.toc summary::after { content: '+'; font-size: 1.1rem; color: var(--muted); }
+.toc[open] summary::after { content: '−'; }
+.toc ol { list-style: none; margin: 0; padding: 0 1.1rem 1rem; counter-reset: toc; color: inherit; }
+.toc li { margin: 0; counter-increment: toc; }
+.toc a {
+  display: flex; gap: .7rem; padding: .5rem 0; min-height: 44px; align-items: center;
+  color: var(--muted); text-decoration: none; font-size: .88rem; line-height: 1.35;
+  transition: color .2s;
+}
+.toc a::before { content: counter(toc, decimal-leading-zero); font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.toc a:hover, .toc a.is-active { color: var(--cream); }
+.toc a.is-active::before { color: var(--green); }
+.toc-progress { height: 2px; background: rgba(43,181,200,.12); margin: 0 1.1rem 1rem; border-radius: 0; overflow: hidden; }
+.toc-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--teal-mid), var(--green)); }
+
+/* L'essentiel en 30 secondes */
+.tldr { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: 0; }
+.tldr-item { background: var(--dark2); padding: 1.3rem 1.4rem; }
+.tldr-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal-light); margin-bottom: .5rem; }
+.tldr-item p { margin: 0; font-size: .95rem; line-height: 1.55; color: var(--cream); }
+
+/* Notes de marge (en ligne sur mobile) */
+.note { border-left: 2px solid var(--green); padding: .3rem 0 .3rem 1.1rem; margin: 0 0 1.6rem; }
+.note-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.note p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--muted); }
+.note.quote p { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.3rem; line-height: 1.3; color: var(--cream); }
+
+/* Module : la partie immergée du prix */
+.iceberg { border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: .6rem 0 2.2rem; background: var(--panel); }
+.iceberg-top { padding: 1.4rem 1.5rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.iceberg-top .lbl { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.iceberg-top .big { font-family: 'Instrument Serif', serif; font-size: 1.9rem; line-height: 1; color: var(--cream); }
+.waterline { display: flex; align-items: center; gap: .8rem; padding: 0 1.5rem; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.waterline::before, .waterline::after { content: ''; flex: 1; border-top: 1px dashed rgba(94,207,220,.45); }
+.iceberg-list { list-style: none; margin: 0; padding: 1rem 1.5rem 1.4rem; display: grid; gap: .55rem; background: linear-gradient(180deg, rgba(13,79,92,.18), rgba(13,79,92,.42)); color: inherit; }
+.iceberg-list li { margin: 0; display: flex; justify-content: space-between; gap: 1rem; font-size: .93rem; color: var(--cream); }
+.iceberg-list .tag { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; align-self: center; }
+
+/* Module : 5 critères en cartes */
+.criteria { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); color: inherit; }
+.criteria li { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 0; padding: 1.4rem; display: flex; flex-direction: column; gap: .7rem; transition: border-color .2s; }
+.criteria li:hover { border-color: rgba(94,207,220,.4); }
+.criteria .head { display: flex; align-items: center; gap: .75rem; color: var(--teal-light); }
+.criteria .n { margin-left: auto; font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.criteria h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); line-height: 1.3; }
+.criteria p { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--muted); }
+
+/* CTA intercalés */
+.cta-inline {
+  margin: 2.8rem 0; border-radius: 0; padding: 1.8rem;
+  border: 1px solid rgba(76,222,128,.28);
+  background: linear-gradient(120deg, rgba(76,222,128,.07), rgba(13,79,92,.35));
+  display: grid; gap: 1.4rem; align-items: center;
+}
+.cta-inline .eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.cta-inline .t { font-family: 'Instrument Serif', serif; font-size: 1.55rem; line-height: 1.15; color: var(--cream); margin-bottom: .5rem; }
+.cta-inline .s { font-size: .93rem; color: var(--muted); margin: 0; line-height: 1.55; }
+.cta-inline .actions { display: flex; flex-direction: column; gap: .7rem; align-items: flex-start; }
+.cta-inline .cta-btn { padding: .95rem 1.8rem; }
+.cta-btn--ghost { background: transparent; color: var(--green); border: 1px solid var(--green); }
+.cta-btn--ghost:hover { background: var(--green); color: var(--dark); }
+.cta-inline .alt { font-size: .82rem; color: var(--teal-light); }
+.cta-inline .micro { font-size: .75rem; color: var(--muted); }
+.steps { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; color: inherit; counter-reset: st; }
+.steps li { margin: 0; counter-increment: st; display: flex; gap: .7rem; align-items: baseline; font-size: .9rem; color: var(--cream); }
+.steps li::before { content: counter(st); flex: none; width: 1.5rem; height: 1.5rem; border-radius: 50%; display: inline-grid; place-items: center; font-size: .75rem; font-weight: 700; color: var(--dark); background: var(--green); }
+.cta-btn:focus-visible, .toc a:focus-visible, .toc summary:focus-visible, a.ilink:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Module : exemple chiffré A vs B */
+.versus { display: grid; gap: 1rem; margin: .6rem 0 1rem; }
+.offer { border: 1px solid var(--line); border-radius: 0; background: var(--panel); padding: 1.4rem 1.5rem; }
+.offer.win { border-color: rgba(76,222,128,.5); }
+.offer-h { display: flex; justify-content: space-between; align-items: center; gap: .8rem; margin-bottom: .6rem; }
+.offer-h strong { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.badge { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; white-space: nowrap; }
+.badge.trap { color: var(--warn); border: 1px solid rgba(255,207,122,.4); }
+.badge.ok { color: var(--green); border: 1px solid rgba(76,222,128,.45); }
+.offer table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.offer caption { text-align: left; font-size: .8rem; color: var(--muted); padding-bottom: .4rem; }
+.offer th, .offer td { padding: .5rem 0; border-bottom: 1px solid rgba(43,181,200,.1); text-align: left; font-weight: 400; color: var(--muted); }
+.offer td { text-align: right; color: var(--cream); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.offer tr.hidden-cost th, .offer tr.hidden-cost td { color: var(--warn); }
+.offer tr.total th, .offer tr.total td { border-bottom: 0; padding-top: .9rem; font-weight: 700; color: var(--cream); font-size: 1rem; }
+.verdict { display: flex; gap: 1.2rem; align-items: center; border-radius: 0; padding: 1.1rem 1.4rem; background: rgba(255,207,122,.07); border: 1px solid rgba(255,207,122,.3); margin-bottom: 1.6rem; }
+.verdict .big { font-family: 'Instrument Serif', serif; font-size: 2rem; line-height: 1; color: var(--warn); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.verdict p { margin: 0; font-size: .93rem; color: var(--cream); line-height: 1.5; }
+
+/* Module : calendrier */
+.timeline { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; color: inherit; }
+.timeline li { margin: 0; display: grid; grid-template-columns: 1.2rem 1fr; gap: 1rem; padding-bottom: 1.4rem; position: relative; }
+.timeline li::before { content: ''; width: 12px; height: 12px; border-radius: 50%; margin-top: .3rem; background: var(--dot); box-shadow: 0 0 0 4px rgba(43,181,200,.12); }
+.timeline li:not(:last-child)::after { content: ''; position: absolute; left: 5px; top: 1.2rem; bottom: 0; width: 2px; background: var(--line); }
+.timeline .when { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dot); }
+.timeline h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); margin: .2rem 0 .3rem; line-height: 1.3; }
+.timeline p { margin: 0; font-size: .9rem; color: var(--muted); line-height: 1.55; }
+.meter { display: flex; align-items: center; gap: .7rem; margin-top: .6rem; font-size: .75rem; color: var(--muted); }
+.meter i { flex: 0 0 120px; height: 4px; border-radius: 0; background: rgba(43,181,200,.14); overflow: hidden; }
+.meter b { display: block; height: 100%; background: var(--dot); }
+
+@media (min-width: 720px) {
+  .tldr { grid-template-columns: repeat(3, 1fr); }
+  .versus { grid-template-columns: 1fr 1fr; }
+  .cta-inline { grid-template-columns: minmax(0, 1fr) auto; padding: 2rem 2.2rem; }
+  .cta-inline .actions { align-items: flex-end; text-align: right; }
+}
+
+/* ≥ 1024px : rail collant à gauche (bande photo + sommaire) */
+@media (min-width: 1024px) {
+  .v2-layout { grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: 3.5rem; }
+  .v2-main { max-width: var(--body-max); margin: 0; }
+  .v2-rail {
+    position: sticky; top: 6rem; align-self: start; margin-top: 3.4rem;
+  }
+  .toc { margin: 0; background: transparent; border: 0; }
+  .toc summary { pointer-events: none; padding: 0 0 .6rem; min-height: 0; }
+  .toc summary::after, .toc[open] summary::after { content: none; }
+  .toc ol { padding: 0; }
+  .toc-progress { margin: 0 0 .6rem; }
+}
+
+/* ≥ 1320px : marge éditoriale à droite, modules pleine largeur */
+@media (min-width: 1320px) {
+  .v2-main { max-width: none; }
+  .v2-section { display: grid; grid-template-columns: minmax(0, 1fr) var(--note); column-gap: 3rem; align-items: start; }
+  .v2-section > * { grid-column: 1; }
+  .v2-section > .wide { grid-column: 1 / -1; }
+  .v2-section > .note { grid-column: 2; grid-row: span 3; margin-top: .4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cta-btn, .criteria li, .toc a { transition: none; }
+  .cta-btn:hover { transform: none; }
+}
+
+</style>
+<link rel="canonical" href="https://cabinetms.fr/alternatives-courtier-energie.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="M&S Strategy">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Alternatives aux comparateurs d'énergie pro | M&amp;S Strategy">
+<meta property="og:description" content="Plateforme de courtage, comparateur ou cabinet de courtage : modèles comparés pour votre contrat d'énergie pro, et quand une autre convient mieux.">
+<meta property="og:url" content="https://cabinetms.fr/alternatives-courtier-energie.html">
+<meta property="og:image" content="https://cabinetms.fr/assets/ms-strategy-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root {
+  --dark: #0a1a1f;
+  --dark2: #0d2028;
+  --teal-deep: #0d4f5c;
+  --teal-mid: #1a7a8a;
+  --teal-bright: #2bb5c8;
+  --teal-light: #5ecfdc;
+  --green: #4cde80;
+  --cream: #f5f0e8;
+  --muted: #8aacb4;
+  --body-max: 720px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Satoshi', sans-serif;
+  background: var(--dark);
+  color: var(--cream);
+  line-height: 1.75;
+  font-size: 17px;
+  font-weight: 300;
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--teal-mid), var(--green));
+  width: 0%; z-index: 200;
+  transition: width .1s linear;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem 5vw;
+  background: rgba(10,26,31,.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(43,181,200,.1);
+}
+.nav-logo { display: flex; align-items: center; }
+.nav-logo img { height: 26px; width: auto; display: block; }
+.nav-cta {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .5rem 1.2rem; border: 1px solid var(--green);
+  color: var(--green); text-decoration: none; border-radius: 0;
+  transition: background .2s, color .2s;
+}
+.nav-cta:hover { background: var(--green); color: var(--dark); }
+
+/* ── HERO ── */
+.hero {
+  padding: 9rem 5vw 5rem;
+  max-width: 1100px; margin: 0 auto;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 60px; right: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,122,138,.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.article-meta {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.meta-tag {
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--teal-light);
+  background: rgba(43,181,200,.1);
+  border: 1px solid rgba(43,181,200,.2);
+  padding: .28rem .85rem; border-radius: 999px;
+}
+.meta-read { font-size: .8rem; color: var(--muted); }
+.meta-read { display: inline-flex; align-items: center; gap: .4rem; }
+
+.hero-title {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.08; max-width: 820px;
+  margin-bottom: 1.6rem;
+}
+.hero-title .accent { color: var(--green); }
+.hero-title .accent-teal { color: var(--teal-light); font-style: italic; font-family: 'Instrument Serif', serif; font-weight: 400; }
+
+.hero-intro {
+  font-size: 1.15rem; color: var(--muted); max-width: 640px;
+  line-height: 1.7; margin-bottom: 2.5rem;
+}
+
+/* ── ARTICLE BODY ── */
+.article-body {
+  max-width: var(--body-max);
+  margin: 0 auto;
+  padding: 0 5vw 6rem;
+}
+
+h2 {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.15; margin: 3.5rem 0 1.2rem;
+  color: var(--cream);
+}
+
+p { margin-bottom: 1.4rem; }
+p strong { color: var(--cream); font-weight: 500; }
+
+ul, ol { margin: 0 0 1.4rem 1.3rem; color: var(--muted); }
+ul li, ol li { margin-bottom: .6rem; line-height: 1.6; }
+ul li strong, ol li strong { color: var(--cream); font-weight: 500; }
+
+a.ilink { color: var(--teal-light); border-bottom: 1px solid rgba(94,207,220,.3); }
+a.ilink:hover { border-bottom-color: var(--teal-light); }
+
+/* ── CALLOUT BOX ── */
+.callout {
+  background: linear-gradient(135deg, rgba(13,79,92,.4), rgba(26,122,138,.15));
+  border: 1px solid rgba(43,181,200,.2);
+  border-radius: 0; padding: 2rem;
+  margin: 2.5rem 0;
+}
+.callout-title {
+  font-family: 'Satoshi', sans-serif; font-weight: 800;
+  font-size: 1rem; color: var(--green); margin-bottom: .8rem;
+}
+.callout p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  background: linear-gradient(135deg, var(--teal-deep), rgba(10,26,31,.95));
+  border: 1px solid rgba(43,181,200,.15);
+  border-radius: 0; padding: 3rem 2.5rem;
+  margin: 4rem 0; text-align: center;
+}
+.cta-title {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: 1.6rem; color: var(--cream); margin-bottom: .8rem;
+}
+.cta-sub { color: var(--muted); margin-bottom: 2rem; font-size: .97rem; }
+.cta-btn {
+  display: inline-block;
+  background: var(--green); color: var(--dark);
+  font-family: 'Satoshi', sans-serif; font-weight: 800;
+  font-size: .9rem; letter-spacing: .04em;
+  padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none;
+  transition: transform .15s, box-shadow .2s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(76,222,128,.3); }
+.cta-section .cta-btn { font-weight: 500; letter-spacing: .02em; }
+.cta-reassure { margin-top: 1rem; font-size: .75rem; color: var(--muted); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 3rem 5vw;
+  border-top: 1px solid rgba(43,181,200,.1);
+  text-align: center;
+}
+footer p { color: var(--muted); font-size: .82rem; line-height: 1.8; }
+footer a { color: var(--teal-bright); text-decoration: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .4s ease-out, transform .4s ease-out; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ══ LAYOUT V2 (éditorial : sommaire + colonne de lecture + marge) ══ */
+:root { --rail: 250px; --note: 230px; --line: rgba(43,181,200,.16); --panel: rgba(13,32,40,.72); --warn: #ffcf7a; }
+.hero { max-width: 1320px; }
+.v2-layout {
+  max-width: 1320px; margin: 0 auto; padding: 0 5vw 6rem;
+  display: grid; grid-template-columns: minmax(0, 1fr);
+}
+.v2-main { min-width: 0; max-width: var(--body-max); margin: 0 auto; width: 100%; }
+.v2-section { scroll-margin-top: 6rem; }
+
+.svg-ico { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Accessibilité : lien d'évitement, cibles tactiles, focus, ancres sous le menu fixe */
+.skip-link { position: absolute; left: 1rem; top: -100px; z-index: 300; background: var(--green); color: var(--dark); padding: .8rem 1.2rem; font-weight: 700; text-decoration: none; }
+.skip-link:focus { top: 1rem; }
+.hit { position: relative; }
+.hit::after { content: ''; position: absolute; inset: -13px -4px; }
+#cta, #contenu { scroll-margin-top: 6rem; }
+.v2-section > p { max-width: 68ch; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Sommaire */
+.toc { margin: 0 0 1rem; border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.toc summary {
+  cursor: pointer; list-style: none; padding: .9rem 1.1rem; min-height: 44px;
+  font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.toc summary::-webkit-details-marker { display: none; }
+.toc summary::after { content: '+'; font-size: 1.1rem; color: var(--muted); }
+.toc[open] summary::after { content: '−'; }
+.toc ol { list-style: none; margin: 0; padding: 0 1.1rem 1rem; counter-reset: toc; color: inherit; }
+.toc li { margin: 0; counter-increment: toc; }
+.toc a {
+  display: flex; gap: .7rem; padding: .5rem 0; min-height: 44px; align-items: center;
+  color: var(--muted); text-decoration: none; font-size: .88rem; line-height: 1.35;
+  transition: color .2s;
+}
+.toc a::before { content: counter(toc, decimal-leading-zero); font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.toc a:hover, .toc a.is-active { color: var(--cream); }
+.toc a.is-active::before { color: var(--green); }
+.toc-progress { height: 2px; background: rgba(43,181,200,.12); margin: 0 1.1rem 1rem; border-radius: 0; overflow: hidden; }
+.toc-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--teal-mid), var(--green)); }
+
+/* L'essentiel en 30 secondes */
+.tldr { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: 0; }
+.tldr-item { background: var(--dark2); padding: 1.3rem 1.4rem; }
+.tldr-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal-light); margin-bottom: .5rem; }
+.tldr-item p { margin: 0; font-size: .95rem; line-height: 1.55; color: var(--cream); }
+
+/* Notes de marge (en ligne sur mobile) */
+.note { border-left: 2px solid var(--green); padding: .3rem 0 .3rem 1.1rem; margin: 0 0 1.6rem; }
+.note-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.note p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--muted); }
+.note.quote p { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.3rem; line-height: 1.3; color: var(--cream); }
+
+/* Module : la partie immergée du prix */
+.iceberg { border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: .6rem 0 2.2rem; background: var(--panel); }
+.iceberg-top { padding: 1.4rem 1.5rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.iceberg-top .lbl { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.iceberg-top .big { font-family: 'Instrument Serif', serif; font-size: 1.9rem; line-height: 1; color: var(--cream); }
+.waterline { display: flex; align-items: center; gap: .8rem; padding: 0 1.5rem; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.waterline::before, .waterline::after { content: ''; flex: 1; border-top: 1px dashed rgba(94,207,220,.45); }
+.iceberg-list { list-style: none; margin: 0; padding: 1rem 1.5rem 1.4rem; display: grid; gap: .55rem; background: linear-gradient(180deg, rgba(13,79,92,.18), rgba(13,79,92,.42)); color: inherit; }
+.iceberg-list li { margin: 0; display: flex; justify-content: space-between; gap: 1rem; font-size: .93rem; color: var(--cream); }
+.iceberg-list .tag { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; align-self: center; }
+
+/* Module : 5 critères en cartes */
+.criteria { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); color: inherit; }
+.criteria li { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 0; padding: 1.4rem; display: flex; flex-direction: column; gap: .7rem; transition: border-color .2s; }
+.criteria li:hover { border-color: rgba(94,207,220,.4); }
+.criteria .head { display: flex; align-items: center; gap: .75rem; color: var(--teal-light); }
+.criteria .n { margin-left: auto; font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.criteria h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); line-height: 1.3; }
+.criteria p { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--muted); }
+
+/* CTA intercalés */
+.cta-inline {
+  margin: 2.8rem 0; border-radius: 0; padding: 1.8rem;
+  border: 1px solid rgba(76,222,128,.28);
+  background: linear-gradient(120deg, rgba(76,222,128,.07), rgba(13,79,92,.35));
+  display: grid; gap: 1.4rem; align-items: center;
+}
+.cta-inline .eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.cta-inline .t { font-family: 'Instrument Serif', serif; font-size: 1.55rem; line-height: 1.15; color: var(--cream); margin-bottom: .5rem; }
+.cta-inline .s { font-size: .93rem; color: var(--muted); margin: 0; line-height: 1.55; }
+.cta-inline .actions { display: flex; flex-direction: column; gap: .7rem; align-items: flex-start; }
+.cta-inline .cta-btn { padding: .95rem 1.8rem; }
+.cta-btn--ghost { background: transparent; color: var(--green); border: 1px solid var(--green); }
+.cta-btn--ghost:hover { background: var(--green); color: var(--dark); }
+.cta-inline .alt { font-size: .82rem; color: var(--teal-light); }
+.cta-inline .micro { font-size: .75rem; color: var(--muted); }
+.steps { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; color: inherit; counter-reset: st; }
+.steps li { margin: 0; counter-increment: st; display: flex; gap: .7rem; align-items: baseline; font-size: .9rem; color: var(--cream); }
+.steps li::before { content: counter(st); flex: none; width: 1.5rem; height: 1.5rem; border-radius: 50%; display: inline-grid; place-items: center; font-size: .75rem; font-weight: 700; color: var(--dark); background: var(--green); }
+.cta-btn:focus-visible, .toc a:focus-visible, .toc summary:focus-visible, a.ilink:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Module : exemple chiffré A vs B */
+.versus { display: grid; gap: 1rem; margin: .6rem 0 1rem; }
+.offer { border: 1px solid var(--line); border-radius: 0; background: var(--panel); padding: 1.4rem 1.5rem; }
+.offer.win { border-color: rgba(76,222,128,.5); }
+.offer-h { display: flex; justify-content: space-between; align-items: center; gap: .8rem; margin-bottom: .6rem; }
+.offer-h strong { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.badge { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; white-space: nowrap; }
+.badge.trap { color: var(--warn); border: 1px solid rgba(255,207,122,.4); }
+.badge.ok { color: var(--green); border: 1px solid rgba(76,222,128,.45); }
+.offer table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.offer caption { text-align: left; font-size: .8rem; color: var(--muted); padding-bottom: .4rem; }
+.offer th, .offer td { padding: .5rem 0; border-bottom: 1px solid rgba(43,181,200,.1); text-align: left; font-weight: 400; color: var(--muted); }
+.offer td { text-align: right; color: var(--cream); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.offer tr.hidden-cost th, .offer tr.hidden-cost td { color: var(--warn); }
+.offer tr.total th, .offer tr.total td { border-bottom: 0; padding-top: .9rem; font-weight: 700; color: var(--cream); font-size: 1rem; }
+.verdict { display: flex; gap: 1.2rem; align-items: center; border-radius: 0; padding: 1.1rem 1.4rem; background: rgba(255,207,122,.07); border: 1px solid rgba(255,207,122,.3); margin-bottom: 1.6rem; }
+.verdict .big { font-family: 'Instrument Serif', serif; font-size: 2rem; line-height: 1; color: var(--warn); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.verdict p { margin: 0; font-size: .93rem; color: var(--cream); line-height: 1.5; }
+
+/* Module : calendrier */
+.timeline { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; color: inherit; }
+.timeline li { margin: 0; display: grid; grid-template-columns: 1.2rem 1fr; gap: 1rem; padding-bottom: 1.4rem; position: relative; }
+.timeline li::before { content: ''; width: 12px; height: 12px; border-radius: 50%; margin-top: .3rem; background: var(--dot); box-shadow: 0 0 0 4px rgba(43,181,200,.12); }
+.timeline li:not(:last-child)::after { content: ''; position: absolute; left: 5px; top: 1.2rem; bottom: 0; width: 2px; background: var(--line); }
+.timeline .when { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dot); }
+.timeline h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); margin: .2rem 0 .3rem; line-height: 1.3; }
+.timeline p { margin: 0; font-size: .9rem; color: var(--muted); line-height: 1.55; }
+.meter { display: flex; align-items: center; gap: .7rem; margin-top: .6rem; font-size: .75rem; color: var(--muted); }
+.meter i { flex: 0 0 120px; height: 4px; border-radius: 0; background: rgba(43,181,200,.14); overflow: hidden; }
+.meter b { display: block; height: 100%; background: var(--dot); }
+
+@media (min-width: 720px) {
+  .tldr { grid-template-columns: repeat(3, 1fr); }
+  .versus { grid-template-columns: 1fr 1fr; }
+  .cta-inline { grid-template-columns: minmax(0, 1fr) auto; padding: 2rem 2.2rem; }
+  .cta-inline .actions { align-items: flex-end; text-align: right; }
+}
+
+/* ≥ 1024px : rail collant à gauche (bande photo + sommaire) */
+@media (min-width: 1024px) {
+  .v2-layout { grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: 3.5rem; }
+  .v2-main { max-width: var(--body-max); margin: 0; }
+  .v2-rail {
+    position: sticky; top: 6rem; align-self: start; margin-top: 3.4rem;
+  }
+  .toc { margin: 0; background: transparent; border: 0; }
+  .toc summary { pointer-events: none; padding: 0 0 .6rem; min-height: 0; }
+  .toc summary::after, .toc[open] summary::after { content: none; }
+  .toc ol { padding: 0; }
+  .toc-progress { margin: 0 0 .6rem; }
+}
+
+/* ≥ 1320px : marge éditoriale à droite, modules pleine largeur */
+@media (min-width: 1320px) {
+  .v2-main { max-width: none; }
+  .v2-section { display: grid; grid-template-columns: minmax(0, 1fr) var(--note); column-gap: 3rem; align-items: start; }
+  .v2-section > * { grid-column: 1; }
+  .v2-section > .wide { grid-column: 1 / -1; }
+  .v2-section > .note { grid-column: 2; grid-row: span 3; margin-top: .4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cta-btn, .criteria li, .toc a { transition: none; }
+  .cta-btn:hover { transform: none; }
+}
+
+
+/* Pages « alternative à… » */
+.answer-first { border: 1px solid rgba(76,222,128,.28); background: linear-gradient(120deg, rgba(76,222,128,.07), rgba(13,79,92,.35)); padding: 1.3rem 1.5rem; margin: 1.6rem 0 0; }
+.answer-first p { margin: 0; font-size: 1.02rem; line-height: 1.6; color: var(--cream); }
+.tbl-scroll { overflow-x: auto; margin: .6rem 0 1.6rem; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); }
+.alt-compare { width: 100%; min-width: 640px; border-collapse: collapse; font-size: .88rem; line-height: 1.5; }
+.alt-compare th, .alt-compare td { padding: .8rem .9rem; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(43,181,200,.1); font-weight: 400; color: var(--muted); }
+.alt-compare thead th { font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--teal-light); background: var(--panel); }
+.alt-compare td.crit { color: var(--cream); font-weight: 700; width: 16%; }
+.alt-compare td a { color: var(--teal-light); white-space: nowrap; }
+.cta-wrap { margin: 1.4rem 0 2rem; }
+.alt-verified { margin: 2.4rem 0 0; padding-top: 1.2rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--muted); user-select: text; }
+.v2-section > ol { max-width: 68ch; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://cabinetms.fr/alternatives-courtier-energie.html#article",
+  "headline": "Alternatives aux plateformes de courtage et aux comparateurs d'énergie pour les pros",
+  "description": "Plateforme de courtage, comparateur ou cabinet de courtage : modèles comparés pour votre contrat d'énergie pro, et quand une autre convient mieux.",
+  "image": "https://cabinetms.fr/assets/ms-strategy-logo.png",
+  "datePublished": "2026-10-14",
+  "dateModified": "2026-10-14",
+  "author": {
+    "@id": "https://cabinetms.fr/#organization"
+  },
+  "publisher": {
+    "@id": "https://cabinetms.fr/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://cabinetms.fr/alternatives-courtier-energie.html"
+  },
+  "inLanguage": "fr-FR"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "https://cabinetms.fr/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Alternatives",
+      "item": "https://cabinetms.fr/alternatives-courtier-energie.html"
+    }
+  ]
+}
+</script>
+<script type="module" src="assets/site-search.js"></script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THZKG49X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<div id="progress-bar"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/ms-strategy-logo.png" width="573" height="146" alt="M&amp;S Strategy"></a>
+  <a href="#cta" class="nav-cta">Étude gratuite →</a>
+</nav>
+
+<main id="contenu">
+<article>
+  <header class="hero">
+    <div class="article-meta">
+      <span class="meta-tag">Comparatif courtier</span>
+    </div>
+    <h1 class="hero-title">Alternatives aux plateformes de courtage et aux comparateurs d'énergie pour les pros</h1>
+    <section class="answer-first">
+      <p>Plateforme de courtage, comparateur en ligne ou cabinet de courtage : ces trois modèles ne rendent pas le même service. Cette page les compare par catégorie, sans classement, puis renvoie vers cinq pages détaillées. M&amp;S Strategy y dit aussi quand une autre option peut mieux vous convenir.</p>
+    </section>
+  </header>
+
+  <div class="v2-layout">
+
+    <div class="v2-rail">
+    <details class="toc" id="toc">
+      <summary>Sommaire</summary>
+      <div class="toc-progress" aria-hidden="true"><span id="toc-progress"></span></div>
+      <ol>
+        <li><a href="#modeles">Trois modèles</a></li>
+        <li><a href="#categories">Comparaison par catégorie</a></li>
+        <li><a href="#acteurs">Cinq pages détaillées</a></li>
+        <li><a href="#choisir">Comment choisir</a></li>
+      </ol>
+    </details>
+    </div>
+
+    <div class="v2-main">
+
+      <section class="v2-section" id="modeles">
+        <h2>Trois modèles pour choisir un contrat d'énergie</h2>
+<p>Pour un contrat d'électricité ou de gaz d'entreprise, on croise le plus souvent trois modèles. Ils répondent à des besoins différents, et aucun n'est le bon pour tout le monde.</p>
+<p><strong>La plateforme de courtage.</strong> Une société qui propose un service de courtage aux entreprises, avec des parcours selon la taille du client. Son atout, selon les cas : le process et la présence.</p>
+<p><strong>Le comparateur en ligne.</strong> Un site qui classe des offres publiées selon un profil saisi par l'utilisateur. Son atout est la rapidité et la gratuité pour se faire une idée. Pour les gros professionnels, certaines offres sont établies sur devis.</p>
+<p><strong>Le cabinet de courtage.</strong> Une structure de taille variable qui consulte plusieurs fournisseurs à partir de votre facture et négocie. Les plateformes de courtage présentent aussi ce service. Pour la différence de fond entre courtier et comparateur, lisez notre page <a href="courtier-ou-comparateur-energie-pro.html" class="ilink">courtier ou comparateur d'énergie pro</a>.</p>
+      </section>
+
+      <section class="v2-section" id="categories">
+        <h2>Comparaison par catégorie d'acteurs</h2>
+<p>Ce tableau compare des catégories, pas des sociétés : au sein d'une même catégorie, les offres varient. La dernière colonne n'est pas un aveu de faiblesse : dire quand une autre option convient mieux est ce qui rend le reste crédible.</p>
+<div class="tbl-scroll">
+<table class="alt-compare">
+<thead><tr><th scope="col">Catégorie</th><th scope="col">Ce qu'elle fait bien</th><th scope="col">Ce qu'apporte M&amp;S Strategy</th><th scope="col">Quand cette option peut mieux vous convenir</th></tr></thead>
+<tbody>
+<tr><td class="crit">Comparateurs en ligne</td><td>Rapides, gratuits, bien pour se faire une idée.</td><td>Analyse de la situation réelle (profil de consommation, multi-sites, échéances) et négociation sur mesure, là où un comparateur classe des offres publiées. Étude gratuite, sans engagement, premier retour sous 24 h après réception de la facture.</td><td>Un seul petit site au tarif simple, et vous voulez juste un ordre de grandeur en 2 minutes.</td></tr>
+<tr><td class="crit">Plateformes de courtage à grande échelle</td><td>Process industrialisés, large présence.</td><td>Cabinet de courtage pour les professionnels, en activité depuis 2012 (SIREN 752 139 477). Comme elles, il consulte plusieurs fournisseurs ; l'analyse part de votre facture et de l'échéance de votre contrat.</td><td>Grand compte multi-pays qui exige un appel d'offres outillé et une équipe dédiée sur place.</td></tr>
+<tr><td class="crit">Négociation directe avec le fournisseur</td><td>Relation directe, aucun intermédiaire.</td><td>Consultation de plusieurs fournisseurs en parallèle au lieu d'un seul interlocuteur qui défend sa propre offre ; lecture du marché appuyée sur un baromètre public avec méthodologie (ENTSO-E day-ahead, CRE PEG).</td><td>Vous avez un acheteur énergie en interne qui suit le marché de gros au quotidien.</td></tr>
+<tr><td class="crit">Achat groupé</td><td>Effet volume sur un appel d'offres collectif.</td><td>Contrat calé sur votre profil et votre échéance, pas sur le calendrier du groupement. Intervention possible même avec un contrat en cours, fenêtre idéale 12 à 24 mois avant l'échéance.</td><td>Votre profil est standard, votre échéance coïncide avec celle du groupement et vous acceptez ses conditions.</td></tr>
+<tr><td class="crit">« Je ne fais rien, je laisse renouveler »</td><td>Zéro effort immédiat.</td><td>Étude gratuite et sans engagement, aucune coupure lors d'un changement de fournisseur (seul le contrat commercial change, pas le compteur ni le réseau).</td><td>Votre contrat vient d'être renégocié à des conditions que vous avez vérifiées face au marché.</td></tr>
+</tbody>
+</table>
+</div>
+      </section>
+
+      <section class="v2-section" id="acteurs">
+        <h2>Cinq acteurs, une page détaillée chacun</h2>
+<p>Chaque page compare le service critère par critère, à partir des pages publiques de l'acteur, avec une source pour chaque information. Les extraits ci-dessous sont des annonces de chaque acteur, citées entre guillemets.</p>
+<ul class="criteria">
+<li>
+<h3>Selectra</h3>
+<p>Créée en 2007, Selectra se présente comme « un courtier français spécialisé dans la comparaison et la souscription d'offres d'électricité et de gaz ». Pour les entreprises, elle annonce un devis chiffré sous 24 heures ouvrées.</p>
+<p>Peut mieux convenir pour un petit site unique, avec un ordre de grandeur en ligne tout de suite.</p>
+<p><a href="alternative-selectra-professionnel.html" class="ilink">Lire la page : alternative à Selectra pour les pros</a></p>
+</li>
+<li>
+<h3>Opéra Énergie</h3>
+<p>Opéra Énergie se déclare « une société indépendante, sans lien capitalistique avec les fournisseurs d'énergie ». Créée en 2014, elle annonce accompagner « plus de 15 000 entreprises, copropriétés et acteurs publics », des TPE aux ETI.</p>
+<p>Peut mieux convenir pour un grand portefeuille multi-sites, une ETI, une copropriété ou un acteur public.</p>
+<p><a href="alternative-opera-energie-professionnel.html" class="ilink">Lire la page : alternative à Opéra Énergie pour les pros</a></p>
+</li>
+<li>
+<h3>Hellowatt</h3>
+<p>Fondée en 2016, Hellowatt se décrit dans ses mentions légales comme un « opérateur de plateforme en ligne de type « comparateur » ». Sa page consacrée aux courtiers la présente comme « [c]onseiller et comparateur de fournisseurs d'énergie pour les particuliers et les professionnels » ; ses conditions d'utilisation décrivent le service comme celui de « comparer les offres des fournisseurs d'énergie pour les particuliers ».</p>
+<p>Peut mieux convenir pour un besoin simple de petit professionnel, avec une souscription en ligne rapide.</p>
+<p><a href="alternative-hellowatt-professionnel.html" class="ilink">Lire la page : alternative à Hellowatt pour les pros</a></p>
+</li>
+<li>
+<h3>Kelwatt</h3>
+<p>Kelwatt est un comparateur d'électricité et de gaz édité par Selectra SAS, selon ses mentions légales. Il compare « plus de 30 fournisseurs » et référence les petits professionnels ; pour les gros professionnels, ses pages indiquent des offres sur devis.</p>
+<p>Peut mieux convenir pour un besoin simple de petit professionnel, comparé en ligne à votre rythme.</p>
+<p><a href="alternative-kelwatt-professionnel.html" class="ilink">Lire la page : alternative à Kelwatt pour les pros</a></p>
+</li>
+<li>
+<h3>Papernest</h3>
+<p>Créé en 2015 selon elle, Papernest propose aux professionnels l'énergie, l'assurance et l'internet, avec « un seul interlocuteur ». Elle annonce « 7 000 clients professionnels » et consulter « plus d'une dizaine de fournisseurs » pour l'énergie.</p>
+<p>Peut mieux convenir pour le regroupement de plusieurs contrats (énergie, assurance, internet) chez un seul intermédiaire.</p>
+<p><a href="alternative-papernest-professionnel.html" class="ilink">Lire la page : alternative à Papernest pour les pros</a></p>
+</li>
+</ul>
+<p class="cta-wrap"><a href="b2b.html#upload" class="cta-btn">Obtenez votre étude gratuite →</a></p>
+      </section>
+
+      <section class="v2-section" id="choisir">
+        <h2>Comment choisir entre ces options</h2>
+<p>Avant de choisir, posez les mêmes questions à chaque acteur : quel périmètre de fournisseurs est consulté pour mon profil, qui négocie et sur quelle base, quel est le délai d'une proposition chiffrée, qui est mon interlocuteur après la signature, et à quelle date mon contrat actuel me permet de changer.</p>
+<p>Sur la rémunération, lisez notre page <a href="courtier-energie-gratuit-remuneration.html" class="ilink">courtier en énergie gratuit : comment est-il rémunéré</a>. Pour les critères et les pièges à éviter, lisez <a href="choisir-courtier-energie-criteres-pieges.html" class="ilink">choisir son courtier en énergie</a>.</p>
+<p>Envoyez votre dernière facture : l'étude est gratuite et sans engagement. Si vous signez, le fournisseur nous rémunère par une commission intégrée au contrat.</p>
+<p class="cta-wrap" id="cta"><a href="b2b.html#upload" class="cta-btn">Obtenez votre étude gratuite →</a></p>
+        <p class="alt-verified">Informations sur chaque acteur vérifiées entre le 10/10/2026 et le 14/10/2026 à partir de ses pages publiques. Une erreur ? Écrivez-nous : msstrategy@yahoo.com</p>
+      </section>
+    </div>
+  </div>
+</article>
+</main>
+
+<footer>
+  <p>
+    <strong style="color:var(--cream)">M&S Strategy</strong> · Courtage en énergie depuis 2012<br>
+    1366 Av. des Platanes, 34970 Lattes ·
+    <a href="tel:0952926498">09 52 92 64 98</a> ·
+    <a href="mailto:msstrategy@yahoo.com">msstrategy@yahoo.com</a><br>
+    SIREN 752 139 477
+  </p>
+  <div google-add-preferred-source-btn data-theme="dark"></div>
+</footer>
+
+
+<script>
+// ── Progress bar
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = pct + '%';
+});
+
+// ── Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+revealEls.forEach(el => revObs.observe(el));
+
+const photoObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); photoObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.photo-ph').forEach(el => photoObs.observe(el));
+
+// ── Sommaire : ouvert en desktop, section active, progression
+const toc = document.getElementById('toc');
+const tocProgress = document.getElementById('toc-progress');
+const wide = window.matchMedia('(min-width: 1024px)');
+const syncToc = () => { toc.open = wide.matches; };
+syncToc();
+wide.addEventListener('change', syncToc);
+toc.addEventListener('toggle', () => { if (wide.matches && !toc.open) toc.open = true; });
+toc.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (!wide.matches) toc.open = false; }));
+
+const tocLinks = new Map([...toc.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const id = e.target.id;
+    tocLinks.forEach((a, key) => {
+      a.classList.toggle('is-active', key === id);
+      if (key === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  });
+}, { rootMargin: '-35% 0px -60% 0px' });
+document.querySelectorAll('.v2-section').forEach(s => secObs.observe(s));
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  tocProgress.style.width = Math.min(100, pct) + '%';
+}, { passive: true });
+
+</script>
+<script defer src="assets/speed-insights.js"></script>
+<script defer src="assets/cookie-consent.js"></script>
+</body>
+</html>
