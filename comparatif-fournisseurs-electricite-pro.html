@@ -71,10 +71,11 @@ nav {
 .nav-logo { display: flex; align-items: center; }
 .nav-logo img { height: 26px; width: auto; display: block; }
 .nav-cta {
-  font-family: 'Satoshi', sans-serif; font-size: .72rem; font-weight: 700;
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;
   padding: .5rem 1.2rem; border: 1px solid var(--green);
-  color: var(--green); text-decoration: none; border-radius: 2px;
+  color: var(--green); text-decoration: none; border-radius: 0;
   transition: background .2s, color .2s;
 }
 .nav-cta:hover { background: var(--green); color: var(--dark); }
@@ -97,15 +98,15 @@ nav {
   margin-bottom: 2rem;
 }
 .meta-tag {
-  font-family: 'Satoshi', sans-serif; font-size: .65rem; font-weight: 700;
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
   color: var(--teal-light);
   background: rgba(43,181,200,.1);
   border: 1px solid rgba(43,181,200,.2);
-  padding: .28rem .75rem; border-radius: 2px;
+  padding: .28rem .85rem; border-radius: 999px;
 }
 .meta-read { font-size: .8rem; color: var(--muted); }
-.meta-read::before { content: '⏱ '; opacity: .6; }
+.meta-read { display: inline-flex; align-items: center; gap: .4rem; }
 
 .hero-title {
   font-family: 'Instrument Serif', serif; font-weight: 400;
@@ -149,7 +150,7 @@ a.ilink:hover { border-bottom-color: var(--teal-light); }
 .callout {
   background: linear-gradient(135deg, rgba(13,79,92,.4), rgba(26,122,138,.15));
   border: 1px solid rgba(43,181,200,.2);
-  border-radius: 4px; padding: 2rem;
+  border-radius: 0; padding: 2rem;
   margin: 2.5rem 0;
 }
 .callout-title {
@@ -162,7 +163,7 @@ a.ilink:hover { border-bottom-color: var(--teal-light); }
 .cta-section {
   background: linear-gradient(135deg, var(--teal-deep), rgba(10,26,31,.95));
   border: 1px solid rgba(43,181,200,.15);
-  border-radius: 6px; padding: 3rem 2.5rem;
+  border-radius: 0; padding: 3rem 2.5rem;
   margin: 4rem 0; text-align: center;
 }
 .cta-title {
@@ -175,27 +176,12 @@ a.ilink:hover { border-bottom-color: var(--teal-light); }
   background: var(--green); color: var(--dark);
   font-family: 'Satoshi', sans-serif; font-weight: 800;
   font-size: .9rem; letter-spacing: .04em;
-  padding: 1rem 2.5rem; border-radius: 2px; text-decoration: none;
+  padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none;
   transition: transform .15s, box-shadow .2s;
 }
 .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(76,222,128,.3); }
+.cta-section .cta-btn { font-weight: 500; letter-spacing: .02em; }
 .cta-reassure { margin-top: 1rem; font-size: .75rem; color: var(--muted); }
-
-/* ── FLOATING CTA ── */
-.floating-cta {
-  position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
-  opacity: 0; transform: translateY(12px);
-  transition: opacity .3s, transform .3s;
-  pointer-events: none;
-}
-.floating-cta.visible { opacity: 1; transform: none; pointer-events: all; }
-.floating-cta a {
-  display: flex; align-items: center; gap: .6rem;
-  background: var(--green); color: var(--dark);
-  font-family: 'Satoshi', sans-serif; font-weight: 800; font-size: .8rem;
-  padding: .85rem 1.4rem; border-radius: 3px; text-decoration: none;
-  box-shadow: 0 8px 28px rgba(0,0,0,.4);
-}
 
 /* ── FOOTER ── */
 footer {
@@ -207,15 +193,173 @@ footer p { color: var(--muted); font-size: .82rem; line-height: 1.8; }
 footer a { color: var(--teal-bright); text-decoration: none; }
 
 /* ── REVEAL ── */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .4s ease-out, transform .4s ease-out; }
 .reveal.visible { opacity: 1; transform: none; }
 
-@media (max-width: 640px) {
-  .floating-cta { bottom: 1rem; right: 1rem; }
+/* ══ LAYOUT V2 (éditorial : sommaire + colonne de lecture + marge) ══ */
+:root { --rail: 250px; --note: 230px; --line: rgba(43,181,200,.16); --panel: rgba(13,32,40,.72); --warn: #ffcf7a; }
+.hero { max-width: 1320px; }
+.v2-layout {
+  max-width: 1320px; margin: 0 auto; padding: 0 5vw 6rem;
+  display: grid; grid-template-columns: minmax(0, 1fr);
+}
+.v2-main { min-width: 0; max-width: var(--body-max); margin: 0 auto; width: 100%; }
+.v2-section { scroll-margin-top: 6rem; }
+
+.svg-ico { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Accessibilité : lien d'évitement, cibles tactiles, focus, ancres sous le menu fixe */
+.skip-link { position: absolute; left: 1rem; top: -100px; z-index: 300; background: var(--green); color: var(--dark); padding: .8rem 1.2rem; font-weight: 700; text-decoration: none; }
+.skip-link:focus { top: 1rem; }
+.hit { position: relative; }
+.hit::after { content: ''; position: absolute; inset: -13px -4px; }
+#cta, #contenu { scroll-margin-top: 6rem; }
+.v2-section > p { max-width: 68ch; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Sommaire */
+.toc { margin: 0 0 1rem; border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.toc summary {
+  cursor: pointer; list-style: none; padding: .9rem 1.1rem; min-height: 44px;
+  font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.toc summary::-webkit-details-marker { display: none; }
+.toc summary::after { content: '+'; font-size: 1.1rem; color: var(--muted); }
+.toc[open] summary::after { content: '−'; }
+.toc ol { list-style: none; margin: 0; padding: 0 1.1rem 1rem; counter-reset: toc; color: inherit; }
+.toc li { margin: 0; counter-increment: toc; }
+.toc a {
+  display: flex; gap: .7rem; padding: .5rem 0; min-height: 44px; align-items: center;
+  color: var(--muted); text-decoration: none; font-size: .88rem; line-height: 1.35;
+  transition: color .2s;
+}
+.toc a::before { content: counter(toc, decimal-leading-zero); font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.toc a:hover, .toc a.is-active { color: var(--cream); }
+.toc a.is-active::before { color: var(--green); }
+.toc-progress { height: 2px; background: rgba(43,181,200,.12); margin: 0 1.1rem 1rem; border-radius: 0; overflow: hidden; }
+.toc-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--teal-mid), var(--green)); }
+
+/* L'essentiel en 30 secondes */
+.tldr { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: 0; }
+.tldr-item { background: var(--dark2); padding: 1.3rem 1.4rem; }
+.tldr-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal-light); margin-bottom: .5rem; }
+.tldr-item p { margin: 0; font-size: .95rem; line-height: 1.55; color: var(--cream); }
+
+/* Notes de marge (en ligne sur mobile) */
+.note { border-left: 2px solid var(--green); padding: .3rem 0 .3rem 1.1rem; margin: 0 0 1.6rem; }
+.note-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.note p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--muted); }
+.note.quote p { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.3rem; line-height: 1.3; color: var(--cream); }
+
+/* Module : la partie immergée du prix */
+.iceberg { border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: .6rem 0 2.2rem; background: var(--panel); }
+.iceberg-top { padding: 1.4rem 1.5rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.iceberg-top .lbl { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.iceberg-top .big { font-family: 'Instrument Serif', serif; font-size: 1.9rem; line-height: 1; color: var(--cream); }
+.waterline { display: flex; align-items: center; gap: .8rem; padding: 0 1.5rem; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.waterline::before, .waterline::after { content: ''; flex: 1; border-top: 1px dashed rgba(94,207,220,.45); }
+.iceberg-list { list-style: none; margin: 0; padding: 1rem 1.5rem 1.4rem; display: grid; gap: .55rem; background: linear-gradient(180deg, rgba(13,79,92,.18), rgba(13,79,92,.42)); color: inherit; }
+.iceberg-list li { margin: 0; display: flex; justify-content: space-between; gap: 1rem; font-size: .93rem; color: var(--cream); }
+.iceberg-list .tag { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; align-self: center; }
+
+/* Module : 5 critères en cartes */
+.criteria { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); color: inherit; }
+.criteria li { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 0; padding: 1.4rem; display: flex; flex-direction: column; gap: .7rem; transition: border-color .2s; }
+.criteria li:hover { border-color: rgba(94,207,220,.4); }
+.criteria .head { display: flex; align-items: center; gap: .75rem; color: var(--teal-light); }
+.criteria .n { margin-left: auto; font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.criteria h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); line-height: 1.3; }
+.criteria p { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--muted); }
+
+/* CTA intercalés */
+.cta-inline {
+  margin: 2.8rem 0; border-radius: 0; padding: 1.8rem;
+  border: 1px solid rgba(76,222,128,.28);
+  background: linear-gradient(120deg, rgba(76,222,128,.07), rgba(13,79,92,.35));
+  display: grid; gap: 1.4rem; align-items: center;
+}
+.cta-inline .eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.cta-inline .t { font-family: 'Instrument Serif', serif; font-size: 1.55rem; line-height: 1.15; color: var(--cream); margin-bottom: .5rem; }
+.cta-inline .s { font-size: .93rem; color: var(--muted); margin: 0; line-height: 1.55; }
+.cta-inline .actions { display: flex; flex-direction: column; gap: .7rem; align-items: flex-start; }
+.cta-inline .cta-btn { padding: .95rem 1.8rem; }
+.cta-btn--ghost { background: transparent; color: var(--green); border: 1px solid var(--green); }
+.cta-btn--ghost:hover { background: var(--green); color: var(--dark); }
+.cta-inline .alt { font-size: .82rem; color: var(--teal-light); }
+.cta-inline .micro { font-size: .75rem; color: var(--muted); }
+.steps { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; color: inherit; counter-reset: st; }
+.steps li { margin: 0; counter-increment: st; display: flex; gap: .7rem; align-items: baseline; font-size: .9rem; color: var(--cream); }
+.steps li::before { content: counter(st); flex: none; width: 1.5rem; height: 1.5rem; border-radius: 50%; display: inline-grid; place-items: center; font-size: .75rem; font-weight: 700; color: var(--dark); background: var(--green); }
+.cta-btn:focus-visible, .toc a:focus-visible, .toc summary:focus-visible, a.ilink:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Module : exemple chiffré A vs B */
+.versus { display: grid; gap: 1rem; margin: .6rem 0 1rem; }
+.offer { border: 1px solid var(--line); border-radius: 0; background: var(--panel); padding: 1.4rem 1.5rem; }
+.offer.win { border-color: rgba(76,222,128,.5); }
+.offer-h { display: flex; justify-content: space-between; align-items: center; gap: .8rem; margin-bottom: .6rem; }
+.offer-h strong { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.badge { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; white-space: nowrap; }
+.badge.trap { color: var(--warn); border: 1px solid rgba(255,207,122,.4); }
+.badge.ok { color: var(--green); border: 1px solid rgba(76,222,128,.45); }
+.offer table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.offer caption { text-align: left; font-size: .8rem; color: var(--muted); padding-bottom: .4rem; }
+.offer th, .offer td { padding: .5rem 0; border-bottom: 1px solid rgba(43,181,200,.1); text-align: left; font-weight: 400; color: var(--muted); }
+.offer td { text-align: right; color: var(--cream); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.offer tr.hidden-cost th, .offer tr.hidden-cost td { color: var(--warn); }
+.offer tr.total th, .offer tr.total td { border-bottom: 0; padding-top: .9rem; font-weight: 700; color: var(--cream); font-size: 1rem; }
+.verdict { display: flex; gap: 1.2rem; align-items: center; border-radius: 0; padding: 1.1rem 1.4rem; background: rgba(255,207,122,.07); border: 1px solid rgba(255,207,122,.3); margin-bottom: 1.6rem; }
+.verdict .big { font-family: 'Instrument Serif', serif; font-size: 2rem; line-height: 1; color: var(--warn); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.verdict p { margin: 0; font-size: .93rem; color: var(--cream); line-height: 1.5; }
+
+/* Module : calendrier */
+.timeline { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; color: inherit; }
+.timeline li { margin: 0; display: grid; grid-template-columns: 1.2rem 1fr; gap: 1rem; padding-bottom: 1.4rem; position: relative; }
+.timeline li::before { content: ''; width: 12px; height: 12px; border-radius: 50%; margin-top: .3rem; background: var(--dot); box-shadow: 0 0 0 4px rgba(43,181,200,.12); }
+.timeline li:not(:last-child)::after { content: ''; position: absolute; left: 5px; top: 1.2rem; bottom: 0; width: 2px; background: var(--line); }
+.timeline .when { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dot); }
+.timeline h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); margin: .2rem 0 .3rem; line-height: 1.3; }
+.timeline p { margin: 0; font-size: .9rem; color: var(--muted); line-height: 1.55; }
+.meter { display: flex; align-items: center; gap: .7rem; margin-top: .6rem; font-size: .75rem; color: var(--muted); }
+.meter i { flex: 0 0 120px; height: 4px; border-radius: 0; background: rgba(43,181,200,.14); overflow: hidden; }
+.meter b { display: block; height: 100%; background: var(--dot); }
+
+@media (min-width: 720px) {
+  .tldr { grid-template-columns: repeat(3, 1fr); }
+  .versus { grid-template-columns: 1fr 1fr; }
+  .cta-inline { grid-template-columns: minmax(0, 1fr) auto; padding: 2rem 2.2rem; }
+  .cta-inline .actions { align-items: flex-end; text-align: right; }
 }
 
-/* ── BANNIÈRE (vraie photo) ── */
-.article-banner{background:url("assets/comparatif-fournisseurs-savee-photo.webp") center/cover no-repeat}
+/* ≥ 1024px : rail collant à gauche (bande photo + sommaire) */
+@media (min-width: 1024px) {
+  .v2-layout { grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: 3.5rem; }
+  .v2-main { max-width: var(--body-max); margin: 0; }
+  .v2-rail {
+    position: sticky; top: 6rem; align-self: start; margin-top: 3.4rem;
+  }
+  .toc { margin: 0; background: transparent; border: 0; }
+  .toc summary { pointer-events: none; padding: 0 0 .6rem; min-height: 0; }
+  .toc summary::after, .toc[open] summary::after { content: none; }
+  .toc ol { padding: 0; }
+  .toc-progress { margin: 0 0 .6rem; }
+}
+
+/* ≥ 1320px : marge éditoriale à droite, modules pleine largeur */
+@media (min-width: 1320px) {
+  .v2-main { max-width: none; }
+  .v2-section { display: grid; grid-template-columns: minmax(0, 1fr) var(--note); column-gap: 3rem; align-items: start; }
+  .v2-section > * { grid-column: 1; }
+  .v2-section > .wide { grid-column: 1 / -1; }
+  .v2-section > .note { grid-column: 2; grid-row: span 3; margin-top: .4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cta-btn, .criteria li, .toc a { transition: none; }
+  .cta-btn:hover { transform: none; }
+}
 </style>
 <link rel="canonical" href="https://cabinetms.fr/comparatif-fournisseurs-electricite-pro.html">
 <meta property="og:type" content="website">
@@ -266,6 +410,7 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 <div id="progress-bar"></div>
 
 <nav>
@@ -273,72 +418,249 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#cta" class="nav-cta">Étude gratuite →</a>
 </nav>
 
+<!-- layout:v2 — page retouchée à la main : scripts/build-seo-articles.mjs ne la régénère pas -->
+<main id="contenu">
 <article>
   <header class="hero">
-    <div class="photo-ph article-banner"></div>
     <div class="article-meta">
-      <a href="blog.html" class="meta-tag" style="text-decoration:none">← Tous les articles</a>
+      <a href="blog.html" class="meta-tag hit" style="text-decoration:none">← Tous les articles</a>
       <span class="meta-tag">Fournisseurs &amp; contrats</span>
-      <span class="meta-read">4 min de lecture</span>
+      <span class="meta-read"><svg class="svg-ico" style="width:15px;height:15px" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 min de lecture</span>
     </div>
     <h1 class="hero-title">Comparatif fournisseur électricité pro : comment comparer sans se tromper</h1>
     <p class="hero-intro">Face à la multiplication des offres d'électricité destinées aux professionnels, établir un comparatif fournisseur électricité pro fiable est devenu un exercice plus complexe qu'il n'y paraît. Se limiter au prix du kWh affiché conduit souvent à des choix décevants, une fois les conditions réelles du contrat prises en compte.</p>
+
+    <div class="tldr" role="list" aria-label="L'essentiel en 30 secondes">
+      <div class="tldr-item" role="listitem"><span class="tldr-k">Le piège</span><p>Le prix au kWh n'est qu'une ligne de la facture : abonnement, frais et pénalités font le coût réel.</p></div>
+      <div class="tldr-item" role="listitem"><span class="tldr-k">La méthode</span><p>Comparer cinq critères : type d'offre, engagement, frais annexes, service client, solidité du fournisseur.</p></div>
+      <div class="tldr-item" role="listitem"><span class="tldr-k">Le bon moment</span><p>Plusieurs mois avant l'échéance. La dernière semaine, les marges de négociation fondent.</p></div>
+    </div>
   </header>
 
-  <div class="article-body">
+  <div class="v2-layout">
 
-    <h2>Pourquoi comparer uniquement le prix au kWh est une erreur</h2>
-
-    <p>De nombreuses entreprises comparent les offres sur la seule base du prix affiché en centimes par kWh, sans regarder la structure complète de la proposition. Or deux offres au même prix apparent peuvent avoir un coût total très différent une fois intégrés les frais de gestion, les pénalités de dépassement de puissance, les conditions d'indexation ou encore les modalités de sortie anticipée du contrat.</p>
-
-    <p>Un comparatif fournisseur électricité pro sérieux doit donc intégrer l'ensemble des éléments du contrat, et pas seulement la ligne la plus visible de la proposition commerciale. C'est particulièrement vrai depuis que le <a href="prix-kwh-professionnel-2026.html" class="ilink">prix du kWh professionnel</a> dépend fortement du moment de la négociation et des stratégies d'approvisionnement propres à chaque fournisseur.</p>
-
-    <h2>Les critères essentiels d'un comparatif fiable</h2>
-
-    <p>Un comparatif pertinent entre fournisseurs professionnels repose sur plusieurs critères complémentaires :</p>
-
-    <ul class="checklist">
-      <li><strong>Le type d'offre</strong> : prix fixe, indexé au marché, ou formule hybride, chacune ayant des implications différentes sur la prévisibilité budgétaire, comme détaillé dans notre analyse du <a href="prix-fixe-vs-indexe-electricite-pro.html" class="ilink">prix fixe ou indexé électricité pro</a>.</li>
-      <li><strong>La durée d'engagement</strong> proposée et les conditions de reconduction tacite, un point souvent source de mauvaises surprises.</li>
-      <li><strong>Les frais annexes</strong> : mise en service, résiliation anticipée, pénalités de dépassement de puissance souscrite.</li>
-      <li><strong>La qualité du service client</strong> et la réactivité en cas de litige ou de question sur la facturation.</li>
-      <li><strong>La solidité financière et la stratégie d'approvisionnement</strong> du fournisseur, un critère devenu plus pertinent depuis l'évolution des mécanismes de marché comme l'ARENH.</li>
-    </ul>
-
-    <p>Négliger l'un de ces critères peut transformer une offre apparemment avantageuse en contrat coûteux ou rigide sur la durée.</p>
-
-    <h2>Le rôle d'un courtier dans la comparaison</h2>
-
-    <p>Réaliser soi-même un comparatif exhaustif entre plusieurs fournisseurs demande du temps et une connaissance fine des grilles tarifaires, qui varient régulièrement. C'est précisément le rôle d'un <a href="courtier-en-energie-role.html" class="ilink">courtier en énergie</a> : centraliser les offres disponibles sur le marché, les analyser selon des critères objectifs et présenter à l'entreprise une sélection réellement comparable, sans avoir à démarcher chaque fournisseur individuellement.</p>
-
-    <p>Cette démarche est particulièrement utile au moment de la fin d'un contrat, lorsque l'entreprise doit décider si elle reste chez son fournisseur actuel ou si elle change. Beaucoup d'entreprises reconduisent leur contrat par défaut, faute de temps pour comparer sérieusement les alternatives, alors qu'un changement de fournisseur bien négocié peut générer des économies significatives.</p>
-
-    <h2>Un exemple de ce que révèle une comparaison sérieuse</h2>
-
-    <p>Prenons deux offres apparemment proches : la première affiche un prix de 0,16 €/kWh avec un abonnement mensuel de 60 €, la seconde 0,155 €/kWh avec un abonnement de 68 € et des frais de gestion annuels de 120 €. Sur une consommation annuelle de 80 000 kWh, la première offre revient à environ 13 520 € par an ; la seconde, hors frais de gestion, semble plus avantageuse à 13 456 €, mais atteint en réalité 13 576 € une fois ces frais intégrés. L'offre apparemment moins chère au kWh devient donc la plus coûteuse une fois l'ensemble des lignes prises en compte. Cet exemple illustre pourquoi un comparatif construit uniquement sur le prix affiché en centimes par kWh peut conduire à un mauvais choix, alors qu'une analyse intégrant l'ensemble des postes de la facture révèle l'écart réel entre les deux propositions.</p>
-
-    <h2>Anticiper le bon moment pour comparer</h2>
-
-    <p>Le calendrier de la comparaison compte autant que la comparaison elle-même. Attendre la dernière semaine avant l'échéance du contrat réduit fortement les marges de négociation, alors qu'anticiper la démarche plusieurs mois à l'avance permet de profiter des meilleures conditions disponibles sur le marché à un instant donné. C'est également le bon moment pour vérifier les modalités pratiques pour <a href="resilier-contrat-electricite-entreprise.html" class="ilink">résilier un contrat d'électricité professionnel</a> sans pénalité, avant de s'engager ailleurs.</p>
-
-    <h2>Obtenir un comparatif objectif de votre situation</h2>
-
-    <div id="cta">
-      <div class="cta-section reveal">
-        <p class="cta-title">Obtenir un comparatif objectif de votre situation</p>
-        <p class="cta-sub">Vous voulez un comparatif fournisseur électricité pro fiable, sans passer des heures à décortiquer les grilles tarifaires ? Envoyez-nous votre facture actuelle : nous la confrontons gratuitement aux offres réellement disponibles sur le marché aujourd'hui et vous indiquons, de façon transparente, si un changement de fournisseur est pertinent pour votre entreprise.</p>
-        <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
-        <!-- partial:cta-reassure --><p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 24h</p><!-- /partial:cta-reassure -->
-      </div>
+    <div class="v2-rail">
+    <details class="toc" id="toc">
+      <summary>Sommaire</summary>
+      <div class="toc-progress" aria-hidden="true"><span id="toc-progress"></span></div>
+      <ol>
+        <li><a href="#piege-prix-kwh">Le piège du prix au kWh</a></li>
+        <li><a href="#criteres">Les 5 critères d'un comparatif fiable</a></li>
+        <li><a href="#courtier">Le rôle d'un courtier</a></li>
+        <li><a href="#exemple">L'exemple chiffré</a></li>
+        <li><a href="#calendrier">Le bon moment pour comparer</a></li>
+        <li><a href="#votre-comparatif">Votre comparatif gratuit</a></li>
+      </ol>
+    </details>
     </div>
 
-    <div class="callout reveal">
-      <p class="callout-title">Lire aussi</p>
-      <p><a href="blog.html" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
-    </div>
+    <div class="v2-main">
 
+      <section class="v2-section" id="piege-prix-kwh">
+        <h2>Pourquoi comparer uniquement le prix au kWh est une erreur</h2>
+
+        <p>De nombreuses entreprises comparent les offres sur la seule base du prix affiché en centimes par kWh, sans regarder la structure complète de la proposition. Or deux offres au même prix apparent peuvent avoir un coût total très différent une fois intégrés les frais de gestion, les pénalités de dépassement de puissance, les conditions d'indexation ou encore les modalités de sortie anticipée du contrat.</p>
+
+        <aside class="note">
+          <span class="note-k">À retenir</span>
+          <p>Le prix au kWh est la ligne la plus visible d'une offre, rarement la seule qui compte.</p>
+        </aside>
+
+        <figure class="iceberg" aria-labelledby="iceberg-cap">
+          <div class="iceberg-top">
+            <span class="lbl" id="iceberg-cap">Ce que l'offre met en avant</span>
+            <span class="big num">0,155&nbsp;€/kWh</span>
+          </div>
+          <div class="waterline">Ce que la facture contient aussi</div>
+          <ul class="iceberg-list">
+            <li>Abonnement mensuel <span class="tag">Fixe</span></li>
+            <li>Frais de gestion <span class="tag">Fixe</span></li>
+            <li>Pénalités de dépassement de puissance <span class="tag">Selon usage</span></li>
+            <li>Conditions d'indexation <span class="tag">Selon marché</span></li>
+            <li>Frais de sortie anticipée <span class="tag">Si résiliation</span></li>
+          </ul>
+        </figure>
+
+        <p>Un comparatif fournisseur électricité pro sérieux doit donc intégrer l'ensemble des éléments du contrat, et pas seulement la ligne la plus visible de la proposition commerciale. C'est particulièrement vrai depuis que le <a href="prix-kwh-professionnel-2026.html" class="ilink">prix du kWh professionnel</a> dépend fortement du moment de la négociation et des stratégies d'approvisionnement propres à chaque fournisseur.</p>
+      </section>
+
+      <section class="v2-section" id="criteres">
+        <h2>Les critères essentiels d'un comparatif fiable</h2>
+
+        <p>Un comparatif pertinent entre fournisseurs professionnels repose sur plusieurs critères complémentaires :</p>
+
+        <ol class="criteria wide">
+          <li>
+            <div class="head"><svg class="svg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg><span class="n">01</span></div>
+            <h3>Le type d'offre</h3>
+            <p>Prix fixe, indexé au marché ou formule hybride : chacun pèse différemment sur la prévisibilité budgétaire. Voir notre analyse <a href="prix-fixe-vs-indexe-electricite-pro.html" class="ilink">prix fixe ou indexé électricité pro</a>.</p>
+          </li>
+          <li>
+            <div class="head"><svg class="svg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span class="n">02</span></div>
+            <h3>La durée d'engagement</h3>
+            <p>Et les conditions de reconduction tacite, un point souvent source de mauvaises surprises.</p>
+          </li>
+          <li>
+            <div class="head"><svg class="svg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h14v20l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg><span class="n">03</span></div>
+            <h3>Les frais annexes</h3>
+            <p>Mise en service, résiliation anticipée, pénalités de dépassement de puissance souscrite.</p>
+          </li>
+          <li>
+            <div class="head"><svg class="svg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="n">04</span></div>
+            <h3>La qualité du service client</h3>
+            <p>Et la réactivité en cas de litige ou de question sur la facturation.</p>
+          </li>
+          <li>
+            <div class="head"><svg class="svg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="n">05</span></div>
+            <h3>La solidité du fournisseur</h3>
+            <p>Sa santé financière et sa stratégie d'approvisionnement, un critère devenu plus pertinent depuis l'évolution des mécanismes de marché comme l'ARENH.</p>
+          </li>
+        </ol>
+
+        <p>Négliger l'un de ces critères peut transformer une offre apparemment avantageuse en contrat coûteux ou rigide sur la durée.</p>
+
+        <aside class="cta-inline wide" aria-label="Faire vérifier votre contrat">
+          <div>
+            <p class="eyebrow">Appliquez la grille à votre contrat</p>
+            <p class="t">Votre contrat actuel passe-t-il ces 5 critères&nbsp;?</p>
+            <p class="s">Envoyez votre dernière facture : nous passons votre contrat au crible de ces mêmes critères et vous signalons ce qui vous coûte.</p>
+          </div>
+          <div class="actions">
+            <a href="b2b.html#upload" class="cta-btn cta-btn--ghost">Faire vérifier mon contrat →</a>
+            <span class="micro">Gratuit · Sans engagement · Réponse sous 24h</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="v2-section" id="courtier">
+        <h2>Le rôle d'un courtier dans la comparaison</h2>
+
+        <p>Réaliser soi-même un comparatif exhaustif entre plusieurs fournisseurs demande du temps et une connaissance fine des grilles tarifaires, qui varient régulièrement. C'est précisément le rôle d'un <a href="courtier-en-energie-role.html" class="ilink">courtier en énergie</a> : centraliser les offres disponibles sur le marché, les analyser selon des critères objectifs et présenter à l'entreprise une sélection réellement comparable, sans avoir à démarcher chaque fournisseur individuellement.</p>
+
+        <aside class="note quote">
+          <p>« Beaucoup d'entreprises reconduisent leur contrat par défaut, faute de temps pour comparer. »</p>
+        </aside>
+
+        <p>Cette démarche est particulièrement utile au moment de la fin d'un contrat, lorsque l'entreprise doit décider si elle reste chez son fournisseur actuel ou si elle change. Beaucoup d'entreprises reconduisent leur contrat par défaut, faute de temps pour comparer sérieusement les alternatives, alors qu'un changement de fournisseur bien négocié peut générer des économies significatives.</p>
+      </section>
+
+      <section class="v2-section" id="exemple">
+        <h2>Un exemple de ce que révèle une comparaison sérieuse</h2>
+
+        <p>Prenons deux offres apparemment proches, pour une consommation annuelle de 80&nbsp;000&nbsp;kWh. L'offre B affiche le prix au kWh le plus bas… mais ajoute un abonnement plus élevé et des frais de gestion.</p>
+
+        <div class="versus wide">
+          <div class="offer win">
+            <div class="offer-h"><strong>Offre A</strong><span class="badge ok">✓ Réellement moins chère</span></div>
+            <table>
+              <caption>Coût annuel, 80 000 kWh</caption>
+              <tbody>
+                <tr><th scope="row">Énergie · 0,160 €/kWh</th><td>12 800 €</td></tr>
+                <tr><th scope="row">Abonnement · 60 €/mois</th><td>720 €</td></tr>
+                <tr><th scope="row">Frais de gestion</th><td>0 €</td></tr>
+                <tr class="total"><th scope="row">Coût total</th><td>13 520 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="offer">
+            <div class="offer-h"><strong>Offre B</strong><span class="badge trap">Prix kWh le plus bas</span></div>
+            <table>
+              <caption>Coût annuel, 80 000 kWh</caption>
+              <tbody>
+                <tr><th scope="row">Énergie · 0,155 €/kWh</th><td>12 400 €</td></tr>
+                <tr><th scope="row">Abonnement · 75 €/mois</th><td>900 €</td></tr>
+                <tr class="hidden-cost"><th scope="row">Frais de gestion · 30 €/mois</th><td>360 €</td></tr>
+                <tr class="total"><th scope="row">Coût total</th><td>13 660 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="verdict wide">
+          <span class="big">+140&nbsp;€</span>
+          <p>par an pour l'offre « la moins chère au kWh ». Sans ses frais de gestion, l'offre B semblait gagner (13&nbsp;300&nbsp;€) ; une fois toutes les lignes intégrées, elle devient la plus coûteuse.</p>
+        </div>
+
+        <p>Cet exemple illustre pourquoi un comparatif construit uniquement sur le prix affiché en centimes par kWh peut conduire à un mauvais choix, alors qu'une analyse intégrant l'ensemble des postes de la facture révèle l'écart réel entre les deux propositions.</p>
+
+        <aside class="cta-inline wide" aria-label="Calculer votre écart réel">
+          <div>
+            <p class="eyebrow">Et sur votre facture&nbsp;?</p>
+            <p class="t">Quel écart cache votre offre actuelle&nbsp;?</p>
+            <ol class="steps">
+              <li>Vous envoyez votre dernière facture d'électricité</li>
+              <li>Nous la confrontons aux offres réellement disponibles</li>
+              <li>Vous savez si un changement est pertinent</li>
+            </ol>
+          </div>
+          <div class="actions">
+            <a href="b2b.html#upload" class="cta-btn cta-btn--inline">Calculer mon écart réel →</a>
+            <a href="ms-strategy-calculateur.html" class="alt hit">ou faire une première estimation en ligne →</a>
+            <span class="micro">Gratuit · Données confidentielles · Réponse sous 24h</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="v2-section" id="calendrier">
+        <h2>Anticiper le bon moment pour comparer</h2>
+
+        <p>Le calendrier de la comparaison compte autant que la comparaison elle-même. Attendre la dernière semaine avant l'échéance du contrat réduit fortement les marges de négociation, alors qu'anticiper la démarche plusieurs mois à l'avance permet de profiter des meilleures conditions disponibles sur le marché à un instant donné.</p>
+
+        <ol class="timeline">
+          <li style="--dot: var(--green)">
+            <div>
+              <span class="when">Plusieurs mois avant l'échéance</span>
+              <h3>Comparer sereinement</h3>
+              <p>Le temps de mettre les fournisseurs en concurrence et de choisir le bon moment de marché.</p>
+              <span class="meter"><i aria-hidden="true"><b style="width:100%"></b></i>Marge de négociation : forte</span>
+            </div>
+          </li>
+          <li style="--dot: var(--teal-light)">
+            <div>
+              <span class="when">Avant de signer ailleurs</span>
+              <h3>Vérifier les conditions de sortie</h3>
+              <p>Préavis, reconduction tacite, pénalités : savoir comment quitter le contrat actuel sans frais.</p>
+              <span class="meter"><i aria-hidden="true"><b style="width:60%"></b></i>Marge de négociation : moyenne</span>
+            </div>
+          </li>
+          <li style="--dot: var(--warn)">
+            <div>
+              <span class="when">La dernière semaine</span>
+              <h3>Signer dans l'urgence</h3>
+              <p>Les marges de négociation sont fortement réduites : on choisit parmi ce qui reste.</p>
+              <span class="meter"><i aria-hidden="true"><b style="width:15%"></b></i>Marge de négociation : faible</span>
+            </div>
+          </li>
+        </ol>
+
+        <aside class="note">
+          <span class="note-k">Avant de changer</span>
+          <p>Vérifiez les modalités pour <a href="resilier-contrat-electricite-entreprise.html" class="ilink">résilier un contrat d'électricité professionnel</a> sans pénalité.</p>
+        </aside>
+      </section>
+
+      <section class="v2-section" id="votre-comparatif">
+        <h2>Obtenir un comparatif objectif de votre situation</h2>
+
+        <div id="cta" class="wide">
+          <div class="cta-section reveal">
+            <p class="cta-title">Un comparatif objectif, sans y passer vos soirées</p>
+            <p class="cta-sub">Vous voulez un comparatif fournisseur électricité pro fiable, sans passer des heures à décortiquer les grilles tarifaires ? Envoyez-nous votre facture actuelle : nous la confrontons gratuitement aux offres réellement disponibles sur le marché aujourd'hui et vous indiquons, de façon transparente, si un changement de fournisseur est pertinent pour votre entreprise.</p>
+            <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
+            <!-- partial:cta-reassure --><p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 24h</p><!-- /partial:cta-reassure -->
+          </div>
+        </div>
+
+        <div class="callout reveal wide">
+          <p class="callout-title">Lire aussi</p>
+          <p><a href="blog.html" class="hit" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
+        </div>
+      </section>
+
+    </div>
   </div>
 </article>
+</main>
 
 <footer>
   <p>
@@ -351,9 +673,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div google-add-preferred-source-btn data-theme="dark"></div>
 </footer>
 
-<!-- partial:floating-cta --><div class="floating-cta" id="floating-cta">
-  <a href="#cta">Étude gratuite · 24h →</a>
-</div><!-- /partial:floating-cta -->
 
 <script>
 // ── Progress bar
@@ -361,7 +680,6 @@ const bar = document.getElementById('progress-bar');
 window.addEventListener('scroll', () => {
   const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
   bar.style.width = pct + '%';
-  document.getElementById('floating-cta').classList.toggle('visible', window.scrollY > 400);
 });
 
 // ── Scroll reveal
@@ -375,6 +693,33 @@ const photoObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); photoObs.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.photo-ph').forEach(el => photoObs.observe(el));
+
+// ── Sommaire : ouvert en desktop, section active, progression
+const toc = document.getElementById('toc');
+const tocProgress = document.getElementById('toc-progress');
+const wide = window.matchMedia('(min-width: 1024px)');
+const syncToc = () => { toc.open = wide.matches; };
+syncToc();
+wide.addEventListener('change', syncToc);
+toc.addEventListener('toggle', () => { if (wide.matches && !toc.open) toc.open = true; });
+toc.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (!wide.matches) toc.open = false; }));
+
+const tocLinks = new Map([...toc.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const id = e.target.id;
+    tocLinks.forEach((a, key) => {
+      a.classList.toggle('is-active', key === id);
+      if (key === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  });
+}, { rootMargin: '-35% 0px -60% 0px' });
+document.querySelectorAll('.v2-section').forEach(s => secObs.observe(s));
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  tocProgress.style.width = Math.min(100, pct) + '%';
+}, { passive: true });
 </script>
 <script defer src="assets/speed-insights.js"></script>
 </body>
