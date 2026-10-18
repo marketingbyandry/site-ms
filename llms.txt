@@ -24,6 +24,8 @@
 
 - [Accueil](https://cabinetms.fr/) : présentation du cabinet et FAQ générale sur le courtage en énergie.
 - [Professionnels (TPE, PME, ETI)](https://cabinetms.fr/b2b.html) : offre de courtage énergie pour entreprises, multi-sites, FAQ pro.
+- [Courtier électricité professionnel](https://cabinetms.fr/courtier-electricite-professionnel.html) : courtage en électricité pour TPE, PME et entreprises (C5, C4, HTA), prix fixe ou indexé, TURPE et fin de l'ARENH.
+- [Courtier gaz professionnel](https://cabinetms.fr/courtier-gaz-professionnel.html) : courtage en gaz naturel pour entreprises (profils T1 à T4, TP), indexation PEG/TTF, échéances de contrat.
 - [Particuliers](https://cabinetms.fr/b2c.html) : offre de courtage énergie pour les particuliers.
 - [Comment ça marche](https://cabinetms.fr/comment-ca-marche.html) : le déroulé de l'accompagnement, étape par étape.
 - [Résultats](https://cabinetms.fr/resultats.html) : exemples de résultats et économies obtenues.
