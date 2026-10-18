@@ -66,7 +66,9 @@ export const CAMPAIGNS = [
   'ind-e1', 'ind-e2', 'ind-e3',
   'tert-e1', 'tert-e2', 'tert-e3',
   // Levier social B2B (docs/superpowers/specs/2026-09-07-leviers-social-b2b-design.md)
-  'soc-li', 'soc-fb', 'soc-ig', 'soc-x'
+  'soc-li', 'soc-fb', 'soc-ig', 'soc-x',
+  // Mailing froid B2B (docs/superpowers/specs/2026-09-09-mailing-froid-b2b-design.md)
+  'mail-chr', 'mail-ind', 'mail-tert', 'mail-agri', 'mail-log'
 ];
 
 // Page d'atterrissage des liens courts /c/<slug>.
