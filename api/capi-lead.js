@@ -1,4 +1,4 @@
-import { META_GRAPH_EVENTS_URL, buildLeadEventPayload } from '../lib/capi.mjs';
+import { META_GRAPH_EVENTS_URL, buildLeadEventPayload, validateLeadRequest } from '../lib/capi.mjs';
 
 // Recoit, cote serveur, la confirmation d'un depot de facture (Tally
 // onSubmit, voir b2b.html/b2c.html) et la retransmet a la Conversions API
@@ -10,9 +10,20 @@ import { META_GRAPH_EVENTS_URL, buildLeadEventPayload } from '../lib/capi.mjs';
 // (verifie cote client dans b2b.html/b2c.html avant l'appel) — cet endpoint
 // fait confiance a l'appelant plutot que de relire le cookie de consentement,
 // qui n'est pas transmis par le client volontairement.
+//
+// Securite : seuls les appels des pages du site, avec des champs au format
+// attendu, sont relayes (validateLeadRequest, lib/capi.mjs). La validation
+// passe avant le controle du token pour que le comportement soit le meme
+// que le secret soit configure ou non.
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.status(405).end();
+    return;
+  }
+
+  const validation = validateLeadRequest({ origin: req.headers.origin, body: req.body });
+  if (!validation.ok) {
+    res.status(validation.status).json({ error: validation.error });
     return;
   }
 
@@ -22,11 +33,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { eventId, eventSourceUrl, email, phone, fbp, fbc } = req.body || {};
-  if (!eventId || !eventSourceUrl) {
-    res.status(400).json({ error: 'eventId et eventSourceUrl sont requis' });
-    return;
-  }
+  const { eventId, eventSourceUrl, email, phone, fbp, fbc } = validation.value;
 
   const forwardedFor = req.headers['x-forwarded-for'];
   const clientIpAddress = Array.isArray(forwardedFor)
