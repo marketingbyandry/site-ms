@@ -155,6 +155,17 @@ sont **écrits pour l'anglais**.
 Les autres (`ig-plan`, `ig-reel`, `ig-carousel`…) font doublon avec le
 calendrier et la production de la campagne : ne pas les utiliser.
 
+### Équivalents X et Facebook (non testés)
+
+| Plateforme | Repo | Skills utiles ici |
+|---|---|---|
+| X | `Jakeschincariol/x-agent-skill` (même auteur que `ig-*`, 11 skills) | `x-human`, `x-reply`, `x-dm`, `x-audit` |
+| Facebook | `sergebulaev/facebook-skills` (8 skills, autre auteur) | `fb-humanizer`, `fb-engagement-drafter` |
+
+Même limite : écrits pour l'anglais. Même règle : ne pas utiliser leurs
+planificateurs ni leur publication automatique (Publora), Buffer reste le
+seul outil de programmation.
+
 ---
 
 ## 6. Après publication
