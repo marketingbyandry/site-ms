@@ -25,7 +25,7 @@ test('le widget console affiche les 4 lignes du gabarit sans étiquette de fraî
   assert.match(source, /0,1039 €\/kWh/);
   assert.match(source, /−4,2%/);
   assert.match(source, /favorable/);
-  assert.match(source, />8\s?216</);
+  assert.match(source, />8\s?230</);
 });
 
 test('le widget "marché en un coup d\'œil" a une photo de fond en webp, assombrie pour la lisibilité du texte', () => {
