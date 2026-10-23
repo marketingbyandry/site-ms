@@ -15,7 +15,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 // Pages hors index : la page de recherche elle-même, la landing publicitaire
 // (volontairement non liée) et la page de remerciement après envoi de facture.
-export const EXCLUDED_PAGES = ['recherche.html', 'ms-strategy-landing-2.html', 'merci-facture.html'];
+export const EXCLUDED_PAGES = ['recherche.html', 'ms-strategy-landing-2.html', 'merci-facture.html', 'approbation.html'];
 
 // Blocs répétés sur toutes les pages : ils brouilleraient les résultats.
 export const EXCLUDE_SELECTORS = [

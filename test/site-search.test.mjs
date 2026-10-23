@@ -10,7 +10,8 @@ const lexicon = JSON.parse(readFileSync('assets/search-lexicon.json', 'utf8'));
 const synonyms = JSON.parse(readFileSync('data/search-synonyms.json', 'utf8')).entries;
 const TAG = '<script type="module" src="assets/site-search.js"></script>';
 // Pages de conversion : pas de recherche, pour ne pas détourner du formulaire.
-const NO_SEARCH_UI = ['ms-strategy-landing-2.html', 'ms-strategy-calculateur.html'];
+// approbation.html : page interne de l'équipe com, protégée par mot de passe.
+const NO_SEARCH_UI = ['ms-strategy-landing-2.html', 'ms-strategy-calculateur.html', 'approbation.html'];
 
 test('editDistance compte une inversion de lettres voisines comme une seule faute', () => {
   assert.equal(editDistance('trupe', 'turpe'), 1);

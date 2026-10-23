@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<title>Validation des posts · M&S Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<style>
+/* Page interne, protégée par mot de passe (middleware.js) : l'équipe com y
+   valide les posts de la campagne sociale avant publication. Chaque décision
+   part vers /api/approbation-vote. DA du site : sombre, teal, Instrument
+   Serif pour les titres, Satoshi pour le texte. */
+:root {
+  --ink: #07131a;
+  --panel: #0e2a33;
+  --panel-2: #0b1f27;
+  --line: rgba(94, 207, 220, .16);
+  --teal: #1a7a8a;
+  --teal-bright: #2bb5c8;
+  --teal-light: #5ecfdc;
+  --green: #4cde80;
+  --amber: #f3c35b;
+  --red: #ff9b8a;
+  --cream: #f5f0e8;
+  --muted: #8aacb4;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Satoshi', system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ink); color: var(--cream); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+.wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding-inline: 16px; }
+header { padding: 48px 0 24px; display: grid; gap: 12px; }
+.eyebrow { font: 700 12px/1.3 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); margin: 0; }
+h1 { font: 400 clamp(2.2rem, 5vw, 3.4rem)/1.05 var(--serif); margin: 0; }
+h1 em { color: var(--teal-light); }
+.intro { color: var(--muted); margin: 0; max-width: 680px; }
+
+.toolbar { position: sticky; top: 0; z-index: 5; background: rgba(7, 19, 26, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.toolbar .wrap { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding-block: 12px; }
+.toolbar label { font-weight: 700; font-size: .9rem; }
+.toolbar input { font: inherit; padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(94, 207, 220, .3); background: var(--panel-2); color: inherit; width: 170px; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters button { font: 600 .85rem/1 var(--sans); padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--teal); color: var(--cream); border-color: var(--teal); }
+.progress { margin-left: auto; font-size: .9rem; color: var(--muted); }
+.progress strong { color: var(--cream); }
+
+main { padding-block: 28px 80px; display: grid; gap: 22px; }
+.post { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: grid; gap: 14px; }
+.post[data-state="approuve"] { border-color: rgba(76, 222, 128, .5); }
+.post[data-state="modifier"] { border-color: rgba(243, 195, 91, .5); }
+.post[data-state="refuse"] { border-color: rgba(255, 155, 138, .5); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: .82rem; }
+.tag { padding: 4px 10px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--line); color: var(--muted); }
+.tag.net { color: var(--cream); background: var(--teal); border-color: var(--teal); font-weight: 700; }
+.angle { margin: 0; font: 400 1.45rem/1.2 var(--serif); }
+.copy { background: var(--panel-2); border-radius: 12px; padding: 18px; white-space: pre-line; font-size: .97rem; }
+.copy .part { display: block; padding-top: 12px; margin-top: 12px; border-top: 1px dashed var(--line); }
+.copy .part:first-child { padding-top: 0; margin-top: 0; border-top: 0; }
+.copy .label { display: block; font: 700 .72rem/1.3 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 4px; }
+.details { display: grid; gap: 4px; font-size: .88rem; color: var(--muted); }
+.details a { color: var(--teal-light); word-break: break-all; }
+
+.decision { display: grid; gap: 10px; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choices button { font: 700 .92rem/1 var(--sans); padding: 11px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel-2); color: var(--cream); cursor: pointer; }
+.choices button[data-decision="approuve"][aria-pressed="true"] { background: var(--green); color: var(--ink); border-color: var(--green); }
+.choices button[data-decision="modifier"][aria-pressed="true"] { background: var(--amber); color: var(--ink); border-color: var(--amber); }
+.choices button[data-decision="refuse"][aria-pressed="true"] { background: var(--red); color: var(--ink); border-color: var(--red); }
+.decision textarea { font: inherit; min-height: 84px; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(94, 207, 220, .3); background: var(--panel-2); color: inherit; resize: vertical; }
+.send-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.send { font: 700 .95rem/1 var(--sans); padding: 12px 18px; border: 0; border-radius: 10px; background: var(--teal-bright); color: var(--ink); cursor: pointer; }
+.send:disabled { opacity: .45; cursor: not-allowed; }
+.status { font-size: .88rem; color: var(--muted); }
+.status.ok { color: var(--green); }
+.status.err { color: var(--red); }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 2px; }
+[hidden] { display: none !important; }
+@media (max-width: 600px) {
+  .post { padding: 16px; }
+  .toolbar { position: static; }
+  .progress { margin-left: 0; width: 100%; }
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <p class="eyebrow">Campagne sociale B2B · cycle 1 · 2 semaines</p>
+  <h1>Validation des <em>posts</em></h1>
+  <p class="intro">20 publications à valider : 6 LinkedIn, 4 X, 6 Facebook, 4 Instagram. Pour chacune, choisissez Approuver, À modifier ou Refuser, puis envoyez. Un commentaire est demandé pour une modification ou un refus. Vous pouvez revenir sur une décision : c'est la dernière envoyée qui compte.</p>
+</header>
+
+<div class="toolbar">
+  <div class="wrap">
+    <label for="reviewer">Votre prénom</label>
+    <input id="reviewer" type="text" autocomplete="given-name" maxlength="60" placeholder="ex. Julie">
+    <div class="filters" role="group" aria-label="Filtrer par réseau">
+      <button type="button" data-filter="all" aria-pressed="true">Tous</button>
+      <button type="button" data-filter="LinkedIn" aria-pressed="false">LinkedIn</button>
+      <button type="button" data-filter="X" aria-pressed="false">X</button>
+      <button type="button" data-filter="Facebook" aria-pressed="false">Facebook</button>
+      <button type="button" data-filter="Instagram" aria-pressed="false">Instagram</button>
+    </div>
+    <p class="progress" aria-live="polite"><strong id="done-count">0</strong> / 20 traités</p>
+  </div>
+</div>
+
+<main class="wrap" id="posts"></main>
+
+<template id="post-tpl">
+  <article class="post">
+    <div class="meta">
+      <span class="tag net"></span>
+      <span class="tag id"></span>
+      <span class="tag format"></span>
+      <span class="tag slot"></span>
+    </div>
+    <h2 class="angle"></h2>
+    <div class="copy"></div>
+    <div class="details">
+      <span class="visual"></span>
+      <span>Lien : <a class="cta" target="_blank" rel="noopener"></a></span>
+    </div>
+    <div class="decision">
+      <div class="choices" role="group" aria-label="Décision">
+        <button type="button" data-decision="approuve" aria-pressed="false">✓ Approuver</button>
+        <button type="button" data-decision="modifier" aria-pressed="false">✎ À modifier</button>
+        <button type="button" data-decision="refuse" aria-pressed="false">✕ Refuser</button>
+      </div>
+      <textarea aria-label="Commentaire" placeholder="Commentaire (obligatoire pour À modifier ou Refuser) : ce qui doit changer, ou pourquoi refuser."></textarea>
+      <div class="send-row">
+        <button type="button" class="send" disabled>Envoyer ma décision</button>
+        <span class="status" role="status"></span>
+      </div>
+    </div>
+  </article>
+</template>
+
+<script>
+/* Textes rédigés d'après content/social-b2b-launch/brief-cycle-1.md.
+   Chiffres utilisés, tous sourcés dans data/barometre-*.json :
+   électricité, prix de gros moyen France (ENTSO-E) 73,66 €/MWh en juin,
+   103,9 en juillet, 149,75 en septembre 2026 ; gaz, clôture PEG M+1
+   63,90 €/MWh au 24 juillet 2026 (Selectra). Exemple client : réseau
+   multi-sites agroalimentaire, -17 % sur la facture gaz (resultats.html). */
+const LI = 'https://cabinetms.fr/b2b.html?camp=soc-li';
+const XL = 'https://cabinetms.fr/b2b.html?camp=soc-x';
+const FB = 'https://cabinetms.fr/b2b.html?camp=soc-fb';
+const IG = 'https://cabinetms.fr/b2b.html?camp=soc-ig';
+
+const POSTS = [
+  { id: 'L1', net: 'LinkedIn', slot: 'Semaine 1 · lundi', format: 'Post texte + tableau comparatif', cta: LI,
+    angle: 'Un courtier n’est pas un comparateur',
+    visual: 'Visuel : tableau 2 colonnes, Comparateur / Courtier (lignes : qui négocie, suivi du marché, alerte avant échéance, interlocuteur).',
+    copy: [['Post', `Un comparateur vous montre des prix. Un courtier va les chercher.
+
+La différence se voit sur le prix final de votre contrat pro :
+
+→ Le comparateur affiche les offres publiques du jour. Vous choisissez seul.
+→ Le courtier met les fournisseurs en concurrence sur VOTRE consommation, au moment où le marché est favorable, et négocie.
+
+Chez M&S Strategy, on ajoute deux choses qu’un comparateur ne fera jamais :
+• le suivi des marchés de gros, pour signer au bon moment ;
+• une alerte 12 à 24 mois avant votre échéance.
+
+Le tout sans frais pour vous : notre commission est versée par le fournisseur retenu, et elle est identique quel que soit le fournisseur.
+
+Envoyez une facture, on vous répond sous 24h avec un comparatif chiffré.
+👉 ${LI}`]] },
+
+  { id: 'L2', net: 'LinkedIn', slot: 'Semaine 1 · mercredi', format: 'Carrousel PDF · 6 slides', cta: LI,
+    angle: 'Le prix de gros de l’électricité a doublé en trois mois',
+    visual: 'Carrousel : 1 titre, 2 courbe juin → septembre, 3 lecture, 4 qui est exposé, 5 que faire, 6 CTA. Source citée sur la slide 2.',
+    copy: [['Légende', `73,66 €/MWh en juin. 149,75 €/MWh en septembre.
+
+Le prix de gros moyen de l’électricité en France a doublé en un trimestre (source : ENTSO-E).
+
+Si votre contrat est indexé, ou si votre échéance tombe dans les prochains mois, ce chiffre vous concerne directement. Le carrousel explique pourquoi, et comment s’y préparer.
+
+Notre Baromètre suit ces prix chaque mois. Pour savoir ce que ça change pour votre contrat : ${LI}`],
+      ['Slides', `1. Le prix de gros de l’électricité a doublé en 3 mois
+2. Juin 73,66 → juillet 103,9 → septembre 149,75 €/MWh (moyennes mensuelles France, ENTSO-E)
+3. Ce prix de gros n’est pas votre prix de facture, mais c’est lui que les fournisseurs regardent quand ils vous font une offre
+4. Les plus exposés : contrats indexés, et contrats qui arrivent à échéance
+5. La bonne réponse : connaître sa date d’échéance et se positionner 12 à 24 mois avant
+6. Étude gratuite de votre contrat, réponse sous 24h`]] },
+
+  { id: 'L3', net: 'LinkedIn', slot: 'Semaine 1 · vendredi', format: 'Post texte + logos fournisseurs', cta: LI,
+    angle: 'Notre commission est la même quel que soit le fournisseur',
+    visual: 'Visuel : bandeau des logos Engie, TotalEnergies, OHM Énergie, Alterna, Primeo, MET (version blanche du site).',
+    copy: [['Post', `La question qu’on nous pose le plus : « Vous me recommandez ce fournisseur parce qu’il vous paie mieux ? »
+
+Non. Et c’est structurel.
+
+Notre commission est standardisée : elle est identique quel que soit le fournisseur retenu. Nous n’avons donc aucun intérêt à pousser l’un plutôt que l’autre.
+
+Ce qui nous reste comme seul critère : l’offre la plus adaptée à votre consommation et à votre calendrier.
+
+À chaque étude, nous consultons Engie, TotalEnergies, OHM Énergie, Alterna, Primeo, MET… et le reste du marché.
+
+Courtier indépendant depuis 2012. Étude gratuite : ${LI}`]] },
+
+  { id: 'L4', net: 'LinkedIn', slot: 'Semaine 2 · lundi', format: 'Post texte answer-first', cta: LI,
+    angle: 'Un courtier gratuit, ça cache quoi ?',
+    visual: 'Pas de visuel : post texte seul.',
+    copy: [['Post', `Un courtier en énergie gratuit, ça cache quoi ?
+
+Réponse courte : rien de caché, un modèle simple.
+
+Le courtier est rémunéré par le fournisseur que vous retenez, via une commission intégrée au contrat. Vous ne recevez aucune facture de notre part.
+
+Les vraies questions à poser à un courtier :
+1. Votre commission change-t-elle selon le fournisseur ? (Chez nous : non, elle est identique.)
+2. Combien de fournisseurs consultez-vous ?
+3. Qui me suit après la signature ?
+
+Si les réponses sont floues, méfiance. Si elles sont claires, vous avez un négociateur qui travaille pour vous sans vous coûter un euro de plus.
+
+Étude gratuite et sans engagement : ${LI}`]] },
+
+  { id: 'L5', net: 'LinkedIn', slot: 'Semaine 2 · mercredi', format: 'Post texte + citation', cta: LI,
+    angle: '« Mon contrat est en cours, je ne peux rien faire »',
+    visual: 'Visuel citation : « Mon contrat est en cours, je ne peux rien faire. » sur fond sombre, signature M&S Strategy.',
+    copy: [['Post', `« Mon contrat est en cours, je ne peux rien faire. »
+
+On l’entend chaque semaine. Et c’est précisément le meilleur moment pour agir.
+
+Ce qu’on répond :
+→ Votre contrat a une date d’échéance. La bonne fenêtre pour négocier s’ouvre 12 à 24 mois avant.
+→ On prépare le dossier dès maintenant : consommation, profil, calendrier.
+→ Le jour où la fenêtre s’ouvre, on est prêts. Et si votre contrat n’a pas de durée d’engagement, on peut négocier tout de suite.
+
+Attendre la dernière facture avant l’échéance, c’est négocier pressé. Et négocier pressé coûte cher.
+
+Envoyez votre facture, on vous dit où vous en êtes : ${LI}`]] },
+
+  { id: 'L6', net: 'LinkedIn', slot: 'Semaine 2 · vendredi', format: 'Carrousel PDF · 5 slides', cta: LI,
+    angle: 'La fenêtre pour renégocier n’est pas celle qu’on croit',
+    visual: 'Carrousel frise : échéance à droite, zone 12-24 mois surlignée en teal, zone « dernière minute » en rouge.',
+    copy: [['Légende', `La plupart des entreprises renégocient leur contrat d’énergie dans les dernières semaines. C’est le pire moment.
+
+La bonne fenêtre s’ouvre 12 à 24 mois avant l’échéance : assez tôt pour choisir le moment où le marché est favorable, plutôt que de le subir.
+
+Exemple : un réseau multi-sites de l’agroalimentaire a obtenu -17 % sur sa facture gaz en renégociant 4 mois avant l’échéance.
+
+On vous alerte avant la vôtre : ${LI}`],
+      ['Slides', `1. Quand renégocier son contrat d’énergie ?
+2. Ce que font la plupart : dans les dernières semaines, sans choix du moment
+3. La bonne fenêtre : 12 à 24 mois avant l’échéance
+4. Pourquoi : on choisit le moment, on compare sans urgence
+5. On suit votre échéance et on vous alerte. Étude gratuite.`]] },
+
+  { id: 'X1', net: 'X', slot: 'Semaine 1 · mardi', format: 'Thread 5 tweets', cta: XL,
+    angle: 'Contrat indexé : le chiffre que la plupart des dirigeants ignorent',
+    visual: 'Visuel sur le tweet 2 : mini-courbe juin → septembre.',
+    copy: [['1/5', `Le prix de gros de l’électricité en France a doublé en 3 mois. Si votre contrat pro est indexé, c’est votre facture qui suit. 🧵`],
+      ['2/5', `Moyennes mensuelles (ENTSO-E) : juin 73,66 €/MWh, juillet 103,9, septembre 149,75.`],
+      ['3/5', `Un contrat indexé répercute ces mouvements. Un contrat à prix fixe vous protège jusqu’à son échéance, mais pas après.`],
+      ['4/5', `Dans les deux cas, la question clé est la même : quelle est votre date d’échéance ? La bonne fenêtre de négociation s’ouvre 12 à 24 mois avant.`],
+      ['5/5', `On analyse votre contrat gratuitement, réponse sous 24h : ${XL}`]] },
+
+  { id: 'X2', net: 'X', slot: 'Semaine 1 · jeudi', format: 'Thread définitions courtes', cta: XL,
+    angle: 'ARENH, TURPE, CEE : le lexique énergie du dirigeant',
+    visual: 'Pas de visuel.',
+    copy: [['1/5', `ARENH, TURPE, CEE, accise… Le lexique énergie du dirigeant, en une phrase par mot. 🧵`],
+      ['2/5', `ARENH : le dispositif qui donnait accès à une partie de l’électricité nucléaire à prix régulé. Il a pris fin le 31 décembre 2025.`],
+      ['3/5', `TURPE : le tarif d’utilisation du réseau. Vous le payez quel que soit votre fournisseur : c’est le transport et la distribution de l’électricité.`],
+      ['4/5', `CEE : les certificats d’économies d’énergie, qui financent une partie de vos travaux de rénovation énergétique. Accise : la taxe sur l’électricité et le gaz, fixée par l’État.`],
+      ['5/5', `Votre facture mélange tout ça. On la décrypte gratuitement : ${XL}`]] },
+
+  { id: 'X3', net: 'X', slot: 'Semaine 2 · mardi', format: 'Thread 5 tweets', cta: XL,
+    angle: 'Comment un courtier en énergie peut être gratuit',
+    visual: 'Pas de visuel.',
+    copy: [['1/5', `« Un courtier en énergie gratuit ? Il y a forcément un piège. » Voici le modèle, en 5 tweets. 🧵`],
+      ['2/5', `Le courtier est payé par le fournisseur que l’entreprise retient, via une commission intégrée au contrat. Aucune facture pour le client.`],
+      ['3/5', `Le risque réel : un courtier mieux payé par un fournisseur que par un autre. Il serait tenté de le pousser.`],
+      ['4/5', `Notre réponse : une commission standardisée, identique quel que soit le fournisseur. Notre seul critère reste votre offre.`],
+      ['5/5', `Étude gratuite et sans engagement, réponse sous 24h : ${XL}`]] },
+
+  { id: 'X4', net: 'X', slot: 'Semaine 2 · jeudi', format: 'Thread + visuel chiffre', cta: XL,
+    angle: 'Baromètre : électricité en hausse, et le gaz ?',
+    visual: 'Visuel : deux chiffres côte à côte, électricité 149,75 €/MWh (sept.) et gaz PEG 63,90 €/MWh (24 juillet), sources en bas.',
+    copy: [['1/4', `Point Baromètre M&S Strategy : où en sont les prix de gros de l’énergie ? 🧵`],
+      ['2/4', `Électricité : 149,75 €/MWh en moyenne en septembre 2026, contre 73,66 en juin (ENTSO-E). Un doublement en un trimestre.`],
+      ['3/4', `Gaz : 63,90 €/MWh à la clôture du contrat PEG mois suivant le 24 juillet (Selectra). Notre lecture : quand l’électricité s’envole, mieux vaut savoir précisément où en est son contrat gaz aussi.`],
+      ['4/4', `Le Baromètre complet, et une étude gratuite de vos contrats : ${XL}`]] },
+
+  { id: 'F1', net: 'Facebook', slot: 'Semaine 1 · lundi', format: 'Post texte + lien article', cta: FB,
+    angle: 'Dirigeant de TPE : à quoi sert un courtier en énergie ?',
+    visual: 'Aperçu de lien automatique vers la page Professionnels.',
+    copy: [['Post', `Vous dirigez une TPE et vous n’avez pas le temps de comparer les offres d’électricité et de gaz ? C’est exactement notre métier.
+
+Un courtier en énergie :
+✅ analyse votre facture actuelle
+✅ met les fournisseurs en concurrence pour vous
+✅ vous présente un comparatif clair
+✅ vous prévient avant l’échéance de votre contrat
+
+C’est gratuit pour vous et sans engagement. Cabinet indépendant depuis 2012, basé à Lattes, on intervient partout en France.
+
+Envoyez une facture, réponse sous 24h 👉 ${FB}`]] },
+
+  { id: 'F2', net: 'Facebook', slot: 'Semaine 1 · mercredi', format: 'Post texte + visuel logos', cta: FB,
+    angle: 'On compare pour vous, sans préférence',
+    visual: 'Visuel : logos des fournisseurs consultés sur fond sombre.',
+    copy: [['Post', `Commerçants, artisans : vous n’avez pas à choisir seuls votre fournisseur d’énergie.
+
+À chaque étude, nous consultons Engie, TotalEnergies, OHM Énergie, Alterna, Primeo, MET et d’autres encore.
+
+Et nous n’avons pas de fournisseur préféré : notre rémunération est la même quel que soit celui que vous choisissez. On vous recommande simplement l’offre la plus adaptée à votre activité.
+
+Simple, gratuit, sans engagement 👉 ${FB}`]] },
+
+  { id: 'F3', net: 'Facebook', slot: 'Semaine 1 · vendredi', format: 'Image unique', cta: FB,
+    angle: 'Le chiffre de la semaine : ×2 en trois mois',
+    visual: 'Image : « ×2 » en très grand, sous-titre « prix de gros de l’électricité, juin → septembre 2026 », source ENTSO-E en bas.',
+    copy: [['Légende', `×2 en trois mois.
+
+Le prix de gros moyen de l’électricité en France est passé de 73,66 €/MWh en juin à 149,75 €/MWh en septembre (source : ENTSO-E).
+
+Pour un commerce, un restaurant ou un atelier, la question n’est pas de paniquer mais de savoir où en est son contrat : prix fixe ou indexé ? Quelle échéance ?
+
+On vous le dit gratuitement, en 24h 👉 ${FB}`]] },
+
+  { id: 'F4', net: 'Facebook', slot: 'Semaine 2 · lundi', format: 'Post texte', cta: FB,
+    angle: 'Contrat en cours ? On peut déjà préparer la suite',
+    visual: 'Pas de visuel.',
+    copy: [['Post', `« Mon contrat d’énergie court encore, ce n’est pas le moment. »
+
+Au contraire. Votre contrat a une date de fin, et c’est en la préparant tôt qu’on obtient les meilleures conditions.
+
+Ce qu’on fait pour vous :
+1. On analyse votre contrat actuel dès maintenant.
+2. On repère le bon moment pour négocier (idéalement 12 à 24 mois avant la fin).
+3. Si votre contrat n’a pas de durée d’engagement, on peut même négocier tout de suite.
+
+Gratuit et sans engagement 👉 ${FB}`]] },
+
+  { id: 'F5', net: 'Facebook', slot: 'Semaine 2 · mercredi', format: 'Post texte + citation', cta: FB,
+    angle: 'Cas client : un réseau multi-sites, -17 % sur le gaz',
+    visual: 'Visuel citation : « -17 % sur la facture gaz » + « Réseau multi-sites, agroalimentaire ».',
+    copy: [['Post', `-17 % sur la facture gaz d’un site de production.
+
+Notre client, un réseau multi-sites de l’industrie agroalimentaire, a renégocié son contrat 4 mois avant l’échéance, avec notre accompagnement.
+
+La méthode : analyse des factures, mise en concurrence des fournisseurs, négociation au bon moment.
+
+Chaque situation est différente : le résultat dépend de votre contrat et du marché. Pour savoir ce qui est possible pour vous 👉 ${FB}`]] },
+
+  { id: 'F6', net: 'Facebook', slot: 'Semaine 2 · vendredi', format: 'Post texte', cta: FB,
+    angle: 'Plusieurs boutiques ? Regroupez vos contrats',
+    visual: 'Pas de visuel.',
+    copy: [['Post', `Vous avez plusieurs boutiques, agences ou restaurants ? Chacun a probablement son propre contrat d’énergie, avec ses propres dates d’échéance.
+
+En les regroupant, vous :
+✅ pesez plus lourd face aux fournisseurs
+✅ alignez les échéances pour négocier en une fois
+✅ n’avez plus qu’un seul interlocuteur
+
+On s’occupe de tout, gratuitement 👉 ${FB}`]] },
+
+  { id: 'I1', net: 'Instagram', slot: 'Semaine 1 · mardi', format: 'Carrousel 3 slides', cta: IG,
+    angle: 'Le prix de l’électricité en un visuel',
+    visual: 'Slides : 1 « ×2 en 3 mois », 2 juin 73,66 → septembre 149,75 €/MWh (ENTSO-E), 3 « Où en est votre contrat ? Lien en bio ».',
+    copy: [['Légende', `Le prix de gros de l’électricité a doublé entre juin et septembre 2026. 📈
+
+Source : ENTSO-E, moyennes mensuelles France.
+
+Votre contrat pro est-il exposé ? On l’analyse gratuitement, réponse sous 24h. Lien en bio.
+
+#énergie #entreprise #électricité #TPE #PME`]] },
+
+  { id: 'I2', net: 'Instagram', slot: 'Semaine 1 · jeudi', format: 'Reel 30 s', cta: IG,
+    angle: 'Les 3 étapes du courtage',
+    visual: 'Reel face caméra ou motion design, 3 plans numérotés, sous-titres incrustés.',
+    copy: [['Script', `[0-5 s] « Comment on baisse la facture d’énergie d’une entreprise ? En 3 étapes. »
+[5-13 s] « Un : vous nous envoyez votre dernière facture. »
+[13-22 s] « Deux : on met les fournisseurs en concurrence sur votre consommation. »
+[22-30 s] « Trois : vous recevez un comparatif chiffré sous 24h. Gratuit, sans engagement. Lien en bio. »`],
+      ['Légende', `3 étapes, 24h, 0 €. Lien en bio pour envoyer votre facture. #énergie #entreprise #courtier`]] },
+
+  { id: 'I3', net: 'Instagram', slot: 'Semaine 2 · mardi', format: 'Image unique', cta: IG,
+    angle: 'Tout le marché consulté à chaque étude',
+    visual: 'Image : grille des 6 logos fournisseurs + « et d’autres encore ».',
+    copy: [['Légende', `À chaque étude, on consulte tout le marché : Engie, TotalEnergies, OHM Énergie, Alterna, Primeo, MET, et d’autres encore.
+
+Et on n’a pas de favori : notre commission est identique quel que soit le fournisseur.
+
+Étude gratuite, lien en bio. #énergie #entreprise`]] },
+
+  { id: 'I4', net: 'Instagram', slot: 'Semaine 2 · jeudi', format: 'Reel citation', cta: IG,
+    angle: 'Ce qu’on répond à « je ne peux rien faire »',
+    visual: 'Reel : texte animé sur fond sombre, citation puis réponse, 20 s.',
+    copy: [['Script', `[0-6 s] Texte : « Mon contrat est en cours, je ne peux rien faire. »
+[6-14 s] Texte : « Faux. La meilleure fenêtre de négociation s’ouvre 12 à 24 mois avant l’échéance. »
+[14-20 s] Texte : « On prépare votre dossier dès maintenant. Gratuit. Lien en bio. »`],
+      ['Légende', `Contrat en cours ? C’est le bon moment pour préparer la suite. Lien en bio. #énergie #entreprise`]] }
+];
+
+const STORAGE_KEY = 'ms_approb_decisions';
+const NAME_KEY = 'ms_approb_reviewer';
+
+function load(key, fallback) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; }
+}
+function save(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* stockage indisponible : sans conséquence */ }
+}
+
+const sent = load(STORAGE_KEY, {});
+const reviewerInput = document.getElementById('reviewer');
+reviewerInput.value = load(NAME_KEY, '');
+reviewerInput.addEventListener('change', () => save(NAME_KEY, reviewerInput.value.trim()));
+
+function updateProgress() {
+  document.getElementById('done-count').textContent = Object.keys(sent).length;
+}
+
+const container = document.getElementById('posts');
+const tpl = document.getElementById('post-tpl');
+
+POSTS.forEach((post) => {
+  const node = tpl.content.firstElementChild.cloneNode(true);
+  node.dataset.net = post.net;
+  node.id = `post-${post.id}`;
+  node.querySelector('.net').textContent = post.net;
+  node.querySelector('.id').textContent = post.id;
+  node.querySelector('.format').textContent = post.format;
+  node.querySelector('.slot').textContent = post.slot;
+  node.querySelector('.angle').textContent = post.angle;
+  node.querySelector('.visual').textContent = post.visual;
+  const link = node.querySelector('.cta');
+  link.href = post.cta;
+  link.textContent = post.cta;
+
+  const copy = node.querySelector('.copy');
+  post.copy.forEach(([label, text]) => {
+    const part = document.createElement('span');
+    part.className = 'part';
+    const l = document.createElement('span');
+    l.className = 'label';
+    l.textContent = label;
+    part.append(l, text);
+    copy.append(part);
+  });
+
+  const buttons = node.querySelectorAll('.choices button');
+  const textarea = node.querySelector('textarea');
+  const sendBtn = node.querySelector('.send');
+  const status = node.querySelector('.status');
+  let decision = null;
+
+  function select(value) {
+    decision = value;
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.decision === value)));
+    sendBtn.disabled = !value;
+  }
+
+  const previous = sent[post.id];
+  if (previous) {
+    select(previous.decision);
+    textarea.value = previous.comment || '';
+    node.dataset.state = previous.decision;
+    status.textContent = 'Décision envoyée. Vous pouvez la modifier.';
+    status.className = 'status ok';
+  }
+
+  buttons.forEach((b) => b.addEventListener('click', () => select(b.dataset.decision)));
+
+  sendBtn.addEventListener('click', async () => {
+    const reviewer = reviewerInput.value.trim();
+    const comment = textarea.value.trim();
+    if (!reviewer) {
+      status.textContent = 'Indiquez votre prénom en haut de la page.';
+      status.className = 'status err';
+      reviewerInput.focus();
+      return;
+    }
+    if (decision !== 'approuve' && !comment) {
+      status.textContent = 'Ajoutez un commentaire pour expliquer la modification ou le refus.';
+      status.className = 'status err';
+      textarea.focus();
+      return;
+    }
+    save(NAME_KEY, reviewer);
+    sendBtn.disabled = true;
+    status.textContent = 'Envoi…';
+    status.className = 'status';
+    try {
+      const res = await fetch('/api/approbation-vote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({ post: post.id, decision, comment, reviewer })
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || `erreur ${res.status}`);
+      }
+      sent[post.id] = { decision, comment };
+      save(STORAGE_KEY, sent);
+      node.dataset.state = decision;
+      status.textContent = 'Décision enregistrée ✓';
+      status.className = 'status ok';
+      updateProgress();
+    } catch (err) {
+      status.textContent = `Échec de l’envoi (${err.message}). Réessayez.`;
+      status.className = 'status err';
+    } finally {
+      sendBtn.disabled = !decision;
+    }
+  });
+
+  container.append(node);
+});
+
+document.querySelectorAll('.filters button').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.filters button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    document.querySelectorAll('.post').forEach((p) => { p.hidden = filter !== 'all' && p.dataset.net !== filter; });
+  });
+});
+
+updateProgress();
+</script>
+</body>
+</html>
