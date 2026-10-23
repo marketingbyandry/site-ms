@@ -26,3 +26,13 @@ Toute statistique relayée (économies moyennes, évolution de prix) doit
 être sourcée ou nuancée — risque déjà identifié en §8 de
 `docs/strategie-geo-seo/2026-07-22-strategie-geo-seo-ms-strategy.md`.
 Ne jamais reprendre telle quelle une statistique non sourcée de la home.
+
+## Validation par l'équipe com
+
+Les textes rédigés du cycle 1 sont sur `approbation.html` (byandry.com),
+protégée par mot de passe (logique : `lib/approbation.mjs`, garde dans
+`middleware.js`). Chaque décision est enregistrée dans PostHog sous
+l'événement `post_review` (propriétés `campaign`, `post`, `decision`,
+`comment`, `reviewer`). Nécessite la variable Vercel
+`POSTHOG_PROJECT_KEY` (clé publique du projet, la même que dans
+`src/analytics.js`).

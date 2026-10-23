@@ -1,4 +1,5 @@
 import { next } from '@vercel/edge';
+import { isValidToken, readCookie } from './lib/approbation.mjs';
 
 export const config = {
   matcher: [
@@ -10,7 +11,9 @@ export const config = {
     '/resultats.html',
     '/ms-strategy-landing-2.html',
     '/ms-strategy-calculateur.html',
-    '/c/:slug*'
+    '/c/:slug*',
+    '/approbation',
+    '/approbation.html'
   ]
 };
 
@@ -122,8 +125,77 @@ function attributionRedirect(target, { slug, camp, isBot, hasRef }) {
   return response;
 }
 
+/* ════════════════════════════════════════
+   PAGE D'APPROBATION (équipe com)
+
+   approbation.html n'est servie qu'avec un cookie de session valide (voir
+   lib/approbation.mjs). Sans lui, on répond par un formulaire de mot de
+   passe à la place de la page : son contenu ne quitte jamais le serveur.
+   ════════════════════════════════════════ */
+
+const PRIVATE_HEADERS = {
+  'Cache-Control': 'private, no-store',
+  'X-Robots-Tag': 'noindex, nofollow'
+};
+
+function loginPage(hasError) {
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<title>Accès équipe com · M&amp;S Strategy</title>
+<style>
+:root { color-scheme: dark; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 20px; box-sizing: border-box;
+  background: #07131a; color: #f5f0e8; font: 400 16px/1.5 system-ui, -apple-system, sans-serif; }
+form { width: 100%; max-width: 380px; display: grid; gap: 14px; padding: 32px 28px; border-radius: 16px;
+  background: #0e2a33; border: 1px solid rgba(94, 207, 220, .16); }
+h1 { margin: 0; font: 400 1.9rem/1.1 Georgia, serif; }
+p { margin: 0; color: #8aacb4; font-size: .95rem; }
+label { font-weight: 600; font-size: .9rem; }
+input { font: inherit; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(94, 207, 220, .3);
+  background: #07131a; color: inherit; }
+input:focus { outline: 2px solid #2bb5c8; outline-offset: 1px; }
+button { font: 700 1rem/1 system-ui, sans-serif; padding: 14px; border: 0; border-radius: 10px;
+  background: #2bb5c8; color: #07131a; cursor: pointer; }
+.error { color: #ff9b8a; }
+</style>
+</head>
+<body>
+<form method="post" action="/api/approbation-login">
+  <h1>Validation des posts</h1>
+  <p>Espace réservé à l'équipe communication de M&amp;S Strategy.</p>
+  ${hasError ? '<p class="error" role="alert">Mot de passe incorrect, réessayez.</p>' : ''}
+  <label for="password">Mot de passe</label>
+  <input id="password" name="password" type="password" autocomplete="current-password" required autofocus>
+  <button type="submit">Accéder</button>
+</form>
+</body>
+</html>`;
+}
+
+export async function approbationGate(request) {
+  const url = new URL(request.url);
+  const token = readCookie(request.headers.get('cookie'));
+  if (await isValidToken(token)) {
+    return next({ headers: PRIVATE_HEADERS });
+  }
+  return new Response(loginPage(url.searchParams.has('erreur')), {
+    status: 401,
+    headers: { 'Content-Type': 'text/html; charset=utf-8', ...PRIVATE_HEADERS }
+  });
+}
+
 export default function middleware(request) {
   const url = new URL(request.url);
+
+  if (url.pathname === '/approbation' || url.pathname === '/approbation.html') {
+    return approbationGate(request);
+  }
+
   const userAgent = request.headers.get('user-agent') || '';
   const isBot = BOT_UA.test(userAgent);
   const cookieHeader = request.headers.get('cookie') || '';
