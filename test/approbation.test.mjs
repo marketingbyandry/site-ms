@@ -1,9 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import middleware from '../middleware.js';
 import loginHandler from '../api/approbation-login.js';
 import voteHandler from '../api/approbation-vote.js';
+import { loadStudio, postIds, postsModule, studioBlock } from '../scripts/build-studio.mjs';
 import {
   POST_IDS,
   buildReviewEvent,
@@ -68,31 +69,52 @@ test('un mauvais mot de passe renvoie au formulaire sans poser de cookie', async
 
 test('un vote sans session est refusé', async () => {
   const res = fakeRes();
-  await voteHandler({ method: 'POST', headers: {}, body: { post: 'L1', decision: 'approuve', reviewer: 'Julie' } }, res);
+  await voteHandler({ method: 'POST', headers: {}, body: { post: 'J1-LI', decision: 'approuve', reviewer: 'Julie' } }, res);
   assert.equal(res.statusCode, 401);
 });
 
 test('validateVote exige un post connu, une décision valide, un prénom, et un commentaire hors approbation', () => {
-  assert.equal(validateVote({ post: 'L1', decision: 'approuve', reviewer: 'Julie' }).ok, true);
+  assert.equal(validateVote({ post: 'J1-LI', decision: 'approuve', reviewer: 'Julie' }).ok, true);
   assert.equal(validateVote({ post: 'Z9', decision: 'approuve', reviewer: 'Julie' }).ok, false);
-  assert.equal(validateVote({ post: 'L1', decision: 'peut-etre', reviewer: 'Julie' }).ok, false);
-  assert.equal(validateVote({ post: 'L1', decision: 'approuve', reviewer: ' ' }).ok, false);
-  assert.equal(validateVote({ post: 'L1', decision: 'refuse', reviewer: 'Julie' }).ok, false);
-  assert.equal(validateVote({ post: 'L1', decision: 'modifier', reviewer: 'Julie', comment: 'Raccourcir' }).ok, true);
+  assert.equal(validateVote({ post: 'J1-LI', decision: 'peut-etre', reviewer: 'Julie' }).ok, false);
+  assert.equal(validateVote({ post: 'J1-LI', decision: 'approuve', reviewer: ' ' }).ok, false);
+  assert.equal(validateVote({ post: 'J1-LI', decision: 'refuse', reviewer: 'Julie' }).ok, false);
+  assert.equal(validateVote({ post: 'J1-LI', decision: 'modifier', reviewer: 'Julie', comment: 'Raccourcir' }).ok, true);
 });
 
 test('le vote part dans PostHog comme événement post_review sans profil personne', () => {
-  const event = buildReviewEvent({ apiKey: 'k', post: 'L2', decision: 'modifier', comment: 'c', reviewer: 'Julie', timestamp: 't' });
+  const event = buildReviewEvent({ apiKey: 'k', post: 'J2-FB', decision: 'modifier', comment: 'c', reviewer: 'Julie', timestamp: 't' });
   assert.equal(event.event, 'post_review');
   assert.equal(event.distinct_id, 'com:julie');
-  assert.equal(event.properties.post, 'L2');
+  assert.equal(event.properties.post, 'J2-FB');
   assert.equal(event.properties.$process_person_profile, false);
 });
 
-test('la page liste exactement les posts attendus par l’API, et reste hors index', () => {
+test('approbation.html et les identifiants de l’API sont à jour avec la source du Studio', () => {
+  const studio = loadStudio();
   const html = readFileSync('approbation.html', 'utf8');
-  const ids = [...html.matchAll(/\{ id: '([A-Z]\d)'/g)].map((m) => m[1]);
-  assert.deepEqual(ids, POST_IDS);
+  assert.ok(html.includes(studioBlock(studio)), 'approbation.html désynchronisé : lancer npm run build:studio');
+  assert.equal(readFileSync('lib/approbation-posts.mjs', 'utf8'), postsModule(studio), 'lancer npm run build:studio');
+  assert.deepEqual(POST_IDS, postIds(studio));
   assert.match(html, /<meta name="robots" content="noindex, nofollow">/);
   assert.doesNotMatch(readFileSync('sitemap.xml', 'utf8'), /approbation/);
+});
+
+test('chaque jour du Studio a ses 4 réseaux et ses médias existent', () => {
+  for (const jour of loadStudio().jours) {
+    for (const net of ['LinkedIn', 'Facebook', 'Instagram', 'X']) {
+      assert.match(jour.post, new RegExp(`^## ${net} \\(`, 'm'), `J${jour.jour} : section ${net} absente du post`);
+      const v = jour.visuels[net];
+      assert.ok(v, `J${jour.jour} : visuel ${net} absent de studio.json`);
+      const files = [v.file, ...(v.slides || []).filter((s) => s.k === 'photo').map((s) => s.src)].filter(Boolean);
+      for (const f of files) assert.ok(existsSync(`approbation-media/${f}`), `média manquant : approbation-media/${f}`);
+    }
+  }
+});
+
+test('les médias du Studio ne sont servis qu’avec la session', async () => {
+  const res = await middleware(new Request('https://www.byandry.com/approbation-media/videos/J2_reconduction-tacite_9x16.mp4'));
+  assert.equal(res.status, 401);
+  assert.match(res.headers.get('cache-control'), /no-store/);
+  assert.match(readFileSync('robots.txt', 'utf8'), /Disallow: \/approbation-media\//);
 });
