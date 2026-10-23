@@ -9,7 +9,8 @@
     "test": "node --test test/*.test.mjs",
     "audit": "node scripts/site-audit.mjs",
     "audit:visual": "node scripts/visual-check.mjs",
-    "build:search": "node scripts/build-search.mjs"
+    "build:search": "node scripts/build-search.mjs",
+    "build:studio": "node scripts/build-studio.mjs"
   },
   "dependencies": {
     "@vercel/edge": "^1.1.2",

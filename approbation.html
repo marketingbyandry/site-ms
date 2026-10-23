@@ -2,409 +2,574 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
-<title>Validation des posts · M&S Strategy</title>
+<title>Validation des posts · M&amp;S Strategy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* Page interne, protégée par mot de passe (middleware.js) : l'équipe com y
-   valide les posts de la campagne sociale avant publication. Chaque décision
-   part vers /api/approbation-vote. DA du site : sombre, teal, Instrument
-   Serif pour les titres, Satoshi pour le texte. */
+   valide les posts de la campagne « Pas de -50 % » avant publication.
+   L'onglet affiché est le Studio J1–J10 de l'artefact, généré depuis la même
+   source (scripts/build-studio.mjs). Cette feuille ne règle que la page
+   autour : en-tête, barre du prénom et bloc de vote sous chaque réseau. */
 :root {
-  --ink: #07131a;
-  --panel: #0e2a33;
-  --panel-2: #0b1f27;
-  --line: rgba(94, 207, 220, .16);
-  --teal: #1a7a8a;
-  --teal-bright: #2bb5c8;
-  --teal-light: #5ecfdc;
-  --green: #4cde80;
-  --amber: #f3c35b;
-  --red: #ff9b8a;
-  --cream: #f5f0e8;
-  --muted: #8aacb4;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --sans: 'Satoshi', system-ui, -apple-system, sans-serif;
-  color-scheme: dark;
+  --bg: #f3f7f7; --surface: #ffffff; --surface-2: #e9f1f2; --ink: #0f2a31; --muted: #56707a; --line: #d3e1e3;
+  --accent: #1a7a8a; --ok: #2f8a5c; --mod: #a36a00; --ko: #b23a24;
+  --display: 'Instrument Serif', Georgia, serif;
+  --body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a1b20; --surface: #0f262d; --surface-2: #13313a; --ink: #e4eff1; --muted: #8fb0b8; --line: #1f4049;
+    --accent: #5ecfdc; --ok: #6fd39a; --mod: #f2c45c; --ko: #f08a72; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a1b20; --surface: #0f262d; --surface-2: #13313a; --ink: #e4eff1; --muted: #8fb0b8; --line: #1f4049;
+  --accent: #5ecfdc; --ok: #6fd39a; --mod: #f2c45c; --ko: #f08a72; color-scheme: dark;
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--ink); color: var(--cream); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
-.wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding-inline: 16px; }
-header { padding: 48px 0 24px; display: grid; gap: 12px; }
-.eyebrow { font: 700 12px/1.3 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); margin: 0; }
-h1 { font: 400 clamp(2.2rem, 5vw, 3.4rem)/1.05 var(--serif); margin: 0; }
-h1 em { color: var(--teal-light); }
-.intro { color: var(--muted); margin: 0; max-width: 680px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+.wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding-inline: 16px; }
+header.top { padding-block: 32px 18px; display: grid; gap: 8px; }
+.eyebrow { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+h1 { font: 400 clamp(34px, 5vw, 54px)/1.02 var(--display); margin: 0; text-wrap: balance; }
+h1 s { text-decoration-thickness: 2px; color: var(--muted); }
+.intro { color: var(--muted); margin: 0; max-width: 75ch; font-size: 14px; }
 
-.toolbar { position: sticky; top: 0; z-index: 5; background: rgba(7, 19, 26, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-.toolbar .wrap { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding-block: 12px; }
-.toolbar label { font-weight: 700; font-size: .9rem; }
-.toolbar input { font: inherit; padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(94, 207, 220, .3); background: var(--panel-2); color: inherit; width: 170px; }
-.filters { display: flex; flex-wrap: wrap; gap: 6px; }
-.filters button { font: 600 .85rem/1 var(--sans); padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; }
-.filters button[aria-pressed="true"] { background: var(--teal); color: var(--cream); border-color: var(--teal); }
-.progress { margin-left: auto; font-size: .9rem; color: var(--muted); }
-.progress strong { color: var(--cream); }
+.toolbar { position: sticky; top: 0; z-index: 5; background: var(--bg); border-block: 1px solid var(--line); margin-bottom: 20px; }
+.toolbar .wrap { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; padding-block: 10px; }
+.toolbar label { font-weight: 700; font-size: 13.5px; }
+.toolbar input { font: inherit; font-size: 14px; padding: 7px 11px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: inherit; width: 170px; }
+.progress { margin: 0 0 0 auto; font-size: 13.5px; color: var(--muted); }
+.progress strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+main { padding-bottom: 80px; }
 
-main { padding-block: 28px 80px; display: grid; gap: 22px; }
-.post { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: grid; gap: 14px; }
-.post[data-state="approuve"] { border-color: rgba(76, 222, 128, .5); }
-.post[data-state="modifier"] { border-color: rgba(243, 195, 91, .5); }
-.post[data-state="refuse"] { border-color: rgba(255, 155, 138, .5); }
-.meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: .82rem; }
-.tag { padding: 4px 10px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--line); color: var(--muted); }
-.tag.net { color: var(--cream); background: var(--teal); border-color: var(--teal); font-weight: 700; }
-.angle { margin: 0; font: 400 1.45rem/1.2 var(--serif); }
-.copy { background: var(--panel-2); border-radius: 12px; padding: 18px; white-space: pre-line; font-size: .97rem; }
-.copy .part { display: block; padding-top: 12px; margin-top: 12px; border-top: 1px dashed var(--line); }
-.copy .part:first-child { padding-top: 0; margin-top: 0; border-top: 0; }
-.copy .label { display: block; font: 700 .72rem/1.3 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 4px; }
-.details { display: grid; gap: 4px; font-size: .88rem; color: var(--muted); }
-.details a { color: var(--teal-light); word-break: break-all; }
-
-.decision { display: grid; gap: 10px; }
-.choices { display: flex; flex-wrap: wrap; gap: 8px; }
-.choices button { font: 700 .92rem/1 var(--sans); padding: 11px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel-2); color: var(--cream); cursor: pointer; }
-.choices button[data-decision="approuve"][aria-pressed="true"] { background: var(--green); color: var(--ink); border-color: var(--green); }
-.choices button[data-decision="modifier"][aria-pressed="true"] { background: var(--amber); color: var(--ink); border-color: var(--amber); }
-.choices button[data-decision="refuse"][aria-pressed="true"] { background: var(--red); color: var(--ink); border-color: var(--red); }
-.decision textarea { font: inherit; min-height: 84px; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(94, 207, 220, .3); background: var(--panel-2); color: inherit; resize: vertical; }
-.send-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.send { font: 700 .95rem/1 var(--sans); padding: 12px 18px; border: 0; border-radius: 10px; background: var(--teal-bright); color: var(--ink); cursor: pointer; }
+.vote { border-top: 1px solid var(--line); padding: 12px 14px 14px; display: grid; gap: 10px; }
+.vote-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.vote .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+.choices button { font: 700 13px/1 var(--body); padding: 9px 13px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); cursor: pointer; }
+.choices button[data-decision="approuve"][aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: var(--bg); }
+.choices button[data-decision="modifier"][aria-pressed="true"] { background: var(--mod); border-color: var(--mod); color: var(--bg); }
+.choices button[data-decision="refuse"][aria-pressed="true"] { background: var(--ko); border-color: var(--ko); color: var(--bg); }
+.vote textarea { font: inherit; font-size: 14px; min-height: 64px; padding: 9px 11px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: inherit; resize: vertical; width: 100%; }
+.send { font: 700 13.5px/1 var(--body); padding: 10px 16px; border: 0; border-radius: 8px; background: var(--accent); color: var(--bg); cursor: pointer; }
 .send:disabled { opacity: .45; cursor: not-allowed; }
-.status { font-size: .88rem; color: var(--muted); }
-.status.ok { color: var(--green); }
-.status.err { color: var(--red); }
-button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 2px; }
-[hidden] { display: none !important; }
+.status { font-size: 13px; color: var(--muted); }
+.status.ok { color: var(--ok); }
+.status.err { color: var(--ko); }
+.st-net[data-state="approuve"] { box-shadow: inset 4px 0 0 var(--ok); }
+.st-net[data-state="modifier"] { box-shadow: inset 4px 0 0 var(--mod); }
+.st-net[data-state="refuse"] { box-shadow: inset 4px 0 0 var(--ko); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 @media (max-width: 600px) {
-  .post { padding: 16px; }
   .toolbar { position: static; }
   .progress { margin-left: 0; width: 100%; }
 }
 </style>
 </head>
 <body>
-<header class="wrap">
-  <p class="eyebrow">Campagne sociale B2B · cycle 1 · 2 semaines</p>
-  <h1>Validation des <em>posts</em></h1>
-  <p class="intro">20 publications à valider : 6 LinkedIn, 4 X, 6 Facebook, 4 Instagram. Pour chacune, choisissez Approuver, À modifier ou Refuser, puis envoyez. Un commentaire est demandé pour une modification ou un refus. Vous pouvez revenir sur une décision : c'est la dernière envoyée qui compte.</p>
+<header class="top wrap">
+  <p class="eyebrow">M&amp;S Strategy · Campagne sociale Q4 2026 · Commerçants · Studio J1–J10</p>
+  <h1>Pas de <s>-50 %</s>.<br>Juste le bon prix.</h1>
+  <p class="intro">Les 10 premiers jours, réseau par réseau, au format natif de chaque plateforme. Cliquez sur un visuel ou sur « Voir en grand » pour parcourir les carrousels et lire les vidéos en grand. Sous chaque réseau, choisissez Approuver, À modifier ou Refuser, puis envoyez. Un commentaire est demandé pour une modification ou un refus.</p>
 </header>
 
 <div class="toolbar">
   <div class="wrap">
     <label for="reviewer">Votre prénom</label>
     <input id="reviewer" type="text" autocomplete="given-name" maxlength="60" placeholder="ex. Julie">
-    <div class="filters" role="group" aria-label="Filtrer par réseau">
-      <button type="button" data-filter="all" aria-pressed="true">Tous</button>
-      <button type="button" data-filter="LinkedIn" aria-pressed="false">LinkedIn</button>
-      <button type="button" data-filter="X" aria-pressed="false">X</button>
-      <button type="button" data-filter="Facebook" aria-pressed="false">Facebook</button>
-      <button type="button" data-filter="Instagram" aria-pressed="false">Instagram</button>
-    </div>
-    <p class="progress" aria-live="polite"><strong id="done-count">0</strong> / 20 traités</p>
+    <p class="progress" aria-live="polite"><strong id="done-count">0</strong> / <span id="total-count">0</span> posts traités</p>
   </div>
 </div>
 
-<main class="wrap" id="posts"></main>
+<main class="wrap" id="studio"></main>
 
-<template id="post-tpl">
-  <article class="post">
-    <div class="meta">
-      <span class="tag net"></span>
-      <span class="tag id"></span>
-      <span class="tag format"></span>
-      <span class="tag slot"></span>
-    </div>
-    <h2 class="angle"></h2>
-    <div class="copy"></div>
-    <div class="details">
-      <span class="visual"></span>
-      <span>Lien : <a class="cta" target="_blank" rel="noopener"></a></span>
-    </div>
-    <div class="decision">
-      <div class="choices" role="group" aria-label="Décision">
-        <button type="button" data-decision="approuve" aria-pressed="false">✓ Approuver</button>
-        <button type="button" data-decision="modifier" aria-pressed="false">✎ À modifier</button>
-        <button type="button" data-decision="refuse" aria-pressed="false">✕ Refuser</button>
-      </div>
-      <textarea aria-label="Commentaire" placeholder="Commentaire (obligatoire pour À modifier ou Refuser) : ce qui doit changer, ou pourquoi refuser."></textarea>
-      <div class="send-row">
-        <button type="button" class="send" disabled>Envoyer ma décision</button>
-        <span class="status" role="status"></span>
-      </div>
-    </div>
-  </article>
-</template>
+<!-- STUDIO:BEGIN (généré par scripts/build-studio.mjs, ne pas modifier ici) -->
+<style>
+/* ════════════════════════════════════════
+   STUDIO J1–J10 (rendu partagé)
+
+   Ce fichier est inliné tel quel dans approbation.html ET dans l'artefact
+   « Campagne Pas de -50 % » par scripts/build-studio.mjs : ne pas le
+   référencer par un <link>, ne pas le modifier dans les pages générées.
+   Tout est préfixé (st-, pv-, lb-) et les couleurs vivent sur .studio, pour
+   ne rien écraser dans la page hôte.
+   ════════════════════════════════════════ */
+.studio {
+  --st-bg: #f3f7f7; --st-surface: #ffffff; --st-surface-2: #e9f1f2; --st-ink: #0f2a31; --st-muted: #56707a; --st-line: #d3e1e3;
+  --st-accent: #1a7a8a; --st-accent-ink: #0d4f5c;
+  --st-li: #2d5f9e; --st-fb: #3b5bb5; --st-ig: #b2477a; --st-x: #2a2f33;
+  --st-warn-bg: #fff5df; --st-warn-ink: #7a5410;
+  --st-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --st-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --st-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Les visuels sont des images de marque : mêmes couleurs dans les deux thèmes. */
+  --pv-paper: #f3eee4; --pv-ink: #0f2a31; --pv-teal: #1a7a8a; --pv-deep: #0d3d47; --pv-mint: #d4ecee;
+  --pv-go: #2f8a5c; --pv-stop: #8f9da1; --pv-mark: #e2b347; --pv-white: #ffffff;
+  color: var(--st-ink); font-family: var(--st-body);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .studio {
+    --st-bg: #0a1b20; --st-surface: #0f262d; --st-surface-2: #13313a; --st-ink: #e4eff1; --st-muted: #8fb0b8; --st-line: #1f4049;
+    --st-accent: #5ecfdc; --st-accent-ink: #9be3ec;
+    --st-li: #7fb0ef; --st-fb: #93a9f2; --st-ig: #ee8fbd; --st-x: #cfd8dc;
+    --st-warn-bg: #3a2e12; --st-warn-ink: #f2d58c;
+  }
+}
+:root[data-theme="dark"] .studio {
+  --st-bg: #0a1b20; --st-surface: #0f262d; --st-surface-2: #13313a; --st-ink: #e4eff1; --st-muted: #8fb0b8; --st-line: #1f4049;
+  --st-accent: #5ecfdc; --st-accent-ink: #9be3ec;
+  --st-li: #7fb0ef; --st-fb: #93a9f2; --st-ig: #ee8fbd; --st-x: #cfd8dc;
+  --st-warn-bg: #3a2e12; --st-warn-ink: #f2d58c;
+}
+.studio *, .lb * { box-sizing: border-box; }
+.studio a { color: var(--st-accent-ink); }
+.studio :focus-visible, .lb :focus-visible { outline: 2px solid var(--st-accent, #1a7a8a); outline-offset: 2px; }
+
+/* Sélecteur de jour */
+.st-intro { font-size: 13.5px; color: var(--st-muted); max-width: 75ch; margin: 0 0 16px; }
+.st-days { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 18px; }
+.st-days button { flex: none; display: flex; flex-direction: column; align-items: flex-start; gap: 1px; font: inherit; text-align: left; width: 150px; padding: 8px 10px; border: 1px solid var(--st-line); background: var(--st-surface); color: var(--st-ink); border-radius: 10px; cursor: pointer; }
+.st-days button b { font-family: var(--st-mono); font-size: 11.5px; font-weight: 500; color: var(--st-muted); }
+.st-days button span { font-size: 12.5px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.st-days button em { font-style: normal; font-family: var(--st-mono); font-size: 10.5px; color: var(--st-accent-ink); }
+.st-days button[aria-pressed="true"] { background: var(--st-ink); color: var(--st-surface); border-color: var(--st-ink); }
+.st-days button[aria-pressed="true"] b, .st-days button[aria-pressed="true"] em { color: var(--st-surface); }
+
+/* En-tête du jour */
+.st-head { border-left: 4px solid var(--st-accent); padding: 2px 0 2px 16px; margin-bottom: 14px; }
+.st-eyebrow { font-family: var(--st-mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--st-muted); }
+.st-head h2 { font-family: var(--st-display); font-weight: 400; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.12; margin: 4px 0 8px; text-wrap: balance; }
+.st-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.st-chip { font-family: var(--st-mono); font-size: 11px; padding: 3px 8px; border-radius: 999px; background: var(--st-surface-2); color: var(--st-muted); border: 1px solid var(--st-line); }
+.st-chip.pub { background: var(--st-warn-bg); color: var(--st-warn-ink); border-color: transparent; }
+.st-warn { background: var(--st-warn-bg); color: var(--st-warn-ink); border-radius: 8px; padding: 9px 13px; font-size: 13.5px; margin: 10px 0 0; }
+.st-shoot { margin: 14px 0 0; background: var(--st-surface); border: 1px solid var(--st-line); border-radius: 12px; }
+.st-shoot summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 14px; }
+.st-shoot .st-md { padding: 0 16px 14px; }
+
+/* Une carte par réseau */
+.st-nets { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+.st-net { background: var(--st-surface); border: 1px solid var(--st-line); border-radius: 12px; min-width: 0; }
+.st-net > header { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 11px 14px; border-bottom: 1px solid var(--st-line); }
+.st-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.st-nm { font-weight: 700; }
+.st-fm { font-family: var(--st-mono); font-size: 11px; color: var(--st-muted); flex: 1; min-width: 0; }
+.st-btn { font: 600 11.5px var(--st-body); border: 1px solid var(--st-line); background: transparent; color: var(--st-muted); border-radius: 6px; padding: 4px 9px; cursor: pointer; flex: none; }
+.st-btn:hover { color: var(--st-ink); }
+.st-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 380px); gap: 16px; padding: 14px; }
+.st-vis { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.st-strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; align-items: flex-start; }
+.st-frame { flex: none; display: flex; flex-direction: column; gap: 5px; margin: 0; position: relative; }
+.st-frame figcaption { font-family: var(--st-mono); font-size: 10.5px; color: var(--st-muted); }
+.st-frame.r-p45 { width: 250px; } .st-frame.r-sq { width: 270px; } .st-frame.r-v916 { width: 200px; } .st-frame.r-h169 { width: min(420px, 100%); }
+.st-zoom { position: absolute; top: 6px; right: 6px; z-index: 2; width: 30px; height: 30px; display: grid; place-items: center; border: 0; border-radius: 8px; background: rgba(15, 42, 49, .72); color: #fff; cursor: pointer; font-size: 15px; line-height: 1; }
+.st-zoom:hover { background: rgba(15, 42, 49, .92); }
+.st-slide-btn:hover .pv { box-shadow: 0 0 0 2px var(--st-accent); }
+.st-slide-btn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; text-align: left; color: inherit; font: inherit; }
+.st-video { display: block; width: 100%; max-width: 100%; border-radius: 4px; background: #000; box-shadow: 0 0 0 1px var(--st-line); }
+.st-video.r-p45 { aspect-ratio: 4/5; } .st-video.r-sq { aspect-ratio: 1/1; } .st-video.r-v916 { aspect-ratio: 9/16; } .st-video.r-h169 { aspect-ratio: 16/9; }
+.st-spec { font-family: var(--st-mono); font-size: 11px; color: var(--st-muted); margin: 0; }
+.st-note { font-size: 12.5px; color: var(--st-muted); margin: 0; }
+.st-credit { font-size: 11.5px; color: var(--st-muted); margin: 0; }
+.st-textonly { border: 1px dashed var(--st-line); border-radius: 10px; padding: 16px; font-size: 13px; color: var(--st-muted); }
+.st-cap { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.st-cap .st-md { background: var(--st-surface-2); border-radius: 10px; padding: 2px 14px; font-size: 13.5px; max-height: 420px; overflow-y: auto; }
+.st-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.st-lbl { font-family: var(--st-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--st-muted); }
+.st-md { overflow-wrap: anywhere; line-height: 1.6; }
+.st-md p { margin: 10px 0; }
+.st-md ul, .st-md ol { padding-left: 20px; margin: 8px 0; }
+.st-md li { margin: 3px 0; }
+.st-md code { font-family: var(--st-mono); font-size: 12px; background: var(--st-surface-2); padding: 1px 5px; border-radius: 4px; }
+.st-md blockquote { margin: 10px 0; padding: 8px 12px; border-left: 3px solid var(--st-line); color: var(--st-muted); }
+@media (max-width: 860px) { .st-body { grid-template-columns: 1fr; } }
+
+/* Le visuel : tailles en cqw, donc mêmes proportions à toute largeur (vignette ou plein écran) */
+.pv { container-type: inline-size; position: relative; overflow: hidden; width: 100%; max-width: 100%; border-radius: 4px; box-shadow: 0 0 0 1px var(--st-line, #d3e1e3); background: var(--pv-paper); color: var(--pv-ink); font-family: var(--st-body); display: flex; flex-direction: column; }
+.pv.r-p45 { aspect-ratio: 4/5; } .pv.r-sq { aspect-ratio: 1/1; } .pv.r-v916 { aspect-ratio: 9/16; } .pv.r-h169 { aspect-ratio: 16/9; }
+.pv.t-deep { background: var(--pv-deep); color: var(--pv-white); }
+.pv.t-mint { background: var(--pv-mint); color: var(--pv-ink); }
+.pv-in { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 4cqw; padding: 9cqw 8cqw; }
+.pv.r-v916 .pv-in { padding: 22cqw 9cqw 34cqw; }
+.pv.r-h169 .pv-in { padding: 5cqw 7cqw; gap: 2cqw; }
+.pv-top, .pv-bot { position: absolute; left: 8cqw; right: 8cqw; display: flex; justify-content: space-between; font-family: var(--st-mono); font-size: 3cqw; letter-spacing: .05em; text-transform: uppercase; opacity: .7; }
+.pv-top { top: 5cqw; } .pv-bot { bottom: 5cqw; }
+.pv.r-v916 .pv-top { top: 14cqw; } .pv.r-v916 .pv-bot { bottom: 26cqw; }
+.pv.r-h169 .pv-top { top: 3cqw; font-size: 1.9cqw; } .pv.r-h169 .pv-bot { bottom: 3cqw; font-size: 1.9cqw; }
+.pv-h { font-family: var(--st-display); font-weight: 400; line-height: 1.08; margin: 0; text-wrap: balance; }
+.pv-h.s1 { font-size: 12cqw; } .pv-h.s2 { font-size: 9cqw; } .pv-h.s3 { font-size: 7.2cqw; } .pv-h.s4 { font-size: 6cqw; }
+.pv.r-h169 .pv-h.s1 { font-size: 7cqw; } .pv.r-h169 .pv-h.s2 { font-size: 5.4cqw; } .pv.r-h169 .pv-h.s3 { font-size: 4.4cqw; } .pv.r-h169 .pv-h.s4 { font-size: 3.8cqw; }
+.pv-big { font-family: var(--st-display); font-size: 30cqw; line-height: .9; color: var(--pv-teal); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pv-big.long { font-size: 20cqw; }
+.pv.r-h169 .pv-big { font-size: 17cqw; } .pv.r-h169 .pv-big.long { font-size: 12cqw; }
+.pv.t-deep .pv-big { color: var(--pv-mint); }
+.pv-p { font-size: 5cqw; line-height: 1.3; margin: 0; font-weight: 500; }
+.pv.r-h169 .pv-p { font-size: 2.9cqw; max-width: 60cqw; }
+.pv-src { font-family: var(--st-mono); font-size: 2.8cqw; opacity: .7; margin: 0; }
+.pv.r-h169 .pv-src { font-size: 1.8cqw; }
+.pv-strike { font-family: var(--st-display); font-size: 34cqw; line-height: .9; position: relative; align-self: flex-start; white-space: nowrap; }
+.pv-strike::after { content: ""; position: absolute; left: -3%; right: -3%; top: 52%; height: 1.2cqw; background: currentColor; transform: rotate(-8deg); }
+.pv-url { font-family: var(--st-mono); font-size: 3.4cqw; color: var(--pv-teal); margin: 0; overflow-wrap: anywhere; }
+.pv.t-deep .pv-url { color: var(--pv-mint); }
+.pv-cta { display: inline-block; align-self: flex-start; background: var(--pv-teal); color: var(--pv-white); font-weight: 700; font-size: 4cqw; padding: 2.4cqw 4cqw; border-radius: 99px; }
+.pv-ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 3cqw; }
+.pv-ol li { display: flex; gap: 4cqw; align-items: baseline; font-size: 6cqw; font-family: var(--st-display); line-height: 1.1; border-top: .3cqw solid currentColor; padding-top: 3cqw; }
+.pv-ol li i { font-style: normal; font-family: var(--st-mono); font-size: 3.4cqw; color: var(--pv-teal); flex: none; }
+.pv.t-photo { background: repeating-linear-gradient(135deg, rgba(255,255,255,.04) 0 2cqw, transparent 2cqw 4cqw), linear-gradient(160deg, var(--pv-deep), var(--pv-ink)); color: var(--pv-white); }
+.pv-ph { position: absolute; top: 13cqw; left: 8cqw; right: 8cqw; border: .3cqw dashed rgba(255,255,255,.45); border-radius: 2cqw; padding: 3cqw; font-size: 3.3cqw; line-height: 1.35; }
+.pv-ph b { display: block; font-family: var(--st-mono); font-size: 2.8cqw; letter-spacing: .08em; margin-bottom: 1cqw; }
+.pv.t-photo .pv-in { justify-content: flex-end; }
+.pv.r-v916.t-photo .pv-ph { top: 22cqw; }
+.pv.t-has-img { background-size: cover; background-position: center; }
+.pv-bill { background: var(--pv-white); border-radius: 1.5cqw; box-shadow: 0 1cqw 4cqw rgba(15,42,49,.18); padding: 4cqw; display: flex; flex-direction: column; gap: 2cqw; color: var(--pv-ink); }
+.pv-bill .z { position: relative; border: .4cqw solid transparent; border-radius: 1.2cqw; padding: 1.6cqw 2cqw 1.6cqw 8cqw; display: flex; flex-direction: column; gap: 1.1cqw; opacity: .35; }
+.pv-bill .z::before { content: ""; height: 1.3cqw; width: 70%; background: var(--pv-stop); border-radius: 1cqw; }
+.pv-bill .z::after { content: ""; height: 1.3cqw; width: 45%; background: var(--pv-stop); border-radius: 1cqw; opacity: .6; }
+.pv-bill .z i { position: absolute; left: 1.6cqw; top: 50%; transform: translateY(-50%); width: 4.6cqw; height: 4.6cqw; border-radius: 50%; background: var(--pv-teal); color: var(--pv-white); font-style: normal; font: 700 2.8cqw/4.6cqw var(--st-body); text-align: center; }
+.pv-bill .z.on { opacity: 1; border-color: var(--pv-teal); background: var(--pv-mint); }
+.pv-bill.all .z { opacity: 1; border-color: var(--pv-mark); }
+.pv-bill .z span { font-size: 3cqw; font-weight: 700; }
+.pv-split { display: grid; grid-template-columns: 1fr 1fr; gap: 3cqw; }
+.pv-split div { border-radius: 2cqw; padding: 4cqw; display: flex; flex-direction: column; gap: 2cqw; font-size: 4.4cqw; font-weight: 600; }
+.pv-split .go { background: var(--pv-go); color: var(--pv-white); }
+.pv-split .st { background: var(--pv-stop); color: var(--pv-ink); }
+.pv-split b { font-family: var(--st-mono); font-size: 3cqw; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; }
+.pv.r-v916 .pv-split { grid-template-columns: 1fr; }
+
+/* Plein écran : une visionneuse par réseau, slide par slide */
+.lb { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; background: rgba(5, 14, 18, .97); color: #fff; font-family: var(--st-body, system-ui, sans-serif); }
+.lb[hidden] { display: none; }
+.lb-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; padding-top: calc(10px + env(safe-area-inset-top, 0px)); font-size: 14px; }
+.lb-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lb-title b { font-weight: 700; }
+.lb-count { font-family: var(--st-mono, monospace); font-size: 12.5px; opacity: .8; font-variant-numeric: tabular-nums; }
+.lb-b { font: 600 13px var(--st-body, system-ui, sans-serif); border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.06); color: #fff; border-radius: 8px; padding: 7px 12px; cursor: pointer; }
+.lb-b:hover { background: rgba(255,255,255,.16); }
+.lb-stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; position: relative; padding: 0 12px 16px; touch-action: pan-y; }
+.lb-frame { position: relative; }
+.lb-frame .pv { box-shadow: none; border-radius: 6px; }
+.lb-frame video { display: block; width: 100%; border-radius: 6px; background: #000; }
+.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.28); background: rgba(0,0,0,.45); color: #fff; font-size: 22px; line-height: 1; cursor: pointer; display: grid; place-items: center; }
+.lb-nav:disabled { opacity: .25; cursor: default; }
+.lb-prev { left: 12px; } .lb-next { right: 12px; }
+.lb-dots { display: flex; justify-content: center; gap: 6px; padding: 0 0 calc(14px + env(safe-area-inset-bottom, 0px)); }
+.lb-dots i { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.3); }
+.lb-dots i.on { background: #fff; }
+@media (max-width: 600px) { .lb-nav { top: auto; bottom: 8px; transform: none; width: 42px; height: 42px; } .lb-stage { padding-bottom: 64px; } .lb-fs { display: none; } }
+</style>
+<script id="studio-data" type="application/json">{"campagne":"pas-de-50-q4-2026","titre":"Pas de -50 % · Studio J1–J10","note":"Source unique de l’onglet Studio J1–J10 : alimente approbation.html et l’artefact (npm run build:studio).","jours":[{"jour":1,"date":"2026-10-15","jour_semaine":"jeudi","phase":"1 · Avant la vitrine","angle":"Manifeste : cette fin d'année, pas de -50 % chez nous","etape":"TOFU","matrice":"Inspirer","destination":"comment-ca-marche.html","candidat_pub":true,"linkedin_compte":"page","visuels":{"LinkedIn":{"type":"carousel","r":"p45","note":"Exporter les 6 slides en un PDF pour le carrousel document LinkedIn.","slides":[{"k":"num","big":"71 %","p":"des commerçants indépendants qui ont fait le Black Friday 2025 disent qu’ils n’avaient pas le choix."},{"k":"num","big":"8 %","p":"le jugent « intéressant ».","src":"Source : L’echommerces / Boutique2Mode"},{"k":"txt","h":"Cette année, on ne vous ajoutera pas une promo de plus à subir.","tone":"deep"},{"k":"txt","h":"Un courtier n’a rien à solder. Nous ne vendons pas d’énergie, nous la négocions."},{"k":"txt","h":"Du 15 octobre au 31 décembre : un contenu par jour sur la charge que personne ne vous négocie.","tone":"mint"},{"k":"strike","p":"Juste le bon prix, pour toute la durée du contrat.","path":"comment-ca-marche"}]},"Facebook":{"type":"image","r":"p45","slides":[{"k":"photo","desc":"Rue commerçante de Montpellier en fin de journée, vitrines allumées.","h":"Cette année, pas de promo de plus.","src":"photos/j1_fb_ruelle-montpellier.jpg","credit":"Photo : Hamza Yaich, Pexels (licence Pexels, usage commercial libre) · pexels.com/photo/20645887"}]},"Instagram":{"type":"image","r":"p45","slides":[{"k":"strike","p":"Pas cette année."}]},"X":{"type":"image","r":"h169","slides":[{"k":"num","big":"71 %","p":"des commerçants indépendants ayant fait le Black Friday 2025 disent ne pas avoir eu le choix.","src":"Source : L’echommerces / Boutique2Mode"}]}},"post":"# J1 · jeudi 15 octobre 2026 · Manifeste : cette fin d'année, pas de -50 % chez nous\n\nPhase 1 · Avant la vitrine · TOFU · Inspirer · Gisement : coulisses · Candidat pub\nDestination : `comment-ca-marche.html`\nSources externes : L'echommerces / Boutique2Mode, Black Friday 2025 (cf. `recherche-concurrents.md` fait n°8)\n\n## LinkedIn (`soc-li`) · Page · carrousel PDF\n\n**Slides (6) :**\n1. « Black Friday 2025 : 71 % des commerçants indépendants qui y ont participé disent qu'ils n'avaient pas le choix. »\n2. « Seuls 8 % le jugent \"intéressant\". » (Source : L'echommerces / Boutique2Mode)\n3. « Cette année, on ne vous ajoutera pas une promo de plus à subir. »\n4. « Un courtier n'a rien à solder : nous ne vendons pas d'énergie, nous la négocions. »\n5. « Du 15 octobre au 31 décembre : un contenu par jour sur la charge que personne ne vous négocie. »\n6. « Pas de -50 %. Juste le bon prix, pour toute la durée du contrat. »\n\n**Texte :**\nEn 2025, 71 % des commerçants indépendants qui ont fait le Black Friday l'ont fait parce qu'ils « n'avaient pas le choix ». Seuls 8 % trouvent l'opération intéressante.\n\nNous n'allons pas ajouter une promo de plus à cette liste.\n\nUn cabinet de courtage n'a rien à solder. Notre métier, c'est de mettre les fournisseurs d'énergie en concurrence pour qu'un contrat soit au bon prix, pour toute sa durée. Alors cette fin d'année, nous faisons l'inverse : 78 jours de contenus utiles pour les dirigeants de commerce, sans prix barré ni compte à rebours.\n\n→ Notre méthode : https://cabinetms.fr/comment-ca-marche.html?camp=soc-li\n\nSource : L'echommerces, d'après la consultation Boutique2Mode auprès de 1 633 détaillants indépendants.\n\n## Facebook (`soc-fb`) · image\n\n**Visuel :** photo réelle (Savee) d'une rue commerçante de Montpellier en fin de journée, vitrines allumées. Texte en Instrument Serif : « Cette année, pas de promo de plus. »\n\nBonjour à tous les commerçants 👋\n\nL'an dernier, beaucoup d'entre vous ont fait le Black Friday… sans vraiment en avoir envie. On vous comprend.\n\nNous, on ne vous proposera pas de promo. On va plutôt vous donner, chaque jour jusqu'à Noël, un vrai tuyau pour alléger votre facture d'électricité ou de gaz.\n\nEt vous, le Black Friday, vous le faites cette année ? Dites-le nous en commentaire.\n\n👉 https://cabinetms.fr/comment-ca-marche.html?camp=soc-fb\n\n## Instagram (`soc-ig`) · image unique\n\n**Visuel :** fond crème, Instrument Serif noir très grand : « -50 % », barré d'un trait fin. Dessous, en petit : « Pas cette année. »\n\n**Légende :**\nPas de -50 % chez nous.\nOn ne vend pas d'énergie, on négocie la vôtre.\nJusqu'au 31 décembre, un conseil par jour pour les commerces. Lien en bio.\n\n`https://cabinetms.fr/comment-ca-marche.html?camp=soc-ig`\n\n## X (`soc-x`) · visuel chiffre\n\n**Visuel :** « 71 % » en très grand, légende : « des commerçants indépendants ayant fait le Black Friday 2025 disent ne pas avoir eu le choix. »\n\n71 % des indépendants qui ont fait le Black Friday 2025 disent ne pas avoir eu le choix (L'echommerces / Boutique2Mode). 8 % le trouvent intéressant.\n\nUn courtier en énergie n'a rien à solder. On fera l'inverse, jusqu'au 31/12.\n\nhttps://cabinetms.fr/comment-ca-marche.html?camp=soc-x\n\n## Variantes d'accroche (pub)\n\n- A : « 71 % des commerçants font le Black Friday sans le vouloir. On ne vous ajoutera pas une promo de plus. »\n- B : « Le seul acteur de votre fin d'année qui ne vous fera pas de -50 %. »\n"},{"jour":2,"date":"2026-10-16","jour_semaine":"vendredi","phase":"1 · Avant la vitrine","angle":"Où se cache la date d'échéance de votre contrat (reconduction tacite)","etape":"TOFU","matrice":"Éduquer","destination":"resilier-contrat-electricite-entreprise.html","candidat_pub":true,"linkedin_compte":"page","visuels":{"LinkedIn":{"type":"video","r":"sq","cut":"37 s, voix off, sous-titres incrustés","slides":[{"k":"txt","h":"La date qui coûte le plus cher ?","tone":"deep"},{"k":"end","h":"Trouvez-la aujourd’hui.","path":"resilier-contrat-electricite-entreprise"}],"file":"videos/J2_reconduction-tacite_1x1.mp4"},"Facebook":{"type":"video","r":"v916","cut":"37 s, voix off, sous-titres","slides":[{"k":"txt","h":"La date qui coûte le plus cher ?","tone":"deep"},{"k":"end","h":"Trouvez-la aujourd’hui.","path":"resilier-contrat-electricite-entreprise"}],"file":"videos/J2_reconduction-tacite_9x16.mp4"},"Instagram":{"type":"video","r":"v916","cut":"37 s, voix off, même fichier que Facebook","slides":[{"k":"txt","h":"Votre contrat se renouvelle peut-être tout seul.","tone":"deep"},{"k":"end","h":"Trouvez-la aujourd’hui.","path":"resilier-contrat-electricite-entreprise"}],"file":"videos/J2_reconduction-tacite_9x16.mp4"},"X":{"type":"video","r":"h169","cut":"37 s, voix off (reprise)","slides":[{"k":"txt","h":"La clause la plus chère n’est souvent pas le prix.","tone":"deep"},{"k":"end","h":"Trouvez-la aujourd’hui.","path":"resilier-contrat-electricite-entreprise"}],"file":"videos/J2_reconduction-tacite_16x9.mp4"}},"post":"# J2 · vendredi 16 octobre 2026 · Où se cache la date d'échéance de votre contrat\n\nPhase 1 · Avant la vitrine · TOFU · Éduquer · Gisement : pilier SEO · Candidat pub\nDestination : `resilier-contrat-electricite-entreprise.html`\nSources externes : Médiateur national de l'énergie, rapport 2025 (fait n°7)\n\n## Montage voix off (37 s, produit le 19/10/2026)\n\n**Voix off (script lu intégral, voix « Abdelatif », ElevenLabs) :**\nLa date qui coûte le plus cher dans votre contrat d'électricité ? Ce n'est pas le prix du kilowattheure. C'est la date d'échéance. Beaucoup de contrats professionnels prévoient une reconduction tacite. Et chez la plupart des fournisseurs, le préavis est de deux mois. Concrètement : si rien n'est fait deux mois avant l'échéance, le contrat repart. Aux conditions du fournisseur. Sans que personne n'ait comparé. Le bon réflexe : ouvrez vos conditions particulières. Repérez la date d'échéance. Notez le préavis. Et programmez une alerte, bien avant. Votre date d'échéance, trouvez-la aujourd'hui. M&S Strategy, courtier en énergie.\n\n**Plans :**\n- 0-3,2 s · Rush : mains qui feuillettent un classeur de factures.\n- 3,2-6,7 s · Image fixe (zoom lent) : contrat, surligneur jaune.\n- 6,7-10,4 s · Image fixe : calendrier mural, une date entourée.\n- 10,4-14,9 s · Carton sarcelle : « Préavis : 2 mois, chez la plupart des fournisseurs ».\n- 14,9-18,8 s · Rush : pages du calendrier qui tournent.\n- 18,8-22,4 s · Image fixe : devanture de commerce, le soir.\n- 22,4-25,5 s · Image fixe : le classeur ouvert.\n- 25,5-28,6 s · Image fixe : le contrat, plan serré.\n- 28,6-31 s · Rush : un doigt programme un rappel sur le téléphone.\n- 31-37,5 s · Carton final : « Votre date d'échéance, trouvez-la aujourd'hui. » + cabinetms.fr.\n\nSous-titres incrustés sur toute la voix off. Fichiers : `J2_reconduction-tacite_9x16.mp4` (Instagram, Facebook), `_1x1.mp4` (LinkedIn), `_16x9.mp4` (X).\n\n## LinkedIn (`soc-li`) · Page · vidéo native 45-90 s\n\n**Montage :** format carré 1:1, voix off, sous-titres incrustés, 37 s (`J2_reconduction-tacite_1x1.mp4`).\n\n**Texte :**\nQuestion simple pour les dirigeants de points de vente : à quelle date se termine votre contrat d'électricité ?\n\nBeaucoup de contrats professionnels prévoient une **reconduction tacite** : sans démarche avant le préavis, le contrat repart, parfois pour une longue durée, aux conditions que le fournisseur fixe.\n\nCe n'est pas un sujet marginal. Selon le Médiateur national de l'énergie, les litiges impliquant des professionnels représentaient 25 % des dossiers reçus en 2025. Une bonne partie des difficultés commence par une date qu'on n'a pas vue passer.\n\nTrois réflexes :\n1. Retrouver l'échéance dans les conditions particulières.\n2. Noter le préavis : chez la plupart des fournisseurs, il est de 2 mois avant l'échéance.\n3. Programmer une alerte bien avant.\n\n→ https://cabinetms.fr/resilier-contrat-electricite-entreprise.html?camp=soc-li\n\nSource : Médiateur national de l'énergie, rapport annuel 2025.\n\n## Facebook (`soc-fb`) · vidéo (reprise)\n\n**Montage :** vertical 9:16, voix off, sous-titres, 37 s (`J2_reconduction-tacite_9x16.mp4`).\n\nPetit défi pour le week-end 😉\n\nSortez votre contrat d'électricité et cherchez la « date d'échéance ». Beaucoup de contrats pros se renouvellent tout seuls si on ne bouge pas à temps… et on repart pour un tour sans avoir comparé. Chez la plupart des fournisseurs, il faut s'y prendre 2 mois avant l'échéance.\n\nVous l'avez trouvée ? Dites « trouvé ! » en commentaire 👇\n\n👉 https://cabinetms.fr/resilier-contrat-electricite-entreprise.html?camp=soc-fb\n\n## Instagram (`soc-ig`) · reel\n\n**Montage :** vertical 9:16, voix off, 37 s, même fichier que Facebook. Accroche à l'écran dès la 1re seconde : « Votre contrat se renouvelle peut-être tout seul. »\n\n**Légende :**\nVotre contrat d'énergie se renouvelle peut-être tout seul.\nVous savez quand ? 👀\nPréavis : 2 mois chez la plupart des fournisseurs.\nLa date est dans vos conditions particulières. Le guide est en lien en bio.\n\n`https://cabinetms.fr/resilier-contrat-electricite-entreprise.html?camp=soc-ig`\n\n## X (`soc-x`) · clip vidéo 30 s (reprise)\n\nLa clause la plus chère d'un contrat d'électricité pro n'est souvent pas le prix du kWh. C'est la reconduction tacite. Préavis : 2 mois chez la plupart des fournisseurs.\n\nLes litiges de professionnels représentent 25 % des dossiers du Médiateur de l'énergie en 2025.\n\nhttps://cabinetms.fr/resilier-contrat-electricite-entreprise.html?camp=soc-x\n\n## Variantes d'accroche (pub)\n\n- A : « Votre contrat d'électricité se renouvelle peut-être tout seul. Vous savez quand ? »\n- B : « La date que votre fournisseur connaît, et vous pas. »\n"},{"jour":3,"date":"2026-10-17","jour_semaine":"samedi","phase":"1 · Avant la vitrine","angle":"La vitrine qui reste allumée : l'éclairage, poste discret de la saison","etape":"TOFU","matrice":"Divertir","destination":"economies-energie-boulangerie.html","candidat_pub":false,"linkedin_compte":"page","visuels":{"LinkedIn":{"type":"image","r":"p45","slides":[{"k":"list","h":"Les postes discrets d’un point de vente","items":["Éclairage de vitrine","Réserves éclairées sans présence","Équipements en veille"],"p":"Qui fixe les horaires d’allumage, magasin par magasin ?"}]},"Facebook":{"type":"image","r":"p45","note":"Provisoire : le texte cite la rue de l’Aiguillerie. Remplacer par ta vraie photo prise sur place à 20h (cadrage de référence : vitrine dorée, rue vide, heure bleue, cf. Savee « Corner Fish Bar » savee.com/i/goDRMyu). Sinon, retirer le nom de rue du texte.","slides":[{"k":"photo","desc":"Vitrine du centre-ville de Montpellier allumée dans une rue vide, 20h, rue de l’Aiguillerie.","h":"","src":"photos/j3_devanture-heure-bleue.jpg","credit":"Visuel généré par IA pour la campagne (ElevenLabs, Seedream 5 Pro), droits M&S Strategy · provisoire"}]},"Instagram":{"type":"carousel","r":"p45","slides":[{"k":"photo","desc":"Vitrine allumée, rue vide.","h":"20h.","src":"photos/j3_devanture-heure-bleue.jpg","credit":"Visuel généré par IA pour la campagne (ElevenLabs, Seedream 5 Pro), droits M&S Strategy"},{"k":"txt","h":"La rue dort.","tone":"deep"},{"k":"txt","h":"Votre vitrine travaille encore."},{"k":"end","h":"Une minuterie. Réglée une fois. Utile tout l’hiver.","path":"economies-energie-boulangerie"}]},"X":{"type":"text"}},"post":"# J3 · samedi 17 octobre 2026 · La vitrine qui reste allumée\n\nPhase 1 · Avant la vitrine · TOFU · Divertir · Gisement : pilier SEO\nDestination : `economies-energie-boulangerie.html`\n\n## LinkedIn (`soc-li`) · Page · image / infographie\n\n**Visuel :** infographie sobre « Les postes discrets d'un point de vente » : éclairage de vitrine, réserves éclairées sans présence, équipements en veille. Pas de chiffre.\n\n**Texte :**\nPour un réseau de points de vente, l'éclairage de vitrine est un poste qu'on ne pilote presque jamais. Il fait partie du décor.\n\nPris seul, il pèse moins qu'un four ou qu'une chambre froide. Mais il fonctionne souvent sur de larges plages horaires, et ces plages s'allongent à l'approche des fêtes.\n\nLa question pour une tête de réseau n'est pas d'éteindre les vitrines. C'est de savoir **qui fixe les horaires d'allumage, magasin par magasin**, et si quelqu'un les a revus depuis l'ouverture. Une consigne commune et des minuteries coûtent peu, et s'appliquent à tout le parc d'un coup.\n\n→ https://cabinetms.fr/economies-energie-boulangerie.html?camp=soc-li\n\n## Facebook (`soc-fb`) · photo locale\n\n**Visuel :** photo réelle d'une vitrine du centre-ville de Montpellier, allumée dans une rue vide à 20h.\n\nSamedi soir, 20h, rue de l'Aiguillerie. La rue est calme… mais les vitrines brillent encore ✨\n\nUne minuterie bien réglée, c'est un petit geste qu'on fait une fois et qui travaille tout l'hiver à votre place.\n\nEt chez vous, la vitrine s'éteint à quelle heure ?\n\n👉 https://cabinetms.fr/economies-energie-boulangerie.html?camp=soc-fb\n\n## Instagram (`soc-ig`) · carrousel\n\n**Slides (4) :** 1 : photo vitrine allumée, rue vide, « 20h. » 2 : « La rue dort. » 3 : « Votre vitrine travaille encore. » 4 : « Une minuterie. Réglée une fois. Utile tout l'hiver. »\n\n**Légende :**\nLa vitrine, c'est votre plus belle publicité. Pas besoin qu'elle travaille pour une rue vide.\n\n`https://cabinetms.fr/economies-energie-boulangerie.html?camp=soc-ig`\n\n## X (`soc-x`) · tweet (tranchant)\n\nLe poste d'énergie le plus sous-estimé d'un commerce en décembre : une vitrine allumée pour une rue vide.\n\nUne minuterie se règle en cinq minutes et travaille tout l'hiver.\n"},{"jour":4,"date":"2026-10-18","jour_semaine":"dimanche","phase":"1 · Avant la vitrine","angle":"Courtier, fournisseur, comparateur : qui fait quoi","etape":"TOFU","matrice":"Éduquer","destination":"courtier-en-energie-role.html","candidat_pub":false,"linkedin_compte":"profil dirigeant","visuels":{"LinkedIn":{"type":"text"},"Facebook":{"type":"video","r":"v916","cut":"30 s, sous-titres","slides":[{"k":"txt","h":"3 métiers qu’on confond.","tone":"deep"},{"k":"txt","h":"Afficher un prix ≠ obtenir un prix.","tone":"mint"}]},"Instagram":{"type":"video","r":"v916","cut":"30 s, tournage-source tel quel, musique sobre","slides":[{"k":"txt","h":"3 métiers qu’on confond.","tone":"deep"},{"k":"txt","h":"Afficher un prix ≠ obtenir un prix.","tone":"mint"}]},"X":{"type":"text"}},"post":"# J4 · dimanche 18 octobre 2026 · Courtier, fournisseur, comparateur : qui fait quoi\n\nPhase 1 · Avant la vitrine · TOFU · Éduquer · Gisement : pilier SEO (cycle 1, L1)\nDestination : `courtier-en-energie-role.html`\nSources externes : Médiateur national de l'énergie, rapport 2025 (fait n°6)\n\n## Montage voix off (30 s)\n\n**Voix off (script lu intégral) :**\n\nFournisseur, comparateur, courtier. Trois métiers qu'on confond. Le fournisseur vous vend l'énergie. Le comparateur affiche quelques offres. Le courtier négocie pour vous auprès de tous. Puis il vous laisse choisir. Afficher un prix, ce n'est pas obtenir un prix.\n\n**Plans :**\n- 0-3 s · Rush 2-4 s · Une main colle le dernier des trois post-it « Fournisseur », « Comparateur », « Courtier » sur un mur de bureau. Texte à l'écran : « 3 métiers qu'on confond. »\n- 3-7 s · Image fixe · Gros plan sur le post-it « Fournisseur ». Texte à l'écran : « Le fournisseur vous vend l'énergie. »\n- 7-10 s · Rush 2-4 s · Le compteur électrique d'une boutique, l'affichage qui défile.\n- 10-14 s · Image fixe · Gros plan sur le post-it « Comparateur ». Texte à l'écran : « Le comparateur affiche quelques offres. »\n- 14-17 s · Rush 2-4 s · Un doigt fait défiler une liste d'offres sur un écran de téléphone (maquette sans marque).\n- 17-21 s · Image fixe · Gros plan sur le post-it « Courtier ». Texte à l'écran : « Le courtier négocie pour vous auprès de tous. »\n- 21-25 s · Rush 2-4 s · Des mains posent un comparatif écrit sur un comptoir de commerce. Texte à l'écran : « Puis vous laisse choisir. »\n- 25-30 s · Image fixe · Carton final : logo M&S Strategy. Texte à l'écran : « Afficher un prix ≠ obtenir un prix. »\n\n## LinkedIn (`soc-li`) · Profil dirigeant · texte court (réflexion)\n\nOn me demande souvent ce qui différencie un courtier d'un comparateur. Ma réponse tient en un verbe : négocier.\n\nUn comparateur affiche des offres publiques. Un courtier va chercher une offre pour votre profil, auprès de plusieurs fournisseurs, puis vous l'explique.\n\nUn chiffre m'a frappé dans le rapport 2025 du Médiateur de l'énergie : seuls 51 % des utilisateurs de comparateurs savent que certains peuvent être rémunérés par les fournisseurs. Afficher un prix et obtenir un prix, ce n'est pas le même métier. Savoir qui vous paie, non plus.\n\n→ https://cabinetms.fr/courtier-en-energie-role.html?camp=soc-li\n\n## Facebook (`soc-fb`) · vidéo (reprise)\n\n**Montage :** vertical, 30 s, sous-titres.\n\nFournisseur, comparateur, courtier… pas facile de s'y retrouver ! 🤔\n\nEn 30 secondes : le fournisseur vous vend l'énergie, le comparateur vous montre quelques offres, le courtier négocie pour vous et vous laisse choisir.\n\nVous saviez faire la différence ? Dites-le nous 👇\n\n👉 https://cabinetms.fr/courtier-en-energie-role.html?camp=soc-fb\n\n## Instagram (`soc-ig`) · reel coulisses\n\n**Montage :** le montage voix off tel quel, 30 s, ambiance bureau, musique sobre.\n\n**Légende :**\nTrois métiers. Un seul négocie pour vous.\nVente, affichage, négociation : petit tour dans nos bureaux pour faire la différence.\n\n`https://cabinetms.fr/courtier-en-energie-role.html?camp=soc-ig`\n\n## X (`soc-x`) · thread récap (pédagogue)\n\n1/ Fournisseur, comparateur, courtier : trois métiers qu'on confond dans l'énergie pro. Récap.\n2/ Le fournisseur vend l'électricité ou le gaz et facture chaque kWh.\n3/ Le comparateur affiche des offres, souvent standards, souvent pas toutes.\n4/ Le courtier sollicite plusieurs fournisseurs pour votre profil, négocie et produit un comparatif écrit. Il ne vous facture jamais l'énergie.\n5/ Seuls 51 % des utilisateurs de comparateurs savent que certains sont rémunérés par les fournisseurs (Médiateur de l'énergie, 2025). Demandez toujours qui paie. https://cabinetms.fr/courtier-en-energie-role.html?camp=soc-x\n"},{"jour":5,"date":"2026-10-19","jour_semaine":"lundi","phase":"1 · Avant la vitrine","angle":"Lire sa facture en 5 blocs","etape":"TOFU","matrice":"Éduquer","destination":"decrypter-facture-electricite-pro.html","candidat_pub":true,"linkedin_compte":"page","visuels":{"LinkedIn":{"type":"carousel","r":"p45","note":"Exporter les 7 slides en un PDF pour le carrousel document LinkedIn.","slides":[{"k":"txt","h":"Votre facture d’électricité pro, en 5 blocs.","tone":"deep"},{"k":"bill","hl":1,"h":"Identification","p":"N° client, point de livraison, période."},{"k":"bill","hl":2,"h":"Abonnement","p":"La puissance souscrite."},{"k":"bill","hl":3,"h":"Consommation","p":"Le prix du kWh."},{"k":"bill","hl":4,"h":"Acheminement","p":"Le TURPE."},{"k":"bill","hl":5,"h":"Taxes","p":"Contributions, accise et TVA."},{"k":"end","h":"Avant de négocier une facture, il faut savoir la lire.","path":"decrypter-facture-electricite-pro"}]},"Facebook":{"type":"image","r":"p45","slides":[{"k":"bill","hl":0,"h":"Entourez ces 5 blocs sur votre facture.","p":""}]},"Instagram":{"type":"carousel","r":"p45","slides":[{"k":"txt","h":"Votre facture, en 5 blocs.","tone":"deep"},{"k":"bill","hl":1,"h":"Identification","p":"Qui, où, quelle période."},{"k":"bill","hl":2,"h":"Abonnement","p":"Votre puissance, payée chaque mois."},{"k":"bill","hl":3,"h":"Consommation","p":"Ce que vous avez vraiment consommé."},{"k":"bill","hl":4,"h":"Acheminement","p":"Le transport, identique partout."},{"k":"bill","hl":5,"h":"Taxes","p":"Fixées par la loi."}]},"X":{"type":"text"}},"post":"# J5 · lundi 19 octobre 2026 · Lire sa facture en 5 blocs\n\nPhase 1 · Avant la vitrine · TOFU · Éduquer · Gisement : pilier SEO · Candidat pub\nDestination : `decrypter-facture-electricite-pro.html`\n\n## LinkedIn (`soc-li`) · Page · carrousel PDF\n\n**Slides (7) :** 1 : « Votre facture d'électricité pro, en 5 blocs. » 2 : Identification (n° client, point de livraison, période). 3 : Abonnement (puissance souscrite). 4 : Consommation (prix du kWh). 5 : Acheminement (TURPE). 6 : Taxes, contributions, TVA. 7 : « Avant de négocier une facture, il faut savoir la lire. »\n\n**Texte :**\nLa plupart des dirigeants lisent une seule ligne de leur facture d'électricité : le total.\n\nToute facture professionnelle s'organise pourtant autour de 5 blocs : identification, abonnement, consommation, acheminement (TURPE), taxes et TVA. Les repérer prend deux minutes, et c'est ce qui permet de poser ensuite les bonnes questions : ma puissance est-elle bien calibrée ? Mon prix du kWh est-il compétitif ? Une ligne a-t-elle bougé sans raison ?\n\nPour un réseau, la même lecture sur chaque site révèle vite les écarts.\n\n→ Le guide ligne par ligne : https://cabinetms.fr/decrypter-facture-electricite-pro.html?camp=soc-li\n\n## Facebook (`soc-fb`) · image\n\n**Visuel :** facture stylisée (pas une vraie facture de fournisseur) avec 5 zones entourées au feutre de couleur, numérotées.\n\nBonne semaine à tous ☕\n\nPetit exercice du lundi : prenez votre dernière facture d'électricité et entourez ces 5 parties :\n1️⃣ vos infos (n° client, adresse)\n2️⃣ l'abonnement\n3️⃣ ce que vous avez consommé\n4️⃣ le « transport » de l'électricité\n5️⃣ les taxes\n\nVous venez de faire le plus dur ! Une question sur une ligne ? Posez-la en commentaire, on répond.\n\n👉 https://cabinetms.fr/decrypter-facture-electricite-pro.html?camp=soc-fb\n\n## Instagram (`soc-ig`) · carrousel\n\n**Slides (6) :** 1 : « Votre facture, en 5 blocs. » 2 à 6 : un bloc par slide, schéma stylisé avec la zone surlignée et une phrase de 6 mots maximum.\n\n**Légende :**\nVous lisez le total. Et le reste ?\n5 blocs, 2 minutes. Enregistrez pour votre prochaine facture.\n\n`https://cabinetms.fr/decrypter-facture-electricite-pro.html?camp=soc-ig`\n\n## X (`soc-x`) · tweet chiffre (tranchant)\n\nUne facture d'électricité pro, c'est 5 blocs. La plupart des dirigeants n'en lisent qu'un : le total.\n\nIdentification, abonnement, consommation, TURPE, taxes. Seuls deux se négocient. Lesquels ? Demain.\n\n## Variantes d'accroche (pub)\n\n- A : « Vous lisez le total de votre facture. Et le reste ? »\n- B : « Votre facture d'énergie en 5 blocs, lisible en 2 minutes. »\n"},{"jour":6,"date":"2026-10-20","jour_semaine":"mardi","phase":"1 · Avant la vitrine","angle":"Ce qui se négocie, ce qui ne bouge pas (fourniture vs TURPE et taxes)","etape":"TOFU","matrice":"Éduquer","destination":"turpe-2026-professionnels.html","candidat_pub":false,"linkedin_compte":"profil dirigeant","visuels":{"LinkedIn":{"type":"video","r":"sq","cut":"60 s, voix off sur images et rushes, sous-titres","slides":[{"k":"txt","h":"Deux lignes se négocient. Les autres, non.","tone":"deep"},{"k":"txt","h":"Négocier un bloc, pas un total.","tone":"mint"}]},"Facebook":{"type":"video","r":"v916","cut":"reprise du reel Instagram","slides":[{"k":"split"},{"k":"txt","h":"Négocier un bloc, pas un total.","tone":"mint"}]},"Instagram":{"type":"video","r":"v916","cut":"25 s, plans des surligneurs + texte à l’écran","slides":[{"k":"split"},{"k":"txt","h":"Négocier un bloc, pas un total.","tone":"mint"}]},"X":{"type":"text"}},"post":"# J6 · mardi 20 octobre 2026 · Ce qui se négocie, ce qui ne bouge pas\n\nPhase 1 · Avant la vitrine · TOFU · Éduquer · Gisement : pilier SEO\nDestination : `turpe-2026-professionnels.html`\nSources externes : CRE (accise 2026, fait n°3) ; BOFiP (TVA 20 %, fait n°4)\n\n## Montage voix off (60 s)\n\n**Voix off (script lu intégral) :**\n\nSur votre facture d'électricité, deux lignes se négocient. Les autres, non. D'abord, la part fourniture : le prix du kWh et l'abonnement. C'est là que la concurrence joue. Ensuite, tout le reste. Le TURPE est fixé par la CRE. L'accise, par la loi de finances. La TVA est à 20 % partout depuis août 2025. Donc demander « une remise sur la facture », ça ne veut rien dire. On négocie un bloc. On vérifie les autres.\n\n**Plans :**\n- 0-4 s · Image fixe · Une facture d'électricité posée sur une table, deux surligneurs à côté (vert et gris). Texte à l'écran : « 2 lignes se négocient. Les autres, non. »\n- 4-7 s · Rush 2-4 s · Le surligneur vert passe sur la ligne « fourniture ». Texte à l'écran : « Se négocie »\n- 7-11 s · Image fixe · Gros plan sur la ligne fourniture surlignée en vert.\n- 11-14 s · Rush 2-4 s · Le surligneur vert passe sur la ligne « abonnement ».\n- 14-19 s · Image fixe · La vitrine d'un commerce de quartier, enseigne allumée. Texte à l'écran : « La part fourniture : là où la concurrence joue »\n- 19-22 s · Rush 2-4 s · Le surligneur gris passe sur la ligne TURPE. Texte à l'écran : « Ne bouge pas »\n- 22-26 s · Image fixe · La ligne TURPE grisée. Texte à l'écran : « TURPE : fixé par la CRE »\n- 26-29 s · Rush 2-4 s · Le surligneur gris passe sur la ligne accise.\n- 29-33 s · Image fixe · La ligne accise grisée. Texte à l'écran : « Accise : loi de finances »\n- 33-36 s · Rush 2-4 s · Le surligneur gris passe sur la ligne TVA.\n- 36-40 s · Image fixe · La ligne TVA grisée. Texte à l'écran : « TVA : 20 % partout depuis août 2025 »\n- 40-44 s · Rush 2-4 s · Un stylo entoure le total de la facture, puis le barre. Texte à l'écran : « Une remise sur la facture ? »\n- 44-48 s · Image fixe · La facture entière : un bloc vert, des blocs gris.\n- 48-51 s · Rush 2-4 s · Une main rebouche le surligneur vert et le pose sur la facture.\n- 51-55 s · Image fixe · Le bloc vert seul, le reste estompé. Texte à l'écran : « On négocie un bloc. On vérifie les autres. »\n- 55-60 s · Image fixe · Carton final : logo M&S Strategy. Texte à l'écran : « Négocier un bloc, pas un total. »\n\n## LinkedIn (`soc-li`) · Profil dirigeant · vidéo native 45-90 s\n\n**Montage :** horizontal 16:9 ou carré, 60 s, sous-titres.\n\n**Texte :**\n« Vous pouvez me faire une remise sur ma facture ? »\n\nC'est la demande que j'entends le plus, et elle part d'un malentendu. Sur une facture d'électricité pro, une seule partie se négocie vraiment : la fourniture (prix du kWh et abonnement associé).\n\nLe reste est fixé ailleurs. Le TURPE, par la CRE, identique chez tous les fournisseurs. L'accise, par la loi de finances (30,62 €/MWh hors TVA jusqu'à 36 kVA depuis février 2026, selon la CRE). La TVA, à 20 % sur toute la facture depuis le 1er août 2025.\n\nOn négocie un bloc, et on vérifie les autres. C'est moins spectaculaire qu'une remise, et beaucoup plus efficace.\n\n→ https://cabinetms.fr/turpe-2026-professionnels.html?camp=soc-li\n\n## Facebook (`soc-fb`) · reel (reprise Instagram)\n\nSur votre facture d'électricité, tout ne se négocie pas 👇\n\n✅ Le prix de l'électricité et l'abonnement : oui !\n❌ Le « transport » (TURPE) et les taxes : non, c'est pareil chez tout le monde.\n\nÇa évite de perdre du temps sur ce qui ne bougera pas. Vous le saviez ?\n\n👉 https://cabinetms.fr/turpe-2026-professionnels.html?camp=soc-fb\n\n## Instagram (`soc-ig`) · reel\n\n**Montage :** vertical, 25 s, uniquement les plans des surligneurs + texte à l'écran « Se négocie » / « Ne bouge pas ».\n\n**Légende :**\nVert : se négocie. Gris : ne bouge pas.\nNégocier une facture, c'est négocier un bloc, pas un total.\n\n`https://cabinetms.fr/turpe-2026-professionnels.html?camp=soc-ig`\n\n## X (`soc-x`) · thread (pédagogue)\n\n1/ « Une remise sur ma facture d'électricité ? » Ça n'existe pas vraiment. Explication en 4 tweets.\n2/ Se négocie : la fourniture, c'est-à-dire le prix du kWh et l'abonnement. C'est là que la mise en concurrence joue.\n3/ Ne se négocie pas : le TURPE (fixé par la CRE, identique chez tous les fournisseurs), l'accise (30,62 €/MWh HT jusqu'à 36 kVA depuis février 2026, CRE), la TVA (20 % partout depuis août 2025).\n4/ On négocie un bloc, on vérifie les autres. https://cabinetms.fr/turpe-2026-professionnels.html?camp=soc-x\n"},{"jour":7,"date":"2026-10-21","jour_semaine":"mercredi","phase":"1 · Avant la vitrine","angle":"Un courtier gratuit, ça cache quoi ? La réponse honnête","etape":"MOFU","matrice":"Convaincre","destination":"comment-ca-marche.html","candidat_pub":true,"linkedin_compte":"profil dirigeant","warn":"À valider avant publication : la commission « identique quel que soit le fournisseur » est encore [À CONFIRMER] dans l’étude du 9 octobre. Si ce n’est pas confirmé, retirer la slide 4 Instagram et la phrase correspondante sur LinkedIn et Facebook.","visuels":{"LinkedIn":{"type":"text"},"Facebook":{"type":"text"},"Instagram":{"type":"carousel","r":"p45","slides":[{"k":"txt","h":"Gratuit, ça cache quoi ?","tone":"deep"},{"k":"txt","h":"Une commission. Payée par le fournisseur choisi."},{"k":"clip","desc":"Un conseiller pose trois cartes « Fournisseur A / B / C » et une étiquette identique sur chacune."},{"k":"txt","h":"Même commission, quel que soit le fournisseur.","tone":"mint"},{"k":"end","h":"La question à poser à tout courtier : comment êtes-vous payé ?","path":"comment-ca-marche"}]},"X":{"type":"text"}},"post":"# J7 · mercredi 21 octobre 2026 · Un courtier gratuit, ça cache quoi ?\n\nPhase 1 · Avant la vitrine · MOFU · Convaincre · Gisement : preuve sociale (cycle 1, L4) · Candidat pub\nDestination : `comment-ca-marche.html`\nSources externes : Médiateur national de l'énergie, rapport 2025 (fait n°6)\n\n## LinkedIn (`soc-li`) · Profil dirigeant · texte long (opinion)\n\n« Si c'est gratuit, c'est vous le produit. »\n\nOn me la fait régulièrement. La question est légitime, alors je vais y répondre sans détour.\n\nNotre étude ne coûte rien au client parce que nous sommes rémunérés par le fournisseur retenu, sous forme de commission. C'est le modèle courant du courtage.\n\nLa vraie question n'est donc pas « qui paie ? », mais « est-ce que ça biaise le conseil ? ». Et là, je comprends la méfiance. Dans son rapport 2025, le Médiateur de l'énergie relève que seuls 51 % des utilisateurs de comparateurs savent que certains peuvent être rémunérés par les fournisseurs. La moitié des gens ne se posent même pas la question.\n\nChez nous, la commission est standardisée et identique quel que soit le fournisseur. Que le client choisisse l'offre A, l'offre B ou reste chez son fournisseur, notre intérêt ne change pas. C'est pour ça que nous pouvons lui conseiller de ne rien changer quand c'est la bonne réponse.\n\nMon conseil, valable avec nous comme avec n'importe quel intermédiaire : demandez comment il est payé, et si sa rémunération varie selon le fournisseur. S'il hésite, vous avez votre réponse.\n\n→ https://cabinetms.fr/comment-ca-marche.html?camp=soc-li\n\n## Facebook (`soc-fb`) · texte + question\n\n« Un courtier gratuit ? Il y a forcément un piège… »\n\nOn l'entend souvent, et c'est normal de se méfier ! Voici la vérité toute simple : c'est le fournisseur choisi qui nous paie, et on touche la même chose quel que soit le fournisseur. Donc aucune raison de vous en pousser un. Et vous pouvez toujours dire non.\n\nEt vous, vous avez déjà eu affaire à un courtier ? Plutôt bonne ou mauvaise expérience ? On vous lit 👇\n\n👉 https://cabinetms.fr/comment-ca-marche.html?camp=soc-fb\n\n## Instagram (`soc-ig`) · carrousel mixte (images + clip)\n\n**Slides (5) :** 1 (image) : « Gratuit, ça cache quoi ? » 2 (image) : « Une commission. Payée par le fournisseur choisi. » 3 (clip 6 s) : un conseiller qui pose trois cartes « Fournisseur A / B / C » et une étiquette identique sur chacune. 4 (image) : « Même commission, quel que soit le fournisseur. » 5 (image) : « La question à poser à tout courtier : comment êtes-vous payé ? »\n\n**Légende :**\nGratuit ? Oui. Et voici exactement comment nous sommes payés.\nPosez la question à tout intermédiaire : la réponse dit tout.\n\n`https://cabinetms.fr/comment-ca-marche.html?camp=soc-ig`\n\n## X (`soc-x`) · tweet prise de position (tranchant)\n\nSeuls 51 % des utilisateurs de comparateurs d'énergie savent que certains sont payés par les fournisseurs (Médiateur de l'énergie, 2025).\n\nUn intermédiaire qui ne dit pas clairement comment il est rémunéré ne mérite pas votre facture.\n\n## Variantes d'accroche (pub)\n\n- A : « Gratuit ? Oui. Voici exactement comment nous sommes payés. »\n- B : « La moitié des gens ne savent pas qui paie leur comparateur d'énergie. Posez la question. »\n"},{"jour":8,"date":"2026-10-22","jour_semaine":"jeudi","phase":"1 · Avant la vitrine","angle":"Restaurateurs : le froid tourne même quand vous fermez","etape":"TOFU","matrice":"Éduquer","destination":"consommation-energie-restaurant.html","candidat_pub":false,"linkedin_compte":"page","warn":"Les chiffres « 40 à 50 % » (cuisine) et « 3 à 5 % par degré » ne citent pas de source dans le post. Ajouter la source (ADEME ou guide utilisé) avant publication, comme l’exige l’étude.","visuels":{"LinkedIn":{"type":"carousel","r":"p45","note":"Exporter les 6 slides en un PDF pour le carrousel document LinkedIn.","slides":[{"k":"txt","h":"Un restaurant fermé consomme encore.","tone":"deep"},{"k":"num","big":"40 à 50 %","p":"de la consommation part souvent en cuisine."},{"k":"txt","h":"Le froid tourne 24h/24, jours de fermeture compris."},{"k":"num","big":"−1 °C","p":"sur la consigne = +3 à 5 % de consommation."},{"k":"txt","h":"Qui vérifie les consignes, établissement par établissement ?","tone":"mint"},{"k":"end","h":"Avant de parler contrat, réglez ce qui se règle.","path":"consommation-energie-restaurant"}]},"Facebook":{"type":"image","r":"p45","slides":[{"k":"photo","desc":"Thermostat de chambre froide dans une cuisine pro (Savee).","h":""}]},"Instagram":{"type":"image","r":"p45","slides":[{"k":"photo","desc":"Gros plan du thermostat de chambre froide.","h":"−1 °C = +3 à 5 %"}]},"X":{"type":"image","r":"h169","slides":[{"k":"num","big":"3 à 5 %","p":"de consommation en plus par degré de moins sur une chambre froide."}]}},"post":"# J8 · jeudi 22 octobre 2026 · Restaurateurs : le froid tourne même quand vous fermez\n\nPhase 1 · Avant la vitrine · TOFU · Éduquer · Gisement : pilier SEO\nDestination : `consommation-energie-restaurant.html`\n\n## LinkedIn (`soc-li`) · Page · carrousel PDF\n\n**Slides (6) :** 1 : « Un restaurant fermé consomme encore. » 2 : « Cuisine : souvent 40 à 50 % de la consommation. » 3 : « Froid : 24h/24, jours de fermeture compris. » 4 : « −1 °C sur la consigne = +3 à 5 % de consommation. » 5 : « Qui vérifie les consignes, établissement par établissement ? » 6 : « Avant de parler contrat, réglez ce qui se règle. »\n\n**Texte :**\nPour un groupe de restaurants, le froid est le poste qu'on oublie parce qu'il ne s'arrête jamais.\n\nChambres froides, congélateurs, vitrines réfrigérées : ils tournent 24h/24. Et un réglage revient dans tous les audits : la consigne de température. Chaque degré de moins que nécessaire fait grimper la consommation de 3 à 5 %.\n\nLa question pour une direction de réseau est organisationnelle : qui vérifie les consignes, dans chaque établissement, et à quelle fréquence ?\n\n→ https://cabinetms.fr/consommation-energie-restaurant.html?camp=soc-li\n\n## Facebook (`soc-fb`) · image\n\n**Visuel :** photo réelle (Savee) d'un thermostat de chambre froide dans une cuisine pro.\n\nRestaurateurs, petite question entre nous 🍽️\n\nVotre chambre froide est réglée à combien ? Chaque degré plus froid que nécessaire, c'est 3 à 5 % de consommation en plus. Et elle tourne même les jours de fermeture !\n\nUn coup d'œil au thermostat cette semaine, ça ne coûte rien.\n\n👉 https://cabinetms.fr/consommation-energie-restaurant.html?camp=soc-fb\n\n## Instagram (`soc-ig`) · image unique\n\n**Visuel :** gros plan du thermostat. Texte : « −1 °C = +3 à 5 % »\n\n**Légende :**\nLe froid ne prend jamais de jour de repos.\nRéglez la consigne au plus juste, pas au plus bas.\n\n`https://cabinetms.fr/consommation-energie-restaurant.html?camp=soc-ig`\n\n## X (`soc-x`) · visuel chiffre\n\n**Visuel :** « 3 à 5 % » en très grand, légende : « de consommation en plus par degré de moins sur une chambre froide. »\n\nRestauration : chaque degré de moins sur la consigne d'une chambre froide, c'est 3 à 5 % de consommation en plus.\n\nLe levier le plus simple à corriger avant même de parler contrat.\n\nhttps://cabinetms.fr/consommation-energie-restaurant.html?camp=soc-x\n"},{"jour":9,"date":"2026-10-23","jour_semaine":"vendredi","phase":"1 · Avant la vitrine","angle":"Prix fixe ou indexé, avant une saison chargée","etape":"TOFU","matrice":"Éduquer","destination":"prix-fixe-vs-indexe-electricite-pro.html","candidat_pub":false,"linkedin_compte":"page","visuels":{"LinkedIn":{"type":"video","r":"sq","cut":"50 s, sous-titres","slides":[{"k":"txt","h":"Fixe ou indexé ? Mauvaise question.","tone":"deep"},{"k":"txt","h":"Choisissez selon votre trésorerie, pas selon la météo des marchés.","tone":"mint"}]},"Facebook":{"type":"video","r":"v916","cut":"40 s, sous-titres","slides":[{"k":"txt","h":"Cadenas ou balance ?","tone":"deep"},{"k":"txt","h":"Choisissez selon votre trésorerie, pas selon la météo des marchés.","tone":"mint"}]},"Instagram":{"type":"video","r":"v916","cut":"20 s : cadenas, balance, texte final","slides":[{"k":"txt","h":"Fixe ou indexé ? Mauvaise question.","tone":"deep"},{"k":"txt","h":"Choisissez selon votre trésorerie, pas selon la météo des marchés.","tone":"mint"}]},"X":{"type":"video","r":"h169","cut":"30 s (reprise)","slides":[{"k":"txt","h":"Fixe ou indexé ? Mauvaise question.","tone":"deep"},{"k":"txt","h":"Choisissez selon votre trésorerie, pas selon la météo des marchés.","tone":"mint"}]}},"post":"# J9 · vendredi 23 octobre 2026 · Prix fixe ou indexé, avant une saison chargée\n\nPhase 1 · Avant la vitrine · TOFU · Éduquer · Gisement : pilier SEO\nDestination : `prix-fixe-vs-indexe-electricite-pro.html`\nSources externes : CRE (fin de l'ARENH, fait n°1)\n\n## Montage voix off (50 s)\n\n**Voix off (script lu intégral) :**\n\nFixe ou indexé ? Mauvaise question. Le fixe bloque le prix du kWh pour 1 à 3 ans. Visibilité totale. Mais au niveau du jour où vous signez. L'indexé suit le marché. Les baisses en direct. Les hausses aussi, souvent sans plafond. Depuis la fin de l'ARENH, au 31 décembre 2025, les prix suivent davantage le marché. La bonne question, c'est : votre trésorerie peut-elle encaisser une hausse en plein hiver ? Choisissez selon votre trésorerie, pas selon la météo des marchés.\n\n**Plans :**\n- 0-3 s · Rush 2-4 s · Un cadenas fermé et une balance de cuisine posés sur le comptoir d'une boutique. Texte à l'écran : « Fixe ou indexé ? Mauvaise question. »\n- 3-7 s · Image fixe · Le cadenas fermé en gros plan. Texte à l'écran : « Fixe : le prix du kWh bloqué pour 1 à 3 ans »\n- 7-10 s · Rush 2-4 s · Une main referme le cadenas d'un clic.\n- 10-14 s · Image fixe · Un contrat posé sous le cadenas, un stylo à côté. Texte à l'écran : « Au niveau du jour où vous signez »\n- 14-18 s · Rush 2-4 s · Une main signe le bas d'un contrat.\n- 18-21 s · Rush 2-4 s · L'aiguille de la balance oscille. Texte à l'écran : « Indexé : suit le marché »\n- 21-25 s · Image fixe · Le cadran de la balance, aiguille basse. Texte à l'écran : « Les baisses en direct »\n- 25-28 s · Rush 2-4 s · L'aiguille remonte brusquement. Texte à l'écran : « Les hausses aussi »\n- 28-33 s · Image fixe · L'aiguille bloquée en haut du cadran. Texte à l'écran : « Souvent sans plafond »\n- 33-37 s · Image fixe · Un calendrier ouvert sur le 31 décembre 2025. Texte à l'écran : « Fin de l'ARENH : 31/12/2025 »\n- 37-40 s · Rush 2-4 s · Une courbe de prix de gros qui défile sur un écran.\n- 40-45 s · Image fixe · Une vitrine de boutique embuée en hiver, le tiroir-caisse entrouvert au premier plan. Texte à l'écran : « Votre trésorerie encaisse-t-elle une hausse en plein hiver ? »\n- 45-50 s · Image fixe · Carton final : logo M&S Strategy. Texte à l'écran : « Choisissez selon votre trésorerie, pas selon la météo des marchés. »\n\n## LinkedIn (`soc-li`) · Page · vidéo native 45-90 s\n\n**Montage :** carré, 50 s, sous-titres.\n\n**Texte :**\nFixe ou indexé : le débat revient à chaque renouvellement, et il est souvent mal posé.\n\n**Le prix fixe** fige le prix du kWh (hors taxes et TURPE) pour 1 à 3 ans. Visibilité totale, mais au niveau du jour de la signature.\n\n**L'indexé** suit un indice de marché. Il fait profiter des baisses et expose aux hausses, sans plafond dans la plupart des offres standards.\n\nDepuis la fin de l'ARENH au 31 décembre 2025 (CRE), une part plus importante des prix dépend du marché de gros. Le bon choix dépend donc moins d'une prévision que du profil de l'entreprise : marge serrée, peu d'amortisseur ? La visibilité du fixe a de la valeur. Trésorerie solide ? L'indexé se discute.\n\n→ https://cabinetms.fr/prix-fixe-vs-indexe-electricite-pro.html?camp=soc-li\n\n## Facebook (`soc-fb`) · vidéo (reprise)\n\nPrix fixe ou prix qui bouge ? 🔒⚖️\n\nEn 40 secondes, avec un cadenas et une balance de cuisine, on vous explique la différence. Et surtout comment choisir : tout dépend de ce que votre trésorerie peut encaisser en plein hiver.\n\nVous êtes plutôt cadenas ou balance ? 😄\n\n👉 https://cabinetms.fr/prix-fixe-vs-indexe-electricite-pro.html?camp=soc-fb\n\n## Instagram (`soc-ig`) · reel\n\n**Montage :** vertical, 20 s : cadenas, puis balance, puis texte final. Accroche à l'écran : « Fixe ou indexé ? Mauvaise question. »\n\n**Légende :**\nCadenas ou balance ?\nLe bon contrat dépend de votre trésorerie, pas de la météo des marchés.\n\n`https://cabinetms.fr/prix-fixe-vs-indexe-electricite-pro.html?camp=soc-ig`\n\n## X (`soc-x`) · clip vidéo 30 s (reprise)\n\nFixe ou indexé ? Depuis la fin de l'ARENH (31/12/2025, CRE), les prix suivent davantage le marché de gros.\n\nLa question n'est plus « le marché va-t-il baisser ? » mais « ma trésorerie encaisse-t-elle une hausse ? ».\n\nhttps://cabinetms.fr/prix-fixe-vs-indexe-electricite-pro.html?camp=soc-x\n"},{"jour":10,"date":"2026-10-24","jour_semaine":"samedi","phase":"1 · Avant la vitrine","angle":"Boulangers : le four, premier poste de la facture","etape":"TOFU","matrice":"Éduquer","destination":"economies-energie-boulangerie.html","candidat_pub":false,"linkedin_compte":"page","visuels":{"LinkedIn":{"type":"image","r":"p45","slides":[{"k":"list","h":"Les 3 postes d’une boulangerie","items":["Le four","Le froid","L’éclairage et le chauffage"],"p":"Le gisement le plus accessible : les habitudes."}]},"Facebook":{"type":"image","r":"p45","slides":[{"k":"photo","desc":"Fournil d’une boulangerie montpelliéraine à l’aube, porte du four ouverte (avec l’accord de l’artisan).","h":""}]},"Instagram":{"type":"carousel","r":"p45","slides":[{"k":"photo","desc":"Le fournil à l’aube.","h":"Le premier poste de votre facture."},{"k":"txt","h":"Fournées regroupées.","tone":"deep"},{"k":"txt","h":"Joints vérifiés."},{"k":"end","h":"Consignes ajustées. Avant de changer de four, changez d’habitudes.","path":"economies-energie-boulangerie"}]},"X":{"type":"text"}},"post":"# J10 · samedi 24 octobre 2026 · Boulangers : le four, premier poste de la facture\n\nPhase 1 · Avant la vitrine · TOFU · Éduquer · Gisement : pilier SEO\nDestination : `economies-energie-boulangerie.html`\n\n## LinkedIn (`soc-li`) · Page · image / infographie\n\n**Visuel :** infographie « Les 3 postes d'une boulangerie » : four, froid, éclairage et chauffage. Sans pourcentage.\n\n**Texte :**\nPour les réseaux de boulangeries, le gisement d'économies le plus accessible se trouve dans les habitudes, pas dans les équipements.\n\nLe four est presque toujours le premier poste de consommation, au gaz comme à l'électricité. Et sa consommation dépend fortement des usages : nombre de préchauffages, fournées dispersées, ouvertures de porte, état des joints.\n\nRegrouper les fournées, vérifier l'étanchéité, ajuster les consignes selon les produits : ces gestes se standardisent d'un point de vente à l'autre, sans investissement. Et quand un remplacement devient inévitable, les certificats d'économies d'énergie peuvent, sous conditions, en financer une partie.\n\n→ https://cabinetms.fr/economies-energie-boulangerie.html?camp=soc-li\n\n## Facebook (`soc-fb`) · photo locale\n\n**Visuel :** photo réelle d'un fournil de boulangerie montpelliéraine à l'aube, porte du four ouverte (avec l'accord de l'artisan).\n\nBon samedi aux boulangers qui sont debout depuis 4h ! 🥖\n\nVotre four, c'est votre premier poste d'énergie. Trois réflexes qui ne coûtent rien :\n• regrouper les fournées pour préchauffer moins souvent ;\n• vérifier les joints de porte ;\n• ajuster la température selon les produits.\n\nVous avez un autre truc à partager avec les collègues ? Dites-le en commentaire 👇\n\n👉 https://cabinetms.fr/economies-energie-boulangerie.html?camp=soc-fb\n\n## Instagram (`soc-ig`) · carrousel\n\n**Slides (4) :** 1 : photo du fournil, « Le premier poste de votre facture. » 2 : « Fournées regroupées. » 3 : « Joints vérifiés. » 4 : « Consignes ajustées. Avant de changer de four, changez d'habitudes. »\n\n**Légende :**\nVotre four travaille dur. Faites-le travailler moins souvent pour rien.\n\n`https://cabinetms.fr/economies-energie-boulangerie.html?camp=soc-ig`\n\n## X (`soc-x`) · tweet (tranchant)\n\nBoulangerie : le premier poste d'énergie, c'est le four. Et sa consommation dépend plus des habitudes que de l'équipement.\n\nAvant de changer de four, changez de planning de fournées.\n"}]}</script>
+<script>
+/* ════════════════════════════════════════
+   STUDIO J1–J10 (rendu partagé)
+
+   Inliné par scripts/build-studio.mjs dans approbation.html et dans
+   l'artefact « Campagne Pas de -50 % ». Les deux affichent donc exactement
+   le même onglet, à partir des mêmes données
+   (content/campagne-q4-2026-commercants/studio/).
+
+   Studio.mount(host, data, options)
+     data    : { jours: [...] } tel que produit par le build (chaque jour
+               porte son post Markdown dans `post`)
+     options : mediaBase   préfixe des photos et vidéos ('approbation-media/'
+                           sur le site, '' dans l'artefact)
+               storageKey  clé localStorage du jour affiché
+               intro       texte d'introduction
+               decorate    (article, { id, plat, jour }) => void, pour
+                           ajouter un bloc sous chaque réseau (ex. le vote)
+               dayBadge    (jour) => texte court affiché sur le bouton du jour
+   ════════════════════════════════════════ */
+(function () {
+  const PLATS = ['LinkedIn', 'Facebook', 'Instagram', 'X'];
+  const CODE = { LinkedIn: 'LI', Facebook: 'FB', Instagram: 'IG', X: 'X' };
+  const CAMP = { LinkedIn: 'li', Facebook: 'fb', Instagram: 'ig', X: 'x' };
+  const COLOR = { LinkedIn: '--st-li', Facebook: '--st-fb', Instagram: '--st-ig', X: '--st-x' };
+  const RATIO = { p45: '4:5 · 1080 × 1350 px', sq: '1:1 · 1080 × 1080 px', v916: '9:16 · 1080 × 1920 px', h169: '16:9 · 1600 × 900 px' };
+  const ASPECT = { p45: 4 / 5, sq: 1, v916: 9 / 16, h169: 16 / 9 };
+  const BILL = ['Identification', 'Abonnement', 'Consommation', 'Acheminement', 'Taxes'];
+  const MOIS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  const BRAND = 'M&amp;S Strategy';
+
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const dshort = (iso) => { const [, m, d] = iso.split('-'); return `${+d} ${MOIS[m - 1]}`; };
+  const hs = (s) => { const n = s.length; return n < 24 ? 's1' : n < 50 ? 's2' : n < 90 ? 's3' : 's4'; };
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* stockage indisponible */ } }
+  };
+
+  // Markdown minimal des posts : paragraphes, listes, gras, code, liens.
+  // Les liens relatifs (fichiers du dépôt) restent du texte.
+  function inline(s) {
+    return esc(s)
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, h) => /^https?:/.test(h) ? `<a href="${h}" target="_blank" rel="noopener">${t}</a>` : t)
+      .replace(/(^|[\s(>])(https?:\/\/[^\s<)]+)/g, (m, pre, u) => `${pre}<a href="${u}" target="_blank" rel="noopener">${u}</a>`);
+  }
+  function md(src) {
+    return src.trim().split(/\n{2,}/).map((block) => {
+      const lines = block.split('\n');
+      if (lines.every((l) => /^\s*[-*] /.test(l))) return `<ul>${lines.map((l) => `<li>${inline(l.replace(/^\s*[-*] /, ''))}</li>`).join('')}</ul>`;
+      if (lines.every((l) => /^\s*\d+[.)] /.test(l))) return `<ol>${lines.map((l) => `<li>${inline(l.replace(/^\s*\d+[.)] /, ''))}</li>`).join('')}</ol>`;
+      if (lines.every((l) => /^>/.test(l))) return `<blockquote><p>${lines.map((l) => inline(l.replace(/^>\s?/, ''))).join('<br>')}</p></blockquote>`;
+      return `<p>${lines.map(inline).join('<br>')}</p>`;
+    }).join('');
+  }
+
+  // Un post = un titre, des métadonnées, puis une section ## par réseau.
+  function parsePost(src) {
+    const parts = src.split(/^## /m);
+    const head = parts[0].split('\n');
+    const secs = parts.slice(1).map((p) => {
+      const nl = p.indexOf('\n');
+      const h = p.slice(0, nl).trim();
+      const body = p.slice(nl + 1).trim();
+      const plat = PLATS.find((k) => h.startsWith(k + ' ('));
+      const kind = plat ? 'plat' : (/^(Tournage|Montage voix off)/.test(h) ? 'shoot' : 'other');
+      const fm = h.includes('·') ? h.split('·').slice(1).join('·').trim() : '';
+      return { h, body, plat, kind, fm };
+    });
+    return { title: head[0].replace(/^#\s*/, ''), secs };
+  }
+
+  // Texte à publier : on retire les consignes de visuel et les intitulés.
+  function caption(body) {
+    return body.split(/\n{2,}/)
+      .filter((p) => !/^\*\*(Visuel|Slides|Montage)/.test(p.trim()))
+      .map((p) => p.replace(/^\*\*(Texte|Légende) :\*\*\n?/, '').replace(/`(https?:[^`]+)`/g, '$1'))
+      .join('\n\n').trim();
+  }
+
+  function slide(s, r, i, n, plat, base) {
+    const url = (p) => `cabinetms.fr/${p}.html?camp=soc-${CAMP[plat]}`;
+    const top = `<div class="pv-top"><span>${BRAND}</span><span>${n > 1 ? `${i + 1}/${n}` : 'Pas de -50 %'}</span></div>`;
+    const bot = `<div class="pv-bot"><span>cabinetms.fr</span><span>${n > 1 && i < n - 1 ? '→' : ''}</span></div>`;
+    let tone = '';
+    let inner = '';
+    switch (s.k) {
+      case 'num': inner = `<div class="pv-big${s.big.length > 5 ? ' long' : ''}">${esc(s.big)}</div><p class="pv-p">${esc(s.p)}</p>${s.src ? `<p class="pv-src">${esc(s.src)}</p>` : ''}`; break;
+      case 'txt': tone = s.tone || ''; inner = `<p class="pv-h ${hs(s.h)}">${esc(s.h)}</p>`; break;
+      case 'strike': inner = `<div class="pv-strike">-50 %</div><p class="pv-h ${hs(s.p)}">${esc(s.p)}</p>${s.path ? `<p class="pv-url">${esc(url(s.path))}</p>` : ''}`; break;
+      case 'list': inner = `<p class="pv-h s3">${esc(s.h)}</p><ol class="pv-ol">${s.items.map((t, j) => `<li><i>0${j + 1}</i>${esc(t)}</li>`).join('')}</ol>${s.p ? `<p class="pv-p">${esc(s.p)}</p>` : ''}`; break;
+      case 'bill': inner = `<p class="pv-h s4">${s.hl ? `<span style="color:var(--pv-teal)">${s.hl}.</span> ` : ''}${esc(s.h)}</p><div class="pv-bill${s.hl ? '' : ' all'}">${BILL.map((b, j) => `<div class="z${s.hl === j + 1 ? ' on' : ''}"><i>${j + 1}</i><span>${b}</span></div>`).join('')}</div>${s.p ? `<p class="pv-p">${esc(s.p)}</p>` : ''}`; break;
+      case 'split': tone = 'deep'; inner = '<p class="pv-h s3">Sur votre facture :</p><div class="pv-split"><div class="go"><b>Se négocie</b>Prix du kWh<br>Abonnement</div><div class="st"><b>Ne bouge pas</b>TURPE<br>Accise<br>TVA 20 %</div></div>'; break;
+      case 'photo': tone = s.src ? 'photo has-img' : 'photo'; inner = `${s.src ? '' : `<div class="pv-ph"><b>Photo à placer</b>${esc(s.desc)}</div>`}${s.h ? `<p class="pv-h ${hs(s.h)}">${esc(s.h)}</p>` : ''}`; break;
+      case 'end': tone = 'deep'; inner = `<p class="pv-h ${hs(s.h)}">${esc(s.h)}</p><span class="pv-cta">${plat === 'Instagram' ? 'Lien en bio' : 'En savoir plus'}</span><p class="pv-url">${esc(url(s.path))}</p>`; break;
+      case 'clip': tone = 'photo'; inner = `<div class="pv-ph"><b>Clip 6 s à tourner</b>${esc(s.desc)}</div>`; break;
+    }
+    const bg = s.k === 'photo' && s.src ? ` style="background-image:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,0) 30%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55)),url('${base}${s.src}')"` : '';
+    return `<div class="pv r-${r}${tone ? ' t-' + tone.split(' ').join(' t-') : ''}"${bg}>${top}<div class="pv-in">${inner}</div>${bot}</div>`;
+  }
+
+  /* ---------- Visionneuse plein écran ---------- */
+  let lb = null;
+  const view = { items: [], i: 0, title: '', back: null };
+
+  function lightbox() {
+    if (lb) return lb;
+    lb = document.createElement('div');
+    lb.className = 'lb studio';
+    lb.hidden = true;
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-label', 'Visuel en grand');
+    lb.innerHTML = `<div class="lb-bar"><span class="lb-title"></span><span class="lb-count"></span>
+      <button type="button" class="lb-b lb-fs">Plein écran</button><button type="button" class="lb-b lb-close" aria-label="Fermer">Fermer ✕</button></div>
+      <div class="lb-stage"><button type="button" class="lb-nav lb-prev" aria-label="Précédent">‹</button><div class="lb-frame"></div><button type="button" class="lb-nav lb-next" aria-label="Suivant">›</button></div>
+      <div class="lb-dots" aria-hidden="true"></div>`;
+    document.body.append(lb);
+    const fs = lb.querySelector('.lb-fs');
+    if (!document.fullscreenEnabled) fs.hidden = true;
+    fs.addEventListener('click', () => {
+      try {
+        if (document.fullscreenElement) document.exitFullscreen();
+        else lb.requestFullscreen().catch(() => { fs.hidden = true; });
+      } catch (e) { fs.hidden = true; }
+    });
+    document.addEventListener('fullscreenchange', () => { fs.textContent = document.fullscreenElement ? 'Quitter le plein écran' : 'Plein écran'; });
+    lb.querySelector('.lb-close').addEventListener('click', close);
+    lb.querySelector('.lb-prev').addEventListener('click', () => go(-1));
+    lb.querySelector('.lb-next').addEventListener('click', () => go(1));
+    lb.querySelector('.lb-stage').addEventListener('click', (e) => { if (e.target.classList.contains('lb-stage')) close(); });
+    let x0 = null;
+    lb.addEventListener('pointerdown', (e) => { x0 = e.target.closest('video') ? null : e.clientX; });
+    lb.addEventListener('pointerup', (e) => { if (x0 !== null && Math.abs(e.clientX - x0) > 50) go(e.clientX < x0 ? 1 : -1); x0 = null; });
+    document.addEventListener('keydown', (e) => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape' && !document.fullscreenElement) close();
+      else if (e.key === 'ArrowLeft') go(-1);
+      else if (e.key === 'ArrowRight') go(1);
+      else if (e.key === 'Tab') { // garde le focus dans la visionneuse
+        const f = [...lb.querySelectorAll('button:not([hidden]):not(:disabled), video')];
+        const k = f.indexOf(document.activeElement);
+        if (e.shiftKey && k <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+        else if (!e.shiftKey && k === f.length - 1) { e.preventDefault(); f[0].focus(); }
+      }
+    });
+    window.addEventListener('resize', () => { if (!lb.hidden) size(); });
+    return lb;
+  }
+
+  function size() {
+    const it = view.items[view.i];
+    const frame = lb.querySelector('.lb-frame');
+    const stage = lb.querySelector('.lb-stage');
+    const narrow = window.innerWidth <= 600;
+    const w = stage.clientWidth - (narrow ? 24 : 140);
+    const h = stage.clientHeight - (narrow ? 72 : 24);
+    frame.style.width = `${Math.max(160, Math.floor(Math.min(w, h * ASPECT[it.r])))}px`;
+  }
+
+  function draw() {
+    const it = view.items[view.i];
+    const frame = lb.querySelector('.lb-frame');
+    frame.innerHTML = it.video
+      ? `<video src="${it.video}" controls autoplay playsinline style="aspect-ratio:${ASPECT[it.r]}"></video>`
+      : it.html;
+    lb.querySelector('.lb-title').innerHTML = `<b>${esc(view.title)}</b> · ${esc(it.label)}`;
+    lb.querySelector('.lb-count').textContent = view.items.length > 1 ? `${view.i + 1} / ${view.items.length}` : '';
+    lb.querySelector('.lb-prev').disabled = view.i === 0;
+    lb.querySelector('.lb-next').disabled = view.i === view.items.length - 1;
+    lb.querySelectorAll('.lb-nav').forEach((b) => { b.hidden = view.items.length < 2; });
+    lb.querySelector('.lb-dots').innerHTML = view.items.length > 1 ? view.items.map((_, j) => `<i class="${j === view.i ? 'on' : ''}"></i>`).join('') : '';
+    size();
+  }
+
+  function go(step) {
+    const j = view.i + step;
+    if (j < 0 || j >= view.items.length) return;
+    view.i = j;
+    draw();
+  }
+
+  function open(items, i, title) {
+    lightbox();
+    document.querySelectorAll('.st-video').forEach((v) => v.pause());
+    Object.assign(view, { items, i, title, back: document.activeElement });
+    lb.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    draw();
+    lb.querySelector('.lb-close').focus();
+  }
+
+  function close() {
+    if (document.fullscreenElement) document.exitFullscreen();
+    lb.querySelector('.lb-frame').innerHTML = ''; // coupe la vidéo
+    lb.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (view.back) view.back.focus();
+  }
+
+  /* ---------- Onglet ---------- */
+  function mount(host, data, options) {
+    const opt = Object.assign({ mediaBase: '', storageKey: 'studio-day', intro: '' }, options);
+    const JOURS = data.jours;
+    let day = store.get(opt.storageKey);
+    if (!JOURS.some((j) => j.date === day)) day = JOURS[0].date;
+    let galleries = {};
+
+    function render() {
+      const it = JOURS.find((j) => j.date === day);
+      const post = parsePost(it.post);
+      const shoot = post.secs.find((s) => s.kind === 'shoot');
+      galleries = {};
+      const days = JOURS.map((j) => {
+        const badge = opt.dayBadge ? opt.dayBadge(j) : '';
+        return `<button type="button" data-st-day="${j.date}" aria-pressed="${j.date === day}"><b>J${j.jour} · ${dshort(j.date)}</b><span>${esc(j.angle)}</span>${badge ? `<em>${esc(badge)}</em>` : ''}</button>`;
+      }).join('');
+
+      const nets = post.secs.filter((s) => s.plat).map((s) => {
+        const v = it.visuels[s.plat] || { type: 'text' };
+        const id = `J${it.jour}-${CODE[s.plat]}`;
+        let vis;
+        if (v.type === 'text') {
+          vis = `<div class="st-textonly">Post texte, pas de visuel à produire. ${s.plat === 'X' && /^1\//m.test(s.body) ? 'Publier en thread, un message par numéro.' : 'Publier le texte tel quel.'}</div>`;
+        } else {
+          const n = v.slides.length;
+          const lab = (j) => v.type === 'video' ? (j === 0 ? 'Couverture / 1re image' : 'Carton final') : v.type === 'carousel' ? `Slide ${j + 1}` : 'Visuel';
+          const items = [];
+          if (v.file) items.push({ video: opt.mediaBase + v.file, r: v.r, label: 'Vidéo finale' });
+          v.slides.forEach((sl, j) => items.push({ html: slide(sl, v.r, j, v.type === 'carousel' ? n : 1, s.plat, opt.mediaBase), r: v.r, label: lab(j) }));
+          galleries[id] = { items, title: `J${it.jour} · ${s.plat}` };
+          const zoom = (k) => `<button type="button" class="st-zoom" data-lb="${id}" data-lb-i="${k}" aria-label="Voir en grand : ${esc(items[k].label)}">⤢</button>`;
+          const player = v.file ? `<figure class="st-frame r-${v.r}">${zoom(0)}<video class="st-video r-${v.r}" src="${opt.mediaBase + v.file}" controls playsinline preload="metadata"></video><figcaption>Vidéo finale · ${esc(v.file.split('/').pop())}</figcaption></figure>` : '';
+          const off = v.file ? 1 : 0;
+          vis = `<div class="st-strip">${player}${items.slice(off).map((x, j) => `<figure class="st-frame r-${v.r}"><button type="button" class="st-slide-btn" data-lb="${id}" data-lb-i="${j + off}" aria-label="Voir en grand : ${esc(x.label)}">${x.html}</button><figcaption>${esc(x.label)} · ⤢ agrandir</figcaption></figure>`).join('')}</div>
+            <p class="st-spec">${RATIO[v.r]}${v.type === 'video' ? ` · vidéo ${esc(v.cut)}` : v.type === 'carousel' ? ` · ${n} slides` : ''}</p>
+            ${v.type === 'video' ? `<p class="st-note">${v.file ? 'Vidéo produite : voix off, images fixes et rushes, sous-titres incrustés. À droite, la couverture et le carton final.' : 'Format voix off, sans personne à l’écran : images fixes et rushes courts. Plan de montage ci-dessus.'}</p>` : ''}
+            ${v.note ? `<p class="st-note">${esc(v.note)}</p>` : ''}
+            ${[...new Set(v.slides.filter((x) => x.credit).map((x) => x.credit))].map((c) => `<p class="st-credit">${esc(c)}</p>`).join('')}`;
+        }
+        const cap = caption(s.body);
+        const big = galleries[id] ? `<button type="button" class="st-btn" data-lb="${id}" data-lb-i="0">Voir en grand</button>` : '';
+        return `<article class="st-net" id="post-${id}" data-id="${id}" data-plat="${s.plat}"><header><span class="st-dot" style="background:var(${COLOR[s.plat]})"></span><span class="st-nm">${s.plat}</span><span class="st-fm">${esc(s.fm)}</span>${big}</header>
+          <div class="st-body"><div class="st-vis">${vis}</div>
+          <div class="st-cap"><div class="st-row"><span class="st-lbl">Texte à publier</span><button type="button" class="st-btn" data-st-copy="${encodeURIComponent(cap)}">Copier</button></div><div class="st-md">${md(cap)}</div></div></div></article>`;
+      }).join('');
+
+      host.innerHTML = `<div class="studio">
+        ${opt.intro ? `<p class="st-intro">${esc(opt.intro)}</p>` : ''}
+        <div class="st-days" role="group" aria-label="Jour">${days}</div>
+        <div class="st-head">
+          <div class="st-eyebrow">${esc(it.phase)} · ${esc(it.jour_semaine)} ${dshort(it.date)} · ${esc(it.destination)}</div>
+          <h2>${esc(post.title)}</h2>
+          <div class="st-chips"><span class="st-chip">${esc(it.etape)}</span><span class="st-chip">${esc(it.matrice)}</span>${it.candidat_pub ? '<span class="st-chip pub">Candidat pub</span>' : ''}</div>
+          ${it.warn ? `<p class="st-warn">${esc(it.warn)}</p>` : ''}
+        </div>
+        ${shoot ? `<details class="st-shoot"><summary>${esc(shoot.h)}</summary><div class="st-md">${md(shoot.body)}</div></details>` : ''}
+        <div class="st-nets">${nets}</div></div>`;
+
+      if (opt.decorate) {
+        host.querySelectorAll('.st-net').forEach((a) => opt.decorate(a, { id: a.dataset.id, plat: a.dataset.plat, jour: it }));
+      }
+      const cur = host.querySelector('.st-days [aria-pressed="true"]');
+      if (cur) cur.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
+
+    host.onclick = (e) => {
+      const t = e.target.closest('button');
+      if (!t || !host.contains(t)) return;
+      if (t.dataset.stDay) {
+        day = t.dataset.stDay;
+        store.set(opt.storageKey, day);
+        render();
+      } else if (t.dataset.lb) {
+        const g = galleries[t.dataset.lb];
+        open(g.items, +t.dataset.lbI, g.title);
+      } else if (t.dataset.stCopy !== undefined) {
+        const text = decodeURIComponent(t.dataset.stCopy);
+        const done = (ok) => { t.textContent = ok ? 'Copié' : 'Sélectionnez le texte'; setTimeout(() => { t.textContent = 'Copier'; }, 1600); };
+        const select = () => {
+          const r = document.createRange();
+          r.selectNodeContents(t.closest('.st-cap').querySelector('.st-md'));
+          const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        };
+        try { navigator.clipboard.writeText(text).then(() => done(true), () => { select(); done(false); }); } catch (err) { select(); done(false); }
+      }
+    };
+
+    render();
+    return { render };
+  }
+
+  window.Studio = { mount, ids: (data) => data.jours.flatMap((j) => PLATS.map((p) => `J${j.jour}-${CODE[p]}`)) };
+})();
+</script>
+<!-- STUDIO:END -->
 
 <script>
-/* Textes rédigés d'après content/social-b2b-launch/brief-cycle-1.md.
-   Chiffres utilisés, tous sourcés dans data/barometre-*.json :
-   électricité, prix de gros moyen France (ENTSO-E) 73,66 €/MWh en juin,
-   103,9 en juillet, 149,75 en septembre 2026 ; gaz, clôture PEG M+1
-   63,90 €/MWh au 24 juillet 2026 (Selectra). Exemple client : réseau
-   multi-sites agroalimentaire, -17 % sur la facture gaz (resultats.html). */
-const LI = 'https://cabinetms.fr/b2b.html?camp=soc-li';
-const XL = 'https://cabinetms.fr/b2b.html?camp=soc-x';
-const FB = 'https://cabinetms.fr/b2b.html?camp=soc-fb';
-const IG = 'https://cabinetms.fr/b2b.html?camp=soc-ig';
-
-const POSTS = [
-  { id: 'L1', net: 'LinkedIn', slot: 'Semaine 1 · lundi', format: 'Post texte + tableau comparatif', cta: LI,
-    angle: 'Un courtier n’est pas un comparateur',
-    visual: 'Visuel : tableau 2 colonnes, Comparateur / Courtier (lignes : qui négocie, suivi du marché, alerte avant échéance, interlocuteur).',
-    copy: [['Post', `Un comparateur vous montre des prix. Un courtier va les chercher.
-
-La différence se voit sur le prix final de votre contrat pro :
-
-→ Le comparateur affiche les offres publiques du jour. Vous choisissez seul.
-→ Le courtier met les fournisseurs en concurrence sur VOTRE consommation, au moment où le marché est favorable, et négocie.
-
-Chez M&S Strategy, on ajoute deux choses qu’un comparateur ne fera jamais :
-• le suivi des marchés de gros, pour signer au bon moment ;
-• une alerte 12 à 24 mois avant votre échéance.
-
-Le tout sans frais pour vous : notre commission est versée par le fournisseur retenu, et elle est identique quel que soit le fournisseur.
-
-Envoyez une facture, on vous répond sous 24h avec un comparatif chiffré.
-👉 ${LI}`]] },
-
-  { id: 'L2', net: 'LinkedIn', slot: 'Semaine 1 · mercredi', format: 'Carrousel PDF · 6 slides', cta: LI,
-    angle: 'Le prix de gros de l’électricité a doublé en trois mois',
-    visual: 'Carrousel : 1 titre, 2 courbe juin → septembre, 3 lecture, 4 qui est exposé, 5 que faire, 6 CTA. Source citée sur la slide 2.',
-    copy: [['Légende', `73,66 €/MWh en juin. 149,75 €/MWh en septembre.
-
-Le prix de gros moyen de l’électricité en France a doublé en un trimestre (source : ENTSO-E).
-
-Si votre contrat est indexé, ou si votre échéance tombe dans les prochains mois, ce chiffre vous concerne directement. Le carrousel explique pourquoi, et comment s’y préparer.
-
-Notre Baromètre suit ces prix chaque mois. Pour savoir ce que ça change pour votre contrat : ${LI}`],
-      ['Slides', `1. Le prix de gros de l’électricité a doublé en 3 mois
-2. Juin 73,66 → juillet 103,9 → septembre 149,75 €/MWh (moyennes mensuelles France, ENTSO-E)
-3. Ce prix de gros n’est pas votre prix de facture, mais c’est lui que les fournisseurs regardent quand ils vous font une offre
-4. Les plus exposés : contrats indexés, et contrats qui arrivent à échéance
-5. La bonne réponse : connaître sa date d’échéance et se positionner 12 à 24 mois avant
-6. Étude gratuite de votre contrat, réponse sous 24h`]] },
-
-  { id: 'L3', net: 'LinkedIn', slot: 'Semaine 1 · vendredi', format: 'Post texte + logos fournisseurs', cta: LI,
-    angle: 'Notre commission est la même quel que soit le fournisseur',
-    visual: 'Visuel : bandeau des logos Engie, TotalEnergies, OHM Énergie, Alterna, Primeo, MET (version blanche du site).',
-    copy: [['Post', `La question qu’on nous pose le plus : « Vous me recommandez ce fournisseur parce qu’il vous paie mieux ? »
-
-Non. Et c’est structurel.
-
-Notre commission est standardisée : elle est identique quel que soit le fournisseur retenu. Nous n’avons donc aucun intérêt à pousser l’un plutôt que l’autre.
-
-Ce qui nous reste comme seul critère : l’offre la plus adaptée à votre consommation et à votre calendrier.
-
-À chaque étude, nous consultons Engie, TotalEnergies, OHM Énergie, Alterna, Primeo, MET… et le reste du marché.
-
-Courtier indépendant depuis 2012. Étude gratuite : ${LI}`]] },
-
-  { id: 'L4', net: 'LinkedIn', slot: 'Semaine 2 · lundi', format: 'Post texte answer-first', cta: LI,
-    angle: 'Un courtier gratuit, ça cache quoi ?',
-    visual: 'Pas de visuel : post texte seul.',
-    copy: [['Post', `Un courtier en énergie gratuit, ça cache quoi ?
-
-Réponse courte : rien de caché, un modèle simple.
-
-Le courtier est rémunéré par le fournisseur que vous retenez, via une commission intégrée au contrat. Vous ne recevez aucune facture de notre part.
-
-Les vraies questions à poser à un courtier :
-1. Votre commission change-t-elle selon le fournisseur ? (Chez nous : non, elle est identique.)
-2. Combien de fournisseurs consultez-vous ?
-3. Qui me suit après la signature ?
-
-Si les réponses sont floues, méfiance. Si elles sont claires, vous avez un négociateur qui travaille pour vous sans vous coûter un euro de plus.
-
-Étude gratuite et sans engagement : ${LI}`]] },
-
-  { id: 'L5', net: 'LinkedIn', slot: 'Semaine 2 · mercredi', format: 'Post texte + citation', cta: LI,
-    angle: '« Mon contrat est en cours, je ne peux rien faire »',
-    visual: 'Visuel citation : « Mon contrat est en cours, je ne peux rien faire. » sur fond sombre, signature M&S Strategy.',
-    copy: [['Post', `« Mon contrat est en cours, je ne peux rien faire. »
-
-On l’entend chaque semaine. Et c’est précisément le meilleur moment pour agir.
-
-Ce qu’on répond :
-→ Votre contrat a une date d’échéance. La bonne fenêtre pour négocier s’ouvre 12 à 24 mois avant.
-→ On prépare le dossier dès maintenant : consommation, profil, calendrier.
-→ Le jour où la fenêtre s’ouvre, on est prêts. Et si votre contrat n’a pas de durée d’engagement, on peut négocier tout de suite.
-
-Attendre la dernière facture avant l’échéance, c’est négocier pressé. Et négocier pressé coûte cher.
-
-Envoyez votre facture, on vous dit où vous en êtes : ${LI}`]] },
-
-  { id: 'L6', net: 'LinkedIn', slot: 'Semaine 2 · vendredi', format: 'Carrousel PDF · 5 slides', cta: LI,
-    angle: 'La fenêtre pour renégocier n’est pas celle qu’on croit',
-    visual: 'Carrousel frise : échéance à droite, zone 12-24 mois surlignée en teal, zone « dernière minute » en rouge.',
-    copy: [['Légende', `La plupart des entreprises renégocient leur contrat d’énergie dans les dernières semaines. C’est le pire moment.
-
-La bonne fenêtre s’ouvre 12 à 24 mois avant l’échéance : assez tôt pour choisir le moment où le marché est favorable, plutôt que de le subir.
-
-Exemple : un réseau multi-sites de l’agroalimentaire a obtenu -17 % sur sa facture gaz en renégociant 4 mois avant l’échéance.
-
-On vous alerte avant la vôtre : ${LI}`],
-      ['Slides', `1. Quand renégocier son contrat d’énergie ?
-2. Ce que font la plupart : dans les dernières semaines, sans choix du moment
-3. La bonne fenêtre : 12 à 24 mois avant l’échéance
-4. Pourquoi : on choisit le moment, on compare sans urgence
-5. On suit votre échéance et on vous alerte. Étude gratuite.`]] },
-
-  { id: 'X1', net: 'X', slot: 'Semaine 1 · mardi', format: 'Thread 5 tweets', cta: XL,
-    angle: 'Contrat indexé : le chiffre que la plupart des dirigeants ignorent',
-    visual: 'Visuel sur le tweet 2 : mini-courbe juin → septembre.',
-    copy: [['1/5', `Le prix de gros de l’électricité en France a doublé en 3 mois. Si votre contrat pro est indexé, c’est votre facture qui suit. 🧵`],
-      ['2/5', `Moyennes mensuelles (ENTSO-E) : juin 73,66 €/MWh, juillet 103,9, septembre 149,75.`],
-      ['3/5', `Un contrat indexé répercute ces mouvements. Un contrat à prix fixe vous protège jusqu’à son échéance, mais pas après.`],
-      ['4/5', `Dans les deux cas, la question clé est la même : quelle est votre date d’échéance ? La bonne fenêtre de négociation s’ouvre 12 à 24 mois avant.`],
-      ['5/5', `On analyse votre contrat gratuitement, réponse sous 24h : ${XL}`]] },
-
-  { id: 'X2', net: 'X', slot: 'Semaine 1 · jeudi', format: 'Thread définitions courtes', cta: XL,
-    angle: 'ARENH, TURPE, CEE : le lexique énergie du dirigeant',
-    visual: 'Pas de visuel.',
-    copy: [['1/5', `ARENH, TURPE, CEE, accise… Le lexique énergie du dirigeant, en une phrase par mot. 🧵`],
-      ['2/5', `ARENH : le dispositif qui donnait accès à une partie de l’électricité nucléaire à prix régulé. Il a pris fin le 31 décembre 2025.`],
-      ['3/5', `TURPE : le tarif d’utilisation du réseau. Vous le payez quel que soit votre fournisseur : c’est le transport et la distribution de l’électricité.`],
-      ['4/5', `CEE : les certificats d’économies d’énergie, qui financent une partie de vos travaux de rénovation énergétique. Accise : la taxe sur l’électricité et le gaz, fixée par l’État.`],
-      ['5/5', `Votre facture mélange tout ça. On la décrypte gratuitement : ${XL}`]] },
-
-  { id: 'X3', net: 'X', slot: 'Semaine 2 · mardi', format: 'Thread 5 tweets', cta: XL,
-    angle: 'Comment un courtier en énergie peut être gratuit',
-    visual: 'Pas de visuel.',
-    copy: [['1/5', `« Un courtier en énergie gratuit ? Il y a forcément un piège. » Voici le modèle, en 5 tweets. 🧵`],
-      ['2/5', `Le courtier est payé par le fournisseur que l’entreprise retient, via une commission intégrée au contrat. Aucune facture pour le client.`],
-      ['3/5', `Le risque réel : un courtier mieux payé par un fournisseur que par un autre. Il serait tenté de le pousser.`],
-      ['4/5', `Notre réponse : une commission standardisée, identique quel que soit le fournisseur. Notre seul critère reste votre offre.`],
-      ['5/5', `Étude gratuite et sans engagement, réponse sous 24h : ${XL}`]] },
-
-  { id: 'X4', net: 'X', slot: 'Semaine 2 · jeudi', format: 'Thread + visuel chiffre', cta: XL,
-    angle: 'Baromètre : électricité en hausse, et le gaz ?',
-    visual: 'Visuel : deux chiffres côte à côte, électricité 149,75 €/MWh (sept.) et gaz PEG 63,90 €/MWh (24 juillet), sources en bas.',
-    copy: [['1/4', `Point Baromètre M&S Strategy : où en sont les prix de gros de l’énergie ? 🧵`],
-      ['2/4', `Électricité : 149,75 €/MWh en moyenne en septembre 2026, contre 73,66 en juin (ENTSO-E). Un doublement en un trimestre.`],
-      ['3/4', `Gaz : 63,90 €/MWh à la clôture du contrat PEG mois suivant le 24 juillet (Selectra). Notre lecture : quand l’électricité s’envole, mieux vaut savoir précisément où en est son contrat gaz aussi.`],
-      ['4/4', `Le Baromètre complet, et une étude gratuite de vos contrats : ${XL}`]] },
-
-  { id: 'F1', net: 'Facebook', slot: 'Semaine 1 · lundi', format: 'Post texte + lien article', cta: FB,
-    angle: 'Dirigeant de TPE : à quoi sert un courtier en énergie ?',
-    visual: 'Aperçu de lien automatique vers la page Professionnels.',
-    copy: [['Post', `Vous dirigez une TPE et vous n’avez pas le temps de comparer les offres d’électricité et de gaz ? C’est exactement notre métier.
-
-Un courtier en énergie :
-✅ analyse votre facture actuelle
-✅ met les fournisseurs en concurrence pour vous
-✅ vous présente un comparatif clair
-✅ vous prévient avant l’échéance de votre contrat
-
-C’est gratuit pour vous et sans engagement. Cabinet indépendant depuis 2012, basé à Lattes, on intervient partout en France.
-
-Envoyez une facture, réponse sous 24h 👉 ${FB}`]] },
-
-  { id: 'F2', net: 'Facebook', slot: 'Semaine 1 · mercredi', format: 'Post texte + visuel logos', cta: FB,
-    angle: 'On compare pour vous, sans préférence',
-    visual: 'Visuel : logos des fournisseurs consultés sur fond sombre.',
-    copy: [['Post', `Commerçants, artisans : vous n’avez pas à choisir seuls votre fournisseur d’énergie.
-
-À chaque étude, nous consultons Engie, TotalEnergies, OHM Énergie, Alterna, Primeo, MET et d’autres encore.
-
-Et nous n’avons pas de fournisseur préféré : notre rémunération est la même quel que soit celui que vous choisissez. On vous recommande simplement l’offre la plus adaptée à votre activité.
-
-Simple, gratuit, sans engagement 👉 ${FB}`]] },
-
-  { id: 'F3', net: 'Facebook', slot: 'Semaine 1 · vendredi', format: 'Image unique', cta: FB,
-    angle: 'Le chiffre de la semaine : ×2 en trois mois',
-    visual: 'Image : « ×2 » en très grand, sous-titre « prix de gros de l’électricité, juin → septembre 2026 », source ENTSO-E en bas.',
-    copy: [['Légende', `×2 en trois mois.
-
-Le prix de gros moyen de l’électricité en France est passé de 73,66 €/MWh en juin à 149,75 €/MWh en septembre (source : ENTSO-E).
-
-Pour un commerce, un restaurant ou un atelier, la question n’est pas de paniquer mais de savoir où en est son contrat : prix fixe ou indexé ? Quelle échéance ?
-
-On vous le dit gratuitement, en 24h 👉 ${FB}`]] },
-
-  { id: 'F4', net: 'Facebook', slot: 'Semaine 2 · lundi', format: 'Post texte', cta: FB,
-    angle: 'Contrat en cours ? On peut déjà préparer la suite',
-    visual: 'Pas de visuel.',
-    copy: [['Post', `« Mon contrat d’énergie court encore, ce n’est pas le moment. »
-
-Au contraire. Votre contrat a une date de fin, et c’est en la préparant tôt qu’on obtient les meilleures conditions.
-
-Ce qu’on fait pour vous :
-1. On analyse votre contrat actuel dès maintenant.
-2. On repère le bon moment pour négocier (idéalement 12 à 24 mois avant la fin).
-3. Si votre contrat n’a pas de durée d’engagement, on peut même négocier tout de suite.
-
-Gratuit et sans engagement 👉 ${FB}`]] },
-
-  { id: 'F5', net: 'Facebook', slot: 'Semaine 2 · mercredi', format: 'Post texte + citation', cta: FB,
-    angle: 'Cas client : un réseau multi-sites, -17 % sur le gaz',
-    visual: 'Visuel citation : « -17 % sur la facture gaz » + « Réseau multi-sites, agroalimentaire ».',
-    copy: [['Post', `-17 % sur la facture gaz d’un site de production.
-
-Notre client, un réseau multi-sites de l’industrie agroalimentaire, a renégocié son contrat 4 mois avant l’échéance, avec notre accompagnement.
-
-La méthode : analyse des factures, mise en concurrence des fournisseurs, négociation au bon moment.
-
-Chaque situation est différente : le résultat dépend de votre contrat et du marché. Pour savoir ce qui est possible pour vous 👉 ${FB}`]] },
-
-  { id: 'F6', net: 'Facebook', slot: 'Semaine 2 · vendredi', format: 'Post texte', cta: FB,
-    angle: 'Plusieurs boutiques ? Regroupez vos contrats',
-    visual: 'Pas de visuel.',
-    copy: [['Post', `Vous avez plusieurs boutiques, agences ou restaurants ? Chacun a probablement son propre contrat d’énergie, avec ses propres dates d’échéance.
-
-En les regroupant, vous :
-✅ pesez plus lourd face aux fournisseurs
-✅ alignez les échéances pour négocier en une fois
-✅ n’avez plus qu’un seul interlocuteur
-
-On s’occupe de tout, gratuitement 👉 ${FB}`]] },
-
-  { id: 'I1', net: 'Instagram', slot: 'Semaine 1 · mardi', format: 'Carrousel 3 slides', cta: IG,
-    angle: 'Le prix de l’électricité en un visuel',
-    visual: 'Slides : 1 « ×2 en 3 mois », 2 juin 73,66 → septembre 149,75 €/MWh (ENTSO-E), 3 « Où en est votre contrat ? Lien en bio ».',
-    copy: [['Légende', `Le prix de gros de l’électricité a doublé entre juin et septembre 2026. 📈
-
-Source : ENTSO-E, moyennes mensuelles France.
-
-Votre contrat pro est-il exposé ? On l’analyse gratuitement, réponse sous 24h. Lien en bio.
-
-#énergie #entreprise #électricité #TPE #PME`]] },
-
-  { id: 'I2', net: 'Instagram', slot: 'Semaine 1 · jeudi', format: 'Reel 30 s', cta: IG,
-    angle: 'Les 3 étapes du courtage',
-    visual: 'Reel face caméra ou motion design, 3 plans numérotés, sous-titres incrustés.',
-    copy: [['Script', `[0-5 s] « Comment on baisse la facture d’énergie d’une entreprise ? En 3 étapes. »
-[5-13 s] « Un : vous nous envoyez votre dernière facture. »
-[13-22 s] « Deux : on met les fournisseurs en concurrence sur votre consommation. »
-[22-30 s] « Trois : vous recevez un comparatif chiffré sous 24h. Gratuit, sans engagement. Lien en bio. »`],
-      ['Légende', `3 étapes, 24h, 0 €. Lien en bio pour envoyer votre facture. #énergie #entreprise #courtier`]] },
-
-  { id: 'I3', net: 'Instagram', slot: 'Semaine 2 · mardi', format: 'Image unique', cta: IG,
-    angle: 'Tout le marché consulté à chaque étude',
-    visual: 'Image : grille des 6 logos fournisseurs + « et d’autres encore ».',
-    copy: [['Légende', `À chaque étude, on consulte tout le marché : Engie, TotalEnergies, OHM Énergie, Alterna, Primeo, MET, et d’autres encore.
-
-Et on n’a pas de favori : notre commission est identique quel que soit le fournisseur.
-
-Étude gratuite, lien en bio. #énergie #entreprise`]] },
-
-  { id: 'I4', net: 'Instagram', slot: 'Semaine 2 · jeudi', format: 'Reel citation', cta: IG,
-    angle: 'Ce qu’on répond à « je ne peux rien faire »',
-    visual: 'Reel : texte animé sur fond sombre, citation puis réponse, 20 s.',
-    copy: [['Script', `[0-6 s] Texte : « Mon contrat est en cours, je ne peux rien faire. »
-[6-14 s] Texte : « Faux. La meilleure fenêtre de négociation s’ouvre 12 à 24 mois avant l’échéance. »
-[14-20 s] Texte : « On prépare votre dossier dès maintenant. Gratuit. Lien en bio. »`],
-      ['Légende', `Contrat en cours ? C’est le bon moment pour préparer la suite. Lien en bio. #énergie #entreprise`]] }
-];
-
-const STORAGE_KEY = 'ms_approb_decisions';
+const STORAGE_KEY = 'ms_approb_decisions_q4';
 const NAME_KEY = 'ms_approb_reviewer';
+const DATA = JSON.parse(document.getElementById('studio-data').textContent);
+const IDS = Studio.ids(DATA);
+const CODES = ['LI', 'FB', 'IG', 'X'];
 
 function load(key, fallback) {
   try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; }
@@ -417,43 +582,40 @@ const sent = load(STORAGE_KEY, {});
 const reviewerInput = document.getElementById('reviewer');
 reviewerInput.value = load(NAME_KEY, '');
 reviewerInput.addEventListener('change', () => save(NAME_KEY, reviewerInput.value.trim()));
+document.getElementById('total-count').textContent = IDS.length;
 
-function updateProgress() {
-  document.getElementById('done-count').textContent = Object.keys(sent).length;
+const dayBadge = (jour) => {
+  const n = CODES.filter((c) => sent[`J${jour.jour}-${c}`]).length;
+  return n ? `${n}/4 traités` : '';
+};
+
+function updateProgress(jour) {
+  document.getElementById('done-count').textContent = IDS.filter((id) => sent[id]).length;
+  const btn = jour && document.querySelector(`.st-days [data-st-day="${jour.date}"]`);
+  if (btn) {
+    const em = btn.querySelector('em') || btn.appendChild(document.createElement('em'));
+    em.textContent = dayBadge(jour);
+  }
 }
 
-const container = document.getElementById('posts');
-const tpl = document.getElementById('post-tpl');
+// Bloc de vote ajouté sous chaque réseau par le rendu partagé.
+function decorate(article, { id, jour }) {
+  const box = document.createElement('div');
+  box.className = 'vote';
+  box.innerHTML = `<div class="vote-row choices" role="group" aria-label="Décision pour ${id}">
+      <span class="lbl">Décision · ${id}</span>
+      <button type="button" data-decision="approuve" aria-pressed="false">✓ Approuver</button>
+      <button type="button" data-decision="modifier" aria-pressed="false">✎ À modifier</button>
+      <button type="button" data-decision="refuse" aria-pressed="false">✕ Refuser</button>
+    </div>
+    <textarea aria-label="Commentaire sur ${id}" placeholder="Commentaire (obligatoire pour À modifier ou Refuser) : ce qui doit changer, ou pourquoi refuser."></textarea>
+    <div class="vote-row"><button type="button" class="send" disabled>Envoyer ma décision</button><span class="status" role="status"></span></div>`;
+  article.append(box);
 
-POSTS.forEach((post) => {
-  const node = tpl.content.firstElementChild.cloneNode(true);
-  node.dataset.net = post.net;
-  node.id = `post-${post.id}`;
-  node.querySelector('.net').textContent = post.net;
-  node.querySelector('.id').textContent = post.id;
-  node.querySelector('.format').textContent = post.format;
-  node.querySelector('.slot').textContent = post.slot;
-  node.querySelector('.angle').textContent = post.angle;
-  node.querySelector('.visual').textContent = post.visual;
-  const link = node.querySelector('.cta');
-  link.href = post.cta;
-  link.textContent = post.cta;
-
-  const copy = node.querySelector('.copy');
-  post.copy.forEach(([label, text]) => {
-    const part = document.createElement('span');
-    part.className = 'part';
-    const l = document.createElement('span');
-    l.className = 'label';
-    l.textContent = label;
-    part.append(l, text);
-    copy.append(part);
-  });
-
-  const buttons = node.querySelectorAll('.choices button');
-  const textarea = node.querySelector('textarea');
-  const sendBtn = node.querySelector('.send');
-  const status = node.querySelector('.status');
+  const buttons = box.querySelectorAll('.choices button');
+  const textarea = box.querySelector('textarea');
+  const sendBtn = box.querySelector('.send');
+  const status = box.querySelector('.status');
   let decision = null;
 
   function select(value) {
@@ -462,11 +624,11 @@ POSTS.forEach((post) => {
     sendBtn.disabled = !value;
   }
 
-  const previous = sent[post.id];
+  const previous = sent[id];
   if (previous) {
     select(previous.decision);
     textarea.value = previous.comment || '';
-    node.dataset.state = previous.decision;
+    article.dataset.state = previous.decision;
     status.textContent = 'Décision envoyée. Vous pouvez la modifier.';
     status.className = 'status ok';
   }
@@ -497,18 +659,18 @@ POSTS.forEach((post) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin',
-        body: JSON.stringify({ post: post.id, decision, comment, reviewer })
+        body: JSON.stringify({ post: id, decision, comment, reviewer })
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         throw new Error(body.error || `erreur ${res.status}`);
       }
-      sent[post.id] = { decision, comment };
+      sent[id] = { decision, comment };
       save(STORAGE_KEY, sent);
-      node.dataset.state = decision;
+      article.dataset.state = decision;
       status.textContent = 'Décision enregistrée ✓';
       status.className = 'status ok';
-      updateProgress();
+      updateProgress(jour);
     } catch (err) {
       status.textContent = `Échec de l’envoi (${err.message}). Réessayez.`;
       status.className = 'status err';
@@ -516,18 +678,14 @@ POSTS.forEach((post) => {
       sendBtn.disabled = !decision;
     }
   });
+}
 
-  container.append(node);
+Studio.mount(document.getElementById('studio'), DATA, {
+  mediaBase: 'approbation-media/',
+  storageKey: 'ms_approb_day',
+  decorate,
+  dayBadge
 });
-
-document.querySelectorAll('.filters button').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.filters button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-    document.querySelectorAll('.post').forEach((p) => { p.hidden = filter !== 'all' && p.dataset.net !== filter; });
-  });
-});
-
 updateProgress();
 </script>
 </body>

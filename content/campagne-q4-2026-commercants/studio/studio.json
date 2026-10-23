@@ -1,0 +1,776 @@
+{
+  "campagne": "pas-de-50-q4-2026",
+  "titre": "Pas de -50 % · Studio J1–J10",
+  "note": "Source unique de l’onglet Studio J1–J10 : alimente approbation.html et l’artefact (npm run build:studio).",
+  "jours": [
+    {
+      "jour": 1,
+      "date": "2026-10-15",
+      "jour_semaine": "jeudi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Manifeste : cette fin d'année, pas de -50 % chez nous",
+      "etape": "TOFU",
+      "matrice": "Inspirer",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": true,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "carousel",
+          "r": "p45",
+          "note": "Exporter les 6 slides en un PDF pour le carrousel document LinkedIn.",
+          "slides": [
+            {
+              "k": "num",
+              "big": "71 %",
+              "p": "des commerçants indépendants qui ont fait le Black Friday 2025 disent qu’ils n’avaient pas le choix."
+            },
+            {
+              "k": "num",
+              "big": "8 %",
+              "p": "le jugent « intéressant ».",
+              "src": "Source : L’echommerces / Boutique2Mode"
+            },
+            {
+              "k": "txt",
+              "h": "Cette année, on ne vous ajoutera pas une promo de plus à subir.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Un courtier n’a rien à solder. Nous ne vendons pas d’énergie, nous la négocions."
+            },
+            {
+              "k": "txt",
+              "h": "Du 15 octobre au 31 décembre : un contenu par jour sur la charge que personne ne vous négocie.",
+              "tone": "mint"
+            },
+            {
+              "k": "strike",
+              "p": "Juste le bon prix, pour toute la durée du contrat.",
+              "path": "comment-ca-marche"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Rue commerçante de Montpellier en fin de journée, vitrines allumées.",
+              "h": "Cette année, pas de promo de plus.",
+              "src": "photos/j1_fb_ruelle-montpellier.jpg",
+              "credit": "Photo : Hamza Yaich, Pexels (licence Pexels, usage commercial libre) · pexels.com/photo/20645887"
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "strike",
+              "p": "Pas cette année."
+            }
+          ]
+        },
+        "X": {
+          "type": "image",
+          "r": "h169",
+          "slides": [
+            {
+              "k": "num",
+              "big": "71 %",
+              "p": "des commerçants indépendants ayant fait le Black Friday 2025 disent ne pas avoir eu le choix.",
+              "src": "Source : L’echommerces / Boutique2Mode"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "jour": 2,
+      "date": "2026-10-16",
+      "jour_semaine": "vendredi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Où se cache la date d'échéance de votre contrat (reconduction tacite)",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "destination": "resilier-contrat-electricite-entreprise.html",
+      "candidat_pub": true,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "video",
+          "r": "sq",
+          "cut": "37 s, voix off, sous-titres incrustés",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "La date qui coûte le plus cher ?",
+              "tone": "deep"
+            },
+            {
+              "k": "end",
+              "h": "Trouvez-la aujourd’hui.",
+              "path": "resilier-contrat-electricite-entreprise"
+            }
+          ],
+          "file": "videos/J2_reconduction-tacite_1x1.mp4"
+        },
+        "Facebook": {
+          "type": "video",
+          "r": "v916",
+          "cut": "37 s, voix off, sous-titres",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "La date qui coûte le plus cher ?",
+              "tone": "deep"
+            },
+            {
+              "k": "end",
+              "h": "Trouvez-la aujourd’hui.",
+              "path": "resilier-contrat-electricite-entreprise"
+            }
+          ],
+          "file": "videos/J2_reconduction-tacite_9x16.mp4"
+        },
+        "Instagram": {
+          "type": "video",
+          "r": "v916",
+          "cut": "37 s, voix off, même fichier que Facebook",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Votre contrat se renouvelle peut-être tout seul.",
+              "tone": "deep"
+            },
+            {
+              "k": "end",
+              "h": "Trouvez-la aujourd’hui.",
+              "path": "resilier-contrat-electricite-entreprise"
+            }
+          ],
+          "file": "videos/J2_reconduction-tacite_9x16.mp4"
+        },
+        "X": {
+          "type": "video",
+          "r": "h169",
+          "cut": "37 s, voix off (reprise)",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "La clause la plus chère n’est souvent pas le prix.",
+              "tone": "deep"
+            },
+            {
+              "k": "end",
+              "h": "Trouvez-la aujourd’hui.",
+              "path": "resilier-contrat-electricite-entreprise"
+            }
+          ],
+          "file": "videos/J2_reconduction-tacite_16x9.mp4"
+        }
+      }
+    },
+    {
+      "jour": 3,
+      "date": "2026-10-17",
+      "jour_semaine": "samedi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "La vitrine qui reste allumée : l'éclairage, poste discret de la saison",
+      "etape": "TOFU",
+      "matrice": "Divertir",
+      "destination": "economies-energie-boulangerie.html",
+      "candidat_pub": false,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "list",
+              "h": "Les postes discrets d’un point de vente",
+              "items": [
+                "Éclairage de vitrine",
+                "Réserves éclairées sans présence",
+                "Équipements en veille"
+              ],
+              "p": "Qui fixe les horaires d’allumage, magasin par magasin ?"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "image",
+          "r": "p45",
+          "note": "Provisoire : le texte cite la rue de l’Aiguillerie. Remplacer par ta vraie photo prise sur place à 20h (cadrage de référence : vitrine dorée, rue vide, heure bleue, cf. Savee « Corner Fish Bar » savee.com/i/goDRMyu). Sinon, retirer le nom de rue du texte.",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Vitrine du centre-ville de Montpellier allumée dans une rue vide, 20h, rue de l’Aiguillerie.",
+              "h": "",
+              "src": "photos/j3_devanture-heure-bleue.jpg",
+              "credit": "Visuel généré par IA pour la campagne (ElevenLabs, Seedream 5 Pro), droits M&S Strategy · provisoire"
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "carousel",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Vitrine allumée, rue vide.",
+              "h": "20h.",
+              "src": "photos/j3_devanture-heure-bleue.jpg",
+              "credit": "Visuel généré par IA pour la campagne (ElevenLabs, Seedream 5 Pro), droits M&S Strategy"
+            },
+            {
+              "k": "txt",
+              "h": "La rue dort.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Votre vitrine travaille encore."
+            },
+            {
+              "k": "end",
+              "h": "Une minuterie. Réglée une fois. Utile tout l’hiver.",
+              "path": "economies-energie-boulangerie"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 4,
+      "date": "2026-10-18",
+      "jour_semaine": "dimanche",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Courtier, fournisseur, comparateur : qui fait quoi",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "destination": "courtier-en-energie-role.html",
+      "candidat_pub": false,
+      "linkedin_compte": "profil dirigeant",
+      "visuels": {
+        "LinkedIn": {
+          "type": "text"
+        },
+        "Facebook": {
+          "type": "video",
+          "r": "v916",
+          "cut": "30 s, sous-titres",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "3 métiers qu’on confond.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Afficher un prix ≠ obtenir un prix.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "video",
+          "r": "v916",
+          "cut": "30 s, tournage-source tel quel, musique sobre",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "3 métiers qu’on confond.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Afficher un prix ≠ obtenir un prix.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 5,
+      "date": "2026-10-19",
+      "jour_semaine": "lundi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Lire sa facture en 5 blocs",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "destination": "decrypter-facture-electricite-pro.html",
+      "candidat_pub": true,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "carousel",
+          "r": "p45",
+          "note": "Exporter les 7 slides en un PDF pour le carrousel document LinkedIn.",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Votre facture d’électricité pro, en 5 blocs.",
+              "tone": "deep"
+            },
+            {
+              "k": "bill",
+              "hl": 1,
+              "h": "Identification",
+              "p": "N° client, point de livraison, période."
+            },
+            {
+              "k": "bill",
+              "hl": 2,
+              "h": "Abonnement",
+              "p": "La puissance souscrite."
+            },
+            {
+              "k": "bill",
+              "hl": 3,
+              "h": "Consommation",
+              "p": "Le prix du kWh."
+            },
+            {
+              "k": "bill",
+              "hl": 4,
+              "h": "Acheminement",
+              "p": "Le TURPE."
+            },
+            {
+              "k": "bill",
+              "hl": 5,
+              "h": "Taxes",
+              "p": "Contributions, accise et TVA."
+            },
+            {
+              "k": "end",
+              "h": "Avant de négocier une facture, il faut savoir la lire.",
+              "path": "decrypter-facture-electricite-pro"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "bill",
+              "hl": 0,
+              "h": "Entourez ces 5 blocs sur votre facture.",
+              "p": ""
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "carousel",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Votre facture, en 5 blocs.",
+              "tone": "deep"
+            },
+            {
+              "k": "bill",
+              "hl": 1,
+              "h": "Identification",
+              "p": "Qui, où, quelle période."
+            },
+            {
+              "k": "bill",
+              "hl": 2,
+              "h": "Abonnement",
+              "p": "Votre puissance, payée chaque mois."
+            },
+            {
+              "k": "bill",
+              "hl": 3,
+              "h": "Consommation",
+              "p": "Ce que vous avez vraiment consommé."
+            },
+            {
+              "k": "bill",
+              "hl": 4,
+              "h": "Acheminement",
+              "p": "Le transport, identique partout."
+            },
+            {
+              "k": "bill",
+              "hl": 5,
+              "h": "Taxes",
+              "p": "Fixées par la loi."
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 6,
+      "date": "2026-10-20",
+      "jour_semaine": "mardi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Ce qui se négocie, ce qui ne bouge pas (fourniture vs TURPE et taxes)",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "destination": "turpe-2026-professionnels.html",
+      "candidat_pub": false,
+      "linkedin_compte": "profil dirigeant",
+      "visuels": {
+        "LinkedIn": {
+          "type": "video",
+          "r": "sq",
+          "cut": "60 s, voix off sur images et rushes, sous-titres",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Deux lignes se négocient. Les autres, non.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Négocier un bloc, pas un total.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "video",
+          "r": "v916",
+          "cut": "reprise du reel Instagram",
+          "slides": [
+            {
+              "k": "split"
+            },
+            {
+              "k": "txt",
+              "h": "Négocier un bloc, pas un total.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "video",
+          "r": "v916",
+          "cut": "25 s, plans des surligneurs + texte à l’écran",
+          "slides": [
+            {
+              "k": "split"
+            },
+            {
+              "k": "txt",
+              "h": "Négocier un bloc, pas un total.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 7,
+      "date": "2026-10-21",
+      "jour_semaine": "mercredi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Un courtier gratuit, ça cache quoi ? La réponse honnête",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": true,
+      "linkedin_compte": "profil dirigeant",
+      "warn": "À valider avant publication : la commission « identique quel que soit le fournisseur » est encore [À CONFIRMER] dans l’étude du 9 octobre. Si ce n’est pas confirmé, retirer la slide 4 Instagram et la phrase correspondante sur LinkedIn et Facebook.",
+      "visuels": {
+        "LinkedIn": {
+          "type": "text"
+        },
+        "Facebook": {
+          "type": "text"
+        },
+        "Instagram": {
+          "type": "carousel",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Gratuit, ça cache quoi ?",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Une commission. Payée par le fournisseur choisi."
+            },
+            {
+              "k": "clip",
+              "desc": "Un conseiller pose trois cartes « Fournisseur A / B / C » et une étiquette identique sur chacune."
+            },
+            {
+              "k": "txt",
+              "h": "Même commission, quel que soit le fournisseur.",
+              "tone": "mint"
+            },
+            {
+              "k": "end",
+              "h": "La question à poser à tout courtier : comment êtes-vous payé ?",
+              "path": "comment-ca-marche"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 8,
+      "date": "2026-10-22",
+      "jour_semaine": "jeudi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Restaurateurs : le froid tourne même quand vous fermez",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "destination": "consommation-energie-restaurant.html",
+      "candidat_pub": false,
+      "linkedin_compte": "page",
+      "warn": "Les chiffres « 40 à 50 % » (cuisine) et « 3 à 5 % par degré » ne citent pas de source dans le post. Ajouter la source (ADEME ou guide utilisé) avant publication, comme l’exige l’étude.",
+      "visuels": {
+        "LinkedIn": {
+          "type": "carousel",
+          "r": "p45",
+          "note": "Exporter les 6 slides en un PDF pour le carrousel document LinkedIn.",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Un restaurant fermé consomme encore.",
+              "tone": "deep"
+            },
+            {
+              "k": "num",
+              "big": "40 à 50 %",
+              "p": "de la consommation part souvent en cuisine."
+            },
+            {
+              "k": "txt",
+              "h": "Le froid tourne 24h/24, jours de fermeture compris."
+            },
+            {
+              "k": "num",
+              "big": "−1 °C",
+              "p": "sur la consigne = +3 à 5 % de consommation."
+            },
+            {
+              "k": "txt",
+              "h": "Qui vérifie les consignes, établissement par établissement ?",
+              "tone": "mint"
+            },
+            {
+              "k": "end",
+              "h": "Avant de parler contrat, réglez ce qui se règle.",
+              "path": "consommation-energie-restaurant"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Thermostat de chambre froide dans une cuisine pro (Savee).",
+              "h": ""
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Gros plan du thermostat de chambre froide.",
+              "h": "−1 °C = +3 à 5 %"
+            }
+          ]
+        },
+        "X": {
+          "type": "image",
+          "r": "h169",
+          "slides": [
+            {
+              "k": "num",
+              "big": "3 à 5 %",
+              "p": "de consommation en plus par degré de moins sur une chambre froide."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "jour": 9,
+      "date": "2026-10-23",
+      "jour_semaine": "vendredi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Prix fixe ou indexé, avant une saison chargée",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "destination": "prix-fixe-vs-indexe-electricite-pro.html",
+      "candidat_pub": false,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "video",
+          "r": "sq",
+          "cut": "50 s, sous-titres",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Fixe ou indexé ? Mauvaise question.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Choisissez selon votre trésorerie, pas selon la météo des marchés.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "video",
+          "r": "v916",
+          "cut": "40 s, sous-titres",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Cadenas ou balance ?",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Choisissez selon votre trésorerie, pas selon la météo des marchés.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "video",
+          "r": "v916",
+          "cut": "20 s : cadenas, balance, texte final",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Fixe ou indexé ? Mauvaise question.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Choisissez selon votre trésorerie, pas selon la météo des marchés.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "X": {
+          "type": "video",
+          "r": "h169",
+          "cut": "30 s (reprise)",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Fixe ou indexé ? Mauvaise question.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Choisissez selon votre trésorerie, pas selon la météo des marchés.",
+              "tone": "mint"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "jour": 10,
+      "date": "2026-10-24",
+      "jour_semaine": "samedi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Boulangers : le four, premier poste de la facture",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "destination": "economies-energie-boulangerie.html",
+      "candidat_pub": false,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "list",
+              "h": "Les 3 postes d’une boulangerie",
+              "items": [
+                "Le four",
+                "Le froid",
+                "L’éclairage et le chauffage"
+              ],
+              "p": "Le gisement le plus accessible : les habitudes."
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Fournil d’une boulangerie montpelliéraine à l’aube, porte du four ouverte (avec l’accord de l’artisan).",
+              "h": ""
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "carousel",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Le fournil à l’aube.",
+              "h": "Le premier poste de votre facture."
+            },
+            {
+              "k": "txt",
+              "h": "Fournées regroupées.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Joints vérifiés."
+            },
+            {
+              "k": "end",
+              "h": "Consignes ajustées. Avant de changer de four, changez d’habitudes.",
+              "path": "economies-energie-boulangerie"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    }
+  ]
+}

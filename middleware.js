@@ -13,7 +13,8 @@ export const config = {
     '/ms-strategy-calculateur.html',
     '/c/:slug*',
     '/approbation',
-    '/approbation.html'
+    '/approbation.html',
+    '/approbation-media/:path*'
   ]
 };
 
@@ -131,6 +132,8 @@ function attributionRedirect(target, { slug, camp, isBot, hasRef }) {
    approbation.html n'est servie qu'avec un cookie de session valide (voir
    lib/approbation.mjs). Sans lui, on répond par un formulaire de mot de
    passe à la place de la page : son contenu ne quitte jamais le serveur.
+   Ses photos et vidéos (approbation-media/) suivent la même règle, avec un
+   simple 401 à la place du formulaire.
    ════════════════════════════════════════ */
 
 const PRIVATE_HEADERS = {
@@ -180,8 +183,12 @@ button { font: 700 1rem/1 system-ui, sans-serif; padding: 14px; border: 0; borde
 export async function approbationGate(request) {
   const url = new URL(request.url);
   const token = readCookie(request.headers.get('cookie'));
+  const isMedia = url.pathname.startsWith('/approbation-media/');
   if (await isValidToken(token)) {
     return next({ headers: PRIVATE_HEADERS });
+  }
+  if (isMedia) {
+    return new Response('Accès réservé', { status: 401, headers: PRIVATE_HEADERS });
   }
   return new Response(loginPage(url.searchParams.has('erreur')), {
     status: 401,
@@ -192,7 +199,7 @@ export async function approbationGate(request) {
 export default function middleware(request) {
   const url = new URL(request.url);
 
-  if (url.pathname === '/approbation' || url.pathname === '/approbation.html') {
+  if (url.pathname === '/approbation' || url.pathname === '/approbation.html' || url.pathname.startsWith('/approbation-media/')) {
     return approbationGate(request);
   }
 

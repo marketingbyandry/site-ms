@@ -29,8 +29,10 @@ Ne jamais reprendre telle quelle une statistique non sourcée de la home.
 
 ## Validation par l'équipe com
 
-Les textes rédigés du cycle 1 sont sur `approbation.html` (byandry.com),
-protégée par mot de passe (logique : `lib/approbation.mjs`, garde dans
+`approbation.html` (byandry.com) affiche désormais le Studio J1–J10 de la
+campagne « Pas de -50 % » (`content/campagne-q4-2026-commercants/studio/`,
+voir `scripts/build-studio.mjs`) ; les textes du cycle 1 restent dans ce
+dossier. La page est protégée par mot de passe (logique : `lib/approbation.mjs`, garde dans
 `middleware.js`). Chaque décision est enregistrée dans PostHog sous
 l'événement `post_review` (propriétés `campaign`, `post`, `decision`,
 `comment`, `reviewer`). Nécessite la variable Vercel
