@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aperçu de format · Alternative à Selectra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #07131a; --dark-2: #0c1f28; --dark-3: #10303b; --line: #1a3a46;
+    --teal: #1a7a8a; --teal-light: #2bb5c8; --teal-glow: #5ecfdc;
+    --green: #4cde80; --amber: #f2c14e; --muted: #8aacb4; --cream: #f5f0e8;
+    --serif: 'Instrument Serif', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: var(--dark); color: var(--cream); font: 400 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  .wrap { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  .mock { background: var(--amber); color: var(--dark); text-align: center; font: 600 12px/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; padding: 8px; }
+
+  /* 1. Hero : la réponse en une phrase, puis le sommaire en coches */
+  .hero { padding: 56px 0 32px; }
+  .kicker { color: var(--teal-glow); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  h1 { font: 400 clamp(36px, 5.4vw, 60px)/1.02 var(--serif); margin: 12px 0 16px; max-width: 820px; }
+  h1 em { color: var(--teal-glow); }
+  .answer { font-size: 19px; max-width: 680px; color: #dbe7e9; margin: 0 0 28px; }
+  .answer b { color: var(--cream); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; color: var(--muted); margin: 0 0 14px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+  .board { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--dark-2); }
+  .board-head, .row { display: grid; grid-template-columns: 1fr 92px 92px 150px; align-items: center; gap: 8px; padding: 0 18px; }
+  .board-head { height: 44px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line); }
+  .board-head .c, .row .c { text-align: center; }
+  .board-head .ms { color: var(--teal-glow); }
+  .row { min-height: 52px; text-decoration: none; border-bottom: 1px solid var(--line); transition: background .2s; }
+  .row:last-child { border-bottom: 0; }
+  .row:hover { background: var(--dark-3); }
+  .row .q { font-weight: 500; }
+  .row .q::after { content: " ↓"; color: var(--muted); font-size: 13px; opacity: 0; transition: opacity .2s; }
+  .row:hover .q::after { opacity: 1; }
+
+  /* Les marques : jamais de ✗ quand l'info manque, un « ? » (non communiqué) */
+  .mk { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; font: 700 14px/1 var(--sans); }
+  .yes { background: rgba(76, 222, 128, .16); color: var(--green); }
+  .part { background: rgba(242, 193, 78, .16); color: var(--amber); }
+  .unk { background: rgba(138, 172, 180, .14); color: var(--muted); }
+
+  .pill { justify-self: end; display: inline-flex; padding: 5px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .pill.ms { background: rgba(94, 207, 220, .14); color: var(--teal-glow); }
+  .pill.eq { background: rgba(138, 172, 180, .12); color: var(--muted); }
+  .pill.sel { background: rgba(242, 193, 78, .14); color: var(--amber); }
+
+  .board-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 18px; background: var(--dark-3); font-size: 14px; color: var(--muted); }
+  .board-foot b { color: var(--cream); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; background: var(--teal-light); color: var(--dark); font-weight: 700; text-decoration: none; }
+
+  /* 2. L'en-tête collant : « gauche contre droite » reste visible en défilant */
+  .sticky { position: sticky; top: 0; z-index: 10; background: rgba(7, 19, 26, .88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .sticky .wrap { display: grid; grid-template-columns: 1fr 1fr; height: 56px; align-items: center; gap: 24px; }
+  .sticky .who { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+  .sticky .who small { color: var(--muted); font-weight: 400; }
+  .sticky .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* 3. Les cartes critère : question, deux colonnes, verdict, « pourquoi » repliable */
+  .cards { padding: 40px 0 8px; display: grid; gap: 18px; }
+  .section-title { font: 400 30px/1.1 var(--serif); margin: 28px 0 4px; }
+  .section-sub { color: var(--muted); margin: 0 0 6px; }
+  .card { border: 1px solid var(--line); border-radius: 16px; background: var(--dark-2); padding: 22px 24px 18px; }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+  .card h3 { margin: 0; font: 400 24px/1.15 var(--serif); }
+  .card .num { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .1em; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .side { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start; padding: 14px; border-radius: 12px; background: rgba(255, 255, 255, .02); }
+  .side.ms-side { background: rgba(43, 181, 200, .07); }
+  .side p { margin: 0; font-size: 15px; color: #dbe7e9; }
+  .side .src { display: block; margin-top: 4px; font-size: 12px; color: var(--muted); }
+  details { margin-top: 14px; border-top: 1px dashed var(--line); padding-top: 12px; }
+  summary { cursor: pointer; list-style: none; color: var(--teal-glow); font-size: 14px; font-weight: 600; }
+  summary::before { content: "▸ "; }
+  details[open] summary::before { content: "▾ "; }
+  details p { color: #c7d6d9; font-size: 15px; margin: 10px 0 0; max-width: 760px; }
+
+  /* 4. Passer chez M&S : une frise au lieu d'une liste */
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; counter-reset: s; margin: 18px 0 0; padding: 0; list-style: none; }
+  .steps li { counter-increment: s; border-top: 2px solid var(--teal); padding: 14px 4px 0; font-size: 14px; color: #c7d6d9; }
+  .steps li::before { content: "0" counter(s); display: block; font: 400 28px/1 var(--serif); color: var(--teal-glow); margin-bottom: 8px; }
+  .steps b { display: block; color: var(--cream); margin-bottom: 4px; }
+
+  /* 5. Le récap qui referme la boucle */
+  .recap { margin: 48px 0 72px; padding: 32px; border-radius: 20px; background: linear-gradient(135deg, var(--dark-3), #0b2a33); border: 1px solid var(--line); display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center; }
+  .recap h2 { font: 400 32px/1.1 var(--serif); margin: 0 0 10px; }
+  .recap p { margin: 0 0 18px; color: #c7d6d9; }
+  .tally { display: grid; gap: 10px; }
+  .tally div { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 12px; background: rgba(255, 255, 255, .03); }
+  .tally b { font: 400 30px/1 var(--serif); }
+
+  .faq { margin-top: 8px; }
+  .faq details { border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin: 10px 0 0; background: var(--dark-2); }
+  .faq summary { color: var(--cream); font-weight: 600; font-size: 15px; }
+
+  @media (max-width: 760px) {
+    .board-head { display: none; }
+    .row { grid-template-columns: 1fr auto auto; grid-template-areas: "q q q" "a b p"; padding: 12px 16px; gap: 6px 10px; }
+    .row .q { grid-area: q; }
+    .row .c:nth-of-type(2) { grid-area: a; } .row .c:nth-of-type(3) { grid-area: b; }
+    .row .pill { grid-area: p; }
+    .row .c::before { font-size: 11px; color: var(--muted); margin-right: 6px; }
+    .row .c.s::before { content: "Selectra"; } .row .c.m::before { content: "M&S"; }
+    .row .c { display: flex; align-items: center; }
+    .sticky .wrap { gap: 12px; }
+    .sticky .who small { display: none; }
+    .vs { grid-template-columns: 1fr; gap: 10px; }
+    /* Empilées sur mobile, les colonnes perdent leur gauche/droite : chacune dit qui elle est. */
+    .side p::before { content: "Selectra"; display: block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+    .side.ms-side p::before { content: "M&S Strategy"; color: var(--teal-glow); }
+    .card { padding: 18px 16px 14px; }
+    .card-top { flex-direction: column; gap: 8px; }
+    .steps { grid-template-columns: 1fr; }
+    .recap { grid-template-columns: 1fr; padding: 24px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="mock">Maquette de format · aperçu pour validation, pas la page en ligne</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Comparatif courtier</div>
+    <h1>Alternative à Selectra : <em>deux façons de travailler</em>, critère par critère</h1>
+    <p class="answer"><b>En une phrase :</b> les deux sont gratuits et répondent sous 24 h. Selectra est taillé pour obtenir vite des offres en ligne ; M&amp;S Strategy pour négocier un contrat en cours et suivre un parc multi-sites jusqu'au renouvellement.</p>
+
+    <div class="legend">
+      <span><i class="mk yes">✓</i> publié / proposé</span>
+      <span><i class="mk part">~</i> autre approche</span>
+      <span><i class="mk unk">?</i> non communiqué : on ne devine pas</span>
+    </div>
+
+    <nav class="board" aria-label="Le comparatif en un coup d'œil">
+      <div class="board-head"><span>Critère</span><span class="c">Selectra</span><span class="c ms">M&amp;S</span><span class="c" style="text-align:right">Verdict</span></div>
+      <a class="row" href="#c1"><span class="q">Gratuit pour l'entreprise</span><span class="c s"><i class="mk yes">✓</i></span><span class="c m"><i class="mk yes">✓</i></span><span class="pill eq">Égalité</span></a>
+      <a class="row" href="#c2"><span class="q">Premier retour sous 24 h</span><span class="c s"><i class="mk yes">✓</i></span><span class="c m"><i class="mk yes">✓</i></span><span class="pill eq">Égalité</span></a>
+      <a class="row" href="#c3"><span class="q">Indépendance déclarée</span><span class="c s"><i class="mk yes">✓</i></span><span class="c m"><i class="mk yes">✓</i></span><span class="pill eq">Égalité</span></a>
+      <a class="row" href="#c4"><span class="q">Suivi du dossier après signature</span><span class="c s"><i class="mk unk">?</i></span><span class="c m"><i class="mk yes">✓</i></span><span class="pill ms">Avantage M&amp;S</span></a>
+      <a class="row" href="#c5"><span class="q">Négociation calée sur un contrat en cours</span><span class="c s"><i class="mk unk">?</i></span><span class="c m"><i class="mk yes">✓</i></span><span class="pill ms">Avantage M&amp;S</span></a>
+      <a class="row" href="#c6"><span class="q">Appel d'offres simultané, négocié</span><span class="c s"><i class="mk part">~</i></span><span class="c m"><i class="mk yes">✓</i></span><span class="pill ms">Avantage M&amp;S</span></a>
+      <a class="row" href="#c7"><span class="q">Prix indicatif en ligne, tout de suite</span><span class="c s"><i class="mk yes">✓</i></span><span class="c m"><i class="mk part">~</i></span><span class="pill sel">Avantage Selectra</span></a>
+      <a class="row" href="#c8"><span class="q">Services au-delà de la fourniture (CEE, audit)</span><span class="c s"><i class="mk yes">✓</i></span><span class="c m"><i class="mk part">~</i></span><span class="pill sel">Avantage Selectra</span></a>
+      <div class="board-foot"><span><b>3</b> avantages M&amp;S · <b>3</b> égalités · <b>2</b> avantages Selectra · sources Selectra consultées le 10/10/2026</span><a class="btn" href="#recap">Envoyer ma facture →</a></div>
+    </nav>
+  </div>
+</header>
+
+<div class="sticky" aria-hidden="true">
+  <div class="wrap">
+    <div class="who"><span class="dot" style="background:var(--muted)"></span>Selectra <small>comparateur + courtier en ligne</small></div>
+    <div class="who"><span class="dot" style="background:var(--teal-glow)"></span>M&amp;S Strategy <small>courtier négociateur, depuis 2012</small></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="cards">
+    <h2 class="section-title">Là où les deux se valent</h2>
+    <p class="section-sub">On ne revendique pas de différence sur ces points.</p>
+
+    <article class="card" id="c1">
+      <div class="card-top"><div><div class="num">CRITÈRE 1</div><h3>Est-ce que je paie quelque chose ?</h3></div><span class="pill eq">Égalité</span></div>
+      <div class="vs">
+        <div class="side"><i class="mk yes">✓</i><p>Gratuit pour vous : rémunéré par les fournisseurs partenaires à chaque contrat signé.<span class="src">Selectra, page méthodologie</span></p></div>
+        <div class="side ms-side"><i class="mk yes">✓</i><p>Gratuit pour vous, que vous signiez ou non : commission fournisseur standardisée, intégrée au contrat.</p></div>
+      </div>
+      <details><summary>Pourquoi ça compte</summary><p>Le texte détaillé actuel de la page se range ici, replié : lisible par Google et par le lecteur curieux, sans bloquer celui qui scanne.</p></details>
+    </article>
+
+    <article class="card" id="c2">
+      <div class="card-top"><div><div class="num">CRITÈRE 2</div><h3>Quand ai-je une première réponse ?</h3></div><span class="pill eq">Égalité</span></div>
+      <div class="vs">
+        <div class="side"><i class="mk yes">✓</i><p>Devis chiffré « sous 24 h ouvrées », 3 à 5 offres ciblées.</p></div>
+        <div class="side ms-side"><i class="mk yes">✓</i><p>Premier retour sous 24 h après réception de la facture.</p></div>
+      </div>
+    </article>
+
+    <h2 class="section-title">Là où M&amp;S Strategy fait la différence</h2>
+    <p class="section-sub">Pour une PME multi-sites dont le contrat court encore.</p>
+
+    <article class="card" id="c4">
+      <div class="card-top"><div><div class="num">CRITÈRE 4</div><h3>Qui surveille mes échéances après la signature ?</h3></div><span class="pill ms">Avantage M&amp;S</span></div>
+      <div class="vs">
+        <div class="side"><i class="mk unk">?</i><p>Non communiqué sur les pages consultées. Cela ne veut pas dire que le service n'existe pas.</p></div>
+        <div class="side ms-side"><i class="mk yes">✓</i><p>Dossier suivi jusqu'au prochain renouvellement, un interlocuteur unique pour tout le parc.<span class="src">Cas client : 22 points de vente, un seul interlocuteur</span></p></div>
+      </div>
+      <details><summary>Pourquoi ça compte</summary><p>Avec plusieurs sites aux échéances différentes, la vraie question est : qui surveille les dates ? Sans suivi, un contrat se renouvelle tacitement aux conditions du moment.</p></details>
+    </article>
+
+    <article class="card" id="c5">
+      <div class="card-top"><div><div class="num">CRITÈRE 5</div><h3>Mon contrat court encore : peut-on agir maintenant ?</h3></div><span class="pill ms">Avantage M&amp;S</span></div>
+      <div class="vs">
+        <div class="side"><i class="mk unk">?</i><p>Pas de calendrier de négociation lié à l'échéance trouvé sur les pages consultées.</p></div>
+        <div class="side ms-side"><i class="mk yes">✓</i><p>On repère la meilleure fenêtre, idéalement 12 à 24 mois avant l'échéance, et on prépare le renouvellement en amont.</p></div>
+      </div>
+    </article>
+
+    <h2 class="section-title">Là où Selectra peut mieux vous convenir</h2>
+    <p class="section-sub">Une comparaison honnête montre aussi ça.</p>
+
+    <article class="card" id="c7">
+      <div class="card-top"><div><div class="num">CRITÈRE 7</div><h3>Je veux un ordre de prix en ligne, tout de suite</h3></div><span class="pill sel">Avantage Selectra</span></div>
+      <div class="vs">
+        <div class="side"><i class="mk yes">✓</i><p>Comparateur chiffré en ligne, prix HT publiés pour un exemple de petit site.</p></div>
+        <div class="side ms-side"><i class="mk part">~</i><p>Étude à partir de votre facture : pas de grille publique, chaque prix dépend de votre profil.</p></div>
+      </div>
+    </article>
+
+    <p class="section-sub" style="text-align:center;margin-top:8px">… les critères 3, 6 et 8 suivent le même gabarit.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Passer de Selectra à M&amp;S Strategy</h2>
+    <p class="section-sub">Seul le contrat commercial change : ni compteur, ni réseau, aucune coupure.</p>
+    <ol class="steps">
+      <li><b>Votre facture</b>Elle suffit pour lancer l'analyse.</li>
+      <li><b>L'analyse</b>Premier retour sous 24 h.</li>
+      <li><b>La fenêtre</b>La date de négociation la plus favorable.</li>
+      <li><b>L'appel d'offres</b>Tous les fournisseurs actifs, en même temps.</li>
+      <li><b>Vous décidez</b>Gratuit et sans engagement.</li>
+    </ol>
+  </section>
+
+  <section class="faq">
+    <h2 class="section-title">Questions fréquentes</h2>
+    <details><summary>Peut-on quitter Selectra en cours de contrat ?</summary><p>Cela dépend du contrat signé avec le fournisseur. M&amp;S Strategy peut intervenir même si le contrat est encore en cours.</p></details>
+    <details><summary>Le changement de fournisseur provoque-t-il une coupure ?</summary><p>Non. Seul le contrat commercial change.</p></details>
+  </section>
+
+  <section class="recap" id="recap">
+    <div>
+      <h2>Le bilan, en un coup d'œil</h2>
+      <p>Petit site unique et besoin d'un prix immédiat : regardez Selectra. Plusieurs sites, contrat en cours, envie qu'on surveille vos échéances : envoyez-nous votre facture.</p>
+      <a class="btn" href="#">Envoyer ma facture →</a>
+    </div>
+    <div class="tally">
+      <div><span>Avantage M&amp;S Strategy</span><b style="color:var(--teal-glow)">3</b></div>
+      <div><span>Égalité</span><b style="color:var(--muted)">3</b></div>
+      <div><span>Avantage Selectra</span><b style="color:var(--amber)">2</b></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
