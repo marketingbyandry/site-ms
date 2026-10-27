@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* ════════════════════════════════════════
-   STUDIO J1–J10 : une source, deux affichages
+   STUDIO J1–J20 : une source, deux affichages
 
    Source (à modifier) :
      content/campagne-q4-2026-commercants/studio/studio.json   jours + visuels

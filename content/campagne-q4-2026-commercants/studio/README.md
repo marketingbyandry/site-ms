@@ -1,6 +1,6 @@
-# Studio J1–J10 (campagne « Pas de -50 % »)
+# Studio J1–J20 (campagne « Pas de -50 % »)
 
-Source unique de l'onglet « Studio · J1–J10 ». Elle alimente deux affichages
+Source unique de l'onglet « Studio · J1–J20 ». Elle alimente deux affichages
 identiques :
 
 - **la page de validation de l'équipe com** : `approbation.html`, protégée

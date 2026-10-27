@@ -1,7 +1,7 @@
 {
   "campagne": "pas-de-50-q4-2026",
-  "titre": "Pas de -50 % · Studio J1–J10",
-  "note": "Source unique de l’onglet Studio J1–J10 : alimente approbation.html et l’artefact (npm run build:studio).",
+  "titre": "Pas de -50 % · Studio J1–J20",
+  "note": "Source unique de l’onglet Studio J1–J20 : alimente approbation.html et l’artefact (npm run build:studio).",
   "jours": [
     {
       "jour": 1,
@@ -764,6 +764,761 @@
               "k": "end",
               "h": "Consignes ajustées. Avant de changer de four, changez d’habitudes.",
               "path": "economies-energie-boulangerie"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 11,
+      "date": "2026-10-25",
+      "jour_semaine": "dimanche",
+      "phase": "1 · Avant la vitrine",
+      "angle": "La fin de l'ARENH, en clair pour un commerçant",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "destination": "arenh-entreprise-fin-dispositif.html",
+      "candidat_pub": false,
+      "linkedin_compte": "profil dirigeant",
+      "visuels": {
+        "LinkedIn": {
+          "type": "text"
+        },
+        "Facebook": {
+          "type": "video",
+          "r": "v916",
+          "cut": "35 s, tableau blanc, voix off, sous-titres",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "L'ARENH, c'est fini. Et alors ?",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Depuis le 31/12/2025 : plus d’amortisseur."
+            },
+            {
+              "k": "txt",
+              "h": "Comparer devient déterminant.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "video",
+          "r": "v916",
+          "cut": "20 s, tableau blanc en accéléré, voix off",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "L'ARENH, c'est fini. Et alors ?",
+              "tone": "deep"
+            },
+            {
+              "k": "clip",
+              "desc": "Une éponge efface le ressort dessiné sous la courbe de prix."
+            },
+            {
+              "k": "txt",
+              "h": "Comparer devient déterminant.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 12,
+      "date": "2026-10-26",
+      "jour_semaine": "lundi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "La puissance souscrite que personne n'a revue depuis l'ouverture",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "destination": "puissance-souscrite-entreprise-kva.html",
+      "candidat_pub": true,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "carousel",
+          "r": "p45",
+          "note": "Exporter les 6 slides en un PDF pour le carrousel document LinkedIn.",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Une ligne de votre contrat n’a pas bougé depuis l’ouverture.",
+              "tone": "deep"
+            },
+            {
+              "k": "num",
+              "big": "kVA",
+              "p": "La puissance souscrite."
+            },
+            {
+              "k": "txt",
+              "h": "Elle fixe l’abonnement ET le TURPE, que vous consommiez ou non."
+            },
+            {
+              "k": "txt",
+              "h": "Trop haute : vous payez pour rien, chaque mois."
+            },
+            {
+              "k": "txt",
+              "h": "Trop basse : dépassements facturés au prix fort."
+            },
+            {
+              "k": "end",
+              "h": "La bonne : vos pics réels des 12 derniers mois.",
+              "path": "puissance-souscrite-entreprise-kva"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Zoom sur la ligne « Puissance souscrite : 36 kVA » d’une facture stylisée, entourée au feutre.",
+              "h": ""
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "carousel",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "num",
+              "big": "kVA",
+              "p": "Choisie le jour de l’ouverture. Jamais revue ?"
+            },
+            {
+              "k": "txt",
+              "h": "Elle fixe votre abonnement.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Et votre TURPE."
+            },
+            {
+              "k": "txt",
+              "h": "Même si vous ne consommez pas.",
+              "tone": "deep"
+            },
+            {
+              "k": "end",
+              "h": "Comparez-la à vos pics réels.",
+              "path": "puissance-souscrite-entreprise-kva"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 13,
+      "date": "2026-10-27",
+      "jour_semaine": "mardi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Contrat en cours ? On prépare le dossier quand même",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": false,
+      "linkedin_compte": "profil dirigeant",
+      "visuels": {
+        "LinkedIn": {
+          "type": "video",
+          "r": "sq",
+          "cut": "55 s, voix off, sous-titres",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "« Mon contrat est en cours, je ne peux rien faire. »",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Rien signer. Mais tout préparer."
+            },
+            {
+              "k": "txt",
+              "h": "Signer, non. Préparer, oui.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "video",
+          "r": "v916",
+          "cut": "reprise du reel Instagram",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "« Je ne peux rien faire. »",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Signer, non. Préparer, oui.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "video",
+          "r": "v916",
+          "cut": "15 s : « rien faire » barré → « rien signer », puis texte final",
+          "slides": [
+            {
+              "k": "clip",
+              "desc": "Une main barre « rien faire » sur la feuille et écrit « rien signer »."
+            },
+            {
+              "k": "txt",
+              "h": "Signer, non. Préparer, oui.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 14,
+      "date": "2026-10-28",
+      "jour_semaine": "mercredi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Même commission quel que soit le fournisseur : pourquoi ça compte",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "destination": "comment-ca-marche.html",
+      "candidat_pub": false,
+      "linkedin_compte": "profil dirigeant",
+      "warn": "À valider avant publication : la commission « identique quel que soit le fournisseur » est encore [À CONFIRMER] dans l’étude du 9 octobre (même réserve que J7). Si ce n’est pas confirmé, retirer les slides 2 à 4 Instagram et adapter LinkedIn, Facebook et X.",
+      "visuels": {
+        "LinkedIn": {
+          "type": "text"
+        },
+        "Facebook": {
+          "type": "text"
+        },
+        "Instagram": {
+          "type": "carousel",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "La question que personne ne pose à son courtier.",
+              "tone": "deep"
+            },
+            {
+              "k": "clip",
+              "desc": "Trois cartes « Fournisseur A / B / C » retournées une à une, même étiquette « Commission : identique »."
+            },
+            {
+              "k": "txt",
+              "h": "Aucune raison de vous en pousser un."
+            },
+            {
+              "k": "end",
+              "h": "Même pas de vous faire changer.",
+              "path": "comment-ca-marche"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 15,
+      "date": "2026-10-29",
+      "jour_semaine": "jeudi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "La fenêtre de renégociation n'est pas celle qu'on croit (12-24 mois)",
+      "etape": "MOFU",
+      "matrice": "Éduquer",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": true,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "carousel",
+          "r": "p45",
+          "note": "Exporter les 6 slides en un PDF pour le carrousel document LinkedIn.",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Quand renégocier un contrat d’énergie ?",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Réponse habituelle : à l’échéance."
+            },
+            {
+              "k": "txt",
+              "h": "Problème : à J-1, on signe ce qu’on vous propose."
+            },
+            {
+              "k": "list",
+              "h": "La fenêtre, avant l’échéance",
+              "items": [
+                "J-24 à J-18 : idéal",
+                "J-12 : optimal",
+                "J-6 à J-1 : tardif, puis critique"
+              ],
+              "p": "J-36 : anticipé."
+            },
+            {
+              "k": "txt",
+              "h": "Depuis la fin de l’ARENH, le moment de signer pèse davantage.",
+              "tone": "mint"
+            },
+            {
+              "k": "end",
+              "h": "Où se situe votre contrat ? 3 minutes.",
+              "path": "ms-strategy-calculateur"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Calendrier mural réel, une date entourée en rouge, une flèche qui remonte « 12 à 24 mois avant ».",
+              "h": ""
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "list",
+              "h": "J-36 · J-24 · J-18 · J-12 · J-6 · J-1",
+              "items": [
+                "À J-1, on signe ce qu’on vous propose.",
+                "À J-18, on choisit.",
+                "Le bon segment : J-24 → J-12."
+              ]
+            }
+          ]
+        },
+        "X": {
+          "type": "image",
+          "r": "h169",
+          "slides": [
+            {
+              "k": "num",
+              "big": "12-24 mois",
+              "p": "avant l’échéance : la bonne fenêtre pour renégocier un contrat d’énergie pro."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "jour": 16,
+      "date": "2026-10-30",
+      "jour_semaine": "vendredi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Plusieurs boutiques : mutualiser plutôt que subir",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "destination": "energie-reseau-franchise-multisites.html",
+      "candidat_pub": false,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "video",
+          "r": "sq",
+          "cut": "45 s, voix off, sous-titres",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "3 boutiques. 3 contrats. 3 dates.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Une ligne par site : fournisseur, échéance, puissance, formule."
+            },
+            {
+              "k": "txt",
+              "h": "Séparés, ils pèsent peu. Ensemble, ils négocient.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "video",
+          "r": "v916",
+          "cut": "reprise, sous-titres",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "3 boutiques. 3 contrats. 3 dates.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Séparés, ils pèsent peu. Ensemble, ils négocient.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "video",
+          "r": "v916",
+          "cut": "15 s : trois factures en éventail, puis empilées",
+          "slides": [
+            {
+              "k": "clip",
+              "desc": "Trois factures en éventail sur un comptoir, puis une main les empile en un seul dossier."
+            },
+            {
+              "k": "txt",
+              "h": "Séparés, vos points de vente pèsent peu. Ensemble, ils négocient.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "X": {
+          "type": "video",
+          "r": "h169",
+          "cut": "30 s (reprise)",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "3 boutiques. 3 contrats. 3 dates.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Séparés, ils pèsent peu. Ensemble, ils négocient.",
+              "tone": "mint"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "jour": 17,
+      "date": "2026-10-31",
+      "jour_semaine": "samedi",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Halloween : les lignes de facture qui font vraiment peur",
+      "etape": "TOFU",
+      "matrice": "Divertir",
+      "destination": "accise-electricite-gaz-2026.html",
+      "candidat_pub": false,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "list",
+              "h": "Les 4 frissons de la facture d’énergie",
+              "items": [
+                "La reconduction tacite",
+                "La puissance fantôme",
+                "L’accise mal classée"
+              ],
+              "p": "Et la régularisation surprise. Aucune ne se voit dans le total."
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "image",
+          "r": "p45",
+          "note": "Photo réelle d’une vitrine décorée pour Halloween, avec l’accord du commerçant.",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Vitrine d’un commerce de quartier décorée pour Halloween (décoration réelle, avec l’accord du commerçant).",
+              "h": ""
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "carousel",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "4 frissons.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "La reconduction tacite.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "La puissance fantôme.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "L’accise mal classée.",
+              "tone": "deep"
+            },
+            {
+              "k": "end",
+              "h": "La régularisation surprise.",
+              "path": "accise-electricite-gaz-2026"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 18,
+      "date": "2026-11-01",
+      "jour_semaine": "dimanche",
+      "phase": "1 · Avant la vitrine",
+      "angle": "Avant de parler prix, regardez le marché (Baromètre)",
+      "etape": "TOFU",
+      "matrice": "Éduquer",
+      "destination": "barometre-energie.html",
+      "candidat_pub": false,
+      "linkedin_compte": "profil dirigeant",
+      "visuels": {
+        "LinkedIn": {
+          "type": "text"
+        },
+        "Facebook": {
+          "type": "video",
+          "r": "v916",
+          "cut": "30 s, écran du Baromètre, voix off (reprise)",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Avant de parler prix, on regarde le marché.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "Ce n’est pas votre prix. C’est la tendance.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "video",
+          "r": "v916",
+          "cut": "15 s, écran du Baromètre filmé au téléphone, voix off",
+          "slides": [
+            {
+              "k": "clip",
+              "desc": "L’écran du Baromètre filmé au téléphone : courbe électricité, puis gaz."
+            },
+            {
+              "k": "txt",
+              "h": "La tendance avant le prix.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 19,
+      "date": "2026-11-02",
+      "jour_semaine": "lundi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Lancement : en novembre vous baissez vos prix. Qui baisse les vôtres ?",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": true,
+      "linkedin_compte": "page",
+      "visuels": {
+        "LinkedIn": {
+          "type": "carousel",
+          "r": "p45",
+          "note": "Exporter les 7 slides en un PDF pour le carrousel document LinkedIn.",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Vous baissez vos prix en novembre. Qui baisse les vôtres ?",
+              "tone": "deep"
+            },
+            {
+              "k": "num",
+              "big": "−5,3 %",
+              "p": "de chiffre d’affaires en novembre 2025 pour les commerçants de mode indépendants. « Pas d’effet Black Friday. »",
+              "src": "Source : FNH"
+            },
+            {
+              "k": "num",
+              "big": "71 %",
+              "p": "des indépendants participants disent ne pas avoir eu le choix.",
+              "src": "Source : L’echommerces / Boutique2Mode"
+            },
+            {
+              "k": "txt",
+              "h": "La remise : on la pilote."
+            },
+            {
+              "k": "txt",
+              "h": "Le contrat d’énergie : on le subit, tous les mois.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "4 semaines pour regarder la charge que personne ne vous négocie.",
+              "tone": "mint"
+            },
+            {
+              "k": "end",
+              "h": "Étape 1 : 3 minutes, le calculateur.",
+              "path": "ms-strategy-calculateur"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "image",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Étiquette de prix en carton (photo réelle) barrée au marqueur, posée sur un comptoir.",
+              "h": ""
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "carousel",
+          "r": "p45",
+          "slides": [
+            {
+              "k": "photo",
+              "desc": "Étiquette de prix barrée au marqueur.",
+              "h": "Vous baissez vos prix."
+            },
+            {
+              "k": "photo",
+              "desc": "Étiquette intacte « Énergie ».",
+              "h": "Qui baisse les vôtres ?"
+            },
+            {
+              "k": "txt",
+              "h": "La remise se pilote."
+            },
+            {
+              "k": "txt",
+              "h": "La charge se subit.",
+              "tone": "deep"
+            },
+            {
+              "k": "strike",
+              "p": "Le contre-Black Friday commence.",
+              "path": "ms-strategy-calculateur"
+            }
+          ]
+        },
+        "X": {
+          "type": "text"
+        }
+      }
+    },
+    {
+      "jour": 20,
+      "date": "2026-11-03",
+      "jour_semaine": "mardi",
+      "phase": "2 · Le contre-Black Friday",
+      "angle": "Une remise coûte de la marge une fois ; une charge mal négociée la coûte tous les mois",
+      "etape": "MOFU",
+      "matrice": "Convaincre",
+      "destination": "ms-strategy-calculateur.html",
+      "candidat_pub": false,
+      "linkedin_compte": "profil dirigeant",
+      "visuels": {
+        "LinkedIn": {
+          "type": "video",
+          "r": "sq",
+          "cut": "50 s, voix off, sous-titres",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Remise ou contrat mal négocié : lequel coûte le plus ?",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "La remise : quelques jours. Le contrat : 1 à 3 ans."
+            },
+            {
+              "k": "txt",
+              "h": "Trois minutes pour un prix d’achat.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Facebook": {
+          "type": "video",
+          "r": "v916",
+          "cut": "reprise du reel Instagram",
+          "slides": [
+            {
+              "k": "txt",
+              "h": "Quelques jours.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "1 à 3 ans.",
+              "tone": "mint"
+            }
+          ]
+        },
+        "Instagram": {
+          "type": "video",
+          "r": "v916",
+          "cut": "15 s : étiquettes « -30 % », puis la facture",
+          "slides": [
+            {
+              "k": "strike",
+              "p": "Quelques jours."
+            },
+            {
+              "k": "txt",
+              "h": "1 à 3 ans.",
+              "tone": "deep"
+            },
+            {
+              "k": "txt",
+              "h": "On surveille ce qui se voit. On paie ce qui ne se voit pas.",
+              "tone": "mint"
             }
           ]
         },
