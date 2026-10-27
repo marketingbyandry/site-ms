@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════
-   STUDIO J1–J10 (rendu partagé)
+   STUDIO J1–J20 (rendu partagé)
 
    Inliné par scripts/build-studio.mjs dans approbation.html et dans
    l'artefact « Campagne Pas de -50 % ». Les deux affichent donc exactement

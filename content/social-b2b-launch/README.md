@@ -29,7 +29,7 @@ Ne jamais reprendre telle quelle une statistique non sourcée de la home.
 
 ## Validation par l'équipe com
 
-`approbation.html` (byandry.com) affiche désormais le Studio J1–J10 de la
+`approbation.html` (byandry.com) affiche désormais le Studio J1–J20 de la
 campagne « Pas de -50 % » (`content/campagne-q4-2026-commercants/studio/`,
 voir `scripts/build-studio.mjs`) ; les textes du cycle 1 restent dans ce
 dossier. La page est protégée par mot de passe (logique : `lib/approbation.mjs`, garde dans
