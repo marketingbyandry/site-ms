@@ -175,3 +175,20 @@ test('les 4 codes de campagne social sont acceptes par le middleware', () => {
     assert.equal(campCookie(response), code);
   }
 });
+
+test('un lien social avec utm garde les utm et perd camp apres redirection', () => {
+  const response = call(
+    'https://cabinetms.fr/b2b.html?camp=soc-fb&utm_source=facebook&utm_medium=social&utm_campaign=pas-de-50-q4-2026'
+  );
+  assert.equal(response.status, 302);
+  assert.equal(campCookie(response), 'soc-fb');
+  const location = new URL(response.headers.get('location'));
+  assert.equal(location.searchParams.get('camp'), null);
+  assert.equal(location.searchParams.get('utm_source'), 'facebook');
+  assert.equal(location.searchParams.get('utm_medium'), 'social');
+  assert.equal(
+    location.searchParams.get('utm_campaign'),
+    'pas-de-50-q4-2026',
+    'GA4 attribue la visite sur les utm_* ; sans eux la campagne sociale tombe en direct'
+  );
+});
