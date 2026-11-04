@@ -180,7 +180,8 @@ a{text-decoration:none;color:inherit}
 .sc-text .vn{font-size:1.4rem;color:rgba(76,222,128,.5);margin-bottom:0}
 .sc-text .vt{margin-bottom:0}
 .sc-text .vb{margin:0;line-height:1.6;max-height:3.2em;overflow:hidden;transition:max-height .55s cubic-bezier(.16,1,.3,1)}
-.sc-photo{position:relative;flex:1;transition:flex-grow .55s cubic-bezier(.16,1,.3,1)}
+/* Au repos la photo prend ~60 % de la carte : l'aperçu 2 lignes tient sans bandes vides autour. */
+.sc-photo{position:relative;flex:1.45;transition:flex-grow .55s cubic-bezier(.16,1,.3,1)}
 .sc-photo .photo-ph{position:absolute;inset:0;border-radius:0;border:none;border-bottom:1px solid var(--line)}
 .sector-card:has(.sc-text:hover) .sc-text{flex-grow:1.35}
 .sector-card:has(.sc-text:hover) .sc-text .vb{max-height:14em}
@@ -189,6 +190,7 @@ a{text-decoration:none;color:inherit}
 .sector-card:has(.sc-photo:hover) .sc-text{flex-grow:.75;opacity:.7}
 @media(max-width:560px){
   .sc-text .vb{max-height:none}
+  .sc-photo{flex-grow:1}
   .sector-card:has(.sc-text:hover) .sc-text,.sector-card:has(.sc-text:hover) .sc-photo,
   .sector-card:has(.sc-photo:hover) .sc-text,.sector-card:has(.sc-photo:hover) .sc-photo{flex-grow:1;opacity:1}
 }

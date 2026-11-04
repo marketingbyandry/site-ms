@@ -18,7 +18,7 @@ test('chaque article SEO a une page HTML générée à la racine du dépôt', ()
 
 // Articles dont la bannière porte une vraie photo choisie à la main (chacun a son propre
 // test `*-banner-photo.test.mjs`). Tous les autres gardent le placeholder dégradé.
-const SLUGS_WITH_REAL_PHOTO = new Set(['comparatif-fournisseurs-electricite-pro']);
+const SLUGS_WITH_REAL_PHOTO = new Set(['comparatif-fournisseurs-electricite-pro', 'droit-a-la-prise-copropriete']);
 
 test('chaque page article SEO utilise le placeholder photo nu (pas de vraie photo inventée)', () => {
   for (const slug of SLUGS) {
