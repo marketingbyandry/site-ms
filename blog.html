@@ -103,6 +103,19 @@ a{text-decoration:none;color:inherit}
 @media(max-width:768px){.res-grid{grid-template-columns:1fr}}
 .res-card{display:block;border:1px solid rgba(26,122,138,.16);border-radius:4px;padding:2.2rem;background:rgba(13,79,92,.08);transition:border-color .25s,border-width .25s,transform .25s}
 .res-card:hover{border-color:rgba(94,207,220,.4);border-width:1.5px;transform:translateY(-3px) scale(1.02)}
+/* Carte seule en fin de grille (nombre impair) : pleine largeur plutôt qu'une demi-ligne vide.
+   Avec vignette, la photo passe à gauche et le texte à droite. */
+@media(min-width:769px){
+  .res-grid>.res-card:last-child:nth-child(odd){grid-column:1/-1}
+  .res-grid>.res-card:last-child:nth-child(odd):hover{transform:translateY(-3px)}
+  .res-grid>.res-card:last-child:nth-child(odd):has(.blog-thumb){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr repeat(4,auto) 1fr;column-gap:2.2rem}
+  .res-grid>.res-card:last-child:nth-child(odd) .blog-thumb{grid-column:1;grid-row:1/-1;margin-bottom:0}
+  .res-grid>.res-card:last-child:nth-child(odd):has(.blog-thumb)>:not(.blog-thumb){grid-column:2;justify-self:start}
+  .res-grid>.res-card:last-child:nth-child(odd) .res-tag{grid-row:2}
+  .res-grid>.res-card:last-child:nth-child(odd) .res-title{grid-row:3}
+  .res-grid>.res-card:last-child:nth-child(odd) .res-desc{grid-row:4}
+  .res-grid>.res-card:last-child:nth-child(odd) .res-read{grid-row:5;margin-bottom:0}
+}
 .res-tag{display:inline-block;font-family:'Satoshi',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);background:rgba(43,181,200,.1);border:1px solid rgba(43,181,200,.2);padding:.24rem .65rem;border-radius:2px;margin-bottom:1rem}
 .res-title{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.25rem;color:var(--cream);line-height:1.25;margin-bottom:.8rem}
 .res-desc{font-size:.9rem;color:var(--muted);line-height:1.65;margin-bottom:1.2rem}
