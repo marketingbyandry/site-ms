@@ -1,0 +1,27 @@
+/* Rideau de transition entre pages, repris de byandry.com, en bleu clair.
+   Départ (html.curtain-closing) : un trait traverse l'écran, puis la page se referme sur lui.
+   Arrivée (html.curtain-arrive) : la page démarre rideau fermé, sans transition, puis s'ouvre le long du trait.
+   Le JS (assets/page-curtain.js) pose et retire ces classes. */
+.page-curtain { position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; }
+.page-curtain-half {
+  position: absolute; left: 0; right: 0; height: 50%; background: #5ecfdc;
+  transform: scaleY(0); transition: transform .45s cubic-bezier(.625, .05, 0, 1);
+}
+.page-curtain-half:first-child { top: 0; transform-origin: top; }
+.page-curtain-half:nth-child(2) { bottom: 0; transform-origin: bottom; }
+.page-curtain-line {
+  position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: #07131a;
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .2s cubic-bezier(.625, .05, 0, 1) .36s;
+}
+html.curtain-arrive .page-curtain-half, html.curtain-arrive .page-curtain-line { transition: none; }
+html.curtain-arrive .page-curtain-half { transform: scaleY(1); }
+html.curtain-arrive .page-curtain-line { transform: scaleX(1); }
+html.curtain-closing .page-curtain-half {
+  transform: scaleY(1);
+  transition: transform .36s cubic-bezier(.625, .05, 0, 1) .15s;
+}
+html.curtain-closing .page-curtain-line { transform: scaleX(1); transform-origin: left; transition: transform .2s cubic-bezier(.625, .05, 0, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .page-curtain { display: none; }
+}
