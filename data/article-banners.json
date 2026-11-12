@@ -1,0 +1,533 @@
+{
+  "_doc": "Bannières photo des articles SEO (source Savee). status: pending|done. Reprendre au premier pending.",
+  "articles": [
+    {
+      "slug": "accise-electricite-gaz-2026",
+      "category": "Réglementation & fiscalité",
+      "title": "Accise sur l'électricité et le gaz en 2026 : ce qui change pour les entreprises",
+      "status": "done",
+      "photo": "assets/banners/accise-electricite-gaz-2026.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/WXU4VTs/",
+      "savee_id": "682ade7c3c9caf2231804b1b",
+      "source_name": "Are.na",
+      "crop_y": "50%"
+    },
+    {
+      "slug": "achat-groupe-energie-pme-franchises",
+      "category": "Verticaux sectoriels",
+      "title": "Achat groupé d'énergie pour PME et franchises : bonne ou fausse bonne idée ?",
+      "status": "done",
+      "photo": "assets/banners/achat-groupe-energie-pme-franchises.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/ZdNgdqe/",
+      "savee_id": "6ac384003c9caf41dfe9bd53",
+      "source_name": "Cold Storage Warehouse for Rent in Dubai",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "agrivoltaisme-terrain-agricole",
+      "category": "Renouvelable & solaire",
+      "title": "Agrivoltaïsme : quelles opportunités pour les exploitations agricoles",
+      "status": "pending"
+    },
+    {
+      "slug": "arenh-entreprise-fin-dispositif",
+      "category": "Marché & prix",
+      "title": "ARENH entreprise : ce que la fin du dispositif change pour votre contrat",
+      "status": "done",
+      "photo": "assets/banners/arenh-entreprise-fin-dispositif.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/D2c5FRA/",
+      "savee_id": "64f4aa2a45bead2b7b63569b",
+      "source_name": "1350800.jpg (2400×1606)",
+      "crop_y": "70%"
+    },
+    {
+      "slug": "audit-energetique-obligatoire-entreprise",
+      "category": "Efficacité énergétique",
+      "title": "Audit énergétique obligatoire entreprise : qui est concerné et comment s'y conformer",
+      "status": "done",
+      "photo": "assets/banners/audit-energetique-obligatoire-entreprise.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/87ag1of/",
+      "savee_id": "6429ea4edd507d5834fbae4f",
+      "source_name": "Atelier Cuadro Benegas • San Rafael Argentina 2022. Photographer Luis Abba.",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "autoconsommation-collective-entreprise",
+      "category": "Renouvelable & solaire",
+      "title": "Autoconsommation collective entreprise : comment ça fonctionne",
+      "status": "done",
+      "photo": "assets/banners/autoconsommation-collective-entreprise.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/i7QCV8a/",
+      "savee_id": "638ac13edf46c562141301d8",
+      "source_name": "438f225711627fb86b38d7d823b997ba60ffb86c.jpg (1500×1000)",
+      "crop_y": "50%"
+    },
+    {
+      "slug": "bornes-recharge-entreprise-loi-lom",
+      "category": "Mobilité & bâtiment",
+      "title": "Installation borne recharge entreprise : ce qu'impose la loi LOM",
+      "status": "pending"
+    },
+    {
+      "slug": "capn-contrat-nucleaire-long-terme",
+      "category": "Marché & prix",
+      "title": "Contrat CAPN : le nouveau mécanisme nucléaire de long terme pour les entreprises",
+      "status": "done",
+      "photo": "assets/banners/capn-contrat-nucleaire-long-terme.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/SY42XyM/",
+      "savee_id": "64ca9357504824e14575e197",
+      "source_name": "c79c86f371acb1def16d3d52e8a77a22067f7ce1.jpg (2048×1570)",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "cee-entreprise-2026",
+      "category": "Aides & financement",
+      "title": "CEE entreprise 2026 : comment financer vos travaux d'économies d'énergie",
+      "status": "done",
+      "photo": "assets/banners/cee-entreprise-2026.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/KY-PxER/",
+      "savee_id": "6a0df4ac3c9caf38128f4993",
+      "source_name": "db9fed5f5b2342cb8f4f956413c18156d84e1117.jpg (1800×1207)",
+      "crop_y": "45%"
+    },
+    {
+      "slug": "colonnes-montantes-enedis-loi-elan",
+      "category": "Copropriété",
+      "title": "Colonnes montantes Enedis loi ELAN : quel impact pour la copropriété",
+      "status": "done",
+      "photo": "assets/banners/colonnes-montantes-enedis-loi-elan.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/r9Ek0j0/",
+      "savee_id": "67ef03843c9caf1f578c5306",
+      "source_name": "Tumblr",
+      "crop_y": "45%"
+    },
+    {
+      "slug": "compteur-c4-tarif-hta-entreprise",
+      "category": "Fournisseurs & contrats",
+      "title": "Compteur C4 et tarif HTA : ce que les entreprises raccordées en haute tension doivent savoir",
+      "status": "done",
+      "photo": "assets/banners/compteur-c4-tarif-hta-entreprise.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/DclW6ep/",
+      "savee_id": "66f972543c9caf2bb82e49d8",
+      "source_name": "0f6fe296-1a5c-4f26-8ff2-f0f20c7b5c7f",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "consommation-energie-datacenter",
+      "category": "Verticaux sectoriels",
+      "title": "Consommation énergie data center : enjeux et optimisation",
+      "status": "pending"
+    },
+    {
+      "slug": "consommation-energie-restaurant",
+      "category": "Verticaux sectoriels",
+      "title": "Consommation énergie restaurant : comprendre et réduire sa facture",
+      "status": "done",
+      "photo": "assets/banners/consommation-energie-restaurant.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/lqiNBzX/",
+      "savee_id": "66d08159bff2bf97b6b9a9cc",
+      "source_name": "Photography © Seth Powers.",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "contrat-maintenance-p1-p2-p3-cpe",
+      "category": "Mobilité & bâtiment",
+      "title": "Contrat de maintenance P1 P2 P3 et CPE : comprendre la clause qui pèse sur votre facture",
+      "status": "done",
+      "photo": "assets/banners/contrat-maintenance-p1-p2-p3-cpe.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/acjCck3/",
+      "savee_id": "65c04da686827b4dae79bb34",
+      "source_name": "tumblr_9f8bc7cfa8ed347081e30e389808e837_2db9f2e5_2048",
+      "crop_y": "45%"
+    },
+    {
+      "slug": "corporate-ppa-electricite",
+      "category": "Renouvelable & solaire",
+      "title": "Corporate PPA électricité : un outil réservé aux grands groupes ?",
+      "status": "done",
+      "photo": "assets/banners/corporate-ppa-electricite.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/6nnAKee/",
+      "savee_id": "6870dcb03c9caf2579756dbe",
+      "source_name": "windmill Wind Energy offshore Windfarm Aerial Photography",
+      "crop_y": "45%"
+    },
+    {
+      "slug": "courtier-en-energie-role",
+      "category": "Fournisseurs & contrats",
+      "title": "Courtier en énergie : quel est son rôle pour une entreprise ?",
+      "status": "done",
+      "photo": "assets/banners/courtier-en-energie-role.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/TDod3I6/",
+      "savee_id": "68fa58c43c9caf31f2437bc5",
+      "source_name": "mg_6723-copie-2-1600x1600-q100.jpg",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "decret-bacs-obligations",
+      "category": "Mobilité & bâtiment",
+      "title": "Décret BACS : quelles obligations pour les bâtiments tertiaires",
+      "status": "done",
+      "photo": "assets/banners/decret-bacs-obligations.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/sVZAd40/",
+      "savee_id": "69611c333c9caf33b722b7d4",
+      "source_name": "Terracotta defines community centre in Finland by Nervin Architecture",
+      "crop_y": "30%"
+    },
+    {
+      "slug": "decret-tertiaire-obligations",
+      "category": "Réglementation & fiscalité",
+      "title": "Décret tertiaire obligations : ce que doivent faire les entreprises",
+      "status": "done",
+      "photo": "assets/banners/decret-tertiaire-obligations.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/Ag7mOPh/",
+      "savee_id": "67d4556f3c9caf1d1745cf82",
+      "source_name": "Photos of Thailand's first international contemporary art museum revealed",
+      "crop_y": "40%"
+    },
+    {
+      "slug": "decrypter-facture-electricite-pro",
+      "category": "Fournisseurs & contrats",
+      "title": "Comment décrypter sa facture d'électricité professionnelle ligne par ligne",
+      "status": "pending"
+    },
+    {
+      "slug": "dpe-collectif-copropriete",
+      "category": "Copropriété",
+      "title": "DPE collectif copropriété : comprendre son impact sur les charges",
+      "status": "done",
+      "photo": "assets/banners/dpe-collectif-copropriete.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/qJrMUMy/",
+      "savee_id": "669878d446356699f975145d",
+      "source_name": "London, UK",
+      "crop_y": "50%"
+    },
+    {
+      "slug": "economies-energie-boulangerie",
+      "category": "Verticaux sectoriels",
+      "title": "Économie énergie boulangerie : où se cachent les postes de consommation",
+      "status": "done",
+      "photo": "assets/banners/economies-energie-boulangerie.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/Fbeo0oE/",
+      "savee_id": "6735555b3c9caf10a0012f39",
+      "source_name": "Et Nunc Daikanyama | KEIJI ASHIZAWA DESIGN",
+      "crop_y": "50%"
+    },
+    {
+      "slug": "economies-energie-hotellerie",
+      "category": "Verticaux sectoriels",
+      "title": "Économies énergie hôtellerie : les leviers concrets pour réduire la facture",
+      "status": "done",
+      "photo": "assets/banners/economies-energie-hotellerie.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/3hfiPt9/",
+      "savee_id": "6638865f40dc3d82fa7aeaf3",
+      "source_name": "Arbaso Hotel - Attitude Interior Design Magazine",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "effacement-electrique-nebef-entreprise",
+      "category": "Marché & prix",
+      "title": "Effacement électrique NEBEF : comment une entreprise peut valoriser sa flexibilité",
+      "status": "done",
+      "photo": "assets/banners/effacement-electrique-nebef-entreprise.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/KoMzWDK/",
+      "savee_id": "64d6b8655131cf3fbb2ac27e",
+      "source_name": "httpswxmatija.tumblr.com (26)",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "electricite-clinique-hopital-ehpad",
+      "category": "Verticaux sectoriels",
+      "title": "Électricité clinique, hôpital, EHPAD : maîtriser un poste de dépense sous haute contrainte",
+      "status": "done",
+      "photo": "assets/banners/electricite-clinique-hopital-ehpad.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/Jm2KyOP/",
+      "savee_id": "64bf8954a2586f0c23971edf",
+      "source_name": "University of Virginia Hospital Expansion / Perkins and Will",
+      "crop_y": "50%"
+    },
+    {
+      "slug": "electricite-exploitation-agricole-hors-solaire",
+      "category": "Verticaux sectoriels",
+      "title": "Électricité exploitation agricole : maîtriser la facture hors photovoltaïque",
+      "status": "done",
+      "photo": "assets/banners/electricite-exploitation-agricole-hors-solaire.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/zBAaVHm/",
+      "savee_id": "6ac384003c9caf41dfe94ff6",
+      "source_name": "pexels-ian-lavrinovich-9454580 (board M&S)",
+      "crop_y": "80%"
+    },
+    {
+      "slug": "electricite-parties-communes-copropriete",
+      "category": "Copropriété",
+      "title": "Électricité parties communes copropriété : bien gérer le contrat du syndic",
+      "status": "done",
+      "photo": "assets/banners/electricite-parties-communes-copropriete.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/HFX4P2q/",
+      "savee_id": "6a43e3293c9caf3a082e1721",
+      "source_name": "Skylark House of EM entrance space",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "energie-camping-hotellerie-plein-air",
+      "category": "Verticaux sectoriels",
+      "title": "Énergie camping hôtellerie de plein air : gérer une consommation ultra-saisonnière",
+      "status": "done",
+      "photo": "assets/banners/energie-camping-hotellerie-plein-air.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/mGOFFv9/",
+      "savee_id": "6807d9d93c9caf2134db1b03",
+      "source_name": "(3) Tumblr",
+      "crop_y": "50%"
+    },
+    {
+      "slug": "energie-collectivites-marches-publics",
+      "category": "Verticaux sectoriels",
+      "title": "Achat énergie collectivité : comment fonctionnent les marchés publics d'énergie",
+      "status": "done",
+      "photo": "assets/banners/energie-collectivites-marches-publics.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/tOBpY_n/",
+      "savee_id": "6ac383ff3c9caf41dfe88753",
+      "source_name": "Melick photography (board M&S)",
+      "crop_y": "45%"
+    },
+    {
+      "slug": "energie-reseau-franchise-multisites",
+      "category": "Verticaux sectoriels",
+      "title": "Énergie en réseau franchise multi-sites : comment reprendre la main sur vos contrats",
+      "status": "done",
+      "photo": "assets/banners/energie-reseau-franchise-multisites.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/34gwlBU/",
+      "savee_id": "69c194b33c9caf36411f0201",
+      "source_name": "(2) Feed | LinkedIn",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "fonds-chaleur-ademe",
+      "category": "Aides & financement",
+      "title": "Fonds chaleur Ademe : une aide clé pour décarboner la chaleur en entreprise",
+      "status": "pending"
+    },
+    {
+      "slug": "garanties-origine-electricite-verte-entreprise",
+      "category": "Renouvelable & solaire",
+      "title": "Garanties d'origine électricité verte entreprise : comment ça fonctionne vraiment",
+      "status": "done",
+      "photo": "assets/banners/garanties-origine-electricite-verte-entreprise.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/mTfww75/",
+      "savee_id": "6870dcc33c9caf25797698ae",
+      "source_name": "windmill Wind Energy ... Aerial Photography",
+      "crop_y": "45%"
+    },
+    {
+      "slug": "gtb-gestion-technique-batiment",
+      "category": "Mobilité & bâtiment",
+      "title": "GTB gestion technique bâtiment : ce que ça change pour votre facture",
+      "status": "pending"
+    },
+    {
+      "slug": "hangar-photovoltaique-agricole",
+      "category": "Renouvelable & solaire",
+      "title": "Hangar photovoltaïque agricole : quelle rentabilité pour l'exploitant ?",
+      "status": "done",
+      "photo": "assets/banners/hangar-photovoltaique-agricole.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/tkt7pI-/",
+      "savee_id": "63fe402a2ebec888d7c8e971",
+      "source_name": "Off-Grid Home On A Working Farm",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "iso-50001-entreprise",
+      "category": "Efficacité énergétique",
+      "title": "ISO 50001 entreprise : comprendre la norme et son intérêt",
+      "status": "done",
+      "photo": "assets/banners/iso-50001-entreprise.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/vQl9cjL/",
+      "savee_id": "668ede3636aab26c50dcd01a",
+      "source_name": "LYG81GVAC132R",
+      "crop_y": "45%"
+    },
+    {
+      "slug": "mecanisme-capacite-electricite-entreprise",
+      "category": "Marché & prix",
+      "title": "Mécanisme de capacité électricité entreprise : une ligne discrète mais réelle sur la facture",
+      "status": "pending"
+    },
+    {
+      "slug": "mentions-obligatoires-facture-electricite-pro",
+      "category": "Fournisseurs & contrats",
+      "title": "Mentions obligatoires sur la facture d'électricité professionnelle : la checklist complète",
+      "status": "pending"
+    },
+    {
+      "slug": "ombrieres-photovoltaiques-parking",
+      "category": "Renouvelable & solaire",
+      "title": "Ombrière photovoltaïque parking : un investissement pertinent pour votre entreprise ?",
+      "status": "done",
+      "photo": "assets/banners/ombrieres-photovoltaiques-parking.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/qmodB1q/",
+      "savee_id": "63735d3dc319136c993c9358",
+      "source_name": "Solar car park at Disneyland Paris in France",
+      "crop_y": "50%"
+    },
+    {
+      "slug": "pppt-copropriete-plan-pluriannuel-travaux",
+      "category": "Copropriété",
+      "title": "PPPT copropriété plan pluriannuel de travaux : ce que ça implique pour l'électricité de l'immeuble",
+      "status": "done",
+      "photo": "assets/banners/pppt-copropriete-plan-pluriannuel-travaux.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/M1xvpuq/",
+      "savee_id": "670584e53c9caf154d60b035",
+      "source_name": "estevezandbelloso_1695371703_3197332046694024478_432783818",
+      "crop_y": "45%"
+    },
+    {
+      "slug": "prime-advenir-borne-recharge",
+      "category": "Aides & financement",
+      "title": "Prime Advenir borne recharge : quelles aides pour l'entreprise en 2026",
+      "status": "pending"
+    },
+    {
+      "slug": "prix-fixe-vs-indexe-electricite-pro",
+      "category": "Fournisseurs & contrats",
+      "title": "Prix fixe ou indexé électricité pro : quelle formule choisir ?",
+      "status": "done",
+      "photo": "assets/banners/prix-fixe-vs-indexe-electricite-pro.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/OfCFous/",
+      "savee_id": "65ada36cab6fbf3566ddad55",
+      "source_name": "WillNURSER000192-R1-E106.jpg",
+      "crop_y": "35%"
+    },
+    {
+      "slug": "prix-kwh-professionnel-2026",
+      "category": "Marché & prix",
+      "title": "Prix du kWh professionnel en 2026 : comprendre ce que vous payez réellement",
+      "status": "done",
+      "photo": "assets/banners/prix-kwh-professionnel-2026.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/BCFZeSj/",
+      "savee_id": "69381e403c9caf32fe416603",
+      "source_name": "oMEsGcogsHINBdkeykOqsuhI6U.jpg (2048×1280)",
+      "crop_y": "25%"
+    },
+    {
+      "slug": "prix-marche-gros-electricite",
+      "category": "Marché & prix",
+      "title": "Prix marché de gros électricité : comment il détermine votre facture pro",
+      "status": "pending"
+    },
+    {
+      "slug": "puissance-souscrite-entreprise-kva",
+      "category": "Fournisseurs & contrats",
+      "title": "Puissance souscrite entreprise en kVA : comment bien la calibrer",
+      "status": "pending"
+    },
+    {
+      "slug": "re2020-bbio-explication",
+      "category": "Mobilité & bâtiment",
+      "title": "RE2020 BBIO explication : comprendre cet indicateur clé du bâtiment neuf",
+      "status": "done",
+      "photo": "assets/banners/re2020-bbio-explication.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/nFZXwbL/",
+      "savee_id": "685db2953c9caf24faf87ce0",
+      "source_name": "Tumblr",
+      "crop_y": "60%"
+    },
+    {
+      "slug": "resilier-contrat-electricite-entreprise",
+      "category": "Fournisseurs & contrats",
+      "title": "Résilier contrat électricité entreprise : la procédure à connaître",
+      "status": "done",
+      "photo": "assets/banners/resilier-contrat-electricite-entreprise.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/TRGO4TY/",
+      "savee_id": "68da4ab43c9caf283c99d272",
+      "source_name": "leibal-holographik-space-studio-pi-non-architecture-27",
+      "crop_y": "60%"
+    },
+    {
+      "slug": "statut-electro-intensif-turpe-industrie",
+      "category": "Réglementation & fiscalité",
+      "title": "Statut électro-intensif et TURPE : quels avantages pour l'industrie",
+      "status": "done",
+      "photo": "assets/banners/statut-electro-intensif-turpe-industrie.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/clShXT8/",
+      "savee_id": "670e159e3c9caf315779c38a",
+      "source_name": "Big Lift Industrial Photography gas and heat",
+      "crop_y": "45%"
+    },
+    {
+      "slug": "tarifs-horosaisonniers-electricite-pro",
+      "category": "Fournisseurs & contrats",
+      "title": "Tarifs horosaisonniers HPH HCH HPE HCE : comment ça marche pour une entreprise",
+      "status": "done",
+      "photo": "assets/banners/tarifs-horosaisonniers-electricite-pro.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/80KBlKv/",
+      "savee_id": "6381be957ad5f880600ffaa3",
+      "source_name": "Fujifilm XF 16mm sample photo. Manhattan bridge",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "turpe-2026-professionnels",
+      "category": "Réglementation & fiscalité",
+      "title": "TURPE 2026 : ce que les professionnels doivent savoir sur cette ligne de facture",
+      "status": "done",
+      "photo": "assets/banners/turpe-2026-professionnels.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/Gw25ckg/",
+      "savee_id": "64af13c68ccf566731f29864",
+      "source_name": "568a6d45819a9447152b25e40d348229914ef535-2500x2000",
+      "crop_y": "55%"
+    },
+    {
+      "slug": "tva-electricite-professionnelle",
+      "category": "Réglementation & fiscalité",
+      "title": "TVA électricité professionnelle : quel taux s'applique et comment le vérifier",
+      "status": "pending"
+    },
+    {
+      "slug": "vnu-2026-versement-nucleaire-universel",
+      "category": "Marché & prix",
+      "title": "VNU 2026 : ce que le versement nucléaire universel change pour les entreprises",
+      "status": "done",
+      "photo": "assets/banners/vnu-2026-versement-nucleaire-universel.webp",
+      "pos_y": "50%",
+      "savee_url": "https://savee.com/i/xbORd-8/",
+      "savee_id": "63fcba91735f300d395b3b78",
+      "source_name": "Abandoned cooling towers by an unfinished nuclear power plant_",
+      "crop_y": "47%"
+    }
+  ]
+}

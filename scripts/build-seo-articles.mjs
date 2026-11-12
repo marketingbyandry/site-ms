@@ -12,6 +12,7 @@ import { homedir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { loadPartials, applyPartials } from './build-partials.mjs';
+import { loadBannerManifest, bannerFor, applyBannerToHtml } from './apply-article-banners.mjs';
 
 export const TEMPLATE_PATH = new URL('../templates/blog-article-template.html', import.meta.url);
 
@@ -258,12 +259,14 @@ export function buildAllArticles(sourceDir, outputDir) {
   // partials/ + data/site.json, pour ne jamais figer une valeur périmée.
   const template = applyPartials(readFileSync(TEMPLATE_PATH, 'utf8'), loadPartials());
   const files = readdirSync(sourceDir).filter((f) => f.endsWith('.md')).sort();
+  // Photos bannière (Savee) : réappliquées pour ne pas être perdues à la régénération.
+  const banners = loadBannerManifest();
   const results = [];
   for (const file of files) {
     const slug = file.replace(/\.md$/, '');
     const markdown = readFileSync(path.join(sourceDir, file), 'utf8');
     const data = buildArticleData(slug, markdown);
-    const html = renderArticleHtml(template, data);
+    const html = applyBannerToHtml(renderArticleHtml(template, data), bannerFor(slug, banners));
     writeFileSync(path.join(outputDir, `${slug}.html`), html);
     results.push(data);
   }
