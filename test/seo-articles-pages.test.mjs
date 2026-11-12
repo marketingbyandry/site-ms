@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { CATEGORY_BY_SLUG } from '../scripts/build-seo-articles.mjs';
+import { loadBannerManifest } from '../scripts/apply-article-banners.mjs';
 
 const SLUGS = Object.keys(CATEGORY_BY_SLUG);
 
@@ -16,9 +17,12 @@ test('chaque article SEO a une page HTML générée à la racine du dépôt', ()
   }
 });
 
-// Articles dont la bannière porte une vraie photo choisie à la main (chacun a son propre
-// test `*-banner-photo.test.mjs`). Tous les autres gardent le placeholder dégradé.
-const SLUGS_WITH_REAL_PHOTO = new Set(['comparatif-fournisseurs-electricite-pro', 'droit-a-la-prise-copropriete']);
+// Articles dont la bannière porte une vraie photo : les 2 historiques (test dédié
+// `*-banner-photo.test.mjs`) + ceux du manifeste Savee (test/article-banners-savee.test.mjs).
+const SLUGS_WITH_REAL_PHOTO = new Set([
+  'comparatif-fournisseurs-electricite-pro', 'droit-a-la-prise-copropriete',
+  ...loadBannerManifest().articles.filter((a) => a.status === 'done').map((a) => a.slug),
+]);
 
 test('chaque page article SEO utilise le placeholder photo nu (pas de vraie photo inventée)', () => {
   for (const slug of SLUGS) {
