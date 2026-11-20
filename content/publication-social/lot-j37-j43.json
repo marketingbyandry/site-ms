@@ -4,27 +4,145 @@
   "regle_reprise": "Reprise au calendrier (J37 le 20/11) : J12 à J36 non publiés sont sautés. Aucun texte de la semaine ne renvoie à un post antérieur.",
   "horaires": "FB/IG/X via Buffer à 12h30 (créneau J6/J8). LinkedIn : rien n'a jamais été publié, activation à décider.",
   "items": [
-    {"jour": 37, "date": "2026-11-20", "angle": "Vous gardez la décision finale", "statut": "pret",
-     "medias": {"ig": "videos/2026-11-20/J37_vous-gardez-la-decision_9x16.mp4", "fb": "videos/2026-11-20/J37_vous-gardez-la-decision_9x16.mp4", "x": "videos/2026-11-20/J37_vous-gardez-la-decision_16x9.mp4", "li": "videos/2026-11-20/J37_vous-gardez-la-decision_1x1.mp4"},
-     "alertes": ["Vidéo 16,5 s : LinkedIn demandait 45-90 s (acceptable, mais hors spec)."]},
-    {"jour": 38, "date": "2026-11-21", "angle": "Restaurateurs : pointes et plages horaires", "statut": "pret",
-     "medias": {"ig": ["visuels/2026-11-21/j38_ig_1.jpg", "visuels/2026-11-21/j38_ig_2.jpg", "visuels/2026-11-21/j38_ig_3.jpg", "visuels/2026-11-21/j38_ig_4.jpg"], "fb": "visuels/2026-11-21/j38_facebook.jpg", "li": "visuels/2026-11-21/j38_linkedin.jpg", "x": null},
-     "alertes": ["Facebook : la spec veut une photo réelle de salle de restaurant ; repli sur l'infographie en attendant."]},
-    {"jour": 39, "date": "2026-11-22", "angle": "Hôteliers : la saison d'hiver se prépare sur la facture", "statut": "pret",
-     "medias": {"ig": "videos/2026-11-22/J39_hoteliers-saison-hiver_9x16.mp4", "fb": "videos/2026-11-22/J39_hoteliers-saison-hiver_9x16.mp4", "x": null, "li": null},
-     "alertes": ["LinkedIn = profil du dirigeant : texte à faire valider par le dirigeant."]},
-    {"jour": 40, "date": "2026-11-23", "angle": "Black Week à l'envers : zéro réduction promise", "statut": "pret", "candidat_pub": true,
-     "medias": {"ig": ["visuels/2026-11-23/j40_ig_1.jpg", "visuels/2026-11-23/j40_ig_2.jpg", "visuels/2026-11-23/j40_ig_3.jpg"], "fb": "visuels/2026-11-23/j40_facebook.jpg", "li": "visuels/2026-11-23/j40_linkedin.pdf", "x": null},
-     "alertes": ["Slide 5 reformulée pour coller à la source : « 48 % des indépendants QUI ONT FAIT le Black Friday 2025 l'ont fait parce que leurs concurrents le faisaient »."]},
-    {"jour": 41, "date": "2026-11-24", "angle": "Ce qu'il faut pour l'étude : une facture, un relevé, une date", "statut": "pret_sauf_li",
-     "medias": {"ig": "videos/2026-11-24/J41_ce-qu-il-faut_9x16.mp4", "fb": "videos/2026-11-24/J41_ce-qu-il-faut_9x16.mp4", "x": null, "li": null},
-     "alertes": ["LinkedIn prévoyait le dirigeant face caméra 45 s : à tourner, ou publier la vidéo voix off à la place."]},
-    {"jour": 42, "date": "2026-11-25", "angle": "Le déroulé exact, de la facture au contrat", "statut": "pret_sauf_clip",
-     "medias": {"ig": ["visuels/2026-11-25/j42_ig_1.jpg", "visuels/2026-11-25/j42_ig_2.jpg", "visuels/2026-11-25/j42_ig_3.jpg", "visuels/2026-11-25/j42_ig_4.jpg", "visuels/2026-11-25/j42_ig_5.jpg", "visuels/2026-11-25/j42_ig_6.jpg"], "fb": null, "li": null, "x": null},
-     "alertes": ["Slide 2 : clip de 5 s (facture photographiée au téléphone) à tourner ; la slide texte j42_ig_2 sert de repli."]},
-    {"jour": 43, "date": "2026-11-26", "angle": "Petit dictionnaire du Black Friday", "statut": "pret",
-     "medias": {"ig": "visuels/2026-11-26/j43_instagram.jpg", "fb": "visuels/2026-11-26/j43_facebook.jpg", "li": "visuels/2026-11-26/j43_linkedin.pdf", "x": "visuels/2026-11-26/j43_x.jpg"},
-     "alertes": []}
+    {
+      "jour": 37,
+      "date": "2026-11-20",
+      "angle": "Vous gardez la décision finale",
+      "statut": "programme",
+      "medias": {
+        "ig": "videos/2026-11-20/J37_vous-gardez-la-decision_9x16.mp4",
+        "fb": "videos/2026-11-20/J37_vous-gardez-la-decision_9x16.mp4",
+        "x": "videos/2026-11-20/J37_vous-gardez-la-decision_16x9.mp4",
+        "li": "videos/2026-11-20/J37_vous-gardez-la-decision_1x1.mp4"
+      },
+      "alertes": [
+        "Vidéo 16,5 s : LinkedIn demandait 45-90 s (acceptable, mais hors spec)."
+      ],
+      "buffer": {
+        "fb": "6b00353cc1f33e2aa5be6e7e",
+        "ig": "6b00353c9dd03fda0b0a3e71",
+        "x": "6b00353d3d025b9e58ab2436",
+        "heure": "2026-11-20T17:30+01:00"
+      }
+    },
+    {
+      "jour": 38,
+      "date": "2026-11-21",
+      "angle": "Restaurateurs : pointes et plages horaires",
+      "statut": "programme",
+      "medias": {
+        "ig": [
+          "visuels/2026-11-21/j38_ig_1.jpg",
+          "visuels/2026-11-21/j38_ig_2.jpg",
+          "visuels/2026-11-21/j38_ig_3.jpg",
+          "visuels/2026-11-21/j38_ig_4.jpg"
+        ],
+        "fb": "visuels/2026-11-21/j38_facebook.jpg",
+        "li": "visuels/2026-11-21/j38_linkedin.jpg",
+        "x": null
+      },
+      "alertes": [
+        "Facebook : la spec veut une photo réelle de salle de restaurant ; repli sur l'infographie en attendant."
+      ],
+      "buffer": {
+        "fb": "6b00354b9dd03fda0b0a4332",
+        "ig": "6b00354c3d025b9e58ab284d",
+        "x": "6b00354d39116a845dd3f983",
+        "heure": "2026-11-21T12:30+01:00"
+      }
+    },
+    {
+      "jour": 39,
+      "date": "2026-11-22",
+      "angle": "Hôteliers : la saison d'hiver se prépare sur la facture",
+      "statut": "programme",
+      "medias": {
+        "ig": "videos/2026-11-22/J39_hoteliers-saison-hiver_9x16.mp4",
+        "fb": "videos/2026-11-22/J39_hoteliers-saison-hiver_9x16.mp4",
+        "x": null,
+        "li": null
+      },
+      "alertes": [
+        "LinkedIn = profil du dirigeant : texte à faire valider par le dirigeant."
+      ],
+      "buffer": {
+        "fb": "6b00355b0c6d6b905283b5dd",
+        "ig": "6b00355bc0a7142f84b877ba",
+        "x": "6b00355c0c6d6b905283b652",
+        "heure": "2026-11-22T12:30+01:00"
+      }
+    },
+    {
+      "jour": 40,
+      "date": "2026-11-23",
+      "angle": "Black Week à l'envers : zéro réduction promise",
+      "statut": "pret",
+      "candidat_pub": true,
+      "medias": {
+        "ig": [
+          "visuels/2026-11-23/j40_ig_1.jpg",
+          "visuels/2026-11-23/j40_ig_2.jpg",
+          "visuels/2026-11-23/j40_ig_3.jpg"
+        ],
+        "fb": "visuels/2026-11-23/j40_facebook.jpg",
+        "li": "visuels/2026-11-23/j40_linkedin.pdf",
+        "x": null
+      },
+      "alertes": [
+        "Slide 5 reformulée pour coller à la source : « 48 % des indépendants QUI ONT FAIT le Black Friday 2025 l'ont fait parce que leurs concurrents le faisaient »."
+      ]
+    },
+    {
+      "jour": 41,
+      "date": "2026-11-24",
+      "angle": "Ce qu'il faut pour l'étude : une facture, un relevé, une date",
+      "statut": "pret_sauf_li",
+      "medias": {
+        "ig": "videos/2026-11-24/J41_ce-qu-il-faut_9x16.mp4",
+        "fb": "videos/2026-11-24/J41_ce-qu-il-faut_9x16.mp4",
+        "x": null,
+        "li": null
+      },
+      "alertes": [
+        "LinkedIn prévoyait le dirigeant face caméra 45 s : à tourner, ou publier la vidéo voix off à la place."
+      ]
+    },
+    {
+      "jour": 42,
+      "date": "2026-11-25",
+      "angle": "Le déroulé exact, de la facture au contrat",
+      "statut": "pret_sauf_clip",
+      "medias": {
+        "ig": [
+          "visuels/2026-11-25/j42_ig_1.jpg",
+          "visuels/2026-11-25/j42_ig_2.jpg",
+          "visuels/2026-11-25/j42_ig_3.jpg",
+          "visuels/2026-11-25/j42_ig_4.jpg",
+          "visuels/2026-11-25/j42_ig_5.jpg",
+          "visuels/2026-11-25/j42_ig_6.jpg"
+        ],
+        "fb": null,
+        "li": null,
+        "x": null
+      },
+      "alertes": [
+        "Slide 2 : clip de 5 s (facture photographiée au téléphone) à tourner ; la slide texte j42_ig_2 sert de repli."
+      ]
+    },
+    {
+      "jour": 43,
+      "date": "2026-11-26",
+      "angle": "Petit dictionnaire du Black Friday",
+      "statut": "pret",
+      "medias": {
+        "ig": "visuels/2026-11-26/j43_instagram.jpg",
+        "fb": "visuels/2026-11-26/j43_facebook.jpg",
+        "li": "visuels/2026-11-26/j43_linkedin.pdf",
+        "x": "visuels/2026-11-26/j43_x.jpg"
+      },
+      "alertes": []
+    }
   ],
-  "version": 1
+  "version": 1,
+  "buffer_limite": "Offre gratuite : 10 posts programmés max (3 jours x 3 réseaux). Programmer J40-J42 après l envoi de J37."
 }
