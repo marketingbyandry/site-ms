@@ -11,7 +11,7 @@ Sont concernés les bâtiments existants à usage tertiaire d'au moins 1 000 m²
 | Vous occupez tout l'immeuble | Surface tertiaire totale |
 | Vous louez un plateau | Surface de l'ensemble et répartition prévue au bail |
 | Plusieurs bâtiments sur un site | Addition des surfaces tertiaires |
-| Bâtiment mixte | Surface tertiaire seule, au-delà du seuil |
+| Bâtiment mixte | Surface tertiaire seule, dès 1 000 m² |
 
 Une petite boutique peut donc entrer dans le champ parce qu'elle se trouve dans un centre plus grand. Les lieux de culte, les constructions sous permis précaire et certains usages opérationnels de défense, de sécurité civile ou de sûreté intérieure sont exemptés. Les objectifs et les cas d'assujettissement sont repris dans notre article sur le [décret tertiaire](decret-tertiaire-obligations.md).
 
@@ -64,11 +64,11 @@ Le dossier peut être réclamé par l'administration, avec un délai de quinze j
 
 ## Attestation, affichage et sanctions
 
-La plateforme produit une attestation numérique annuelle, à partir de laquelle il faut publier consommations, objectifs et émissions de gaz à effet de serre. L'information peut passer par un affichage visible ou un autre moyen adapté. Sa publication sous cette forme n'est plus facultative depuis le 1er juillet 2026.
+La plateforme produit une attestation numérique annuelle, à partir de laquelle il faut publier consommations, objectifs et émissions de gaz à effet de serre. L'information peut passer par un affichage visible ou un autre moyen adapté. Sa publication sous cette forme n'est plus facultative depuis le 1er juillet 2026, selon la [fiche officielle du dispositif](https://entreprendre.service-public.gouv.fr/vosdroits/F38065).
 
 En cas de vente ou de location, l'évaluation s'annexe aux documents prévus, comme la promesse de vente ou le bail. Préparez-la au moment de mettre le bien sur le marché.
 
-Pour les objectifs, la vérification intervient au plus tard le 31 décembre 2031, puis 2041 et 2051. Si l'objectif n'est pas atteint sans justification, le préfet peut demander un programme d'actions dans les six mois, puis adresser une seconde mise en demeure avec un délai de trois mois. L'amende administrative peut atteindre 1 500 € pour une personne physique et 7 500 € pour une personne morale, au terme de cette procédure. Un constat de carence peut aussi être publié.
+Pour les objectifs, la vérification intervient au plus tard le 31 décembre 2031, puis 2041 et 2051. Si l'objectif n'est pas atteint sans justification, le préfet peut demander un programme d'actions dans les six mois, puis adresser une seconde mise en demeure avec un délai de trois mois. L'amende administrative peut atteindre 1 500 € pour une personne physique et 7 500 € pour une personne morale, au terme de cette procédure décrite par la même fiche. Un constat de carence peut aussi être publié.
 
 Profitez des données pour agir : classez les locaux en kWh par m², repérez celui qui dépasse les autres et vérifiez ses horaires. Une démarche [ISO 50001](iso-50001-entreprise.md) peut utiliser les mêmes relevés, et la [courbe de charge](courbe-de-charge-enedis-entreprise.md) aide à expliquer les anomalies.
 

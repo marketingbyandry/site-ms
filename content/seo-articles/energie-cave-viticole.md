@@ -18,9 +18,9 @@ Pour suivre une campagne, divisez les kWh affectés à la vinification par les h
 
 ## Calculer le froid d'une cuve avant de choisir sa durée
 
-Refroidir rapidement exige de la puissance ; refroidir plus lentement demande surtout d'anticiper, si l'œnologue l'accepte. Prenons une approximation de 1 kWh pour baisser 1 m³ de moût d'un degré. Pour 100 hl, soit 10 m³, abaissés de 28 à 14 °C, il faut retirer 10 × 14, soit 140 kWh de chaleur.
+Refroidir rapidement exige de la puissance ; refroidir plus lentement demande surtout d'anticiper, si l'œnologue l'accepte. Prenons une approximation de 1,1 kWh pour baisser 1 m³ de moût d'un degré. Pour 100 hl, soit 10 m³, abaissés de 28 à 14 °C, il faut retirer 10 × 14 × 1,1, soit 154 kWh de chaleur.
 
-Avec un groupe de coefficient de performance 3, l'électricité théorique serait 46,7 kWh, hors pertes, pompes et chaleur de fermentation. Si l'opération doit se terminer en quatre heures, elle réclame 35 kW de froid. En huit heures, 17,5 kW suffisent. L'énergie reste proche, mais la pointe électrique et le matériel peuvent changer.
+Avec un groupe de coefficient de performance 3, l'électricité théorique serait 51,3 kWh, hors pertes, pompes et chaleur de fermentation. Si l'opération doit se terminer en quatre heures, elle réclame 38,5 kW de froid. En huit heures, 19,25 kW suffisent. L'énergie reste proche, mais la pointe électrique et le matériel peuvent changer.
 
 - **Avant récolte** : contrôlez sondes, vannes, échangeurs et isolation des tuyauteries.
 - **À la réception** : regroupez si possible les cuves à refroidir, sans retarder une décision de qualité.
@@ -31,9 +31,9 @@ Le besoin de froid peut surgir la nuit comme l'après-midi. Le contrat ne doit d
 
 ## Construire la pointe du jour de vendange
 
-La puissance se calcule à partir d'un jour probable, pas de toutes les plaques posées dans le bâtiment. Écrivez les horaires d'un camion de réception, d'un cycle de presse, de deux pompages et des groupes. Par exemple, une presse à 18 kW, trois pompes à 9 kW au total, le groupe froid à 12 kW électriques (35 kW de froid divisés par 3) et les autres usages à 8 kW atteignent 47 kW si tout se superpose.
+La puissance se calcule à partir d'un jour probable, pas de toutes les plaques posées dans le bâtiment. Écrivez les horaires d'un camion de réception, d'un cycle de presse, de deux pompages et des groupes. Par exemple, une presse à 18 kW, trois pompes à 9 kW au total, le groupe froid à 13 kW électriques (38,5 kW de froid divisés par 3, arrondis) et les autres usages à 8 kW atteignent 48 kW si tout se superpose.
 
-Si les trois pompes ne fonctionnent jamais avec la presse, le total observé peut descendre à 38 kW. Ce raisonnement vaut la peine d'être confirmé par une mesure : démarrages moteurs, déséquilibre de phases et habitudes peuvent changer le résultat. Regardez aussi la ligne de raccordement si vous ajoutez une cuve thermorégulée ou un second pressoir.
+Si les trois pompes ne fonctionnent jamais avec la presse, le total observé peut descendre à 39 kW. Ce raisonnement vaut la peine d'être confirmé par une mesure : démarrages moteurs, déséquilibre de phases et habitudes peuvent changer le résultat. Regardez aussi la ligne de raccordement si vous ajoutez une cuve thermorégulée ou un second pressoir.
 
 1. **Relever** : demandez la courbe ou la puissance atteinte au mois de vendange.
 2. **Séparer** : marquez les heures de presse, pompes, froid et nettoyage.
@@ -58,7 +58,7 @@ Le bâtiment peut aussi alimenter des pompes de jour, la climatisation de vente 
 
 Un contrat unique couvre la pointe et les mois d'élevage. Demandez l'historique complet et signalez une récolte atypique. Le prix du kWh ne suffit pas : relevez l'abonnement, l'acheminement, la durée et une éventuelle clause sur les volumes. Une consommation divisée par deux après une année de grêle n'a pas le même effet qu'un changement de groupe froid.
 
-Pour [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md), transmettez une courbe qui contient au moins une vendange et les projets de l'année suivante. Les caves intégrées à une exploitation trouveront un cadre plus large dans notre page sur l'[électricité agricole hors solaire](electricite-exploitation-agricole-hors-solaire.md). Si la puissance est inférieure à 36 kVA, vérifiez l'[option heures creuses](heures-creuses-entreprise-nouveaux-horaires.md) sans déplacer un refroidissement indispensable.
+Pour [comparer plusieurs fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md), transmettez une courbe qui contient au moins une vendange et les projets de l'année suivante. Les caves intégrées à une exploitation trouveront un cadre plus large dans notre page sur l'[électricité agricole hors solaire](electricite-exploitation-agricole-hors-solaire.md). Jusqu'à 36 kVA, vérifiez l'[option heures creuses](heures-creuses-entreprise-nouveaux-horaires.md) sans déplacer un refroidissement indispensable.
 
 ## Questions fréquentes
 

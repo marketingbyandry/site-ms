@@ -41,7 +41,7 @@ Le seuil d'équilibre se lit directement : tant que l'écart de prix reste infé
 
 Le départ des locaux et la cessation d'activité sont le cas le plus courant. Selon la fiche [« Je quitte un local professionnel »](https://www.energie-info.fr/pro/fiche_pratique/je-quitte-un-local-professionnel/), ils sont généralement admis comme motif légitime pour les petits consommateurs, et le fournisseur ne devrait alors pas facturer de pénalité. Au-dessus du seuil, reportez-vous au contrat.
 
-La modification unilatérale en est un autre. Sous 30 000 kWh, l'[article L. 224-10 du code de la consommation](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069565/LEGISCTA000032221457/) impose une information un mois avant, et vous laisse résilier sans pénalité dans les trois mois qui suivent sa réception. Cette règle ne vise pas les changements imposés par la loi ou le règlement, comme une évolution d'accise.
+La modification unilatérale en est un autre. Sous 30 000 kWh, l'[article L. 224-10 du code de la consommation](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069565/LEGISCTA000032221457/) impose une information un mois avant, et vous laisse résilier sans pénalité dans les trois mois qui suivent sa réception. Le délai d'information diffère en électricité, où le code de l'énergie retient quinze jours pour un changement de prix. Cette règle ne vise pas les changements imposés par la loi ou le règlement, comme une évolution d'accise.
 
 Restent le manquement du fournisseur, la clause de sauvegarde ou la procédure collective. Chacun de ces cas demande une analyse du contrat, si besoin avec votre avocat. Pour un transfert d'activité, suivez notre procédure de [déménagement d'entreprise](demenagement-entreprise-contrat-energie.md).
 

@@ -63,7 +63,7 @@ La photo d'index du jour J fixe votre point de départ. Sans elle, la première 
 
 Être pressé ne vous oblige pas à signer pour trois ans. Jusqu'à 36 kVA, l'article L332-2 du code de l'énergie encadre la sortie anticipée d'un contrat professionnel à prix et durée fixes ; au-dessus, la sortie se joue surtout dans vos conditions de vente.
 
-Posez trois questions avant d'accepter : quelle durée, quel préavis, quels frais si je pars ? Une offre courte le temps d'ouvrir coûte parfois un peu plus au MWh, mais vous laisse [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md) avec votre vraie courbe de consommation. Au bout de quelques mois, vos relevés valent mieux qu'une estimation et les prix proposés s'en ressentent.
+Posez trois questions avant d'accepter : quelle durée, quel préavis, quels frais si je pars ? Une offre courte le temps d'ouvrir coûte parfois un peu plus au MWh, mais vous laisse [comparer plusieurs fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md) avec votre vraie courbe de consommation. Au bout de quelques mois, vos relevés valent mieux qu'une estimation et les prix proposés s'en ressentent.
 
 ## Questions fréquentes
 
@@ -81,4 +81,4 @@ En général non pour une simple reprise d'une installation déjà alimentée. U
 
 ## Choisir le bon contrat pour ouvrir à l'heure
 
-Envoyez-nous l'adresse, le numéro de point de livraison et vos équipements, ou la dernière facture du local : M&S Strategy vous propose gratuitement une puissance et un contrat cohérents. Nous répondons sous 24h, en tenant compte de votre date d'ouverture.
+Envoyez-nous l'adresse, le numéro de point de livraison et vos équipements, ou la dernière facture du local : M&S Strategy étudie gratuitement les contrats adaptés à votre local. Nous répondons sous 24h, en tenant compte de votre date d'ouverture.

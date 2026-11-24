@@ -28,6 +28,9 @@
 - [Comment ça marche](https://cabinetms.fr/comment-ca-marche.html) : le déroulé de l'accompagnement, étape par étape.
 - [Résultats](https://cabinetms.fr/resultats.html) : exemples de résultats et économies obtenues.
 - [Blog](https://cabinetms.fr/blog.html) : articles sur l'énergie des entreprises.
+- [Prix du gaz professionnel](https://cabinetms.fr/prix-gaz-professionnel-2026.html) : composantes et calcul du prix du kWh.
+- [Comparer les fournisseurs d'électricité](https://cabinetms.fr/comparatif-fournisseurs-electricite-pro.html) : critères, grille et exemple chiffré.
+- [GTB bâtiment](https://cabinetms.fr/gtb-gestion-technique-batiment.html) : fonctions, obligations et aides.
 - [Baromètre énergie](https://cabinetms.fr/barometre-energie.html) : indicateur gratuit des prix de gros électricité/gaz, détails ci-dessous.
 
 ## Baromètre énergie

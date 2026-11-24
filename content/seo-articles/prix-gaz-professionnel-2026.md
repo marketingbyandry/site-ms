@@ -1,6 +1,6 @@
 # Prix gaz pro : ce que coûte vraiment le kWh en novembre 2026
 
-Il n'existe plus de tarif officiel du gaz pour les entreprises : le prix du kWh dépend de la date de signature, du volume et du profil de votre site. Sur un exemple de 100 MWh par an, une fourniture à 70 €/MWh aboutit à environ 10,8 centimes HT le kWh une fois l'acheminement et les taxes ajoutés. Voici les composantes qui ont un prix public, celles qui se négocient, et le calcul pour refaire l'opération avec vos chiffres.
+Il n'existe plus de tarif officiel du gaz pour les entreprises : le prix du kWh dépend de la date de signature, du volume et du profil de votre site. Sur un exemple de 100 MWh par an, une hypothèse de fourniture à 90 €/MWh, proche des cotations d'octobre, aboutit à environ 12,8 centimes HT le kWh une fois l'acheminement et les taxes ajoutés. Voici les composantes qui ont un prix public, celles qui se négocient, et le calcul pour refaire l'opération avec vos chiffres.
 
 ## Le prix du kWh de gaz professionnel se lit en trois blocs
 
@@ -19,7 +19,7 @@ Deux offres affichées au même prix du MWh peuvent donc produire deux factures 
 
 ## Où en est le marché du gaz en cette fin d'année
 
-Le marché a nettement monté entre l'été et l'automne. Les cotations relevées sur le PEG, le point d'échange français, donnaient 63,90 €/MWh le 24 juillet 2026 pour le contrat août. Le contrat novembre était à 85,98 €/MWh le 21 octobre, puis à 94,40 €/MWh le 27 octobre. Ces valeurs sont datées : elles ne disent rien du prix que vous obtiendrez la semaine prochaine.
+Le marché a nettement monté entre l'été et l'automne. Les [cotations relevées](https://selectra.info/energie/actualites/prix-gaz/2026-10-28) sur le PEG, le point d'échange français, donnaient 63,90 €/MWh le 24 juillet 2026 pour le contrat août. Le contrat novembre était à 85,98 €/MWh le 21 octobre, puis à 94,40 €/MWh le 27 octobre. Ces valeurs sont datées : elles ne disent rien du prix que vous obtiendrez la semaine prochaine.
 
 La CRE publie un autre indicateur, la [référence de coûts d'approvisionnement du gaz](https://www.cre.fr/consommateurs/prix-reperes-et-references/reference-de-couts-dapprovisionnement-du-gaz.html). Il moyenne des cotations mensuelles et trimestrielles des semaines précédentes, donc il réagit avec retard : 61,22 €/MWh pour octobre 2026, 71,12 pour novembre, 80,47 pour décembre. Les deux séries mesurent des choses différentes, ne les mélangez pas dans un même raisonnement.
 
@@ -39,20 +39,20 @@ Le choix entre ces formules se discute à part, dans notre comparaison [prix fix
 
 ## Exemple complet : 100 MWh par an en option T2
 
-Prenons un commerce ou un petit atelier qui consomme 100 MWh par an. Nous posons deux hypothèses de travail, qui ne sont pas des prix constatés : 70 €/MWh de fourniture et 6 €/MWh pour le transport et le stockage. Les autres lignes reprennent les niveaux publics en vigueur fin novembre 2026, avec la [grille de distribution du 1er juillet 2026](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054152920).
+Prenons un commerce ou un petit atelier qui consomme 100 MWh par an. Nous posons deux hypothèses de travail, qui ne sont pas des prix constatés : 90 €/MWh de fourniture et 6 €/MWh pour le transport et le stockage. Les autres lignes reprennent les niveaux publics en vigueur fin novembre 2026, avec la [grille de distribution du 1er juillet 2026](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054152920).
 
 | Ligne | Calcul | Montant annuel |
 | --- | --- | --- |
-| Fourniture (hypothèse) | 100 × 70 € | 7 000,00 € |
+| Fourniture (hypothèse) | 100 × 90 € | 9 000,00 € |
 | Transport et stockage (hypothèse) | 100 × 6 € | 600,00 € |
 | Distribution T2 | 196,68 € + 100 × 12,79 € | 1 475,68 € |
 | CTA | 196,68 € × 24,72 % | 48,62 € |
 | Accise | 100 × 16,66 € | 1 666,00 € |
-| Total HT | somme des lignes | 10 790,30 € |
-| TVA 20 % | 10 790,30 € × 20 % | 2 158,06 € |
-| Total TTC | HT + TVA | 12 948,36 € |
+| Total HT | somme des lignes | 12 790,30 € |
+| TVA 20 % | 12 790,30 € × 20 % | 2 558,06 € |
+| Total TTC | HT + TVA | 15 348,36 € |
 
-Le kWh ressort à 10,79 centimes HT et 12,95 centimes TTC. La fourniture pèse ici 65 % du total HT. Si vous la faites varier de 10 €/MWh, la facture bouge de 1 000 € HT par an, soit un peu plus de 9 %.
+Le kWh ressort à 12,79 centimes HT et 15,35 centimes TTC. La fourniture pèse ici 70 % du total HT. Si vous la faites varier de 10 €/MWh, la facture bouge de 1 000 € HT par an, soit près de 8 %.
 
 Le taux de CTA de 24,72 % vient du taux de distribution de 20,80 % et du taux de transport de 4,71 % appliqué à 83,21 %. Nous supposons le site sans terme de débit normalisé. Le [mode de calcul de la CTA](cta-contribution-tarifaire-acheminement.md) est détaillé dans un guide séparé.
 

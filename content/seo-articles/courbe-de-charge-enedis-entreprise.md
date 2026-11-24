@@ -46,11 +46,11 @@ Transmettez une année complète, au pas le plus fin disponible, avec un mot sur
 
 ## Vérifier la puissance et le réactif
 
-La courbe répond à deux questions de réseau : ma puissance est-elle juste, et mon réactif est-il propre ? Comptez le nombre d'intervalles au-dessus de 90 % de la puissance souscrite. Ce seuil est un repère de travail : zéro sur douze mois invite à étudier une baisse, plusieurs dizaines invitent à étaler les démarrages.
+La courbe répond à deux questions de réseau : ma puissance est-elle juste, et, en HTA, mon réactif est-il sous le seuil ? Comptez le nombre d'intervalles au-dessus de 90 % de la puissance souscrite. Ce seuil est un repère de travail : zéro sur douze mois invite à étudier une baisse, plusieurs dizaines invitent à étaler les démarrages.
 
 - **Pointe isolée** : un seul intervalle dans l'année, souvent un redémarrage après coupure, à étaler.
 - **Pointe quotidienne** : deux équipements se lancent à la même heure, un décalage de 30 minutes suffit parfois.
-- **Réactif élevé en charge faible** : moteurs surdimensionnés, à croiser avec la page sur l'[énergie réactive](energie-reactive-facture-entreprise.md).
+- **Réactif élevé en charge faible (HTA)** : moteurs surdimensionnés, à croiser avec la page sur l'[énergie réactive](energie-reactive-facture-entreprise.md).
 
 Attention au pas : une pointe de quelques minutes disparaît dans une moyenne de 30 minutes. Pour un sujet de dépassement, demandez le pas le plus fin, ou installez une mesure ponctuelle sur l'équipement suspect. La puissance à souscrire se choisit ensuite avec la méthode de notre guide sur les [kVA](puissance-souscrite-entreprise-kva.md).
 

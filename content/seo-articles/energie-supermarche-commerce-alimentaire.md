@@ -50,7 +50,7 @@ Dans une galerie marchande, l'assujettissement se regarde à l'échelle du site 
 
 Un commerce alimentaire consomme la nuit et le dimanche, ce qui donne un profil régulier. Transmettez la courbe de charge complète lors d'une consultation, pour que l'offre soit chiffrée sur vos heures réelles. Un simple total annuel conduit le fournisseur à retenir un profil moins précis.
 
-Contrôlez la puissance souscrite sur le mois le plus chaud de l'année, car les compresseurs travaillent alors davantage. Pour [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md), alignez la durée, le traitement de la capacité et les clauses de volume. Cette dernière mérite attention avant une rénovation : si la pose de portes réduit fortement les kWh, une bande de tolérance étroite peut entraîner une facturation.
+Contrôlez la puissance souscrite sur le mois le plus chaud de l'année, car les compresseurs travaillent alors davantage. Pour [comparer plusieurs fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md), alignez la durée, le traitement de la capacité et les clauses de volume. Cette dernière mérite attention avant une rénovation : si la pose de portes réduit fortement les kWh, une bande de tolérance étroite peut entraîner une facturation.
 
 ## Questions fréquentes
 

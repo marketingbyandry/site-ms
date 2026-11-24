@@ -50,7 +50,7 @@ La règle générale pour les locaux recevant du public limite la moyenne de cha
 
 Un petit local peut parfois accéder au tarif réglementé de vente, selon la taille de la structure et d'autres critères. Vérifiez les conditions à jour dans notre page sur l'[éligibilité au Tarif Bleu professionnel](tarif-bleu-professionnel-eligibilite.md). L'offre de marché reste à comparer sur le prix du kWh, l'abonnement, l'évolution et la durée.
 
-Notez les [nouvelles heures creuses](heures-creuses-entreprise-nouveaux-horaires.md) communiquées pour votre compteur. Si le ballon et le linge ne chauffent pas dans ces plages, une option à deux prix peut être moins intéressante qu'un prix de base. Pour [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md), donnez la puissance du samedi et la répartition jour-nuit. Un salon qui s'apprête à ouvrir une cabine doit présenter deux volumes, avant et après le projet.
+Notez les [nouvelles heures creuses](heures-creuses-entreprise-nouveaux-horaires.md) communiquées pour votre compteur. Si le ballon et le linge ne chauffent pas dans ces plages, une option à deux prix peut être moins intéressante qu'un prix de base. Pour [comparer les offres d'électricité](comparatif-fournisseurs-electricite-pro.md), donnez la puissance du samedi et la répartition jour-nuit. Un salon qui s'apprête à ouvrir une cabine doit présenter deux volumes, avant et après le projet.
 
 ## Questions fréquentes
 

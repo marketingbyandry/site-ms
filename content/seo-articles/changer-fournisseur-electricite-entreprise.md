@@ -35,7 +35,7 @@ Une proposition ferme exige des données exactes. Comptez une demi-heure si vos 
 - **Projet** : travaux, déménagement, bornes ou solaire susceptibles de changer le profil.
 - **Autorisation** : accord écrit si un tiers collecte vos données de consommation.
 
-Avec ces pièces, vous pouvez [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md) sur un périmètre commun. Sans elles, vous comparez surtout des hypothèses.
+Avec ces pièces, vous pouvez [comparer deux contrats d'électricité](comparatif-fournisseurs-electricite-pro.md) sur un périmètre commun. Sans elles, vous comparez surtout des hypothèses.
 
 ## Calculer le gain net avant de signer
 
@@ -47,7 +47,7 @@ Attendre l'échéance ferait économiser les 700 €, mais le prix du jour ne se
 
 ## La bascule vue semaine par semaine
 
-Une bascule propre se prépare environ deux mois avant la date cible. Ce calendrier est un repère à adapter au préavis :
+Une bascule propre se prépare environ deux mois avant la date cible, ou avant la date limite de préavis si elle tombe plus tôt. Ce calendrier est un repère à adapter au préavis :
 
 1. **Semaine 8** : contrôlez l'échéance et envoyez le dossier aux fournisseurs retenus.
 2. **Semaine 6** : recevez les offres le même jour, avec une durée de validité connue.
@@ -74,7 +74,7 @@ Notre guide pour [décrypter une facture d'électricité](decrypter-facture-elec
 
 ### Un professionnel peut-il se rétracter ?
 
-Le plus souvent, non. Le [médiateur national de l'énergie](https://www.energie-mediateur.fr/electricite-et-gaz-professionnels-attention-aux-fausses-promesses-2/) réserve cette possibilité aux entreprises de moins de cinq salariés pour lesquelles l'énergie n'est pas l'activité principale, dans les situations de démarchage concernées. Ne signez jamais en comptant sur une annulation.
+Le plus souvent, non. Le [médiateur national de l'énergie](https://www.energie-mediateur.fr/electricite-et-gaz-professionnels-attention-aux-fausses-promesses-2/) réserve cette possibilité aux entreprises de cinq salariés au plus pour lesquelles l'énergie n'est pas l'activité principale, dans les situations de démarchage concernées. Ne signez jamais en comptant sur une annulation.
 
 ### Le propriétaire des murs doit-il donner son accord ?
 

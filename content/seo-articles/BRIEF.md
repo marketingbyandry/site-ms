@@ -36,7 +36,7 @@ N'utilise que la feuille de faits ci-dessous, ou une donnée que tu viens de vé
 
 ### Feuille de faits (vérifiée le 24/11/2026)
 - TURPE 7 HTA-BT : +3,04 % en moyenne au 1er août 2026 (CRE, délibération 2026-105 du 21/05/2026, https://www.cre.fr/fileadmin/Documents/Deliberations/2026/260521_2026-105_Evolution_TURPE_7_HTA-BT.pdf). HTB : +3,34 %.
-- Accise gaz combustible : 16,39 €/MWh au 1er février 2026, 16,66 €/MWh depuis le 1er août 2026 (https://www.edf.fr/entreprises/faq-entreprises/facture/les-taxes-evolutions-tarifaires-en-gaz/qu-est-ce-que-l-accise-sur-les-gaz-naturels-ex-ticgn).
+- Accise gaz combustible : 16,39 €/MWh au 1er février 2026, 16,66 €/MWh depuis le 1er août 2026 (https://www.impots.gouv.fr/sites/default/files/formulaires/2040-tic-era-g-sd/2026/2040-tic-era-g-sd_5369.pdf).
 - Accise électricité jusqu'à 36 kVA : 30,62 €/MWh depuis le 1er août 2026 (avant : 30,85).
 - Tarif réglementé du gaz supprimé pour tous le 1er juillet 2023. Le prix repère CRE est un indicateur résidentiel : +6,6 % TTC en moyenne au 1er novembre 2026, seule la part approvisionnement évolue (https://www.connaissancedesenergies.org/afp/france-le-prix-de-reference-du-gaz-augmentera-de-66-au-1er-novembre-261012).
 - PEG : contrat novembre à 85,98 €/MWh le 21 octobre 2026 et 94,40 €/MWh le 27 octobre (https://selectra.info/energie/actualites/prix-gaz/2026-10-28) ; 63,90 €/MWh le 24 juillet (PEG août). Toujours daté. Formulation de la source : « cotations relevées », sans nommer le comparateur dans le texte.

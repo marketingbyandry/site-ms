@@ -47,7 +47,7 @@ Si votre fournisseur a appliqué 72,71 % sur une période postérieure au 1er ju
 
 ## Le terme de débit, un élargissement à surveiller
 
-Depuis le 1er juillet 2026, les sites T1 à T3 dotés d'un débit de plus de 40 Nm³/h peuvent payer un terme de débit normalisé. Un projet de décret prévoyait d'ajouter ce terme à l'assiette de la CTA gaz. La CRE a rendu un avis défavorable en juin 2026, faute de baisse des taux en contrepartie, tout en n'exprimant pas d'objection sur le principe. Le [décret n° 2026-742 du 6 août 2026](https://www.actu-environnement.com/ae/reglementation/decret-du-06-08-2026-2026-742-40130.php) a depuis intégré ce terme à l'assiette.
+Depuis le 1er juillet 2026, les sites T1 à T3 au-dessus de 40 Nm³/h peuvent payer un terme de débit normalisé, dont l'assiette se vérifie sur la facture. Un projet de décret prévoyait d'ajouter ce terme à l'assiette de la CTA gaz. La CRE a rendu un avis défavorable en juin 2026, faute de baisse des taux en contrepartie, tout en n'exprimant pas d'objection sur le principe. Le [décret n° 2026-742 du 6 août 2026](https://www.actu-environnement.com/ae/reglementation/decret-du-06-08-2026-2026-742-40130.php) a depuis intégré ce terme à l'assiette.
 
 La CRE estimait l'élargissement à environ 75 M€ d'assiette en année pleine, pour 15,6 M€ de recettes supplémentaires. Regardez sur vos factures si le terme apparaît et si la CTA est calculée dessus :
 
@@ -59,7 +59,7 @@ La marge d'action se situe du côté du compteur. Notre guide de l'[acheminement
 
 ## CTA du gaz et CTA de l'électricité : ne pas mélanger
 
-Le nom est le même, les taux et les assiettes diffèrent. L'électricité porte sur la part fixe du tarif d'utilisation des réseaux, le TURPE. Un arrêté du 28 janvier 2026 a réduit les taux de l'électricité, sans modifier ceux du gaz.
+Le nom est le même, les taux et les assiettes diffèrent. L'électricité porte sur la part fixe du tarif d'utilisation des réseaux, le TURPE.
 
 Un contrat bi-énergie peut donc afficher deux CTA très différentes. Contrôlez chacune avec sa propre base. Pour le gaz, la ligne se vérifie dans la [facture](decrypter-facture-gaz-professionnel.md) à partir de l'abonnement de distribution, pas du montant total.
 

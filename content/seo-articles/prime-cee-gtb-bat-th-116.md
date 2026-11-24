@@ -31,7 +31,7 @@ Seules comptent les surfaces gérées par le système pour l'usage considéré. 
 
 ## Calculer le volume, puis estimer l'offre
 
-Le calcul multiplie le forfait de chaque usage par le coefficient de zone et la surface. Prenons un hôtel fictif de 1 800 m² en zone H2, géré en classe B pour le chauffage, l'eau chaude et l'éclairage.
+Le calcul multiplie le forfait de chaque usage par le coefficient de zone et la surface. En hôtellerie de classe B, la fiche retient aussi 14 pour l'eau chaude et 30 pour l'éclairage. Prenons un hôtel fictif de 1 800 m² en zone H2, géré en classe B pour le chauffage, l'eau chaude et l'éclairage.
 
 1. **Chauffage** : 200 × 0,9 × 1 800 = 324 000 kWh cumac.
 2. **Eau chaude** : 14 × 0,9 × 1 800 = 22 680 kWh cumac.

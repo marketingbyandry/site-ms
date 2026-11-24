@@ -31,7 +31,7 @@ Prenons 72 000 € de facture annuelle TTC. Une facture moyenne vaut 6 000 € p
 
 L'argent immobilisé a un coût. À 5 % par an, 12 000 € bloqués pendant deux ans coûtent 12 000 × 5 % × 2 = 1 200 € en intérêts simples. Si l'offre fait économiser 900 € sur la même durée, elle ne compense pas ce coût. Remplacez le taux par celui de votre financement.
 
-Pour [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md), ajoutez une ligne « garantie » et sa date de retour prévue. Le montant ne doit pas être caché derrière le prix du kWh.
+Pour [comparer les offres d'électricité](comparatif-fournisseurs-electricite-pro.md), ajoutez une ligne « garantie » et sa date de retour prévue. Le montant ne doit pas être caché derrière le prix du kWh.
 
 ## La clause à lire avant le virement
 

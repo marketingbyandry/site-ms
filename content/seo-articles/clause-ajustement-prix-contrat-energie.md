@@ -28,7 +28,7 @@ Une formule vérifiable permet d'obtenir le prix sans demander au fournisseur. E
 
 Exemple : prix mensuel = indice moyen × 1,05 + 12 €/MWh. Si l'indice vaut 70 €/MWh, le prix est 70 × 1,05 + 12 = 85,50 €/MWh. S'il monte à 100, il devient 117 €/MWh.
 
-Pour une consommation de 20 MWh, la facture de fourniture passe de 1 710 € à 2 340 €. L'écart de 630 € vient de la variation de l'indice et du coefficient. Avec un plafond de 105 €/MWh, le second mois coûterait 2 100 €. Le plafond a toutefois un prix, parfois intégré dans la marge.
+Pour une consommation de 20 MWh, la facture de fourniture passe de 1 710 € à 2 340 €. L'écart de 630 € vient de la hausse de l'indice, amplifiée par le coefficient. Avec un plafond de 105 €/MWh, le second mois coûterait 2 100 €. Le plafond a toutefois un prix, parfois intégré dans la marge.
 
 Vous pouvez comparer ce risque avec les repères de notre page [prix fixe ou indexé](prix-fixe-vs-indexe-electricite-pro.md), puis rejouer la formule sur les douze derniers mois.
 

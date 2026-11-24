@@ -44,7 +44,7 @@ Agissez sur trois fronts : les preuves, les paiements et la nouvelle offre. Suiv
 5. **Consulter** : demandez au moins trois propositions avec la même date de début et le même périmètre.
 6. **Résilier le secours** : calez la fin sur le démarrage de la nouvelle offre, préavis de quinze jours inclus.
 
-Pour l'étape 5, notre méthode pour [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md) vous évite de choisir dans l'urgence sur le seul prix du kWh.
+Pour l'étape 5, notre méthode pour [comparer deux contrats d'électricité](comparatif-fournisseurs-electricite-pro.md) vous évite de choisir dans l'urgence sur le seul prix du kWh.
 
 ## Récupérer un trop-perçu ou un dépôt de garantie
 

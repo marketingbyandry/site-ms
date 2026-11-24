@@ -25,7 +25,7 @@ Comparer un prix d'hiver à un prix annuel revient à comparer deux marchandises
 
 ## Ce que disent les cotations de 2026
 
-Le marché de 2026 a connu de forts écarts, que l'on peut suivre avec des relevés datés. Les cotations relevées donnaient 63,90 €/MWh le 24 juillet pour livraison en août. En octobre, le contrat novembre s'échangeait à 85,98 €/MWh le 21, puis à 94,40 €/MWh le 27.
+Le marché de 2026 a connu de forts écarts, que l'on peut suivre avec des relevés datés. Les [cotations relevées](https://selectra.info/energie/actualites/prix-gaz/2026-10-28) donnaient 63,90 €/MWh le 24 juillet pour livraison en août. En octobre, le contrat novembre s'échangeait à 85,98 €/MWh le 21, puis à 94,40 €/MWh le 27.
 
 En comparaison, la CRE a calculé un prix moyen à un mois de 35 €/MWh en 2025, contre 34 €/MWh en 2024. Cela mesure l'ampleur de la hausse sans permettre de prévoir la suite : les trois derniers prix portent sur des mois de livraison précis, les moyennes annuelles sur tous les mois.
 

@@ -37,7 +37,7 @@ Votre contrat décide de ce que vous touchez. Identifiez la ligne « prix de l'�
 - **Prix indexé sur une moyenne mensuelle** : effet dilué, les heures négatives pèsent un peu dans la moyenne.
 - **Prix horaire spot** : exposition directe, à la baisse comme à la hausse, avec une marge et des frais propres à l'offre.
 
-Les fournisseurs de plus de 200 000 sites doivent proposer une offre à tarification dynamique aux clients dont le compteur le permet et en expliquer les opportunités, les coûts et les risques ([article L332-7 du code de l'énergie](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000023986577/)). Le choix entre ces formes est expliqué dans notre guide [prix fixe ou indexé](prix-fixe-vs-indexe-electricite-pro.md). Avant de changer, il faut [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md) sur la marge fixe, l'abonnement et la règle appliquée aux heures négatives, à faire écrire dans l'offre.
+Les fournisseurs de plus de 200 000 sites doivent proposer une offre à tarification dynamique aux clients dont le compteur le permet et en expliquer les opportunités, les coûts et les risques ([article L332-7 du code de l'énergie](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000023983208/LEGISCTA000023986577/)). Le choix entre ces formes est expliqué dans notre guide [prix fixe ou indexé](prix-fixe-vs-indexe-electricite-pro.md). Avant de changer, il faut [comparer deux contrats d'électricité](comparatif-fournisseurs-electricite-pro.md) sur la marge fixe, l'abonnement et la règle appliquée aux heures négatives, à faire écrire dans l'offre.
 
 ## Les usages qui se déplacent
 

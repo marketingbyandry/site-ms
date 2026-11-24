@@ -57,7 +57,7 @@ Ce calcul ne prévoit pas un prix futur. Il dit quelles données demander avant 
 
 Le froid continu produit une base nocturne, tandis que les réceptions ajoutent des pointes. La courbe doit donc être transmise au pas disponible avant de demander un prix. Un projet de réfrigération plus efficace peut aussi faire sortir le site de la fourchette de volume du contrat.
 
-Pour un raccordement en haute tension A, relisez la page sur les [segments C1 à C5](segments-c1-c2-c3-c4-c5-electricite.md) et la puissance appelée pendant les journées chaudes. Le bon dossier pour [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md) comprend courbe, schéma des compteurs, projets de rénovation et contraintes d'effacement. Si le bâtiment est tertiaire et dépasse 1 000 m², vérifiez aussi l'assujettissement à Éco énergie tertiaire sur [Service Public Entreprendre](https://entreprendre.service-public.gouv.fr/vosdroits/F38065) : la surface et l'usage exact comptent.
+Pour un raccordement en haute tension A, relisez la page sur les [segments C1 à C5](segments-c1-c2-c3-c4-c5-electricite.md) et la puissance appelée pendant les journées chaudes. Le bon dossier pour [comparer deux contrats d'électricité](comparatif-fournisseurs-electricite-pro.md) comprend courbe, schéma des compteurs, projets de rénovation et contraintes d'effacement. Si le bâtiment est tertiaire et atteint 1 000 m², vérifiez aussi l'assujettissement à Éco énergie tertiaire sur [Service Public Entreprendre](https://entreprendre.service-public.gouv.fr/vosdroits/F38065) : la surface et l'usage exact comptent.
 
 ## Questions fréquentes
 

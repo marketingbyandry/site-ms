@@ -10,7 +10,7 @@ Remplacez la couleur par deux informations : la tension de raccordement et la pu
 |---|---|---|---|
 | Tarif Bleu | Basse tension jusqu'à 36 kVA | C5 | Réglementé si éligible, ou marché |
 | Tarif Jaune | Basse tension au-dessus de 36 kVA | C4 en général | Réglementé si éligible, ou marché |
-| Tarif Vert | Haute tension, plus de 1 kV | C2 ou C3 en général | Réglementé si éligible, ou marché |
+| Tarif Vert | Haute tension, plus de 1 kV | C2 en général | Réglementé si éligible, ou marché |
 
 Les lettres C servent à ranger les sites selon leur raccordement et leur contrat. Notre page sur les [segments C1 à C5](segments-c1-c2-c3-c4-c5-electricite.md) détaille les exceptions. Pour une offre, demandez toujours la donnée technique et évitez la couleur seule.
 

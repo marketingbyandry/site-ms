@@ -52,14 +52,14 @@ Prenons un magasin souscrit à 48 kVA dont la pointe mesurée sur un an ne dépa
 
 Comparer deux offres n'a de sens que pour le même segment et le même profil. Un prix moyen annoncé pour un C5 ne dit rien d'un C2, dont l'acheminement et la forme de consommation diffèrent.
 
-Avant de lancer la consultation, rassemblez une fiche par site : segment, point de livraison, puissance par plage, volume annuel par plage, date d'échéance. Cette fiche permet de [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md) sur les mêmes bases et évite qu'un prix d'appel masque une hypothèse de volume irréaliste. Pour un groupe de plusieurs établissements, triez les sites par segment : un lot homogène reçoit de meilleures réponses qu'un mélange de bureaux en C5 et d'usines en C2.
+Avant de lancer la consultation, rassemblez une fiche par site : segment, point de livraison, puissance par plage, volume annuel par plage, date d'échéance. Cette fiche permet de [comparer plusieurs fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md) sur les mêmes bases et évite qu'un prix d'appel masque une hypothèse de volume irréaliste. Pour un groupe de plusieurs établissements, triez les sites par segment : un lot homogène reçoit de meilleures réponses qu'un mélange de bureaux en C5 et d'usines en C2.
 
 ## Trois confusions à éviter
 
 Le segment se mélange souvent avec d'autres classements, ce qui fausse les demandes de prix. Corrigez ces raccourcis avant d'envoyer vos documents.
 
-- **Segment et ancien tarif** : les noms jaune et vert désignaient des tarifs réglementés ; les segments décrivent le raccordement, pas une offre.
-- **C5 et tarif bleu** : un site C5 peut être chez n'importe quel fournisseur, au tarif réglementé ou en offre de marché s'il y est éligible.
+- **Segment et ancien tarif** : les noms jaune et vert désignent des tarifs réglementés, supprimés fin 2015 et rouverts depuis février 2025 aux petites entreprises éligibles ; les segments décrivent le raccordement, pas une offre.
+- **C5 et tarif bleu** : un site C5 peut être en offre de marché ou, si l'entreprise est éligible, au tarif réglementé.
 - **Puissance et consommation** : un site C4 peut consommer peu s'il appelle des pointes brèves, et un C5 bien occupé toute la nuit peut consommer davantage.
 
 Cette distinction sert surtout à ne pas payer pour des options inutiles. Un comptage évolué, une puissance modulée et un suivi de l'énergie réactive n'ont d'intérêt que si le segment les rend applicables.

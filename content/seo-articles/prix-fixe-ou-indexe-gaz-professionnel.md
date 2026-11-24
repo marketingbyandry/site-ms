@@ -33,7 +33,7 @@ Affinez avec la saison. Un site de chauffage consomme surtout en hiver, donc la 
 
 ## Ce que l'année 2026 apprend sur la vitesse du marché
 
-L'écart entre deux dates de signature peut dépasser l'écart entre deux fournisseurs. Les cotations relevées sur le PEG donnaient 63,90 €/MWh le 24 juillet 2026 pour août, puis 94,40 €/MWh le 27 octobre pour novembre. Une partie de cet écart tient à la saison de livraison, l'autre au marché lui-même.
+L'écart entre deux dates de signature peut dépasser l'écart entre deux fournisseurs. Les [cotations relevées](https://selectra.info/energie/actualites/prix-gaz/2026-10-28) sur le PEG donnaient 63,90 €/MWh le 24 juillet 2026 pour août, puis 94,40 €/MWh le 27 octobre pour novembre. Une partie de cet écart tient à la saison de livraison, l'autre au marché lui-même.
 
 À l'intérieur d'un seul mois, le contrat novembre est passé de 85,98 €/MWh le 21 octobre à 94,40 €/MWh six jours plus tard, soit 8,42 €/MWh. Sur 200 MWh, cet écart de date représenterait 1 684 € si tout le volume était acheté sur ce produit. Notre guide du [marché de gros PEG](prix-gaz-peg-marche-gros.md) explique pourquoi un mois et une année ne cotent pas au même prix.
 

@@ -74,4 +74,4 @@ Enedis publie une ligne dédiée aux entreprises, le 0969 321 899, du lundi au v
 
 ## Anticiper la facture du nouveau site
 
-Dès que la puissance de votre devis est arrêtée, envoyez-le avec la facture d'un site comparable : M&S Strategy prépare gratuitement les offres de fourniture adaptées. Nous répondons sous 24h et calons le contrat sur votre date de mise en service.
+Dès que la puissance de votre devis est arrêtée, envoyez-le avec la facture d'un site comparable : M&S Strategy prépare gratuitement les offres de fourniture adaptées. Nous répondons sous 24h en tenant compte de votre date de mise en service.

@@ -41,7 +41,7 @@ Le cas d'une société appartenant à un groupe mérite une vérification préal
 
 Le tarif réglementé est un prix fixé par les pouvoirs publics sur proposition de la CRE. Il évolue, ce qui le distingue d'un prix fixe signé sur deux ans. Les conditions de sortie sont aussi plus simples : le [médiateur national de l'énergie](https://www.energie-mediateur.fr/electricite-et-gaz-professionnels-attention-aux-fausses-promesses-2/) indique que quitter un tarif réglementé n'entraîne pas de frais de résiliation.
 
-Il n'est pas toujours le moins cher pour votre profil. Une offre de marché peut être plus basse à un instant donné, plus rigide sur la durée ou moins favorable si votre consommation change. Pour [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md), utilisez une période commune et les mêmes kWh.
+Il n'est pas toujours le moins cher pour votre profil. Une offre de marché peut être plus basse à un instant donné, plus rigide sur la durée ou moins favorable si votre consommation change. Pour [comparer deux contrats d'électricité](comparatif-fournisseurs-electricite-pro.md), utilisez une période commune et les mêmes kWh.
 
 Prenons 25 000 kWh. Une offre de marché inférieure de 8 €/MWh au tarif réglementé donne 25 × 8 = 200 € d'écart annuel sur la fourniture. Si son abonnement coûte 10 € de plus par mois, l'écart tombe à 200 − 120 = 80 €. Une évolution du tarif réglementé peut ensuite l'augmenter ou l'annuler.
 

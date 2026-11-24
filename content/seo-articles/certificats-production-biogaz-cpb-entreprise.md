@@ -27,7 +27,7 @@ Le coefficient atteint 0,2386 en 2044 selon le décret. Si votre offre cite 0,02
 
 Multipliez votre consommation en MWh par le coefficient de l'année, puis par le prix du certificat prévu au contrat. La pénalité de 100 € par CPB non restitué, indiquée par le registre, sert ici de valeur d'exemple. Le coût réel du fournisseur peut être différent.
 
-| Année | Prix pour 33 MWh | Prix pour 500 MWh | Prix pour 1 000 MWh |
+| Année | Coût pour 33 MWh | Coût pour 500 MWh | Coût pour 1 000 MWh |
 |---|---|---|---|
 | 2026 | 13,53 € | 205 € | 410 € |
 | 2027 | 53,46 € | 810 € | 1 620 € |

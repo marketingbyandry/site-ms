@@ -15,7 +15,7 @@ Un exemple fixe les idées : 10 000 kWh actifs et 6 500 kvarh réactifs donnent 
 
 ## Quand l'énergie réactive est facturée
 
-Elle est facturée aux sites en HTA. Pour la basse tension au-dessus de 36 kVA, la CRE a retiré la composante de soutirage dans la [délibération 2025-40](https://www.cre.fr/fileadmin/Documents/Deliberations/2025/250204_2025-40_TURPE_7_HTA-BT.pdf) qui fixe le TURPE 7, applicable depuis le 1er août 2025 : ces clients sont déjà incités par leur puissance souscrite, exprimée en kVA. Un site C5, sous 36 kVA, n'est pas concerné non plus.
+Elle est facturée aux sites en HTA. Pour la basse tension au-dessus de 36 kVA, la CRE a retiré la composante de soutirage dans la [délibération 2025-40](https://www.cre.fr/fileadmin/Documents/Deliberations/2025/250204_2025-40_TURPE_7_HTA-BT.pdf) qui fixe le TURPE 7, applicable depuis le 1er août 2025 : ces clients sont déjà incités par leur puissance souscrite, exprimée en kVA. Un site C5, jusqu'à 36 kVA, n'est pas concerné non plus.
 
 Si vous êtes en segment C4 et qu'une ligne de réactif apparaît encore sur une période postérieure à août 2025, demandez au fournisseur sur quelle base elle est calculée. Pour la HTA, la [délibération CRE 2026-105](https://www.cre.fr/fileadmin/Documents/Deliberations/2026/260521_2026-105_Evolution_TURPE_7_HTA-BT.pdf) donne les valeurs en vigueur depuis le 1er août 2026.
 
@@ -77,4 +77,4 @@ Une visite annuelle avec mesure de l'intensité de chaque gradin est un bon ryth
 
 ## Vérifier votre ligne de réactif
 
-Envoyez une facture d'hiver et une facture d'été : M&S Strategy calcule gratuitement la part de réactif évitable et vous dit si une compensation vaut l'étude. Réponse sous 24h.
+Envoyez une facture d'hiver et une facture d'été : M&S Strategy étudie gratuitement votre contrat et les lignes d'acheminement de vos factures. Réponse sous 24h.

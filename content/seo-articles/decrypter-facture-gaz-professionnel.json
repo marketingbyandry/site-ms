@@ -9,7 +9,7 @@
  "tldr": [
   {"k": "Le principe", "text": "Vérifiez le PCE, la CAR et l'option avant de contrôler les montants."},
   {"k": "Le calcul", "text": "Dans l'exemple, 800 m³ au coefficient 11,20 donnent 8 960 kWh et une facture de 1 147,57 € TTC."},
-  {"k": "La nouveauté", "text": "Depuis le 1er juillet 2026, les compteurs de plus de 40 Nm³/h en T1, T2 et T3 paient un terme de débit."}
+  {"k": "La nouveauté", "text": "Depuis le 1er juillet 2026, les compteurs de plus de 40 Nm³/h en T1, T2 et T3 peuvent payer un terme de débit."}
  ],
  "notes": [
   {"section": 1, "quote": true, "text": "Le compteur mesure des mètres cubes, la facture vend des kilowattheures."},

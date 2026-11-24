@@ -21,7 +21,7 @@ Une hausse « de l'énergie » ne s'applique jamais à toute la facture. Sépare
 | Taxes et contributions | Textes fiscaux | Taux en vigueur, révisés à chaque changement |
 | Abonnement | Conditions du contrat | Montant contractuel |
 
-Deux repères récents montrent pourquoi les dates comptent. Le TURPE 7 des réseaux HTA-BT a augmenté de 3,04 % en moyenne au 1er août 2026, selon la [délibération de la CRE](https://www.cre.fr/fileadmin/Documents/Deliberations/2026/260521_2026-105_Evolution_TURPE_7_HTA-BT.pdf). Pour le gaz combustible, l'[accise est passée à 16,66 €/MWh](https://www.edf.fr/entreprises/faq-entreprises/facture/les-taxes-evolutions-tarifaires-en-gaz/qu-est-ce-que-l-accise-sur-les-gaz-naturels-ex-ticgn) à la même date : sur les 193 MWh de l'exemple, cela représente 3 215 € par an.
+Deux repères récents montrent pourquoi les dates comptent. Le TURPE 7 des réseaux HTA-BT a augmenté de 3,04 % en moyenne au 1er août 2026, selon la [délibération de la CRE](https://www.cre.fr/fileadmin/Documents/Deliberations/2026/260521_2026-105_Evolution_TURPE_7_HTA-BT.pdf). Pour le gaz combustible, l'[accise est passée à 16,66 €/MWh](https://www.impots.gouv.fr/sites/default/files/formulaires/2040-tic-era-g-sd/2026/2040-tic-era-g-sd_5369.pdf) à la même date : sur les 193 MWh de l'exemple, cela représente 3 215 € par an.
 
 ## Repérer les mois où votre prix peut changer
 
@@ -61,7 +61,7 @@ Exemple : vous aviez prévu 10 MWh à 160 €/MWh, soit 1 600 €. Vous consomme
 
 Le prévisionnel sert surtout à lancer la consultation au bon moment. Quand l'écart entre le scénario bas et le scénario haut dépasse ce que votre trésorerie peut absorber, il devient raisonnable de figer une partie du volume. L'[achat par clics ou par tranches](achat-energie-par-clics-tranches.md) permet de le faire en plusieurs fois, si votre volume et votre contrat l'autorisent.
 
-Pour un volume plus modeste, il est souvent plus simple de [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md) quelques mois avant l'échéance, sur la même courbe de consommation et le même périmètre de prix. Demandez toujours si la capacité et les garanties d'origine sont incluses : une offre qui les refacture à part sort du budget dès la première facture.
+Pour un volume plus modeste, il est souvent plus simple de [comparer plusieurs fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md) quelques mois avant l'échéance, sur la même courbe de consommation et le même périmètre de prix. Demandez toujours si la capacité et les garanties d'origine sont incluses : une offre qui les refacture à part sort du budget dès la première facture.
 
 ## Questions fréquentes
 

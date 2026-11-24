@@ -32,7 +32,7 @@ Envoyez-la par un canal qui laisse une preuve (recommandé, formulaire avec accu
 
 ## Médiateur national de l'énergie : seulement pour les microentreprises
 
-Le médiateur national de l'énergie traite les litiges nés de l'exécution d'un contrat conclu par un consommateur non professionnel ou par un professionnel de la catégorie des microentreprises. C'est la rédaction de [l'article L122-1 du code de l'énergie](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035131896). [Service Public](https://www.service-public.gouv.fr/particuliers/vosdroits/F20820) précise les seuils : moins de 10 salariés et moins de 2 millions d'euros de chiffre d'affaires. Associations, collectivités et syndicats de copropriétaires figurent aussi parmi les non-professionnels admis.
+Le médiateur national de l'énergie traite les litiges nés de l'exécution d'un contrat conclu par un consommateur non professionnel ou par un professionnel de la catégorie des microentreprises. C'est la rédaction de [l'article L122-1 du code de l'énergie](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035131896). [Service Public](https://www.service-public.gouv.fr/particuliers/vosdroits/F20820) précise les seuils : moins de 10 personnes et un chiffre d'affaires ou un total de bilan n'excédant pas 2 millions d'euros. Associations, collectivités et syndicats de copropriétaires figurent aussi parmi les non-professionnels admis.
 
 - **Quand saisir** : après deux mois sans réponse à la réclamation écrite, ou dès une réponse insatisfaisante.
 - **Jusqu'à quand** : la réclamation ne doit pas dater de plus d'un an.
@@ -43,7 +43,7 @@ La recommandation ne s'impose à personne. Le fournisseur indique s'il la suit, 
 
 ## Au-dessus des seuils : Médiateur des entreprises et tribunal
 
-Une société d'au moins 10 salariés, ou dont le chiffre d'affaires dépasse 2 millions d'euros, peut faire appel au Médiateur des entreprises. Sa [fiche énergie](https://www.economie.gouv.fr/files/files/directions_services/mediateur-des-entreprises/PDF/checklist_energie%20.pdf.pdf) vise les litiges avec un fournisseur, par exemple le non-respect des conditions contractuelles de fourniture. La démarche est [gratuite, rapide et confidentielle](https://www.economie.gouv.fr/mediateur-des-entreprises/les-missions/la-mediation) et se lance uniquement en ligne.
+Une société d'au moins 10 personnes, ou dont le chiffre d'affaires et le bilan dépassent tous deux 2 millions d'euros, peut faire appel au Médiateur des entreprises. Sa [fiche énergie](https://www.economie.gouv.fr/files/files/directions_services/mediateur-des-entreprises/PDF/checklist_energie%20.pdf.pdf) vise les litiges avec un fournisseur, par exemple le non-respect des conditions contractuelles de fourniture. La démarche est [gratuite, rapide et confidentielle](https://www.economie.gouv.fr/mediateur-des-entreprises/les-missions/la-mediation) et se lance uniquement en ligne.
 
 Le médiateur n'est ni juge ni arbitre. Il faut que les deux parties acceptent de se parler, ce qui fonctionne bien pour un désaccord de calcul et moins bien pour une contestation de principe. Si la discussion échoue, la juridiction compétente dépend de vos statuts et de la clause attributive du contrat : faites relire cette clause par un avocat avant d'assigner.
 
@@ -57,7 +57,7 @@ Pour l'exemple précédent, sur une facture de 6 400 € HT dont 816 € contest
 
 Un désaccord naît souvent le jour où le contrat est signé sans avoir été relu. Trois documents suffisent à les prévenir : l'offre chiffrée, les conditions particulières et la version datée des conditions générales.
 
-Au moment de [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md), posez les mêmes questions à chacun : comment le prix peut-il évoluer, combien coûte une sortie anticipée, qui traite les réclamations et sous quel délai ? Contrôlez ensuite la première facture ligne par ligne, avec les [mentions obligatoires](mentions-obligatoires-facture-electricite-pro.md) sous les yeux. Un écart corrigé au premier mois se règle par un mail. Le même écart découvert dix-huit mois plus tard devient un dossier de [régularisation](regularisation-facture-energie-entreprise.md).
+Au moment de [comparer les offres d'électricité](comparatif-fournisseurs-electricite-pro.md), posez les mêmes questions à chacun : comment le prix peut-il évoluer, combien coûte une sortie anticipée, qui traite les réclamations et sous quel délai ? Contrôlez ensuite la première facture ligne par ligne, avec les [mentions obligatoires](mentions-obligatoires-facture-electricite-pro.md) sous les yeux. Un écart corrigé au premier mois se règle par un mail. Le même écart découvert dix-huit mois plus tard devient un dossier de [régularisation](regularisation-facture-energie-entreprise.md).
 
 ## Questions fréquentes
 
@@ -75,4 +75,4 @@ Le contrat signé, toutes les factures, les photos d'index, les mails et les pre
 
 ## Faire vérifier une facture contestée
 
-Envoyez-nous la facture qui pose problème et le contrat correspondant : M&S Strategy, courtier en énergie à Lattes depuis 2012, refait le calcul gratuitement. Vous recevez une réponse sous 24h et vous savez si l'écart mérite une réclamation.
+Envoyez-nous la facture qui pose problème et le contrat correspondant : M&S Strategy, courtier en énergie à Lattes depuis 2012, refait le calcul gratuitement. Vous recevez une réponse sous 24h avec les écarts repérés.

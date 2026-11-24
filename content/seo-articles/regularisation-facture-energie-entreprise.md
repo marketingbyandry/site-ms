@@ -59,7 +59,7 @@ Voici un paragraphe à adapter : « Votre facture du [date] régularise [n] kWh 
 
 Un relevé trimestriel fait par vos soins suffit à repérer un écart avant qu'il ne grossisse. Photographiez le compteur avec la date, puis comparez l'index à celui de la facture. Un écart de plus de 10 % entre les deux mérite un mail au fournisseur : c'est un repère pratique, pas une règle légale.
 
-Ajoutez une question à votre prochain appel d'offres. Au moment de [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md), demandez si la facturation se fait sur index réels chaque mois, comment les estimations sont signalées et si un autorelevé est accepté en ligne. Le prix le plus bas perd de son intérêt quand six mois d'estimations fausses arrivent en une fois.
+Ajoutez une question à votre prochain appel d'offres. Au moment de [comparer les offres d'électricité](comparatif-fournisseurs-electricite-pro.md), demandez si la facturation se fait sur index réels chaque mois, comment les estimations sont signalées et si un autorelevé est accepté en ligne. Le prix le plus bas perd de son intérêt quand six mois d'estimations fausses arrivent en une fois.
 
 ## Questions fréquentes
 
@@ -73,8 +73,8 @@ Le texte limite ce que le fournisseur peut facturer, il ne réduit pas votre dro
 Relevez l'index à heure fixe pendant une semaine, coupez les gros équipements pour tester, puis demandez une vérification par l'intermédiaire du fournisseur. Faites-vous préciser auparavant son prix et qui la paie selon le résultat.
 
 ### Une microentreprise peut-elle aller en médiation pour cela ?
-Oui, si elle reste sous les seuils d'effectif et de chiffre d'affaires, et si la réclamation écrite n'a pas abouti après deux mois. La démarche est gratuite.
+Oui, si elle reste sous les seuils d'effectif et de chiffre d'affaires ou de bilan, et si la réclamation écrite n'a pas abouti après deux mois. La démarche est gratuite.
 
 ## Faire contrôler votre régularisation
 
-Transmettez la facture de régularisation et les deux précédentes : M&S Strategy vérifie gratuitement la période, les volumes et les prix appliqués. Vous avez une réponse sous 24h, avec l'argument à opposer s'il y en a un.
+Transmettez la facture de régularisation et les deux précédentes : M&S Strategy vérifie gratuitement la période, les volumes et les prix appliqués. Vous avez une réponse sous 24h avec les écarts repérés.

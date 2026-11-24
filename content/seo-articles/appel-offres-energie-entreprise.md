@@ -41,6 +41,8 @@ N'imposez pas une date commune si un contrat se termine dans un an. Une annexe p
 
 Partez de la date de livraison et tenez compte du préavis. Un délai de plusieurs mois laisse le temps de corriger les données ; les prix, eux, peuvent être remis pendant une fenêtre courte.
 
+Ces repères se comptent avant la livraison, ou avant la date limite de préavis si elle tombe plus tôt.
+
 1. **Semaine 16** : contrôlez contrats, préavis et pouvoirs de signature.
 2. **Semaine 14** : récupérez les volumes et validez les lots.
 3. **Semaine 12** : envoyez une demande d'information aux fournisseurs.
@@ -58,7 +60,7 @@ Rendez d'abord les offres conformes, puis attribuez une note. Une proposition sa
 
 Exemple de pondération : coût total 60 %, risque contractuel 25 %, service 15 %. Offre A : 8,5 pour le coût, 7 pour le risque, 8 pour le service. Note : 8,5 × 0,60 + 7 × 0,25 + 8 × 0,15 = 8,05 sur 10. Offre B : 9, 5 et 7, soit 5,40 + 1,25 + 1,05 = 7,70. La seconde affiche un meilleur coût, mais ses clauses lui font perdre l'avantage.
 
-Pour construire la note de coût, utilisez la méthode de notre page [comparer les fournisseurs d'électricité](comparatif-fournisseurs-electricite-pro.md). Ajoutez ensuite un scénario de hausse, un scénario de volume bas et un critère éliminatoire : absence d'une clause indispensable, site manquant ou prix invalide.
+Pour construire la note de coût, utilisez la méthode de notre page [comparer les offres d'électricité](comparatif-fournisseurs-electricite-pro.md). Ajoutez ensuite un scénario de hausse, un scénario de volume bas et un critère éliminatoire : absence d'une clause indispensable, site manquant ou prix invalide.
 
 ## Protéger la confidentialité et la décision
 

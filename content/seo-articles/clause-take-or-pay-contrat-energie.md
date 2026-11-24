@@ -56,7 +56,7 @@ Le fournisseur demande une visibilité sur ses achats ; vous cherchez une souple
 5. **Exclure** : listez travaux d'efficacité, sinistre, cession et fermeture administrative.
 6. **Plafonner** : fixez une somme maximale ou une règle de revente vérifiable.
 
-Comparez deux offres avec un scénario à 100 %, 85 % et 70 % du volume. Une offre à 87 €/MWh avec engagement ferme peut coûter plus qu'une offre à 89 €/MWh sans pénalité. À 350 MWh réels, 2 €/MWh d'écart représentent 700 €, alors qu'un seuil manqué de 50 MWh facturé 90 € vaut 4 500 €.
+Comparez deux offres avec un scénario à 100 %, 85 % et 70 % du volume. Une offre à 87 €/MWh avec engagement ferme peut coûter plus qu'une offre à 89 €/MWh sans pénalité. À 350 MWh réels, 2 €/MWh d'écart représentent 700 €, alors qu'un seuil de 450 MWh manqué de 100 MWh, facturé 87 €, vaut 8 700 €.
 
 La même logique vaut pour les volumes achetés en plusieurs fois, détaillés dans notre guide de [l'achat par clics](achat-energie-par-clics-tranches.md). Chaque tranche doit rester compatible avec votre consommation basse.
 

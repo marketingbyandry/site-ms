@@ -66,7 +66,7 @@ Notez pour chaque contrat la personne qui résilie et la preuve obtenue. Un tabl
 Uniquement si le fournisseur l'accepte, car un nouveau point de livraison a son profil et sa puissance. Demandez une réponse écrite qui mentionne le prix, la durée restante et le volume de référence.
 
 ### Combien coûte la mise en service au nouveau site ?
-Pour un raccordement existant, la CRE fixe 1,49 € HT en basse tension jusqu'à 36 kVA avec compteur évolué et 120,33 € HT au-dessus, tarifs en vigueur depuis le 1er août 2026. Le fournisseur répercute la prestation sur votre facture selon ses conditions.
+Pour un raccordement existant, la [délibération de la CRE](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054416306) fixe 1,49 € HT en basse tension jusqu'à 36 kVA avec compteur évolué et 120,33 € HT au-dessus, tarifs en vigueur depuis le 1er août 2026. Le fournisseur répercute la prestation sur votre facture selon ses conditions.
 
 ### Le bailleur peut-il reprendre le compteur à son nom ?
 Oui, s'il souscrit un contrat pour la période de vacance. Convenez d'une date avec lui avant de résilier afin d'éviter une coupure dont l'alarme ou le chauffage hors gel dépendrait.
