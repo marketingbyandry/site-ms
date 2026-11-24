@@ -98,7 +98,7 @@
 
   function bindMainView(banner) {
     banner.innerHTML =
-      '<p>Nous utilisons des cookies de mesure d’audience et de suivi publicitaire (PostHog, Meta) ' +
+      '<p>Nous utilisons des cookies de mesure d’audience et de suivi publicitaire (PostHog, Google Analytics, Meta) ' +
       'pour comprendre l’usage du site et mesurer nos campagnes. Ils ne sont déposés qu’avec votre accord. Voir notre ' +
       '<a href="politique-confidentialite.html">politique de confidentialité</a> ou ' +
       '<button type="button" class="ms-cookie-textlink" id="ms-cookie-reject">tout refuser</button>.</p>' +
@@ -128,7 +128,7 @@
       'nécessaires au fonctionnement du site, sont toujours actifs. Voir notre ' +
       '<a href="politique-confidentialite.html">politique de confidentialité</a>.</p>' +
       '<label class="ms-cookie-row"><input type="checkbox" id="ms-cookie-cat-analytics"' +
-      (current.analytics ? ' checked' : '') + '><span><strong>Mesure d’audience</strong> — PostHog, pour comprendre ' +
+      (current.analytics ? ' checked' : '') + '><span><strong>Mesure d’audience</strong> — PostHog et Google Analytics, pour comprendre ' +
       'l’usage du site.</span></label>' +
       '<label class="ms-cookie-row"><input type="checkbox" id="ms-cookie-cat-marketing"' +
       (current.marketing ? ' checked' : '') + '><span><strong>Publicité</strong> — Pixel Meta, pour mesurer nos ' +

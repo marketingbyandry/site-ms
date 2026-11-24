@@ -25,3 +25,17 @@ export function readCookie(cookieString, name) {
 export function ctaLabel(text) {
   return (text || '').replace(/[→➔]/g, '').trim();
 }
+
+/**
+ * Charge Google Tag Manager (appelé seulement après consentement à la mesure
+ * d'audience). Idempotent : dataLayer et gtm.js ne sont créés qu'une fois.
+ */
+export function loadGtm(win, doc, id) {
+  if (win.dataLayer && win.dataLayer.some((e) => e.event === 'gtm.js')) return;
+  win.dataLayer = win.dataLayer || [];
+  win.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+  const script = doc.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
+  doc.head.appendChild(script);
+}

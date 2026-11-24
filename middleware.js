@@ -12,6 +12,8 @@ export const config = {
     '/ms-strategy-landing-2.html',
     '/ms-strategy-calculateur.html',
     '/c/:slug*',
+    // Pages SEO à la racine : `camp` doit y être attribué comme sur les landings.
+    '/:file([^/]+\\.html)',
     '/approbation',
     '/approbation.html',
     '/approbation-media/:path*'

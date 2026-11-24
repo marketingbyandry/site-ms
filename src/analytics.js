@@ -1,5 +1,5 @@
 import posthog from 'posthog-js';
-import { readCookie, ctaLabel } from './analytics-helpers.mjs';
+import { readCookie, ctaLabel, loadGtm } from './analytics-helpers.mjs';
 
 // RGPD/CNIL: PostHog et le Pixel Meta capturent tous deux des donnees de
 // navigation (pages vues, clics, identifiant persistant) — ce n'est pas une
@@ -20,7 +20,11 @@ const META_PIXEL_ID = '1381584920727587';
 // Selecteur des CTA suivis, aligne sur les classes utilisees dans les pages.
 const CTA_SELECTOR = 'a.cta-btn, a.pcta, a.ncta';
 
+// Conteneur GTM (GA4) : charge ici, sous le meme consentement `analytics` que PostHog.
+const GTM_ID = 'GTM-THZKG49X';
+
 let postHogInitialised = false;
+let gtmInitialised = false;
 let metaPixelInitialised = false;
 
 function initPostHog() {
@@ -109,6 +113,10 @@ function initAnalytics(consent) {
   if (consent.analytics && !postHogInitialised) {
     postHogInitialised = true;
     initPostHog();
+  }
+  if (consent.analytics && !gtmInitialised) {
+    gtmInitialised = true;
+    loadGtm(window, document, GTM_ID);
   }
   if (consent.marketing && !metaPixelInitialised) {
     metaPixelInitialised = true;

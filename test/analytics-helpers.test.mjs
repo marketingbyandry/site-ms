@@ -37,3 +37,21 @@ test('ctaLabel laisse intact un libelle sans fleche', () => {
 test('ctaLabel tolere une valeur vide', () => {
   assert.equal(ctaLabel(''), '');
 });
+
+import { loadGtm } from '../src/analytics-helpers.mjs';
+
+test('loadGtm initialise dataLayer, pousse gtm.start et injecte gtm.js une seule fois', () => {
+  const appended = [];
+  const doc = {
+    createElement: () => ({}),
+    head: { appendChild: (el) => appended.push(el) }
+  };
+  const win = {};
+  loadGtm(win, doc, 'GTM-TEST');
+  loadGtm(win, doc, 'GTM-TEST');
+  assert.equal(appended.length, 1);
+  assert.equal(appended[0].src, 'https://www.googletagmanager.com/gtm.js?id=GTM-TEST');
+  assert.equal(appended[0].async, true);
+  assert.equal(win.dataLayer[0].event, 'gtm.js');
+  assert.equal(typeof win.dataLayer[0]['gtm.start'], 'number');
+});
