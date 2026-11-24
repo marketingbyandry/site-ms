@@ -6,8 +6,8 @@ import { CATEGORY_BY_SLUG } from '../scripts/build-seo-articles.mjs';
 
 const SLUGS = Object.keys(CATEGORY_BY_SLUG);
 
-test('les 52 slugs du corpus SEO sont bien référencés', () => {
-  assert.equal(SLUGS.length, 52);
+test('les 102 slugs du corpus SEO sont bien référencés', () => {
+  assert.equal(SLUGS.length, 102);
 });
 
 test('chaque article SEO a une page HTML générée à la racine du dépôt', () => {
@@ -55,7 +55,7 @@ test('chaque page article SEO pointe son CTA vers b2b.html#upload', () => {
   }
 });
 
-test('blog.html contient un lien vers chacune des 52 pages articles SEO', () => {
+test('blog.html contient un lien vers chacune des 102 pages articles SEO', () => {
   const blog = readFileSync('blog.html', 'utf8');
   for (const slug of SLUGS) {
     assert.match(blog, new RegExp(`href="${slug}\\.html"`), `blog.html doit lier vers ${slug}.html`);

@@ -6,7 +6,7 @@ import { CATEGORY_BY_SLUG } from '../scripts/build-seo-articles.mjs';
 
 const SLUGS = new Set(Object.keys(CATEGORY_BY_SLUG));
 
-test('aucun lien interne ".ilink" des 52 articles SEO ne pointe vers une page inexistante', () => {
+test('aucun lien interne ".ilink" des 102 articles SEO ne pointe vers une page inexistante', () => {
   for (const slug of SLUGS) {
     const source = readFileSync(`${slug}.html`, 'utf8');
     const linkRe = /href="([a-z0-9-]+)\.html" class="ilink"/g;

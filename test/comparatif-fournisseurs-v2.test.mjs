@@ -37,7 +37,7 @@ test('chaque lien du sommaire pointe vers une ancre existante', () => {
   const source = html();
   const toc = source.slice(source.indexOf('<details class="toc"'), source.indexOf('</details>'));
   const ids = [...toc.matchAll(/href="#([a-z-]+)"/g)].map((m) => m[1]);
-  assert.equal(ids.length, 6);
+  assert.equal(ids.length, 8);
   for (const id of ids) assert.match(source, new RegExp(`id="${id}"`), `#${id} doit exister`);
 });
 
