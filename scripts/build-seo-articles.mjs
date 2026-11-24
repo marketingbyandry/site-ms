@@ -7,11 +7,10 @@
 // Usage : node scripts/build-seo-articles.mjs [dossier-source-markdown]
 // Par défaut, le dossier source est ~/Documents/Energie-Blog-Articles/articles
 
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
-import { homedir } from 'node:os';
+import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
-import { loadPartials, applyPartials } from './build-partials.mjs';
+import { loadPartials, applyPartials, loadSite } from './build-partials.mjs';
 
 export const TEMPLATE_PATH = new URL('../templates/blog-article-template.html', import.meta.url);
 
@@ -72,6 +71,57 @@ export const CATEGORY_BY_SLUG = {
   'turpe-2026-professionnels': 'Réglementation & fiscalité',
   'tva-electricite-professionnelle': 'Réglementation & fiscalité',
   'vnu-2026-versement-nucleaire-universel': 'Marché & prix',
+  // Lot de novembre 2026 (sources : content/seo-articles)
+  'prix-gaz-professionnel-2026': 'Marché & prix',
+  'comparer-fournisseurs-gaz-professionnel': 'Fournisseurs & contrats',
+  'resilier-contrat-gaz-professionnel': 'Fournisseurs & contrats',
+  'prix-fixe-ou-indexe-gaz-professionnel': 'Fournisseurs & contrats',
+  'decrypter-facture-gaz-professionnel': 'Fournisseurs & contrats',
+  'atrd-atrt-acheminement-gaz-entreprise': 'Réglementation & fiscalité',
+  'accise-gaz-exoneration-entreprise': 'Réglementation & fiscalité',
+  'cta-contribution-tarifaire-acheminement': 'Réglementation & fiscalité',
+  'car-profil-consommation-gaz-entreprise': 'Fournisseurs & contrats',
+  'prix-gaz-peg-marche-gros': 'Marché & prix',
+  'gtb-prix-cout-installation': 'Mobilité & bâtiment',
+  'gtb-gtc-difference': 'Mobilité & bâtiment',
+  'classes-gtb-norme-iso-52120': 'Mobilité & bâtiment',
+  'prime-cee-gtb-bat-th-116': 'Aides & financement',
+  'gtb-petit-batiment-tertiaire': 'Mobilité & bâtiment',
+  'gtb-protocoles-bacnet-knx-modbus': 'Mobilité & bâtiment',
+  'exemption-decret-bacs-temps-retour': 'Réglementation & fiscalité',
+  'operat-declaration-decret-tertiaire': 'Réglementation & fiscalité',
+  'certificats-production-biogaz-cpb-entreprise': 'Réglementation & fiscalité',
+  'biomethane-garanties-origine-entreprise': 'Renouvelable & solaire',
+  'changer-fournisseur-electricite-entreprise': 'Fournisseurs & contrats',
+  'heures-creuses-entreprise-nouveaux-horaires': 'Fournisseurs & contrats',
+  'tarif-bleu-professionnel-eligibilite': 'Réglementation & fiscalité',
+  'tarif-jaune-tarif-vert-equivalent': 'Fournisseurs & contrats',
+  'reconduction-tacite-contrat-energie': 'Fournisseurs & contrats',
+  'clause-take-or-pay-contrat-energie': 'Fournisseurs & contrats',
+  'clause-ajustement-prix-contrat-energie': 'Fournisseurs & contrats',
+  'appel-offres-energie-entreprise': 'Fournisseurs & contrats',
+  'depot-garantie-contrat-energie-pro': 'Fournisseurs & contrats',
+  'fournisseur-energie-defaillant-entreprise': 'Fournisseurs & contrats',
+  'litige-fournisseur-energie-entreprise': 'Fournisseurs & contrats',
+  'regularisation-facture-energie-entreprise': 'Fournisseurs & contrats',
+  'demenagement-entreprise-contrat-energie': 'Fournisseurs & contrats',
+  'mise-en-service-compteur-electrique-pro': 'Fournisseurs & contrats',
+  'segments-c1-c2-c3-c4-c5-electricite': 'Fournisseurs & contrats',
+  'energie-reactive-facture-entreprise': 'Efficacité énergétique',
+  'raccordement-electrique-entreprise': 'Mobilité & bâtiment',
+  'courbe-de-charge-enedis-entreprise': 'Efficacité énergétique',
+  'prix-negatifs-electricite-entreprise': 'Marché & prix',
+  'achat-energie-par-clics-tranches': 'Marché & prix',
+  'budget-energie-previsionnel-entreprise': 'Marché & prix',
+  'energie-supermarche-commerce-alimentaire': 'Verticaux sectoriels',
+  'energie-salle-de-sport': 'Verticaux sectoriels',
+  'energie-garage-automobile': 'Verticaux sectoriels',
+  'energie-salon-coiffure-institut': 'Verticaux sectoriels',
+  'energie-pressing-blanchisserie': 'Verticaux sectoriels',
+  'energie-entrepot-logistique-frigorifique': 'Verticaux sectoriels',
+  'energie-ecole-privee-etablissement-scolaire': 'Verticaux sectoriels',
+  'energie-cave-viticole': 'Verticaux sectoriels',
+  'energie-boucherie-charcuterie': 'Verticaux sectoriels',
 };
 
 export const CATEGORY_ORDER = [
@@ -95,6 +145,7 @@ function escapeAttr(str) {
 export function inlineMarkdownToHtml(text) {
   let html = text;
   html = html.replace(/\[([^\]]+)\]\(([a-z0-9-]+)\.md\)/g, (_m, label, slug) => `<a href="${slug}.html" class="ilink">${label}</a>`);
+  html = html.replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g, '<a href="$2" class="ilink" target="_blank" rel="noopener">$1</a>');
   html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   return html;
 }
@@ -107,6 +158,16 @@ export function parseBlocks(lines) {
     const line = rawLine.trim();
     if (line === '') {
       if (currentList) { blocks.push(currentList); currentList = null; }
+      continue;
+    }
+    const h3Match = line.match(/^###\s+(.*)$/);
+    if (h3Match || line.startsWith('|')) {
+      if (currentList) { blocks.push(currentList); currentList = null; }
+      if (h3Match) { blocks.push({ type: 'h3', text: h3Match[1] }); continue; }
+      const cells = line.replace(/^\||\|$/g, '').split('|').map((c) => c.trim());
+      const prev = blocks[blocks.length - 1];
+      if (prev && prev.type === 'table') { if (!cells.every((c) => /^:?-+:?$/.test(c))) prev.rows.push(cells); }
+      else blocks.push({ type: 'table', rows: [cells] });
       continue;
     }
     const ulMatch = line.match(/^-\s+(.*)$/);
@@ -250,21 +311,294 @@ export function renderArticleHtml(template, data) {
 }
 
 export function defaultSourceDir() {
-  return path.join(homedir(), 'Documents', 'Energie-Blog-Articles', 'articles');
+  return fileURLToPath(new URL('../content/seo-articles', import.meta.url));
 }
 
-export function buildAllArticles(sourceDir, outputDir) {
+export const HAND_CRAFTED_MARKER = '<!-- layout:v2';
+
+export function isHandCrafted(file) {
+  return existsSync(file) && readFileSync(file, 'utf8').includes(HAND_CRAFTED_MARKER);
+}
+
+// ── Gabarit v2 (sommaire collant, modules, CTA intercalés) ──────────────
+// Les articles listés dans data/articles-v2.json sont rendus avec
+// templates/blog-article-v2-template.html. Le fichier JSON porte aussi la
+// couche éditoriale (sommaire court, « L'essentiel », notes de marge) : elle
+// reformule ou cite l'article, sans jamais ajouter de fait ni de chiffre.
+
+export const TEMPLATE_V2_PATH = new URL('../templates/blog-article-v2-template.html', import.meta.url);
+export const V2_DATA_PATH = new URL('../data/articles-v2.json', import.meta.url);
+
+export function loadV2Data() {
+  return existsSync(V2_DATA_PATH) ? JSON.parse(readFileSync(V2_DATA_PATH, 'utf8')) : {};
+}
+
+const STRONG_CTA = {
+  eyebrow: 'Et sur votre facture&nbsp;?',
+  title: 'Combien pourriez-vous économiser&nbsp;?',
+  button: 'Calculer mon écart réel →',
+};
+
+// CTA secondaire (après le premier tiers), formulé selon la catégorie de l'article.
+export const SOFT_CTA_BY_CATEGORY = {
+  'Fournisseurs & contrats': { eyebrow: 'Appliquez-le à votre contrat', title: 'Votre contrat actuel est-il vraiment adapté&nbsp;?', text: 'Envoyez votre dernière facture : nous vérifions votre offre, votre engagement et vos frais.', button: 'Faire vérifier mon contrat →' },
+  'Marché & prix': { eyebrow: 'Et pour votre entreprise&nbsp;?', title: 'Votre prix est-il cohérent avec le marché actuel&nbsp;?', text: 'Envoyez votre dernière facture : nous la confrontons aux offres réellement disponibles aujourd\'hui.', button: 'Comparer mon prix au marché →' },
+  'Réglementation & fiscalité': { eyebrow: 'Vérifiez votre facture', title: 'Ces lignes sont-elles justes sur votre facture&nbsp;?', text: 'Envoyez votre dernière facture : nous vérifions taxes, acheminement et options tarifaires.', button: 'Faire vérifier ma facture →' },
+  'Verticaux sectoriels': { eyebrow: 'Pour votre activité', title: 'Votre établissement paie-t-il le bon prix&nbsp;?', text: 'Envoyez votre dernière facture : nous la comparons aux offres disponibles pour votre activité.', button: 'Faire analyser ma facture →' },
+};
+const DEFAULT_SOFT_CTA = SOFT_CTA_BY_CATEGORY['Fournisseurs & contrats'];
+
+export const FINAL_CTA_TITLE = 'Votre facture, analysée gratuitement';
+
+/** Identifiant d'ancre lisible à partir d'un titre de section. */
+export function slugifyHeading(text) {
+  return text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+    .replace(/\*\*|\[|\]\([^)]*\)/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50).replace(/-$/, '');
+}
+
+/** « **Titre** : suite » → { lead, rest } ; null si l'item ne commence pas par du gras. */
+export function splitLead(item) {
+  const m = item.match(/^\*\*([^*]+)\*\*\s*[:,.–—-]?\s*(.*)$/);
+  if (!m) return null;
+  const lead = m[1].trim().replace(/[:.]$/, '');
+  const rest = m[2].trim();
+  return { lead, rest: rest ? rest.charAt(0).toUpperCase() + rest.slice(1) : '' };
+}
+
+/** Positions des deux CTA intercalés parmi n sections de corps (hors section finale). */
+export function inlineCtaSlots(n) {
+  if (n < 2) return { soft: n - 1, strong: -1 };
+  const soft = Math.floor((n - 1) / 3);
+  const strong = Math.max(soft + 1, Math.floor((2 * (n - 1)) / 3));
+  return { soft, strong: strong < n ? strong : -1 };
+}
+
+const IND = '        ';
+
+function blockToHtmlV2(block) {
+  if (block.type === 'p') return `${IND}<p>${inlineMarkdownToHtml(block.text)}</p>`;
+  if (block.type === 'h3') return `${IND}<h3 class="sub">${inlineMarkdownToHtml(block.text)}</h3>`;
+  if (block.type === 'table') {
+    const [head, ...rows] = block.rows;
+    const cell = (c, open, close) => `<${open}>${inlineMarkdownToHtml(c)}</${close}>`;
+    const headHtml = head.map((c) => cell(c, 'th scope="col"', 'th')).join('');
+    const rowHtml = (r) => `${IND}    <tr>${r.map((c, i) => (i === 0 ? cell(c, 'th scope="row"', 'th') : cell(c, 'td', 'td'))).join('')}</tr>`;
+    return `${IND}<div class="tbl wide" tabindex="0" role="region" aria-label="Tableau"><table>\n${IND}  <thead><tr>${headHtml}</tr></thead>\n${IND}  <tbody>\n${rows.map(rowHtml).join('\n')}\n${IND}  </tbody>\n${IND}</table></div>`;
+  }
+  return listToHtmlV2(block);
+}
+
+/** Section « Questions fréquentes » : paires question (h3) / réponse (paragraphes suivants). */
+export function extractFaq(sections) {
+  const section = sections.find((s) => s.heading && /^Questions fréquentes/i.test(s.heading));
+  if (!section) return [];
+  const faq = [];
+  for (const b of parseBlocks(section.lines)) {
+    if (b.type === 'h3') faq.push({ q: b.text, a: '' });
+    else if (b.type === 'p' && faq.length) faq[faq.length - 1].a += (faq[faq.length - 1].a ? ' ' : '') + b.text;
+  }
+  return faq;
+}
+
+function faqJsonLd(faq) {
+  const plain = (t) => t.replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+  const data = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(({ q, a }) => ({ '@type': 'Question', name: plain(q), acceptedAnswer: { '@type': 'Answer', text: plain(a) } })) };
+  return `<script type="application/ld+json">\n${JSON.stringify(data, null, 2).replace(/</g, '\\u003c')}\n</script>\n`;
+}
+
+function listToHtmlV2(block) {
+  const leads = block.items.map(splitLead);
+  if (leads.every(Boolean)) {
+    if (block.type === 'ol') {
+      const items = leads.map((l, i) => `${IND}  <li style="--dot: var(--green)">\n${IND}    <div>\n${IND}      <span class="when">Étape ${i + 1}</span>\n${IND}      <h3>${inlineMarkdownToHtml(l.lead)}</h3>\n${l.rest ? `${IND}      <p>${inlineMarkdownToHtml(l.rest)}</p>\n` : ''}${IND}    </div>\n${IND}  </li>`).join('\n');
+      return `${IND}<ol class="timeline">\n${items}\n${IND}</ol>`;
+    }
+    const items = leads.map((l, i) => `${IND}  <li>\n${IND}    <div class="head"><span class="n">${String(i + 1).padStart(2, '0')}</span></div>\n${IND}    <h3>${inlineMarkdownToHtml(l.lead)}</h3>\n${l.rest ? `${IND}    <p>${inlineMarkdownToHtml(l.rest)}</p>\n` : ''}${IND}  </li>`).join('\n');
+    return `${IND}<ul class="criteria wide">\n${items}\n${IND}</ul>`;
+  }
+  const tag = block.type === 'ul' ? 'ul' : 'ol';
+  const items = block.items.map((item) => `${IND}  <li>${inlineMarkdownToHtml(item)}</li>`).join('\n');
+  return `${IND}<${tag} class="checklist">\n${items}\n${IND}</${tag}>`;
+}
+
+function noteHtml(note) {
+  const cls = note.quote ? 'note quote' : 'note';
+  const label = note.quote ? '' : `\n${IND}  <span class="note-k">${note.label || 'À retenir'}</span>`;
+  const text = note.quote ? `«&nbsp;${note.text}&nbsp;»` : note.text;
+  return `${IND}<aside class="${cls}">${label}\n${IND}  <p>${inlineMarkdownToHtml(text)}</p>\n${IND}</aside>`;
+}
+
+function softCtaHtml(category) {
+  const c = SOFT_CTA_BY_CATEGORY[category] || DEFAULT_SOFT_CTA;
+  return `${IND}<aside class="cta-inline wide" aria-label="${c.button.replace(' →', '')}">
+${IND}  <div>
+${IND}    <p class="eyebrow">${c.eyebrow}</p>
+${IND}    <p class="t">${c.title}</p>
+${IND}    <p class="s">${c.text}</p>
+${IND}  </div>
+${IND}  <div class="actions">
+${IND}    <a href="b2b.html#upload" class="cta-btn cta-btn--ghost">${c.button}</a>
+${IND}    <span class="micro">Gratuit · Sans engagement · Réponse sous 24h</span>
+${IND}  </div>
+${IND}</aside>`;
+}
+
+function strongCtaHtml(energie = "d'électricité") {
+  return `${IND}<aside class="cta-inline wide" aria-label="Calculer votre écart réel">
+${IND}  <div>
+${IND}    <p class="eyebrow">${STRONG_CTA.eyebrow}</p>
+${IND}    <p class="t">${STRONG_CTA.title}</p>
+${IND}    <ol class="steps">
+${IND}      <li>Vous envoyez votre dernière facture ${energie}</li>
+${IND}      <li>Nous la confrontons aux offres réellement disponibles</li>
+${IND}      <li>Vous savez si un changement est pertinent</li>
+${IND}    </ol>
+${IND}  </div>
+${IND}  <div class="actions">
+${IND}    <a href="b2b.html#upload" class="cta-btn cta-btn--inline">${STRONG_CTA.button}</a>
+${IND}    <a href="ms-strategy-calculateur.html" class="alt hit">ou faire une première estimation en ligne →</a>
+${IND}    <span class="micro">Gratuit · Données confidentielles · Réponse sous 24h</span>
+${IND}  </div>
+${IND}</aside>`;
+}
+
+/** Rend les blocs d'une section ; la note éventuelle se place après le premier paragraphe. */
+function sectionBodyV2(blocks, notes) {
+  const out = [];
+  let noteDone = notes.length === 0;
+  for (const block of blocks) {
+    out.push(blockToHtmlV2(block));
+    if (!noteDone && block.type === 'p') { out.push(...notes.map(noteHtml)); noteDone = true; }
+  }
+  if (!noteDone) out.push(...notes.map(noteHtml));
+  return out.join('\n\n');
+}
+
+export function buildArticleDataV2(slug, markdown, editorial = {}) {
+  const base = buildArticleData(slug, markdown);
+  const { sections } = parseArticleMarkdown(markdown);
+  const bodySections = sections.slice(1);
+  const finalSection = bodySections[bodySections.length - 1];
+  const middle = bodySections.slice(0, -1);
+  const { soft, strong } = { ...inlineCtaSlots(middle.length), ...(editorial.ctaSlots || {}) };
+  const notes = editorial.notes || [];
+  const tocLabels = editorial.toc || [];
+
+  const used = new Set();
+  const ids = middle.map((s) => {
+    let id = slugifyHeading(s.heading) || 'section';
+    while (used.has(id)) id += '-2';
+    used.add(id);
+    return id;
+  });
+
+  const sectionsHtml = middle.map((section, i) => {
+    const blocks = parseBlocks(section.lines);
+    const body = sectionBodyV2(blocks, notes.filter((n) => n.section === i));
+    const ctas = [i === soft ? softCtaHtml(base.category) : '', i === strong ? strongCtaHtml(editorial.energie) : ''].filter(Boolean);
+    return [`      <section class="v2-section" id="${ids[i]}">`, `${IND}<h2>${inlineMarkdownToHtml(section.heading)}</h2>`, body, ...ctas, '      </section>']
+      .filter(Boolean).join('\n\n');
+  }).join('\n\n');
+
+  const plain = (t) => t.replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+  const tocHtml = [
+    ...middle.map((s, i) => `        <li><a href="#${ids[i]}">${escapeAttr(tocLabels[i] || plain(s.heading))}</a></li>`),
+    `        <li><a href="#votre-etude">${escapeAttr(tocLabels[middle.length] || 'Votre étude gratuite')}</a></li>`,
+  ].join('\n');
+
+  const tldrHtml = editorial.tldr && editorial.tldr.length
+    ? `\n    <div class="tldr" role="list" aria-label="L'essentiel en 30 secondes">\n${editorial.tldr.map((t) => `      <div class="tldr-item" role="listitem"><span class="tldr-k">${t.k}</span><p>${inlineMarkdownToHtml(t.text)}</p></div>`).join('\n')}\n    </div>`
+    : '';
+
+  // Section finale : son dernier paragraphe devient le texte du CTA, le reste reste en corps.
+  const finalBlocks = parseBlocks(finalSection.lines);
+  const lastP = finalBlocks.map((b) => b.type).lastIndexOf('p');
+  const finalBody = sectionBodyV2(finalBlocks.filter((_, i) => i !== lastP), notes.filter((n) => n.section === middle.length));
+
+  return {
+    ...base,
+    metaDescription: editorial.description || base.metaDescription,
+    blogExcerpt: editorial.excerpt || base.blogExcerpt,
+    seoTitle: editorial.seoTitle,
+    datePublished: editorial.datePublished,
+    faq: extractFaq(sections),
+    related: editorial.related || [],
+    sectionsHtml,
+    tocHtml,
+    tldrHtml,
+    ctaHeading: inlineMarkdownToHtml(finalSection.heading),
+    ctaSectionBody: finalBody,
+    ctaTitle: editorial.ctaTitle || FINAL_CTA_TITLE,
+  };
+}
+
+/** Espaces insécables avant %, €, unités et ponctuation double, dans le contenu de <main> seulement. */
+export function frenchSpacing(html) {
+  const start = html.indexOf('<main');
+  const end = html.indexOf('</main>');
+  if (start < 0 || end < 0) return html;
+  const body = html.slice(start, end).replace(/>([^<]+)</g, (_m, text) => `>${text
+    .replace(/(\d) (%|€|kVA|kWh|MWh|ans?\b)/g, '$1&nbsp;$2')
+    .replace(/ ([:;?!»])/g, '&nbsp;$1')
+    .replace(/« /g, '«&nbsp;')}<`);
+  return html.slice(0, start) + body + html.slice(end);
+}
+
+export function renderArticleHtmlV2(template, data) {
+  let html = renderArticleHtml(template, data);
+  const more = {
+    '[TLDR_HTML]': data.tldrHtml,
+    '[TOC_HTML]': data.tocHtml,
+    '[CTA_HEADING]': data.ctaHeading,
+    '[CTA_SECTION_BODY]': data.ctaSectionBody,
+  };
+  for (const [placeholder, value] of Object.entries(more)) html = html.split(placeholder).join(value);
+  if (data.seoTitle) html = html.replace(/<title>[^<]*<\/title>/, () => `<title>${escapeAttr(data.seoTitle)} | M&S Strategy</title>`);
+  if (data.datePublished) html = html.replace('"inLanguage": "fr-FR"', `"datePublished": "${data.datePublished}",\n  "dateModified": "${data.datePublished}",\n  "inLanguage": "fr-FR"`);
+  if (data.faq && data.faq.length) html = html.replace('<script type="module" src="assets/site-search.js">', () => `${faqJsonLd(data.faq)}<script type="module" src="assets/site-search.js">`);
+  if (data.relatedLinks && data.relatedLinks.length) {
+    const items = data.relatedLinks.map((r) => `<li><a href="${r.slug}.html" class="ilink">${r.title}</a></li>`).join('\n            ');
+    html = html.replace('<p class="callout-title">Lire aussi</p>', () => `<p class="callout-title">Lire aussi</p>\n          <ul class="related">\n            ${items}\n          </ul>`);
+  }
+  return frenchSpacing(html);
+}
+
+/** Les sources markdown peuvent annoncer un délai périmé : data/site.json fait foi. */
+export function alignDelays(html, delai) {
+  return html.replace(/((?:sous|en moins de)\s)(\d+)( ?(?:h|heures)\b)/gi, (_m, a, _n, b) => `${a}${delai}${b}`);
+}
+
+/** Titre H1 d'une page liée : source markdown si elle existe, sinon page publiée. */
+function pageTitle(slug, sourceDir, outputDir) {
+  const md = path.join(sourceDir, `${slug}.md`);
+  if (existsSync(md)) return parseArticleMarkdown(readFileSync(md, 'utf8')).title;
+  const m = readFileSync(path.join(outputDir, `${slug}.html`), 'utf8').match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+  return m[1].replace(/<[^>]+>/g, '').trim();
+}
+
+export function buildAllArticles(sourceDir, outputDir, v2Data = loadV2Data()) {
   // Les blocs partagés (bouton flottant, réassurance…) sont rendus depuis
   // partials/ + data/site.json, pour ne jamais figer une valeur périmée.
-  const template = applyPartials(readFileSync(TEMPLATE_PATH, 'utf8'), loadPartials());
-  const files = readdirSync(sourceDir).filter((f) => f.endsWith('.md')).sort();
+  const partials = loadPartials();
+  const template = applyPartials(readFileSync(TEMPLATE_PATH, 'utf8'), partials);
+  const templateV2 = applyPartials(readFileSync(TEMPLATE_V2_PATH, 'utf8'), partials);
+  const delai = Number.parseInt(loadSite().delai, 10);
+  const files = readdirSync(sourceDir).filter((f) => /^[a-z0-9-]+\.md$/.test(f)).sort();
   const results = [];
   for (const file of files) {
     const slug = file.replace(/\.md$/, '');
     const markdown = readFileSync(path.join(sourceDir, file), 'utf8');
-    const data = buildArticleData(slug, markdown);
-    const html = renderArticleHtml(template, data);
-    writeFileSync(path.join(outputDir, `${slug}.html`), html);
+    // Couche éditoriale : <slug>.json à côté de la source, sinon data/articles-v2.json.
+    const sidecar = path.join(sourceDir, `${slug}.json`);
+    if (existsSync(sidecar)) v2Data = { ...v2Data, [slug]: JSON.parse(readFileSync(sidecar, 'utf8')) };
+    const isV2 = Object.hasOwn(v2Data, slug);
+    const data = isV2 ? buildArticleDataV2(slug, markdown, v2Data[slug]) : buildArticleData(slug, markdown);
+    if (isV2) data.relatedLinks = (data.related || []).map((rel) => ({ slug: rel, title: pageTitle(rel, sourceDir, outputDir) }));
+    const html = alignDelays(isV2 ? renderArticleHtmlV2(templateV2, data) : renderArticleHtml(template, data), delai);
+    const target = path.join(outputDir, `${slug}.html`);
+    // Une page passée en mise en page v2 est retouchée à la main : on ne l'écrase pas.
+    if (isHandCrafted(target)) { results.push(data); continue; }
+    writeFileSync(target, html);
     results.push(data);
   }
   return results;
