@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-THZKG49X');</script>
-<!-- End Google Tag Manager -->
 <script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
 <script defer src="assets/analytics-loader.js"></script>
 <meta charset="UTF-8">
@@ -78,10 +71,6 @@ a{text-decoration:none;color:inherit}
 <script type="module" src="assets/site-search.js"></script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THZKG49X"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 <script>
 (function(){
   var m = document.cookie.match(/(?:^|;\s*)ms_variant=([AB])/);
@@ -123,7 +112,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <tr><th>Catégorie</th><th>Exemples</th><th>Origine</th></tr>
       <tr><td>Identification</td><td>Nom, prénom, email, téléphone</td><td>Formulaires de contact / demande d'étude (Tally)</td></tr>
       <tr><td>Données de consommation</td><td>Factures d'énergie transmises (puissance souscrite, historique de consommation, fournisseur actuel)</td><td>Upload volontaire par le Client</td></tr>
-      <tr><td>Navigation</td><td>Pages visitées, variante A/B affichée, provenance</td><td>Cookies techniques, PostHog Analytics et Pixel Meta</td></tr>
+      <tr><td>Navigation</td><td>Pages visitées, variante A/B affichée, provenance</td><td>Cookies techniques, PostHog Analytics, Google Analytics 4 et Pixel Meta</td></tr>
     </table>
   </section>
 
@@ -154,13 +143,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <tr><th>Cookie</th><th>Finalité</th><th>Durée</th><th>Consentement</th></tr>
       <tr><td><code>ms_variant</code> / <code>ms_suivi_variant</code></td><td>Répartition technique entre versions du site (test A/B) affichée par notre serveur ; ne contient aucune donnée personnelle et n'est pas utilisé à des fins publicitaires ou de suivi cross-site</td><td>30 jours</td><td>Cookie technique, déposé dès l'affichage de la page</td></tr>
       <tr><td>Cookies PostHog</td><td>Mesure d'audience (pages vues, parcours, clics sur les boutons d'action)</td><td>Selon configuration PostHog</td><td>Déposé uniquement après acceptation dans le bandeau cookies</td></tr>
+      <tr><td>Cookies Google Analytics 4 (<code>_ga</code>, <code>_ga_*</code>)</td><td>Mesure d'audience (pages vues, parcours, provenance, envoi du formulaire), via Google Tag Manager (Google Ireland Limited)</td><td>Durée définie par Google, voir sa documentation</td><td>Déposé uniquement après acceptation de la mesure d'audience dans le bandeau cookies ; effacé si vous retirez votre accord</td></tr>
       <tr><td>Cookies Pixel Meta (<code>_fbp</code>, <code>_fbc</code>)</td><td>Mesure et optimisation de nos campagnes publicitaires Facebook/Instagram (Meta Platforms Ireland Ltd.). Lors du dépôt d'une facture, votre email et téléphone sont transmis à Meta sous forme irréversiblement hachée (SHA-256, non lisible), afin de fiabiliser cette mesure même lorsque le cookie seul ne suffit pas</td><td>90 jours</td><td>Déposé uniquement après acceptation dans le bandeau cookies</td></tr>
       <tr><td><code>ms_consent</code></td><td>Mémorise votre choix par catégorie (mesure d'audience, publicité) pour ne pas réafficher le bandeau à chaque page</td><td>13 mois</td><td>Cookie technique, nécessaire au fonctionnement du bandeau lui-même</td></tr>
       <tr><td><code>ms_ref</code></td><td>Mémorise l'identifiant du conseiller M&amp;S Strategy dont vous avez suivi le lien, afin de rattacher votre demande d'étude à votre interlocuteur ; contient uniquement un code interne à deux ou trois lettres, aucune donnée personnelle, et n'est ni partagé avec des tiers ni utilisé à des fins publicitaires ou de suivi cross-site</td><td>90 jours</td><td>Cookie déposé uniquement si vous arrivez par le lien d'un conseiller</td></tr>
       <tr><td><code>ms_camp</code></td><td>Mémorise le code de l'email de notre séquence de prospection dont vous avez suivi le lien (segment d'activité et numéro d'email), afin de mesurer la performance de chaque email ; contient uniquement un code interne court, aucune donnée personnelle, et n'est ni partagé avec des tiers ni utilisé à des fins publicitaires ou de suivi cross-site</td><td>90 jours</td><td>Cookie déposé uniquement si vous arrivez par le lien d'un email de prospection</td></tr>
     </table>
     <p>
-      Un bandeau vous permet d'accepter, de refuser, ou de choisir séparément les cookies de mesure d'audience (PostHog) et de
+      Un bandeau vous permet d'accepter, de refuser, ou de choisir séparément les cookies de mesure d'audience (PostHog, Google Analytics) et de
       publicité (Pixel Meta) via « Gérer » : tant que vous n'avez pas donné votre accord pour une catégorie, aucun cookie de
       cette catégorie n'est posé et aucune donnée ne lui est transmise.
       Vous pouvez revenir sur votre choix à tout moment via le lien <strong>« Gérer les cookies »</strong> présent en bas de chaque page.
@@ -172,7 +162,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p>
       Vos données peuvent être transmises aux fournisseurs d'énergie sollicités dans le cadre de l'appel d'offres, avec votre accord
       implicite à la demande d'étude. Elles sont également accessibles à nos sous-traitants techniques : hébergement (Vercel Inc.),
-      mesure d'audience (PostHog, hébergé en UE : eu.i.posthog.com), gestion des formulaires (Tally), et, si vous acceptez les cookies
+      mesure d'audience (PostHog, hébergé en UE : eu.i.posthog.com ; Google Analytics 4 via Google Tag Manager, Google Ireland Limited, avec un transfert possible de données hors de l'Union européenne, notamment vers les États-Unis, encadré par les clauses contractuelles types ou le cadre de protection des données applicable), gestion des formulaires (Tally), et, si vous acceptez les cookies
       de suivi publicitaire, mesure de campagnes (Meta Platforms Ireland Ltd., dans le cadre du transfert de données encadré par les
       clauses contractuelles types de la Commission européenne).
     </p>

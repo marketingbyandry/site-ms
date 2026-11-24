@@ -94,10 +94,10 @@ test("connect-src autorise l'ingestion des events GA4 relayes par GTM", () => {
   );
 });
 
-test('frame-src autorise le repli iframe noscript de GTM', () => {
+test('frame-src autorise les iframes que GTM peut créer', () => {
   assert.ok(
     cspDirectives()['frame-src'].includes('https://www.googletagmanager.com'),
-    'sans ce host, le fallback <noscript><iframe> de GTM est bloque'
+    'sans ce host, les iframes injectees par GTM sont bloquees'
   );
 });
 

@@ -45,9 +45,28 @@
     if (window.__msLoadAnalyticsScript) window.__msLoadAnalyticsScript(onReady);
   }
 
+  // Retrait du consentement analytics : on efface les cookies GA4 (_ga, _ga_<id>)
+  // sur l'hote et ses domaines parents, puis on recharge une seule fois si GTM
+  // tournait dans la page (le rechargement repart sans GTM : pas de boucle).
+  function stopGoogleAnalytics() {
+    var parts = location.hostname.split('.');
+    var domains = [null];
+    for (var i = 0; i <= parts.length - 2; i++) domains.push(parts.slice(i).join('.'));
+    document.cookie.split('; ').forEach(function (pair) {
+      var name = pair.split('=')[0];
+      if (name.indexOf('_ga') !== 0) return;
+      domains.forEach(function (d) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (d ? '; domain=' + d : '');
+      });
+    });
+    var dl = window.dataLayer;
+    if (dl && dl.some(function (e) { return e.event === 'gtm.js'; })) location.reload();
+  }
+
   function setConsent(analytics, marketing) {
     var consent = { analytics: analytics, marketing: marketing };
     setCookie(COOKIE_NAME, JSON.stringify(consent), COOKIE_MAX_AGE_DAYS);
+    if (!analytics) stopGoogleAnalytics();
     if (analytics || marketing) {
       // Acceptation explicite juste maintenant : on charge tout de suite (le
       // rendu initial est déjà loin derrière, pas de raison de temporiser).
@@ -98,7 +117,7 @@
 
   function bindMainView(banner) {
     banner.innerHTML =
-      '<p>Nous utilisons des cookies de mesure d’audience et de suivi publicitaire (PostHog, Meta) ' +
+      '<p>Nous utilisons des cookies de mesure d’audience et de suivi publicitaire (PostHog, Google Analytics, Meta) ' +
       'pour comprendre l’usage du site et mesurer nos campagnes. Ils ne sont déposés qu’avec votre accord. Voir notre ' +
       '<a href="politique-confidentialite.html">politique de confidentialité</a> ou ' +
       '<button type="button" class="ms-cookie-textlink" id="ms-cookie-reject">tout refuser</button>.</p>' +
@@ -128,7 +147,7 @@
       'nécessaires au fonctionnement du site, sont toujours actifs. Voir notre ' +
       '<a href="politique-confidentialite.html">politique de confidentialité</a>.</p>' +
       '<label class="ms-cookie-row"><input type="checkbox" id="ms-cookie-cat-analytics"' +
-      (current.analytics ? ' checked' : '') + '><span><strong>Mesure d’audience</strong> — PostHog, pour comprendre ' +
+      (current.analytics ? ' checked' : '') + '><span><strong>Mesure d’audience</strong> — PostHog et Google Analytics, pour comprendre ' +
       'l’usage du site.</span></label>' +
       '<label class="ms-cookie-row"><input type="checkbox" id="ms-cookie-cat-marketing"' +
       (current.marketing ? ' checked' : '') + '><span><strong>Publicité</strong> — Pixel Meta, pour mesurer nos ' +

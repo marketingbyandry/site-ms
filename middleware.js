@@ -12,11 +12,18 @@ export const config = {
     '/ms-strategy-landing-2.html',
     '/ms-strategy-calculateur.html',
     '/c/:slug*',
+    // Pages SEO à la racine : `camp` doit y être attribué comme sur les landings.
+    '/:file([^/]+\\.html)',
     '/approbation',
     '/approbation.html',
     '/approbation-media/:path*'
   ]
 };
+
+// Pages historiques du test A/B : les pages SEO ajoutees au matcher pour `camp`
+// ne recoivent pas ms_variant.
+const VARIANT_PATHS = ['/', '/b2b.html', '/b2c.html', '/blog.html', '/comment-ca-marche.html',
+  '/resultats.html', '/ms-strategy-landing-2.html', '/ms-strategy-calculateur.html'];
 
 const BOT_UA = /bot|crawl|spider|slurp|facebookexternalhit|whatsapp|telegrambot|linkedinbot|preview/i;
 
@@ -241,7 +248,7 @@ export default function middleware(request) {
   // Bots always get variant A, never get the cookie — keeps SEO/crawling
   // consistent and avoids duplicate content across the whole site, not just
   // the home.
-  if (isBot) {
+  if (isBot || !VARIANT_PATHS.includes(url.pathname)) {
     return next();
   }
 

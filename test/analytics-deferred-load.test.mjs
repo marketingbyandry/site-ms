@@ -74,7 +74,7 @@ function runCookieConsent({ cookie = '', readyState = 'complete', loadAnalyticsS
   };
   windowObj.addEventListener = function () {};
 
-  const context = { window: windowObj, document: documentObj, setTimeout, console };
+  const context = { window: windowObj, document: documentObj, setTimeout, console, location: { hostname: 'cabinetms.fr', reload() {} } };
   vm.createContext(context);
   vm.runInContext(source, context);
 
