@@ -1,0 +1,57 @@
+{
+  "lot": "Rattrapage J30, J32, J34 programmé le 24/11/2026",
+  "notes": [
+    "J30 : destination remplacée par decrypter-facture-electricite-pro.html (page TVA encore à 5,5 %), mentions « n°5 » retirées.",
+    "J32 FB : 🔥 retiré. J34 FB : yoyo retiré."
+  ],
+  "items": [
+    {
+      "jour": 30,
+      "date_prevue": "2026-11-13",
+      "angle": "La TVA",
+      "statut": "programme",
+      "medias": {
+        "fb_ig": "videos/2026-11-13/J30_la-tva_9x16.mp4",
+        "x": "videos/2026-11-13/J30_la-tva_16x9.mp4"
+      },
+      "buffer": {
+        "fb": "6b057c5d422b57d965533292",
+        "ig": "6b057c606ef6ae340287c1dc",
+        "x": "6b057c666ef6ae340287cb8b",
+        "heure": "2026-11-24T14:00+01:00"
+      }
+    },
+    {
+      "jour": 32,
+      "date_prevue": "2026-11-15",
+      "angle": "Cuisine au gaz",
+      "statut": "programme",
+      "medias": {
+        "fb_ig": "videos/2026-11-15/J32_cuisine-au-gaz_9x16.mp4",
+        "x": "videos/2026-11-15/J32_cuisine-au-gaz_16x9.mp4"
+      },
+      "buffer": {
+        "fb": "6b057c67f1b8d614351a272c",
+        "ig": "6b057c68e2bac802e9a1c70a",
+        "x": "6b057c696ef6ae340287d1e9",
+        "heure": "2026-11-24T17:30+01:00"
+      }
+    },
+    {
+      "jour": 34,
+      "date_prevue": "2026-11-17",
+      "angle": "L'indexé",
+      "statut": "programme",
+      "medias": {
+        "fb_ig": "videos/2026-11-17/J34_l-indexe_9x16.mp4",
+        "x": "videos/2026-11-17/J34_l-indexe_16x9.mp4"
+      },
+      "buffer": {
+        "fb": "6b057c6a58db0b423cdd9707",
+        "ig": "6b057c6ae2bac802e9a1c8fa",
+        "x": "6b057c6ce2bac802e9a1ca2b",
+        "heure": "2026-11-24T20:00+01:00"
+      }
+    }
+  ]
+}
