@@ -1,0 +1,675 @@
+{
+ "lot": "Statiques manquants J1-J78",
+ "statut": "a_valider",
+ "elevenlabs_credits": 0,
+ "replis": "Photos réelles et clips des briefs remplacés par des illustrations (J1-J12 : seul LinkedIn manquait)",
+ "alertes": [
+  "J29 et J75 : les textes disent « depuis le 1er février 2026 », le visuel dit 1er août 2026",
+  "J36 : août absent du baromètre, dernière valeur septembre 2026",
+  "J56 : texte X à revoir, mécanisme de capacité modifié le 01/11/2026"
+ ],
+ "jours": {
+  "J1": {
+   "date": "2026-10-15",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-10-15/j1_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-10-15/j1_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-10-15/j1_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-10-15/j1_linkedin.pdf"
+    ]
+   }
+  },
+  "J3": {
+   "date": "2026-10-17",
+   "format_carrousel": null,
+   "medias": {
+    "ig": [
+     "visuels/2026-10-17/j3_ig_1.jpg",
+     "visuels/2026-10-17/j3_ig_2.jpg",
+     "visuels/2026-10-17/j3_ig_3.jpg",
+     "visuels/2026-10-17/j3_ig_4.jpg"
+    ],
+    "fb": [
+     "visuels/2026-10-17/j3_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-10-17/j3_linkedin.jpg"
+    ]
+   }
+  },
+  "J5": {
+   "date": "2026-10-19",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-10-19/j5_ig_1.jpg",
+     "visuels/2026-10-19/j5_ig_2.jpg",
+     "visuels/2026-10-19/j5_ig_3.jpg",
+     "visuels/2026-10-19/j5_ig_4.jpg",
+     "visuels/2026-10-19/j5_ig_5.jpg",
+     "visuels/2026-10-19/j5_ig_6.jpg"
+    ],
+    "fb": [
+     "visuels/2026-10-19/j5_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-10-19/j5_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-10-19/j5_linkedin.pdf"
+    ]
+   }
+  },
+  "J8": {
+   "date": "2026-10-22",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-10-22/j8_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-10-22/j8_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-10-22/j8_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-10-22/j8_linkedin.pdf"
+    ]
+   }
+  },
+  "J10": {
+   "date": "2026-10-24",
+   "format_carrousel": null,
+   "medias": {
+    "ig": [
+     "visuels/2026-10-24/j10_ig_1.jpg",
+     "visuels/2026-10-24/j10_ig_2.jpg",
+     "visuels/2026-10-24/j10_ig_3.jpg",
+     "visuels/2026-10-24/j10_ig_4.jpg"
+    ],
+    "fb": [
+     "visuels/2026-10-24/j10_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-10-24/j10_linkedin.jpg"
+    ]
+   }
+  },
+  "J12": {
+   "date": "2026-10-26",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-10-26/j12_ig_1.jpg",
+     "visuels/2026-10-26/j12_ig_2.jpg",
+     "visuels/2026-10-26/j12_ig_3.jpg",
+     "visuels/2026-10-26/j12_ig_4.jpg",
+     "visuels/2026-10-26/j12_ig_5.jpg"
+    ],
+    "fb": [
+     "visuels/2026-10-26/j12_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-10-26/j12_linkedin.pdf"
+    ]
+   }
+  },
+  "J19": {
+   "date": "2026-11-02",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-02/j19_ig_1.jpg",
+     "visuels/2026-11-02/j19_ig_2.jpg",
+     "visuels/2026-11-02/j19_ig_3.jpg",
+     "visuels/2026-11-02/j19_ig_4.jpg",
+     "visuels/2026-11-02/j19_ig_5.jpg"
+    ],
+    "fb": [
+     "visuels/2026-11-02/j19_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-11-02/j19_linkedin.pdf"
+    ]
+   }
+  },
+  "J14": {
+   "date": "2026-10-28",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-10-28/j14_ig_1.jpg",
+     "visuels/2026-10-28/j14_ig_2.jpg",
+     "visuels/2026-10-28/j14_ig_3.jpg",
+     "visuels/2026-10-28/j14_ig_4.jpg"
+    ]
+   }
+  },
+  "J15": {
+   "date": "2026-10-29",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-10-29/j15_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-10-29/j15_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-10-29/j15_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-10-29/j15_linkedin.pdf"
+    ]
+   }
+  },
+  "J17": {
+   "date": "2026-10-31",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-10-31/j17_ig_1.jpg",
+     "visuels/2026-10-31/j17_ig_2.jpg",
+     "visuels/2026-10-31/j17_ig_3.jpg",
+     "visuels/2026-10-31/j17_ig_4.jpg",
+     "visuels/2026-10-31/j17_ig_5.jpg"
+    ],
+    "fb": [
+     "visuels/2026-10-31/j17_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-10-31/j17_linkedin.jpg"
+    ]
+   }
+  },
+  "J21": {
+   "date": "2026-11-04",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-04/j21_ig_1.jpg",
+     "visuels/2026-11-04/j21_ig_2.jpg",
+     "visuels/2026-11-04/j21_ig_3.jpg",
+     "visuels/2026-11-04/j21_ig_4.jpg"
+    ]
+   }
+  },
+  "J22": {
+   "date": "2026-11-05",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-05/j22_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-11-05/j22_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-11-05/j22_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-11-05/j22_linkedin.pdf"
+    ]
+   }
+  },
+  "J24": {
+   "date": "2026-11-07",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-07/j24_ig_1.jpg",
+     "visuels/2026-11-07/j24_ig_2.jpg",
+     "visuels/2026-11-07/j24_ig_3.jpg",
+     "visuels/2026-11-07/j24_ig_4.jpg"
+    ],
+    "fb": [
+     "visuels/2026-11-07/j24_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-11-07/j24_linkedin.jpg"
+    ]
+   }
+  },
+  "J26": {
+   "date": "2026-11-09",
+   "format_carrousel": "objet",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-09/j26_ig_1.jpg",
+     "visuels/2026-11-09/j26_ig_2.jpg",
+     "visuels/2026-11-09/j26_ig_3.jpg"
+    ],
+    "fb": [
+     "visuels/2026-11-09/j26_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-11-09/j26_linkedin.pdf"
+    ]
+   }
+  },
+  "J28": {
+   "date": "2026-11-11",
+   "format_carrousel": "objet",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-11/j28_ig_1.jpg",
+     "visuels/2026-11-11/j28_ig_2.jpg",
+     "visuels/2026-11-11/j28_ig_3.jpg"
+    ]
+   }
+  },
+  "J29": {
+   "date": "2026-11-12",
+   "format_carrousel": "objet",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-12/j29_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-11-12/j29_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-11-12/j29_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-11-12/j29_linkedin.pdf"
+    ]
+   }
+  },
+  "J31": {
+   "date": "2026-11-14",
+   "format_carrousel": "objet",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-14/j31_ig_1.jpg",
+     "visuels/2026-11-14/j31_ig_2.jpg",
+     "visuels/2026-11-14/j31_ig_3.jpg",
+     "visuels/2026-11-14/j31_ig_4.jpg",
+     "visuels/2026-11-14/j31_ig_5.jpg",
+     "visuels/2026-11-14/j31_ig_6.jpg"
+    ],
+    "fb": [
+     "visuels/2026-11-14/j31_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-11-14/j31_linkedin.jpg"
+    ]
+   }
+  },
+  "J33": {
+   "date": "2026-11-16",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-16/j33_ig_1.jpg",
+     "visuels/2026-11-16/j33_ig_2.jpg",
+     "visuels/2026-11-16/j33_ig_3.jpg"
+    ],
+    "fb": [
+     "visuels/2026-11-16/j33_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-11-16/j33_linkedin.pdf"
+    ]
+   }
+  },
+  "J35": {
+   "date": "2026-11-18",
+   "format_carrousel": "objet",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-18/j35_ig_1.jpg",
+     "visuels/2026-11-18/j35_ig_2.jpg",
+     "visuels/2026-11-18/j35_ig_3.jpg",
+     "visuels/2026-11-18/j35_ig_4.jpg"
+    ]
+   }
+  },
+  "J36": {
+   "date": "2026-11-19",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-19/j36_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-11-19/j36_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-11-19/j36_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-11-19/j36_linkedin.pdf"
+    ]
+   }
+  },
+  "J45": {
+   "date": "2026-11-28",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-28/j45_ig_1.jpg",
+     "visuels/2026-11-28/j45_ig_2.jpg",
+     "visuels/2026-11-28/j45_ig_3.jpg"
+    ],
+    "fb": [
+     "visuels/2026-11-28/j45_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-11-28/j45_linkedin.jpg"
+    ]
+   }
+  },
+  "J47": {
+   "date": "2026-11-30",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-11-30/j47_ig_1.jpg",
+     "visuels/2026-11-30/j47_ig_2.jpg",
+     "visuels/2026-11-30/j47_ig_3.jpg",
+     "visuels/2026-11-30/j47_ig_4.jpg"
+    ],
+    "fb": [
+     "visuels/2026-11-30/j47_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-11-30/j47_linkedin.pdf"
+    ]
+   }
+  },
+  "J49": {
+   "date": "2026-12-02",
+   "format_carrousel": "objet",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-02/j49_ig_1.jpg",
+     "visuels/2026-12-02/j49_ig_2.jpg",
+     "visuels/2026-12-02/j49_ig_3.jpg"
+    ]
+   }
+  },
+  "J50": {
+   "date": "2026-12-03",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-03/j50_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-03/j50_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-12-03/j50_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-03/j50_linkedin.pdf"
+    ]
+   }
+  },
+  "J52": {
+   "date": "2026-12-05",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-05/j52_ig_1.jpg",
+     "visuels/2026-12-05/j52_ig_2.jpg",
+     "visuels/2026-12-05/j52_ig_3.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-05/j52_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-05/j52_linkedin.jpg"
+    ]
+   }
+  },
+  "J54": {
+   "date": "2026-12-07",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-07/j54_ig_1.jpg",
+     "visuels/2026-12-07/j54_ig_2.jpg",
+     "visuels/2026-12-07/j54_ig_3.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-07/j54_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-07/j54_linkedin.pdf"
+    ]
+   }
+  },
+  "J56": {
+   "date": "2026-12-09",
+   "format_carrousel": "objet",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-09/j56_ig_1.jpg",
+     "visuels/2026-12-09/j56_ig_2.jpg",
+     "visuels/2026-12-09/j56_ig_3.jpg"
+    ]
+   }
+  },
+  "J57": {
+   "date": "2026-12-10",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-10/j57_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-10/j57_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-12-10/j57_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-10/j57_linkedin.pdf"
+    ]
+   }
+  },
+  "J59": {
+   "date": "2026-12-12",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-12/j59_ig_1.jpg",
+     "visuels/2026-12-12/j59_ig_2.jpg",
+     "visuels/2026-12-12/j59_ig_3.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-12/j59_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-12/j59_linkedin.jpg"
+    ]
+   }
+  },
+  "J61": {
+   "date": "2026-12-14",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-14/j61_ig_1.jpg",
+     "visuels/2026-12-14/j61_ig_2.jpg",
+     "visuels/2026-12-14/j61_ig_3.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-14/j61_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-14/j61_linkedin.pdf"
+    ]
+   }
+  },
+  "J63": {
+   "date": "2026-12-16",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-16/j63_ig_1.jpg",
+     "visuels/2026-12-16/j63_ig_2.jpg",
+     "visuels/2026-12-16/j63_ig_3.jpg"
+    ]
+   }
+  },
+  "J64": {
+   "date": "2026-12-17",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-17/j64_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-17/j64_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-12-17/j64_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-17/j64_linkedin.pdf"
+    ]
+   }
+  },
+  "J66": {
+   "date": "2026-12-19",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-19/j66_ig_1.jpg",
+     "visuels/2026-12-19/j66_ig_2.jpg",
+     "visuels/2026-12-19/j66_ig_3.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-19/j66_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-19/j66_linkedin.jpg"
+    ]
+   }
+  },
+  "J68": {
+   "date": "2026-12-21",
+   "format_carrousel": "panorama",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-21/j68_ig_1.jpg",
+     "visuels/2026-12-21/j68_ig_2.jpg",
+     "visuels/2026-12-21/j68_ig_3.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-21/j68_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-21/j68_linkedin.pdf"
+    ]
+   }
+  },
+  "J70": {
+   "date": "2026-12-23",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-23/j70_ig_1.jpg",
+     "visuels/2026-12-23/j70_ig_2.jpg",
+     "visuels/2026-12-23/j70_ig_3.jpg"
+    ]
+   }
+  },
+  "J71": {
+   "date": "2026-12-24",
+   "format_carrousel": "objet",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-24/j71_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-24/j71_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-12-24/j71_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-24/j71_linkedin.pdf"
+    ]
+   }
+  },
+  "J73": {
+   "date": "2026-12-26",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-26/j73_ig_1.jpg",
+     "visuels/2026-12-26/j73_ig_2.jpg",
+     "visuels/2026-12-26/j73_ig_3.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-26/j73_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-26/j73_linkedin.jpg"
+    ]
+   }
+  },
+  "J75": {
+   "date": "2026-12-28",
+   "format_carrousel": "objet",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-28/j75_ig_1.jpg",
+     "visuels/2026-12-28/j75_ig_2.jpg",
+     "visuels/2026-12-28/j75_ig_3.jpg",
+     "visuels/2026-12-28/j75_ig_4.jpg",
+     "visuels/2026-12-28/j75_ig_5.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-28/j75_facebook.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-28/j75_linkedin.pdf"
+    ]
+   }
+  },
+  "J77": {
+   "date": "2026-12-30",
+   "format_carrousel": "ticket",
+   "medias": {
+    "ig": [
+     "visuels/2026-12-30/j77_ig_1.jpg",
+     "visuels/2026-12-30/j77_ig_2.jpg",
+     "visuels/2026-12-30/j77_ig_3.jpg",
+     "visuels/2026-12-30/j77_ig_4.jpg"
+    ]
+   }
+  },
+  "J78": {
+   "date": "2026-12-31",
+   "format_carrousel": null,
+   "medias": {
+    "ig": [
+     "visuels/2026-12-31/j78_instagram.jpg"
+    ],
+    "fb": [
+     "visuels/2026-12-31/j78_facebook.jpg"
+    ],
+    "x": [
+     "visuels/2026-12-31/j78_x.jpg"
+    ],
+    "li": [
+     "visuels/2026-12-31/j78_linkedin.pdf"
+    ]
+   }
+  }
+ }
+}

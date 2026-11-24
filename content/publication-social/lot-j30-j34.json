@@ -9,7 +9,7 @@
       "jour": 30,
       "date_prevue": "2026-11-13",
       "angle": "La TVA",
-      "statut": "programme",
+      "statut": "publie",
       "medias": {
         "fb_ig": "videos/2026-11-13/J30_la-tva_9x16.mp4",
         "x": "videos/2026-11-13/J30_la-tva_16x9.mp4"
@@ -25,7 +25,7 @@
       "jour": 32,
       "date_prevue": "2026-11-15",
       "angle": "Cuisine au gaz",
-      "statut": "programme",
+      "statut": "publie",
       "medias": {
         "fb_ig": "videos/2026-11-15/J32_cuisine-au-gaz_9x16.mp4",
         "x": "videos/2026-11-15/J32_cuisine-au-gaz_16x9.mp4"
@@ -41,7 +41,7 @@
       "jour": 34,
       "date_prevue": "2026-11-17",
       "angle": "L'indexé",
-      "statut": "programme",
+      "statut": "publie",
       "medias": {
         "fb_ig": "videos/2026-11-17/J34_l-indexe_9x16.mp4",
         "x": "videos/2026-11-17/J34_l-indexe_16x9.mp4"
