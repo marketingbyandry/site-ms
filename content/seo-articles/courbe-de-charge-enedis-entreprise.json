@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Courbe de charge Enedis : guide entreprise",
+ "description": "Courbe de charge Enedis : comment l'obtenir, quel pas choisir, lire le talon et les pointes, puis l'utiliser pour négocier un contrat pro.",
+ "excerpt": "Obtenir sa courbe de charge, repérer le talon et les pointes, puis s'en servir pour mieux acheter.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Ce qu'elle contient", "L'obtenir", "La lire en 5 minutes", "Coût du talon", "Acheter avec", "Puissance et réactif", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "La courbe de charge donne la puissance appelée à chaque intervalle, jour et nuit."},
+  {"k": "L'accès", "text": "Vous la récupérez dans l'espace client d'Enedis ; l'historique remonte à 24 mois au plus."},
+  {"k": "Le premier usage", "text": "Mesurer le talon nocturne, puis comparer les pointes à la puissance souscrite."}
+ ],
+ "notes": [
+  {"section": 3, "quote": true, "text": "Coupez un circuit à la fois pendant deux nuits et observez la baisse de la courbe."},
+  {"section": 1, "quote": true, "text": "Activez la collecte dès la reprise d'un site : le passé non collecté ne se reconstitue pas."}
+ ],
+ "related": ["puissance-souscrite-entreprise-kva", "energie-reactive-facture-entreprise", "tarifs-horosaisonniers-electricite-pro"]
+}

@@ -1,0 +1,18 @@
+{
+ "status": "done",
+ "seoTitle": "Raccordement électrique entreprise Enedis",
+ "description": "Raccordement électrique d'une entreprise avec Enedis : puissance, devis valable trois mois, étapes, paiements et planning avant l'ouverture.",
+ "excerpt": "Puissance, devis valable trois mois, travaux, mise en service : le parcours de raccordement pro.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Choisir la puissance", "Les cinq étapes", "Lire le devis", "Plusieurs compteurs", "Planning réaliste", "Préparer la suite", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Un raccordement enchaîne une demande, un devis avec acompte, des travaux, un solde puis la mise en service."},
+  {"k": "Le seuil", "text": "La basse tension va jusqu'à 250 kVA, la moyenne tension au-delà."},
+  {"k": "Le délai du devis", "text": "Le devis d'Enedis est valable trois mois, sur la base du barème en vigueur, V8 depuis le 28 octobre 2026."}
+ ],
+ "notes": [
+  {"section": 2, "quote": true, "text": "Le devis sépare trois dépenses que l'on confond facilement."}
+ ],
+ "related": ["mise-en-service-compteur-electrique-pro", "puissance-souscrite-entreprise-kva", "bornes-recharge-entreprise-loi-lom"]
+}

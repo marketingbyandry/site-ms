@@ -1,0 +1,18 @@
+{
+ "status": "done",
+ "seoTitle": "Déménagement entreprise : contrat d'énergie",
+ "description": "Déménagement d'entreprise : résilier ou transférer le contrat d'énergie, alimenter le nouveau local, relever les index et vérifier la clôture.",
+ "excerpt": "Résilier, transférer, remettre en service : le calendrier énergie d'un déménagement d'entreprise.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Résilier ou transférer", "Calendrier à rebours", "Alimenter le local", "Index et clôture", "Chiffrer le coût", "Erreurs fréquentes", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Le contrat est attaché à un point de livraison : il ne suit pas automatiquement l'entreprise."},
+  {"k": "Le délai", "text": "Sur un compteur existant, comptez 5 jours ouvrés pour la mise en service, délai maximum jusqu'à 36 kVA et standard au-dessus."},
+  {"k": "Le réflexe", "text": "Photographiez les index des deux sites le jour du départ et faites-les viser dans l'état des lieux."}
+ ],
+ "notes": [
+  {"section": 3, "quote": true, "text": "L'index de sortie est la seule preuve que la consommation du successeur n'est pas la vôtre."}
+ ],
+ "related": ["mise-en-service-compteur-electrique-pro", "resilier-contrat-electricite-entreprise", "raccordement-electrique-entreprise"]
+}

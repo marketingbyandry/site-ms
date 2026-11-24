@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Fournisseur d'énergie en faillite : que faire ?",
+ "description": "Votre fournisseur d'énergie fait faillite : fournisseur de secours, préavis de quinze jours, créances à déclarer et étapes à suivre.",
+ "excerpt": "Secours automatique, créances à déclarer, nouvelle offre : les bons réflexes si votre fournisseur tombe.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Ce qu'est une défaillance", "Le fournisseur de secours", "Le coût de l'attente", "Les dix premiers jours", "Récupérer vos créances", "Repérer un fournisseur fragile", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "La continuité", "text": "L'énergie continue d'arriver : un fournisseur de secours reprend le site à ses conditions."},
+  {"k": "La sortie", "text": "En électricité, un professionnel quitte le secours sans indemnité, avec quinze jours de préavis."},
+  {"k": "Le délai", "text": "Une créance se déclare en principe dans les deux mois de la publication au BODACC."}
+ ],
+ "notes": [
+  {"section": 2, "quote": true, "text": "comparez l'offre du jour au prix de secours, et non au prix perdu"},
+  {"section": 4, "quote": true, "text": "le remboursement dépend de ce qui reste à distribuer"}
+ ],
+ "related": ["comparatif-fournisseurs-electricite-pro", "depot-garantie-contrat-energie-pro", "changer-fournisseur-electricite-entreprise"]
+}

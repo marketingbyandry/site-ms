@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Biométhane et garanties d'origine en entreprise",
+ "description": "Biométhane et garanties d'origine en entreprise : validité, preuve d'annulation, coût par MWh et formulations à utiliser sans erreur.",
+ "excerpt": "Ce qu'une offre de biométhane prouve, ce qu'elle coûte et l'attestation à demander au fournisseur.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["Gaz reçu, gaz revendiqué", "Règles d'une GO", "Calculer le supplément", "La preuve à demander", "Ce que vous pouvez dire", "GO ou contrat long", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Une garantie d'origine relie 1 MWh de biogaz injecté à une consommation déclarée, une seule fois."},
+  {"k": "Le délai", "text": "Une GO est valable douze mois et son utilisation se déclare au plus tard dix-huit mois après l'injection."},
+  {"k": "La preuve", "text": "Demandez le volume annulé, la période, l'origine et le bénéficiaire avant de communiquer."}
+ ],
+ "notes": [{"section": 3, "quote": true, "text": "Une phrase sur la facture ne remplace pas une attestation."}],
+ "related": ["certificats-production-biogaz-cpb-entreprise", "garanties-origine-electricite-verte-entreprise", "comparer-fournisseurs-gaz-professionnel"]
+}

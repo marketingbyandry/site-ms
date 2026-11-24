@@ -1,0 +1,18 @@
+{
+ "status": "done",
+ "seoTitle": "Mise en service compteur électrique pro",
+ "description": "Mise en service d'un compteur électrique professionnel : délais de 5 ou 10 jours ouvrés, prix fixés par la CRE en 2026, pièces et planning.",
+ "excerpt": "Compteur existant ou local neuf : délais, prix réglementés et pièces pour ouvrir à la bonne date.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Deux procédures", "Prix réglementés", "Pièces à réunir", "Local neuf", "Planning d'ouverture", "Contrat d'urgence", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "La mise en service se demande à un fournisseur, qui la commande au gestionnaire de réseau."},
+  {"k": "Les délais", "text": "5 jours ouvrés sur un compteur existant, 10 jours ouvrés pour une première mise en service."},
+  {"k": "Les prix", "text": "Sur raccordement existant : 1,49 € HT jusqu'à 36 kVA avec compteur évolué, 120,33 € HT au-dessus."}
+ ],
+ "notes": [
+  {"section": 4, "quote": true, "text": "Sans elle, la première facture peut commencer sur l'index de l'ancien occupant."}
+ ],
+ "related": ["raccordement-electrique-entreprise", "demenagement-entreprise-contrat-energie", "puissance-souscrite-entreprise-kva"]
+}

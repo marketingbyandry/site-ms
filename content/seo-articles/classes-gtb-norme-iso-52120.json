@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Classe GTB A, B, C, D : la norme ISO 52120-1",
+ "description": "Classe GTB A, B, C ou D selon ISO 52120-1 : sens des lettres, exigence CEE, écart chiffré et preuves à demander avant de signer.",
+ "excerpt": "Les classes A, B, C et D d'une GTB se vérifient usage par usage : le tableau de preuve à demander.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Les quatre lettres", "Le piège de la classe globale", "Classe selon l'objectif", "Écart entre A et B", "Le tableau de preuve", "Choisir le niveau", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "La norme NF EN ISO 52120-1 classe les fonctions d'automatisation de D à A, usage par usage."},
+  {"k": "L'aide", "text": "La fiche CEE BAT-TH-116 ne retient que les classes A et B."},
+  {"k": "La preuve", "text": "Demandez un tableau signé par fonction, avec le niveau avant travaux, après travaux et l'essai prévu."}
+ ],
+ "notes": [{"section": 1, "quote": true, "text": "Le bon réflexe consiste à demander la fonction la plus faible de chaque usage."}],
+ "related": ["gtb-gestion-technique-batiment", "prime-cee-gtb-bat-th-116", "gtb-gtc-difference"]
+}

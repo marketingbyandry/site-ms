@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Prix PEG gaz : comprendre le marché de gros",
+ "description": "Prix PEG du gaz et marché de gros : produits cotés, niveaux datés de 2026, décalage des indices et passage de la cotation au prix de votre site.",
+ "excerpt": "Jour, mois ou année : ce que cote le PEG et comment passer du marché de gros au prix de votre entreprise.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["Le PEG en clair", "Les produits cotés", "Les cotations de 2026", "Le décalage", "Du PEG au site", "Lire une offre indexée", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Le PEG est le point d'échange virtuel du gaz en France. Son prix exclut réseaux, taxes et marge du fournisseur."},
+  {"k": "La lecture", "text": "Une cotation n'a de sens qu'avec son produit de livraison et sa date."},
+  {"k": "Le décalage", "text": "Un indice moyen intègre des prix passés et peut continuer à monter quand le marché se calme."}
+ ],
+ "notes": [
+  {"section": 1, "quote": true, "text": "Comparer un prix d'hiver à un prix annuel revient à comparer deux marchandises."},
+  {"section": 5, "quote": true, "text": "Une offre indexée n'est vérifiable que si vous pouvez recalculer le prix."}
+ ],
+ "related": ["prix-fixe-ou-indexe-gaz-professionnel", "achat-energie-par-clics-tranches", "prix-gaz-professionnel-2026"]
+}

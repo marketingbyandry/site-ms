@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Tarif Bleu professionnel : éligibilité 2026",
+ "description": "Tarif Bleu professionnel : seuils d'effectif et de chiffre d'affaires, règle des 36 kVA depuis 2025, cas concrets et justificatifs.",
+ "excerpt": "Effectif, comptes, puissance : vérifiez en deux tests si votre entreprise a droit au Tarif Bleu.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Les deux tests", "Le seuil de 36 kVA", "Cinq cas concrets", "Avantages et limites", "Le dossier", "En cas de dépassement", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le droit", "text": "Moins de 10 personnes et 2 millions d'euros au plus de chiffre d'affaires, de recettes ou de bilan."},
+  {"k": "Le compteur", "text": "Le Tarif Bleu concerne la basse tension jusqu'à 36 kVA."},
+  {"k": "Le changement", "text": "Depuis février 2025, une petite entreprise éligible au-delà de 36 kVA garde accès au tarif réglementé."}
+ ],
+ "notes": [
+  {"section": 0, "quote": true, "text": "Le droit au tarif réglementé dépend de l'entreprise ; le nom du tarif dépend du compteur."},
+  {"section": 3, "quote": true, "text": "Il n'est pas toujours le moins cher pour votre profil."}
+ ],
+ "related": ["tarif-jaune-tarif-vert-equivalent", "comparatif-fournisseurs-electricite-pro", "puissance-souscrite-entreprise-kva"]
+}

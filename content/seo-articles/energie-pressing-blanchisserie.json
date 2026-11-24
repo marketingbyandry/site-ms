@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Énergie pressing blanchisserie : agir au kilo",
+ "description": "Essorage, vapeur, séchage et saison hôtelière : pilotez l'énergie de votre pressing ou blanchisserie en kWh par kilo de linge sec.",
+ "excerpt": "Pesez l'essorage et surveillez la vapeur : deux contrôles pour mieux gérer l'énergie du linge.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Suivre le kilo", "Peser l'essorage", "Arrêter la vapeur", "Adapter les cycles", "Pics d'activité", "Gaz et électricité", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Suivez les kWh par kilo de linge sec, par famille d'articles."},
+  {"k": "Le test", "text": "La pesée après essorage révèle l'eau que le séchoir devra évaporer."},
+  {"k": "Le contrat", "text": "Relevez gaz et électricité le même jour avant de comparer les énergies."}
+ ],
+ "notes": [{"section": 1, "quote": true, "text": "Chaque litre qui reste dans le tissu doit être évaporé ensuite."}],
+ "related": ["comparer-fournisseurs-gaz-professionnel", "car-profil-consommation-gaz-entreprise", "economies-energie-hotellerie"]
+}

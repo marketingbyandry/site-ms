@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Exemption décret BACS : le calcul des 10 ans",
+ "description": "Exemption décret BACS : formule officielle du temps de retour, exemple chiffré, arrondi à l'année supérieure et pièces à archiver.",
+ "excerpt": "La formule officielle, un exemple avec deux énergies et l'arrondi qui décide de l'exemption BACS.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Qui peut l'invoquer", "La formule", "Exemple complet", "L'arrondi", "Les erreurs", "Le dossier à archiver", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "L'exemption exige un temps de retour strictement supérieur à dix ans, aides déduites."},
+  {"k": "Le calcul", "text": "Deux devis réels, le moins cher retenu, un gain de 15 % ou tiré d'un audit, et le prix moyen du kWh."},
+  {"k": "Le piège", "text": "Le résultat s'arrondit à l'entier supérieur : 10,0 ans ne suffit pas, 10,1 ans suffit."}
+ ],
+ "notes": [{"section": 2, "quote": true, "text": "Si vos factures montent, le temps de retour baisse."}],
+ "related": ["decret-bacs-obligations", "gtb-gestion-technique-batiment", "prime-cee-gtb-bat-th-116"]
+}

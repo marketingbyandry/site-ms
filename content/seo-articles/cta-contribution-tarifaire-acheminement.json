@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "CTA : contribution tarifaire d'acheminement gaz",
+ "description": "CTA, contribution tarifaire d'acheminement : taux gaz 2026, coefficient de 83,21 %, calcul par option T1 à T4 et points à vérifier sur la facture.",
+ "excerpt": "20,80 %, 4,71 % et un coefficient de 83,21 % : la CTA gaz recalculée pour chaque option, de T1 à T4.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["Rôle de la CTA", "La formule", "Le coût par option", "Le coefficient 2026", "Le terme de débit", "Gaz et électricité", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "La CTA porte sur la part fixe de l'acheminement. Elle ne dépend pas directement des kWh consommés."},
+  {"k": "Le calcul", "text": "20,80 % plus 4,71 % appliqué à 83,21 % donne 24,72 % de l'assiette de distribution."},
+  {"k": "L'année 2026", "text": "La baisse prévue du coefficient à 72,71 % a été annulée par un arrêté du 26 juin 2026."}
+ ],
+ "notes": [
+  {"section": 0, "quote": true, "text": "deux devis bien construits affichent la même CTA pour le même site."},
+  {"section": 5, "quote": true, "text": "Dans un budget, classez la CTA avec les coûts fixes."}
+ ],
+ "related": ["atrd-atrt-acheminement-gaz-entreprise", "accise-gaz-exoneration-entreprise", "prix-gaz-professionnel-2026"]
+}

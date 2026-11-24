@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Achat énergie par clics : tranches et risques",
+ "description": "Achat d'énergie par clics et tranches : fonctionnement, volume nécessaire, exemple chiffré, règle de décision et clauses à vérifier en amont.",
+ "excerpt": "Fixer son prix en plusieurs tranches : exemple calculé, règle d'achat et clauses à demander.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Fonctionnement", "Volume nécessaire", "Exemple en tranches", "Règle d'achat", "Frais et clauses", "Comparer les offres", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Le prix de l'énergie est fixé en plusieurs tranches au lieu d'un seul jour."},
+  {"k": "Le volume", "text": "La CRE associe souvent les clics à des consommations supérieures à 10 GWh par an."},
+  {"k": "La condition", "text": "Écrire une règle avant le premier clic : calendrier, prix cible, prix plafond, défaut et décideurs."}
+ ],
+ "notes": [
+  {"section": 2, "quote": true, "text": "Diviser les achats réduit l'écart entre la meilleure et la pire date."},
+  {"section": 3, "quote": true, "text": "Une règle écrite protège contre les décisions prises sous le coup d'une actualité."}
+ ],
+ "related": ["prix-marche-gros-electricite", "achat-groupe-energie-pme-franchises", "prix-fixe-vs-indexe-electricite-pro"]
+}

@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Take or pay : contrat d'énergie et calcul",
+ "description": "Take or pay dans un contrat d'énergie : calculez le coût d'un volume manquant, lisez la tolérance et négociez une clause supportable.",
+ "excerpt": "Volume minimum, tolérance, pénalité : chiffrez la clause take or pay avant de signer votre contrat.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Le mécanisme", "Le calcul", "Fixer le volume", "Lire la clause", "La négociation", "Contester ou sortir", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Un paiement minimal peut rester dû si la consommation passe sous le volume convenu."},
+  {"k": "Le calcul", "text": "Seuil moins volume réel, puis application du prix prévu pour les MWh manquants."},
+  {"k": "La parade", "text": "Négociez la tolérance, la mutualisation des sites et une révision annuelle du volume."}
+ ],
+ "notes": [
+  {"section": 1, "quote": true, "text": "la valorisation des MWh manquants compte autant"},
+  {"section": 5, "quote": true, "text": "Une estimation provisoire ne doit pas être traitée comme un relevé final."}
+ ],
+ "related": ["achat-energie-par-clics-tranches", "clause-ajustement-prix-contrat-energie", "appel-offres-energie-entreprise"]
+}

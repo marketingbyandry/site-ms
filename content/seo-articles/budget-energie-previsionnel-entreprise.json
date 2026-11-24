@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Budget énergie entreprise : le prévisionnel",
+ "description": "Construisez un budget énergie prévisionnel : volumes corrigés, prix en quatre lignes, trois scénarios chiffrés et suivi mensuel des écarts.",
+ "excerpt": "Volumes corrigés, prix découpé, trois scénarios : la méthode pour bâtir un budget énergie qui tient.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Corriger les volumes", "Découper le prix", "Dates à repérer", "Trois scénarios", "Suivre les écarts", "Décider d'acheter", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Multipliez un volume de kWh corrigé par un prix séparé en fourniture, acheminement, taxes et abonnement."},
+  {"k": "Le risque", "text": "L'incertitude vient surtout des MWh non encore achetés après l'échéance de votre prix."},
+  {"k": "Le suivi", "text": "Calculez chaque mois l'écart de volume et l'écart de prix séparément."}
+ ],
+ "notes": [{"section": 3, "quote": true, "text": "tout l'écart de 2 900 € vient de 58 MWh non encore achetés"}],
+ "related": ["prix-fixe-vs-indexe-electricite-pro", "achat-energie-par-clics-tranches", "decrypter-facture-electricite-pro"]
+}

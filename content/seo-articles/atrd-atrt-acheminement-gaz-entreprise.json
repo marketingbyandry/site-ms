@@ -1,0 +1,18 @@
+{
+ "status": "done",
+ "seoTitle": "ATRD et ATRT : acheminement du gaz en entreprise",
+ "description": "ATRD, ATRT et acheminement du gaz : grille T1 à T4 au 1er juillet 2026, terme de débit, stockage et questions à poser avant de signer un contrat.",
+ "excerpt": "Grille T1 à T4, terme de débit et stockage : ce que les réseaux de gaz facturent à votre entreprise en 2026.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["Qui fait quoi", "La grille ATRD 2026", "Le terme de débit", "Transport et stockage", "Les clauses du contrat", "Où agir", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "L'ATRT paie le transport, l'ATRD la distribution. La CRE fixe les deux, quel que soit votre fournisseur."},
+  {"k": "Les chiffres", "text": "En 2026, le transport a augmenté de 3,41 % et la distribution de 5,87 % en moyenne."},
+  {"k": "Le contrôle", "text": "Vérifiez la CAR, l'option et la taille du compteur, puis la façon dont le contrat répercute ces coûts."}
+ ],
+ "notes": [
+  {"section": 5, "quote": true, "text": "Vous ne négociez pas la grille, mais vous pouvez payer moins en corrigeant les données qui l'appliquent."}
+ ],
+ "related": ["car-profil-consommation-gaz-entreprise", "cta-contribution-tarifaire-acheminement", "prix-gaz-professionnel-2026"]
+}

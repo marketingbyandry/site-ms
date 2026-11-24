@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Appel d'offres énergie entreprise : méthode",
+ "description": "Appel d'offres énergie en entreprise : cahier des charges, lots, calendrier sur 16 semaines et grille de notation avec calcul complet.",
+ "excerpt": "Cahier des charges, lots, calendrier et notation : menez une consultation énergie vraiment comparable.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Choisir le format", "Le cahier des charges", "Découper les lots", "Le calendrier", "Noter les réponses", "Confidentialité et décision", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Même volume, mêmes clauses et même date de réponse pour chaque fournisseur."},
+  {"k": "Le calendrier", "text": "Préparez le dossier seize semaines avant la livraison et décidez pendant la validité des prix."},
+  {"k": "La note", "text": "Rendez les offres conformes avant de pondérer coût, risque et service."}
+ ],
+ "notes": [
+  {"section": 0, "quote": true, "text": "Un questionnaire différent pour chacun détruit la comparaison."},
+  {"section": 3, "quote": true, "text": "Réunissez le dirigeant et la finance avant la remise des prix."}
+ ],
+ "related": ["comparatif-fournisseurs-electricite-pro", "courtier-en-energie-role", "clause-take-or-pay-contrat-energie"]
+}

@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Clause d'ajustement de prix : électricité pro",
+ "description": "Clause d'ajustement de prix d'un contrat d'électricité : postes fixes, formule d'indexation, préavis et méthode de contrôle chiffrée.",
+ "excerpt": "Taxe, indice ou marge : vérifiez ce que la clause d'ajustement autorise sur votre facture d'électricité.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Trois ajustements", "Le vrai prix fixe", "Refaire l'indexation", "Notification et sortie", "Sept questions", "Contrôler un ajustement", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le tri", "text": "Séparez changement réglementaire, formule convenue et modification décidée par le fournisseur."},
+  {"k": "La formule", "text": "Indice, période, coefficient, marge et arrondi doivent permettre de refaire le prix."},
+  {"k": "L'alerte", "text": "Les textes cités prévoient quinze jours de préavis pour certaines modifications de prix."}
+ ],
+ "notes": [
+  {"section": 1, "quote": true, "text": "Faites établir une liste positive des postes fermes."},
+  {"section": 5, "quote": true, "text": "quel paramètre a changé, à quelle date et pour quel volume ?"}
+ ],
+ "related": ["prix-fixe-vs-indexe-electricite-pro", "turpe-2026-professionnels", "comparatif-fournisseurs-electricite-pro"]
+}

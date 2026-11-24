@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Tarif jaune, tarif vert : équivalent actuel",
+ "description": "Tarif jaune et tarif vert : retrouvez l'équivalent actuel selon la tension, les conditions d'accès et les points à vérifier sur la facture.",
+ "excerpt": "Ancien tarif jaune ou vert : son équivalent actuel et les paramètres à lire sur votre facture.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["La correspondance", "Deux sens pour « jaune »", "Réglementé ou marché", "Lire la facture", "Ce qui a changé", "Cinq vérifications", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "La correspondance", "text": "Jaune renvoie à la basse tension au-dessus de 36 kVA, vert à la haute tension."},
+  {"k": "Le tournant", "text": "Les anciens tarifs ont pris fin en 2015 ; un accès réglementé existe depuis 2025 pour les petites entreprises."},
+  {"k": "La méthode", "text": "Identifiez tension, puissance et postes horaires avant de demander un prix."}
+ ],
+ "notes": [
+  {"section": 0, "quote": true, "text": "demandez toujours la donnée technique et évitez la couleur seule"},
+  {"section": 5, "quote": true, "text": "Une puissance trop élevée se paie chaque mois."}
+ ],
+ "related": ["tarif-bleu-professionnel-eligibilite", "segments-c1-c2-c3-c4-c5-electricite", "comparatif-fournisseurs-electricite-pro"]
+}

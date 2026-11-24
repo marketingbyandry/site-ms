@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "GTB petit bâtiment tertiaire : bon périmètre",
+ "description": "GTB petit bâtiment tertiaire : seuil de 70 kW, périmètre minimal, test de deux semaines et calcul simple avant de demander un devis.",
+ "excerpt": "Un test de deux semaines pour savoir si une GTB vaut l'achat dans un petit bâtiment tertiaire.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["L'obligation", "Le périmètre minimal", "Test de deux semaines", "Trois niveaux", "Budget et décision", "Une heure par mois", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Une petite GTB peut se limiter au chauffage, à la climatisation, à quelques compteurs et à une alerte."},
+  {"k": "Le seuil", "text": "L'obligation se regarde au-dessus de 70 kW de chauffage ou de climatisation, quelle que soit la surface."},
+  {"k": "Le test", "text": "Deux semaines de relevés de nuit donnent une idée du gain possible avant tout devis."}
+ ],
+ "notes": [{"section": 1, "quote": true, "text": "Commencez par ce qui consomme beaucoup quand personne n'est là."}],
+ "related": ["gtb-gestion-technique-batiment", "gtb-prix-cout-installation", "courbe-de-charge-enedis-entreprise"]
+}

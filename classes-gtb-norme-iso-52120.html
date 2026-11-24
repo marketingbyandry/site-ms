@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-THZKG49X');</script>
+<!-- End Google Tag Manager -->
+<script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script defer src="assets/favicon-animate.js"></script>
+<title>Classe GTB A, B, C, D : la norme ISO 52120-1 | M&S Strategy</title>
+<meta name="description" content="Classe GTB A, B, C ou D selon ISO 52120-1 : sens des lettres, exigence CEE, écart chiffré et preuves à demander avant de signer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/chantier-sections.css">
+<style>
+:root {
+  --dark: #0a1a1f;
+  --dark2: #0d2028;
+  --teal-deep: #0d4f5c;
+  --teal-mid: #1a7a8a;
+  --teal-bright: #2bb5c8;
+  --teal-light: #5ecfdc;
+  --green: #4cde80;
+  --cream: #f5f0e8;
+  --muted: #8aacb4;
+  --body-max: 720px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Satoshi', sans-serif;
+  background: var(--dark);
+  color: var(--cream);
+  line-height: 1.75;
+  font-size: 17px;
+  font-weight: 300;
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--teal-mid), var(--green));
+  width: 0%; z-index: 200;
+  transition: width .1s linear;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem 5vw;
+  background: rgba(10,26,31,.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(43,181,200,.1);
+}
+.nav-logo { display: flex; align-items: center; }
+.nav-logo img { height: 26px; width: auto; display: block; }
+.nav-cta {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .5rem 1.2rem; border: 1px solid var(--green);
+  color: var(--green); text-decoration: none; border-radius: 0;
+  transition: background .2s, color .2s;
+}
+.nav-cta:hover { background: var(--green); color: var(--dark); }
+
+/* ── HERO ── */
+.hero {
+  padding: 9rem 5vw 5rem;
+  max-width: 1100px; margin: 0 auto;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 60px; right: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,122,138,.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.article-meta {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.meta-tag {
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--teal-light);
+  background: rgba(43,181,200,.1);
+  border: 1px solid rgba(43,181,200,.2);
+  padding: .28rem .85rem; border-radius: 999px;
+}
+.meta-read { font-size: .8rem; color: var(--muted); }
+.meta-read { display: inline-flex; align-items: center; gap: .4rem; }
+
+.hero-title {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.08; max-width: 820px;
+  margin-bottom: 1.6rem;
+}
+.hero-title .accent { color: var(--green); }
+.hero-title .accent-teal { color: var(--teal-light); font-style: italic; font-family: 'Instrument Serif', serif; font-weight: 400; }
+
+.hero-intro {
+  font-size: 1.15rem; color: var(--muted); max-width: 640px;
+  line-height: 1.7; margin-bottom: 2.5rem;
+}
+
+/* ── ARTICLE BODY ── */
+.article-body {
+  max-width: var(--body-max);
+  margin: 0 auto;
+  padding: 0 5vw 6rem;
+}
+
+h2 {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.15; margin: 3.5rem 0 1.2rem;
+  color: var(--cream);
+}
+
+p { margin-bottom: 1.4rem; }
+p strong { color: var(--cream); font-weight: 500; }
+
+ul, ol { margin: 0 0 1.4rem 1.3rem; color: var(--muted); }
+ul li, ol li { margin-bottom: .6rem; line-height: 1.6; }
+ul li strong, ol li strong { color: var(--cream); font-weight: 500; }
+
+a.ilink { color: var(--teal-light); border-bottom: 1px solid rgba(94,207,220,.3); }
+a.ilink:hover { border-bottom-color: var(--teal-light); }
+
+/* ── CALLOUT BOX ── */
+.callout {
+  background: linear-gradient(135deg, rgba(13,79,92,.4), rgba(26,122,138,.15));
+  border: 1px solid rgba(43,181,200,.2);
+  border-radius: 0; padding: 2rem;
+  margin: 2.5rem 0;
+}
+.callout-title {
+  font-family: 'Satoshi', sans-serif; font-weight: 800;
+  font-size: 1rem; color: var(--green); margin-bottom: .8rem;
+}
+.callout p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  background: linear-gradient(135deg, var(--teal-deep), rgba(10,26,31,.95));
+  border: 1px solid rgba(43,181,200,.15);
+  border-radius: 0; padding: 3rem 2.5rem;
+  margin: 4rem 0; text-align: center;
+}
+.cta-title {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: 1.6rem; color: var(--cream); margin-bottom: .8rem;
+}
+.cta-sub { color: var(--muted); margin-bottom: 2rem; font-size: .97rem; }
+.cta-btn {
+  display: inline-block;
+  background: var(--green); color: var(--dark);
+  font-family: 'Satoshi', sans-serif; font-weight: 800;
+  font-size: .9rem; letter-spacing: .04em;
+  padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none;
+  transition: transform .15s, box-shadow .2s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(76,222,128,.3); }
+.cta-section .cta-btn { font-weight: 500; letter-spacing: .02em; }
+.cta-reassure { margin-top: 1rem; font-size: .75rem; color: var(--muted); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 3rem 5vw;
+  border-top: 1px solid rgba(43,181,200,.1);
+  text-align: center;
+}
+footer p { color: var(--muted); font-size: .82rem; line-height: 1.8; }
+footer a { color: var(--teal-bright); text-decoration: none; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .4s ease-out, transform .4s ease-out; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ══ LAYOUT V2 (éditorial : sommaire + colonne de lecture + marge) ══ */
+:root { --rail: 250px; --note: 230px; --line: rgba(43,181,200,.16); --panel: rgba(13,32,40,.72); --warn: #ffcf7a; }
+.hero { max-width: 1320px; }
+.v2-layout {
+  max-width: 1320px; margin: 0 auto; padding: 0 5vw 6rem;
+  display: grid; grid-template-columns: minmax(0, 1fr);
+}
+.v2-main { min-width: 0; max-width: var(--body-max); margin: 0 auto; width: 100%; }
+.v2-section { scroll-margin-top: 6rem; }
+
+.svg-ico { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Accessibilité : lien d'évitement, cibles tactiles, focus, ancres sous le menu fixe */
+.skip-link { position: absolute; left: 1rem; top: -100px; z-index: 300; background: var(--green); color: var(--dark); padding: .8rem 1.2rem; font-weight: 700; text-decoration: none; }
+.skip-link:focus { top: 1rem; }
+.hit { position: relative; }
+.hit::after { content: ''; position: absolute; inset: -13px -4px; }
+#cta, #contenu { scroll-margin-top: 6rem; }
+.v2-section > p { max-width: 68ch; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Sommaire */
+.toc { margin: 0 0 1rem; border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.toc summary {
+  cursor: pointer; list-style: none; padding: .9rem 1.1rem; min-height: 44px;
+  font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.toc summary::-webkit-details-marker { display: none; }
+.toc summary::after { content: '+'; font-size: 1.1rem; color: var(--muted); }
+.toc[open] summary::after { content: '−'; }
+.toc ol { list-style: none; margin: 0; padding: 0 1.1rem 1rem; counter-reset: toc; color: inherit; }
+.toc li { margin: 0; counter-increment: toc; }
+.toc a {
+  display: flex; gap: .7rem; padding: .5rem 0; min-height: 44px; align-items: center;
+  color: var(--muted); text-decoration: none; font-size: .88rem; line-height: 1.35;
+  transition: color .2s;
+}
+.toc a::before { content: counter(toc, decimal-leading-zero); font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.toc a:hover, .toc a.is-active { color: var(--cream); }
+.toc a.is-active::before { color: var(--green); }
+.toc-progress { height: 2px; background: rgba(43,181,200,.12); margin: 0 1.1rem 1rem; border-radius: 0; overflow: hidden; }
+.toc-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--teal-mid), var(--green)); }
+
+/* L'essentiel en 30 secondes */
+.tldr { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: 0; }
+.tldr-item { background: var(--dark2); padding: 1.3rem 1.4rem; }
+.tldr-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal-light); margin-bottom: .5rem; }
+.tldr-item p { margin: 0; font-size: .95rem; line-height: 1.55; color: var(--cream); }
+
+/* Notes de marge (en ligne sur mobile) */
+.note { border-left: 2px solid var(--green); padding: .3rem 0 .3rem 1.1rem; margin: 0 0 1.6rem; }
+.note-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.note p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--muted); }
+.note.quote p { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.3rem; line-height: 1.3; color: var(--cream); }
+
+/* Module : la partie immergée du prix */
+.iceberg { border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: .6rem 0 2.2rem; background: var(--panel); }
+.iceberg-top { padding: 1.4rem 1.5rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.iceberg-top .lbl { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.iceberg-top .big { font-family: 'Instrument Serif', serif; font-size: 1.9rem; line-height: 1; color: var(--cream); }
+.waterline { display: flex; align-items: center; gap: .8rem; padding: 0 1.5rem; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.waterline::before, .waterline::after { content: ''; flex: 1; border-top: 1px dashed rgba(94,207,220,.45); }
+.iceberg-list { list-style: none; margin: 0; padding: 1rem 1.5rem 1.4rem; display: grid; gap: .55rem; background: linear-gradient(180deg, rgba(13,79,92,.18), rgba(13,79,92,.42)); color: inherit; }
+.iceberg-list li { margin: 0; display: flex; justify-content: space-between; gap: 1rem; font-size: .93rem; color: var(--cream); }
+.iceberg-list .tag { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; align-self: center; }
+
+/* Module : 5 critères en cartes */
+.criteria { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); color: inherit; }
+.criteria li { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 0; padding: 1.4rem; display: flex; flex-direction: column; gap: .7rem; transition: border-color .2s; }
+.criteria li:hover { border-color: rgba(94,207,220,.4); }
+.criteria .head { display: flex; align-items: center; gap: .75rem; color: var(--teal-light); }
+.criteria .n { margin-left: auto; font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.criteria h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); line-height: 1.3; }
+.criteria p { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--muted); }
+
+/* Tableaux, sous-titres (FAQ), liens associés */
+.tbl { overflow-x: auto; margin: .6rem 0 1.8rem; border: 1px solid var(--line); background: var(--panel); }
+.tbl table { width: 100%; border-collapse: collapse; font-size: .92rem; line-height: 1.5; }
+.tbl th, .tbl td { padding: .8rem 1rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); min-width: 9rem; font-weight: 400; }
+.tbl thead th { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-light); }
+.tbl tbody th { color: var(--cream); font-weight: 500; }
+.tbl tbody td { color: var(--muted); }
+.tbl tbody tr:last-child > * { border-bottom: 0; }
+h3.sub { font-family: 'Satoshi', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--cream); line-height: 1.35; margin: 1.2rem 0 .5rem; }
+.related { list-style: none; margin: 0 0 1rem; padding: 0; }
+
+/* CTA intercalés */
+.cta-inline {
+  margin: 2.8rem 0; border-radius: 0; padding: 1.8rem;
+  border: 1px solid rgba(76,222,128,.28);
+  background: linear-gradient(120deg, rgba(76,222,128,.07), rgba(13,79,92,.35));
+  display: grid; gap: 1.4rem; align-items: center;
+}
+.cta-inline .eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.cta-inline .t { font-family: 'Instrument Serif', serif; font-size: 1.55rem; line-height: 1.15; color: var(--cream); margin-bottom: .5rem; }
+.cta-inline .s { font-size: .93rem; color: var(--muted); margin: 0; line-height: 1.55; }
+.cta-inline .actions { display: flex; flex-direction: column; gap: .7rem; align-items: flex-start; }
+.cta-inline .cta-btn { padding: .95rem 1.8rem; }
+.cta-btn--ghost { background: transparent; color: var(--green); border: 1px solid var(--green); }
+.cta-btn--ghost:hover { background: var(--green); color: var(--dark); }
+.cta-inline .alt { font-size: .82rem; color: var(--teal-light); }
+.cta-inline .micro { font-size: .75rem; color: var(--muted); }
+.steps { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; color: inherit; counter-reset: st; }
+.steps li { margin: 0; counter-increment: st; display: flex; gap: .7rem; align-items: baseline; font-size: .9rem; color: var(--cream); }
+.steps li::before { content: counter(st); flex: none; width: 1.5rem; height: 1.5rem; border-radius: 50%; display: inline-grid; place-items: center; font-size: .75rem; font-weight: 700; color: var(--dark); background: var(--green); }
+.cta-btn:focus-visible, .toc a:focus-visible, .toc summary:focus-visible, a.ilink:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Module : exemple chiffré A vs B */
+.versus { display: grid; gap: 1rem; margin: .6rem 0 1rem; }
+.offer { border: 1px solid var(--line); border-radius: 0; background: var(--panel); padding: 1.4rem 1.5rem; }
+.offer.win { border-color: rgba(76,222,128,.5); }
+.offer-h { display: flex; justify-content: space-between; align-items: center; gap: .8rem; margin-bottom: .6rem; }
+.offer-h strong { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.badge { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; white-space: nowrap; }
+.badge.trap { color: var(--warn); border: 1px solid rgba(255,207,122,.4); }
+.badge.ok { color: var(--green); border: 1px solid rgba(76,222,128,.45); }
+.offer table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.offer caption { text-align: left; font-size: .8rem; color: var(--muted); padding-bottom: .4rem; }
+.offer th, .offer td { padding: .5rem 0; border-bottom: 1px solid rgba(43,181,200,.1); text-align: left; font-weight: 400; color: var(--muted); }
+.offer td { text-align: right; color: var(--cream); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.offer tr.hidden-cost th, .offer tr.hidden-cost td { color: var(--warn); }
+.offer tr.total th, .offer tr.total td { border-bottom: 0; padding-top: .9rem; font-weight: 700; color: var(--cream); font-size: 1rem; }
+.verdict { display: flex; gap: 1.2rem; align-items: center; border-radius: 0; padding: 1.1rem 1.4rem; background: rgba(255,207,122,.07); border: 1px solid rgba(255,207,122,.3); margin-bottom: 1.6rem; }
+.verdict .big { font-family: 'Instrument Serif', serif; font-size: 2rem; line-height: 1; color: var(--warn); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.verdict p { margin: 0; font-size: .93rem; color: var(--cream); line-height: 1.5; }
+
+/* Module : calendrier */
+.timeline { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; color: inherit; }
+.timeline li { margin: 0; display: grid; grid-template-columns: 1.2rem 1fr; gap: 1rem; padding-bottom: 1.4rem; position: relative; }
+.timeline li::before { content: ''; width: 12px; height: 12px; border-radius: 50%; margin-top: .3rem; background: var(--dot); box-shadow: 0 0 0 4px rgba(43,181,200,.12); }
+.timeline li:not(:last-child)::after { content: ''; position: absolute; left: 5px; top: 1.2rem; bottom: 0; width: 2px; background: var(--line); }
+.timeline .when { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dot); }
+.timeline h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); margin: .2rem 0 .3rem; line-height: 1.3; }
+.timeline p { margin: 0; font-size: .9rem; color: var(--muted); line-height: 1.55; }
+.meter { display: flex; align-items: center; gap: .7rem; margin-top: .6rem; font-size: .75rem; color: var(--muted); }
+.meter i { flex: 0 0 120px; height: 4px; border-radius: 0; background: rgba(43,181,200,.14); overflow: hidden; }
+.meter b { display: block; height: 100%; background: var(--dot); }
+
+@media (min-width: 720px) {
+  .tldr { grid-template-columns: repeat(3, 1fr); }
+  .versus { grid-template-columns: 1fr 1fr; }
+  .cta-inline { grid-template-columns: minmax(0, 1fr) auto; padding: 2rem 2.2rem; }
+  .cta-inline .actions { align-items: flex-end; text-align: right; }
+}
+
+/* ≥ 1024px : rail collant à gauche (bande photo + sommaire) */
+@media (min-width: 1024px) {
+  .v2-layout { grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: 3.5rem; }
+  .v2-main { max-width: var(--body-max); margin: 0; }
+  .v2-rail {
+    position: sticky; top: 6rem; align-self: start; margin-top: 3.4rem;
+  }
+  .toc { margin: 0; background: transparent; border: 0; }
+  .toc summary { pointer-events: none; padding: 0 0 .6rem; min-height: 0; }
+  .toc summary::after, .toc[open] summary::after { content: none; }
+  .toc ol { padding: 0; }
+  .toc-progress { margin: 0 0 .6rem; }
+}
+
+/* ≥ 1320px : marge éditoriale à droite, modules pleine largeur */
+@media (min-width: 1320px) {
+  .v2-main { max-width: none; }
+  .v2-section { display: grid; grid-template-columns: minmax(0, 1fr) var(--note); column-gap: 3rem; align-items: start; }
+  .v2-section > * { grid-column: 1; }
+  .v2-section > .wide { grid-column: 1 / -1; }
+  .v2-section > .note { grid-column: 2; grid-row: span 3; margin-top: .4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cta-btn, .criteria li, .toc a { transition: none; }
+  .cta-btn:hover { transform: none; }
+}
+</style>
+<link rel="canonical" href="https://cabinetms.fr/classes-gtb-norme-iso-52120.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="M&S Strategy">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Classes GTB A, B, C, D : lire la norme ISO 52120-1 avant d'acheter | M&S Strategy">
+<meta property="og:description" content="Classe GTB A, B, C ou D selon ISO 52120-1 : sens des lettres, exigence CEE, écart chiffré et preuves à demander avant de signer.">
+<meta property="og:url" content="https://cabinetms.fr/classes-gtb-norme-iso-52120.html">
+<meta property="og:image" content="https://cabinetms.fr/assets/ms-strategy-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://cabinetms.fr/classes-gtb-norme-iso-52120.html#article",
+  "headline": "Classes GTB A, B, C, D : lire la norme ISO 52120-1 avant d'acheter",
+  "description": "Classe GTB A, B, C ou D selon ISO 52120-1 : sens des lettres, exigence CEE, écart chiffré et preuves à demander avant de signer.",
+  "image": "https://cabinetms.fr/assets/ms-strategy-logo.png",
+  "author": {
+    "@id": "https://cabinetms.fr/#organization"
+  },
+  "publisher": {
+    "@id": "https://cabinetms.fr/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://cabinetms.fr/classes-gtb-norme-iso-52120.html"
+  },
+  "datePublished": "2026-11-24",
+  "dateModified": "2026-11-24",
+  "inLanguage": "fr-FR"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://cabinetms.fr/"},
+    {"@type": "ListItem", "position": 2, "name": "Ressources & analyses", "item": "https://cabinetms.fr/blog.html"},
+    {"@type": "ListItem", "position": 3, "name": "Classes GTB A, B, C, D : lire la norme ISO 52120-1 avant d'acheter", "item": "https://cabinetms.fr/classes-gtb-norme-iso-52120.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "La norme ISO 52120-1 remplace-t-elle la norme EN 15232 ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, les anciens documents commerciaux citent encore EN 15232, qui utilisait aussi les lettres A à D. Sur un nouveau projet, faites inscrire la référence en vigueur demandée par la fiche d'aide ou le marché."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Faut-il un certificat délivré par un organisme ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La fiche BAT-TH-116 s'appuie sur la preuve de réalisation et, à défaut, sur un document du professionnel indiquant que le système assure des fonctions de classe A ou B. Vérifiez avec le demandeur de certificats s'il exige des justificatifs supplémentaires."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on passer de C à A en changeant seulement le logiciel ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Parfois pour certaines fonctions de suivi, si capteurs et actionneurs le permettent. Une vanne non motorisée ou une pompe à vitesse fixe reste une limite physique que la supervision ne supprimera pas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "La classe se perd-elle avec le temps ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les fonctions peuvent être désactivées, contournées ou mises en mode manuel. Contrôlez-les lors des visites périodiques et archivez les essais, car un réglage oublié ramène l'usage réel à un niveau inférieur."
+      }
+    }
+  ]
+}
+</script>
+<script type="module" src="assets/site-search.js"></script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THZKG49X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<div id="progress-bar"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="assets/ms-strategy-logo.png" width="573" height="146" alt="M&S Strategy"></a>
+  <a href="#cta" class="nav-cta">Étude gratuite →</a>
+</nav>
+
+<!-- gabarit:v2 — généré par scripts/build-seo-articles.mjs depuis data/articles-v2.json -->
+<main id="contenu">
+<article>
+  <header class="hero">
+    <div class="article-meta">
+      <a href="blog.html" class="meta-tag hit" style="text-decoration:none">← Tous les articles</a>
+      <span class="meta-tag">Mobilité &amp; bâtiment</span>
+      <span class="meta-read"><svg class="svg-ico" style="width:15px;height:15px" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6 min de lecture</span>
+    </div>
+    <h1 class="hero-title">Classes GTB A, B, C, D&nbsp;: lire la norme ISO 52120-1 avant d'acheter</h1>
+    <p class="hero-intro">La norme NF EN ISO 52120-1 classe les fonctions d'automatisation d'un bâtiment de D, la moins efficace, à A, la plus performante. Une classe GTB se vérifie usage par usage, car un même site peut être bien équipé en chauffage et très en retard en éclairage. La lettre a une conséquence financière&nbsp;: l'aide CEE BAT-TH-116 ne retient que les classes A et B.</p>
+
+    <div class="tldr" role="list" aria-label="L'essentiel en 30 secondes">
+      <div class="tldr-item" role="listitem"><span class="tldr-k">Le principe</span><p>La norme NF EN ISO 52120-1 classe les fonctions d'automatisation de D à A, usage par usage.</p></div>
+      <div class="tldr-item" role="listitem"><span class="tldr-k">L'aide</span><p>La fiche CEE BAT-TH-116 ne retient que les classes A et B.</p></div>
+      <div class="tldr-item" role="listitem"><span class="tldr-k">La preuve</span><p>Demandez un tableau signé par fonction, avec le niveau avant travaux, après travaux et l'essai prévu.</p></div>
+    </div>
+  </header>
+
+  <div class="v2-layout">
+
+    <div class="v2-rail">
+    <details class="toc" id="toc">
+      <summary>Sommaire</summary>
+      <div class="toc-progress" aria-hidden="true"><span id="toc-progress"></span></div>
+      <ol>
+        <li><a href="#ce-que-signifient-les-quatre-lettres">Les quatre lettres</a></li>
+        <li><a href="#pourquoi-une-classe-globale-peut-tromper">Le piège de la classe globale</a></li>
+        <li><a href="#classe-requise-selon-votre-objectif">Classe selon l'objectif</a></li>
+        <li><a href="#l-ecart-entre-a-et-b-en-volumes-cee">Écart entre A et B</a></li>
+        <li><a href="#le-tableau-de-preuve-a-demander">Le tableau de preuve</a></li>
+        <li><a href="#choisir-un-niveau-sans-surdimensionner">Choisir le niveau</a></li>
+        <li><a href="#questions-frequentes">Questions fréquentes</a></li>
+        <li><a href="#votre-etude">Votre étude gratuite</a></li>
+      </ol>
+    </details>
+    </div>
+
+    <div class="v2-main">
+
+      <section class="v2-section" id="ce-que-signifient-les-quatre-lettres">
+
+        <h2>Ce que signifient les quatre lettres</h2>
+
+        <p>La classe décrit le niveau d'automatisation et de gestion, sans noter l'isolation ni l'âge du bâtiment. Un immeuble mal isolé peut avoir une régulation de classe A, et un immeuble neuf une régulation de classe C.</p>
+
+        <div class="tbl wide" tabindex="0" role="region" aria-label="Tableau"><table>
+          <thead><tr><th scope="col">Classe</th><th scope="col">Idée générale</th><th scope="col">Exemple courant pour le chauffage</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">D</th><td>Pas d'automatisation efficace</td><td>Chaudière manuelle, température identique partout</td></tr>
+            <tr><th scope="row">C</th><td>Automatisation standard, niveau de référence</td><td>Programmation horaire et régulation de base</td></tr>
+            <tr><th scope="row">B</th><td>Automatisation avancée et gestion technique</td><td>Régulation par pièce ou zone, suivi centralisé</td></tr>
+            <tr><th scope="row">A</th><td>Haute performance, adaptée à la demande</td><td>Réglage selon la présence et les besoins échangés entre systèmes</td></tr>
+          </tbody>
+        </table></div>
+
+        <p>Les exemples aident à comprendre, ils ne remplacent pas les tableaux de la norme. La référence internationale est l'<a href="https://www.iso.org/standard/65883.html" class="ilink" target="_blank" rel="noopener">ISO 52120-1</a>&nbsp;; la fiche CEE française cite la version NF EN ISO 52120-1:2022.</p>
+
+      </section>
+
+      <section class="v2-section" id="pourquoi-une-classe-globale-peut-tromper">
+
+        <h2>Pourquoi une classe globale peut tromper</h2>
+
+        <p>La norme liste des fonctions&nbsp;: émission de chaleur, distribution, production, ventilation, éclairage, stores, gestion technique. Chaque fonction a ses propres niveaux. Une déclaration «&nbsp;GTB classe A&nbsp;» sans préciser l'usage et les fonctions laisse donc un angle mort.</p>
+
+        <aside class="note quote">
+          <p>«&nbsp;Le bon réflexe consiste à demander la fonction la plus faible de chaque usage.&nbsp;»</p>
+        </aside>
+
+        <p>Imaginons un hôtel fictif où la température est réglée selon l'occupation des chambres, alors que la pompe de distribution tourne à vitesse fixe toute la saison. Le vendeur met en avant les chambres. Le contrôleur, lui, regarde la chaîne complète du chauffage. Le bon réflexe consiste à demander la fonction la plus faible de chaque usage.</p>
+
+        <p>Ce raisonnement vaut aussi pour les extensions. Ajouter des détecteurs d'éclairage n'élève pas la classe du chauffage, et relier une nouvelle aile à un ancien poste central ne modifie pas les automates installés.</p>
+
+      </section>
+
+      <section class="v2-section" id="classe-requise-selon-votre-objectif">
+
+        <h2>Classe requise selon votre objectif</h2>
+
+        <p>Avant de choisir une lettre, dites à quoi elle doit servir. Conformité, prime et économies ne demandent pas la même preuve.</p>
+
+        <ul class="criteria wide">
+          <li>
+            <div class="head"><span class="n">01</span></div>
+            <h3>Conformité BACS</h3>
+            <p>Les textes énumèrent des fonctions, comme le pas horaire par zone ou la détection des pertes. Ils ne fixent pas une lettre.</p>
+          </li>
+          <li>
+            <div class="head"><span class="n">02</span></div>
+            <h3>Prime CEE</h3>
+            <p>La fiche BAT-TH-116 exige les classes A ou B pour les usages valorisés.</p>
+          </li>
+          <li>
+            <div class="head"><span class="n">03</span></div>
+            <h3>Décret tertiaire</h3>
+            <p>L'objectif porte sur la consommation, quelle que soit la classe de l'automatisation.</p>
+          </li>
+          <li>
+            <div class="head"><span class="n">04</span></div>
+            <h3>Confort et exploitation</h3>
+            <p>Visez le niveau que votre équipe saura régler et maintenir.</p>
+          </li>
+        </ul>
+
+        <p>La liste des fonctions réglementaires figure dans la <a href="https://www.justice.fr/fiche/systemes-gestion-technique-batiment-gtb" class="ilink" target="_blank" rel="noopener">fiche officielle sur les systèmes de GTB</a>. Relisez-la avec votre devis&nbsp;: une fonction absente de l'offre ne sera pas créée par une étiquette de classe. Les seuils et les dates sont rappelés dans notre page sur le <a href="decret-bacs-obligations.html" class="ilink">décret BACS</a>.</p>
+
+        <aside class="cta-inline wide" aria-label="Faire vérifier mon contrat">
+          <div>
+            <p class="eyebrow">Appliquez-le à votre contrat</p>
+            <p class="t">Votre contrat actuel est-il vraiment adapté&nbsp;?</p>
+            <p class="s">Envoyez votre dernière facture&nbsp;: nous vérifions votre offre, votre engagement et vos frais.</p>
+          </div>
+          <div class="actions">
+            <a href="b2b.html#upload" class="cta-btn cta-btn--ghost">Faire vérifier mon contrat →</a>
+            <span class="micro">Gratuit · Sans engagement · Réponse sous 24h</span>
+          </div>
+        </aside>
+
+      </section>
+
+      <section class="v2-section" id="l-ecart-entre-a-et-b-en-volumes-cee">
+
+        <h2>L'écart entre A et B, en volumes CEE</h2>
+
+        <p>Les forfaits publics donnent un ordre de grandeur de l'écart reconnu entre deux classes. Voici ceux de la <a href="https://www.ecologie.gouv.fr/sites/default/files/documents/BAT-TH-116%20vA62-6%20%C3%A0%20compter%20du%2001-01-2025_1.pdf" class="ilink" target="_blank" rel="noopener">fiche BAT-TH-116</a> pour les bureaux, en kWh cumac par m² géré, avant coefficient de zone.</p>
+
+        <div class="tbl wide" tabindex="0" role="region" aria-label="Tableau"><table>
+          <thead><tr><th scope="col">Usage, bureaux</th><th scope="col">Classe B</th><th scope="col">Classe A</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Chauffage</th><td>240</td><td>360</td></tr>
+            <tr><th scope="row">Refroidissement et climatisation</th><td>97</td><td>233</td></tr>
+            <tr><th scope="row">Eau chaude sanitaire</th><td>7</td><td>15</td></tr>
+            <tr><th scope="row">Éclairage</th><td>90</td><td>184</td></tr>
+            <tr><th scope="row">Auxiliaires</th><td>8</td><td>19</td></tr>
+          </tbody>
+        </table></div>
+
+        <p>Pour 1 500 m² de bureaux en zone H2, dont seul le chauffage est géré, la classe B donne 240 × 0,9 × 1 500 = 324 000&nbsp;kWh cumac. La classe A donne 360 × 0,9 × 1 500 = 486 000&nbsp;kWh cumac, soit 162 000 de plus. Ce surplus a une valeur à comparer au surcoût du projet. Les autres secteurs et les conditions se trouvent dans notre article sur la <a href="prime-cee-gtb-bat-th-116.html" class="ilink">prime CEE BAT-TH-116</a>.</p>
+
+        <p>Ces kWh cumac sont cumulés et actualisés sur la durée de vie conventionnelle de quinze ans. Ils ne sont pas les kWh qui disparaîtront de votre prochaine facture.</p>
+
+      </section>
+
+      <section class="v2-section" id="le-tableau-de-preuve-a-demander">
+
+        <h2>Le tableau de preuve à demander</h2>
+
+        <p>Réclamez un tableau signé, avec une ligne par fonction. Il sera utile pour l'aide, pour la réception et pour le jour où vous changerez d'exploitant.</p>
+
+        <ol class="timeline">
+          <li style="--dot: var(--green)">
+            <div>
+              <span class="when">Étape 1</span>
+              <h3>Fonction</h3>
+              <p>L'intitulé exact de la norme et l'usage concerné.</p>
+            </div>
+          </li>
+          <li style="--dot: var(--green)">
+            <div>
+              <span class="when">Étape 2</span>
+              <h3>Avant travaux</h3>
+              <p>Le niveau constaté, avec photo ou capture d'écran.</p>
+            </div>
+          </li>
+          <li style="--dot: var(--green)">
+            <div>
+              <span class="when">Étape 3</span>
+              <h3>Après travaux</h3>
+              <p>Le niveau prévu et le matériel qui l'assure.</p>
+            </div>
+          </li>
+          <li style="--dot: var(--green)">
+            <div>
+              <span class="when">Étape 4</span>
+              <h3>Essai</h3>
+              <p>La manipulation qui permettra de le constater.</p>
+            </div>
+          </li>
+          <li style="--dot: var(--green)">
+            <div>
+              <span class="when">Étape 5</span>
+              <h3>Exceptions</h3>
+              <p>Les zones ou équipements qui restent à un niveau inférieur.</p>
+            </div>
+          </li>
+        </ol>
+
+        <p>Pour une amélioration, la fiche CEE demande un système initial au plus de classe C. La colonne «&nbsp;avant travaux&nbsp;» est donc une pièce de votre dossier. Faites-la établir avant d'ouvrir les armoires électriques.</p>
+
+        <aside class="cta-inline wide" aria-label="Calculer votre écart réel">
+          <div>
+            <p class="eyebrow">Et sur votre facture&nbsp;?</p>
+            <p class="t">Combien pourriez-vous économiser&nbsp;?</p>
+            <ol class="steps">
+              <li>Vous envoyez votre dernière facture d'énergie</li>
+              <li>Nous la confrontons aux offres réellement disponibles</li>
+              <li>Vous savez si un changement est pertinent</li>
+            </ol>
+          </div>
+          <div class="actions">
+            <a href="b2b.html#upload" class="cta-btn cta-btn--inline">Calculer mon écart réel →</a>
+            <a href="ms-strategy-calculateur.html" class="alt hit">ou faire une première estimation en ligne →</a>
+            <span class="micro">Gratuit · Données confidentielles · Réponse sous 24h</span>
+          </div>
+        </aside>
+
+      </section>
+
+      <section class="v2-section" id="choisir-un-niveau-sans-surdimensionner">
+
+        <h2>Choisir un niveau sans surdimensionner</h2>
+
+        <p>Le bon niveau est celui dont les réglages seront suivis. Une régulation fondée sur la présence a du sens dans des salles de réunion au remplissage variable. Dans un commerce ouvert à heures fixes, un planning exact et une bonne sonde peuvent régler l'essentiel.</p>
+
+        <p>Posez trois questions à votre exploitant&nbsp;: qui modifie les consignes, qui lit les alarmes, qui remplace cette personne en août&nbsp;? Sans réponse, une classe élevée risque de vieillir vite. Prévoyez une revue annuelle des fonctions et gardez trace des dérogations temporaires.</p>
+
+        <p>Le coût se compare ensuite point par point, comme le montre notre méthode sur le <a href="gtb-prix-cout-installation.html" class="ilink">prix d'une GTB</a>. Si vous partez de zéro, commencez par le guide général de la <a href="gtb-gestion-technique-batiment.html" class="ilink">GTB bâtiment</a> pour fixer le périmètre.</p>
+
+      </section>
+
+      <section class="v2-section" id="questions-frequentes">
+
+        <h2>Questions fréquentes</h2>
+
+        <h3 class="sub">La norme ISO 52120-1 remplace-t-elle la norme EN 15232&nbsp;?</h3>
+
+        <p>Oui, les anciens documents commerciaux citent encore EN 15232, qui utilisait aussi les lettres A à D. Sur un nouveau projet, faites inscrire la référence en vigueur demandée par la fiche d'aide ou le marché.</p>
+
+        <h3 class="sub">Faut-il un certificat délivré par un organisme&nbsp;?</h3>
+
+        <p>La fiche BAT-TH-116 s'appuie sur la preuve de réalisation et, à défaut, sur un document du professionnel indiquant que le système assure des fonctions de classe A ou B. Vérifiez avec le demandeur de certificats s'il exige des justificatifs supplémentaires.</p>
+
+        <h3 class="sub">Peut-on passer de C à A en changeant seulement le logiciel&nbsp;?</h3>
+
+        <p>Parfois pour certaines fonctions de suivi, si capteurs et actionneurs le permettent. Une vanne non motorisée ou une pompe à vitesse fixe reste une limite physique que la supervision ne supprimera pas.</p>
+
+        <h3 class="sub">La classe se perd-elle avec le temps&nbsp;?</h3>
+
+        <p>Les fonctions peuvent être désactivées, contournées ou mises en mode manuel. Contrôlez-les lors des visites périodiques et archivez les essais, car un réglage oublié ramène l'usage réel à un niveau inférieur.</p>
+
+      </section>
+
+      <section class="v2-section" id="votre-etude">
+        <h2>Une bonne classe, puis un bon prix du kWh</h2>
+
+        <div id="cta" class="wide">
+          <div class="cta-section reveal">
+            <p class="cta-title">Votre facture, analysée gratuitement</p>
+            <p class="cta-sub">La classe de votre GTB influence la quantité consommée&nbsp;; le contrat fixe ce que vous payez pour le reste. Transmettez-nous une facture, M&S Strategy réalise l'étude gratuitement et répond sous 24h.</p>
+            <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
+            <!-- partial:cta-reassure --><p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 24h</p><!-- /partial:cta-reassure -->
+          </div>
+        </div>
+
+        <div class="callout reveal wide">
+          <p class="callout-title">Lire aussi</p>
+          <ul class="related">
+            <li><a href="gtb-gestion-technique-batiment.html" class="ilink">GTB bâtiment&nbsp;: rôle, obligations et coût d'une gestion technique</a></li>
+            <li><a href="prime-cee-gtb-bat-th-116.html" class="ilink">Prime CEE GTB BAT-TH-116&nbsp;: conditions, calcul et dossier</a></li>
+            <li><a href="gtb-gtc-difference.html" class="ilink">Différence entre GTB et GTC&nbsp;: le test pour savoir ce que vous avez</a></li>
+          </ul>
+          <p><a href="blog.html" class="hit" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</article>
+</main>
+
+<footer>
+  <p>
+    <strong style="color:var(--cream)">M&S Strategy</strong> · Courtage en énergie depuis 2012<br>
+    1366 Av. des Platanes, 34970 Lattes ·
+    <a href="tel:0952926498">09 52 92 64 98</a> ·
+    <a href="mailto:msstrategy@yahoo.com">msstrategy@yahoo.com</a><br>
+    SIREN 752 139 477
+  </p>
+  <div google-add-preferred-source-btn data-theme="dark"></div>
+</footer>
+
+<script>
+// ── Progress bar
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = pct + '%';
+});
+
+// ── Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+revealEls.forEach(el => revObs.observe(el));
+
+const photoObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); photoObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.photo-ph').forEach(el => photoObs.observe(el));
+
+// ── Sommaire : ouvert en desktop, section active, progression
+const toc = document.getElementById('toc');
+const tocProgress = document.getElementById('toc-progress');
+const wide = window.matchMedia('(min-width: 1024px)');
+const syncToc = () => { toc.open = wide.matches; };
+syncToc();
+wide.addEventListener('change', syncToc);
+toc.addEventListener('toggle', () => { if (wide.matches && !toc.open) toc.open = true; });
+toc.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (!wide.matches) toc.open = false; }));
+
+const tocLinks = new Map([...toc.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const id = e.target.id;
+    tocLinks.forEach((a, key) => {
+      a.classList.toggle('is-active', key === id);
+      if (key === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  });
+}, { rootMargin: '-35% 0px -60% 0px' });
+document.querySelectorAll('.v2-section').forEach(s => secObs.observe(s));
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  tocProgress.style.width = Math.min(100, pct) + '%';
+}, { passive: true });
+</script>
+<script defer src="assets/speed-insights.js"></script>
+</body>
+</html>
