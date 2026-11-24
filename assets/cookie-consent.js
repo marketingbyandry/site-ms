@@ -45,9 +45,28 @@
     if (window.__msLoadAnalyticsScript) window.__msLoadAnalyticsScript(onReady);
   }
 
+  // Retrait du consentement analytics : on efface les cookies GA4 (_ga, _ga_<id>)
+  // sur l'hote et ses domaines parents, puis on recharge une seule fois si GTM
+  // tournait dans la page (le rechargement repart sans GTM : pas de boucle).
+  function stopGoogleAnalytics() {
+    var parts = location.hostname.split('.');
+    var domains = [null];
+    for (var i = 0; i <= parts.length - 2; i++) domains.push(parts.slice(i).join('.'));
+    document.cookie.split('; ').forEach(function (pair) {
+      var name = pair.split('=')[0];
+      if (name.indexOf('_ga') !== 0) return;
+      domains.forEach(function (d) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (d ? '; domain=' + d : '');
+      });
+    });
+    var dl = window.dataLayer;
+    if (dl && dl.some(function (e) { return e.event === 'gtm.js'; })) location.reload();
+  }
+
   function setConsent(analytics, marketing) {
     var consent = { analytics: analytics, marketing: marketing };
     setCookie(COOKIE_NAME, JSON.stringify(consent), COOKIE_MAX_AGE_DAYS);
+    if (!analytics) stopGoogleAnalytics();
     if (analytics || marketing) {
       // Acceptation explicite juste maintenant : on charge tout de suite (le
       // rendu initial est déjà loin derrière, pas de raison de temporiser).

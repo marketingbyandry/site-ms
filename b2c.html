@@ -665,13 +665,25 @@ function msMarketingConsent() {
   }
 }
 
+// generate_lead exige le consentement analytics actuel : un retrait sans rechargement
+// laisserait sinon dataLayer en place.
+function msAnalyticsConsent() {
+  var match = document.cookie.match(/(?:^|;\s*)ms_consent=([^;]*)/);
+  if (!match) return false;
+  try {
+    return JSON.parse(decodeURIComponent(match[1])).analytics === true;
+  } catch (e) {
+    return false;
+  }
+}
+
 function onTallySubmit(payload) {
   // Funnel PostHog : depot reel de la facture. Gate independant du
   // consentement marketing ci-dessous (Pixel Meta) : window.posthog
   // n'existe que sous consentement analytics.
   // Une seule poussee par envoi. Sans GTM (pas de consentement), dataLayer n'existe pas.
   // Aucune donnee personnelle : seulement la source et la campagne.
-  if (window.dataLayer && !leadPushed) {
+  if (window.dataLayer && msAnalyticsConsent() && !leadPushed) {
     leadPushed = true;
     window.dataLayer.push({ event: 'generate_lead', source: lastTallySource, camp: window.msCamp || null });
   }
