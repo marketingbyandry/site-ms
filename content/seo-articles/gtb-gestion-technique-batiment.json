@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "GTB bâtiment : rôle, obligations et coût",
+ "description": "GTB bâtiment : fonctions, seuils de 70 et 290 kW, échéance 2030, classes, aides CEE et contrôles pour une gestion technique utile.",
+ "excerpt": "Ce que pilote une GTB, qui doit s'équiper avant 2030, et comment vérifier qu'elle réduit la facture.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Ce que pilote une GTB", "Êtes-vous obligé ?", "Fonctions à exiger", "Quelle classe viser", "Coût et aides", "Vérifier les gains", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "La GTB relie chauffage, climatisation, ventilation, éclairage et compteurs pour mesurer, régler et alerter."},
+  {"k": "L'échéance", "text": "Les bâtiments tertiaires existants de plus de 70 kW sont visés au renouvellement des équipements et au plus tard le 1er janvier 2030."},
+  {"k": "Le contrôle", "text": "Les gains dépendent des réglages : relevez le talon de nuit et révisez les plannings après la pose."}
+ ],
+ "notes": [{"section": 5, "quote": true, "text": "Une GTB produit des économies quand quelqu'un corrige ses réglages."}],
+ "related": ["gtb-prix-cout-installation", "prime-cee-gtb-bat-th-116", "decret-bacs-obligations"]
+}

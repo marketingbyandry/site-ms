@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Prix fixe ou indexé gaz professionnel : choisir",
+ "description": "Prix fixe ou indexé pour le gaz professionnel : trois scénarios chiffrés sur 200 MWh, point d'équilibre, achat par tranches et clauses à relire.",
+ "excerpt": "Trois scénarios sur 200 MWh montrent à partir de quel indice un contrat de gaz indexé coûte plus qu'un fixe.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["Ce que chacun fige", "Trois scénarios", "La leçon de 2026", "L'achat par tranches", "Les clauses à relire", "La règle de décision", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Le fixe protège le budget de fourniture, l'indexé laisse le risque de marché à l'entreprise."},
+  {"k": "Le calcul", "text": "Dans l'exemple, un fixe à 75 €/MWh et un indexé à indice plus 4 € s'équilibrent à 71 €/MWh d'indice."},
+  {"k": "La méthode", "text": "Vérifiez si l'entreprise peut absorber le scénario cher, puis étudiez les tranches si le volume le permet."}
+ ],
+ "notes": [
+  {"section": 1, "quote": true, "text": "Le point d'équilibre tombe à 75 moins 4, soit un indice de 71 €/MWh."},
+  {"section": 3, "quote": true, "text": "Une règle écrite évite d'attendre toujours un meilleur prix."}
+ ],
+ "related": ["achat-energie-par-clics-tranches", "prix-gaz-peg-marche-gros", "prix-gaz-professionnel-2026"]
+}

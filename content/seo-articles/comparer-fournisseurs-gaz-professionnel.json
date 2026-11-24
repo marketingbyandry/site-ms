@@ -1,0 +1,18 @@
+{
+ "status": "done",
+ "seoTitle": "Comparer fournisseur gaz pro : grille de critères",
+ "description": "Comparer un fournisseur de gaz pro : dossier à envoyer, périmètre des prix, clauses à noter et exemple chiffré de trois devis sur un site de 200 MWh.",
+ "excerpt": "Trois devis de gaz sur le même site : le prix affiché le plus bas finit dernier. Voici la grille pour trancher.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["Préparer la demande", "Aligner les périmètres", "Trois devis chiffrés", "Noter le contrat", "Tester le fournisseur", "Décider à temps", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Ramenez chaque devis au même périmètre : transport, stockage, distribution, certificats et abonnement."},
+  {"k": "Le piège", "text": "Dans l'exemple à 200 MWh, l'offre affichée à 68 €/MWh revient à 76,50 € et finit dernière."},
+  {"k": "Le contrat", "text": "Notez à part la résiliation, la reconduction, la tolérance de volume et les garanties demandées."}
+ ],
+ "notes": [
+  {"section": 2, "quote": true, "text": "Une offre à forte part fixe supporte mal les baisses d'activité."}
+ ],
+ "related": ["prix-gaz-professionnel-2026", "prix-fixe-ou-indexe-gaz-professionnel", "resilier-contrat-gaz-professionnel"]
+}

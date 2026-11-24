@@ -5,357 +5,357 @@
    "lot": "gaz",
    "category": "Marché & prix",
    "keywords": "prix gaz pro ; prix kwh gaz professionnel ; tarif gaz professionnel",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "comparer-fournisseurs-gaz-professionnel",
    "lot": "gaz",
    "category": "Fournisseurs & contrats",
    "keywords": "comparer fournisseur gaz pro",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "resilier-contrat-gaz-professionnel",
    "lot": "gaz",
    "category": "Fournisseurs & contrats",
    "keywords": "résilier contrat gaz professionnel",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "prix-fixe-ou-indexe-gaz-professionnel",
    "lot": "gaz",
    "category": "Fournisseurs & contrats",
    "keywords": "prix fixe ou indexé gaz professionnel",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "decrypter-facture-gaz-professionnel",
    "lot": "gaz",
    "category": "Fournisseurs & contrats",
    "keywords": "facture gaz professionnel",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "atrd-atrt-acheminement-gaz-entreprise",
    "lot": "gaz",
    "category": "Réglementation & fiscalité",
    "keywords": "ATRD ATRT acheminement gaz",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "accise-gaz-exoneration-entreprise",
    "lot": "gaz",
    "category": "Réglementation & fiscalité",
    "keywords": "accise gaz (ex-TICGN) entreprise exonération",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "cta-contribution-tarifaire-acheminement",
    "lot": "gaz",
    "category": "Réglementation & fiscalité",
    "keywords": "CTA contribution tarifaire d'acheminement",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "car-profil-consommation-gaz-entreprise",
    "lot": "gaz",
    "category": "Fournisseurs & contrats",
    "keywords": "CAR gaz, options T1 T2 T3 T4",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "prix-gaz-peg-marche-gros",
    "lot": "gaz",
    "category": "Marché & prix",
    "keywords": "prix PEG gaz marché de gros",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "gtb-prix-cout-installation",
    "lot": "batiment",
    "category": "Mobilité & bâtiment",
    "keywords": "prix GTB bâtiment",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "gtb-gtc-difference",
    "lot": "batiment",
    "category": "Mobilité & bâtiment",
    "keywords": "différence GTB GTC",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "classes-gtb-norme-iso-52120",
    "lot": "batiment",
    "category": "Mobilité & bâtiment",
    "keywords": "classe GTB A B C D ISO 52120-1",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "prime-cee-gtb-bat-th-116",
    "lot": "batiment",
    "category": "Aides & financement",
    "keywords": "prime CEE GTB BAT-TH-116",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "gtb-petit-batiment-tertiaire",
    "lot": "batiment",
    "category": "Mobilité & bâtiment",
    "keywords": "GTB petit bâtiment tertiaire",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "gtb-protocoles-bacnet-knx-modbus",
    "lot": "batiment",
    "category": "Mobilité & bâtiment",
    "keywords": "protocoles GTB BACnet KNX Modbus",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "exemption-decret-bacs-temps-retour",
    "lot": "batiment",
    "category": "Réglementation & fiscalité",
    "keywords": "exemption décret BACS",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "operat-declaration-decret-tertiaire",
    "lot": "batiment",
    "category": "Réglementation & fiscalité",
    "keywords": "OPERAT déclaration décret tertiaire",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "certificats-production-biogaz-cpb-entreprise",
    "lot": "batiment",
    "category": "Réglementation & fiscalité",
    "keywords": "certificats de production de biogaz facture",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "biomethane-garanties-origine-entreprise",
    "lot": "batiment",
    "category": "Renouvelable & solaire",
    "keywords": "biométhane garanties d'origine entreprise",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "changer-fournisseur-electricite-entreprise",
    "lot": "contrat",
    "category": "Fournisseurs & contrats",
    "keywords": "changer de fournisseur électricité entreprise",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "heures-creuses-entreprise-nouveaux-horaires",
    "lot": "contrat",
    "category": "Fournisseurs & contrats",
    "keywords": "heures creuses professionnel nouveaux horaires",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "tarif-bleu-professionnel-eligibilite",
    "lot": "contrat",
    "category": "Réglementation & fiscalité",
    "keywords": "tarif bleu professionnel éligibilité",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "tarif-jaune-tarif-vert-equivalent",
    "lot": "contrat",
    "category": "Fournisseurs & contrats",
    "keywords": "tarif jaune tarif vert électricité équivalent",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "reconduction-tacite-contrat-energie",
    "lot": "contrat",
    "category": "Fournisseurs & contrats",
    "keywords": "reconduction tacite contrat énergie professionnel",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "clause-take-or-pay-contrat-energie",
    "lot": "contrat",
    "category": "Fournisseurs & contrats",
    "keywords": "take or pay contrat énergie",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "clause-ajustement-prix-contrat-energie",
    "lot": "contrat",
    "category": "Fournisseurs & contrats",
    "keywords": "clause d'ajustement de prix contrat électricité",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "appel-offres-energie-entreprise",
    "lot": "contrat",
    "category": "Fournisseurs & contrats",
    "keywords": "appel d'offres énergie entreprise",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "depot-garantie-contrat-energie-pro",
    "lot": "contrat",
    "category": "Fournisseurs & contrats",
    "keywords": "dépôt de garantie contrat énergie professionnel",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "fournisseur-energie-defaillant-entreprise",
    "lot": "contrat",
    "category": "Fournisseurs & contrats",
    "keywords": "fournisseur énergie faillite défaillance entreprise",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "litige-fournisseur-energie-entreprise",
    "lot": "exploitation",
    "category": "Fournisseurs & contrats",
    "keywords": "litige fournisseur énergie professionnel médiateur",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "regularisation-facture-energie-entreprise",
    "lot": "exploitation",
    "category": "Fournisseurs & contrats",
    "keywords": "régularisation facture énergie professionnel",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "demenagement-entreprise-contrat-energie",
    "lot": "exploitation",
    "category": "Fournisseurs & contrats",
    "keywords": "déménagement entreprise contrat énergie",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "mise-en-service-compteur-electrique-pro",
    "lot": "exploitation",
    "category": "Fournisseurs & contrats",
    "keywords": "mise en service compteur électrique professionnel",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "segments-c1-c2-c3-c4-c5-electricite",
    "lot": "exploitation",
    "category": "Fournisseurs & contrats",
    "keywords": "segments C1 C2 C3 C4 C5 électricité",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "energie-reactive-facture-entreprise",
    "lot": "exploitation",
    "category": "Efficacité énergétique",
    "keywords": "énergie réactive facture",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "raccordement-electrique-entreprise",
    "lot": "exploitation",
    "category": "Mobilité & bâtiment",
    "keywords": "raccordement électrique entreprise Enedis",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "courbe-de-charge-enedis-entreprise",
    "lot": "exploitation",
    "category": "Efficacité énergétique",
    "keywords": "courbe de charge Enedis",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "prix-negatifs-electricite-entreprise",
    "lot": "exploitation",
    "category": "Marché & prix",
    "keywords": "prix négatifs électricité entreprise",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "achat-energie-par-clics-tranches",
    "lot": "exploitation",
    "category": "Marché & prix",
    "keywords": "achat énergie par clics tranches",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "budget-energie-previsionnel-entreprise",
    "lot": "secteurs",
    "category": "Marché & prix",
    "keywords": "budget énergie entreprise prévisionnel",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "energie-supermarche-commerce-alimentaire",
    "lot": "secteurs",
    "category": "Verticaux sectoriels",
    "keywords": "consommation énergie supermarché",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "energie-salle-de-sport",
    "lot": "secteurs",
    "category": "Verticaux sectoriels",
    "keywords": "consommation électrique salle de sport",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "energie-garage-automobile",
    "lot": "secteurs",
    "category": "Verticaux sectoriels",
    "keywords": "électricité garage automobile",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "energie-salon-coiffure-institut",
    "lot": "secteurs",
    "category": "Verticaux sectoriels",
    "keywords": "électricité salon de coiffure",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "energie-pressing-blanchisserie",
    "lot": "secteurs",
    "category": "Verticaux sectoriels",
    "keywords": "énergie pressing blanchisserie",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "energie-entrepot-logistique-frigorifique",
    "lot": "secteurs",
    "category": "Verticaux sectoriels",
    "keywords": "consommation entrepôt frigorifique",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "energie-ecole-privee-etablissement-scolaire",
    "lot": "secteurs",
    "category": "Verticaux sectoriels",
    "keywords": "énergie école privée",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "energie-cave-viticole",
    "lot": "secteurs",
    "category": "Verticaux sectoriels",
    "keywords": "électricité cave viticole",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "energie-boucherie-charcuterie",
    "lot": "secteurs",
    "category": "Verticaux sectoriels",
    "keywords": "électricité boucherie charcuterie",
-   "status": "pending"
+   "status": "done"
   },
   {
    "slug": "gtb-gestion-technique-batiment",
    "lot": "batiment",
    "category": "Mobilité & bâtiment",
    "keywords": "gtb batiment ; gestion technique bâtiment",
-   "status": "pending",
+   "status": "done",
    "rewrite": true
   }
  ]

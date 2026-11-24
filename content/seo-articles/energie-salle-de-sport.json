@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Consommation électrique d'une salle de sport",
+ "description": "Douches, ventilation, climatisation, libre accès et machines : calculez la consommation électrique de votre salle de sport poste par poste.",
+ "excerpt": "Douches, ventilation, nuits en libre accès : ce qui fait vraiment tourner le compteur d'une salle de sport.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Portrait des usages", "Chiffrer les douches", "Régler l'air", "Libre accès", "Choisir les machines", "Acheter l'électricité", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "L'eau chaude, l'air et les horaires étendus se mesurent avant de remplacer des machines."},
+  {"k": "Le calcul", "text": "L'énergie utile d'une douche vaut les litres multipliés par l'écart de température et par 1,163, en wattheures."},
+  {"k": "Le contrat", "text": "Situez vos pointes du matin et du soir par rapport aux heures creuses et à la puissance souscrite."}
+ ],
+ "notes": [{"section": 3, "quote": true, "text": "Ouvrir 24 h sur 24 crée un coût fixe à comparer aux visites de nuit."}],
+ "related": ["gtb-petit-batiment-tertiaire", "heures-creuses-entreprise-nouveaux-horaires", "energie-reseau-franchise-multisites"]
+}

@@ -16,8 +16,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <script defer src="assets/favicon-animate.js"></script>
-<title>GTB gestion technique bâtiment : ce que ça change pour votre facture | M&S Strategy</title>
-<meta name="description" content="Chauffage qui tourne dans des bureaux vides, éclairage allumé toute la nuit, climatisation mal régulée : dans beaucoup d'entreprises, une part…">
+<title>GTB bâtiment : rôle, obligations et coût | M&S Strategy</title>
+<meta name="description" content="GTB bâtiment : fonctions, seuils de 70 et 290 kW, échéance 2030, classes, aides CEE et contrôles pour une gestion technique utile.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com">
@@ -71,10 +71,11 @@ nav {
 .nav-logo { display: flex; align-items: center; }
 .nav-logo img { height: 26px; width: auto; display: block; }
 .nav-cta {
-  font-family: 'Satoshi', sans-serif; font-size: .72rem; font-weight: 700;
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;
   padding: .5rem 1.2rem; border: 1px solid var(--green);
-  color: var(--green); text-decoration: none; border-radius: 2px;
+  color: var(--green); text-decoration: none; border-radius: 0;
   transition: background .2s, color .2s;
 }
 .nav-cta:hover { background: var(--green); color: var(--dark); }
@@ -97,15 +98,15 @@ nav {
   margin-bottom: 2rem;
 }
 .meta-tag {
-  font-family: 'Satoshi', sans-serif; font-size: .65rem; font-weight: 700;
+  font-family: 'Satoshi', sans-serif; font-size: .75rem; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
   color: var(--teal-light);
   background: rgba(43,181,200,.1);
   border: 1px solid rgba(43,181,200,.2);
-  padding: .28rem .75rem; border-radius: 2px;
+  padding: .28rem .85rem; border-radius: 999px;
 }
 .meta-read { font-size: .8rem; color: var(--muted); }
-.meta-read::before { content: '⏱ '; opacity: .6; }
+.meta-read { display: inline-flex; align-items: center; gap: .4rem; }
 
 .hero-title {
   font-family: 'Instrument Serif', serif; font-weight: 400;
@@ -149,7 +150,7 @@ a.ilink:hover { border-bottom-color: var(--teal-light); }
 .callout {
   background: linear-gradient(135deg, rgba(13,79,92,.4), rgba(26,122,138,.15));
   border: 1px solid rgba(43,181,200,.2);
-  border-radius: 4px; padding: 2rem;
+  border-radius: 0; padding: 2rem;
   margin: 2.5rem 0;
 }
 .callout-title {
@@ -162,7 +163,7 @@ a.ilink:hover { border-bottom-color: var(--teal-light); }
 .cta-section {
   background: linear-gradient(135deg, var(--teal-deep), rgba(10,26,31,.95));
   border: 1px solid rgba(43,181,200,.15);
-  border-radius: 6px; padding: 3rem 2.5rem;
+  border-radius: 0; padding: 3rem 2.5rem;
   margin: 4rem 0; text-align: center;
 }
 .cta-title {
@@ -175,27 +176,12 @@ a.ilink:hover { border-bottom-color: var(--teal-light); }
   background: var(--green); color: var(--dark);
   font-family: 'Satoshi', sans-serif; font-weight: 800;
   font-size: .9rem; letter-spacing: .04em;
-  padding: 1rem 2.5rem; border-radius: 2px; text-decoration: none;
+  padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none;
   transition: transform .15s, box-shadow .2s;
 }
 .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(76,222,128,.3); }
+.cta-section .cta-btn { font-weight: 500; letter-spacing: .02em; }
 .cta-reassure { margin-top: 1rem; font-size: .75rem; color: var(--muted); }
-
-/* ── FLOATING CTA ── */
-.floating-cta {
-  position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
-  opacity: 0; transform: translateY(12px);
-  transition: opacity .3s, transform .3s;
-  pointer-events: none;
-}
-.floating-cta.visible { opacity: 1; transform: none; pointer-events: all; }
-.floating-cta a {
-  display: flex; align-items: center; gap: .6rem;
-  background: var(--green); color: var(--dark);
-  font-family: 'Satoshi', sans-serif; font-weight: 800; font-size: .8rem;
-  padding: .85rem 1.4rem; border-radius: 3px; text-decoration: none;
-  box-shadow: 0 8px 28px rgba(0,0,0,.4);
-}
 
 /* ── FOOTER ── */
 footer {
@@ -207,19 +193,191 @@ footer p { color: var(--muted); font-size: .82rem; line-height: 1.8; }
 footer a { color: var(--teal-bright); text-decoration: none; }
 
 /* ── REVEAL ── */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .4s ease-out, transform .4s ease-out; }
 .reveal.visible { opacity: 1; transform: none; }
 
-@media (max-width: 640px) {
-  .floating-cta { bottom: 1rem; right: 1rem; }
+/* ══ LAYOUT V2 (éditorial : sommaire + colonne de lecture + marge) ══ */
+:root { --rail: 250px; --note: 230px; --line: rgba(43,181,200,.16); --panel: rgba(13,32,40,.72); --warn: #ffcf7a; }
+.hero { max-width: 1320px; }
+.v2-layout {
+  max-width: 1320px; margin: 0 auto; padding: 0 5vw 6rem;
+  display: grid; grid-template-columns: minmax(0, 1fr);
+}
+.v2-main { min-width: 0; max-width: var(--body-max); margin: 0 auto; width: 100%; }
+.v2-section { scroll-margin-top: 6rem; }
+
+.svg-ico { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Accessibilité : lien d'évitement, cibles tactiles, focus, ancres sous le menu fixe */
+.skip-link { position: absolute; left: 1rem; top: -100px; z-index: 300; background: var(--green); color: var(--dark); padding: .8rem 1.2rem; font-weight: 700; text-decoration: none; }
+.skip-link:focus { top: 1rem; }
+.hit { position: relative; }
+.hit::after { content: ''; position: absolute; inset: -13px -4px; }
+#cta, #contenu { scroll-margin-top: 6rem; }
+.v2-section > p { max-width: 68ch; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Sommaire */
+.toc { margin: 0 0 1rem; border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.toc summary {
+  cursor: pointer; list-style: none; padding: .9rem 1.1rem; min-height: 44px;
+  font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.toc summary::-webkit-details-marker { display: none; }
+.toc summary::after { content: '+'; font-size: 1.1rem; color: var(--muted); }
+.toc[open] summary::after { content: '−'; }
+.toc ol { list-style: none; margin: 0; padding: 0 1.1rem 1rem; counter-reset: toc; color: inherit; }
+.toc li { margin: 0; counter-increment: toc; }
+.toc a {
+  display: flex; gap: .7rem; padding: .5rem 0; min-height: 44px; align-items: center;
+  color: var(--muted); text-decoration: none; font-size: .88rem; line-height: 1.35;
+  transition: color .2s;
+}
+.toc a::before { content: counter(toc, decimal-leading-zero); font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.toc a:hover, .toc a.is-active { color: var(--cream); }
+.toc a.is-active::before { color: var(--green); }
+.toc-progress { height: 2px; background: rgba(43,181,200,.12); margin: 0 1.1rem 1rem; border-radius: 0; overflow: hidden; }
+.toc-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--teal-mid), var(--green)); }
+
+/* L'essentiel en 30 secondes */
+.tldr { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: 0; }
+.tldr-item { background: var(--dark2); padding: 1.3rem 1.4rem; }
+.tldr-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal-light); margin-bottom: .5rem; }
+.tldr-item p { margin: 0; font-size: .95rem; line-height: 1.55; color: var(--cream); }
+
+/* Notes de marge (en ligne sur mobile) */
+.note { border-left: 2px solid var(--green); padding: .3rem 0 .3rem 1.1rem; margin: 0 0 1.6rem; }
+.note-k { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.note p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--muted); }
+.note.quote p { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.3rem; line-height: 1.3; color: var(--cream); }
+
+/* Module : la partie immergée du prix */
+.iceberg { border: 1px solid var(--line); border-radius: 0; overflow: hidden; margin: .6rem 0 2.2rem; background: var(--panel); }
+.iceberg-top { padding: 1.4rem 1.5rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.iceberg-top .lbl { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.iceberg-top .big { font-family: 'Instrument Serif', serif; font-size: 1.9rem; line-height: 1; color: var(--cream); }
+.waterline { display: flex; align-items: center; gap: .8rem; padding: 0 1.5rem; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.waterline::before, .waterline::after { content: ''; flex: 1; border-top: 1px dashed rgba(94,207,220,.45); }
+.iceberg-list { list-style: none; margin: 0; padding: 1rem 1.5rem 1.4rem; display: grid; gap: .55rem; background: linear-gradient(180deg, rgba(13,79,92,.18), rgba(13,79,92,.42)); color: inherit; }
+.iceberg-list li { margin: 0; display: flex; justify-content: space-between; gap: 1rem; font-size: .93rem; color: var(--cream); }
+.iceberg-list .tag { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; align-self: center; }
+
+/* Module : 5 critères en cartes */
+.criteria { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); color: inherit; }
+.criteria li { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 0; padding: 1.4rem; display: flex; flex-direction: column; gap: .7rem; transition: border-color .2s; }
+.criteria li:hover { border-color: rgba(94,207,220,.4); }
+.criteria .head { display: flex; align-items: center; gap: .75rem; color: var(--teal-light); }
+.criteria .n { margin-left: auto; font-size: .75rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.criteria h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); line-height: 1.3; }
+.criteria p { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--muted); }
+
+/* Tableaux, sous-titres (FAQ), liens associés */
+.tbl { overflow-x: auto; margin: .6rem 0 1.8rem; border: 1px solid var(--line); background: var(--panel); }
+.tbl table { width: 100%; border-collapse: collapse; font-size: .92rem; line-height: 1.5; }
+.tbl th, .tbl td { padding: .8rem 1rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); min-width: 9rem; font-weight: 400; }
+.tbl thead th { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-light); }
+.tbl tbody th { color: var(--cream); font-weight: 500; }
+.tbl tbody td { color: var(--muted); }
+.tbl tbody tr:last-child > * { border-bottom: 0; }
+h3.sub { font-family: 'Satoshi', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--cream); line-height: 1.35; margin: 1.2rem 0 .5rem; }
+.related { list-style: none; margin: 0 0 1rem; padding: 0; }
+
+/* CTA intercalés */
+.cta-inline {
+  margin: 2.8rem 0; border-radius: 0; padding: 1.8rem;
+  border: 1px solid rgba(76,222,128,.28);
+  background: linear-gradient(120deg, rgba(76,222,128,.07), rgba(13,79,92,.35));
+  display: grid; gap: 1.4rem; align-items: center;
+}
+.cta-inline .eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--green); margin-bottom: .4rem; }
+.cta-inline .t { font-family: 'Instrument Serif', serif; font-size: 1.55rem; line-height: 1.15; color: var(--cream); margin-bottom: .5rem; }
+.cta-inline .s { font-size: .93rem; color: var(--muted); margin: 0; line-height: 1.55; }
+.cta-inline .actions { display: flex; flex-direction: column; gap: .7rem; align-items: flex-start; }
+.cta-inline .cta-btn { padding: .95rem 1.8rem; }
+.cta-btn--ghost { background: transparent; color: var(--green); border: 1px solid var(--green); }
+.cta-btn--ghost:hover { background: var(--green); color: var(--dark); }
+.cta-inline .alt { font-size: .82rem; color: var(--teal-light); }
+.cta-inline .micro { font-size: .75rem; color: var(--muted); }
+.steps { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; color: inherit; counter-reset: st; }
+.steps li { margin: 0; counter-increment: st; display: flex; gap: .7rem; align-items: baseline; font-size: .9rem; color: var(--cream); }
+.steps li::before { content: counter(st); flex: none; width: 1.5rem; height: 1.5rem; border-radius: 50%; display: inline-grid; place-items: center; font-size: .75rem; font-weight: 700; color: var(--dark); background: var(--green); }
+.cta-btn:focus-visible, .toc a:focus-visible, .toc summary:focus-visible, a.ilink:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+
+/* Module : exemple chiffré A vs B */
+.versus { display: grid; gap: 1rem; margin: .6rem 0 1rem; }
+.offer { border: 1px solid var(--line); border-radius: 0; background: var(--panel); padding: 1.4rem 1.5rem; }
+.offer.win { border-color: rgba(76,222,128,.5); }
+.offer-h { display: flex; justify-content: space-between; align-items: center; gap: .8rem; margin-bottom: .6rem; }
+.offer-h strong { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-light); }
+.badge { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .6rem; border-radius: 999px; white-space: nowrap; }
+.badge.trap { color: var(--warn); border: 1px solid rgba(255,207,122,.4); }
+.badge.ok { color: var(--green); border: 1px solid rgba(76,222,128,.45); }
+.offer table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.offer caption { text-align: left; font-size: .8rem; color: var(--muted); padding-bottom: .4rem; }
+.offer th, .offer td { padding: .5rem 0; border-bottom: 1px solid rgba(43,181,200,.1); text-align: left; font-weight: 400; color: var(--muted); }
+.offer td { text-align: right; color: var(--cream); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.offer tr.hidden-cost th, .offer tr.hidden-cost td { color: var(--warn); }
+.offer tr.total th, .offer tr.total td { border-bottom: 0; padding-top: .9rem; font-weight: 700; color: var(--cream); font-size: 1rem; }
+.verdict { display: flex; gap: 1.2rem; align-items: center; border-radius: 0; padding: 1.1rem 1.4rem; background: rgba(255,207,122,.07); border: 1px solid rgba(255,207,122,.3); margin-bottom: 1.6rem; }
+.verdict .big { font-family: 'Instrument Serif', serif; font-size: 2rem; line-height: 1; color: var(--warn); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.verdict p { margin: 0; font-size: .93rem; color: var(--cream); line-height: 1.5; }
+
+/* Module : calendrier */
+.timeline { list-style: none; margin: .6rem 0 1.6rem; padding: 0; display: grid; color: inherit; }
+.timeline li { margin: 0; display: grid; grid-template-columns: 1.2rem 1fr; gap: 1rem; padding-bottom: 1.4rem; position: relative; }
+.timeline li::before { content: ''; width: 12px; height: 12px; border-radius: 50%; margin-top: .3rem; background: var(--dot); box-shadow: 0 0 0 4px rgba(43,181,200,.12); }
+.timeline li:not(:last-child)::after { content: ''; position: absolute; left: 5px; top: 1.2rem; bottom: 0; width: 2px; background: var(--line); }
+.timeline .when { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dot); }
+.timeline h3 { font-family: 'Satoshi', sans-serif; font-size: 1rem; font-weight: 700; color: var(--cream); margin: .2rem 0 .3rem; line-height: 1.3; }
+.timeline p { margin: 0; font-size: .9rem; color: var(--muted); line-height: 1.55; }
+.meter { display: flex; align-items: center; gap: .7rem; margin-top: .6rem; font-size: .75rem; color: var(--muted); }
+.meter i { flex: 0 0 120px; height: 4px; border-radius: 0; background: rgba(43,181,200,.14); overflow: hidden; }
+.meter b { display: block; height: 100%; background: var(--dot); }
+
+@media (min-width: 720px) {
+  .tldr { grid-template-columns: repeat(3, 1fr); }
+  .versus { grid-template-columns: 1fr 1fr; }
+  .cta-inline { grid-template-columns: minmax(0, 1fr) auto; padding: 2rem 2.2rem; }
+  .cta-inline .actions { align-items: flex-end; text-align: right; }
+}
+
+/* ≥ 1024px : rail collant à gauche (bande photo + sommaire) */
+@media (min-width: 1024px) {
+  .v2-layout { grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: 3.5rem; }
+  .v2-main { max-width: var(--body-max); margin: 0; }
+  .v2-rail {
+    position: sticky; top: 6rem; align-self: start; margin-top: 3.4rem;
+  }
+  .toc { margin: 0; background: transparent; border: 0; }
+  .toc summary { pointer-events: none; padding: 0 0 .6rem; min-height: 0; }
+  .toc summary::after, .toc[open] summary::after { content: none; }
+  .toc ol { padding: 0; }
+  .toc-progress { margin: 0 0 .6rem; }
+}
+
+/* ≥ 1320px : marge éditoriale à droite, modules pleine largeur */
+@media (min-width: 1320px) {
+  .v2-main { max-width: none; }
+  .v2-section { display: grid; grid-template-columns: minmax(0, 1fr) var(--note); column-gap: 3rem; align-items: start; }
+  .v2-section > * { grid-column: 1; }
+  .v2-section > .wide { grid-column: 1 / -1; }
+  .v2-section > .note { grid-column: 2; grid-row: span 3; margin-top: .4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cta-btn, .criteria li, .toc a { transition: none; }
+  .cta-btn:hover { transform: none; }
 }
 </style>
 <link rel="canonical" href="https://cabinetms.fr/gtb-gestion-technique-batiment.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="M&S Strategy">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:title" content="GTB gestion technique bâtiment : ce que ça change pour votre facture | M&S Strategy">
-<meta property="og:description" content="Chauffage qui tourne dans des bureaux vides, éclairage allumé toute la nuit, climatisation mal régulée : dans beaucoup d'entreprises, une part…">
+<meta property="og:title" content="GTB bâtiment : rôle, obligations et coût d'une gestion technique | M&S Strategy">
+<meta property="og:description" content="GTB bâtiment : fonctions, seuils de 70 et 290 kW, échéance 2030, classes, aides CEE et contrôles pour une gestion technique utile.">
 <meta property="og:url" content="https://cabinetms.fr/gtb-gestion-technique-batiment.html">
 <meta property="og:image" content="https://cabinetms.fr/assets/ms-strategy-logo.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -228,8 +386,8 @@ footer a { color: var(--teal-bright); text-decoration: none; }
   "@context": "https://schema.org",
   "@type": "Article",
   "@id": "https://cabinetms.fr/gtb-gestion-technique-batiment.html#article",
-  "headline": "GTB gestion technique bâtiment : ce que ça change pour votre facture",
-  "description": "Chauffage qui tourne dans des bureaux vides, éclairage allumé toute la nuit, climatisation mal régulée : dans beaucoup d'entreprises, une part…",
+  "headline": "GTB bâtiment : rôle, obligations et coût d'une gestion technique",
+  "description": "GTB bâtiment : fonctions, seuils de 70 et 290 kW, échéance 2030, classes, aides CEE et contrôles pour une gestion technique utile.",
   "image": "https://cabinetms.fr/assets/ms-strategy-logo.png",
   "author": {
     "@id": "https://cabinetms.fr/#organization"
@@ -241,6 +399,8 @@ footer a { color: var(--teal-bright); text-decoration: none; }
     "@type": "WebPage",
     "@id": "https://cabinetms.fr/gtb-gestion-technique-batiment.html"
   },
+  "datePublished": "2026-11-24",
+  "dateModified": "2026-11-24",
   "inLanguage": "fr-FR"
 }
 </script>
@@ -251,7 +411,47 @@ footer a { color: var(--teal-bright); text-decoration: none; }
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://cabinetms.fr/"},
     {"@type": "ListItem", "position": 2, "name": "Ressources & analyses", "item": "https://cabinetms.fr/blog.html"},
-    {"@type": "ListItem", "position": 3, "name": "GTB gestion technique bâtiment : ce que ça change pour votre facture", "item": "https://cabinetms.fr/gtb-gestion-technique-batiment.html"}
+    {"@type": "ListItem", "position": 3, "name": "GTB bâtiment : rôle, obligations et coût d'une gestion technique", "item": "https://cabinetms.fr/gtb-gestion-technique-batiment.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Un locataire peut-il se voir imposer l'installation d'une GTB ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le texte désigne le propriétaire du système de chauffage ou de climatisation. Si le locataire a lui-même acheté la climatisation, il peut donc se retrouver visé. Lisez le bail et l'état des équipements avant de trancher, puis écrivez qui finance, qui exploite et qui reçoit les données."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on garder les automates déjà en place ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Souvent, à condition qu'ils communiquent, que leur programme soit accessible et que les pièces existent encore. Demandez une visite avec test de lecture des points avant tout devis. Un automate muet ou verrouillé par mot de passe inconnu change le budget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Une GTB en ligne pose-t-elle un risque informatique ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, comme tout équipement raccordé au réseau. Prévoyez des comptes nominatifs, un réseau séparé de la bureautique, des sauvegardes et une procédure de fonctionnement manuel. L'ANSSI publie un guide consacré aux GTB et GTC utile pour rédiger ces clauses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de temps faut-il prévoir pour un projet ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le délai dépend surtout des accès au site et des pièces à commander. Réservez une saison de chauffe complète pour les réglages après la pose. Un projet lancé juste avant une échéance réglementaire risque d'être réceptionné sans avoir été éprouvé en hiver."
+      }
+    }
   ]
 }
 </script>
@@ -263,6 +463,7 @@ footer a { color: var(--teal-bright); text-decoration: none; }
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 <div id="progress-bar"></div>
 
 <nav>
@@ -270,64 +471,276 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a href="#cta" class="nav-cta">Étude gratuite →</a>
 </nav>
 
+<!-- gabarit:v2 — généré par scripts/build-seo-articles.mjs depuis data/articles-v2.json -->
+<main id="contenu">
 <article>
   <header class="hero">
-    <div class="photo-ph article-banner"></div>
     <div class="article-meta">
-      <a href="blog.html" class="meta-tag" style="text-decoration:none">← Tous les articles</a>
+      <a href="blog.html" class="meta-tag hit" style="text-decoration:none">← Tous les articles</a>
       <span class="meta-tag">Mobilité &amp; bâtiment</span>
-      <span class="meta-read">3 min de lecture</span>
+      <span class="meta-read"><svg class="svg-ico" style="width:15px;height:15px" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min de lecture</span>
     </div>
-    <h1 class="hero-title">GTB gestion technique bâtiment : ce que ça change pour votre facture</h1>
-    <p class="hero-intro">Chauffage qui tourne dans des bureaux vides, éclairage allumé toute la nuit, climatisation mal régulée : dans beaucoup d'entreprises, une part significative de la consommation énergétique part en pure perte faute de pilotage. La GTB gestion technique bâtiment répond directement à ce problème, mais son fonctionnement reste flou pour de nombreux dirigeants.</p>
+    <h1 class="hero-title">GTB bâtiment&nbsp;: rôle, obligations et coût d'une gestion technique</h1>
+    <p class="hero-intro">Une GTB (gestion technique du bâtiment) relie le chauffage, la climatisation, la ventilation, l'éclairage et les compteurs à un même système, qui mesure, règle et alerte. Dans le tertiaire, la gestion technique bâtiment peut devenir obligatoire dès que le chauffage ou la climatisation dépasse 70 kW, avec une échéance au 1er janvier 2030 pour les sites existants jusqu'à 290 kW. Reste à choisir le bon niveau d'équipement, puis à vérifier sur vos relevés qu'il sert à quelque chose.</p>
+
+    <div class="tldr" role="list" aria-label="L'essentiel en 30 secondes">
+      <div class="tldr-item" role="listitem"><span class="tldr-k">Le principe</span><p>La GTB relie chauffage, climatisation, ventilation, éclairage et compteurs pour mesurer, régler et alerter.</p></div>
+      <div class="tldr-item" role="listitem"><span class="tldr-k">L'échéance</span><p>Les bâtiments tertiaires existants de plus de 70 kW sont visés au renouvellement des équipements et au plus tard le 1er janvier 2030.</p></div>
+      <div class="tldr-item" role="listitem"><span class="tldr-k">Le contrôle</span><p>Les gains dépendent des réglages&nbsp;: relevez le talon de nuit et révisez les plannings après la pose.</p></div>
+    </div>
   </header>
 
-  <div class="article-body">
+  <div class="v2-layout">
 
-    <h2>Qu'est-ce qu'une GTB</h2>
-
-    <p>La gestion technique de bâtiment (GTB) est un système informatisé qui centralise le pilotage des équipements techniques d'un bâtiment : chauffage, ventilation, climatisation (CVC), éclairage, stores, parfois aussi les alarmes ou les accès. Concrètement, des capteurs et automates collectent en continu des données (température, présence, luminosité) et ajustent automatiquement le fonctionnement des équipements selon des règles définies, ou selon les besoins réels détectés en temps réel.</p>
-
-    <p>À la différence d'une simple programmation horaire sur un thermostat, la GTB permet un pilotage fin et centralisé, souvent accessible depuis un poste de supervision unique, voire à distance. Elle se distingue aussi de la GTC (gestion technique centralisée), plus limitée, qui se contente généralement de superviser sans forcément agir sur les équipements.</p>
-
-    <h2>Un levier direct sur la consommation</h2>
-
-    <p>L'intérêt principal de la GTB est économique. En ajustant automatiquement le chauffage ou la climatisation selon l'occupation réelle des locaux, en coupant l'éclairage des zones inoccupées ou en optimisant les cycles de fonctionnement des équipements CVC, les gains de consommation observés par les professionnels du secteur se situent souvent dans une fourchette de l'ordre de 10 à 20 % sur les postes concernés, sans changement d'équipement lourd.</p>
-
-    <p>Ce potentiel d'économies explique pourquoi la GTB est de plus en plus regardée comme un outil de mise en conformité pour les entreprises soumises à des obligations de réduction de consommation, notamment dans le cadre du <a href="decret-tertiaire-obligations.html" class="ilink">décret tertiaire</a>, qui impose des trajectoires de baisse de consommation sur le parc immobilier tertiaire.</p>
-
-    <h2>Le lien avec le décret BACS</h2>
-
-    <p>Depuis quelques années, la réglementation encadre plus précisément l'équipement en systèmes d'automatisation et de contrôle des bâtiments. C'est l'objet du <a href="decret-bacs-obligations.html" class="ilink">décret BACS</a>, qui impose progressivement l'installation de systèmes d'automatisation dans les bâtiments tertiaires dépassant certains seuils de puissance pour leurs équipements de chauffage ou de climatisation.</p>
-
-    <p>La GTB constitue, dans bien des cas, la réponse technique la plus complète à cette obligation, puisqu'elle va au-delà des exigences minimales du décret BACS en offrant un pilotage global et pas seulement une régulation basique. Pour une entreprise qui doit de toute façon se mettre en conformité, investir directement dans une GTB plutôt que dans un système minimal peut s'avérer plus pertinent sur le long terme.</p>
-
-    <h2>GTB et démarche de management énergétique</h2>
-
-    <p>La donnée est au cœur de toute démarche de performance énergétique sérieuse. Une entreprise qui souhaite structurer son pilotage, par exemple dans le cadre d'une certification <a href="iso-50001-entreprise.html" class="ilink">ISO 50001</a>, a besoin d'indicateurs fiables et continus sur sa consommation par usage et par zone. La GTB répond précisément à ce besoin en fournissant automatiquement les données nécessaires au suivi des indicateurs de performance énergétique, là où des relevés manuels seraient chronophages et peu fiables.</p>
-
-    <p>Elle facilite également la détection d'anomalies : une dérive de consommation sur un équipement, un dysfonctionnement de régulation, une surconsommation nocturne, sont autant de signaux que la GTB peut faire remonter rapidement, avant qu'ils ne se traduisent par des surcoûts importants sur la facture.</p>
-
-    <h2>Une démarche à compléter par l'optimisation contractuelle</h2>
-
-    <p>Installer une GTB permet de réduire la quantité d'énergie consommée, mais ne dit rien du prix payé pour chaque kWh. Les deux leviers sont complémentaires et doivent être actionnés ensemble pour un effet maximal sur la facture globale.</p>
-
-    <div id="cta">
-      <div class="cta-section reveal">
-        <p class="cta-title">Une démarche à compléter par l'optimisation contractuelle</p>
-        <p class="cta-sub">Vous investissez dans une GTB pour piloter finement votre consommation ? Complétez cette démarche par une vérification de votre contrat de fourniture : envoyez-nous votre facture, l'analyse est gratuite et vous indique si le prix payé au kWh est, lui aussi, optimisé.</p>
-        <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
-        <!-- partial:cta-reassure --><p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 24h</p><!-- /partial:cta-reassure -->
-      </div>
+    <div class="v2-rail">
+    <details class="toc" id="toc">
+      <summary>Sommaire</summary>
+      <div class="toc-progress" aria-hidden="true"><span id="toc-progress"></span></div>
+      <ol>
+        <li><a href="#ce-que-pilote-reellement-une-gtb">Ce que pilote une GTB</a></li>
+        <li><a href="#votre-batiment-est-il-oblige-d-en-avoir-une">Êtes-vous obligé&nbsp;?</a></li>
+        <li><a href="#les-fonctions-a-exiger-noir-sur-blanc">Fonctions à exiger</a></li>
+        <li><a href="#quelle-classe-viser-a-b-c-ou-d">Quelle classe viser</a></li>
+        <li><a href="#combien-coute-le-projet-et-qui-peut-l-aider">Coût et aides</a></li>
+        <li><a href="#verifier-que-la-gtb-baisse-vraiment-la-facture">Vérifier les gains</a></li>
+        <li><a href="#questions-frequentes">Questions fréquentes</a></li>
+        <li><a href="#votre-etude">Votre étude gratuite</a></li>
+      </ol>
+    </details>
     </div>
 
-    <div class="callout reveal">
-      <p class="callout-title">Lire aussi</p>
-      <p><a href="blog.html" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
-    </div>
+    <div class="v2-main">
 
+      <section class="v2-section" id="ce-que-pilote-reellement-une-gtb">
+
+        <h2>Ce que pilote réellement une GTB</h2>
+
+        <p>Une GTB agit sur trois couches&nbsp;: elle lit des capteurs, elle décide selon des règles, elle commande des équipements. Un thermostat programmable fait la même chose pour une zone et une heure donnée. La GTB le fait pour tout le bâtiment, garde l'historique et permet de comparer une zone à une autre depuis un seul écran.</p>
+
+        <div class="tbl wide" tabindex="0" role="region" aria-label="Tableau"><table>
+          <thead><tr><th scope="col">Couche</th><th scope="col">Exemples</th><th scope="col">Ce que vous devez voir à l'écran</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Terrain</th><td>Sondes de température, détecteurs de présence, compteurs, vannes</td><td>Une valeur récente, datée et plausible</td></tr>
+            <tr><th scope="row">Automatisme</th><td>Automates de chaufferie, de centrale d'air, d'éclairage</td><td>Le mode en cours et la consigne appliquée</td></tr>
+            <tr><th scope="row">Supervision</th><td>Poste central ou accès distant</td><td>Courbes, alarmes, plannings, historique exportable</td></tr>
+          </tbody>
+        </table></div>
+
+        <p>Le périmètre varie beaucoup d'un site à l'autre. Certains bâtiments ne raccordent que la chaufferie, d'autres y ajoutent les stores, l'eau chaude ou la production solaire. La GTC, souvent confondue avec la GTB, désigne plutôt la supervision d'un lot technique. Notre article sur la <a href="gtb-gtc-difference.html" class="ilink">différence entre GTB et GTC</a> donne un test en quelques questions pour savoir ce que vous possédez déjà.</p>
+
+      </section>
+
+      <section class="v2-section" id="votre-batiment-est-il-oblige-d-en-avoir-une">
+
+        <h2>Votre bâtiment est-il obligé d'en avoir une&nbsp;?</h2>
+
+        <p>L'obligation dépend de la puissance nominale utile du chauffage ou de la climatisation, et de la date du permis de construire. Elle pèse sur le propriétaire de ces systèmes. L'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000053216492" class="ilink" target="_blank" rel="noopener">article R175-2 du Code de la construction et de l'habitation</a>, dans sa version en vigueur depuis le 28 décembre 2025, fixe le calendrier suivant.</p>
+
+        <div class="tbl wide" tabindex="0" role="region" aria-label="Tableau"><table>
+          <thead><tr><th scope="col">Bâtiment tertiaire</th><th scope="col">Puissance</th><th scope="col">Échéance</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Permis déposé depuis le 21 juillet 2021</th><td>Plus de 290 kW</td><td>Dès la construction</td></tr>
+            <tr><th scope="row">Autres bâtiments</th><td>Plus de 290 kW</td><td>1er janvier 2025, donc déjà passée</td></tr>
+            <tr><th scope="row">Permis déposé depuis le 8 avril 2024</th><td>Plus de 70 kW</td><td>Dès la construction</td></tr>
+            <tr><th scope="row">Autres bâtiments</th><td>Plus de 70 kW</td><td>Au renouvellement du chauffage ou de la climatisation, au plus tard le 1er janvier 2030</td></tr>
+          </tbody>
+        </table></div>
+
+        <p>L'ancienne échéance de 2027 a été repoussée à 2030 par le décret 2025-1343 du 26 décembre 2025. Attention à la dernière ligne du tableau&nbsp;: remplacer une chaudière ou un groupe froid en 2027 peut déclencher l'obligation sans attendre 2030. Le détail des assujettis figure dans notre page sur le <a href="decret-bacs-obligations.html" class="ilink">décret BACS</a>.</p>
+
+        <p>Une dispense existe lorsque le propriétaire produit une étude montrant que le système n'est pas réalisable avec un temps de retour inférieur à dix ans. Le calcul suit une formule imposée, aides déduites. Nous la déroulons pas à pas dans l'article sur l'<a href="exemption-decret-bacs-temps-retour.html" class="ilink">exemption au décret BACS</a>.</p>
+
+      </section>
+
+      <section class="v2-section" id="les-fonctions-a-exiger-noir-sur-blanc">
+
+        <h2>Les fonctions à exiger noir sur blanc</h2>
+
+        <p>Pour répondre à la réglementation, acheter «&nbsp;une GTB&nbsp;» ne suffit pas&nbsp;: il faut des fonctions précises. La <a href="https://www.justice.fr/fiche/systemes-gestion-technique-batiment-gtb" class="ilink" target="_blank" rel="noopener">fiche officielle sur les systèmes de GTB</a> les énumère, et vous pouvez les recopier dans un cahier des charges.</p>
+
+        <ul class="criteria wide">
+          <li>
+            <div class="head"><span class="n">01</span></div>
+            <h3>Mesurer</h3>
+            <p>Suivre, enregistrer et analyser en continu la production et la consommation, par zone fonctionnelle et au pas horaire.</p>
+          </li>
+          <li>
+            <div class="head"><span class="n">02</span></div>
+            <h3>Conserver</h3>
+            <p>Garder les données à l'échelle mensuelle pendant cinq ans.</p>
+          </li>
+          <li>
+            <div class="head"><span class="n">03</span></div>
+            <h3>Comparer</h3>
+            <p>Situer l'efficacité du bâtiment par rapport à des valeurs de référence et détecter les pertes.</p>
+          </li>
+          <li>
+            <div class="head"><span class="n">04</span></div>
+            <h3>Dialoguer</h3>
+            <p>Être interopérable avec les systèmes raccordés.</p>
+          </li>
+          <li>
+            <div class="head"><span class="n">05</span></div>
+            <h3>Reprendre la main</h3>
+            <p>Permettre un arrêt manuel et une gestion autonome de chaque système.</p>
+          </li>
+        </ul>
+
+        <p>L'interopérabilité est la fonction qui coûte le plus cher quand on l'oublie, car elle décide si un autre intégrateur pourra reprendre le site. Notre comparatif des <a href="gtb-protocoles-bacnet-knx-modbus.html" class="ilink">protocoles BACnet, KNX et Modbus</a> explique quoi écrire au marché et quels livrables réclamer.</p>
+
+        <p>Le propriétaire doit aussi organiser des inspections périodiques. L'<a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047422562" class="ilink" target="_blank" rel="noopener">arrêté du 7 avril 2023</a> prévoit un intervalle de cinq ans au maximum, ramené à deux ans après l'installation ou le remplacement du système ou d'un équipement relié. Le rapport d'inspection se conserve dix ans.</p>
+
+        <aside class="cta-inline wide" aria-label="Faire vérifier mon contrat">
+          <div>
+            <p class="eyebrow">Appliquez-le à votre contrat</p>
+            <p class="t">Votre contrat actuel est-il vraiment adapté&nbsp;?</p>
+            <p class="s">Envoyez votre dernière facture&nbsp;: nous vérifions votre offre, votre engagement et vos frais.</p>
+          </div>
+          <div class="actions">
+            <a href="b2b.html#upload" class="cta-btn cta-btn--ghost">Faire vérifier mon contrat →</a>
+            <span class="micro">Gratuit · Sans engagement · Réponse sous 24h</span>
+          </div>
+        </aside>
+
+      </section>
+
+      <section class="v2-section" id="quelle-classe-viser-a-b-c-ou-d">
+
+        <h2>Quelle classe viser&nbsp;: A, B, C ou D</h2>
+
+        <p>Visez la classe qui correspond à vos usages, fonction par fonction, et non une étiquette globale annoncée sur une plaquette. La norme NF EN ISO 52120-1 range les fonctions d'automatisation de D (pas d'automatisation efficace) à A (régulation performante, adaptée à la demande).</p>
+
+        <p>Les textes BACS décrivent des fonctions sans imposer une lettre. L'aide CEE, elle, exige une classe A ou B. Un projet peut donc être pensé pour la seule conformité et se retrouver hors du champ de la prime. Le guide des <a href="classes-gtb-norme-iso-52120.html" class="ilink">classes GTB selon ISO 52120-1</a> indique les preuves à demander avant de signer.</p>
+
+        <p>Un bâtiment simple n'a pas toujours besoin d'une architecture lourde. Pour un cabinet, une agence ou un commerce, quelques automates bien réglés et un accès distant peuvent couvrir l'essentiel&nbsp;: c'est le sujet de notre article sur la <a href="gtb-petit-batiment-tertiaire.html" class="ilink">GTB pour petit bâtiment tertiaire</a>.</p>
+
+      </section>
+
+      <section class="v2-section" id="combien-coute-le-projet-et-qui-peut-l-aider">
+
+        <h2>Combien coûte le projet et qui peut l'aider</h2>
+
+        <p>Il n'existe pas de tarif unique au mètre carré qui tienne d'un site à l'autre, car le prix suit le nombre de points à raccorder, l'état des automates et le câblage. Comparez les devis sur le même tableau de points et séparez l'achat, la mise en service et l'abonnement. La méthode complète se trouve dans notre page sur le <a href="gtb-prix-cout-installation.html" class="ilink">prix d'une GTB</a>.</p>
+
+        <p>La fiche d'opération standardisée <a href="https://www.ecologie.gouv.fr/sites/default/files/documents/BAT-TH-116%20vA62-6%20%C3%A0%20compter%20du%2001-01-2025_1.pdf" class="ilink" target="_blank" rel="noopener">BAT-TH-116</a> ouvre droit à des certificats d'économies d'énergie pour les bâtiments tertiaires existants. Elle s'applique aux opérations engagées avant le 1er janvier 2030 et retient une durée de vie conventionnelle de quinze ans. Le volume dépend de la classe, du secteur, des usages gérés, de la zone climatique et de la surface.</p>
+
+        <p>Exemple de volume pour 2 000 m² de bureaux en zone H3, avec chauffage, climatisation et éclairage&nbsp;: en classe B, (240 + 97 + 90) × 0,6 × 2 000 = 512 400&nbsp;kWh cumac. En classe A, (360 + 233 + 184) × 0,6 × 2 000 = 932 400&nbsp;kWh cumac. La valeur en euros se négocie ensuite avec le demandeur de certificats. La page dédiée à la <a href="prime-cee-gtb-bat-th-116.html" class="ilink">prime CEE BAT-TH-116</a> liste les pièces et les pièges de cumul.</p>
+
+        <aside class="cta-inline wide" aria-label="Calculer votre écart réel">
+          <div>
+            <p class="eyebrow">Et sur votre facture&nbsp;?</p>
+            <p class="t">Combien pourriez-vous économiser&nbsp;?</p>
+            <ol class="steps">
+              <li>Vous envoyez votre dernière facture d'énergie</li>
+              <li>Nous la confrontons aux offres réellement disponibles</li>
+              <li>Vous savez si un changement est pertinent</li>
+            </ol>
+          </div>
+          <div class="actions">
+            <a href="b2b.html#upload" class="cta-btn cta-btn--inline">Calculer mon écart réel →</a>
+            <a href="ms-strategy-calculateur.html" class="alt hit">ou faire une première estimation en ligne →</a>
+            <span class="micro">Gratuit · Données confidentielles · Réponse sous 24h</span>
+          </div>
+        </aside>
+
+      </section>
+
+      <section class="v2-section" id="verifier-que-la-gtb-baisse-vraiment-la-facture">
+
+        <h2>Vérifier que la GTB baisse vraiment la facture</h2>
+
+        <p>Une GTB produit des économies quand quelqu'un corrige ses réglages. Elle n'en produit aucune si les plannings restent ceux de la réception du chantier. Mesurez avant de poser, puis comparez les mêmes usages après correction de la météo et de l'occupation.</p>
+
+        <aside class="note quote">
+          <p>«&nbsp;Une GTB produit des économies quand quelqu'un corrige ses réglages.&nbsp;»</p>
+        </aside>
+
+        <p>Prenons un site hypothétique dont les systèmes raccordés consomment 200 000&nbsp;kWh par an, payés 0,15&nbsp;€ le kWh. Si le réglage évitait 15&nbsp;% de cette consommation, le gain serait de 30 000&nbsp;kWh, soit 4 500&nbsp;€ par an. Avec un coût net d'aides de 31 500&nbsp;€, le temps de retour serait de 7&nbsp;ans. Le même calcul avec 8&nbsp;% donnerait 2 400&nbsp;€ et un peu plus de 13&nbsp;ans&nbsp;: l'hypothèse de gain pèse autant que le devis.</p>
+
+        <ol class="timeline">
+          <li style="--dot: var(--green)">
+            <div>
+              <span class="when">Étape 1</span>
+              <h3>Semaine 1</h3>
+              <p>Relevez la puissance appelée entre 2 h et 4 h du matin. Ce talon révèle ce qui tourne sans occupant.</p>
+            </div>
+          </li>
+          <li style="--dot: var(--green)">
+            <div>
+              <span class="when">Étape 2</span>
+              <h3>Mois 1</h3>
+              <p>Comparez les plannings avec les horaires réels, y compris jours fériés et ménage.</p>
+            </div>
+          </li>
+          <li style="--dot: var(--green)">
+            <div>
+              <span class="when">Étape 3</span>
+              <h3>Mois 3</h3>
+              <p>Classez les alarmes par fréquence et supprimez celles auxquelles personne ne répond.</p>
+            </div>
+          </li>
+          <li style="--dot: var(--green)">
+            <div>
+              <span class="when">Étape 4</span>
+              <h3>Saison suivante</h3>
+              <p>Refaites les consignes de chauffage et de froid en vérifiant qu'ils ne fonctionnent jamais en même temps dans une zone.</p>
+            </div>
+          </li>
+        </ol>
+
+        <p>Ces données servent aussi à vos déclarations dans le cadre du <a href="decret-tertiaire-obligations.html" class="ilink">décret tertiaire</a>, pour les ensembles d'au moins 1 000 m², et à une démarche <a href="iso-50001-entreprise.html" class="ilink">ISO 50001</a> si vous en menez une. Le pilotage réduit les kWh. Le prix de chaque kWh dépend, lui, de votre contrat de fourniture.</p>
+
+      </section>
+
+      <section class="v2-section" id="questions-frequentes">
+
+        <h2>Questions fréquentes</h2>
+
+        <h3 class="sub">Un locataire peut-il se voir imposer l'installation d'une GTB&nbsp;?</h3>
+
+        <p>Le texte désigne le propriétaire du système de chauffage ou de climatisation. Si le locataire a lui-même acheté la climatisation, il peut donc se retrouver visé. Lisez le bail et l'état des équipements avant de trancher, puis écrivez qui finance, qui exploite et qui reçoit les données.</p>
+
+        <h3 class="sub">Peut-on garder les automates déjà en place&nbsp;?</h3>
+
+        <p>Souvent, à condition qu'ils communiquent, que leur programme soit accessible et que les pièces existent encore. Demandez une visite avec test de lecture des points avant tout devis. Un automate muet ou verrouillé par mot de passe inconnu change le budget.</p>
+
+        <h3 class="sub">Une GTB en ligne pose-t-elle un risque informatique&nbsp;?</h3>
+
+        <p>Oui, comme tout équipement raccordé au réseau. Prévoyez des comptes nominatifs, un réseau séparé de la bureautique, des sauvegardes et une procédure de fonctionnement manuel. L'ANSSI publie un <a href="https://messervices.cyber.gouv.fr/documents-guides/Guide__Systemes_industriels___GTB_GTC_2025.pdf?hl=fr-FR" class="ilink" target="_blank" rel="noopener">guide consacré aux GTB et GTC</a> utile pour rédiger ces clauses.</p>
+
+        <h3 class="sub">Combien de temps faut-il prévoir pour un projet&nbsp;?</h3>
+
+        <p>Le délai dépend surtout des accès au site et des pièces à commander. Réservez une saison de chauffe complète pour les réglages après la pose. Un projet lancé juste avant une échéance réglementaire risque d'être réceptionné sans avoir été éprouvé en hiver.</p>
+
+      </section>
+
+      <section class="v2-section" id="votre-etude">
+        <h2>Faire suivre la GTB d'un contrat d'énergie à la hauteur</h2>
+
+        <div id="cta" class="wide">
+          <div class="cta-section reveal">
+            <p class="cta-title">Votre facture, analysée gratuitement</p>
+            <p class="cta-sub">Votre GTB réduit les kWh, reste à vérifier le prix auquel vous achetez ceux qui demeurent. Envoyez-nous votre dernière facture&nbsp;: M&S Strategy l'étudie gratuitement et vous répond sous 24h.</p>
+            <a href="b2b.html#upload" class="cta-btn">Obtenir mon étude gratuite →</a>
+            <!-- partial:cta-reassure --><p class="cta-reassure">100% gratuit · Sans engagement · Données confidentielles · Réponse sous 24h</p><!-- /partial:cta-reassure -->
+          </div>
+        </div>
+
+        <div class="callout reveal wide">
+          <p class="callout-title">Lire aussi</p>
+          <ul class="related">
+            <li><a href="gtb-prix-cout-installation.html" class="ilink">Prix d'une GTB bâtiment&nbsp;: lire un devis et calculer le coût réel</a></li>
+            <li><a href="prime-cee-gtb-bat-th-116.html" class="ilink">Prime CEE GTB BAT-TH-116&nbsp;: conditions, calcul et dossier</a></li>
+            <li><a href="decret-bacs-obligations.html" class="ilink">Décret BACS&nbsp;: quelles obligations pour les bâtiments tertiaires</a></li>
+          </ul>
+          <p><a href="blog.html" class="hit" style="color:var(--teal-light)">Voir toutes nos analyses énergie →</a></p>
+        </div>
+      </section>
+
+    </div>
   </div>
 </article>
+</main>
 
 <footer>
   <p>
@@ -340,17 +753,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div google-add-preferred-source-btn data-theme="dark"></div>
 </footer>
 
-<!-- partial:floating-cta --><div class="floating-cta" id="floating-cta">
-  <a href="#cta">Étude gratuite · 24h →</a>
-</div><!-- /partial:floating-cta -->
-
 <script>
 // ── Progress bar
 const bar = document.getElementById('progress-bar');
 window.addEventListener('scroll', () => {
   const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
   bar.style.width = pct + '%';
-  document.getElementById('floating-cta').classList.toggle('visible', window.scrollY > 400);
 });
 
 // ── Scroll reveal
@@ -364,6 +772,33 @@ const photoObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); photoObs.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.photo-ph').forEach(el => photoObs.observe(el));
+
+// ── Sommaire : ouvert en desktop, section active, progression
+const toc = document.getElementById('toc');
+const tocProgress = document.getElementById('toc-progress');
+const wide = window.matchMedia('(min-width: 1024px)');
+const syncToc = () => { toc.open = wide.matches; };
+syncToc();
+wide.addEventListener('change', syncToc);
+toc.addEventListener('toggle', () => { if (wide.matches && !toc.open) toc.open = true; });
+toc.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (!wide.matches) toc.open = false; }));
+
+const tocLinks = new Map([...toc.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const id = e.target.id;
+    tocLinks.forEach((a, key) => {
+      a.classList.toggle('is-active', key === id);
+      if (key === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  });
+}, { rootMargin: '-35% 0px -60% 0px' });
+document.querySelectorAll('.v2-section').forEach(s => secObs.observe(s));
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  tocProgress.style.width = Math.min(100, pct) + '%';
+}, { passive: true });
 </script>
 <script defer src="assets/speed-insights.js"></script>
 </body>

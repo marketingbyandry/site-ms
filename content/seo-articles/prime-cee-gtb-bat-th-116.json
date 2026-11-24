@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Prime CEE GTB BAT-TH-116 : calcul et conditions",
+ "description": "Prime CEE GTB BAT-TH-116 : conditions, forfaits par secteur, exemple de calcul, cumuls interdits et ordre des pièces du dossier.",
+ "excerpt": "Forfaits, zones et pièces du dossier : calculer la prime CEE de votre GTB avant de signer les travaux.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Les conditions", "Les forfaits", "Calculer le volume", "L'ordre du dossier", "Les cumuls interdits", "Contrôles avant budget", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "BAT-TH-116 vise les bâtiments tertiaires existants équipés d'une GTB de classe A ou B."},
+  {"k": "Le calcul", "text": "Le volume multiplie le forfait de chaque usage par la zone climatique et la surface gérée."},
+  {"k": "Le piège", "text": "Faites valider l'offre de prime avant tout engagement ferme et vérifiez les fiches non cumulables."}
+ ],
+ "notes": [{"section": 5, "quote": true, "text": "Tant que le dossier n'est pas déposé, contrôlé et payé, il reste un risque."}],
+ "related": ["classes-gtb-norme-iso-52120", "cee-entreprise-2026", "gtb-gestion-technique-batiment"]
+}

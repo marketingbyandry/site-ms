@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Accise gaz (ex-TICGN) : exonération entreprise",
+ "description": "Accise gaz entreprise : taux 2026, exonérations, tarifs réduits, attestation au fournisseur et remboursement, avec les codes et seuils officiels.",
+ "excerpt": "16,66 €/MWh depuis août 2026 : qui peut être exonéré, qui paie un tarif réduit et comment le demander.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["Le taux de 2026", "Les usages exonérés", "Les tarifs réduits", "Chiffrer l'enjeu", "L'attestation", "Le remboursement", "Les erreurs fréquentes", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "L'exonération dépend de l'usage du gaz, sur la part de consommation concernée."},
+  {"k": "Les tarifs", "text": "Le tarif plein est de 16,66 €/MWh depuis août 2026. Les tarifs réduits vont de 0,54 à 1,60 €/MWh."},
+  {"k": "Le délai", "text": "Un trop-payé se réclame jusqu'au 31 décembre de la deuxième année suivant la consommation ou la facturation."}
+ ],
+ "notes": [
+  {"section": 1, "quote": true, "text": "L'exonération suit l'usage réel du gaz, sur la part de la consommation concernée."},
+  {"section": 4, "quote": true, "text": "Si les conditions ne sont pas remplies à la clôture, elle doit verser le complément."}
+ ],
+ "related": ["cta-contribution-tarifaire-acheminement", "decrypter-facture-gaz-professionnel", "prix-gaz-professionnel-2026"]
+}

@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Électricité salon de coiffure : le bon réglage",
+ "description": "Puissance du samedi, eau du bac, linge et cabines : réglez l'électricité de votre salon de coiffure ou institut avec un calcul concret.",
+ "excerpt": "Puissance utile, eau chaude, linge et cabines : réglez l'électricité du salon sur votre vrai samedi.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Le samedi à 11 h", "L'eau du bac", "Linge et coiffage", "Cabines d'institut", "Température", "Choisir le contrat", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Souscrivez la puissance des appareils utilisés ensemble, avec une marge, au lieu de l'inventaire total."},
+  {"k": "L'eau", "text": "Mesurez les litres par shampoing pour chiffrer l'énergie du ballon."},
+  {"k": "Le contrat", "text": "Contrôlez que le ballon et le linge suivent les heures creuses réelles."}
+ ],
+ "notes": [{"section": 0, "quote": true, "text": "La puissance à souscrire découle des appareils utilisés ensemble, jamais de leur inventaire complet."}],
+ "related": ["tarif-bleu-professionnel-eligibilite", "puissance-souscrite-entreprise-kva", "energie-pressing-blanchisserie"]
+}

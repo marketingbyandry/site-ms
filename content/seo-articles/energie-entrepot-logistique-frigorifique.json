@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Consommation entrepôt frigorifique : méthode",
+ "description": "Ratios par chambre, quais, dégivrage et flexibilité : maîtrisez la consommation d'un entrepôt frigorifique sans mettre le stock en danger.",
+ "excerpt": "Ratios par chambre, quais, dégivrages et flexibilité : une méthode pour l'entrepôt frigorifique.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Choisir le ratio", "Traiter le quai", "Chaleur intérieure", "Dégivrage et groupes", "Tester la flexibilité", "Préparer le contrat", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Suivez chaque chambre avec son volume, son activité et la température extérieure."},
+  {"k": "Le piège", "text": "Un éclairage intérieur consomme lui-même et impose du froid pour retirer sa chaleur."},
+  {"k": "La limite", "text": "Un test de flexibilité exige un seuil d'arrêt et la sécurité des produits avant le prix."}
+ ],
+ "notes": [{"section": 2, "quote": true, "text": "Tout kW d'éclairage ou de moteur dans une chambre devient une charge thermique."}],
+ "related": ["effacement-electrique-nebef-entreprise", "segments-c1-c2-c3-c4-c5-electricite", "energie-supermarche-commerce-alimentaire"]
+}

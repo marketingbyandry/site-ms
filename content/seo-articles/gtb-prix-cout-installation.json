@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Prix GTB bâtiment : devis et coût sur 10 ans",
+ "description": "Prix GTB bâtiment : postes du devis, liste de points, comparaison sur dix ans et calcul du temps de retour avant de signer.",
+ "excerpt": "Comment comparer deux devis de GTB, compter les points et calculer le vrai coût sur dix ans.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Les postes du prix", "Compter les points", "Deux devis comparés", "Estimer les économies", "Réduire la dépense", "Réussir la réception", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Le prix suit le nombre de points à raccorder, l'état des automates et le câblage, plus que la surface."},
+  {"k": "La comparaison", "text": "Comparez sur dix ans, abonnement et maintenance compris, à partir d'une même liste de points."},
+  {"k": "Le réflexe", "text": "Testez lecture, commande et panne avant de signer la réception."}
+ ],
+ "notes": [{"section": 2, "quote": true, "text": "Le moins cher à l'achat peut devenir le plus coûteux à dix ans."}],
+ "related": ["gtb-gestion-technique-batiment", "prime-cee-gtb-bat-th-116", "exemption-decret-bacs-temps-retour"]
+}

@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "CAR gaz et options T1 T2 T3 T4 : le guide pro",
+ "description": "CAR gaz et options T1 T2 T3 T4 : seuils, grille 2026, calcul du point de bascule et méthode pour corriger la consommation annuelle de référence.",
+ "excerpt": "Votre CAR décide de l'option T1 à T4 et pèse sur les offres. Voici comment la vérifier, calculs à l'appui.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["Ce que mesure la CAR", "Les options T1 à T4", "Le point de bascule", "Le profil du site", "Vérifier la CAR", "Au bon moment", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "La CAR estime une année moyenne. Elle sert à classer le site de T1 à T4 et à préparer les offres."},
+  {"k": "Les seuils", "text": "GRDF place les bornes à 4, 300 et 5 000 MWh par an."},
+  {"k": "Le contrôle", "text": "Comparez la CAR à douze mois réels et demandez une révision si le changement est durable."}
+ ],
+ "notes": [
+  {"section": 0, "quote": true, "text": "La CAR est une estimation corrigée du climat, pas la somme brute de vos dernières factures."},
+  {"section": 5, "quote": true, "text": "Un fournisseur qui reçoit une CAR erronée fait un prix pour un site qui n'existe pas."}
+ ],
+ "related": ["atrd-atrt-acheminement-gaz-entreprise", "decrypter-facture-gaz-professionnel", "prix-gaz-professionnel-2026"]
+}

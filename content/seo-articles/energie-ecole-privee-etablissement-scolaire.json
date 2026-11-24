@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Énergie école privée : régler le calendrier",
+ "description": "Calendrier des cours, congés, internat et obligations : réglez l'énergie d'une école privée zone par zone et préparez son contrat.",
+ "excerpt": "Cours, congés, gymnase, internat : réglez l'énergie de votre école privée zone par zone et jour par jour.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Heures occupées", "Programmer la journée", "Préparer les congés", "Usages continus", "Obligations", "Acheter l'énergie", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Donnez un calendrier distinct à chaque zone, des classes à l'internat."},
+  {"k": "Les limites", "text": "Les locaux d'enseignement ont une moyenne maximale de 19 °C pendant l'occupation."},
+  {"k": "Le suivi", "text": "Comparez les kWh, la météo et la relance avant d'attribuer un gain aux congés."}
+ ],
+ "notes": [{"section": 0, "quote": true, "text": "Si deux zones sont sur le même réseau, l'occupation de la plus petite peut obliger à chauffer tout le bâtiment."}],
+ "related": ["operat-declaration-decret-tertiaire", "decret-bacs-obligations", "gtb-petit-batiment-tertiaire"]
+}

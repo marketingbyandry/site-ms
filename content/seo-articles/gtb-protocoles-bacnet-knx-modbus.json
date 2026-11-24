@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Protocoles GTB : BACnet, KNX ou Modbus ?",
+ "description": "Protocoles GTB BACnet, KNX et Modbus : rôle de chacun, pièges des systèmes fermés, clause à recopier et points de sécurité à régler.",
+ "excerpt": "BACnet, KNX ou Modbus : ce que chacun fait le mieux et les cinq livrables à exiger au contrat.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["À quoi sert chacun", "L'attente réglementaire", "Les faux systèmes ouverts", "La clause à recopier", "Choisir selon le site", "Sécuriser les échanges", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "BACnet relie automates et supervision, KNX pilote éclairage et stores, Modbus lit compteurs et machines."},
+  {"k": "Le risque", "text": "Un système annoncé ouvert peut rester fermé sans table des points ni programmes sources."},
+  {"k": "La clause", "text": "Exigez table des points, programmes, accès, sauvegardes et aide à la reprise."}
+ ],
+ "notes": [{"section": 2, "quote": true, "text": "Un appareil peut annoncer BACnet et n'exposer que trois valeurs."}],
+ "related": ["gtb-gestion-technique-batiment", "gtb-gtc-difference", "gtb-prix-cout-installation"]
+}

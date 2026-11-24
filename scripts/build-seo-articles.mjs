@@ -222,6 +222,7 @@ export function parseArticleMarkdown(markdown) {
 function blocksToHtml(blocks) {
   return blocks.map((block) => {
     if (block.type === 'p') return `    <p>${inlineMarkdownToHtml(block.text)}</p>`;
+    if (block.type === 'h3' || block.type === 'table') return blockToHtmlV2(block);
     const tag = block.type === 'ul' ? 'ul' : 'ol';
     const items = block.items.map((item) => `      <li>${inlineMarkdownToHtml(item)}</li>`).join('\n');
     return `    <${tag} class="checklist">\n${items}\n    </${tag}>`;

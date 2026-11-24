@@ -1,0 +1,18 @@
+{
+ "status": "done",
+ "seoTitle": "Segments C1 C2 C3 C4 C5 en électricité",
+ "description": "Segments C1, C2, C3, C4 et C5 en électricité : définitions d'Enedis, indices à lire sur la facture et effets sur votre contrat professionnel.",
+ "excerpt": "Tension, puissance et contrat : reconnaître son segment C1 à C5 et ce qu'il change à la facture.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Les cinq définitions", "Lire son segment", "Effets sur le contrat", "Changer de segment", "Mise en concurrence", "Confusions à éviter", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Le segment classe un point de connexion selon la tension, la puissance et le type de contrat de réseau."},
+  {"k": "Le repère", "text": "Basse tension jusqu'à 36 kVA en C5, au-dessus en C4, moyenne tension en contrat unique en C2."},
+  {"k": "À noter", "text": "Le segment C3 est donné comme obsolète depuis janvier 2023 dans le guide de flux d'Enedis."}
+ ],
+ "notes": [
+  {"section": 4, "quote": true, "text": "Comparer deux offres n'a de sens que pour le même segment et le même profil."}
+ ],
+ "related": ["compteur-c4-tarif-hta-entreprise", "tarif-jaune-tarif-vert-equivalent", "courbe-de-charge-enedis-entreprise"]
+}

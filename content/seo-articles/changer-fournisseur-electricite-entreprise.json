@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Changer de fournisseur d'électricité en entreprise",
+ "description": "Changer de fournisseur d'électricité en entreprise : délais selon la puissance, pièces à réunir, calcul du gain net et contrôles.",
+ "excerpt": "Délais, dossier, calcul du gain net et calendrier : réussir la bascule vers un nouveau fournisseur.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Ce qui change", "Le délai applicable", "Le dossier à réunir", "Le gain net", "La bascule par semaine", "Les contrôles", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Le vendeur change, le compteur et l'alimentation restent en place."},
+  {"k": "Le délai", "text": "Jusqu'à 36 kVA, vingt et un jours au plus ; au-delà, le contrat pèse davantage."},
+  {"k": "Le calcul", "text": "Retranchez l'abonnement supplémentaire et les frais de sortie avant d'annoncer un gain."}
+ ],
+ "notes": [
+  {"section": 1, "quote": true, "text": "pouvoir changer techniquement ne veut pas dire pouvoir partir sans frais"},
+  {"section": 4, "quote": true, "text": "L'index final de l'ancien contrat doit correspondre à l'index initial du nouveau."}
+ ],
+ "related": ["comparatif-fournisseurs-electricite-pro", "resilier-contrat-electricite-entreprise", "reconduction-tacite-contrat-energie"]
+}

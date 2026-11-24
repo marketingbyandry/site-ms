@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Électricité garage automobile : où agir",
+ "description": "Fuites d'air, cabine de peinture, chauffage et bornes : mesurez l'électricité de votre garage automobile avec des tests et calculs simples.",
+ "excerpt": "Un test de fuite en dix minutes, une cabine mieux réglée, une borne bien dimensionnée : agir au garage.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Fuites d'air", "Cabine de peinture", "Chauffer l'atelier", "Ajouter une borne", "Petits appels", "Comparer les offres", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Mesurez les fuites d'air en chronométrant la baisse de pression de la cuve, outils au repos."},
+  {"k": "La cabine", "text": "Le chauffage dépend du débit d'air neuf et de l'écart de température avec l'extérieur."},
+  {"k": "La borne", "text": "Additionnez les usages simultanés avant d'ajouter une recharge de 22 kW."}
+ ],
+ "notes": [{"section": 0, "quote": true, "text": "L'air comprimé se paie même quand personne ne souffle, car chaque fuite oblige le compresseur à redémarrer."}],
+ "related": ["bornes-recharge-entreprise-loi-lom", "puissance-souscrite-entreprise-kva", "energie-reactive-facture-entreprise"]
+}

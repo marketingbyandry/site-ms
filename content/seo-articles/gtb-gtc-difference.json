@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Différence GTB GTC : le test en 10 questions",
+ "description": "Différence GTB GTC : définitions, test en dix questions, exigences BACS et méthode pour faire évoluer une supervision existante.",
+ "excerpt": "GTB ou GTC : dix questions à poser devant l'écran pour savoir ce que fait vraiment votre système.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Les deux sigles", "Ce que dit la règle", "Le test en 10 questions", "Faire évoluer une GTC", "L'effet sur les aides", "Les mots à écrire", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "La GTC supervise un lot technique, la GTB réunit plusieurs lots et les fait travailler ensemble."},
+  {"k": "La règle", "text": "Les textes BACS décrivent des fonctions : le sigle porté par votre système ne prouve pas la conformité."},
+  {"k": "L'action", "text": "Passez le test en dix questions devant l'écran, puis faites évoluer ce qui communique déjà."}
+ ],
+ "notes": [{"section": 5, "quote": true, "text": "Vous éviterez un désaccord sur le sigle au moment de la réception."}],
+ "related": ["gtb-gestion-technique-batiment", "gtb-protocoles-bacnet-knx-modbus", "gtb-prix-cout-installation"]
+}

@@ -1,0 +1,44 @@
+{
+ "status": "done",
+ "seoTitle": "Énergie réactive facture : calcul et solutions",
+ "description": "Énergie réactive sur la facture : seuil de tangente phi à 0,4, calcul de la pénalité, dimensionnement des condensateurs et pièges à éviter.",
+ "excerpt": "Tangente phi, pénalité d'hiver, condensateurs : lire et réduire la ligne d'énergie réactive.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": [
+  "Tangente phi",
+  "Quand c'est facturé",
+  "Calculer la pénalité",
+  "Trouver la cause",
+  "Compenser",
+  "Ne pas trop compenser",
+  "Questions fréquentes",
+  "Votre étude gratuite"
+ ],
+ "tldr": [
+  {
+   "k": "Le principe",
+   "text": "En HTA, le réactif se paie au-delà de 40 % de l'énergie active en saison haute. En basse tension, il n'est plus facturé."
+  },
+  {
+   "k": "Le tarif HTA",
+   "text": "2,51 c€ par kvarh excédentaire depuis le 1er août 2026, pour une tangente phi maximale de 0,4."
+  },
+  {
+   "k": "La solution",
+   "text": "Une batterie de condensateurs dimensionnée sur la tangente phi visée, avec un régulateur pour ne pas trop compenser."
+  }
+ ],
+ "notes": [
+  {
+   "section": 2,
+   "quote": true,
+   "text": "Le calcul porte sur l'excédent, pas sur la totalité du réactif."
+  }
+ ],
+ "related": [
+  "puissance-souscrite-entreprise-kva",
+  "turpe-2026-professionnels",
+  "courbe-de-charge-enedis-entreprise"
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Certificats de production de biogaz : facture",
+ "description": "Certificats de production de biogaz : coefficients 2026 à 2029 révisés, calcul en euros et questions à poser avant de renouveler.",
+ "excerpt": "Les coefficients CPB ont changé en octobre 2026 : calculez leur effet sur votre facture de gaz.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["L'obligation", "Les coefficients", "Le calcul en euros", "Sur la facture", "Questions à poser", "Prévoir 2027", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Les fournisseurs restituent des certificats liés au gaz livré et peuvent répercuter ce coût dans votre prix."},
+  {"k": "Le chiffre", "text": "Le coefficient passe de 0,0041 en 2026 à 0,0162 en 2027, après le décret 2026-933."},
+  {"k": "L'action", "text": "Demandez si les CPB sont inclus, quel coefficient s'applique et comment leur prix est fixé."}
+ ],
+ "notes": [{"section": 4, "quote": true, "text": "Une offre plus basse sans CPB peut coûter davantage qu'une offre un peu plus chère qui les comprend."}],
+ "related": ["biomethane-garanties-origine-entreprise", "decrypter-facture-gaz-professionnel", "prix-fixe-ou-indexe-gaz-professionnel"]
+}

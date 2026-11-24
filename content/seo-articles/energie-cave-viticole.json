@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Électricité cave viticole : gérer les vendanges",
+ "description": "Vendanges, froid des cuves, élevage et puissance : préparez l'électricité de votre cave viticole sans surdimensionner son contrat.",
+ "excerpt": "Froid des cuves, pointe des vendanges et élevage : adapter l'électricité au rythme réel d'une cave.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["L'année de la cave", "Calculer le froid", "Pointe des vendanges", "Élevage", "Le solaire", "Négocier le contrat", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Reliez la puissance de vendange aux usages qui fonctionnent réellement ensemble."},
+  {"k": "Le calcul", "text": "Doubler la durée de refroidissement peut diviser la puissance de froid par deux."},
+  {"k": "Le contrat", "text": "Comparez avec une courbe qui contient vendanges et période d'élevage."}
+ ],
+ "notes": [{"section": 2, "quote": true, "text": "La puissance se calcule à partir d'un jour probable, pas de toutes les plaques posées dans le bâtiment."}],
+ "related": ["electricite-exploitation-agricole-hors-solaire", "hangar-photovoltaique-agricole", "puissance-souscrite-entreprise-kva"]
+}

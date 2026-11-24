@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Résilier un contrat gaz professionnel : le guide",
+ "description": "Résilier un contrat de gaz professionnel : seuil de 30 000 kWh, préavis, indemnité chiffrée, motifs légitimes et modèle de lettre à adapter.",
+ "excerpt": "Préavis, frais de sortie, seuil de 30 000 kWh : ce que la loi prévoit et ce que votre contrat décide seul.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["Le seuil de 30 000 kWh", "Sortir à l'échéance", "Chiffrer l'indemnité", "Les cas favorables", "Changer ou fermer", "Modèle de lettre", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "À l'échéance, le préavis du contrat commande et peut atteindre plusieurs mois."},
+  {"k": "Le piège", "text": "En gaz, les frais de sortie anticipée ne sont pas plafonnés par la loi, même pour un petit site."},
+  {"k": "Le droit utile", "text": "Sous 30 000 kWh par an, une modification du contrat ouvre trois mois pour résilier sans pénalité."}
+ ],
+ "notes": [
+  {"section": 2, "quote": true, "text": "tant que l'écart de prix reste inférieur à l'indemnité au MWh, attendre est moins cher."},
+  {"section": 4, "quote": true, "text": "Pour changer, ne coupez pas votre contrat avant d'avoir signé le suivant."}
+ ],
+ "related": ["reconduction-tacite-contrat-energie", "comparer-fournisseurs-gaz-professionnel", "prix-gaz-professionnel-2026"]
+}

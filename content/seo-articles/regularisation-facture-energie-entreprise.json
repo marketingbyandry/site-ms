@@ -1,0 +1,18 @@
+{
+ "status": "done",
+ "seoTitle": "Régularisation facture énergie : limites pro",
+ "description": "Régularisation de facture d'énergie : règle des quatorze mois jusqu'à 36 kVA, prescription de cinq ans, calcul de contrôle et modèle de courrier.",
+ "excerpt": "Quatorze mois ou cinq ans : la limite du rattrapage selon votre site, avec un calcul pour vérifier.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Pourquoi elle arrive", "14 mois ou 5 ans", "Les exceptions", "Contrôler le montant", "Contester, étaler", "Prévenir la suivante", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Une régularisation remplace des consommations estimées par des consommations relevées."},
+  {"k": "La limite", "text": "Quatorze mois en électricité jusqu'à 36 kVA et en gaz sous 30 000 kWh par an ; sinon, la prescription est de cinq ans."},
+  {"k": "Le contrôle", "text": "Chaque période doit être valorisée au prix du contrat en vigueur à sa date."}
+ ],
+ "notes": [
+  {"section": 3, "quote": true, "text": "Une régularisation de vingt mois facturée entièrement au prix du nouveau contrat est une erreur."}
+ ],
+ "related": ["litige-fournisseur-energie-entreprise", "decrypter-facture-electricite-pro", "decrypter-facture-gaz-professionnel"]
+}

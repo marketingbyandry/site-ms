@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Dépôt de garantie énergie pro : vos droits",
+ "description": "Dépôt de garantie d'un contrat d'énergie professionnel : montant, coût de trésorerie, clause à négocier et étapes de restitution.",
+ "excerpt": "Montant, trésorerie, restitution : évaluez le dépôt demandé par votre fournisseur avant de signer.",
+ "datePublished": "2026-11-24",
+ "energie": "d'énergie",
+ "toc": ["Ce que couvre le dépôt", "Pourquoi il est demandé", "Évaluer le montant", "Lire la clause", "Négocier", "Récupérer la somme", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le but", "text": "Le dépôt couvre un éventuel impayé ; il ne remplace ni un acompte ni une mensualité."},
+  {"k": "Le coût", "text": "Ajoutez la trésorerie immobilisée au coût total de l'offre."},
+  {"k": "La clause", "text": "Faites écrire le montant, sa révision et une date maximale de restitution."}
+ ],
+ "notes": [
+  {"section": 0, "quote": true, "text": "La nature de la somme doit être claire avant tout virement."},
+  {"section": 2, "quote": true, "text": "L'argent immobilisé a un coût."}
+ ],
+ "related": ["fournisseur-energie-defaillant-entreprise", "appel-offres-energie-entreprise", "comparatif-fournisseurs-electricite-pro"]
+}

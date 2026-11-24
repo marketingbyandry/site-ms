@@ -1,0 +1,19 @@
+{
+ "status": "done",
+ "seoTitle": "Prix gaz pro 2026 : kWh, tarif et calcul complet",
+ "description": "Prix gaz pro en novembre 2026 : PEG, accise, acheminement, CTA. Le calcul complet du kWh sur un site de 100 MWh et la méthode pour juger une offre.",
+ "excerpt": "Ce que paie vraiment une entreprise pour son gaz fin 2026, ligne par ligne, avec un calcul sur 100 MWh.",
+ "datePublished": "2026-11-24",
+ "energie": "de gaz",
+ "toc": ["Les trois blocs du prix", "Le marché fin 2026", "Le tarif professionnel", "Exemple sur 100 MWh", "Les écarts entre sites", "Vérifier votre prix", "Le calendrier", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Le prix du kWh additionne fourniture, acheminement et taxes. Seule la fourniture se négocie franchement."},
+  {"k": "L'exemple", "text": "Sur 100 MWh en T2, avec 70 €/MWh de fourniture en hypothèse, le kWh ressort à 10,79 centimes HT."},
+  {"k": "Le réflexe", "text": "Ramenez chaque offre à un prix complet HT par MWh et comparez des devis obtenus le même jour."}
+ ],
+ "notes": [
+  {"section": 0, "quote": true, "text": "Avant de comparer, écrivez noir sur blanc ce que chaque prix contient."},
+  {"section": 3, "quote": true, "text": "Si vous la faites varier de 10 €/MWh, la facture bouge de 1 000 € HT par an, soit un peu plus de 9 %."}
+ ],
+ "related": ["comparer-fournisseurs-gaz-professionnel", "prix-fixe-ou-indexe-gaz-professionnel", "decrypter-facture-gaz-professionnel"]
+}

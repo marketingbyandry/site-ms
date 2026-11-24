@@ -1,0 +1,16 @@
+{
+ "status": "done",
+ "seoTitle": "Consommation énergie supermarché : agir",
+ "description": "Talon nocturne, meubles froids, chaleur récupérée, obligations et contrat : les vérifications pour réduire l'énergie d'un supermarché.",
+ "excerpt": "Du talon nocturne aux meubles réfrigérés, les contrôles utiles pour l'énergie d'un commerce alimentaire.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Le talon nocturne", "Inspecter le froid", "Chaleur récupérable", "Rayons qui chauffent", "Obligations", "Négocier le contrat", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "La puissance appelée entre 1 h et 4 h révèle le socle du froid et les appareils oubliés."},
+  {"k": "Le test", "text": "Mesurez un linéaire témoin avant et après la pose de portes, sur deux semaines comparables."},
+  {"k": "Le contrat", "text": "Consultez avec la courbe de charge complète et contrôlez la clause de volume avant une rénovation."}
+ ],
+ "notes": [{"section": 1, "quote": true, "text": "Le test du linéaire témoin évite de discuter sur des promesses."}],
+ "related": ["energie-boucherie-charcuterie", "energie-entrepot-logistique-frigorifique", "decret-tertiaire-obligations"]
+}

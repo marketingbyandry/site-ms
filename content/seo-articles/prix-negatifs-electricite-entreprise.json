@@ -1,0 +1,18 @@
+{
+ "status": "done",
+ "seoTitle": "Prix négatifs électricité : effet entreprise",
+ "description": "Prix négatifs de l'électricité : heures comptées par la CRE depuis 2023, effet réel sur la facture d'une entreprise et usages à déplacer.",
+ "excerpt": "Les prix négatifs progressent, mais seules certaines entreprises en profitent : contrat et usages.",
+ "datePublished": "2026-11-24",
+ "energie": "d'électricité",
+ "toc": ["Heures et saisons", "Pourquoi sous zéro", "Effet sur la facture", "Selon le contrat", "Usages à déplacer", "Producteurs solaires", "Questions fréquentes", "Votre étude gratuite"],
+ "tldr": [
+  {"k": "Le principe", "text": "Un prix négatif ne concerne que la part énergie, pendant certaines heures, et pour les contrats liés au prix horaire."},
+  {"k": "L'ampleur", "text": "568 heures au 8 octobre 2026 selon la CRE, après 513 heures en 2025."},
+  {"k": "Le levier", "text": "Déplacer des usages vers le milieu de journée au printemps et en été, sans gêner l'activité."}
+ ],
+ "notes": [
+  {"section": 2, "quote": true, "text": "Ajoutez la marge du fournisseur : le total payé peut demeurer positif pendant une heure de prix négatif."}
+ ],
+ "related": ["prix-marche-gros-electricite", "effacement-electrique-nebef-entreprise", "courbe-de-charge-enedis-entreprise"]
+}
