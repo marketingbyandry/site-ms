@@ -10,10 +10,10 @@ Branche `social/lot-j37-j43`, worktree `~/SITE MS/.claude/worktrees/lot-j37-j43`
   Refaire un jour : `uv run --with pillow python build.py J45`. Planche de contrôle : `planche.py <sortie.jpg> <images…>`.
 
 ## À faire, dans l'ordre
-0. Buffer relu le 25/11 à 1h56 : 0 post programmé, 4 brouillons périmés J19 (05/11) à supprimer ou garder. J44 n'a ni vidéo ni visuel.
-1. Antoine valide les visuels et le programme (J45 = samedi 28/11, J47 = lundi 30/11).
-2. Programmer J42, J43 et J44 (26 et 27/11 compris), puis J45, J47. Buffer gratuit : 10 posts programmés au maximum.
-   J40 (23/11) et J41 (24/11) n'ont pas été publiés : à rattraper ou à sauter.
+0. 25/11 à 2h48 : J42, J43, J45 programmés à 12h30 (9 posts, IDs aux manifestes). 4 brouillons périmés J19 restent dans Buffer.
+1. J44 (27/11) : vidéo du 04/11 retrouvée, copiée dans `videos/2026-11-27/` (3 formats). Attend l'accord d'Antoine ;
+   à programmer après l'envoi de J42 (25/11, 12h30), car Buffer est à 9 posts sur 10.
+2. Ensuite J47 (30/11) après l'envoi de J43. J40 et J41 sautés. Avant de produire une vidéo, regarder `~/Movies/M&S Strategy/Campagne Pas de -50`.
 3. Textes corrigés (J6, J29, J31, J56, J75), PR brouillon `social/corrections-textes-q4`. Accise confirmée par la CRE (délibération 2026-147).
    Reste : validation du texte dirigeant J56.
 4. Pages TVA et capacité corrigées, PR brouillon `fix/tva-20-capacite-2026` (323 tests passent). Reste : contrôle visuel, fusion.

@@ -111,7 +111,7 @@
       "jour": 42,
       "date": "2026-11-25",
       "angle": "Le déroulé exact, de la facture au contrat",
-      "statut": "pret_sauf_clip",
+      "statut": "programme",
       "medias": {
         "ig": [
           "visuels/2026-11-25/j42_ig_1.jpg",
@@ -127,20 +127,32 @@
       },
       "alertes": [
         "Slide 2 : clip de 5 s (facture photographiée au téléphone) à tourner ; la slide texte j42_ig_2 sert de repli."
-      ]
+      ],
+      "buffer": {
+        "fb": "6b063e67615ec212af7b717e",
+        "ig": "6b063e6891929194132ffe22",
+        "x": "6b063e69f0b405190acf3511",
+        "heure": "2026-11-25T12:30+01:00"
+      }
     },
     {
       "jour": 43,
       "date": "2026-11-26",
       "angle": "Petit dictionnaire du Black Friday",
-      "statut": "pret",
+      "statut": "programme",
       "medias": {
         "ig": "visuels/2026-11-26/j43_instagram.jpg",
         "fb": "visuels/2026-11-26/j43_facebook.jpg",
         "li": "visuels/2026-11-26/j43_linkedin.pdf",
         "x": "visuels/2026-11-26/j43_x.jpg"
       },
-      "alertes": []
+      "alertes": [],
+      "buffer": {
+        "fb": "6b063e6aa8becebb7750250d",
+        "ig": "6b063e6ca2fd17422e794bfc",
+        "x": "6b063e6dc4ff71faa82688dc",
+        "heure": "2026-11-26T12:30+01:00"
+      }
     }
   ],
   "version": 1,
