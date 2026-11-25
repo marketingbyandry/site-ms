@@ -1,4 +1,4 @@
-# Handoff : réseaux sociaux M&S (état au 24/11/2026, 23h55)
+# Handoff : réseaux sociaux M&S (état au 25/11/2026, 2h15)
 
 Branche `social/lot-j37-j43`, worktree `~/SITE MS/.claude/worktrees/lot-j37-j43`, dossier `content/publication-social/`.
 
@@ -10,15 +10,17 @@ Branche `social/lot-j37-j43`, worktree `~/SITE MS/.claude/worktrees/lot-j37-j43`
   Refaire un jour : `uv run --with pillow python build.py J45`. Planche de contrôle : `planche.py <sortie.jpg> <images…>`.
 
 ## À faire, dans l'ordre
+0. Buffer relu le 25/11 à 1h56 : 0 post programmé, 4 brouillons périmés J19 (05/11) à supprimer ou garder. J44 n'a ni vidéo ni visuel.
 1. Antoine valide les visuels et le programme (J45 = samedi 28/11, J47 = lundi 30/11).
 2. Programmer J42, J43 et J44 (26 et 27/11 compris), puis J45, J47. Buffer gratuit : 10 posts programmés au maximum.
    J40 (23/11) et J41 (24/11) n'ont pas été publiés : à rattraper ou à sauter.
-3. Corriger les textes (branche `claude/content-funnel-principle-5q3kof`) :
-   - J29 et J75 : « 30,62 €/MWh depuis le 1er février 2026 (CRE) » → 1er août 2026 (février = 30,85). Sources secondaires concordantes, page officielle non lue.
-   - J56 : mécanisme de capacité changé au 01/11/2026, la phrase X « noyé, sans ligne dédiée » est à revoir (idem page du site).
-   - J31 : ne pas renvoyer à une série « étiquette n°X/5 » jamais publiée ; les visuels ne sont pas numérotés.
-4. Corriger la page `tva-electricite-professionnelle.html`, qui annonce encore 5,5 % en production.
-5. Rafraîchir J36 et le baromètre : août 2026 absent, dernière valeur septembre 2026.
+3. Textes corrigés (J6, J29, J31, J56, J75), PR brouillon `social/corrections-textes-q4`. Accise confirmée par la CRE (délibération 2026-147).
+   Reste : validation du texte dirigeant J56.
+4. Pages TVA et capacité corrigées, PR brouillon `fix/tva-20-capacite-2026` (323 tests passent). Reste : contrôle visuel, fusion.
+5. Baromètre : NE PAS fusionner le PR #116 en l'état. Toutes les moyennes dépassent celles d'Energy-Charts (juin 73,66 / 66,07 ;
+   juillet 103,90 / 95,23 ; septembre 149,75 / 143,30 ; octobre 170,26 / 165,83 ; août manquant / 122,80).
+   Piste non prouvée : `lib/entsoe.mjs` ignore les points répétés que l'ENTSO-E omet. Corriger, recalculer, puis refaire J36.
+   Le job GitHub du 1er septembre a échoué, d'où le trou d'août.
 
 ## Limites
 - Les photos réelles et les clips demandés par les briefs sont remplacés par des illustrations.
