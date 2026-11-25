@@ -377,7 +377,7 @@
       },
       {
         "k": "Le piège",
-        "text": "Son coût est souvent fondu dans la part fourniture, sans ligne dédiée toujours explicite."
+        "text": "Son coût peut être inclus dans le prix ou facturé à part : le contrat doit le préciser."
       },
       {
         "k": "Le levier",
@@ -593,12 +593,12 @@
     },
     "tldr": [
       {
-        "k": "Deux taux",
-        "text": "5,5 % sur l'abonnement jusqu'à 36 kVA, 20 % sur la consommation."
+        "k": "Un seul taux",
+        "text": "20 % sur l'abonnement comme sur la consommation."
       },
       {
-        "k": "Au-delà de 36 kVA",
-        "text": "Toute la facture, abonnement compris, passe au taux normal de 20 %."
+        "k": "Depuis août 2025",
+        "text": "Le taux réduit de 5,5 % sur l'abonnement jusqu'à 36 kVA est supprimé."
       },
       {
         "k": "Pour qui c'est un coût",
@@ -614,7 +614,7 @@
       {
         "section": 3,
         "label": "L'exemple en bref",
-        "text": "À 12 kVA : 110,48 € de TVA par mois. Au-delà de 36 kVA : 117 € sur la même base."
+        "text": "117 € de TVA par mois pour 585 € HT, soit 20 % sur toute la facture."
       }
     ]
   },
